@@ -1,4 +1,4 @@
-<?php
+x<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,6 +13,9 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('users')) {
+            Schema::dropIfExists('users');
+        }
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -20,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->char('status',1)->nullable();
             $table->timestamps();
         });
     }
