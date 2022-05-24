@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Buyer as Buyer;
+use App\Http\Controllers\Supplier as Supplier;
+use App\Http\Controllers\Backend as Backend;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,4 +23,24 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::group(['middleware' => ['Buyer']], function () {
+
+    Route::prefix('Buyer')->group(function () {
+        Route::get('/', [Buyer\controllername::class, 'index']);
+    });
+});
+
+Route::group(['middleware' => ['Supplier']], function () {
+
+    Route::prefix('Supplier')->group(function () {
+        Route::get('/', [Supplier\controllername::class, 'index']);
+    });
+});
+
+Route::group(['middleware' => ['Backend']], function () {
+
+    Route::prefix('Backend')->group(function () {
+        Route::get('/', [Backend\controllername::class, 'index']);
+    });
+});
 require __DIR__.'/auth.php';
