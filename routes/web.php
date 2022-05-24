@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Buyer as Buyer;
 use App\Http\Controllers\Supplier as Supplier;
 use App\Http\Controllers\Backend as Backend;
+use App\Http\Controllers\ChatsController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +20,13 @@ use App\Http\Controllers\Backend as Backend;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Auth::routes();
+
+// Route::get('/chat', [ChatsController::class, 'index']);
+Route::get('messages', [ChatsController::class, 'fetchMessages']);
+Route::post('messages', [ChatsController::class, 'sendMessage'])->name('messages');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
