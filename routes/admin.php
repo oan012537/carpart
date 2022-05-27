@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('register/page2', function(){})->name('register.otp');
+
 Route::group(['middleware' => 'auth'], function(){
     Route::prefix('backend')->group(function () {
         Route::get('/', function(){});

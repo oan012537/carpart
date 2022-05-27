@@ -8,6 +8,7 @@ use Socialite;
 use Auth;
 use Exception;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class SocialController extends Controller
 {
@@ -36,9 +37,9 @@ class SocialController extends Controller
                     'email' => $user->email,
                     'social_id'=> $user->id,
                     'social_type'=> 'google',
-                    'password' => encrypt('my-google')
+                    'password' => Hash::make('Ymd')
                 ]);
-     
+                
                 Auth::login($newUser);
       
                 return redirect('/home');
