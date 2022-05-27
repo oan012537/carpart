@@ -1,0 +1,19 @@
+#slidehomepage {
+  background-color: var(--clrdarks);
+
+  img {
+    padding: 3rem;
+  }
+
+  .carousel-caption {
+    left: 20%;
+    top: 35%;
+    width: 25%;
+    text-align: left;
+
+    p {
+      @extend %cuttext-4;
+      line-height: 30px;
+    }
+  }
+}

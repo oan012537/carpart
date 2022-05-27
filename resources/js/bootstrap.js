@@ -26,6 +26,14 @@ window.Echo = new Echo({
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     forceTLS: true
 });
+window.Echo = new Echo({
+  broadcaster: 'pusher',
+  key: process.env.MIX_PUSHER_APP_KEY,
+  wsHost: window.location.hostname,
+  wsPort: 6001,
+  forceTLS: false,
+  disableStats: true,
+});
 
 var channel = Echo.channel('chat');
 channel.listen('MessageSent', function(data) {

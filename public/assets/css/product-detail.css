@@ -1,0 +1,531 @@
+/* ------ เริ่ม section sec-product-de1 ------- */
+#sec-product-de1 {
+  background-color: #3f3f3f;
+}
+
+/* ------ nav ------- */
+#sec-product-de1 .box__nav {
+  margin-top: 2rem;
+}
+
+#sec-product-de1 .box__nav .nav {
+  margin-top: 1rem;
+}
+
+#sec-product-de1 .box__nav .nav a {
+  color: var(--clrwhites);
+}
+
+#sec-product-de1 .box__nav .nav span {
+  padding: 0 10px;
+  color: var(--clrwhites);
+}
+
+/* ------ nav ------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+}
+
+.card-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.img-display {
+  overflow: hidden;
+}
+
+.img-showcase {
+  display: flex;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+
+.img-showcase img {
+  min-width: 100%;
+}
+
+.img-select {
+  display: flex;
+}
+
+.img-item {
+  margin: 0.3rem;
+}
+
+.img-item:nth-child(1),
+.img-item:nth-child(2),
+.img-item:nth-child(3) {
+  margin-right: 0;
+}
+
+.img-item:hover {
+  opacity: 0.8;
+}
+
+.product-content {
+  padding: 2rem 1rem;
+}
+
+.product-title {
+  font-size: 26px;
+  text-transform: capitalize;
+  font-weight: 500;
+  position: relative;
+  color: #ffffff;
+  font-family: "Kanit", sans-serif;
+  margin: 1rem 0;
+}
+
+.pro-detail-pro {
+  font-size: 14px;
+  color: #ffffff;
+  font-family: "Kanit", sans-serif;
+}
+
+.pro-text-id {
+  font-size: 14px;
+  color: #ffffff;
+  font-family: "Kanit", sans-serif;
+}
+
+.product-link {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  background: #256eff;
+  color: #fff;
+  padding: 0 0.3rem;
+  transition: all 0.5s ease;
+}
+
+.product-link:hover {
+  opacity: 0.9;
+}
+
+.product-rating {
+  color: #fcb040;
+  margin-top: 10px;
+}
+
+.product-rating span {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.img-lo-icon {
+  width: 4%;
+  margin-left: 155px;
+  margin-top: -41px;
+}
+
+.d-text-deatil-t p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+  font-family: "Kanit", sans-serif;
+  margin-left: 195px;
+  margin-top: -24px;
+}
+
+.product-price {
+  margin: 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.product-price span {
+  font-weight: 400;
+}
+
+.text-persen-t span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #e8d95f;
+  font-family: "Kanit", sans-serif;
+}
+
+hr.new1 {
+  border-top: 1px solid rgb(255, 255, 255);
+}
+
+.text-persen-t {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+  color: #ffffff;
+  font-family: "Kanit", sans-serif;
+}
+
+.last-price span {
+  color: white;
+  text-decoration: line-through;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.last-price {
+  color: white;
+  /* text-decoration: line-through; */
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.last-price font {
+  color: white;
+  /* text-decoration: line-through; */
+  font-size: 14px;
+  font-weight: 300;
+  font-family: "Kanit", sans-serif;
+}
+
+.new-price span {
+  color: #256eff;
+}
+
+.product-detail span {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Kanit", sans-serif;
+  color: #e8d95f;
+}
+
+.product-detail p {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Kanit", sans-serif;
+  color: white;
+}
+
+.purchase-info {
+  margin: 1.5rem 0;
+}
+
+.purchase-info input,
+.purchase-info .btn {
+  border-radius: 25px;
+  text-align: center;
+  padding: 0.45rem 0.8rem;
+  outline: 0;
+  margin-right: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.purchase-info input {
+  width: 60px;
+}
+
+.purchase-info .btn {
+  cursor: pointer;
+  color: #fff;
+}
+
+.text-t-into p {
+  font-size: 14px;
+  font-family: "Kanit", sans-serif;
+  margin-left: 65px;
+  margin-top: -45px;
+  font-weight: 300;
+  color: #fff;
+  text-decoration: underline;
+}
+
+.purchase-info .btn:last-of-type {
+  background: #f64749;
+  border: 2px solid #f64749;
+  padding: 10px 15px 10px 15px;
+  color: white;
+}
+
+.purchase-info .btn:hover {
+  opacity: 0.9;
+}
+
+.button {
+  background-color: #e8d95f;
+  border: none;
+  color: #282828;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Kanit", sans-serif;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 147px 10px 149px;
+}
+
+.button1 {
+  background-color: #e8d95f;
+  color: black;
+  border: 2px solid #e8d95f;
+}
+
+.button1:hover {
+  background-color: #282828;
+  color: #e8d95f;
+}
+
+.button2 {
+  background-color: #ffffff;
+  color: black;
+  border: 2px solid #ffffff;
+  padding: 10px 35px 10px 35px;
+}
+
+.button2:hover {
+  background-color: #bcbcbc;
+  color: black;
+  border: 2px solid #bcbcbc;
+  padding: 10px 35px 10px 35px;
+}
+
+.social-links {
+  display: flex;
+  float: right;
+  margin-top: -43px;
+}
+
+.social-links p {
+  color: white;
+  font-family: "Kanit", sans-serif;
+  font-size: 14px;
+}
+
+.social-links font {
+  color: white;
+  font-family: "Kanit", sans-serif;
+  font-size: 12px;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #000;
+  /* border: 1px solid #000; */
+  margin: 0 0.2rem;
+  color: white;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 1.8rem;
+  transition: all 0.5s ease;
+}
+
+.social-links a:hover {
+  background: #000;
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ------ สิ้นสุด section sec-product-de1 -------  */
+
+/* ------ เริ่ม  section sec-tab-detail ------- */
+
+#sec-tab-detail {
+  padding: 50px;
+  background-color: #3f3f3f;
+}
+
+/**
+ * Tabs
+ */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tabs label {
+  order: 1;
+  display: block;
+  padding: 1rem 2rem;
+  margin-right: 0.2rem;
+  cursor: pointer;
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: white;
+  transition: background ease 0.2s;
+}
+
+.tabs .tab {
+  order: 99;
+  flex-grow: 1;
+  width: 100%;
+  font-size: 14px;
+  display: none;
+  color: white;
+  padding: 1rem;
+  font-family: "Kanit", sans-serif;
+  /* background: #fff; */
+}
+
+.h-text-tab p {
+  font-size: 26px;
+  color: white;
+  font-weight: 500;
+  font-family: "Kanit", sans-serif;
+}
+
+.detail-text-tab p {
+  font-size: 14px;
+  color: white;
+  font-family: "Kanit", sans-serif;
+  font-weight: 300;
+}
+
+.tt-detail-tt p {
+  font-size: 14px;
+  color: white;
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+}
+
+.tt-detail-tt3 p {
+  font-size: 14px;
+  color: white;
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+}
+
+.h-detail-text p {
+  font-size: 16px;
+  color: white;
+  font-family: "Kanit", sans-serif;
+  font-weight: 600;
+}
+
+.d-detail-text p {
+  font-size: 14px;
+  color: white;
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+}
+
+.h-review-detail p {
+  font-size: 20px;
+  color: white;
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+}
+
+.icon-rwview-detail {
+  color: #fcb040;
+  margin-top: -15px;
+}
+
+.tabs input[type="radio"] {
+  display: none;
+}
+
+.tabs input[type="radio"]:checked + label {
+  color: #e8d95f;
+  border-bottom: 3px solid #e8d95f;
+}
+
+.tabs input[type="radio"]:checked + label + .tab {
+  display: block;
+}
+
+@media (max-width: 45em) {
+  .tabs .tab,
+  .tabs label {
+    order: initial;
+  }
+
+  .tabs label {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 0.2rem;
+  }
+}
+
+.but-but-review button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+    cursor: pointer;
+    padding: 10px 50px 10px 50px;
+    background-color: #3F3F3F;
+    border: 1px solid #e8d95f;
+    color: #e8d95f;
+    margin-right: 15px;
+    font-family: "Kanit", sans-serif;
+}
+
+.review-b-but {
+    margin-top: 16px;
+}
+
+.h-text-h-review p {
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  font-family: "Kanit", sans-serif;
+  margin-top: 20px;
+}
+
+.d-review-text p {
+  font-size: 14px;
+  color: white;
+  font-weight: 300;
+  font-family: "Kanit", sans-serif;
+}
+
+.h-promo-text p {
+  font-size: 26px;
+  font-weight: 500;
+  font-family: "Kanit", sans-serif;
+  margin-top: 20px;
+}
+
+/* ------ tab button review ------- */
+/* ------ สิ้นสุด section sec-tab-detail ------- */
+
+@media screen and (min-width: 992px) {
+  .card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+  }
+
+  .card-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-imgs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .product-content {
+    padding-top: 0;
+  }
+}

@@ -1,0 +1,11 @@
+<svg id="Frame_24063" data-name="Frame 24063" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="432" height="181" viewBox="0 0 432 181">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1.584" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#e5d346"/>
+      <stop offset="1" stop-color="#e5d346" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" y2="1" xlink:href="#linear-gradient"/>
+  </defs>
+  <rect id="Rectangle_1" data-name="Rectangle 1" width="417" height="181" transform="translate(15)" fill="url(#linear-gradient)"/>
+  <path id="Path_7" data-name="Path 7" d="M15,0H0V12a8,8,0,0,1,8,8,8,8,0,0,1-8,8v8A8,8,0,0,1,0,52v8a8,8,0,0,1,8,8,8,8,0,0,1-8,8v8a8,8,0,0,1,0,16v8a8,8,0,0,1,8,8,8,8,0,0,1-8,8v8a8,8,0,0,1,8,8,8,8,0,0,1-8,8v7a8,8,0,0,1,8,8,8,8,0,0,1-8,8v10H15Z" fill-rule="evenodd" fill="url(#linear-gradient-2)"/>
+</svg>

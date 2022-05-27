@@ -11,7 +11,7 @@
         });
         console.log(pusher)
         var channel = pusher.subscribe('chat');
-        alert();
+        // alert();
         console.log(channel)
         channel.bind('MessageSent', function(data) {
             console.log(data)
@@ -48,12 +48,12 @@
 
 </body>
 <script>
-    Talk.ready.then(function () {
+  Talk.ready.then(function () {
   var me = new Talk.User({
     id: '123456',
-    name: 'Alice',
+    name: 'ทันจิโร่',
     email: 'alice@example.com',
-    photoUrl: 'https://demo.talkjs.com/img/alice.jpg',
+    photoUrl: 'https://inzpy.com/wp-content/uploads/2021/10/1-copy-5-9.jpg',
     welcomeMessage: 'Hey there! How are you? :-)',
   });
   window.talkSession = new Talk.Session({
@@ -62,12 +62,18 @@
   });
   var other = new Talk.User({
     id: '654321',
-    name: 'Sebastian',
+    name: 'ยูกิ',
     email: 'Sebastian@example.com',
-    photoUrl: 'https://demo.talkjs.com/img/sebastian.jpg',
+    photoUrl: 'https://jp.owndays.com/images/specials/products/kimetsu/sect5_chara.png',
     welcomeMessage: 'Hey, how can I help?',
   });
-
+  var other2 = new Talk.User({
+    id: '123456',
+    name: 'ยูกิ2',
+    email: 'Sebastian2@example.com',
+    photoUrl: 'https://jp.owndays.com/images/specials/products/kimetsu/sect5_chara.png',
+    welcomeMessage: 'Hey',
+  });
   var conversation = talkSession.getOrCreateConversation(
     Talk.oneOnOneId(me, other)
   );

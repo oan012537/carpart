@@ -1,0 +1,31 @@
+#footer {
+  background: linear-gradient(
+    90deg,
+    #e5d346 27.6%,
+    rgba(157, 139, 0, 0.76) 101.61%
+  );
+  padding: 5rem 0;
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 39%;
+    height: 100%;
+    background: url("../img/footer/groupfooter.png");
+    background-repeat: no-repeat;
+  }
+
+  li {
+    list-style: none;
+    margin-bottom: 0.3rem;
+
+    a {
+      text-decoration: none;
+      color: var(--clrblacks2);
+    }
+  }
+}

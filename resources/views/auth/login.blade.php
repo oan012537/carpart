@@ -52,5 +52,13 @@
                 </x-button>
             </div>
         </form>
+
+        {{-- login google --}}
+        <hr>
+        <div class="form-group row mb-0">
+            <div class="col-md-8 offset-md-4">
+                <a href="{{ route('google.login') }}" class="btn btn-primary"><i class="fa fa-google"></i><button>Google</button> </a>
+            </div>
+        </div>
     </x-auth-card>
 </x-guest-layout>
