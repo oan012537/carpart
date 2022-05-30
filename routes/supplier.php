@@ -14,36 +14,4 @@ use App\Http\Controllers\Supplier\Auth\SupplierAuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('supplier/login', function(){})->middleware('supplier');
-Route::get('/supplier/login', [SupplierAuthController::class, 'index'])->name('supplier.login');
-Route::post('/supplier/login', [SupplierAuthController::class, 'login'])->name('supplier.login');
-Route::get('/supplier/logout', [SupplierAuthController::class, 'logout'])->name('supplier.logout');
-
-// Route::group(['middleware' => ['supplier']], function () {
-//     Route::get('supplier', function(){});
-// });
-
-
-// Route::group(['middleware' => 'supplier'], function(){
-//     Route::prefix('en')->group(function () {
-//         Route::prefix('supplier')->group(function () {
-//             Route::get('/', function(){
-//                 dd('d');
-//             });
-//         });
-//     });
-// });
-// ->middleware('role:editor');
-
-// Route::group(['middleware' => ['Supplier']], function(){
-//     Route::prefix('supplier')->group(function () {
-//         Route::get('/', function(){
-//             dd();
-//         });
-//         Route::prefix('menu')->group(function () {
-//         });
-//     });
-    
-//     // Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');
-    
-// });
+Route::get('/supplier/login', function(){})->name('supplier.login');

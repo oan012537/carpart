@@ -18,8 +18,13 @@
 </head>
 <body id="homepage">
     @include('inc_header')
+    @if(Auth::check())
+        @include('inc_headerlogin')
+    @endif
+    
+    
 
-    @include('inc_slide')
+    {{-- @include('inc_slide') --}}
 
     @yield('content')
 

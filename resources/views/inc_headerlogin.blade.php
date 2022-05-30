@@ -25,15 +25,21 @@
                     <a class="nav-link" href="{{route('frontend.contactus')}}">ติดต่อเรา</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link btn__yellow" href="{{route('buyer.login')}}">
-                        <div class="icon"><span>เข้าสู่ระบบผู้ซื้อ</span></div>
+                <li class="nav-item box__icon">
+                    <a class="nav-link " href="#">
+                        <div class="iconimage">
+                            <img src="assets/img/icon/icon-noti.svg" class="img-fluid" alt="">
+                            <div class="box__number"><span>11</span></div>
+                        </div>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link btn__yellow2" href="{{route('supplier.login')}}">
-                        <div class="icon2"><span>เข้าสู่ระบบผู้ขาย</span></div>
+                    <a class="nav-link" href="#">
+                        <div class="iconimage">
+                            <img src="assets/img/icon/icon-chat.svg" class="img-fluid icon__chat" alt="">
+                            <div class="box__number"><span>1</span></div>
+                        </div>
                     </a>
                 </li>
                 <!--  -->

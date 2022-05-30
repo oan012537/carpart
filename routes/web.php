@@ -23,7 +23,12 @@ use Illuminate\Support\Facades\Auth;
 //     // return redirect("/$lang");
 //     return view('welcome');
 // });
-Route::get('/', function () {return view('home');});
+Route::get('/', function () {return view('home');})->name('frontend.index');
+Route::get('/request', function () {return view('request');})->name('frontend.request');
+Route::get('/promotion', function () {return view('promotion');})->name('frontend.promotion');
+Route::get('/articles', function () {return view('articles');})->name('frontend.articles');
+Route::get('/contactus', function () {return view('contactus');})->name('frontend.contactus');
+Route::get('/articles-content', function () {return view('articles-content');})->name('frontend.contactus');
 
 Route::get('setlang/{lang}', function ($lang) {
     Session::put('lang', $lang);
@@ -32,8 +37,8 @@ Route::get('setlang/{lang}', function ($lang) {
 // Auth::routes();
 
 // Route::get('/chat', [ChatsController::class, 'index']);
-Route::get('messages', [ChatsController::class, 'fetchMessages']);
-Route::post('messages', [ChatsController::class, 'sendMessage'])->name('messages');
+// Route::get('messages', [ChatsController::class, 'fetchMessages']);
+// Route::post('messages', [ChatsController::class, 'sendMessage'])->name('messages');
 
 // login google
 Route::get('google/login', [SocialController::class, 'redirectToGoogle'])->name('google.login');

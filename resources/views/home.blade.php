@@ -1,6 +1,7 @@
 @extends('template')
 
 @section('content')
+@include('inc_slide')
 <section id="section-home">
     <div class="container">
         <div class="row">
@@ -156,7 +157,7 @@
                     <div class="row">
                         <?php for ($i = 1; $i <= 3; $i++) { ?>
                             <div class="col-xl-4 col-lg-6 col-6">
-                                <a href="articles-content.php">
+                                <a href="{{url('articles-content')}}">
                                     <div class="box__itemsnote">
                                         <div class="box__image">
                                             <img src="assets/img/home/img-note.png" class="img-fluid" alt="">
