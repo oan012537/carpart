@@ -1,4 +1,4 @@
-@extends('../layouts/template')
+@extends('../layouts/templatelogin')
 
 @section('content')
 <section id="sec-login1">

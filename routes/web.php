@@ -28,7 +28,7 @@ Route::get('/request', function () {return view('request');})->name('frontend.re
 Route::get('/promotion', function () {return view('promotion');})->name('frontend.promotion');
 Route::get('/articles', function () {return view('articles');})->name('frontend.articles');
 Route::get('/contactus', function () {return view('contactus');})->name('frontend.contactus');
-Route::get('/articles-content', function () {return view('articles-content');})->name('frontend.contactus');
+Route::get('/articles-content', function () {return view('articles-content');})->name('frontend.articlecontent');
 
 Route::get('setlang/{lang}', function ($lang) {
     Session::put('lang', $lang);

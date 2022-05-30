@@ -26,6 +26,16 @@ class RedirectIfAuthenticated
             }
         }
 
+        // if ($guard == "admin" && Auth::guard($guard)->check()) {
+        //     return redirect('/admin');
+        // }
+        if ($guard == "supplier" && Auth::guard($guard)->check()) {
+            return redirect('/supplier');
+        }
+        if (Auth::guard($guard)->check()) {
+            return redirect('/');
+        }
+
         return $next($request);
     }
 }
