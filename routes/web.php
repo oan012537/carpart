@@ -48,7 +48,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-
+Route::get('/clearcache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('optimize');
+    $exitCode = Artisan::call('route:cache');
+    $exitCode = Artisan::call('route:clear');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('config:cache');
+    return '<h1>Cache facade value cleared</h1>';
+});
 
 
 require __DIR__.'/auth.php';

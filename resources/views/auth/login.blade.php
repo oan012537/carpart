@@ -56,11 +56,10 @@
     </x-auth-card>
 </x-guest-layout> --}}
 @extends('../backend/layouts/templatelogin')
-<link href="assets/css/login1.css" rel="stylesheet">
 @section('content')
 <section id="sec-login1">
     <div class="container">
-        <div class="box-b-login">
+        <div class="box-b-login box-backend">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="row">
@@ -69,8 +68,6 @@
                             <img src="assets/img/login/ln1.png" class="img-fluid" alt="">
                         </div>
                     </div>
-                    
-                    
                     <div class="col-lg-4">
                         <div class="h-text-log">
                             <p>
@@ -79,21 +76,22 @@
                         </div>
                         <div class="tt-text-log">
                             <p>
-                                เบอร์มือถือ / อีเมล
+                                อีเมล
                             </p>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="xxxxx@xxxx.xx" id="email" name="email" aria-label="Username"
-                                aria-describedby="basic-addon1">
+                        <div class="input-group mb-3 box-border">
+                            <span> <img src="assets/img/login/icon-in.svg" class="img-fluid icon-signin" alt=""></span>
+                            <input type="text" class="form-control" name="username" placeholder="01xx-xxx-xxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
                         </div>
                         <div class="tt-text-log2">
                             <p>
                                 รหัสผ่าน
                             </p>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="password" name="password" class="form-control" id="password"
-                                placeholder="*************">
+                        <div class="input-group mb-3 box-border">
+                            <img src="assets/img/login/icon-key.svg" class="img-fluid icon-key" alt="">
+                            <input type="password" name="password" class="form-control" id="password" placeholder="*************" required>
+                            <img src="assets/img/login/icon-eye.svg" class="img-fluid icon-eye" alt="" onclick="eyePassword()">
                         </div>
                         <div class="t-pass-t">
                             <p>
@@ -102,30 +100,22 @@
                         </div>
                         <br>
                         <div class='but-bb-log'>
-                            {{-- <a href="login2.php"> --}}
-                                <button class="button button1" type="submit"> เข้าสู่ระบบ </button>
-                            {{-- </a> --}}
+                            <button  type="submit" class="button button1">
+                                เข้าสู่ระบบ
+                            </button>
                         </div>
-                        <div class="social-log">
-                            <img src="assets/img/login/i1.png" class="img-fluid" alt="">
-                            &nbsp;
-                            <img src="assets/img/login/i2.png" class="img-fluid" alt="">
-                            &nbsp;
-                            
-                            <a href="{{ route('google.login') }}"><img src="assets/img/login/i3.png" class="img-fluid" alt=""></a>
-                        </div>
+
                         <div class="text-or-t">
                             <p>
-                                หรือ
+                                CPN
                             </p>
                         </div>
                         <div class='but-bb-log2'>
-                            <a href="{{ route('register') }}">
-                                <button class="button button2" type="button"> สมัครสมาชิก </button>
+                            <a href="{{ route('register') }}" class="button button2">
+                                สมัครสมาชิก
                             </a>
                         </div>
                     </div>
-                    
                 </div>
             </form>
         </div>
