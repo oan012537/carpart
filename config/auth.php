@@ -50,6 +50,10 @@ return [
             'driver' => 'session',
             'provider' => 'supplier',
         ],
+        'buyer' => [
+            'driver' => 'session',
+            'provider' => 'buyer',
+        ],
     ],
 
     /*
@@ -82,6 +86,11 @@ return [
         'supplier' => [
             'driver' => 'eloquent',
             'model' => App\Models\Supplier::class,
+        ],
+        
+        'buyer' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Buyer\buyer::class,
         ],
     ],
 

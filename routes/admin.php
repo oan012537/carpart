@@ -21,7 +21,7 @@ Route::post('backend/register', [Backend\BackendController::class,'store'])->nam
 
 Route::group(['middleware' => 'auth'], function(){
     Route::prefix('backend')->group(function () {
-        Route::get('/', function(){});
+        Route::get('/', [Backend\DashboardController::class,'index']);
         Route::get('/dashboard', [Backend\DashboardController::class,'index'])->name('backend.dashboard');
         
         Route::prefix('register')->group(function () {

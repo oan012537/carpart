@@ -18,7 +18,8 @@ class Supplier
     public function handle(Request $request, Closure $next)
     {
         // return $next($request);
-        if(!Auth::check()){
+        // if(!Auth::check()){
+        if(!Auth::guard('supplier')->check()){
             return redirect()->route('supplier.login')->with('message', 'Authentication Error.');
         }
         return $next($request);

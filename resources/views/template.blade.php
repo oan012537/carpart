@@ -17,8 +17,10 @@
     @include('inc_css')
 </head>
 <body id="homepage">
-    
-    @if(!Auth::check())
+    @php
+        // dd(Auth::user(),Auth::guard('supplier')->check());
+    @endphp
+    @if(!Auth::guard('supplier')->check() && !Auth::guard('buyer')->check())
         @include('inc_header')
     @else
         @include('inc_headerlogin')
