@@ -396,26 +396,27 @@ button:not(:disabled),
 
 /* Modal Content */
 #sec-confirm .modal-content {
-    background-color: #fefefe;
+    background-color: #3F3F3F;
     margin: auto;
     /* padding: 20px;
-    border: 1px solid #888;*/
-    width: 35%;
+    border: 1px solid #fefefe;*/
+    width: 45%;
+    margin-top: 50px;
 }
 
 /* The Close Button */
 #sec-confirm .close {
-    color: #000000f2;
+    color: #f4eeeef2;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
-    margin-left: 500px;
-    margin-top: 10px;
+    font-size: 45px;
+    font-weight: 300;
+    margin-left: 640px;
+    margin-top: -13px;
 }
 
 #sec-confirm .close:hover,
 .close:focus {
-    color: #000;
+    color: white;
     text-decoration: none;
     cursor: pointer;
 }
@@ -433,4 +434,132 @@ button:not(:disabled),
     background-color: #282828;
     padding: 50px;
     justify-content: center;
+}
+
+#sec-confirm .t-body-text p {
+    font-size: 14px;
+    text-align: center;
+    color: white;
+    font-weight: 400px;
+}
+
+.box-body-address .form-control {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    border-top: 2px solid #828282;
+    border-left: 2px solid #828282;
+    border-right: 2px solid #828282;
+    border-bottom: 2px solid #828282;
+    background-color: #333333;
+    color: white;
+    border-radius: 4px;
+}
+
+.box-body-address .form-select {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747575;
+    background-color: #333;
+}
+
+.box-body-address .form-label {
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .card7 {
+    background-color: #555454;
+    height: 195px;
+    border-radius: 6px;
+}
+
+.card7 .card-title7 {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+.card7 .text-edit7 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-right: 27px;
+    margin-top: 21px;
+}
+
+.card7 .card-tadail7 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 21px;
+}
+
+.card7 .card-tadail7 .text-t-detail p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+
+#sec-confirm .card8 {
+    background-color: #555454;
+    height: 195px;
+    border-radius: 6px;
+}
+
+.card8 .card-title8 {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+.card8 .text-edit8 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-right: 27px;
+    margin-top: 21px;
+}
+
+.card8 .card-tadail8 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 21px;
+}
+
+.card8 .card-tadail8 .text-t-detail p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+.b-but-addplus .button {
+    background-color: #555454;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 277px 15px 276px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+}
+
+.b-but-addplus .button1:hover {
+    box-shadow: 0 12px 16px 0 rgba(38, 37, 37, 0.428), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }

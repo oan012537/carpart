@@ -67,6 +67,7 @@
     position: relative;
     flex: 1 1 auto;
     width: 1%;
+    z-index: 1;
     min-width: 0;
     border-top: 2px solid #828282;
     border-left: 2px solid #828282;
@@ -129,6 +130,8 @@
     color: black;
     border: 2px solid #E8D95F;
     padding: 10px 75px 10px 75px;
+    margin-left: -163px;
+    margin-right: -23px;
 }
 
 .button3:hover {
@@ -139,8 +142,8 @@
 /* The Modal (background) */
 #sec-regis3 .modal {
     display: none;
-    position: fixed;
     z-index: 1;
+    position: fixed;
     padding-top: 100px;
     left: 0;
     top: 0;
@@ -162,12 +165,12 @@
 
 /* The Close Button */
 #sec-regis3 .close {
-    color: #000000f2;
+    color: #0b0000f2;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
-    margin-left: 500px;
-    margin-top: 10px;
+    font-size: 45px;
+    font-weight: 300;
+    margin-left: 497px;
+    margin-top: -6px;
 }
 
 #sec-regis3 .close:hover,
@@ -184,11 +187,12 @@
     font-size: 16px;
     line-height: 36px;
     text-align: center;
+    margin-top: -64px;
 }
 
 #sec-regis3 .modal-footer {
     background-color: #282828;
-    padding: 50px;
+    padding-top: 42px;
     justify-content: center;
 }
 

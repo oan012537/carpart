@@ -140,3 +140,31 @@
     color: #BDBDBD;
     margin-top: 20px;
 }
+
+#sec-login1 .text-or-t p {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 120.5%;
+    text-align: center;
+    color: #bdbdbd;
+    margin-top: 20px;
+}
+
+#sec-register .box__border .icon1 {
+    background-image: url("../img/login/icon-survey.svg");
+    width: 100%;
+    height: 100%;
+}
+
+#sec-register .box__border .icon2 {
+    background-image: url("../img/login/icon-call.svg");
+    width: 100%;
+    height: 100%;
+}
+
+#sec-register .box__border .icon3 {
+    background-image: url("../img/login/icon-price.svg");
+    width: 100%;
+    height: 100%;
+}

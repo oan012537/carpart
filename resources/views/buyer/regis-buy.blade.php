@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+   <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -148,38 +149,6 @@
                                 </div>
                             </fieldset>
                         </div>
-
-
-                        <!--<div class="tt-text-log">
-                            <p>
-                                ชื่อโปรไฟล์
-                            </p>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
-                                aria-describedby="basic-addon1">
-                        </div>
-                        <div class="tt-text-log">
-                            <p>
-                                ชื่อ *
-                            </p>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
-                                aria-describedby="basic-addon1">
-                        </div>
-                        <div class="tt-text-log">
-                            <p>
-                                นามสกุล *
-                            </p>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
-                                aria-describedby="basic-addon1">
-                        </div>-->
-
-
-
                         <div class='but-bb-log2'>
                             <a href="regiscon-buy.php">
                                 <button class="button button1"> ถัดไป &nbsp; <i class='fas fa-angle-right'></i>
@@ -190,11 +159,10 @@
                 </div>
             </div>
         </div>
-
     </section>
 
     @include('inc_footer')
-    @include('inc_js')
+    @include('inc_javascript')
 
     <!-- JS tabcheckbox -->
     <script>
