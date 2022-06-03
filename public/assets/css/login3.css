@@ -1,0 +1,216 @@
+#sec-login1 {
+    padding: 100px;
+    background-color: #282828;
+}
+
+#sec-login1 .box-b-login {
+    background-color: #3F3F3F;
+    box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+#sec-login1 .text-log-back {
+    background-color: #3F3F3F;
+}
+
+#sec-login1 .img-img-log {
+    padding-right: 15px;
+}
+
+.fa-angle-right:before {
+    content: "\f105";
+    font-size: 18px;
+}
+
+#sec-login1 .text-tt-hd {
+    color: white;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+    margin-top: -10px;
+}
+
+#sec-login1 .h-text-log p {
+    color: white;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#sec-login1 .tt-text-log p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #E8D95F;
+    text-align: center;
+}
+
+#sec-login1 .input-group>.form-control,
+.input-group>.form-select {
+    position: relative;
+    flex: 1 1 auto;
+    border-top: 0px solid #828282;
+    border-left: 0px solid #828282;
+    border-right: 0px solid #828282;
+    border-bottom: 0px solid #828282;
+    background-color: #333333;
+    color: white;
+    border-radius: 4px;
+    margin-right: 309px;
+    padding: 12px;
+    display: inline-block;
+}
+
+#sec-login1 .tt-text-re-num p {
+    color: white;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+}
+
+#sec-login1 .tt-text-re-num2 p {
+    color: white;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+    margin-top: -14px;
+}
+
+#sec-login1 .tt-text-re-num2 font {
+    color: white;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+#sec-login1 .input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 91%;
+}
+
+.button {
+    background-color: #E8D95F;
+    border: none;
+    color: #282828;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 54px 10px 57px;
+}
+
+.button1 {
+    background-color: #828282;
+    color: white;
+    border: 2px solid #828282;
+}
+
+.button1:hover {
+    background-color: #4e4d4d;
+    color: white;
+}
+
+.button2 {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+}
+
+.button2:hover {
+    background-color: #282828;
+    color: #E8D95F;
+}
+
+.button3 {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    padding: 10px 75px 10px 75px;
+    margin-left: -163px;
+    margin-right: -23px;
+}
+
+.button3:hover {
+    background-color: #282828;
+    color: #E8D95F;
+}
+
+
+/* The Modal (background) */
+#sec-login1 .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+#sec-login1 .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+   /* padding: 20px;
+    border: 1px solid #888;*/
+    width: 35%;
+}
+
+/* The Close Button */
+#sec-login1 .close {
+    color: #0b0000f2;
+    float: right;
+    font-size: 45px;
+    font-weight: 300;
+    margin-left: 497px;
+    margin-top: -6px;
+}
+
+#sec-login1 .close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#sec-login1 .tt-text-con p {
+    color: white;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+    margin-top: -64px;
+}
+
+#sec-login1 .modal-footer {
+    background-color: #282828;
+    padding-top: 42px;
+    justify-content: center;
+}

@@ -1,0 +1,97 @@
+
+@media (min-width: 64em) {
+}
+
+// 640px 1024px 1400px / 16
+$breakpoint-up: (
+  "last-small": "26.625em",
+  "small": "48em",
+  "medium": "40em",
+  "large": "64em",
+  "x-large": "87.5em",
+);
+
+$breakpoint-down: (
+  "minini-small": "20em",
+  //320
+  "mini-small": "23.4375em",
+  //375
+  "last-small": "26.625em",
+  //426
+  "small": "48em",
+  //768
+  "medium": "64em",
+  //1,024
+  "large": "90em",
+  //1,440
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoint-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoint-down, $size)) {
+    @content;
+  }
+}
+
+
+@mixin iphone11 {
+ @media only screen 
+    and (device-width: 414px) 
+    and (device-height: 896px) 
+    and (-webkit-device-pixel-ratio: 2) {
+    @content;
+  }
+}
+
+
+@mixin iphone11pro {
+@media only screen 
+    and (device-width: 375px) 
+    and (device-height: 812px) 
+    and (-webkit-device-pixel-ratio: 3) {
+    @content;
+  }
+}
+
+
+@mixin iphone11promax {
+@media only screen 
+    and (device-width: 414px) 
+    and (device-height: 896px) 
+    and (-webkit-device-pixel-ratio: 3) {
+    @content;
+  }
+}
+
+
+@mixin iphone12mini {
+@media only screen 
+    and (device-width: 375px) 
+    and (device-height: 812px) 
+    and (-webkit-device-pixel-ratio: 3)  {
+    @content;
+  }
+}
+
+@mixin iphone12pro {
+@media only screen 
+    and (device-width: 390px) 
+    and (device-height: 844px) 
+    and (-webkit-device-pixel-ratio: 3){
+    @content;
+  }
+}
+
+@mixin iphone12promax {
+@media only screen 
+    and (device-width: 428px) 
+    and (device-height: 926px) 
+    and (-webkit-device-pixel-ratio: 3){
+    @content;
+  }
+}

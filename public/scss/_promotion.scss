@@ -1,0 +1,136 @@
+#promotion {
+  .group-promotion {
+    margin-top: 2rem;
+
+    .carousel-caption {
+      right: 0 !important;
+      top: 35%;
+      left: 5%;
+      text-align: left;
+      width: 50%;
+
+      h2 {
+        font-size: 4.5rem;
+        font-weight: 300;
+        @extend %cuttext-2;
+      }
+
+      p {
+        font-size: 1.5rem;
+        font-weight: 300;
+        @extend %cuttext-3;
+      }
+    }
+
+    .slick-arrow {
+      background-color: transparent;
+      top: 50% !important;
+
+      &::before {
+        font-size: 2.5rem;
+      }
+    }
+
+    .slick-prev {
+      left: -80px;
+    }
+
+    .slick-next {
+      right: -80px;
+    }
+
+    .box__productinbrands {
+      .box__title {
+        margin-top: 2.5rem;
+
+        .text__title {
+          color: var(--clrwhites);
+          margin-bottom: 1.2rem;
+          font-size: 2.25rem;
+          font-weight: 400;
+        }
+      }
+
+      .box__itemssproductintro {
+        margin-bottom: 1.5rem;
+        padding: 10px;
+
+        &:hover {
+          @extend %transition-5;
+
+          img {
+            transform: scale(1.1);
+          }
+        }
+
+        .box__image {
+          position: relative;
+          overflow: hidden;
+
+          img {
+            @extend %transition-5;
+          }
+
+          .box__status {
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            background-color: var(--clrreds);
+            border-radius: 10px;
+            color: var(--clrwhites);
+
+            p {
+              margin-bottom: 0;
+              padding: 3px 10px;
+            }
+          }
+
+          .box__grade {
+            position: absolute;
+            bottom: 15px;
+            left: 10px;
+            background-color: var(--clrmain);
+            border-radius: 10px;
+            color: var(--clrwhites);
+
+            p {
+              margin-bottom: 0;
+              padding: 3px 10px;
+            }
+          }
+        }
+
+        .box__content {
+          background-color: var(--clrwhites);
+          padding: 15px;
+
+          .intro {
+            &__title {
+              color: var(--clrdarks2);
+              font-size: 1.25rem;
+              @extend %cuttext-3;
+            }
+
+            &__serial {
+              margin-top: 10px;
+              font-size: 1.125rem;
+              color: var(--clrdarks4);
+              font-weight: 300;
+              margin-bottom: 5px;
+            }
+
+            &__price {
+              color: var(--clrblacks);
+
+              span {
+                font-size: 2.25rem;
+                font-weight: 500;
+                color: var(--clrblacks);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

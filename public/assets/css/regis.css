@@ -1,0 +1,238 @@
+#sec-login1 {
+    padding: 100px;
+    background-color: #282828;
+}
+
+#sec-login1 .box-b-login {
+    background-color: #3F3F3F;
+    box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+#sec-login1 .text-log-back {
+    background-color: #3F3F3F;
+}
+
+#sec-login1 .t-text-s {
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+#sec-login1 .t-text-s p {
+    font-size: 14px;
+    color: white;
+}
+
+#sec-login1 .s-switch .form-switch {
+    padding-left: 2.5em;
+    float: right;
+    margin-top: -38px;
+}
+
+hr.new1 {
+    border-top: 1px solid rgb(216, 216, 216);
+}
+
+#sec-login1 .ko-text-t p {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+}
+
+#sec-login1 .b-text-t-b {
+    width: 376px;
+    height: 200px;
+    padding: 20px;
+    background-color: #282828;
+    border-radius: 6px;
+    /* border: 1px solid white;*/
+}
+
+#sec-login1 .b-text-t-b p {
+    font-size: 14px;
+    color: white;
+}
+
+#sec-login1 .t-text-s2 p {
+    font-size: 14px;
+    color: white;
+    float: right;
+    margin-top: 10px;
+    margin-right: 18px;
+}
+
+#sec-login1 .s-switch2 .form-switch {
+    padding-left: 2.5em;
+    float: right;
+    margin-top: 8px;
+    margin-right: 18px;
+}
+
+hr.new2 {
+    border-top: 1px solid rgb(216, 216, 216);
+    margin-top: 0px;
+}
+
+#sec-login1 .t-text-s3 p {
+    font-size: 14px;
+    color: white;
+    margin-top: 45px;
+}
+
+#sec-login1 .s-switch3 p {
+    padding-left: 2.5em;
+    float: right;
+    margin-top: -36px;
+    margin-right: 26px;
+    font-size: 14px;
+    color: #FF7B7B;
+}
+
+hr.new3 {
+    border-top: 1px solid rgb(216, 216, 216);
+    width: 94%;
+}
+
+#sec-login1 .t-text-s4 p {
+    font-size: 14px;
+    color: white;
+    margin-top: 13px;
+}
+
+#sec-login1 .s-switch4 .form-switch {
+    padding-left: 2.5em;
+    float: right;
+    margin-top: -40px;
+    margin-right: 18px;
+}
+
+hr.new4 {
+    border-top: 1px solid rgb(216, 216, 216);
+    width: 94%;
+}
+
+#sec-login1 .t-text-s5 p {
+    font-size: 14px;
+    color: white;
+    margin-top: 13px;
+}
+
+#sec-login1 .t-text-s6 p {
+    font-size: 14px;
+    color: white;
+    margin-top: 13px;
+}
+
+#sec-login1 .d-detail2 {
+    width: 376px;
+    height: 221px;
+    padding: 20px;
+    background-color: #c8c8c8;
+    border-radius: 6px;
+}
+
+#sec-login1 .d-detail2 p {
+    font-size: 14px;
+    color: #282828;
+    padding: 10px;
+}
+
+#sec-login1 .s-switch5 .form-switch {
+    padding-left: 2.5em;
+    float: right;
+    margin-top: -40px;
+    margin-right: 18px;
+}
+
+hr.new5 {
+    border-top: 1px solid rgb(216, 216, 216);
+    width: 94%;
+}
+
+.button {
+    background-color: #E8D95F;
+    border: none;
+    color: #282828;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 14px 2px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 100px 10px 84px;
+}
+
+.button1 {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+}
+
+.button1:hover {
+    background-color: #282828;
+    color: #E8D95F;
+}
+
+
+/*---- ปรับ scrollbar .b-text-t-b ------*/
+.b-text-t-b {
+    overflow-y: scroll;
+    height: 450px;
+}
+
+/* width */
+.b-text-t-b::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.b-text-t-b::-webkit-scrollbar-track {
+    background-color: #dddddd;
+    border-radius: 100px;
+}
+
+/* Handle */
+.b-text-t-b::-webkit-scrollbar-thumb {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+
+/* Handle on hover */
+.b-text-t-b::-webkit-scrollbar-thumb {
+    background-color: #5d5b59;
+    border-radius: 100px;
+}
+
+
+/*---- ปรับ scrollbar .b-box-big ------*/
+.b-box-big {
+    overflow-y: scroll;
+    height: 550px;
+}
+
+/* width */
+.b-box-big::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.b-box-big::-webkit-scrollbar-track {
+    background-color: #dddddd;
+    border-radius: 100px;
+}
+
+/* Handle */
+.b-box-big::-webkit-scrollbar-thumb {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+
+/* Handle on hover */
+.b-box-big::-webkit-scrollbar-thumb {
+    background-color: #5d5b59;
+    border-radius: 100px;
+}
