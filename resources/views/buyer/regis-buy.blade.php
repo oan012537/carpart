@@ -24,7 +24,8 @@
 </head>
 
 <body>
-
+    <form method="POST" action="{{route('step1')}}">
+    @csrf
     <section id="sec-regis4">
         <div class="container">
             <div class="box-b-login">
@@ -34,6 +35,7 @@
                             <img src="assets/img/login/ln1.png" class="img-fluid" alt="">
                         </div>
                     </div>
+
                     <div class="col-lg-4">
                         <div class="h-text-log">
                             <p>
@@ -63,16 +65,15 @@
                             </div>
                             <div class="box-check">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tabs" id="onetab" checked="">
+                                    <input class="form-check-input" type="radio" name="tabs" value="normal" id="onetab" checked="">
                                     <label class=" form-check-label" for="one"> บุคคลธรรมดา </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tabs" id="twotab">
+                                    <input class="form-check-input" type="radio" name="tabs" value="niti" id="twotab">
                                     <label class="form-check-label" for="two"> นิติบุคคล </label>
                                 </div>
                             </div>
                         </div>
-
                         <br>
                         <div class="contenttab">
                             <fieldset>
@@ -82,7 +83,7 @@
                                     </p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" placeholder="ระบุ" name="profile_name" aria-label="Username" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="tt-text-log">
                                     <p>
@@ -90,7 +91,7 @@
                                     </p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" placeholder="ระบุ" name="first_name" aria-label="Username" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="tt-text-log">
                                     <p>
@@ -98,7 +99,7 @@
                                     </p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" placeholder="ระบุ" name="last_name" aria-label="Username" aria-describedby="basic-addon1">
                                 </div>
                             </fieldset>
                         </div>
@@ -112,7 +113,7 @@
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control" placeholder="ระบุ" name="profile_name_2" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                     <div class="tt-text-log">
                                         <p>
@@ -120,7 +121,7 @@
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control" placeholder="ระบุ" name="company_name" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                     <div class="tt-text-log">
                                         <p>
@@ -128,7 +129,7 @@
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control" placeholder="ระบุ" name="vat_id" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                     <div class="tt-text-log">
                                         <p>
@@ -136,7 +137,7 @@
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control" placeholder="ระบุ" name="first_name_2" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                     <div class="tt-text-log">
                                         <p>
@@ -144,23 +145,24 @@
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control" placeholder="ระบุ" name="last_name_2" aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                             </fieldset>
                         </div>
                         <div class='but-bb-log2'>
-                            <a href="regiscon-buy.php">
+                            <a href="{{url('buyer/regiscon-buy')}}">
                                 <button class="button button1"> ถัดไป &nbsp; <i class='fas fa-angle-right'></i>
                                 </button>
                             </a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
-
+</form>
     @include('inc_footer')
     @include('inc_javascript')
 

@@ -20,10 +20,19 @@ use Illuminate\Support\Facades\Auth;
 
 /////////// BUYER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('buyer/login-buy', [Buyer\buyerController::class, 'login_buyer']);
+Route::post('buyer/login-buy-post', [Buyer\buyerController::class, 'login_buyer_post']);
+
 Route::get('buyer/regis-buy', [Buyer\buyerController::class, 'regis_buyer']);
+Route::post('buyer/regis-buy-post', [Buyer\buyerController::class, 'regis_buyer_post'])->name('step1');
+
+Route::get('buyer/regiscon-buy', [Buyer\buyerController::class, 'regiscon_buyer']);
+Route::post('buyer/regiscon-buy-post', [Buyer\buyerController::class, 'regiscon_buyer_post'])->name('step2');
+
+Route::get('buyer/registerpass-buy', [Buyer\buyerController::class, 'registerpass_buyer']);
+Route::post('buyer/registerpass-buy-post', [Buyer\buyerController::class, 'registerpass_buyer_post'])->name('step3');
+
 
 ////////// END BUYER  ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 // Route::get('/', function () {
 //     $lang = App::getLocale(); //ดึงภาษาตอนแรก enตามน config
