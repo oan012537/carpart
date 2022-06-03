@@ -18,6 +18,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+/////////// BUYER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('buyer/login-buy', [Buyer\buyerController::class, 'login_buyer']);
+Route::get('buyer/regis-buy', [Buyer\buyerController::class, 'regis_buyer']);
+
+////////// END BUYER  ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 // Route::get('/', function () {
 //     $lang = App::getLocale(); //ดึงภาษาตอนแรก enตามน config
 //     // return redirect("/$lang");

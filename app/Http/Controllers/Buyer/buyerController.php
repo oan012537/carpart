@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Validator;
 class buyerController extends Controller
 {
     public function login_buyer(){
-        dd("เข้านะ");
         return view('buyer.login-buy');
+    }
+
+    public function regis_buyer(){
+        return view('buyer.regis-buy');
     }
 }

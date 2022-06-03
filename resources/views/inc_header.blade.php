@@ -26,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link btn__yellow" href="{{route('buyer.login')}}">
+                    <a class="nav-link btn__yellow" href="{{url('buyer/login-buy')}}">
                         <div class="icon"><span>เข้าสู่ระบบผู้ซื้อ</span></div>
                     </a>
                 </li>

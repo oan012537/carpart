@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Buyer as Buyer;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('buyer/login-buyer', [Buyer\buyerController::class, 'loginbuyer']);
-Route::get('/buyer/login-buyer', 'App\Http\Controllers\Buyer\buyerController@login_buyer');
+// Route::get('buyer/login-buy', [Buyer\buyerController::class, 'login_buyer']);
+// Route::get('/buyer/login-buyer', 'App\Http\Controllers\Buyer\buyerController@login_buyer');
 
