@@ -21,12 +21,28 @@ class buyerController extends Controller
     public function login_buyer(){
         return view('buyer.login-buy');
     }
+    public function login_buyer_post(Request $request){
+        // dd($request);
+        $username = $request->username;
+        $password = $request->password;
+
+        if (Auth::guard('buyer')->attempt(['email' => $username, 'password' => $password]) )
+        {
+            dd("Login สำเร็จ");
+            return redirect('backend/index');
+        }
+        else
+        {
+            dd("username หรือ password ผิด");
+            return redirect('backend\login')->with(['error' => 'ชื่อผู้ใช้งาน หรือรหัสผ่านผิด !']);
+        }
+        return view('buyer.login-buy-post');
+    }
 
     public function regis_buyer(){
         return view('buyer.regis-buy');
     }
     public function regis_buyer_post(Request $request){
-
         if($request->tabs == 'normal'){
             Session::put([
                 'type' => $request->tabs,
@@ -74,7 +90,7 @@ class buyerController extends Controller
             $data->vat_id = Session::get('vat_id');
             $data->phone = Session::get('phone');
             $data->email = Session::get('email');
-            $data->password = $request->password;
+            $data->password  = Hash::make($request->password);
 
             $data->save();
 

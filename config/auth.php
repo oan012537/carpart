@@ -90,7 +90,7 @@ return [
 
         'buyer' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Buyer\buyer::class,
+            'model' => App\Models\Buyer\mUsers_buyer::class,
         ],
     ],
 

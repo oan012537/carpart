@@ -34,6 +34,8 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
+                        <form method="POST" action="{{route('buyer.login')}}">
+                        @csrf
                         <div class="h-text-log">
                             <p>
                                 เข้าสู่ระบบ
@@ -67,10 +69,11 @@
                         </div>
                         <br>
                         <div class='but-bb-log'>
-                            <a href="logphone-buy.php">
-                                <button class="button button1"> เข้าสู่ระบบ </button>
-                            </a>
+
+                                <button type="submit" class="button button1"> เข้าสู่ระบบ </button>
+
                         </div>
+                        </form>
                         <div class="text-or-t">
                             <p>
                                 หรือ
@@ -86,7 +89,7 @@
             </div>
         </div>
     </section>
-
+    </form>
     @include('inc_footer')
 
 </body>

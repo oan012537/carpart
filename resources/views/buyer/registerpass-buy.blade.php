@@ -50,7 +50,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <input type="password" class="form-control" name="password" placeholder="*************"
-                                aria-label="Username" aria-describedby="basic-addon1">
+                                aria-label="Username" aria-describedby="basic-addon1" required>
                         </div>
                         <div class="tt-text-log2">
                             <p>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <input type="password" class="form-control" name="confirm_password" placeholder="*************"
-                                aria-label="Username" aria-describedby="basic-addon1">
+                                aria-label="Username" aria-describedby="basic-addon1" required>
                         </div>
                         <br>
                         <div class='but-bb-log'>

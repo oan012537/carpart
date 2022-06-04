@@ -62,7 +62,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="0123456789" name="phone" aria-label="Username"
-                                aria-describedby="basic-addon1">
+                                aria-describedby="basic-addon1" required>
                         </div>
                         <div class="tt-text-log2">
                             <p>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="sample@gmail.com" name="email" aria-label="Username"
-                                aria-describedby="basic-addon1">
+                                aria-describedby="basic-addon1" required>
                         </div>
                         <br>
                         <div class='but-bb-log2'>
