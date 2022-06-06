@@ -47,7 +47,7 @@
 
                         <br>
                         <div class='but-bb-log'>
-                            <a href="javascript:void(0)" class="button button1" data-bs-toggle="modal" data-bs-target="#modalsuccess"> สมัครสมาชิก</a>
+                            {{-- <a href="javascript:void(0)" class="button button1" data-bs-toggle="modal" data-bs-target="#modalsuccess"> สมัครสมาชิก</a> --}}
                             <button type="submit" class="button button1">สมัครสมาชิก</button>
                         </div>
 

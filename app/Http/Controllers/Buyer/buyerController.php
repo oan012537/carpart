@@ -28,8 +28,8 @@ class buyerController extends Controller
 
         if (Auth::guard('buyer')->attempt(['email' => $username, 'password' => $password]) )
         {
-            dd("Login สำเร็จ");
-            return redirect('backend/index');
+            // dd("Login สำเร็จ");
+            return redirect()->route('frontend.index');
         }
         else
         {
