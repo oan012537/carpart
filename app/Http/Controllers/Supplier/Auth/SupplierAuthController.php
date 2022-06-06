@@ -16,7 +16,7 @@ class SupplierAuthController extends Controller
 {
     public function index()
     {
-        dd('x');
+        // dd('x');
         if (Auth::guard('supplier')->check()) {
             return redirect()->route('supplier');
         } else {
