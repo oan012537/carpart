@@ -210,7 +210,8 @@
 
                             <br>
                             <div class='but-bb-log2'>
-                                <a href="registercon-sup.php">
+                                {{-- registercon-sup.php --}}
+                                <a href="#"> 
                                     <button class="button button1"> ถัดไป &nbsp; <i class='fas fa-angle-right'></i>
                                     </button>
                                 </a>

@@ -36,7 +36,7 @@ Route::post('buyer/registerpass-buy-post', [Buyer\buyerController::class, 'regis
 
 /////////// SUPPLIER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Login
-Route::get('supplier/login-sup', [Supplier\supplierController::class, 'login_supplier']);
+Route::get('supplier/login-sup', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
 Route::get('supplier/logphone-sup', [Supplier\supplierController::class, 'logphone_supplier']);
 Route::get('supplier/logotp-sup', [Supplier\supplierController::class, 'logotp_supplier']);
 
