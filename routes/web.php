@@ -21,8 +21,22 @@ use Illuminate\Support\Facades\Auth;
 /////////// BUYER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('buyer/login-buy', [Buyer\buyerController::class, 'login_buyer']);
 Route::get('buyer/regis-buy', [Buyer\buyerController::class, 'regis_buyer']);
-Route::get('buyer/regis-buy', [Buyer\buyerController::class, 'regis_buyer']);
+
 ////////// END BUYER  ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////// SUPPLIER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Login
+Route::get('supplier/login-sup', [Supplier\supplierController::class, 'login_supplier']);
+Route::get('supplier/logphone-sup', [Supplier\supplierController::class, 'logphone_supplier']);
+Route::get('supplier/logotp-sup', [Supplier\supplierController::class, 'logotp_supplier']);
+
+//Register
+Route::get('supplier/regis-sup', [Supplier\supplierController::class, 'regis_supplier']);
+Route::get('supplier/regisphone-sup', [Supplier\supplierController::class, 'regisphone_supplier']);
+Route::get('supplier/regisotp-sup', [Supplier\supplierController::class, 'regisotp_supplier']);
+Route::get('supplier/register-sup', [Supplier\supplierController::class, 'register_supplier']);
+
+////////// END SUPPLIER  ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // Route::get('/', function () {

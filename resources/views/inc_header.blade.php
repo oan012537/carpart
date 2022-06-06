@@ -32,7 +32,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link btn__yellow2" href="">
+                    <a class="nav-link btn__yellow2" href="{{url('supplier/login-sup')}}">
                         <div class="icon2"><span>เข้าสู่ระบบผู้ขาย</span></div>
                     </a>
                 </li>
