@@ -14,6 +14,12 @@ use Illuminate\Validation\Rules;
 
 class SupplierAuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+        Auth::guard('supplier')->logout();
+    }
+
     public function index()
     {
         // dd('x');
@@ -33,11 +39,12 @@ class SupplierAuthController extends Controller
     public function login(Request $request)
     {
         // dd($request->all());
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        dd($this,$request);
+        // $this->validate($request, [
+        //     'username' => 'required',
+        //     // 'phone' => 'required|unique:users',
+        //     'password' => 'required',
+        // ]);
+        // dd($this,$request);
         if(auth()->guard('supplier')->attempt([
             'email' => $request->email,
             'password' => $request->password,
@@ -46,7 +53,10 @@ class SupplierAuthController extends Controller
             dd($user);
             // return redirect()->intended(url('supplier'));
         } else {
-            return redirect()->back()->withError('Credentials doesn\'t match.');
+            // dd('');
+            return redirect()->back()->withErrors([
+                'username' => 'Snap! you are done!'
+            ]);
         }
     }
 
@@ -63,5 +73,16 @@ class SupplierAuthController extends Controller
 
     public function register(){
 
+    }
+
+    protected function credentials(Request $request){
+
+        if(is_numeric($request->get('email'))){
+            return ['phone'=>$request->get('email'),'password'=>$request->get('password')];
+        }
+        elseif (filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)) {
+            return ['email' => $request->get('email'), 'password'=>$request->get('password')];
+        }
+        return ['username' => $request->get('email'), 'password'=>$request->get('password')];
     }
 }

@@ -36,10 +36,10 @@ Route::post('buyer/registerpass-buy-post', [Buyer\buyerController::class, 'regis
 
 /////////// SUPPLIER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Login
-Route::get('supplier/login', [Supplier\Auth\SupplierAuthController::class,'index'])->name('supplier.login');
-Route::get('supplier/login-sup', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
-Route::get('supplier/logphone-sup', [Supplier\supplierController::class, 'logphone_supplier']);
-Route::get('supplier/logotp-sup', [Supplier\supplierController::class, 'logotp_supplier']);
+Route::post('supplier/login', [Supplier\Auth\SupplierAuthController::class,'login'])->name('supplier.login');
+Route::get('supplier/login', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
+Route::get('supplier/login/verify/phone', [Supplier\supplierController::class, 'logphone_supplier'])->name('supplier.login.verify.phone');
+Route::get('supplier/login/verify/otp', [Supplier\supplierController::class, 'logotp_supplier'])->name('supplier.login.verify.otp');
 
 //Register
 Route::get('supplier/regis-sup', [Supplier\supplierController::class, 'regis_supplier']);

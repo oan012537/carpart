@@ -1,36 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <base href="{{url("")}}">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Login </title>
-    <meta name="keywords" content="" />
-    <meta name=" description" content="" />
-    <meta name="robot" content="index, follow" />
-    <meta name="generator" content="brackets">
-    <meta name='copyright' content='orange technology solution co.,ltd.'>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link type="image/ico" rel="shortcut icon" href="assets/img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="assets/css/login1.css" rel="stylesheet">
-
-    @include('inc_stylesheet')
-</head>
-
-<body>
-
-    <section id="sec-login1">
-        <div class="container">
-            <div class="box-b-login">
+@extends('../../layouts/template')
+<link href="{{asset('assets/css/login1.css')}}" rel="stylesheet">
+@section('content')
+<section id="sec-login1">
+    <div class="container">
+        <div class="box-b-login">
+            <form method="post" action="{{ route('supplier.login') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="img-img-log">
-                            <img src="assets/img/login/ln1.png" class="img-fluid" alt="">
+                            <img src="{{asset('assets/img/login/ln1.png')}}" class="img-fluid" alt="">
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -46,8 +25,8 @@
                         </div>
                         <div class="input-group mb-3 box-border">
 
-                            <input type="text" class="form-control" name="username" placeholder="01xx-xxx-xxxxx"
-                                aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control{{ $errors->has('username') || $errors->has('email') ? ' is-invalid' : '' }}" name="username" placeholder="01xx-xxx-xxxxx"
+                                aria-label="Username" aria-describedby="basic-addon1" required autofocus>
                         </div>
                         <div class="tt-text-log2">
                             <p>
@@ -57,7 +36,7 @@
                         <div class="input-group mb-3 box-border">
 
                             <input type="password" name="password" class="form-control" id="password"
-                                placeholder="*************">
+                                placeholder="*************" required>
 
                         </div>
                         <div class="t-pass-t">
@@ -67,9 +46,9 @@
                         </div>
                         <br>
                         <div class='but-bb-log'>
-                            <a href="{{url('supplier/logphone-sup')}}">
-                                <button class="button button1"> เข้าสู่ระบบ </button>
-                            </a>
+                            {{-- <a href="{{route('supplier/logphone-sup')}}"> --}}
+                                <button class="button button1" type="submit"> เข้าสู่ระบบ </button>
+                            {{-- </a> --}}
                         </div>
                         <div class="text-or-t">
                             <p>
@@ -78,17 +57,19 @@
                         </div>
                         <div class='but-bb-log2'>
                             <a href="{{url('supplier/regis-sup')}}">
-                                <button class="button button2"> สมัครสมาชิก </button>
+                                <button class="button button2" type="button"> สมัครสมาชิก </button>
                             </a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </section>
+    </div>
+</section>
+@stop
 
-    @include('inc_footer')
+@section('script')
+<script>
 
-</body>
-
-</html>
+</script>
+@stop
