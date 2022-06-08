@@ -27,41 +27,44 @@
     <section id="sec-login1">
         <div class="container">
             <div class="box-b-login">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="img-img-log">
-                            <img src="assets/img/login/ln1.png" class="img-fluid" alt="">
+                <form method="post" action="{{route('supplier.login.verify.phone.post')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="img-img-log">
+                                <img src="assets/img/login/ln1.png" class="img-fluid" alt="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="h-text-log">
-                            <p>
-                                ยืนยันเบอร์โทรศัพท์
-                            </p>
-                        </div>
-                        <div class="text-tt-hd">
-                            โปรดระบุเบอร์โทรศัพท์ของท่าน
-                        </div>
-                        <br>
-                        <div class="tt-text-log">
-                            <p>
-                                เบอร์มือถือ
-                            </p>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="01xx-xxx-xxxxx" aria-label="Username"
-                                aria-describedby="basic-addon1">
-                        </div>
-                        <br>
-                        <div class='but-bb-log'>
-                            <a href="{{url('supplier/logotp-sup')}}">
-                                <button class="button button1"> ถัดไป &nbsp; <i class='fas fa-angle-right'></i>
-                                </button>
-                            </a>
+                        <div class="col-lg-4">
+                            <div class="h-text-log">
+                                <p>
+                                    ยืนยันเบอร์โทรศัพท์
+                                </p>
+                            </div>
+                            <div class="text-tt-hd">
+                                โปรดระบุเบอร์โทรศัพท์ของท่าน
+                            </div>
+                            <br>
+                            <div class="tt-text-log">
+                                <p>
+                                    เบอร์มือถือ
+                                </p>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="01xx-xxx-xxxxx" aria-label="Username"
+                                    aria-describedby="basic-addon1" required name="number">
+                            </div>
+                            <br>
+                            <div class='but-bb-log'>
+                                {{-- <a href="{{url('supplier/logotp-sup')}}"> --}}
+                                    <button class="button button1" type="submit"> ถัดไป &nbsp; <i class='fas fa-angle-right'></i>
+                                    </button>
+                                {{-- </a> --}}
 
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </section>

@@ -30,62 +30,66 @@
     <section id="sec-login1">
         <div class="container">
             <div class="box-b-login">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="img-img-log">
-                            <img src="assets/img/login/ln1.png" class="img-fluid" alt="">
+                <form method="post" action="{{ route('supplier.login.verify.otp.post') }}" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" value="{{$tokenotp}}" name="tokens">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="img-img-log">
+                                <img src="assets/img/login/ln1.png" class="img-fluid" alt="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="h-text-log">
-                            <p>
-                                ยืนยันรหัส OTP
-                            </p>
-                        </div>
-                        <div class="text-tt-hd">
-                            กรุณากรอก OTP ที่ส่งไปยังหมายเลข
-                        </div>
-                        <br>
-                        <div class="tt-text-log">
-                            <p>
-                                012-345-6789
-                            </p>
-                        </div>
-                        <br>
-                        <div class="box-bb-num">
-                            <img src="assets/img/login/b.png" class="img-fluid" alt="">
-                            <img src="assets/img/login/b.png" class="img-fluid" alt="">
-                            <img src="assets/img/login/b.png" class="img-fluid" alt="">
-                            <img src="assets/img/login/b.png" class="img-fluid" alt="">
-                            <img src="assets/img/login/b.png" class="img-fluid" alt="">
-                            <img src="assets/img/login/b.png" class="img-fluid" alt="">
-                        </div>
-                        <br>
-                        <div class="tt-text-re-num">
-                            <p>
-                                หากไม่ได้รับรหัสผ่านใน 1 นาที
-                            </p>
-                        </div>
-                        <div class="tt-text-re-num2">
-                            <p>
-                                กรุณากด <font>ส่งรหัส OTP อีกครั้ง</font> &nbsp; <i class='fas fa-sync-alt'></i>
-                            </p>
-                        </div>
+                        <div class="col-lg-4">
+                            <div class="h-text-log">
+                                <p>
+                                    ยืนยันรหัส OTP
+                                </p>
+                            </div>
+                            <div class="text-tt-hd">
+                                กรุณากรอก OTP ที่ส่งไปยังหมายเลข
+                            </div>
+                            <br>
+                            <div class="tt-text-log">
+                                <p>
+                                    012-345-6789
+                                </p>
+                            </div>
+                            <br>
+                            <div class="box-bb-num">
+                                <img src="assets/img/login/b.png" class="img-fluid" alt="">
+                                <img src="assets/img/login/b.png" class="img-fluid" alt="">
+                                <img src="assets/img/login/b.png" class="img-fluid" alt="">
+                                <img src="assets/img/login/b.png" class="img-fluid" alt="">
+                                <img src="assets/img/login/b.png" class="img-fluid" alt="">
+                                <img src="assets/img/login/b.png" class="img-fluid" alt="">
+                            </div>
+                            <br>
+                            <div class="tt-text-re-num">
+                                <p>
+                                    หากไม่ได้รับรหัสผ่านใน 1 นาที
+                                </p>
+                            </div>
+                            <div class="tt-text-re-num2">
+                                <p>
+                                    กรุณากด <font>ส่งรหัส OTP อีกครั้ง</font> &nbsp; <i class='fas fa-sync-alt'></i>
+                                </p>
+                            </div>
 
-                        <br>
-                        <div class='but-bb-log'>
-                            <a href="{{url('supplier/regisphone-sup')}}">
-                                <button class="button button1"> ย้อนกลับ
-                                </button>
-                            </a>
-                            &nbsp;
-                            <a href="{{url('supplier/register-sup')}}">
-                                <button class="button button2"> ถัดไป &nbsp; <i class='fas fa-angle-right'></i>
-                                </button>
-                            </a>
+                            <br>
+                            <div class='but-bb-log'>
+                                <a href="{{url('supplier/regisphone-sup')}}">
+                                    <button class="button button1"> ย้อนกลับ
+                                    </button>
+                                </a>
+                                &nbsp;
+                                {{-- <a href="{{url('supplier/register-sup')}}"> --}}
+                                    <button class="button button2" type="submit"> ถัดไป &nbsp; <i class='fas fa-angle-right'></i>
+                                    </button>
+                                {{-- </a> --}}
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
     </section>
 

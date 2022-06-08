@@ -11,6 +11,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Response;
 
 class SupplierAuthController extends Controller
 {
@@ -38,6 +39,7 @@ class SupplierAuthController extends Controller
      */
     public function login(Request $request)
     {
+        // dd($this->getotp());
         // dd($request->all());
         // $this->validate($request, [
         //     'username' => 'required',
@@ -49,8 +51,9 @@ class SupplierAuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ])) {
-            $user = auth()->user();
-            dd($user);
+            // $user = auth()->user();
+            // dd($user);
+            return redirect()->route('supplier.login.verify.phone');
             // return redirect()->intended(url('supplier'));
         } else {
             // dd('');
@@ -59,7 +62,19 @@ class SupplierAuthController extends Controller
             ]);
         }
     }
-
+    public function verifyphone(Request $request)
+    {
+        // dd($request->all());
+        $gettokenotp = $this->gettokenotp($request->number);
+        // dd($gettokenotp);
+        return view('supplier.regisotp-sup',['tokenotp'=>$gettokenotp]);
+    }
+    public function verifyotp(Request $request)
+    {
+        // dd();
+        $gettokenotp = $this->otpcode($request->tokens,$request->otpcode);
+        
+    }
     public function logout()
     {
         Auth::guard('supplier')->logout();
@@ -84,5 +99,68 @@ class SupplierAuthController extends Controller
             return ['email' => $request->get('email'), 'password'=>$request->get('password')];
         }
         return ['username' => $request->get('email'), 'password'=>$request->get('password')];
+    }
+
+    public function getotp($token,$otpcode){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "token"=>$token,
+            "otp_code"=>$otpcode,
+            )),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        // echo $response;
+        $response = json_decode($response,true);
+        return Response::json($response);
+    }
+
+    public function gettokenotp($number){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "project_key"=>"9b9279e805",
+            "phone"=>$number,
+            )),
+        ));
+        $response = curl_exec($curl);
+        $info = curl_getinfo($curl);
+        // echo $info["http_code"];
+        curl_close($curl);
+        // echo $response;
+        //เพิ่มเอง
+        $response = json_decode($response,true);
+        if($info["http_code"] == '200'){
+            return $response['result']['token'];
+        }
+        //เพิ่มเอง
+        
     }
 }

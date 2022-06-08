@@ -41,6 +41,9 @@ Route::get('supplier/login', [Supplier\supplierController::class, 'login_supplie
 Route::get('supplier/login/verify/phone', [Supplier\supplierController::class, 'logphone_supplier'])->name('supplier.login.verify.phone');
 Route::get('supplier/login/verify/otp', [Supplier\supplierController::class, 'logotp_supplier'])->name('supplier.login.verify.otp');
 
+Route::post('supplier/login/verify/phone', [Supplier\Auth\SupplierAuthController::class,'verifyphone'])->name('supplier.login.verify.phone.post');
+Route::post('supplier/login/verify/otp', [Supplier\Auth\SupplierAuthController::class,'verifyotp'])->name('supplier.login.verify.otp.post');
+
 //Register
 Route::get('supplier/regis-sup', [Supplier\supplierController::class, 'regis_supplier']);
 Route::get('supplier/regisphone-sup', [Supplier\supplierController::class, 'regisphone_supplier']);
