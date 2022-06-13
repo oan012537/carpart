@@ -31,11 +31,15 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('update', function(){});
         });
 
-        Route::prefix('register')->group(function () {
-            Route::get('add', function(){});
-            Route::post('store', function(){});
-            Route::get('edit', function(){});
-            Route::post('update', function(){});
+        Route::prefix('company')->group(function () {
+            Route::get('/', [Backend\CompanyController::class,'index'])->name('backend.company');
+            Route::get('add', function(){})->name('backend.company.add');
+            Route::post('store', function(){})->name('backend.company.store');
+            Route::get('edit', [Backend\CompanyController::class,'edit'])->name('backend.company.edit');
+            Route::post('update', [Backend\CompanyController::class,'update'])->name('backend.company.update');
+            Route::get('changeprovinces/{id}', [Backend\CompanyController::class,'provinces']);
+            Route::get('changeamphures/{id}', [Backend\CompanyController::class,'amphures']);
+            Route::get('changedistricts/{id}', [Backend\CompanyController::class,'districts']);
         });
     });
     // Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');
