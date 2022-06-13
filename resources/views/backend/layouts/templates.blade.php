@@ -11,9 +11,10 @@
 </head>
 <body id="body-pd" class="body-pd buyer">
     @include('backend.layouts.inc_navbar')
-    <div class="content ">
+    {{-- <div class="content ">
         <h4>Main Components</h4>
-    </div>
+    </div> --}}
+    @yield('content')
     @include('backend.layouts.inc_footer')
     @include('backend.layouts.inc_js')
 
