@@ -5,7 +5,8 @@
 <script src="{{asset('backends/assets/js/main.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
 <script src="{{asset('backends/assets/js/navbar.js')}}"></script>
-
+<script src="{{asset('backends/assets/js/add_active.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
 <script>
     // to top
@@ -26,5 +27,10 @@
 
     $('#msbo').on('click', function() {
         $('body').toggleClass('msb-x');
+    });
+
+    $('.nav_list a').click(function() {
+        var id = $(this).attr('id');
+        $('.nav_list  .item-show-' + id).toggleClass("show");
     });
 </script>
