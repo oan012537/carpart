@@ -41,6 +41,19 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('changeamphures/{id}', [Backend\CompanyController::class,'amphures']);
             Route::get('changedistricts/{id}', [Backend\CompanyController::class,'districts']);
         });
+
+        Route::prefix('settinguser')->group(function () {
+            Route::get('/', [Backend\SettinguserController::class,'index'])->name('backend.setting.user');
+            Route::get('add', [Backend\SettinguserController::class,'add'])->name('backend.setting.user.add');
+            Route::post('store', [Backend\SettinguserController::class,'store'])->name('backend.setting.user.store');
+            Route::get('edit/{id}', [Backend\SettinguserController::class,'edit'])->name('backend.setting.user.edit');
+            Route::post('update', [Backend\SettinguserController::class,'update'])->name('backend.setting.user.update');
+
+            Route::get('changestatus', [Backend\SettinguserController::class,'changestatus']);
+
+            Route::post('addrole', [Backend\SettinguserController::class,'addrole'])->name('backend.setting.user.role.add');
+
+        });
     });
     // Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');
 });

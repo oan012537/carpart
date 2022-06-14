@@ -12,12 +12,14 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Response;
+use Session;
 
 class SupplierAuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        // dd('1');
+        // $this->middleware('guest')->except('logout');
         Auth::guard('supplier')->logout();
     }
 
@@ -41,18 +43,14 @@ class SupplierAuthController extends Controller
     {
         // dd($this->getotp());
         // dd($request->all());
-        // $this->validate($request, [
-        //     'username' => 'required',
-        //     // 'phone' => 'required|unique:users',
-        //     'password' => 'required',
-        // ]);
-        // dd($this,$request);
-        if(auth()->guard('supplier')->attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-        ])) {
-            // $user = auth()->user();
-            // dd($user);
+        $this->validate($request, [
+            'username' => 'required',
+            // 'phone' => 'required|unique:users',
+            'password' => 'required',
+        ]);
+        $user = auth('supplier');
+        // dd(Auth::guard('supplier')->check(),$request->all());
+        if (Auth::guard('supplier')->attempt(['email' => $request->username, 'password' => $request->password, 'active' => '1']) ){ // loginเลย
             return redirect()->route('supplier.login.verify.phone');
             // return redirect()->intended(url('supplier'));
         } else {

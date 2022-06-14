@@ -23,7 +23,7 @@
       justify-content: space-between;
 
       .box__search {
-        width: 40%;
+        width: 35%;
         padding: 0 10px;
         label {
           color: var(--clrgrays);
@@ -47,16 +47,24 @@
         }
       }
 
+      .btn__search2 {
+        background-color: var(--clrmain) !important;
+        border: 1px solid var(--clrmain) !important;
+        color: var(--clrdarks2);
+        margin-right: 15px;
+        margin-top: 2.5rem;
+      }
+
       .box__radio {
         display: flex;
-        margin-top: 3rem;
+        margin-top: 2.5rem;
 
         .form-check {
           margin: 0 10px;
 
           .form-check-input {
-            width: 1.5em;
-            height: 1.5em;
+            width: 1.2em;
+            height: 1.2em;
             margin-right: 10px;
           }
 
@@ -331,8 +339,8 @@
       }
 
       .form-check-input {
-        width: 1.5em;
-        height: 1.5em;
+        width: 1.2em;
+        height: 1.2em;
         margin-right: 15px;
       }
     }

@@ -66,6 +66,8 @@ class BackendController extends Controller
         $user = User::create([
             'name' => $request->name,
             'phone' => $request->phone,
+            'status' => '1',
+            'role' => '10',
             'email' => $request->email,
             'password' => Hash::make('12345678'),
         ]);

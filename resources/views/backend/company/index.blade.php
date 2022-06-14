@@ -44,7 +44,7 @@
                                     </a>
                                 </li>
                    
-                                <li data-page="setting-user"><a href="setting-user.php">
+                                <li data-page="setting-user"><a href="{{route('backend.setting.user')}}">
                                         <div class="icon2"></div> ตั้งค่าผู้ใช้งาน
                                     </a></li>
                             </ul>
