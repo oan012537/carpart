@@ -8,6 +8,7 @@
 <script src="{{asset('backends/assets/js/add_active.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 
 <script>
     // to top
@@ -64,7 +65,5 @@
         //     toastr.clear()
         // }
         toastr[type](msg)
-
-        
     }
 </script>

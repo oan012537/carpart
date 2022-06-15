@@ -65,8 +65,8 @@
                         </div>
                     </a>
                     <ul class="item-show-1 itemdropdown">
-                        <li data-page="approval-individual"><a href="approvel-individual.php">ผู้ขายบุคคลธรรมดา</a></li>
-                        <li data-page="approval-legal"><a href="approvel-legal.php">ผู้ขายนิติบุคคล</a></li>
+                        <li data-page="approval-individual"><a href="{{route('backend.approval.individual')}}">ผู้ขายบุคคลธรรมดา</a></li>
+                        <li data-page="approval-legal"><a href="{{route('backend.approval.legal')}}">ผู้ขายนิติบุคคล</a></li>
                     </ul>
                 </li>
                 <!-- DropDown -->

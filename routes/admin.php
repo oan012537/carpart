@@ -48,11 +48,51 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('store', [Backend\SettinguserController::class,'store'])->name('backend.setting.user.store');
             Route::get('edit/{id}', [Backend\SettinguserController::class,'edit'])->name('backend.setting.user.edit');
             Route::post('update', [Backend\SettinguserController::class,'update'])->name('backend.setting.user.update');
+            Route::get('destroy', [Backend\SettinguserController::class,'destroy'])->name('backend.setting.user.destroy');
 
             Route::get('changestatus', [Backend\SettinguserController::class,'changestatus']);
 
             Route::post('addrole', [Backend\SettinguserController::class,'addrole'])->name('backend.setting.user.role.add');
+        });
 
+        Route::prefix('approvalrequest')->group(function () {
+            Route::prefix('individual')->group(function () {
+                Route::get('/', [Backend\ApprovalRequestIndividualController::class,'index'])->name('backend.approval.individual');
+                Route::get('datatables', [Backend\ApprovalRequestIndividualController::class,'datatables'])->name('backend.approval.individual.datatables');
+                Route::get('datatables/wait', [Backend\ApprovalRequestIndividualController::class,'datatables_wait'])->name('backend.approval.individual.datatables');
+                Route::get('datatables/approval', [Backend\ApprovalRequestIndividualController::class,'datatables_approval'])->name('backend.approval.individual.datatables');
+                
+                Route::get('add', [Backend\ApprovalRequestIndividualController::class,'add'])->name('backend.approval.individual.add');
+                Route::post('store', [Backend\ApprovalRequestIndividualController::class,'store'])->name('backend.approval.individual.store');
+                Route::get('edit/{id}', [Backend\ApprovalRequestIndividualController::class,'edit'])->name('backend.approval.individual.edit');
+                Route::post('update', [Backend\ApprovalRequestIndividualController::class,'update'])->name('backend.approval.individual.update');
+                Route::get('destroy', [Backend\ApprovalRequestIndividualController::class,'destroy'])->name('backend.approval.individual.destroy');
+
+                Route::get('changestatus', [Backend\ApprovalRequestIndividualController::class,'changestatus']);
+
+                Route::post('addrole', [Backend\ApprovalRequestIndividualController::class,'addrole'])->name('backend.approval.individual.role.add');
+
+                Route::get('getdetails', [Backend\ApprovalRequestIndividualController::class,'getdetails'])->name('backend.approval.individual.getdetails');
+            });
+
+            Route::prefix('legal')->group(function () {
+                Route::get('/', [Backend\ApprovalRequestLegalController::class,'index'])->name('backend.approval.legal');
+                Route::get('add', [Backend\ApprovalRequestLegalController::class,'add'])->name('backend.approval.legal.add');
+                Route::get('datatables', [Backend\ApprovalRequestLegalController::class,'datatables'])->name('backend.approval.legal.datatables');
+                Route::get('datatables/wait', [Backend\ApprovalRequestLegalController::class,'datatables_wait'])->name('backend.approval.legal.datatables');
+                Route::get('datatables/approval', [Backend\ApprovalRequestLegalController::class,'datatables_approval'])->name('backend.approval.legal.datatables');
+                Route::post('store', [Backend\ApprovalRequestLegalController::class,'store'])->name('backend.approval.legal.store');
+                Route::get('edit/{id}', [Backend\ApprovalRequestLegalController::class,'edit'])->name('backend.approval.legal.edit');
+                Route::post('update', [Backend\ApprovalRequestLegalController::class,'update'])->name('backend.approval.legal.update');
+                Route::get('destroy', [Backend\ApprovalRequestLegalController::class,'destroy'])->name('backend.approval.legal.destroy');
+
+                Route::get('changestatus', [Backend\ApprovalRequestLegalController::class,'changestatus']);
+
+                Route::post('addrole', [Backend\ApprovalRequestLegalController::class,'addrole'])->name('backend.approval.legal.role.add');
+
+                Route::get('getdetails', [Backend\ApprovalRequestLegalController::class,'getdetails'])->name('backend.approval.legal.getdetails');
+
+            });
         });
     });
     // Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');

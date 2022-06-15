@@ -86,13 +86,13 @@
 
                                         <!--  -->
                                         <ul class="nav nav-tabs" id="myTab2" role="tablist">
-                                            <li class="nav-item" role="presentation">
+                                            <li class="nav-item" role="presentation" onclick="showaddbtn('1','{{$role->role_id}}')">
                                                 <button class="nav-link active" id="setpermission{{$role->role_id}}-tab" data-bs-toggle="tab" data-bs-target="#setpermission{{$role->role_id}}" type="button" role="tab" aria-controls="setpermission{{$role->role_id}}" aria-selected="true">ตั้งค่าบทบาท</button>
                                             </li>
-                                            <li class="nav-item" role="presentation">
+                                            <li class="nav-item" role="presentation" onclick="showaddbtn('2','{{$role->role_id}}')">
                                                 <button class="nav-link" id="setmember{{$role->role_id}}-tab" data-bs-toggle="tab" data-bs-target="#setmember{{$role->role_id}}" type="button" role="tab" aria-controls="setmember{{$role->role_id}}" aria-selected="false">จัดการสมาชิก ( @if(array_key_exists($role->role_id,$datas)) {{count($datas[$role->role_id])}} @else 0 @endif คน )</button>
                                             </li>
-                                            <li class="btn__addmember" onclick="fnaddmember('{{$role->role_name}}')" role="presentation">
+                                            <li id="btnaddmember{{$role->role_id}}" class="btn__addmember" onclick="fnaddmember('{{$role->role_name}}')" role="presentation" style="display: none;">
                                                 <button class="nav-link" class="btn btn__addpermission" type="button" data-bs-toggle="modal" data-bs-target="#myModal1"> <img src="{{asset('backends/assets/img/setting/icon-role-active.svg')}}" class="img-fluid" alt=""> เพิ่มสมาชิก</button>
                                             </li>
                                         </ul>
@@ -101,7 +101,7 @@
                                                 <div class="form-group">
                                                     <label for="">ชื่อบทบาท</label>
                                                     <input type=" text" name="namepermission" class="form-control" aria-describedby="button-addon3" value="{{$role->role_name}}">
-                                                    <button type="button" id="button-addon3" class="btn btn__popover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="ลบบทบาทนี้">
+                                                    <button type="button" id="button-addon3" class="btn btn__popover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="ลบบทบาทนี้" data-role="{{$role->role_id}}">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
                                                 </div>
@@ -120,8 +120,8 @@
                                                             '6' => 'ดูแลการขาย',
                                                             '7' => 'ดูแลการเงิน',
                                                         );
-                                                        for ($z = 1; $z <= 6; $z++) {
-
+                                                        for ($z = 1; $z <= 7; $z++) {
+                                                            $namefield = 'permission_manage'.$z;
                                                         ?>
                                                             <div class="row">
                                                                 <div class="col-6">
@@ -129,9 +129,7 @@
                                                                 </div>
                                                                 <div class="col-6">
                                                                     <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" <?php if ($z == 1) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
+                                                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-status="{{$role->$namefield}}{{$z}}" @if($role->$namefield == '1') checked @endif>
                                                                         <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                                                     </div>
 
@@ -149,7 +147,7 @@
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="setmember{{$role->role_id}}" role="tabpanel" aria-labelledby="setmember{{$role->role_id}}-tab">
-
+                                                
                                                 <div class="table-respoonsive tablestyle">
                                                     <table class="table text-center">
                                                         <thead>
@@ -165,7 +163,7 @@
                                                         <tbody>
                                                             @if(array_key_exists($role->role_id,$datas))
                                                             @foreach ($datas[$role->role_id] as $user)
-                                                            <tr>
+                                                            <tr id="datausers{{$user->id}}">
                                                                 <td>{{$user->id}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->phone}}</td>
@@ -448,7 +446,14 @@
         });
     }
     function fneremove(id) {
-
+        $.get("{{url('backend/settinguser/destroy')}}",{'id':id},function (result) {
+            if(result == 'Y'){
+                $("#datausers"+id).remove();
+                toastralert('success','ลบข้อมูลเรียบร้อย');
+            }else{
+                toastralert('error','เกิดข้อผิดพลาด');
+            }
+        });
     }
     $(".btn__addmember").click(function () {
         // alert();
@@ -470,5 +475,33 @@
     function fnaddmember(name) {
         // alert(name);
     }
+    function showaddbtn(type,id) {
+        if(type == '1'){
+            $("#btnaddmember"+id).hide();
+        }else{
+            $("#btnaddmember"+id).show();
+        }
+        
+    }
+    $(".btn__popover").click(function (e) {
+        var datarole = $(this).data('role');
+        bootbox.confirm({
+            message: "ต้องการลบข้อมูลใช่หรือไม่?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                toastralert('success','ยังทำไม่เรียบร้อย');
+            }
+        });
+        
+    })
 </script>
 @stop

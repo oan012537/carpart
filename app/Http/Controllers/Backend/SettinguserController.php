@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Backend\Settinguser;
 use App\Models\Backend\Company;
 use App\Models\Backend\Role;
+use App\Models\Backend\Settinguser_permission;
 use Illuminate\Support\Facades\Auth;
 use Response;
 // use DB;
@@ -20,7 +21,7 @@ class SettinguserController extends Controller
 {
     public function index(){
         $company = Company::find(1);
-        $role = Role::all();
+        $role = Role::leftjoin('users_permission','role_id','permission_role')->get();
         $user = User::all();
         foreach($user as $item){
             $data[$item->role][] = $item;
@@ -74,9 +75,10 @@ class SettinguserController extends Controller
         return redirect()->route('backend.setting.user');
     }
 
-    public function destroy($id){
-        $company = Company::find(1);
-        return view('backend.company.index',['company'=>$company]);
+    public function destroy(Request $request){
+        $user = User::find($request->id);
+        $user->delete();
+        return "Y";
     }
 
     public function changestatus(Request $request){
@@ -105,6 +107,11 @@ class SettinguserController extends Controller
             $role->created_at = date("Y-m-d H:i:s");
             $role->updated_at = date("Y-m-d H:i:s");
             $role->save();
+            $permission = new Settinguser_permission;
+            $permission->permission_role = $role->role_id;
+            $permission->created_at = date("Y-m-d H:i:s");
+            $permission->updated_at = date("Y-m-d H:i:s");
+            $permission->save();
             DB::commit();
             $role = Role::all();
             $json['status'] = 'success';
