@@ -53,6 +53,8 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('changestatus', [Backend\SettinguserController::class,'changestatus']);
 
             Route::post('addrole', [Backend\SettinguserController::class,'addrole'])->name('backend.setting.user.role.add');
+            Route::get('changepermission', [Backend\SettinguserController::class,'changepermission'])->name('backend.setting.user.changepermission');
+
         });
 
         Route::prefix('approvalrequest')->group(function () {
@@ -88,7 +90,7 @@ Route::group(['middleware' => 'auth'], function(){
 
                 Route::get('changestatus', [Backend\ApprovalRequestLegalController::class,'changestatus']);
 
-                Route::post('addrole', [Backend\ApprovalRequestLegalController::class,'addrole'])->name('backend.approval.legal.role.add');
+                Route::post('approve', [Backend\ApprovalRequestLegalController::class,'approval'])->name('backend.approval.legal.approve');
 
                 Route::get('getdetails', [Backend\ApprovalRequestLegalController::class,'getdetails'])->name('backend.approval.legal.getdetails');
 

@@ -158,42 +158,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php for ($i = 1; $i <= 35; $i++) { ?>
-                                                    <tr>
-                                                        <td>A23456781</td>
-                                                        <td>ชื่อ</td>
-                                                        <td>ชื่อจริง นามสกุล</td>
-                                                        <td>12345677889901</td>
-                                                        <td>15/15/2560 18.00</td>
-                                                        <td>15/15/2560 18.00</td>
-                                                        <td>
-                                                            <div class="approvel ap-wait">
-                                                                <p>รออนุมัติ</p>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <?php if ($i <= 3) { ?>
-                                                                <p class="txt__note">-</p>
-                                                            <?php } else { ?>
-                                                                <p class="txt__note">เอกสารไม่ชัด</p>
-                                                            <?php   }  ?>
-                                                        </td>
-                                                        <td><a href="javascript:void(0)" class="btn btn__viewdetail" data-bs-toggle="modal" data-bs-target="#modalviewdetailapp">ดูรายละเอียด</a></td>
-                                                        <td>
-                                                            <div class="box__btn">
-                                                                <button class="btn btn__app <?php if ($i == 1) {
-                                                                                                echo 'btn__approval';
-                                                                                            } ?>" data-bs-toggle="modal" data-bs-target="#modalapproval">อนุมัติ</button>
-                                                                <button class="btn btn__app  <?php if ($i == 1) {
-                                                                                                    echo 'btn__waitapproval';
-                                                                                                } ?>">รออนุมัติ</button>
-                                                                <button class="btn btn__app  <?php if ($i == 1) {
-                                                                                                    echo 'btn__noapproval';
-                                                                                                } ?>">ไม่อนุมัติ</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                <?php } ?>
 
                                             </tbody>
 
@@ -218,42 +182,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php for ($i = 1; $i <= 35; $i++) { ?>
-                                                    <tr>
-                                                        <td>A23456781</td>
-                                                        <td>ชื่อ</td>
-                                                        <td>ชื่อจริง นามสกุล</td>
-                                                        <td>12345677889901</td>
-                                                        <td>15/15/2560 18.00</td>
-                                                        <td>15/15/2560 18.00</td>
-                                                        <td>
-                                                            <div class="approvel ap-success">
-                                                                <p>อนุมัติ</p>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <?php if ($i <= 3) { ?>
-                                                                <p class="txt__note">-</p>
-                                                            <?php } else { ?>
-                                                                <p class="txt__note">เอกสารไม่ชัด</p>
-                                                            <?php   }  ?>
-                                                        </td>
-                                                        <td><a href="javascript:void(0)" class="btn btn__viewdetail" data-bs-toggle="modal" data-bs-target="#modalviewdetailapp">ดูรายละเอียด</a></td>
-                                                        <td>
-                                                            <div class="box__btn">
-                                                                <button class="btn btn__app <?php if ($i == 1) {
-                                                                                                echo 'btn__approval';
-                                                                                            } ?>" data-bs-toggle="modal" data-bs-target="#modalapproval">อนุมัติ</button>
-                                                                <button class="btn btn__app  <?php if ($i == 1) {
-                                                                                                    echo 'btn__waitapproval';
-                                                                                                } ?>">รออนุมัติ</button>
-                                                                <button class="btn btn__app  <?php if ($i == 1) {
-                                                                                                    echo 'btn__noapproval';
-                                                                                                } ?>">ไม่อนุมัติ</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                <?php } ?>
 
                                             </tbody>
 
@@ -276,18 +204,21 @@
                     <h3 class="modal-title" id="modalapprovalLabel">อนุมัติแบบเร่งด่วน</h3>
                 </div>
                 <div class="modal-body">
-                    <div class="box__result">
-                        <p class="txt__result">ผลการพิจารณา :<span>ไม่ผ่าน</span></p>
-                    </div>
+                    <form method="POST" action="{{ route('backend.approval.legal.approve') }}" id="formapprove">
+                        @csrf
+                        <div class="box__result">
+                            <p class="txt__result">ผลการพิจารณา :<span>ไม่ผ่าน</span></p>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="">หมายเหตุ</label>
-                        <textarea name="txt__note" class="form-control" id="txt__note"></textarea>
-                    </div>
+                        <div class="form-group">
+                            <label for="">หมายเหตุ</label>
+                            <textarea name="txt__note" class="form-control" id="txt__note"></textarea>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn__back" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn__yes">ยืนยัน</button>
+                    <button type="submit" form="formapprove" class="btn btn__yes">ยืนยัน</button>
                 </div>
             </div>
         </div>
@@ -373,10 +304,10 @@
                         <h2 class="txt__titlestatus">ข้อมูลผู้ขาย นิติบุคคล</h2>
                         <div class="form-group">
                             <label for="">สถานะ <span>*</span></label>
-                            <select class="form-select" aria-label="Default select example" name="status" id="status" disabled>
+                            <select class="form-select" aria-label="Default select example" name="status" id="status">
                                 {{-- <option  >อนุมัติ</option> --}}
                                 <option value="1" selected>อนุมัติ</option>
-                                <option value="2">รออนุมัติ</option>
+                                {{-- <option value="2" selected>รออนุมัติ</option> --}}
                                 <option value="3">ไม่อนุมัติ</option>
                             </select>
                         </div>
@@ -420,6 +351,10 @@
 {{-- <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> --}}
 <script>
     $(document).ready(function(){
+        $('.nav-link').on('shown.bs.tab', function (e) {
+            console.log('tab');
+            $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+        });
 		var oTable = $('#datatables').DataTable({
 			processing: true,
 			serverSide: true,
@@ -466,6 +401,9 @@
             initComplete:function( settings, json){
                 console.log(json);
                 $("#alerttotal").text(oTable.data().count());
+                if(oTable.data().count() > 0){
+                    $("#alerttotal").show();
+                }
             }
 		});
 		
@@ -473,6 +411,9 @@
 			oTable.draw();
 			e.preventDefault();
             $("#alerttotal").text(oTable.data().count());
+            if(oTable.data().count() > 0){
+                $("#alerttotal").show();
+            }
 		});
         
 		// $("#noorder").keyup(function(e){
@@ -522,7 +463,10 @@
 			},
             initComplete:function( settings, json){
                 console.log(json);
-                $("#alertwait").text(oTable.data().count());
+                $("#alertwait").text(oTableapproval.data().count());
+                if(oTableapproval.data().count() > 0){
+                    $("#alertwait").show();
+                }
             }
 		});
 
@@ -570,6 +514,9 @@
             initComplete:function( settings, json){
                 console.log(json);
                 $("#alertapproval").text(oTable.data().count());
+                if(oTableapproval.data().count() > 0){
+                    $("#alertapproval").show();
+                }
             }
 		});
 	});

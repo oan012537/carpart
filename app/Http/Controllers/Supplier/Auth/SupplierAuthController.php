@@ -50,7 +50,7 @@ class SupplierAuthController extends Controller
         ]);
         $user = auth('supplier');
         // dd(Auth::guard('supplier')->check(),$request->all());
-        if (Auth::guard('supplier')->attempt(['email' => $request->username, 'password' => $request->password, 'active' => '1']) ){ // loginเลย
+        if (Auth::guard('supplier')->attempt(['email' => $request->username, 'password' => $request->password, 'active' => '0']) ){ // loginเลย
             return redirect()->route('supplier.login.verify.phone');
             // return redirect()->intended(url('supplier'));
         } else {

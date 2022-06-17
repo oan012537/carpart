@@ -134,4 +134,22 @@ class SettinguserController extends Controller
         // return view('backend.settinguser.index',['company'=>$company]);
     }
 
+    public function changepermission(Request $request){
+        try {
+            $permission = Settinguser_permission::where('permission_role',$request->roleid)->first();
+            $namefield = $request->namefield;
+            $permission->$namefield = $request->status;
+            // dd($permission);
+            $permission->save();
+            $json['status'] = 'success';
+            $json['msg'] = 'บันทึกเรียบร้อย';
+            return Response::json($json);
+        } catch (\Illuminate\Database\QueryException $e) {
+            $json['status'] = 'error';
+            $json['msg'] = 'เกิดข้อผิดพลาด';
+            return Response::json($json);
+        }
+        
+    }
+
 }

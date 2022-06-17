@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Datatables;
 use App\Models\Backend\Role;
 use App\Models\User;
+use Response;
 
 class ApprovalRequestIndividualController extends Controller
 {

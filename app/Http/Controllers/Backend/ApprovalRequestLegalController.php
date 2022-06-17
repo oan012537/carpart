@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Datatables;
 use App\Models\Backend\Role;
 use App\Models\User;
+use Response;
 
 class ApprovalRequestLegalController extends Controller
 {
@@ -164,4 +165,8 @@ class ApprovalRequestLegalController extends Controller
     public function getdetails(Request $request){
         return Response::json($request->all());
     }
+
+	public function approve(Request $request){
+		
+	}
 }

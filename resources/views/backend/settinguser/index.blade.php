@@ -129,8 +129,8 @@
                                                                 </div>
                                                                 <div class="col-6">
                                                                     <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-status="{{$role->$namefield}}{{$z}}" @if($role->$namefield == '1') checked @endif>
-                                                                        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault{{$role->role_id}}{{$z}}" data-status="{{$role->$namefield}}" @if($role->$namefield == '1') checked @endif onclick="changepermission('{{$role->role_id}}','{{$namefield}}','{{$z}}')">
+                                                                        <label class="form-check-label" for="flexSwitchCheckDefault{{$role->role_id}}"></label>
                                                                     </div>
 
                                                                 </div>
@@ -502,6 +502,15 @@
             }
         });
         
-    })
+    });
+    function changepermission(roleid,namefield,rowid) {
+        var checkeds = 0;
+        if($("#flexSwitchCheckDefault"+roleid+rowid).is(':checked')){
+            checkeds = 1;
+        }
+        $.get("{{route('backend.setting.user.changepermission')}}",{'roleid':roleid,'namefield':namefield,'status':checkeds},function (result) {
+            toastralert(result.status,result.msg);
+        });
+    }
 </script>
 @stop
