@@ -1,0 +1,117 @@
+.box__editinfoorg {
+  .groupedit1 {
+    .title__txt {
+      font-size: 1.25rem;
+      color: var(--clrdarks6);
+    }
+
+    .itemsorg {
+      background-color: var(--clrdarks6);
+      padding: 15px 30px;
+
+      .form-group {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+        label {
+          margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+          border-radius: 4px !important;
+          background-color: var(--clrdarks7) !important;
+          border: 1px solid var(--clrdarks4) !important;
+          color: var(--clrwhites);
+          box-shadow: none;
+        }
+      }
+    }
+    span {
+      color: var(--clrreds);
+    }
+  }
+
+  .groupedit2 {
+    .title__txt {
+      font-size: 1.25rem;
+      margin-top: 1rem;
+      color: var(--clrdarks6);
+    }
+
+    span {
+      color: var(--clrreds);
+    }
+
+    .itemsorg {
+      background-color: var(--clrdarks6);
+      padding: 15px 30px;
+
+      .form-group {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+        label {
+          margin-bottom: 0.5rem;
+        }
+
+        textarea {
+          height: 150px;
+        }
+
+        .form-control {
+          border-radius: 4px !important;
+          background-color: var(--clrdarks7) !important;
+          border: 1px solid var(--clrdarks4) !important;
+          color: var(--clrwhites);
+          box-shadow: none;
+        }
+
+        .form-select {
+          border-radius: 4px !important;
+          background-color: var(--clrdarks7) !important;
+          border: 1px solid var(--clrdarks4) !important;
+          color: var(--clrwhites);
+          box-shadow: none;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+        }
+      }
+    }
+  }
+
+  .box__btn {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+    .btn__back {
+      color: var(--clrwhites);
+      background-color: var(--clrdarks5);
+      border-radius: 4px;
+      border: 1px solid var(--clrdarks5);
+      padding: 7px 2rem;
+      @extend %transition-3;
+      margin-right: 10px;
+
+      &:hover {
+        @extend %transition-3;
+        background-color: transparent;
+        color: var(--clrdarks6);
+      }
+    }
+
+    .btn__yes {
+      background-color: var(--clrmain);
+      border-radius: 4px;
+      border: 1px solid var(--clrmain);
+      padding: 7px 2rem;
+
+      @extend %transition-3;
+
+      &:hover {
+        @extend %transition-3;
+        background-color: transparent;
+        color: var(--clrmain);
+      }
+    }
+  }
+}

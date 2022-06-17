@@ -1,0 +1,123 @@
+  .txt__price {
+      font-size: 30px;
+  }
+
+  .txt__dateall {
+      color: rgb(175, 167, 167);
+      font-size: 14px;
+      margin-top: -21px;
+      margin-left: 625px;
+  }
+
+  .txt__date2 {
+      color: rgb(175, 167, 167);
+      margin-top: 43px;
+      margin-left: 73px;
+      font-size: 14px;
+  }
+
+  .txt__head-sta p {
+      font-size: 14px;
+      color: #FF7B7B;
+      margin-left: 104px;
+      margin-top: 5px;
+  }
+
+  .txt__head2-sta {
+      font-size: 14px;
+      color: #6FCF97;
+      margin-left: 148px;
+      margin-top: 5px;
+  }
+
+  .txt__head3-sta {
+      font-size: 14px;
+      color: white;
+      margin-left: 121px;
+      margin-top: 5px;
+  }
+
+  .txt__head4-sta {
+      font-size: 14px;
+      color: white;
+      margin-left: 126px;
+      margin-top: 5px;
+  }
+
+  .txt__date3 {
+      color: rgb(175, 167, 167);
+      margin-top: -7px;
+      margin-left: 90px;
+      font-size: 14px;
+  }
+
+  .txt__head5 {
+      font-size: 14px;
+      color: white;
+      margin-left: 150px;
+      margin-top: 5px;
+  }
+
+  .txt__date4 {
+      color: rgb(175, 167, 167);
+      margin-top: -7px;
+      margin-left: 21px;
+      font-size: 14px;
+  }
+
+  .txt__head6 {
+      font-size: 14px;
+      color: white;
+      margin-left: -23px;
+      margin-top: 5px;
+  }
+
+  .txt__head7 {
+      font-size: 14px;
+      color: white;
+      margin-left: -13px;
+      margin-top: 5px;
+  }
+
+  .txt__dateallsent {
+      color: rgb(175, 167, 167);
+      font-size: 14px;
+      margin-top: -21px;
+      margin-left: 576px;
+  }
+
+  .txt__dateallreview {
+      color: rgb(175, 167, 167);
+      font-size: 14px;
+      margin-top: -21px;
+      margin-left: 624px;
+  }
+
+  .fa-check-circle:before,
+  .fa-circle-check:before {
+      color: #5cd86f;
+  }
+
+  .fa-circle-xmark:before,
+  .fa-times-circle:before,
+  .fa-xmark-circle:before {
+      color: #ff7b7b;
+  }
+
+  .fa-box:before {
+      color: #5cd86f;
+  }
+
+  .fa-money-check-alt:before,
+  .fa-money-check-dollar:before {
+      color: var(--clrmain);
+  }
+
+  .fa-box-open:before {
+      color: #25bdca;
+  }
+
+  .fa-exchange-alt:before,
+  .fa-right-left:before {
+      color: #f7912b;
+  }

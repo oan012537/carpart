@@ -1,0 +1,84 @@
+.box__profilebank {
+  background: var(--clrdarks6);
+  border-radius: 4px;
+  padding: 1rem 0;
+
+  .box__edit {
+    text-align: right;
+    padding-right: 1.5rem;
+
+    a {
+      color: var(--clrwhites);
+    }
+  }
+
+  .title__box {
+    font-size: 1.5rem;
+    padding-left: 1.5rem;
+    font-weight: 500;
+  }
+
+  .box__itemsinfo {
+    padding: 5px 30px;
+
+    .title__txt {
+      color: var(--clrgrays);
+      margin-bottom: 0.5rem;
+    }
+    .title__result {
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .box__setdefault {
+      display: inline-block;
+      border: 1px solid var(--clrmain);
+      border-radius: 4px;
+      padding: 5px;
+      float: right;
+
+      .form-check-label {
+        color: var(--clrmain);
+      }
+    }
+  }
+
+  .btn__pdf {
+    background-color: var(--clrdarks3);
+    padding: 25px;
+
+    &:hover {
+      background-color: var(--clrdarks3);
+      border: none;
+    }
+
+    &:focus {
+      background-color: var(--clrdarks3);
+      border: none;
+    }
+  }
+}
+
+.btn__addbank {
+  width: 100%;
+  background-color: var(--clrdarks5) !important;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px !important;
+  padding: 9px 20px !important;
+  color: var(--clrwhites) !important;
+  border: 1px solid var(--clrdarks5) !important;
+  @extend %transition-3;
+
+  &:hover {
+    border: 1px solid var(--clrdarks5) !important;
+    color: var(--clrdarks5) !important;
+    background-color: transparent !important;
+    @extend %transition-3;
+  }
+
+  &:focus {
+    background-color: var(--clrdarks5) !important;
+    color: var(--clrwhites) !important;
+  }
+}

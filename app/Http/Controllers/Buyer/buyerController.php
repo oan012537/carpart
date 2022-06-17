@@ -22,17 +22,19 @@ class buyerController extends Controller
         return view('buyer.login-buy');
     }
     public function login_buyer_post(Request $request){
-        // dd($request);
+
         $username = $request->username;
         $password = $request->password;
 
         if (Auth::guard('buyer')->attempt(['email' => $username, 'password' => $password]) )
         {
-            // dd("Login สำเร็จ");
-            return redirect()->route('frontend.index');
+            return view('buyer.home-search');
         }
-        else
+        elseif (Auth::guard('buyer')->attempt(['phone' => $username, 'password' => $password]) )
         {
+            return redirect('/buyer/home-search')->withErrors(['success' => 'เข้าสู่ระบบสำเร็จ!!']);
+        }else{
+
             dd("username หรือ password ผิด");
             return redirect('backend\login')->with(['error' => 'ชื่อผู้ใช้งาน หรือรหัสผ่านผิด !']);
         }
@@ -96,7 +98,7 @@ class buyerController extends Controller
 
             Session::flush(); // ลบ Session ทั้งหมด
 
-            return redirect()->route('frontend.index')->with('alert', 'Updated!');
+            return redirect()->route('buyer.home-search')->with('alert', 'Updated!');
         }else{
             return view("alert.alert", [
                 'url' => '/buyer.registerpass-buy',
@@ -105,6 +107,10 @@ class buyerController extends Controller
             ]);
         }
 
+    }
+    public function home_search(){
+
+        return view('buyer.home-search');
     }
 
 }

@@ -1,0 +1,576 @@
+#sec-confirm {
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+#sec-confirm .h-text-confirm p {
+    font-size: 26px;
+    font-weight: 500;
+    color: white;
+}
+
+#sec-confirm .d-text-confirm p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .card {
+    background-color: #3F3F3F;
+    height: 153px;
+}
+
+#sec-confirm .card .card-header {
+    background-color: #4F4F4F;
+    height: 55px;
+}
+
+#sec-confirm .card-header p {
+    font-size: 18px;
+    color: #56CCF2;
+    font-weight: 300;
+}
+
+#sec-confirm .card-header span {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .box__model .txt__model {
+    color: #6fcf97;
+    display: inline-block;
+    font-size: 1.15rem;
+    margin-left: 5px;
+    margin-bottom: 0;
+}
+
+#sec-confirm .box__model .txt__idshop {
+    display: inline-block;
+    font-size: 1.15rem;
+    margin-left: 10px;
+    color: var(--clrwhites);
+    margin-bottom: 0;
+}
+
+#sec-confirm .box__model .txt__verify {
+    color: var(--clrblue);
+    display: inline-block;
+    font-size: 1.15rem;
+    margin-left: 5px;
+    margin-bottom: 0;
+}
+
+#sec-confirm .card-header .box__date2 p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    float: right;
+     margin-top: 6px;
+}
+
+#sec-confirm .card .card-body {
+    background-color: #3F3F3F;
+}
+
+#sec-confirm .card-title  {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .card-title-price  {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    float: right;
+}
+
+#sec-confirm .card-text  {
+    font-size: 14px;
+    color: #E0E0E0;
+    font-weight: 300;
+}
+
+#sec-confirm .form-check {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding-left: 44px;
+}
+
+#sec-confirm .card2 {
+    background-color: #3F3F3F;
+    height: 1500px;
+    padding: 20px;
+}
+
+#sec-confirm .card2 .card-title {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+}
+
+
+#sec-confirm .card-detail {
+    font-size: 14px;
+    color: #E0E0E0;
+    font-weight: 300;
+}
+
+.div1 {
+    width: 600px;
+    height: 200px;
+    padding: 20px;
+    border: 1px solid #9c9a9a;
+}
+
+
+/*---- img upload ------*/
+.drop-zone {
+    max-width: 156px;
+    height: 158px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    background-color: #ffffff0f;
+    /* border: 4px dashed #009578; */
+    border-radius: 10px;
+    margin-left: 200px;
+
+}
+
+.drop-zone p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    margin-top: 5px;
+}
+
+.drop-zone .tt-img-detail p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: #cccccc;
+    margin-top: -14px;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+}
+
+/*button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+    cursor: pointer;
+    background-color: #E8D95F;
+    border: none;
+    color: #282828;
+    padding: 7px 36px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+}*/
+
+.button {
+    background-color: #e8d95f;
+    border: none;
+    color: #282828;
+    padding: 6px 32px ;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Kanit", sans-serif;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button4 {
+    background-color: #282828;
+    color: #e8d95f;
+    border: 2px solid #e8d95f;
+}
+
+.button4:hover {
+    background-color: #e8d95f;
+    color: #3F3F3F;
+    border: 2px solid #e8d95f;
+}
+
+
+#sec-confirm .input-group>.form-control,
+.input-group>.form-select {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+    border-top: 2px solid #828282;
+    border-left: 2px solid #828282;
+    border-right: 2px solid #828282;
+    border-bottom: 2px solid #828282;
+    background-color: #333333;
+    color: white;
+    border-radius: 4px;
+}
+
+#sec-confirm .tt-text-log p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    display: flex;
+    color: white;
+}
+
+#sec-confirm .card4 {
+    background-color: #3F3F3F;
+    height: 130px;
+}
+
+#sec-confirm .card4 .card-title {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+}
+
+#sec-confirm .card4 .card-detail {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding-left: 20px;
+    margin-top: -13px;
+}
+#sec-confirm .card4 .card-detail2 {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding-left: 20px;
+    margin-top: -7px;
+}
+
+#sec-confirm .text-edit p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-right: 27px;
+    margin-top: -37px;
+}
+
+#sec-confirm .card5 {
+    background-color: #3F3F3F;
+    height: 875px;
+}
+
+#sec-confirm .h-text-h p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+}
+
+#sec-confirm .h-text-h2 p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+    margin-left: -22px;
+}
+
+#sec-confirm .img-lo-icon {
+    padding-left: 20px;
+}
+
+#sec-confirm .detail-text-t p {
+    font-size: 12px;
+    color: white;
+    font-weight: 300;
+    padding: 10px 20px;
+    padding-left: 20px;
+}
+
+#sec-confirm .img-lo-icon p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .hh-text-h p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .img-lo-icon2 {
+    width: 23%;
+    margin-left: 109px;
+    margin-top: -41px;
+}
+
+#sec-confirm .img-lo-icon3 {
+    width: 23%;
+    margin-left: 121px;
+    margin-top: -41px;
+}
+
+#sec-confirm .date-detail-text-t p {
+    font-size: 12px;
+    color: white;
+    font-weight: 300;
+    padding-top: 10px;
+}
+
+#sec-confirm .date-detail-text-t2 p {
+    font-size: 12px;
+    color: white;
+    font-weight: 300;
+    margin-top: -10px;
+}
+
+#sec-confirm .price-text-t p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .card6 {
+    background-color: #3F3F3F;
+    height: 160px;
+}
+
+#sec-confirm .card6 .form-check {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    padding-top: 20px;
+}
+
+#sec-confirm .card6 .form-check font {
+    font-size: 16px;
+    color: #E8D95F;
+    font-weight: 300;
+}
+
+#sec-confirm .d-detail-t-card6 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+}
+
+#sec-confirm .d-detail-t2-card6 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding-left: 20px;
+    margin-top: -31px;
+}
+
+#sec-confirm .d-detail-t3-card6 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding-left: 20px;
+    margin-top: -10px;
+    
+}
+
+.button1 {
+    background-color: #E8D95F;
+    color: #282828;
+    border: 2px solid #E8D95F;
+}
+
+.button1:hover {
+    background-color: #282828;
+    color: #E8D95F;
+}
+
+.button2 {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+}
+
+.button2:hover {
+    background-color: #282828;
+    color: #E8D95F;
+}
+
+.button3 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+}
+
+.button3:hover {
+    background-color: #828282;
+    color: white;
+    border: 2px solid #828282;
+}
+
+.button6 {
+    background-color: #E8D95F;
+    color: #282828;
+    border: 2px solid #E8D95F;
+} 
+
+.button6:hover {
+    background-color: #282828;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+}
+
+.text-t-date p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-top: -43px;
+}
+
+.box-card-body {
+    background-color: #595858;
+    border: 2px solid #E8D95F;
+}
+
+.text-detail-t p {
+    font-size: 16px;
+    color: #E8D95F;
+    padding-left: 20px;
+    font-weight: 200;
+    text-decoration: underline;
+}
+
+.button7 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+}
+
+.button7:hover {
+    background-color: #828282;
+    color: white;
+    border: 2px solid #828282;
+}
+
+.box-de-detail {
+    padding-top: 50px;
+}
+
+.txt-haer-txt-d p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+.txt-detail-txt-d p {
+    font-size: 18px;
+    color: #BDBDBD;
+    font-weight: 200;
+}
+
+.box-vidio-b {
+    padding-top: 20px;
+}
+
+.tt-text-vidio p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+.box-check-b {
+    padding-top: 40px;
+}
+
+.tt-text-check p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .box__model .txt__model2 {
+    color: #6fcf97;
+    display: inline-block;
+    font-size: 1.15rem;
+    margin-left: 5px;
+    margin-bottom: 0;
+}
+
+.box-b-img {
+    background-color: #4F4F4F;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.t-code-img P {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    padding-top: 20px;
+}
+
+.box-pay-b {
+    padding-top: 40px;
+}
+
+.tt-text-pay p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+.tt-text-pay p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+.text-date-t p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding-top: 10px;
+}

@@ -1,0 +1,248 @@
+#sec-login1 {
+  padding: 100px;
+  background-color: #282828;
+}
+
+#sec-login1 .box-b-login {
+  background-color: #3f3f3f;
+  box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+#sec-login1 .text-log-back {
+  background-color: #3f3f3f;
+}
+
+#sec-login1 .img-img-log {
+  padding-right: 15px;
+}
+
+#sec-login1 .h-text-log p {
+  color: white;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height */
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 1.5rem;
+}
+
+#sec-login1 .tt-text-log p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.15rem;
+  margin-bottom: 5px;
+  /* identical to box height */
+  display: flex;
+  color: #bdbdbd;
+}
+
+#sec-login1 .tt-text-log2 p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+  display: flex;
+  color: #bdbdbd;
+}
+
+#sec-login1 .tt-text-log2 p span {
+  color: #eb5757;
+  margin-left: 5px;
+}
+
+#sec-login1 .text-or-t {
+  margin-left: -33px;
+  position: relative;
+}
+
+#sec-login1 .text-or-t::before {
+  position: absolute;
+  content: "";
+  left: 35px;
+  top: 10px;
+  background-color: #bdbdbd;
+  width: 35%;
+  height: 2px;
+}
+
+#sec-login1 .text-or-t::after {
+  position: absolute;
+  content: "";
+  right: 35px;
+  top: 10px;
+  background-color: #bdbdbd;
+  width: 35%;
+  height: 2px;
+}
+
+#sec-login1 .box-backend {
+  position: relative;
+}
+
+#sec-login1 .box-backend .form-control {
+  outline: none;
+  border: none !important;
+  background-color: transparent !important;
+  box-shadow: none;
+}
+
+#sec-login1 .box-backend .box-border {
+  border: 2px solid #828282;
+  background-color: #333333;
+}
+
+#sec-login1 .box-backend .icon-signin {
+  margin-top: 0.2rem;
+  margin-left: 10px;
+}
+
+#sec-login1 .box-backend .icon-key {
+  margin-top: 0.2rem;
+  margin-left: 10px;
+}
+
+#sec-login1 .box-backend .icon-eye {
+  margin-top: 0.2rem;
+  margin-right: 15px;
+}
+
+#sec-login1 .box-backend .icon-eye:hover {
+  cursor: pointer;
+}
+
+#sec-login1 .t-pass-t {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height */
+  /* gold */
+  color: #e8d95f;
+}
+
+#sec-login1 .input-group > .form-control,
+.input-group > .form-select {
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  border-top: 2px solid #828282;
+  border-left: 2px solid #828282;
+  border-right: 2px solid #828282;
+  border-bottom: 2px solid #828282;
+  background-color: #333333;
+  color: white;
+  border-radius: 4px;
+}
+
+#sec-login1 .input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 91%;
+}
+
+.button {
+  background-color: #e8d95f;
+  color: #282828;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 136px 10px 141px;
+}
+
+.button1 {
+  background-color: #e8d95f;
+  color: black;
+  border: 2px solid #e8d95f;
+}
+
+.button1:hover {
+  background-color: #282828;
+  color: #e8d95f;
+}
+
+.button2 {
+  background-color: #282828;
+  color: #e8d95f;
+  border: 2px solid #e8d95f;
+  padding: 10px 138px 10px 139px;
+}
+
+.button2:hover {
+  background-color: #e8d95f;
+  color: #282828;
+}
+
+#sec-login1 .social-log {
+  margin-top: 15px;
+  margin-left: 101px;
+}
+
+#sec-login1 .text-or-t p {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 120.5%;
+  /* identical to box height, or 22px */
+  text-align: center;
+  color: #bdbdbd;
+  margin-top: 20px;
+}
+
+/* The Modal (background) */
+
+/* Modal Content */
+#modalsuccess .modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  /* padding: 20px;
+    border: 1px solid #888;*/
+}
+
+/* The Close Button */
+#modalsuccess .close {
+  color: #000000f2;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-left: 500px;
+  margin-top: 10px;
+}
+
+#modalsuccess .close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#modalsuccess p {
+  color: white;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 36px;
+  display: block;
+  text-align: center;
+}
+
+#modalsuccess .modal-footer {
+  background-color: #282828;
+  padding: 50px;
+  justify-content: center;
+}
+
+#modalsuccess .modal-header {
+  border-bottom: none !important;
+}

@@ -1,0 +1,360 @@
+#sec-re-sec {
+    padding-top: 20px;
+}
+
+#sec-re-sec .h-text-re p {
+    font-size: 26px;
+    font-weight: 500;
+    color: white;
+}
+
+#sec-re-sec .card {
+    background-color: #3F3F3F;
+    height: 1600px;
+}
+
+#sec-re-sec .text-col-h p {
+    font-size: 18px;
+    color: white;
+    padding: 30px;
+}
+
+#sec-re-sec .text-col-h2 {
+    padding-top: 30px;
+    padding-right: 50px;
+}
+
+#sec-re-sec .text-col-h2 label {
+    font-size: 18px;
+    color: rgb(156, 154, 154);
+}
+
+#sec-re-sec .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    background-color: #333333;
+    background-clip: padding-box;
+    border: 1px solid white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+hr.new1 {
+    border-top: 1px solid #c3b5b5;
+    margin-top: 50px;
+}
+
+.text-h-detail-text p {
+    font-size: 18px;
+    color: rgb(156, 154, 154);
+    padding-top: 30px;
+}
+
+.text-h-detail-text span {
+    font-size: 18px;
+    color: #FF7B7B;
+}
+
+#sec-re-sec .card-in {
+    background-color: #333333;
+    height: 200px;
+    width: 94%;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+#sec-re-sec .text-img-de-tt p {
+    font-size: 16px;
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+/*---- img upload ------*/
+.drop-zone {
+    height: 135px;
+    width: 140%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    background-color: #ffffff0f;
+    /* border: 4px dashed #009578; */
+    border-radius: 10px;
+}
+
+.drop-zone p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    margin-top: 5px;
+}
+
+.drop-zone .tt-img-detail p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: #cccccc;
+    margin-top: -14px;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__prompt {
+    padding-top: 20px;
+}
+
+.drop-zone__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+}
+/*---- end img upload ------*/
+
+#sec-re-sec .t-num-text label {
+    font-size: 18px;
+    color: rgb(156, 154, 154);
+}
+
+#sec-re-sec .card-in2 {
+    background-color: #333333;
+    height: 200px;
+    width: 94%;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+
+/*---- img upload 2 ------*/
+
+.card-in2 .drop-zone {
+    height: 135px;
+    width: 23%;
+    margin-left: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    background-color: #ffffff0f;
+    /* border: 4px dashed #009578; */
+    border-radius: 10px;
+}
+
+.card-in2 .drop-zone p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    margin-top: 5px;
+}
+
+.card-in2 .drop-zone .tt-img-detail p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: #cccccc;
+    margin-top: -14px;
+}
+
+.card-in2 .drop-zone--over {
+    border-style: solid;
+}
+
+.card-in2 .drop-zone__input {
+    display: none;
+}
+
+.card-in2 .drop-zone__prompt {
+    padding-top: 20px;
+}
+
+.card-in2 .drop-zone__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.card-in2 .drop-zone__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+}
+
+/*---- end img upload 2 ------*/
+
+
+/* The container */
+.check {
+    display: block;
+    position: relative;
+    padding-left: 55px;
+    margin-bottom: 12px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.check:hover input~.checkmark {
+    background-color: #ffffff;
+}
+
+/* When the radio button is checked, add a blue background */
+.check input:checked~.checkmark {
+    background-color: #ffffff;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.check input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.check .checkmark:after {
+    top: 6px;
+    left: 6px;
+    width: 9px;
+    height: 8px;
+    border-radius: 50%;
+    background: #373737;
+}
+
+.button {
+    background-color: #e8d95f;
+    border: none;
+    color: #282828;
+    padding: 6px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Kanit", sans-serif;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button3 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 5px 60px 5px 60px;
+}
+
+.button3:hover {
+    background-color: #7a7a7a;
+    color: white;
+    border: 2px solid #7a7a7a;
+}
+
+.button2 {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    padding: 5px 55px 5px 55px;
+}
+
+.button2:hover {
+    background-color: black;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+}
+
+.t-num-text .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    background-color: #333333;
+    background-clip: padding-box;
+    border: 1px solid white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
