@@ -89,6 +89,7 @@ class buyerController extends Controller
     public function registerpass_buyer_post(Request $request){
 
         if($request->password == $request->confirm_password){
+
             $data = new mUsers_buyer;
             $data->type = Session::get('type');
             $data->profile_name = Session::get('profile_name');
@@ -104,8 +105,9 @@ class buyerController extends Controller
 
             Session::flush(); // ลบ Session ทั้งหมด
 
-            return redirect()->route('buyer.home-search')->with('alert', 'Updated!');
+            return response()->json(["status"=>true,"redirect_location"=>url("backend/dashboard")]);
         }else{
+            dd("ไม่สำเร็จ");
             return view("alert.alert", [
                 'url' => '/buyer.registerpass-buy',
                 'title' => "เกิดข้อผิดพลาด",

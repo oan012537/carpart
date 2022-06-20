@@ -34,7 +34,7 @@ Route::get('buyer/registerpass-buy', [Buyer\buyerController::class, 'registerpas
 Route::post('buyer/registerpass-buy-post', [Buyer\buyerController::class, 'registerpass_buyer_post'])->name('step3');
 
 Route::group(['middleware' => ['buyer']], function () {
-    Route::get('buyer/home-search', [Buyer\buyerController::class, 'home_search']);
+    Route::get('buyer/home-search', [Buyer\buyerController::class, 'home_search'])->name('buyer.home-search');
 });
 
 ////////// END BUYER  ///////////////////////////////////////////////////////////////////////////////////////////////////////
