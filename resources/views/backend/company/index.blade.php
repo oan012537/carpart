@@ -1,6 +1,7 @@
 @extends('backend.layouts.templates')
 @section('content')
 <input type="hidden" id="pageName" name="pageName" value="setting-org">
+<input type="hidden" id="pagemenuName" name="pagemenuName" value="settingcompany">
 
     <div class="content">
 

@@ -558,7 +558,7 @@ li {
   font-size: 1.25rem;
 }
 
-.show {
+.showmenu {
   left: 0;
 }
 
@@ -614,7 +614,7 @@ li {
     padding: 1rem 1rem 0 0;
     width: 100px;
   }
-  .show {
+  .showmenu {
     width: calc(var(--nav-width) + 186px);
   }
   .body-pd {
@@ -699,6 +699,17 @@ li {
 
 .content {
   padding: 1rem 2rem;
+}
+
+.btn__logout {
+  text-decoration: none;
+  color: var(--clrwhites);
+  margin-top: 0.3rem;
+  margin-left: 15px;
+}
+
+.btn__logout:hover {
+  color: var(--clrwhites);
 }
 
 #sec-register {
@@ -1648,6 +1659,14 @@ li {
   position: absolute;
   right: 2%;
   width: auto;
+}
+
+.contentuser #tabright .btn__addmember .nav-link {
+  border-bottom: none;
+}
+
+.contentuser #tabright .btn__addmember .nav-link:hover {
+  border-bottom: none;
 }
 
 #myTabContentsetting .form-group {

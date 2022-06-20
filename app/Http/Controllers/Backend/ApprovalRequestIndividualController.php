@@ -70,9 +70,11 @@ class ApprovalRequestIndividualController extends Controller
             $btn__approval = '';
             $btn__waitapproval = '';
             $btn__noapproval = '';
-            if($data->status == '2'){
+			if($data->status == '1'){
                 $btn__approval = 'btn__approval';
+            }else if($data->status == '2'){
                 $btn__waitapproval = 'btn__waitapproval';
+            }else if($data->status == '3'){
                 $btn__noapproval = 'btn__noapproval';
             }
 			return '<div class="box__btn">
@@ -109,9 +111,11 @@ class ApprovalRequestIndividualController extends Controller
             $btn__approval = '';
             $btn__waitapproval = '';
             $btn__noapproval = '';
-            if($data->status == '2'){
+			if($data->status == '1'){
                 $btn__approval = 'btn__approval';
+            }else if($data->status == '2'){
                 $btn__waitapproval = 'btn__waitapproval';
+            }else if($data->status == '3'){
                 $btn__noapproval = 'btn__noapproval';
             }
 			return '<div class="box__btn">
@@ -148,9 +152,52 @@ class ApprovalRequestIndividualController extends Controller
             $btn__approval = '';
             $btn__waitapproval = '';
             $btn__noapproval = '';
-            if($data->status == '2'){
+			if($data->status == '1'){
                 $btn__approval = 'btn__approval';
+            }else if($data->status == '2'){
                 $btn__waitapproval = 'btn__waitapproval';
+            }else if($data->status == '3'){
+                $btn__noapproval = 'btn__noapproval';
+            }
+			return '<div class="box__btn">
+                    <button class="btn btn__app '.$btn__approval.'" data-bs-toggle="modal" data-bs-target="#modalapproval">อนุมัติ</button>
+                    <button class="btn btn__app '.$btn__waitapproval.'">รออนุมัติ</button>
+                    <button class="btn btn__app '.$btn__noapproval.'">ไม่อนุมัติ</button>
+                    </div>';
+		});
+		return $sQuery->escapeColumns([])->make(true);
+	}
+
+	public function datatables_disapproved(){
+
+		$data = User::all();
+		$sQuery	= Datatables::of($data)
+		->editColumn('updated_at',function($data){
+			return date('d/m/Y',strtotime($data->updated_at));
+		})
+		->editColumn('status',function($data){
+            if($data->status == '1'){
+                return '<div class="approvel ap-success"><p>อนุมัติ</p></div>';
+            }else if($data->status == '2'){
+                return '<div class="approvel ap-wait"><p>รออนุมัติ</p></div>';
+            }else if($data->status == '3'){
+                return '<div class="approvel ap-no"><p>ไม่อนุมัติ</p></div>';
+            }else{
+                return '';
+            }
+		})
+		->addColumn('btnview',function($data){
+			return '<a href="javascript:void(0)" class="btn btn__viewdetail" data-bs-toggle="modal" data-bs-target="#modalviewdetailapp">ดูรายละเอียด</a>';
+		})
+		->addColumn('btnaction',function($data){
+            $btn__approval = '';
+            $btn__waitapproval = '';
+            $btn__noapproval = '';
+			if($data->status == '1'){
+                $btn__approval = 'btn__approval';
+            }else if($data->status == '2'){
+                $btn__waitapproval = 'btn__waitapproval';
+            }else if($data->status == '3'){
                 $btn__noapproval = 'btn__noapproval';
             }
 			return '<div class="box__btn">

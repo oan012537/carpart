@@ -11,18 +11,24 @@ $(function () {
     });
   }
 
-  var getPageMenuMain = document.getElementById("pageName");
-  var getPageMenuMain2 = document.getElementById("pageName2");
+  var getPageMenuMain = document.getElementById("pagemenuName");
+  var getPageMenuMain2 = document.getElementById("pagemenuName2");
 
   if (getPageMenuMain || getPageMenuMain2) {
     const getPageMain2 = getPageMenuMain.value;
-    const getPageMain3 = getPageMenuMain2.value;
     $(".nav_list li a").each(function () {
       var getMenuMain = $(this).attr("data-page");
       if (getPageMain2 == getMenuMain) {
         $(this).addClass("activemenumain");
       }
     });
+    const getPageMain3 = getPageMenuMain2.value;
+    // $(".nav_list li a").each(function () {
+    //   var getMenuMain = $(this).attr("data-page");
+    //   if (getPageMain2 == getMenuMain) {
+    //     $(this).addClass("activemenumain");
+    //   }
+    // });
 
     $(".nav_list .itemdropdown li").each(function () {
       var getMenuMain = $(this).attr("data-page");

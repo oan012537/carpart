@@ -3,8 +3,8 @@
 <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
 
 
-<input type="hidden" id="pageName" name="pageName" value="approval">
-<input type="hidden" id="pageName2" name="pageName2" value="approval-legal">
+<input type="hidden" id="pagemenuName" name="pagemenuName" value="approval">
+<input type="hidden" id="pagemenuName2" name="pagemenuName2" value="approval-legal">
 
     <div class="content">
 
@@ -64,9 +64,10 @@
                         <div class="box__table">
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <button class="nav-link active" id="total-tab" data-bs-toggle="tab" data-bs-target="#total" type="button" role="tab" aria-controls="total" aria-selected="true">ทั้งหมด <span class="circle" id="alerttotal"> 1234</span></button>
-                                    <button class="nav-link" id="wait-tab" data-bs-toggle="tab" data-bs-target="#wait" type="button" role="tab" aria-controls="wait" aria-selected="false">รออนุมัติ <span class="circle" id="alertwait"> 14</span></button>
-                                    <button class="nav-link" id="approval-tab" data-bs-toggle="tab" data-bs-target="#approval" type="button" role="tab" aria-controls="approval" aria-selected="false">อนุมัติแล้ว <span class="circle" id="alertapproval"> 34</span></button>
+                                    <button class="nav-link active" id="total-tab" data-bs-toggle="tab" data-bs-target="#total" type="button" role="tab" aria-controls="total" aria-selected="true">ทั้งหมด <span class="circle" id="alerttotal" style="display: none;"> </span></button>
+                                    <button class="nav-link" id="wait-tab" data-bs-toggle="tab" data-bs-target="#wait" type="button" role="tab" aria-controls="wait" aria-selected="false">รออนุมัติ <span class="circle" id="alertwait" style="display: none;"> </span></button>
+                                    <button class="nav-link" id="approval-tab" data-bs-toggle="tab" data-bs-target="#approval" type="button" role="tab" aria-controls="approval" aria-selected="false">อนุมัติแล้ว <span class="circle" id="alertapproval" style="display: none;"> </span></button>
+                                    <button class="nav-link" id="approval-tab" data-bs-toggle="tab" data-bs-target="#disapproved" type="button" role="tab" aria-controls="disapproved" aria-selected="false">ไม่อนุมัติ <span class="circle" id="alertdisapproved" style="display: none;"> </span></button>
                                 </div>
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
@@ -167,6 +168,31 @@
                                 <div class="tab-pane fade" id="approval" role="tabpanel" aria-labelledby="approval-tab">
                                     <div class="table-responsive">
                                         <table id="datatables_approval" class="table table-striped display nowrap" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <td>รหัสสมาชิก</td>
+                                                    <td>ชื่อร้าน</td>
+                                                    <td>ชื่อผู้ขาย</td>
+                                                    <td>เลขบัตรประชาชน</td>
+                                                    <td>วันที่สมัคร</td>
+                                                    <td>วันที่อนุมัติ</td>
+                                                    <td>สถานะรายการ</td>
+                                                    <td>หมายเหตุ</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="disapproved" role="tabpanel" aria-labelledby="disapproved-tab">
+                                    <div class="table-responsive">
+                                        <table id="datatables_disapproved" class="table table-striped display nowrap" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <td>รหัสสมาชิก</td>
@@ -463,8 +489,8 @@
 			},
             initComplete:function( settings, json){
                 console.log(json);
-                $("#alertwait").text(oTableapproval.data().count());
-                if(oTableapproval.data().count() > 0){
+                $("#alertwait").text(oTablewait.data().count());
+                if(oTablewait.data().count() > 0){
                     $("#alertwait").show();
                 }
             }
@@ -516,6 +542,55 @@
                 $("#alertapproval").text(oTable.data().count());
                 if(oTableapproval.data().count() > 0){
                     $("#alertapproval").show();
+                }
+            }
+		});
+
+        var oTabledisapproved = $('#datatables_disapproved').DataTable({
+			processing: true,
+			serverSide: true,
+			searching: false,
+			lengthChange: false,
+            responsive: true,
+            scrollX: true,
+			ajax:{ 
+				url : "{{url('backend/approvalrequest/individual/datatables/disapproved')}}",
+				data: function (d) {
+					d.name = $('#name').val();
+				},
+			},
+			columns: [
+				{ 'className': "text-center", data: 'id', name: 'id' },
+				{ 'className': "text-center", data: 'name', name: 'name' },
+				{ 'className': "text-center", data: 'id', name: 'id' },
+				{ 'className': "text-center", data: 'email', name: 'email' },
+				{ 'className': "text-center", data: 'phone', name: 'phone' },
+				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
+				{ 'className': "text-center", data: 'status', name: 'status',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
+				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
+			],
+			order: [[0, 'asc']],
+			rowCallback: function(row,data,index ){
+				$('td:eq(0)', row).html(index+1);
+				var status = '';
+				// if(data['product_status'] > 0){ //อันเก่า
+				if(data['status'] == 1){
+					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
+				}else if(data['status'] == 0){
+					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
+				}
+				
+				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
+				
+				
+			},
+            initComplete:function( settings, json){
+                console.log(json);
+                $("#alertdisapproved").text(oTabledisapproved.data().count());
+                if(oTabledisapproved.data().count() > 0){
+                    $("#alertdisapproved").show();
                 }
             }
 		});

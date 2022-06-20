@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend as Backend;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +22,16 @@ Route::post('backend/register', [Backend\BackendController::class,'store'])->nam
 
 Route::group(['middleware' => 'auth'], function(){
     Route::prefix('backend')->group(function () {
-        Route::get('/', [Backend\DashboardController::class,'index']);
-        Route::get('/dashboard', [Backend\DashboardController::class,'index'])->name('backend.dashboard');
+        Route::get('logout', [Backend\BackendController::class, 'logout'])->name('backend.logout');
+        Route::get('setlang/{lang}', function ($lang) {
+            Session::put('lang', $lang);
+            $update = User::find(Auth::guard('web')->user()->id);
+            $update->lang = $lang;
+            $update->save();
+            return Redirect::back();
+        });
+        Route::get('/', [Backend\DashboardController::class,'index'])->name('backend.dashboard');
+        Route::get('/dashboard', [Backend\DashboardController::class,'index'])->name('backend.dashboard.index');
         
         Route::prefix('register')->group(function () {
             Route::get('add', function(){});
@@ -61,8 +70,9 @@ Route::group(['middleware' => 'auth'], function(){
             Route::prefix('individual')->group(function () {
                 Route::get('/', [Backend\ApprovalRequestIndividualController::class,'index'])->name('backend.approval.individual');
                 Route::get('datatables', [Backend\ApprovalRequestIndividualController::class,'datatables'])->name('backend.approval.individual.datatables');
-                Route::get('datatables/wait', [Backend\ApprovalRequestIndividualController::class,'datatables_wait'])->name('backend.approval.individual.datatables');
-                Route::get('datatables/approval', [Backend\ApprovalRequestIndividualController::class,'datatables_approval'])->name('backend.approval.individual.datatables');
+                Route::get('datatables/wait', [Backend\ApprovalRequestIndividualController::class,'datatables_wait'])->name('backend.approval.individual.datatables.wait');
+                Route::get('datatables/approval', [Backend\ApprovalRequestIndividualController::class,'datatables_approval'])->name('backend.approval.individual.datatables.approval');
+                Route::get('datatables/disapproved', [Backend\ApprovalRequestIndividualController::class,'datatables_disapproved'])->name('backend.approval.individual.datatables.disapproved');
                 
                 Route::get('add', [Backend\ApprovalRequestIndividualController::class,'add'])->name('backend.approval.individual.add');
                 Route::post('store', [Backend\ApprovalRequestIndividualController::class,'store'])->name('backend.approval.individual.store');
@@ -83,6 +93,8 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('datatables', [Backend\ApprovalRequestLegalController::class,'datatables'])->name('backend.approval.legal.datatables');
                 Route::get('datatables/wait', [Backend\ApprovalRequestLegalController::class,'datatables_wait'])->name('backend.approval.legal.datatables');
                 Route::get('datatables/approval', [Backend\ApprovalRequestLegalController::class,'datatables_approval'])->name('backend.approval.legal.datatables');
+                Route::get('datatables/disapproved', [Backend\ApprovalRequestLegalController::class,'datatables_disapproved'])->name('backend.approval.legal.datatables.disapproved');
+                
                 Route::post('store', [Backend\ApprovalRequestLegalController::class,'store'])->name('backend.approval.legal.store');
                 Route::get('edit/{id}', [Backend\ApprovalRequestLegalController::class,'edit'])->name('backend.approval.legal.edit');
                 Route::post('update', [Backend\ApprovalRequestLegalController::class,'update'])->name('backend.approval.legal.update');
