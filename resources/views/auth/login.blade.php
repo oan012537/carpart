@@ -1,4 +1,4 @@
-{{-- <x-guest-layout>
+<x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -54,77 +54,5 @@
         </form>
 
     </x-auth-card>
-</x-guest-layout> --}}
-@extends('../backend/layouts/templatelogin')
-@section('content')
-<section id="sec-login1">
-    <div class="container">
-        <div class="box-b-login box-backend">
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="img-img-log">
-                            <img src="assets/img/login/ln1.png" class="img-fluid" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="h-text-log">
-                            <p>
-                                เข้าสู่ระบบ
-                            </p>
-                        </div>
-                        <div class="tt-text-log">
-                            <p>
-                                อีเมล
-                            </p>
-                        </div>
-                        <div class="input-group mb-3 box-border">
-                            <span> <img src="assets/img/login/icon-in.svg" class="img-fluid icon-signin" alt=""></span>
-                            <input type="text" class="form-control" name="username" placeholder="01xx-xxx-xxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
-                        </div>
-                        <div class="tt-text-log2">
-                            <p>
-                                รหัสผ่าน
-                            </p>
-                        </div>
-                        <div class="input-group mb-3 box-border">
-                            <img src="assets/img/login/icon-key.svg" class="img-fluid icon-key" alt="">
-                            <input type="password" name="password" class="form-control" id="password" placeholder="*************" required>
-                            <img src="assets/img/login/icon-eye.svg" class="img-fluid icon-eye" alt="" onclick="eyePassword()">
-                        </div>
-                        <div class="t-pass-t">
-                            <p>
-                                ลืมรหัสผ่าน
-                            </p>
-                        </div>
-                        <br>
-                        <div class='but-bb-log'>
-                            <button  type="submit" class="button button1">
-                                เข้าสู่ระบบ
-                            </button>
-                        </div>
+</x-guest-layout>
 
-                        <div class="text-or-t">
-                            <p>
-                                CPN
-                            </p>
-                        </div>
-                        <div class='but-bb-log2'>
-                            <a href="{{ route('register') }}" class="button button2">
-                                สมัครสมาชิก
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>
-@stop
-
-@section('script')
-<script>
-
-</script>
-@stop

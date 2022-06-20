@@ -1,1 +1,0 @@
-<div id="toTop"><i class="fas fa-angle-up"></i></div>
