@@ -39,27 +39,27 @@ class SupplierAuthController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function login(Request $request)
-    {
-        // dd($this->getotp());
-        // dd($request->all());
-        $this->validate($request, [
-            'username' => 'required',
-            // 'phone' => 'required|unique:users',
-            'password' => 'required',
-        ]);
-        $user = auth('supplier');
-        // dd(Auth::guard('supplier')->check(),$request->all());
-        if (Auth::guard('supplier')->attempt(['email' => $request->username, 'password' => $request->password, 'active' => '1']) ){ // loginเลย
-            return redirect()->route('supplier.login.verify.phone');
-            // return redirect()->intended(url('supplier'));
-        } else {
-            // dd('');
-            return redirect()->back()->withErrors([
-                'username' => 'Snap! you are done!'
-            ]);
-        }
-    }
+    // public function login(Request $request)
+    // {
+    //     // dd($this->getotp());
+    //     // dd($request->all());
+    //     $this->validate($request, [
+    //         'username' => 'required',
+    //         // 'phone' => 'required|unique:users',
+    //         'password' => 'required',
+    //     ]);
+    //     $user = auth('supplier');
+    //     // dd(Auth::guard('supplier')->check(),$request->all());
+    //     if (Auth::guard('supplier')->attempt(['email' => $request->username, 'password' => $request->password, 'active' => '1']) ){ // loginเลย
+    //         return redirect()->route('supplier.login.verify.phone');
+    //         // return redirect()->intended(url('supplier'));
+    //     } else {
+    //         // dd('');
+    //         return redirect()->back()->withErrors([
+    //             'username' => 'Snap! you are done!'
+    //         ]);
+    //     }
+    // }
     public function verifyphone(Request $request)
     {
         // dd($request->all());
