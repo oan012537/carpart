@@ -1,6 +1,21 @@
 @extends('backend.layouts.templates')
 @section('content')
 <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+<style>
+    .btn__back {
+        color: var(--clrwhites) !important;
+        background-color: var(--clrdarks5) !important;
+        border-radius: 4px;
+        border: 1px solid var(--clrdarks5) !important;
+        padding: 7px 2rem;
+        @extend %transition-3;
+        &:hover {
+            @extend %transition-3;
+            background-color: transparent !important;
+            color: var(--clrwhites) !important;
+        }
+    }
+</style>
 <input type="hidden" id="pagemenuName" name="pagemenuName" value="approval">
 <input type="hidden" id="pagemenuName2" name="pagemenuName2" value="approval-individual">
 
@@ -45,7 +60,7 @@
                                     <div class="box__search">
                                         <label for="">ช่วงวัน-เวลา</label>
                                         <div class="input-group ">
-                                            <input type="date" class="form-control" placeholder="Recipient's username" aria-describedby="button-yes"  name="date" id="date">
+                                            <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="button-yes"  name="date" id="date" readonly>
                                         </div>
                                     </div>
 
@@ -216,106 +231,111 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <div class="box__detail">
-                        <?php
-                        $txtleft = array(
-                            '1' => 'ชื่อร้าน',
-                            '2' => 'ชื่อ',
-                            '3' => 'นามสกุล',
-                            '4' => 'อีเมล',
-                            '5' => 'โทรศัพท์',
-                            '6' => 'เลขบัตรประชาชน',
-                            '7' => 'ที่อยู่ตามบัตรประชาชน',
-                            '8' => 'ที่อยู่ร้าน',
-                            '9' => 'สำเนาบัตรประชาชน',
-                            '10' => 'Page Url/Facebook Url',
-                            '11' => 'Google Map',
-                        );
+                    <form method="POST" enctype="multipart/form-data" id="formupdate" action="{{route('backend.approval.individual.update')}}">
+                        @csrf
+                        <input type="hidden" id="supplierid" name="supplierid">
+                        <div class="box__detail">
+                            <?php
+                            $txtleft = array(
+                                '1' => 'ชื่อร้าน',
+                                '2' => 'ชื่อ',
+                                '3' => 'นามสกุล',
+                                '4' => 'อีเมล',
+                                '5' => 'โทรศัพท์',
+                                '6' => 'เลขบัตรประชาชน',
+                                '7' => 'ที่อยู่ตามบัตรประชาชน',
+                                '8' => 'ที่อยู่ร้าน',
+                                '9' => 'สำเนาบัตรประชาชน',
+                                '10' => 'Page Url/Facebook Url',
+                                '11' => 'Google Map',
+                            );
 
-                        $txtright = array(
-                            '1' => 'อะไหล่',
-                            '2' => 'สมมติ',
-                            '3' => 'แซ่ตัน',
-                            '4' => 'emily@sample.com',
-                            '5' => '012345678',
-                            '6' => '12345678901234',
-                            '7' => '123 หมู่ 0 ถนน เจริญกรุง ซอย 5  ตำบล ทุ่งสุลา อำเภอ ศรีราชา จังหวัด ชลบุรี 12345',
-                            '8' => '123 หมู่ 0 ถนน เจริญกรุง ซอย 5  ตำบล ทุ่งสุลา อำเภอ ศรีราชา จังหวัด ชลบุรี 12345',
-                            '9' => 'ดูรูปภาพ <a data-fancybox="gallery" class="btn__viewimage" href="https://lipsum.app/id/46/1600x1200"><i class="fa-solid fa-image"></i></a>',
-                            '10' => 'www.facebook.com',
-                            '11' => 'www.google.com ',
-                        );
-                        $txtid = array(
-                            '1' => 'shop',
-                            '2' => 'name',
-                            '3' => 'surname',
-                            '4' => 'email',
-                            '5' => 'phone',
-                            '6' => 'idcard',
-                            '7' => 'addresstoidcard',
-                            '8' => 'addressshop',
-                            '9' => 'copyidcard',
-                            '10' => 'pageurl',
-                            '11' => 'gps',
-                        );
-                        for ($i = 1; $i <= 11; $i++) { ?>
-                            <div class="itemsdetail">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p class="txt__left"> <?php echo $txtleft[$i]; ?> </p>
+                            $txtright = array(
+                                '1' => 'อะไหล่',
+                                '2' => 'สมมติ',
+                                '3' => 'แซ่ตัน',
+                                '4' => 'emily@sample.com',
+                                '5' => '012345678',
+                                '6' => '12345678901234',
+                                '7' => '123 หมู่ 0 ถนน เจริญกรุง ซอย 5  ตำบล ทุ่งสุลา อำเภอ ศรีราชา จังหวัด ชลบุรี 12345',
+                                '8' => '123 หมู่ 0 ถนน เจริญกรุง ซอย 5  ตำบล ทุ่งสุลา อำเภอ ศรีราชา จังหวัด ชลบุรี 12345',
+                                '9' => 'ดูรูปภาพ <a data-fancybox="gallery" class="btn__viewimage" href="https://lipsum.app/id/46/1600x1200"><i class="fa-solid fa-image"></i></a>',
+                                '10' => 'www.facebook.com',
+                                '11' => 'www.google.com ',
+                            );
+                            $txtid = array(
+                                '1' => 'shop',
+                                '2' => 'name',
+                                '3' => 'surname',
+                                '4' => 'email',
+                                '5' => 'phone',
+                                '6' => 'idcard',
+                                '7' => 'addresstoidcard',
+                                '8' => 'addressshop',
+                                '9' => 'copyidcard',
+                                '10' => 'pageurl',
+                                '11' => 'gps',
+                            );
+                            for ($i = 1; $i <= 11; $i++) { ?>
+                                <div class="itemsdetail">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="txt__left"> <?php echo $txtleft[$i]; ?> </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="txt__right" id="<?php echo $txtid[$i]; ?>"><?php echo $txtright[$i]; ?></p>
+                                        </div>
+                                        <div class="col-12">
+                                            <hr>
+                                        </div>
                                     </div>
-                                    <div class="col-6">
-                                        <p class="txt__right" id="<?php echo $txtid[$i]; ?>"><?php echo $txtright[$i]; ?></p>
+                                </div>
+                            <?php } ?>
+                        </div>
+
+                        <div class="box__status">
+                            <h2 class="txt__titlestatus">ข้อมูลผู้ขาย บุคคลธรรมดา</h2>
+                            <div class="form-group">
+                                <label for="">สถานะ <span>*</span></label>
+                                <select class="form-select" aria-label="Default select example" name="status" id="status">
+                                    {{-- <option  >อนุมัติ</option> --}}
+                                    <option value="1" selected>อนุมัติ</option>
+                                    {{-- <option value="2">รออนุมัติ</option> --}}
+                                    <option value="3">ไม่อนุมัติ</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">หมายเหตุ</label>
+                                <textarea name="txt__note" id="txt__note" class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="wrapper__approvaldate">
+                                    <div class="box__date">
+                                        <p>อนุมัติเมื่อ <span>dd/mm/yyyy hh:mm</span></p>
                                     </div>
-                                    <div class="col-12">
-                                        <hr>
+
+                                    <div class="box__userapproval">
+                                        <p>ผู้อนุมัติ <span>แอดมิน</span></p>
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="box__btn">
+                        <button type="button" class="btn btn__back" data-bs-dismiss="modal">กลับ</button>
                     </div>
-
-                    <div class="box__status">
-                        <h2 class="txt__titlestatus">ข้อมูลผู้ขาย บุคคลธรรมดา</h2>
-                        <div class="form-group">
-                            <label for="">สถานะ <span>*</span></label>
-                            <select class="form-select" aria-label="Default select example" name="status" id="status">
-                                {{-- <option  >อนุมัติ</option> --}}
-                                <option value="1" selected>อนุมัติ</option>
-                                {{-- <option value="2">รออนุมัติ</option> --}}
-                                <option value="3">ไม่อนุมัติ</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">หมายเหตุ</label>
-                            <textarea name="txt__note" id="txt__note" class="form-control"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="wrapper__approvaldate">
-                                <div class="box__date">
-                                    <p>อนุมัติเมื่อ <span>dd/mm/yyyy hh:mm</span></p>
-                                </div>
-
-                                <div class="box__userapproval">
-                                    <p>ผู้อนุมัติ <span>แอดมิน</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="modal-footer">
-                        <div class="box__btn">
-                            <button type="button" class="btn btn__back" data-bs-dismiss="modal">กลับ</button>
-                        </div>
+                    <div class="box__btn">
+                        <button type="submit" form="formapprove" class="btn btn__yes">ยืนยัน</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 @stop
 
@@ -323,6 +343,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 {{-- <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> --}}
+<script src="{{asset('daterangepicker-master/daterangepicker.js')}}"></script>
 <script>
     $(document).ready(function(){
         $('.nav-link').on('shown.bs.tab', function (e) {
@@ -385,10 +406,30 @@
 		$('#btnsearch').click(function(e){
 			oTable.draw();
 			e.preventDefault();
-            // $("#alerttotal").text(oTable.data().count());
             $("#alerttotal").text(oTable.data().count());
             if(oTable.data().count() > 0){
                 $("#alerttotal").show();
+            }
+
+            oTablewait.draw();
+			e.preventDefault();
+            $("#alertwait").text(oTablewait.data().count());
+            if(oTablewait.data().count() > 0){
+                $("#alertwait").show();
+            }
+
+            oTableapproval.draw();
+			e.preventDefault();
+            $("#alertapproval").text(oTableapproval.data().count());
+            if(oTableapproval.data().count() > 0){
+                $("#alertapproval").show();
+            }
+
+            oTabledisapproved.draw();
+			e.preventDefault();
+            $("#alertdisapproved").text(oTabledisapproved.data().count());
+            if(oTabledisapproved.data().count() > 0){
+                $("#alertdisapproved").show();
             }
 		});
         
@@ -544,12 +585,44 @@
                 }
             }
 		});
+
+        $("#search").keyup(function (e) { 
+            oTable.draw();
+			e.preventDefault();
+            $("#alerttotal").text(oTable.data().count());
+            if(oTable.data().count() > 0){
+                $("#alerttotal").show();
+            }
+
+            oTablewait.draw();
+			e.preventDefault();
+            $("#alertwait").text(oTablewait.data().count());
+            if(oTablewait.data().count() > 0){
+                $("#alertwait").show();
+            }
+
+            oTableapproval.draw();
+			e.preventDefault();
+            $("#alertapproval").text(oTableapproval.data().count());
+            if(oTableapproval.data().count() > 0){
+                $("#alertapproval").show();
+            }
+
+            oTabledisapproved.draw();
+			e.preventDefault();
+            $("#alertdisapproved").text(oTabledisapproved.data().count());
+            if(oTabledisapproved.data().count() > 0){
+                $("#alertdisapproved").show();
+            }
+
+        });
 	});
 
     function viewdetail(id) {
         $.get('{{route("backend.approval.legal.getdetails")}}',{'id':id},function (result) {
             
             $('.box__codenumber #showcodemember').text(); //อนุมัตเมื่อ
+            $('.box__codenumber #supplierid').val(); //อนุมัตเมื่อ
 
             $('.itemsdetail .txt__right #shop').text(); //ชื่อร้าน
             $('.itemsdetail .txt__right #name').text(); //ชื่อ
@@ -569,5 +642,14 @@
             $('.wrapper__approvaldate .box__userapproval span').text(); //ผู้อนุมัติ
         });
     }
+    $('input[name="date"]').daterangepicker({
+        "startDate": moment().subtract(1, 'months'),
+        "endDate": moment(),
+        locale: {
+            format: 'DD/MM/Y'
+        }
+    }, function(start, end, label) {
+        console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+    });
 </script>
 @stop

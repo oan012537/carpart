@@ -29,7 +29,7 @@
   --z-fixed: 100;
 }
 
-body, #toTop, .header, .l-navbar, .l-navbar2, .nav_link, .box__editinfoorg .box__btn .btn__back, .box__editinfoorg .box__btn .btn__back:hover, .box__editinfoorg .box__btn .btn__yes, .box__editinfoorg .box__btn .btn__yes:hover, .contentuser .wrapper__add .box__btn .btn__add, .contentuser .wrapper__add .box__btn .btn__add:hover, #myTabContentsetting .form-group .btn__popover, #myTabContentsetting .form-group .btn__popover:hover, #myModal1 .modal-footer .btn__back, #myModal1 .modal-footer .btn__back:hover, #myModal1 .modal-footer .btn__yes, #myModal1 .modal-footer .btn__yes:hover, #myModal2 .modal-footer .btn__back, #myModal2 .modal-footer .btn__back:hover, #myModal2 .modal-footer .btn__yes, #myModal2 .modal-footer .btn__yes:hover, .default-modal .modal-footer .btn__back, .default-modal .modal-footer .btn__back:hover, .default-modal .modal-footer .btn__yes, .default-modal .modal-footer .btn__yes:hover, #modalapproval .modal-footer .btn__back, #modalapproval .modal-footer .btn__back:hover, #modalapproval .modal-footer .btn__yes, #modalapproval .modal-footer .btn__yes:hover, #modalviewdetailapp .modal-footer .btn__back, #modalviewdetailapp .modal-footer .btn__back:hover {
+body, #toTop, .header, .l-navbar, .l-navbar2, .nav_link, .box__editinfoorg .box__btn .btn__back, .box__editinfoorg .box__btn .btn__back:hover, .box__editinfoorg .box__btn .btn__yes, .box__editinfoorg .box__btn .btn__yes:hover, .contentuser .wrapper__add .box__btn .btn__add, .contentuser .wrapper__add .box__btn .btn__add:hover, #myTabContentsetting .form-group .btn__popover, #myTabContentsetting .form-group .btn__popover:hover, #myModal1 .modal-footer .btn__back, #myModal1 .modal-footer .btn__back:hover, #myModal1 .modal-footer .btn__yes, #myModal1 .modal-footer .btn__yes:hover, #myModal2 .modal-footer .btn__back, #myModal2 .modal-footer .btn__back:hover, #myModal2 .modal-footer .btn__yes, #myModal2 .modal-footer .btn__yes:hover, .default-modal .modal-footer .btn__back, .default-modal .modal-footer .btn__back:hover, .default-modal .modal-footer .btn__yes, .default-modal .modal-footer .btn__yes:hover, #modalapproval .modal-footer .btn__back, #modalapproval .modal-footer .btn__back:hover, #modalapproval .modal-footer .btn__yes, #modalapproval .modal-footer .btn__yes:hover, #modalviewdetailapp .modal-footer .btn__back, #modalviewdetailapp .modal-footer .btn__back:hover, .btn__defaultyellow, .btn__defaultyellow:hover {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
@@ -2772,5 +2772,17 @@ li {
 #modalviewdetailapp .modal-footer .btn__back:hover {
   background-color: transparent;
   color: var(--clrmain);
+}
+
+.btn__defaultyellow {
+  background-color: var(--clrmain) !important;
+  border-radius: 4px !important;
+  border: 1px solid var(--clrmain) !important;
+  padding: 7px 2rem !important;
+}
+
+.btn__defaultyellow:hover {
+  background-color: transparent !important;
+  color: var(--clrmain) !important;
 }
 /*# sourceMappingURL=style.css.map */
