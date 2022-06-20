@@ -17,13 +17,11 @@ class Buyer
      */
     public function handle(Request $request, Closure $next)
     {
-        dd("เข้า Middleware Buyer");
-        // return $next($request);
-        // if(!Auth::check()){
-        if(!Auth::guard('buyer')->check()){
-            return redirect()->route('buyer.login')->with('message', 'Authentication Error.');
+        // dd("เข้า Middleware Buyer");
+        if(Auth::guard('buyer')->user()){
+            return $next($request);
         }
-        return $next($request);
+        return redirect('buyer/login-buy');
 
     }
 }

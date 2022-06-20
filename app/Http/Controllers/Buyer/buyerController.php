@@ -41,6 +41,12 @@ class buyerController extends Controller
         return view('buyer.login-buy-post');
     }
 
+    public function logout_buyer(){
+        if (!Auth::guard('buyer')->logout()) {
+            return redirect('/');
+        }
+    }
+
     public function regis_buyer(){
         return view('buyer.regis-buy');
     }

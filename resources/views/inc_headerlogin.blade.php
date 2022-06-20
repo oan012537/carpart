@@ -57,6 +57,16 @@
                 </li>
 
                 <!--  -->
+
+                @if (Auth::guard('buyer')->user())
+                    <li class="nav-item">
+                        <a class="nav-link btn__yellow" href="{{url('buyer/logout-buy')}}">
+                            <span>logout</span>
+                        </a>
+                    </li>
+                @else
+
+                @endif
             </ul>
         </div>
     </div>
