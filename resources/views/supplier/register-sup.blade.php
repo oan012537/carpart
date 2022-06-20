@@ -23,7 +23,8 @@
 </head>
 
 <body>
-
+    <form method="POST" action="{{route('regiser-sup')}}">
+        @csrf
     <section id="sec-regis5">
         <div class="container">
             <div class="box-b-login">
@@ -211,7 +212,7 @@
                             <br>
                             <div class='but-bb-log2'>
                                 {{-- registercon-sup.php --}}
-                                <a href="#"> 
+                                <a href="{{url('supplier/registercon-sup')}}"> 
                                     <button class="button button1"> ถัดไป &nbsp; <i class='fas fa-angle-right'></i>
                                     </button>
                                 </a>
@@ -229,6 +230,7 @@
 
 
     </section>
+</form>
 
     @include('inc_footer')
 

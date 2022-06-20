@@ -41,19 +41,34 @@ Route::group(['middleware' => ['buyer']], function () {
 
 /////////// SUPPLIER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Login
-Route::post('supplier/login', [Supplier\Auth\SupplierAuthController::class,'login'])->name('supplier.login');
-Route::get('supplier/login', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
-Route::get('supplier/login/verify/phone', [Supplier\supplierController::class, 'logphone_supplier'])->name('supplier.login.verify.phone');
-Route::get('supplier/login/verify/otp', [Supplier\supplierController::class, 'logotp_supplier'])->name('supplier.login.verify.otp');
 
+Route::get('supplier/login', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
+Route::post('supplier/login', [Supplier\supplierController::class,'login_supplier_post'])->name('supplier.login');
+
+Route::get('supplier/login/verify/phone', [Supplier\supplierController::class, 'logphone_supplier'])->name('supplier.login.verify.phone');
 Route::post('supplier/login/verify/phone', [Supplier\Auth\SupplierAuthController::class,'verifyphone'])->name('supplier.login.verify.phone.post');
+
+Route::get('supplier/login/verify/otp', [Supplier\supplierController::class, 'logotp_supplier'])->name('supplier.login.verify.otp');
 Route::post('supplier/login/verify/otp', [Supplier\Auth\SupplierAuthController::class,'verifyotp'])->name('supplier.login.verify.otp.post');
+
 
 //Register
 Route::get('supplier/regis-sup', [Supplier\supplierController::class, 'regis_supplier']);
+
 Route::get('supplier/regisphone-sup', [Supplier\supplierController::class, 'regisphone_supplier']);
+
 Route::get('supplier/regisotp-sup', [Supplier\supplierController::class, 'regisotp_supplier']);
+
 Route::get('supplier/register-sup', [Supplier\supplierController::class, 'register_supplier']);
+Route::post('supplier/regiser-sup-post', [Supplier\supplierController::class, 'register_supplier_post'])->name('regiser-sup');
+
+Route::get('supplier/registercon-sup', [Supplier\supplierController::class, 'registercon_supplier']);
+Route::post('supplier/registercon-sup-post', [Supplier\supplierController::class, 'registercon_supplier_post'])->name('registercon-sup');
+
+Route::get('supplier/registerbank-sup', [Supplier\supplierController::class, 'registerbank_supplier']);
+
+Route::get('supplier/registerpass-sup', [Supplier\supplierController::class, 'registerpass_supplier']);
+Route::post('supplier/registerpass-sup-post', [Supplier\supplierController::class, 'registerpass_supplier_post'])->name('registerpass-sup');
 
 ////////// END SUPPLIER
 

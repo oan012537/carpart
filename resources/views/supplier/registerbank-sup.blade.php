@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <base href="{{url("")}}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,7 @@
 
     <link href="assets/css/regis8.css" rel="stylesheet">
 
-    <?php include 'stylesheet.php'; ?>
+    @include('inc_stylesheet')
 </head>
 
 <body>
@@ -139,6 +140,7 @@
 
                             <br>
                             <div class='but-bb-log2'>
+                                <a href="{{url('supplier/registerpass-sup')}}">
                                 <button class="button button1" id="myBtn"> ถัดไป &nbsp; <i
                                         class='fas fa-angle-right'></i>
                                 </button>
@@ -180,7 +182,7 @@
         </div>
     </section>
 
-    <?php include 'footer.php'; ?>
+    @include('inc_footer')
 
     <script>
     var modal = document.getElementById("myModal");
