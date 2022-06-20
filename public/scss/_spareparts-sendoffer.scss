@@ -1,0 +1,268 @@
+#msform {
+  position: relative;
+
+  fieldset {
+    display: none;
+  }
+}
+#spareparts-sendoffer {
+  .box__detailnumberpart {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+
+    .txt {
+      &__number {
+        margin-right: 15px;
+        color: var(--clrgrays);
+
+        span {
+          color: var(--clrwhites);
+        }
+      }
+
+      &__date {
+        color: var(--clrgrays);
+        span {
+          color: var(--clrwhites);
+        }
+      }
+    }
+  }
+
+  .box__allcontent {
+    .box__detailspare {
+      padding: 30px;
+      background-color: var(--clrdarks6);
+      border-radius: 4px;
+
+      .txt__left {
+        color: var(--clrgrays);
+        margin-bottom: 1.5rem;
+      }
+      .txt__right {
+        color: var(--clrwhites);
+      }
+
+      .box__image {
+        margin-bottom: 1rem;
+      }
+
+      .wrapper__image {
+        display: flex;
+        margin-bottom: 1rem;
+
+        .box__image {
+          padding: 0 10px;
+        }
+      }
+    }
+
+    .box__sendoffer {
+      padding: 30px;
+      background-color: var(--clrdarks6);
+      border-radius: 4px;
+      margin: 1rem 0;
+
+      .txt__title {
+        font-size: 1.25rem;
+      }
+
+      .btn__search {
+        border-radius: 7px;
+        padding: 1rem 3rem;
+        border: 2px solid var(--clrdarks4);
+        background-color: var(--clrdarks5);
+        margin-right: 0.5rem;
+        @extend %transition-3;
+
+        &:hover {
+          @extend %transition-3;
+          background-color: var(--clrdarks4);
+        }
+        img {
+          width: 50px;
+        }
+
+        p {
+          margin-bottom: 0;
+          margin-top: 1rem;
+          color: var(--clrwhites);
+        }
+
+        span {
+          font-size: 0.875rem;
+          color: var(--clrwhites);
+        }
+      }
+
+      .btn__sendlist {
+        @extend .btn__search;
+      }
+    }
+
+    .box__offer {
+      .txt__title {
+        font-size: 1.25rem;
+      }
+
+      .box__allitems {
+        .box__itemsoffer {
+          background-color: var(--clrdarks6);
+          border-radius: 4px;
+
+          .box__heading {
+            background-color: var(--clrdarks5);
+            padding: 15px 20px;
+
+            .txt__heading {
+              color: var(--clrmain);
+              margin-bottom: 0;
+
+              span {
+                color: var(--clrwhites);
+                margin-left: 15px;
+              }
+            }
+
+            .box__btn {
+              text-align: right;
+
+              a {
+                color: var(--clrwhites);
+              }
+            }
+          }
+
+          .box__contentimage {
+            padding: 15px;
+
+            .box__price {
+              .txt__text {
+                color: var(--clrgrays2);
+                margin-bottom: 0;
+              }
+              .txt__price {
+                color: var(--clrwhites);
+              }
+            }
+
+            .wrapper__content {
+              display: flex;
+              .box__image {
+                img {
+                }
+              }
+
+              .box__content {
+                margin-left: 15px;
+                .txt {
+                  &__title {
+                    font-size: 1.25rem;
+                    margin-bottom: 5px;
+                  }
+                  &__numberproducts {
+                    color: var(--clrgrays2);
+                    font-size: 0.975rem;
+                    font-weight: 300;
+                  }
+                }
+              }
+            }
+          }
+
+          .box__contentaccordion {
+            .accordion {
+              background: transparent !important;
+            }
+
+            .accordion-item {
+              background: transparent !important;
+              border: none !important;
+            }
+
+            .accordion-button {
+              background: transparent !important;
+              color: var(--clrwhites);
+              border-top: 1px solid var(--clrdarks5);
+              border-bottom: 1px solid var(--clrdarks5);
+
+              &:focus {
+                box-shadow: none;
+              }
+
+              &:after {
+                border-radius: 50px;
+                width: 25px;
+                height: 25px;
+                padding: 15px;
+                color: var(--clrwhites);
+                background-position: center;
+                background-color: var(--clrdarks5);
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+              }
+            }
+
+            .accordion-item:first-of-type .accordion-button {
+              background-color: transparent;
+              border-top-left-radius: 0;
+              border-top-right-radius: 0;
+            }
+
+            .txt__title {
+              font-size: 1rem;
+              color: var(--clrwhites);
+              margin-top: 1rem;
+            }
+
+            .box__content {
+              margin-top: 1rem;
+
+              .txt__left {
+                color: var(--clrgrays);
+              }
+
+              .txt__right {
+                color: var(--clrwhites);
+              }
+            }
+
+            .box__imageproductother {
+              padding: 15px;
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .box__checkbox {
+          margin-top: 1rem;
+
+          .form-check-input:checked {
+            background-color: var(--clrblue2);
+            border: 1px solid var(--clrblue2);
+          }
+
+          .form-check {
+            margin-top: 1.5rem;
+
+            .form-check-input {
+            }
+
+            .form-check-label {
+              span {
+                color: var(--clrreds);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-check-input:checked {
+  background-color: var(--clrblue2);
+  border: 1px solid var(--clrblue2);
+}

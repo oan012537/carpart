@@ -1,0 +1,27 @@
+.txt__detail {
+    color: #ff7b7b;
+}
+
+.txt__detail2 {
+    color: #ff7b7b;
+}
+
+.txt__detail3 {
+    color: #ff7b7b;
+}
+
+.txt__price {
+    font-size: 30px;
+}
+
+.box__sta {
+    margin-bottom: 0;
+    float: right;
+}
+
+.txt__close {
+    color: white;
+    margin-top: 43px;
+    margin-left: 122px;
+}
+       

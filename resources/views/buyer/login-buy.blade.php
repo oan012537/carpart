@@ -88,6 +88,31 @@
                 </div>
             </div>
         </div>
+
+                            @if ($errors->has('success'))
+                            <!-- The Modal -->
+                            <div id="myModal" class="modal">
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <div class="modal-body">
+                                        <img src="assets/img/login/sf.png" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="tt-text-con">
+                                            <p>
+                                                สมัครสมาชิกสำเร็จ
+                                            </p>
+                                        </div>
+                                        <br>
+                                        <div class="but-bb">
+                                            <button class="button button3"> ตกลง
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
     </section>
     </form>
     @include('inc_footer')
@@ -95,3 +120,21 @@
 </body>
 
 </html>
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    </script>
+
+

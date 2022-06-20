@@ -1,0 +1,434 @@
+#sec-home-seach {
+    padding: 50px;
+}
+
+#sec-home-seach .head-text-ban p {
+    font-size: 45px;
+    color: black;
+    margin-top: -200px;
+    margin-left: 100px;
+}
+
+#sec-home-seach .detail-text-ban p {
+    font-size: 16px;
+    color: black;
+    margin-left: 100px;
+}
+
+#sec-roon-seach {
+    padding: 70px;
+}
+
+#sec-roon-seach .box-roon-box {
+    padding: 30px 30px;
+    border: 1px solid #ccc;
+}
+
+#sec-roon-seach .text-h-roon p {
+    font-size: 18px;
+    color: white;
+}
+
+#sec-roon-seach .text-tt-roon span {
+    font-size: 16px;
+    color: white;
+}
+
+.fa-chevron-right:before {
+    color: white;
+}
+
+.fa-minus:before,
+.fa-subtract:before {
+    color: white;
+    font-size: 18px;
+}
+
+.text-h-roon .fa-close:before,
+.fa-multiply:before,
+.fa-remove:before,
+.fa-times:before,
+.fa-xmark:before {
+    color: white;
+    margin-left: -3px;
+    margin-right: 11px;
+}
+
+
+
+#sec-roon-seach .button5 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 6px 20px 6px 20px;
+    margin-right: 10px;
+}
+
+#sec-roon-seach .button6 {
+    background-color: #373737;
+    color: white;
+    border: 2px solid #373737;
+    padding: 6px 20px 6px 20px;
+    margin-right: 10px;
+}
+
+
+
+#sec-roon-seach .input-group .btn {
+    position: relative;
+    z-index: 2;
+    background-color: var(--clrmain);
+    color: var(--clrdarks3);
+    border: 1px solid var(--clrmain);
+}
+
+#sec-roon-seach .text-detail-roon p {
+    font-size: 14px;
+    color: white;
+    margin-top: 16px;
+}
+
+.tt-seach-text p {
+    font-size: 14px;
+    color: white;
+    margin-left: 19px;
+}
+
+.tt-seach-text2 p {
+    color: white;
+    font-size: 14px;
+    margin-left: 107px;
+    margin-top: -23px;
+    text-decoration : underline;
+}
+
+
+.fa-close:before,
+.fa-multiply:before,
+.fa-remove:before,
+.fa-times:before,
+.fa-xmark:before {
+    color: white;
+    margin-left: 81px;
+}
+
+
+/*---- ปรับ scrollbar .b-text-t-b ------*/
+
+.box-scoll-roon {
+    overflow-y: scroll;
+    height: 250px;
+    border-radius: 5px;
+}
+
+/* width */
+.box-scoll-roon::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.box-scoll-roon::-webkit-scrollbar-track {
+    background-color: white;
+    border-radius: 100px;
+}
+
+/* Handle */
+.box-scoll-roon::-webkit-scrollbar-thumb {
+    background-color: #3F3F3F;
+    border-radius: 100px;
+}
+
+/* Handle on hover */
+.box-scoll-roon::-webkit-scrollbar-thumb {
+    background-color: #E8D95F;
+    border-radius: 100px;
+}
+
+#sec-fi-seach {
+    padding: 20px;
+}
+
+#sec-fi-seach .head-text-fi-seach p {
+    font-size: 18px;
+    color: white;
+}
+
+#sec-fi-seach .head-text-fi-seach span {
+    font-size: 14px;
+    color: white;
+}
+
+#sec-fi-seach .button3 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 10px 29px 10px 29px;
+    margin-right: 10px;
+}
+
+#sec-fi-seach .form-select {
+    display: block;
+    width: 15%;
+    margin-left: 249px;
+    margin-top: -53px;
+    padding: 0.8rem 3.25rem 0.8rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ffffff;
+    background-color: #4a4a4a;
+    border: #4a4a4a;
+
+}
+
+.pagination {
+    display: inline-block;
+  
+}
+
+.pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #4a4a4a;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #E8D95F;
+}
+
+
+
+
+/* Fixed sidenav, full height */
+.sidenav {
+    height: 100%;
+    /*width: 200px;
+    position: fixed;**/
+    z-index: 1;
+    top: 0;
+    left: 0;
+    /*background-color: #111;*/
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a,
+.dropdown-btn {
+    padding: 9px 8px 12px 16px;
+    text-decoration: none;
+    font-size: 14px;
+    color: white;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover,
+.dropdown-btn:hover {
+    color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+    /*margin-left: 200px;*/
+    /* Same as the width of the sidenav */
+    font-size: 20px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+    background-color: #373737;
+    color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+    display: none;
+    /* background-color: #262626; */
+    padding-left: 10px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+.sidenav span {
+    color: #E8D95F;
+    margin-left: 16px;
+}
+
+hr.new1 {
+    border-top: 1px solid #c3b5b5;
+    margin-top: 3px;
+}
+
+.intro__title {
+    font-family: "Kanit", sans-serif !important;
+}
+
+
+
+
+
+.pagination2 {
+    display: inline-block;
+}
+
+.pagination2 a {
+    color: white;
+    float: left;
+    padding: 8px 25px;
+    text-decoration: none;
+}
+
+
+.pagination2 {
+    --bs-pagination-padding-x: 0.75rem;
+    --bs-pagination-padding-y: 0.375rem;
+    --bs-pagination-font-size: 1rem;
+    --bs-pagination-color: #373737;
+    /* --bs-pagination-bg: #fff; */
+    --bs-pagination-border-width: 1px;
+    /* --bs-pagination-border-color: #dee2e6; */
+    /*--bs-pagination-border-radius: 0.375rem;*/
+    --bs-pagination-hover-color: #000000;
+    --bs-pagination-hover-bg: #E8D95F;
+    --bs-pagination-hover-border-color: #E8D95F;
+    --bs-pagination-focus-color: #000000;
+    --bs-pagination-focus-bg: #e9ecef;
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 25%);
+    --bs-pagination-active-color: #fff;
+    --bs-pagination-active-bg: #000;
+    --bs-pagination-active-border-color: #000;
+    --bs-pagination-disabled-color: white;
+    --bs-pagination-disabled-bg: #4F4F4F;
+    --bs-pagination-disabled-border-color: #dee2e6;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    margin-left: 22px;
+}
+
+
+
+/* buttuon checkbox */
+
+/* The container */
+.check {
+    display: block;
+    position: relative;
+    padding-left: 55px;
+    margin-bottom: 12px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.check:hover input~.checkmark {
+    background-color: #ffffff;
+}
+
+/* When the radio button is checked, add a blue background */
+.check input:checked~.checkmark {
+    background-color: #ffffff;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.check input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.check .checkmark:after {
+    top: 6px;
+    left: 6px;
+    width: 9px;
+    height: 8px;
+    border-radius: 50%;
+    background: #373737;
+}
+
+/* buttuon checkbox */
+
+
+.box-col-b {
+    margin-left: 10px;
+}
+
+.button {
+    background-color: #e8d95f;
+    border: none;
+    color: #282828;
+    padding: 6px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Kanit", sans-serif;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button2 {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    padding: 10px 129px 10px 127px;
+    margin-left: 10px;
+}
+
+.button2:hover {
+    background-color: black;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+}
