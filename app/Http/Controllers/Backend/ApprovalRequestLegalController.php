@@ -209,6 +209,11 @@ class ApprovalRequestLegalController extends Controller
 		return $sQuery->escapeColumns([])->make(true);
 	}
 
+    public function update(Request $request){
+        dd($request->all());
+
+    }
+
     public function getdetails(Request $request){
         return Response::json($request->all());
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Supplier as Supplier;
 use App\Http\Controllers\Backend as Backend;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\ImportdataController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,26 @@ Route::get('setlang/{lang}', function ($lang) {
     Session::put('lang', $lang);
     return Redirect::back();
 });
+Route::get('import/category', [ImportdataController::class,'category']);
+Route::post('import/category', [ImportdataController::class,'importcategory']);
+
+Route::get('import/categorysub', [ImportdataController::class,'categorysub']);
+Route::post('import/categorysub', [ImportdataController::class,'importcategorysub']);
+
+Route::get('import/categorysubs', [ImportdataController::class,'categorysubs']);
+Route::post('import/categorysubs', [ImportdataController::class,'importcategorysubs']);
+
+Route::get('import/brand', [ImportdataController::class,'brand']);
+Route::post('import/brand', [ImportdataController::class,'importbrand']);
+
+Route::get('import/brandmodel', [ImportdataController::class,'brandmodel']);
+Route::post('import/brandmodel', [ImportdataController::class,'importbrandmodel']);
+
+Route::get('import/brandmodels', [ImportdataController::class,'brandmodels']);
+Route::post('import/brandmodels', [ImportdataController::class,'importbrandmodels']);
+
+Route::get('import/brandyear', [ImportdataController::class,'brandyear']);
+Route::post('import/brandyear', [ImportdataController::class,'importbrandyear']);
 // Auth::routes();
 
 // Route::get('/chat', [ChatsController::class, 'index']);
