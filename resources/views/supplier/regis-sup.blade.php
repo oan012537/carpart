@@ -144,7 +144,7 @@
                         </div>
                         <br>
                         <div class='but-bb-log'>
-                            <a href="{{url('supplier/regisphone-sup')}}">
+                            <a href="{{url('supplier/register-sup')}}">
                                 <button class="button button1"> ยอมรับข้อตกลง & เงื่อนไข &nbsp; <i
                                         class='fas fa-angle-right'></i> </button>
                             </a>

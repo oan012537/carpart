@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <base href="{{url("")}}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,11 +19,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="assets/css/regis7.css" rel="stylesheet">
 
-    <?php include 'stylesheet.php'; ?>
+    @include('inc_stylesheet')
 </head>
 
 <body>
-
+    <form method="POST" action="{{route('registercon-sup')}}">
+        @csrf
     <section id="sec-regis5">
         <div class="container">
             <div class="box-b-login">
@@ -165,7 +167,7 @@
                             </div>
                             <br>
                             <div class='but-bb-log2'>
-                                <a href="registerbank-sup.php">
+                                <a href="{{url('supplier/registerbank-sup')}}">
                                     <button class="button button1"> ถัดไป &nbsp; <i class='fas fa-angle-right'></i>
                                     </button>
                                 </a>
@@ -182,8 +184,9 @@
 
 
     </section>
+</form>
 
-    <?php include 'footer.php'; ?>
+    @include('inc_footer')
 
 
 </body>

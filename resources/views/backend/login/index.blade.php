@@ -83,7 +83,7 @@
                 <br>
                 <div class="but-bb">
                     <a href="#" id="loginsuccess"><button class="button button3" data-bs-dismiss="modal" type="button"> ตกลง</button></a>
-                    
+
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@
     function loginfn() {
         console.log($("#formlogin").serialize());
         $.post($("#formlogin").attr('action'),$("#formlogin").serialize(),function(data){
-                
+
             console.log(data);
             if(data.status){
                 $("#modalsuccess").modal('show');
@@ -104,8 +104,7 @@
                 // window.location=data.redirect_location;
                 $("#loginsuccess").attr('href',data.redirect_location)
             }
-        
-        
+
         }).fail(function(response) {
             $(e).find("[type='submit']").html("LOGIN");
             $(".alert").remove();
@@ -114,7 +113,7 @@
                 for (var errstr of erroJson[err])
                 $("[name='" + err + "']").after("<div class='alert alert-danger'>" + errstr + "</div>");
             }
-        
+
         });
         return false;
     }
