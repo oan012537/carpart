@@ -43,8 +43,8 @@ Route::group(['middleware' => ['buyer']], function () {
 /////////// SUPPLIER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Login
 
-Route::get('supplier/login', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
-Route::post('supplier/login', [Supplier\supplierController::class,'login_supplier_post'])->name('supplier.login');
+Route::get('supplier/login-sup', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
+Route::post('supplier/login-sup-post', [Supplier\supplierController::class,'login_supplier_post'])->name('supplier.login');
 
 Route::get('supplier/login/verify/phone', [Supplier\supplierController::class, 'logphone_supplier'])->name('supplier.login.verify.phone');
 Route::post('supplier/login/verify/phone', [Supplier\Auth\SupplierAuthController::class,'verifyphone'])->name('supplier.login.verify.phone.post');
@@ -71,6 +71,11 @@ Route::get('supplier/registerbank-sup', [Supplier\supplierController::class, 're
 Route::get('supplier/registerpass-sup', [Supplier\supplierController::class, 'registerpass_supplier']);
 Route::post('supplier/registerpass-sup-post', [Supplier\supplierController::class, 'registerpass_supplier_post'])->name('registerpass-sup');
 
+// Route::get('supplier/supplier-profile', [Supplier\supplierController::class, 'supplier_profile'])->name('supplier.supplier_profile');
+
+Route::group(['middleware' => ['supplier']], function () {
+    Route::get('supplier/supplier-profile', [Supplier\supplierController::class, 'supplier_profile'])->name('supplier.supplier_profile');
+});
 ////////// END SUPPLIER
 
 // Route::get('/', function () {

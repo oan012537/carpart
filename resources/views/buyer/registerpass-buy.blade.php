@@ -71,7 +71,7 @@
                                 <button type="submit" class="button button2"> ยืนยัน &nbsp; <i class='fas fa-angle-right'></i>
                                 </button>
                                 <!-- The Modal -->
-                                {{-- <div id="myModal2" class="modal">
+                                <div id="myModal2" class="modal">
                                     <!-- Modal content -->
                                     <div class="modal-content">
                                         <span class="close">&times;</span>
@@ -91,7 +91,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div> 
+
+
                             </div>
                         </div>
                     </div>
@@ -99,7 +101,7 @@
             </form>
 
         </div>
-        <!-- The Modal -->
+        {{-- <!-- The Modal -->
         <div id="myModal" class="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <!-- Modal content -->
             <div class="modal-content">
@@ -120,7 +122,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
     @include('inc_footer')
 

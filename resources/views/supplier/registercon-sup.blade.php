@@ -67,7 +67,7 @@
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="sample@gmail.com"
+                                <input type="text" class="form-control" placeholder="sample@gmail.com" name="email"
                                     aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             <div class="tt-text-log">
@@ -76,7 +76,7 @@
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="0123456789" aria-label="Username"
+                                <input type="text" class="form-control" placeholder="0123456789" name="phone" aria-label="Username"
                                     aria-describedby="basic-addon1">
                             </div>
                             <div class="tt-text-log">
@@ -85,7 +85,7 @@
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Sample Name" aria-label="Username"
+                                <input type="text" class="form-control" placeholder="Sample Name" name="facebook" aria-label="Username"
                                     aria-describedby="basic-addon1">
                             </div>
                             <div class="tt-text-log">
@@ -94,7 +94,7 @@
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="www.sample.com"
+                                <input type="text" class="form-control" placeholder="www.sample.com" name="googlemap"
                                     aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             <div class="form-check">
@@ -110,7 +110,7 @@
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
+                                <input type="text" class="form-control" placeholder="ระบุ" name="store_address" aria-label="Username" 
                                     aria-describedby="basic-addon1">
                             </div>
                             <div class="tt-text-log">

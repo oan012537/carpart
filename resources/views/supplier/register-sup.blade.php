@@ -66,17 +66,20 @@
                                     ประเภท
                                 </p>
                             </div>
+
                             <div class="box-check">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1"> บุคคลธรรมดา </label>
+                                    <input class="form-check-input" type="radio" name="tabs"
+                                        id="onetab" value="normal">
+                                    <label class="form-check-label" for="one"> บุคคลธรรมดา </label>
                                 </div>
+
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2"> นิติบุคคล </label>
+                                    <input class="form-check-input" type="radio" name="tabs"
+                                        id="twotab" value="niti">
+                                    <label class="form-check-label" for="two"> นิติบุคคล </label>
                                 </div>
+                                
                             </div>
                             <br>
                             <div class="tt-text-log">
@@ -85,7 +88,7 @@
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
+                                <input type="text" class="form-control" placeholder="ระบุ" name="store_name" aria-label="Username"
                                     aria-describedby="basic-addon1">
                             </div>
                             <div class="tt-text-log">
@@ -94,7 +97,7 @@
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
+                                <input type="text" class="form-control" placeholder="ระบุ" name="first_name" aria-label="Username"
                                     aria-describedby="basic-addon1">
                             </div>
                             <div class="tt-text-log">
@@ -103,7 +106,7 @@
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
+                                <input type="text" class="form-control" placeholder="ระบุ" name="last_name" aria-label="Username"
                                     aria-describedby="basic-addon1">
                             </div>
                             <div class="tt-text-log">
@@ -112,7 +115,7 @@
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
+                                <input type="text" class="form-control" placeholder="ระบุ" name="card_id" aria-label="Username"
                                     aria-describedby="basic-addon1">
                             </div>
                             <div class="tt-text-log">
@@ -121,7 +124,7 @@
                                 </p>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
+                                <input type="text" class="form-control" placeholder="ระบุ" name="address" aria-label="Username"
                                     aria-describedby="basic-addon1">
                             </div>
                             <div class="tt-text-log">
