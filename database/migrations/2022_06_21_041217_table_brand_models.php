@@ -18,10 +18,10 @@ class TableBrandModels extends Migration
         }
         Schema::create('brand_model', function (Blueprint $table) {
             $table->increments('model_id');
-            $table->integer('model_brandid')->unsigned()->unique();
-            // $table->string('model_code')->unique();
-            $table->string('model_name_th')->unique();
-            $table->string('model_name_en')->unique();
+            $table->integer('model_brandid')->unsigned();
+            $table->string('model_code');
+            $table->string('model_name_th')->nullable();
+            $table->string('model_name_en')->nullable();
             // $table->string('model_year_from');
             // $table->string('model_year_to');
             // $table->string('model_master_data');
