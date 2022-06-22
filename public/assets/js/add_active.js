@@ -1,5 +1,6 @@
 $(function () {
   var getPage = document.getElementById("pageName");
+  var getPageNav = document.getElementById("pageNameNav");
 
   if (getPage) {
     const getPage2 = getPage.value;
@@ -19,7 +20,7 @@ $(function () {
     const getPageMain3 = getPageMenuMain2.value;
     $(".nav_list li a").each(function () {
       var getMenuMain = $(this).attr("data-page");
-      if (getPageMain2 == getMenuMain) {
+      if (getPageMain2 == getMenuMain || getPageMain3 == getMenuMain) {
         $(this).addClass("activemenumain");
       }
     });
@@ -28,6 +29,17 @@ $(function () {
       var getMenuMain = $(this).attr("data-page");
       if (getPageMain3 == getMenuMain) {
         $(this).addClass("activemenusub");
+      }
+    });
+  }
+
+  if (getPageNav) {
+    const getPageNavLeft = getPageNav.value;
+    alert(getPageNavLeft);
+    $(".box__navleft  li ").each(function () {
+      var getMenu = $(this).attr("data-page");
+      if (getPageNavLeft == getMenu) {
+        $(this).addClass("activemenumain");
       }
     });
   }

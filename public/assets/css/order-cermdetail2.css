@@ -345,7 +345,7 @@ text-.form-control
 
 .card-img-cerm {
     background-color: #3F3F3F;
-    height: 520px;
+    height: 1330px;
     padding: 30px;
 }
 
@@ -822,3 +822,100 @@ text-.form-control
     margin-left: 20px;
     margin-top: 21px;
 }
+
+.heard-text-t-text p {
+    font-size: 14px;
+    color: white;
+}
+
+.heard-text-t-date p {
+    font-size: 14px;
+    color: #FF7B7B;
+    margin-top: -10px;
+}
+
+.card-img-cerm label {
+    color: #dddddd;
+}
+
+.card-img-cerm span {
+    color: rgb(227, 118, 118);
+}
+
+
+.card-img-cerm .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    border-top: 2px solid #828282;
+    border-left: 2px solid #828282;
+    border-right: 2px solid #828282;
+    border-bottom: 2px solid #828282;
+    background-color: #333333;
+    color: white;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+#sec-confirm .card-in {
+    background-color: #333333;
+    height: 235px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+#sec-confirm .text-img-de-tt p {
+    font-size: 16px;
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.head-text-img-tt p {
+    color: #dddddd;
+}
+
+.head-text-img-tt span {
+    color: rgb(227, 118, 118);
+}
+
+#sec-confirm .drop-zone {
+    height: 158px;
+    width: 140%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    background-color: #ffffff0f;
+    border-radius: 10px;
+    margin-left: 1px;
+}
+
+.drop-zone__prompt i {
+    color: white;
+}
+
+#sec-confirm .card-in2 {
+    background-color: #333333;
+    height: 220px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+
+
+
+
+

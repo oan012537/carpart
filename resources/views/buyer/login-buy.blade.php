@@ -80,7 +80,7 @@
                             </p>
                         </div>
                         <div class='but-bb-log2'>
-                            <a href="{{url('buyer/regis-buy')}}">
+                            <a href="{{url('buyer/regis')}}">
                                 <button class="button button2"> สมัครสมาชิก </button>
                             </a>
                         </div>
