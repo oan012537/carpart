@@ -27,13 +27,11 @@ class supplierController extends Controller
         $username = $request->username;
         $password = $request->password;
 
-        if (Auth::guard('buyer')->attempt(['email' => $username, 'password' => $password]) )
+        // dd($request->all());
+        if (Auth::guard('supplier')->attempt(['email' => $username, 'password' => $password]) )
         {
-            return view('buyer.home-search');
-        }
-        elseif (Auth::guard('buyer')->attempt(['phone' => $username, 'password' => $password]) )
-        {
-            return redirect('/buyer/home-search')->withErrors(['success' => 'เข้าสู่ระบบสำเร็จ!!']);
+            return redirect('supplier/supplier-profile')->withErrors(['success' => 'เข้าสู่ระบบสำเร็จ!!']);
+      
         }else{
 
             dd("username หรือ password ผิด");
@@ -78,17 +76,21 @@ class supplierController extends Controller
                 'store_name' => $request->store_name,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
+                'address' => $request->address,
+                'card_id' => $request->card_id,
             ]);
         }else{
             Session::put([
                 'type' => $request->tabs,
-                'store_name' => $request->store_name_2,
-                'first_name' => $request->first_name_2,
-                'last_name' => $request->last_name_2,
-                'address' => $request->address,
-                'card_id' => $request->card_id,
+                'company_name' => $request->company_name,
+                'branch' => $request->branch,
+                'vat_id' => $request->vat_id,
+                // 'address' => $request->address,
+                // 'card_id' => $request->card_id,
             ]);
         }
+
+        // dd($request->all());
         return view('supplier.registercon-sup');
     }
 
@@ -104,7 +106,7 @@ class supplierController extends Controller
             'googlemap' => $request->googlemap,
             'store_address' => $request->store_address,
         ]);
-    return view('supplier.registerpass-sup');
+    return view('supplier.registerbank-sup');
 }
 
     public function registerbank_supplier(){
@@ -117,6 +119,7 @@ class supplierController extends Controller
 
     public function registerpass_supplier_post(Request $request){
 
+        // dd(session()->all());
         if($request->password == $request->confirm_password){
             $data = new Users_supplier;
             $data->type = Session::get('type');
@@ -136,7 +139,7 @@ class supplierController extends Controller
 
             Session::flush(); // ลบ Session ทั้งหมด
 
-            // return redirect()->route('supplier.home-search')->with('alert', 'Updated!');
+            // return redirect()->route('supplier.supplier-profile')->with('alert', 'Updated!');
         }else{
             return view("alert.alert", [
                 'url' => '/supplier.registerpass-sup',
@@ -146,4 +149,12 @@ class supplierController extends Controller
         }
 
     }
+
+    
+    public function supplier_profile(){
+
+        return view('supplier.supplier-profile');
+    }
+
+    
 }

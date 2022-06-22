@@ -4,7 +4,7 @@
 <section id="sec-login1">
     <div class="container">
         <div class="box-b-login">
-            <form method="post" action="{{ route('supplier.login') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('supplier.login') }}">
                 @csrf
                 <div class="row">
                     <div class="col-lg-8">
@@ -62,6 +62,34 @@
                         </div>
                     </div>
                 </div>
+
+                @if ($errors->has('success'))
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <div class="modal-body">
+                                <img src="assets/img/login/sf.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="modal-footer">
+                                <div class="tt-text-con">
+                                    <p>
+                                        สมัครสมาชิกสำเร็จ
+                                    </p>
+                                </div>
+                                <br>
+                                <div class="but-bb">
+                                    <button class="button button3"> ตกลง
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+
+
             </form>
         </div>
     </div>

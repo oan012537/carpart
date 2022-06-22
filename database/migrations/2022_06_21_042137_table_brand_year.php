@@ -18,7 +18,8 @@ class TableBrandYear extends Migration
         }
         Schema::create('brand_year', function (Blueprint $table) {
             $table->increments('year_id');
-            $table->integer('year_modelsid')->unsigned()->unique();
+            $table->integer('year_modelid')->unsigned();
+            // $table->integer('year_modelsid')->unsigned();
             $table->string('year_year_from');
             $table->string('year_year_to');
             $table->string('year_master_data');
@@ -28,8 +29,8 @@ class TableBrandYear extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
 
-
-            $table->foreign('year_modelsid')->references('models_id')->on('brand_models')->onDelete('cascade');
+            $table->foreign('year_modelid')->references('model_id')->on('brand_model')->onDelete('cascade');
+            // $table->foreign('year_modelsid')->references('models_id')->on('brand_models')->onDelete('cascade');
 
         });
     }
