@@ -418,10 +418,10 @@ class ImportdataController extends Controller
                         $brandid = $brand[$value[0]]['brand_id'];
                     }else{
                         $insert = new brand;
-                        $insert->brand_code = $value[1];
-                        $insert->brand_name_th = $value[2];
-                        $insert->brand_name_en = $value[3];
-                        $insert->brand_image = 'Brand Logo/'.$value[2].'.png.png';
+                        $insert->brand_code = $value[0];
+                        $insert->brand_name_th = $value[1];
+                        $insert->brand_name_en = $value[1];
+                        $insert->brand_image = 'Brand Logo/'.$value[1].'.png.png';
                         $insert->created_for = '';
                         $insert->updated_for = '';
                         $insert->save();
@@ -436,10 +436,20 @@ class ImportdataController extends Controller
                     $brandmodel->updated_for = '';
                     $brandmodel->save();
                     
+                    $brandyear = new brandyear;
+                    $brandyear->year_modelid = $brandmodel->model_id;
+                    // $brandyear->year_modelsid = $brandmodel->model_id;
+                    $brandyear->year_year_from = !empty($value[5])?$value[5]:'';
+                    $brandyear->year_year_to = !empty($value[6])?$value[6]:'';
+                    $brandyear->year_master_data = !empty($value[7])?$value[7]:'';
+                    $brandyear->created_for = '';
+                    $brandyear->updated_for = '';
+                    $brandyear->save();
+                    
                 }
             }
         }
-        // return redirect()->back();
+        return redirect()->back();
     }
 
     public function brandmodels(){

@@ -138,5 +138,19 @@ Route::get('/clearcache', function() {
     return '<h1>Cache facade value cleared</h1>';
 });
 
+Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile');
+Route::get('supplier/profile/edit', [Supplier\ProfileController::class,'edit'])->name('supplier.profile.edit');
+Route::post('supplier/profile/update', [Supplier\ProfileController::class,'update'])->name('supplier.profile.update');
 
+Route::get('changeprovinces/{id}', [Backend\CompanyController::class,'provinces']);
+Route::get('changeamphures/{id}', [Backend\CompanyController::class,'amphures']);
+Route::get('changedistricts/{id}', [Backend\CompanyController::class,'districts']);
+
+Route::get('supplier/profile/store', [Supplier\ProfileController::class,'storeindex'])->name('supplier.profile.store');
+Route::get('supplier/profile/store/edit', [Supplier\ProfileController::class,'storeedit'])->name('supplier.profile.store.edit');
+Route::post('supplier/profile/store/update', [Supplier\ProfileController::class,'storeupdate'])->name('supplier.profile.store.update');
+
+Route::get('supplier/profile/bank', [Supplier\ProfileController::class,'bankindex'])->name('supplier.profile.bank');
+Route::get('supplier/profile/setting', [Supplier\ProfileController::class,'settingindex'])->name('supplier.profile.setting');
+// Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile.noti');
 require __DIR__.'/auth.php';
