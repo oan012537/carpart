@@ -1,0 +1,127 @@
+#history-request .txt__titlenoti  {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: white;
+    margin-left: 1.5rem;
+    padding-top: 1rem;
+}
+
+#history-request .text-setting p {
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    float: right;
+    margin-right: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+#history-request .box__contentmain .underline-noti {
+    border-color: #727272 !important;
+    opacity: 1;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0;
+}
+
+#history-request .txt__detailtitlenoti {
+    font-size: 1rem;
+    font-weight: 300;
+    color: white;
+    margin-left: 1.5rem;
+    margin-top: -13px;
+}
+
+#history-request .img-text-noti {
+    margin-left: 3rem;
+    padding-top: 1.3rem;
+    padding-bottom: 7px;
+}
+
+#history-request .text-detail-tt-text p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: white;
+    padding-top: 1.3rem;
+}
+
+#history-request .text-detail-tt-text-2 p {
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+    margin-top: -10px;
+}
+
+#history-request .text-detail-tt-text-3 p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #b5b5b5;
+    margin-top: -10px;
+}
+
+.button-list {
+    background-color: #282828;
+    color: white;
+    border: 2px solid #282828;
+    padding: 5px 26px 5px 26px;
+    border-radius: 5px;
+}
+
+.button-list:hover {
+    background-color: #000000;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    padding: 5px 26px 5px 26px;
+    border-radius: 5px;
+}
+
+.button-do {
+    background-color: #282828;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    border-radius: 5px;
+    padding: 5px 25px 5px 25px;
+    margin-top: 3rem;
+}
+
+.button-do:hover {
+    background-color: #E8D95F;
+    color: #282828;
+    border: 2px solid #E8D95F;
+    border-radius: 5px;
+    padding: 5px 25px 5px 25px;
+    margin-top: 3rem;
+}
+
+
+/*---- ปรับ scrollbar .b-text-t-b ------*/
+
+.box__tab {
+    overflow-y: scroll;
+    height: 550px;
+    border-radius: 5px;
+}
+
+/* width */
+.box__tab::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.box__tab::-webkit-scrollbar-track {
+    background-color: white;
+    border-radius: 100px;
+}
+
+/* Handle */
+.box__tab::-webkit-scrollbar-thumb {
+    background-color: #3F3F3F;
+    border-radius: 100px;
+}
+
+/* Handle on hover */
+.box__tab::-webkit-scrollbar-thumb {
+    background-color: #E8D95F;
+    border-radius: 100px;
+}
+

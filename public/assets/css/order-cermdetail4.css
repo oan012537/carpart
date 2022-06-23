@@ -822,3 +822,57 @@ text-.form-control
     margin-left: 20px;
     margin-top: 21px;
 }
+
+.card-text-money {
+    background-color: #3F3F3F;
+    height: 190px;
+    padding: 30px;
+}
+
+.card-text-money .heard-text-t-text P {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+
+.card-text-money .heard-text-t-date p {
+    font-size: 14px;
+    color: #FF7B7B;
+    margin-top: -10px;
+}
+
+.text-name-bo p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+
+.text-name-bo2 p {
+    font-size: 16px;
+    color: #BDBDBD;
+    font-weight: 300;
+}
+
+.text-name-bo3 p {
+    font-size: 16px;
+    color: #BDBDBD;
+    font-weight: 300;
+}
+
+.text-name-bo4 p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+
+
+
+
+
+
+
+
+
+
+
+

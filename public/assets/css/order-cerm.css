@@ -30,6 +30,12 @@
       margin-top: 5px;
   }
 
+  .txt__head3-no {
+    font-size: 14px;
+    color: #FF7B7B;
+    margin-left: 104px;
+  }
+
   .txt__head3-sta {
       font-size: 14px;
       color: white;
@@ -51,12 +57,12 @@
       font-size: 14px;
   }
 
-  .txt__head5 {
-      font-size: 14px;
-      color: white;
-      margin-left: 150px;
-      margin-top: 5px;
-  }
+.txt__head5 {
+    font-size: 14px;
+    color: #6FCF97;
+    margin-left: 146px;
+    margin-top: 5px;
+}
 
   .txt__date4 {
       color: rgb(175, 167, 167);

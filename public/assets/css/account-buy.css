@@ -1,123 +1,860 @@
-  .txt__price {
-      font-size: 30px;
-  }
+#history-request .ac-detail-text-tt p {
+    color: white;
+}
 
-  .txt__dateall {
-      color: rgb(175, 167, 167);
-      font-size: 14px;
-      margin-top: -21px;
-      margin-left: 625px;
-  }
+#history-request .box__contentmain .box__tab .box__content .head-address {
+    font-size: 18px;
+    color: #cdcaca;
+    margin-bottom: 5px;
+}
 
-  .txt__date2 {
-      color: rgb(175, 167, 167);
-      margin-top: 43px;
-      margin-left: 73px;
-      font-size: 14px;
-  }
+#history-request .box__contentmain .box__tab .box__content .ac-detail-text-tt {
+    font-size: 14px;
+    color: var(--clrwhites);
+    margin-bottom: 5px;
+    float: right;
+    margin-right: 15px;
+}
 
-  .txt__head-sta p {
-      font-size: 14px;
-      color: #FF7B7B;
-      margin-left: 104px;
-      margin-top: 5px;
-  }
+#history-request .box__contentmain .box__tab .box__content .txt__title2 {
+    font-size: 14px;
+    color: #cdcaca;
+    margin-bottom: 5px;
+}
 
-  .txt__head2-sta {
-      font-size: 14px;
-      color: #6FCF97;
-      margin-left: 148px;
-      margin-top: 5px;
-  }
+#history-request .box__contentmain .box__tab .box__content .txt__detailtitle2 {
+    font-size: 14px;
+    color: var(--clrwhites);
+    margin-bottom: 5px;
+}
 
-  .txt__head3-sta {
-      font-size: 14px;
-      color: white;
-      margin-left: 121px;
-      margin-top: 5px;
-  }
+#history-request .box__contentmain .box__tab .box__content .head-address2 {
+    font-size: 14px;
+    color: #cdcaca;
+    margin-bottom: 5px;
+}
 
-  .txt__head4-sta {
-      font-size: 14px;
-      color: white;
-      margin-left: 126px;
-      margin-top: 5px;
-  }
+#history-request .box__contentmain .box__tab .box__content .head-pass-detail {
+    font-size: 14px;
+    color: #cdcaca;
+    margin-bottom: 5px;
+    float: right;
+}
 
-  .txt__date3 {
-      color: rgb(175, 167, 167);
-      margin-top: -7px;
-      margin-left: 90px;
-      font-size: 14px;
-  }
+#history-request .box__contentmain .box__tab .input-group2 {
+    margin-top: -9px;
+    margin-bottom: 1rem;
+}
 
-  .txt__head5 {
-      font-size: 14px;
-      color: white;
-      margin-left: 150px;
-      margin-top: 5px;
-  }
+#history-request .box__contentmain .box__tab .input-group2 .form-control {
+    background-color: #333333;
+    border: 1px solid #c4c4c4;
+    border-radius: 4px;
+    color: var(--clrwhites);
+    font-weight: 300;
+}
 
-  .txt__date4 {
-      color: rgb(175, 167, 167);
-      margin-top: -7px;
-      margin-left: 21px;
-      font-size: 14px;
-  }
+.icon-eye-pass span {
+    color: #8c8c8c;
+    font-size: 10px;
+    float: right;
+    margin-right: 15px;
+    margin-top: -25px;
+}
 
-  .txt__head6 {
-      font-size: 14px;
-      color: white;
-      margin-left: -23px;
-      margin-top: 5px;
-  }
 
-  .txt__head7 {
-      font-size: 14px;
-      color: white;
-      margin-left: -13px;
-      margin-top: 5px;
-  }
+.button {
+    background-color: #e8d95f;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Kanit", sans-serif;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
-  .txt__dateallsent {
-      color: rgb(175, 167, 167);
-      font-size: 14px;
-      margin-top: -21px;
-      margin-left: 576px;
-  }
+.button2-3 {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    padding: 6px 60px 6px 60px;
+}
 
-  .txt__dateallreview {
-      color: rgb(175, 167, 167);
-      font-size: 14px;
-      margin-top: -21px;
-      margin-left: 624px;
-  }
+.button2-3:hover {
+    background-color: black;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+}
 
-  .fa-check-circle:before,
-  .fa-circle-check:before {
-      color: #5cd86f;
-  }
+.but-ca {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-  .fa-circle-xmark:before,
-  .fa-times-circle:before,
-  .fa-xmark-circle:before {
-      color: #ff7b7b;
-  }
+.box-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    border: 3px solid #8c8c8c;
+}
 
-  .fa-box:before {
-      color: #5cd86f;
-  }
+.button3-3 {
+    font-size: 14px;
+    background-color: #474545;
+    color: white;
+    border: 2px solid #474545;
+    padding: 6px 34px 6px 30px;
+}
 
-  .fa-money-check-alt:before,
-  .fa-money-check-dollar:before {
-      color: var(--clrmain);
-  }
+.button3-3:hover {
+    background-color: #1e1e1c;
+    color: white;
+    border: 2px solid #1e1e1c;
+}
 
-  .fa-box-open:before {
-      color: #25bdca;
-  }
+.box-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 230px;
+    border: 3px solid #8c8c8c;
+}
 
-  .fa-exchange-alt:before,
-  .fa-right-left:before {
-      color: #f7912b;
-  }
+.box-face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     height: 230px;
+    border: 3px solid #8c8c8c;
+}
+
+.box-google {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 230px;
+    border: 3px solid #8c8c8c;
+}
+
+.button4-3 {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    padding: 3px 56px 4px 51px;
+}
+
+.button4-3:hover {
+    background-color: black;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+}
+
+.img-icon-social {
+    width: 20%;
+    margin-top: -137px;
+    margin-left: -117px;
+}
+
+.text-so-tt p {
+    font-size: 14px;
+    color: white;
+    margin-top: -16px;
+    margin-left: -47px;
+}
+
+.text-so-tt2 p {
+    font-size: 14px;
+    color: #E8D95F;
+    padding-top: 32px;
+    margin-left: -81px;
+}
+
+.but-but-soso {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -63px;
+}
+
+.img-icon-social2 {
+    width: 39%;
+    margin-top: -137px;
+    margin-left: 21px;
+}
+
+.text-so-tt-face p {
+    font-size: 14px;
+    color: white;
+    margin-top: -12px;
+    margin-left: -50px;
+}
+
+.text-so-tt2-face p {
+    font-size: 13px;
+    color: white;
+    padding-top: 58px;
+    margin-left: -61px;
+}
+
+.text-so-tt2-google p {
+    font-size: 13px;
+    color: white;
+    padding-top: 58px;
+    margin-left: -50px;
+}
+
+#history-request .box__contentmain .box__tab .box__content .txt__title2-bank {
+    font-size: 14px;
+    color: #cdcaca;
+    margin-bottom: 5px;
+    float: right;
+}
+
+#history-request .box__contentmain .box__tab .box__content .txt__detailtitle2-bank {
+    font-size: 14px;
+    color: var(--clrwhites);
+    margin-bottom: 5px;
+}
+
+.button-bank {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    padding: 3px 56px 4px 51px;
+}
+
+.button-bank:hover {
+    background-color: black;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+}
+
+.b-but-addplus .button {
+    background-color: #555454;
+    border: none;
+    color: white;
+    padding: 11px 344px 15px 375px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 19px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+
+
+/* The container */
+
+.b-bank {
+    display: block;
+    position: relative;
+    padding-top: inherit;
+    padding: 9px 25px 9px 44px;
+    margin-bottom: 3px;
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #6f6f6f;
+    border: 1px solid #E8D95F;
+    border-radius: 5px;
+}
+
+/* Hide the browser's default checkbox */
+.b-bank input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 11px;
+    left: 16px;
+    height: 16px;
+    width: 18px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.b-bank:hover input~.checkmark {
+    background-color: white;
+}
+
+/* When the checkbox is checked, add a blue background */
+.b-bank input:checked~.checkmark {
+    background-color: white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.b-bank input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.b-bank .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid #3f3f3f;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+
+/* The container */
+
+.b-bank2 {
+    display: block;
+    position: relative;
+    padding-top: inherit;
+    padding: 9px 17px 9px 41px;
+    margin-bottom: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #000;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #e8d95f;
+    border: 1px solid #E8D95F;
+    border-radius: 5px;
+}
+
+/* Hide the browser's default checkbox */
+.b-bank2 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark2 {
+    position: absolute;
+    top: 11px;
+    left: 16px;
+    height: 16px;
+    width: 18px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.b-bank2:hover input~.checkmark2 {
+    background-color: white;
+}
+
+/* When the checkbox is checked, add a blue background */
+.b-bank2 input:checked~.checkmark2 {
+    background-color: white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark2:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.b-bank2 input:checked~.checkmark2:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.b-bank2 .checkmark2:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid #3f3f3f;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+
+
+/* The container */
+
+.b-bank3 {
+    display: block;
+    position: relative;
+    padding-top: inherit;
+    padding: 9px 25px 9px 44px;
+    margin-bottom: -2px;
+    margin-left: -17px;
+    margin-right: 27px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #6f6f6f;
+    border: 1px solid #E8D95F;
+    border-radius: 5px;
+}
+
+/* Hide the browser's default checkbox */
+.b-bank3 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark3 {
+    position: absolute;
+    top: 11px;
+    left: 16px;
+    height: 16px;
+    width: 18px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.b-bank3:hover input~.checkmark3 {
+    background-color: white;
+}
+
+/* When the checkbox is checked, add a blue background */
+.b-bank3 input:checked~.checkmark3 {
+    background-color: white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark3:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.b-bank3 input:checked~.checkmark3:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.b-bank3 .checkmark3:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid #3f3f3f;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+
+/* The container */
+
+.b-bank4 {
+    display: block;
+    position: relative;
+    padding-top: inherit;
+    padding: 9px 17px 9px 41px;
+    margin-bottom: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #E8D95F;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #6f6f6f;
+    border: 1px solid #E8D95F;
+    border-radius: 5px;
+}
+
+/* Hide the browser's default checkbox */
+.b-bank4 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark4 {
+    position: absolute;
+    top: 11px;
+    left: 16px;
+    height: 16px;
+    width: 18px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.b-bank4:hover input~.checkmark4 {
+    background-color: white;
+}
+
+/* When the checkbox is checked, add a blue background */
+.b-bank4 input:checked~.checkmark4 {
+    background-color: white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark4:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.b-bank4 input:checked~.checkmark4:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.b-bank4 .checkmark4:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid #3f3f3f;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+
+
+.ttext-edit a {
+    float: right;
+    margin-right: 45px;
+    color: white;
+}
+
+.ttext-edit a:hover {
+    float: right;
+    margin-right: 45px;
+    color: rgb(199, 195, 195);
+}
+
+.ttext-delate a {
+    float: right;
+    margin-right: -98px;
+    color: white;
+}
+
+.ttext-delate a:hover {
+    float: right;
+    margin-right: -98px;
+    color: rgb(199, 195, 195);
+}
+
+.h-text-h p {
+    font-size: 14px;
+    color: #cdcaca;
+    margin-bottom: 5px;
+    float: right;
+}
+
+.detail-text-detail p {
+    font-size: 14px;
+    color: var(--clrwhites);
+    margin-bottom: 5px;
+}
+
+.b-but-addplus2 .button {
+    background-color: #555454;
+    border: none;
+    color: white;
+    padding: 11px 362px 15px 390px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 19px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#history-request .ac-detail-text-tt .w3-black,
+.w3-hover-black:hover {
+    color: #fff !important;
+    background-color: #4f4f4f !important;
+}
+
+
+#history-request .w3-modal-content {
+    outline: 0;
+    width: 700px;
+    padding: 25px;
+    background-color: #282828;
+    margin-top: -45px;
+}
+
+#history-request .card-con {
+    background-color: #3F3F3F;
+    height: 524px;
+    padding: 30px;
+}
+
+#history-request .text-t-haer-pakan p {
+    font-size: 14px;
+    text-align: center;
+    color: white;
+    font-weight: 400px;
+}
+
+#history-request .card-con label {
+    color: #dddddd;
+}
+
+#history-request .card-con span {
+    color: rgb(227, 118, 118);
+}
+
+#history-request .card-con .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    border-top: 2px solid #828282;
+    border-left: 2px solid #828282;
+    border-right: 2px solid #828282;
+    border-bottom: 2px solid #828282;
+    background-color: #333333;
+    color: white;
+    border-radius: 4px;
+}
+
+#history-request .text-t-deail-add-edit .form-select {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747575;
+    background-color: #333;
+}
+
+
+.button {
+    background-color: #e8d95f;
+    border: none;
+    color: #282828;
+    padding: 6px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Kanit", sans-serif;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-close {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+}
+
+.button-close:hover {
+    background-color: #828282;
+    color: white;
+    border: 2px solid #828282;
+}
+
+.button-up {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+}
+
+.button-up:hover {
+    background-color: black;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+}
+
+#history-request .card-conotp {
+    background-color: #3F3F3F;
+    height: 270px;
+    padding: 30px;
+}
+
+.h-text-otp p {
+    font-size: 14px;
+    color: white;
+    text-align: center;
+}
+
+.num-text-otp p {
+    font-size: 14px;
+    color: #E8D95F;
+    text-align: center;
+}
+
+.vi-text-otp p {
+    font-size: 14px;
+    color: white;
+    text-align: center;
+}
+
+.re-text-otp p {
+    font-size: 14px;
+    color: white;
+    text-align: center;
+}
+
+#history-request .card-in2 {
+    background-color: #333333;
+    height: 146px;
+    width: 105%;
+    margin-top: 22px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.card-in2 .drop-zone__prompt {
+    padding-top: 20px;
+}
+
+/*---- img upload ------*/
+.drop-zone {
+    height: 122px;
+    width: 29%;
+    margin-left: 183px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    background-color: #ffffff0f;
+    /* border: 4px dashed #009578; */
+    border-radius: 10px;
+}
+
+.drop-zone p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    margin-top: 5px;
+}
+
+.drop-zone .tt-img-detail p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: #cccccc;
+    margin-top: -14px;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__prompt {
+    padding-top: 20px;
+}
+
+.drop-zone__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+}
+
+/*---- end img upload ------*/
+
+#history-request .card-con .drop-zone__prompt2 {
+    color: white;
+    margin-top: 20px;
+}
+
+.ttext-delate p {
+    float: right;
+    margin-right: -22px;
+    margin-top: 8px;
+    color: white;
+}
+
+#history-request .ac-detail-text-tt2 .w3-black,
+.w3-hover-black:hover {
+    color: #fff !important;
+    background-color: #4f4f4f !important;
+    float: right;
+    margin-right: 37px;
+}
+
+
