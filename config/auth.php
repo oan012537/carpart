@@ -85,12 +85,12 @@ return [
         // ],
         'supplier' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Supplier::class,
+            'model' => App\Models\Supplier\Users_supplier::class,
         ],
-        
+
         'buyer' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Buyer\buyer::class,
+            'model' => App\Models\Buyer\mUsers_buyer::class,
         ],
     ],
 

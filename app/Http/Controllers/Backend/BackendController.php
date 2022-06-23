@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\App;
+use Session;
 
 class BackendController extends Controller
 {
@@ -34,6 +36,8 @@ class BackendController extends Controller
             // $credentials = $request->only('email', 'password');
             // dd(Auth::attempt($request->only(["email", "password"])));
             if (Auth::attempt($request->only(["email", "password"]))) {
+                Session::put('lang', Auth::guard('web')->user()->lang);
+                App::setLocale(Auth::guard('web')->user()->lang);
                 return response()->json(["status"=>true,"redirect_location"=>url("backend/dashboard")]);
                 
             } else {
@@ -66,6 +70,8 @@ class BackendController extends Controller
         $user = User::create([
             'name' => $request->name,
             'phone' => $request->phone,
+            'status' => '1',
+            'role' => '10',
             'email' => $request->email,
             'password' => Hash::make('12345678'),
         ]);
@@ -76,5 +82,17 @@ class BackendController extends Controller
         Auth::login($user);
 
         return redirect('backend/dashboard');
+    }
+
+    public function logout()
+    {
+        Auth::guard('web')->logout();
+        Session::flush();
+
+        // $request->session()->invalidate();
+
+        // $request->session()->regenerateToken();
+
+        return redirect()->route('backend.login.index');
     }
 }

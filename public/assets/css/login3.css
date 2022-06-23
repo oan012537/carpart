@@ -148,13 +148,14 @@
     color: black;
     border: 2px solid #E8D95F;
     padding: 10px 75px 10px 75px;
+    margin-left: -163px;
+    margin-right: -23px;
 }
 
 .button3:hover {
     background-color: #282828;
     color: #E8D95F;
 }
-
 
 
 /* The Modal (background) */
@@ -183,12 +184,12 @@
 
 /* The Close Button */
 #sec-login1 .close {
-    color: #000000f2;
+    color: #0b0000f2;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
-    margin-left: 500px;
-    margin-top: 10px;
+    font-size: 45px;
+    font-weight: 300;
+    margin-left: 497px;
+    margin-top: -6px;
 }
 
 #sec-login1 .close:hover,
@@ -205,11 +206,11 @@
     font-size: 16px;
     line-height: 36px;
     text-align: center;
+    margin-top: -64px;
 }
 
 #sec-login1 .modal-footer {
     background-color: #282828;
-    padding: 50px;
+    padding-top: 42px;
     justify-content: center;
 }
-

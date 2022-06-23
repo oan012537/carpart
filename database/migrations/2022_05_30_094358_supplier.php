@@ -23,7 +23,7 @@ class Supplier extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->char('status',1)->nullable();
+            $table->char('active',1)->nullable();
             $table->string('social_id')->nullable();
             $table->string('social_type')->nullable();
             $table->timestamps();

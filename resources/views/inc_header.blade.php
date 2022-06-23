@@ -26,13 +26,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link btn__yellow" href="{{route('buyer.login')}}">
+                    <a class="nav-link btn__yellow" href="{{url('buyer/login-buy')}}">
                         <div class="icon"><span>เข้าสู่ระบบผู้ซื้อ</span></div>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link btn__yellow2" href="{{route('supplier.login')}}">
+                    <a class="nav-link btn__yellow2" href="{{route('supplier')}}">
                         <div class="icon2"><span>เข้าสู่ระบบผู้ขาย</span></div>
                     </a>
                 </li>

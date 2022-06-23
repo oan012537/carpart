@@ -30,29 +30,41 @@
         <!--  -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{{asset('backends/assets/img/icon/icon-web.svg')}}" class="img-fluid" alt=""> ไทย
+                <img src="{{asset('backends/assets/img/icon/icon-web.svg')}}" class="img-fluid" alt=""> @if(Session::get('lang')=='th')ไทย @else English @endif
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">ไทย</a></li>
+                <li><a class="dropdown-item" href="{{url('backend/setlang/th')}}">ไทย</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">English</a></li>
+                <li><a class="dropdown-item" href="{{url('backend/setlang/en')}}">English</a></li>
             </ul>
         </li>
 
         <!--  -->
-
-        <li class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </li>
+        <li class="header_img" >
+            <img src="{{asset('backends/assets/img/hczKIze.jpg')}}" alt=""> 
+        </li>
+        <a href="{{url('backend/logout')}}" class="btn__logout"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</a>
+        {{-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle header_img" href="#" id="navbarProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{{asset('backends/assets/img/hczKIze.jpg')}}" alt=""> 
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarProfile">
+                <li>
+                    <a class="dropdown-item" href="{{url('backend/logout')}}">Logout</a>
+                </li>
+            </ul>
+        </li> --}}
     </ul>
 
 </header>
-<div class="l-navbar show" id="nav-bar">
+<div class="l-navbar showmenu" id="nav-bar">
     <nav class="nav">
-        <div> <a href="#" class="nav_logo"> <img src="{{asset('backends/assets/img/navbar/logo-whites.svg')}}" class="img-fluid" alt=""> </a>
+        <div> <a href="{{route('backend.dashboard')}}" class="nav_logo"> <img src="{{asset('backends/assets/img/navbar/logo-whites.svg')}}" class="img-fluid" alt=""> </a>
             <div class="nav_list">
                 <li>
-                    <a href="#" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
+                    <a data-page="dashboard" href="{{route('backend.dashboard.index')}}" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
                 </li>
                 <!-- DropDown -->
                 <li>
@@ -65,8 +77,8 @@
                         </div>
                     </a>
                     <ul class="item-show-1 itemdropdown">
-                        <li data-page="approval-individual"><a href="approvel-individual.php">ผู้ขายบุคคลธรรมดา</a></li>
-                        <li data-page="approval-legal"><a href="approvel-legal.php">ผู้ขายนิติบุคคล</a></li>
+                        <li data-page="approval-individual"><a href="{{route('backend.approval.individual')}}">ผู้ขายบุคคลธรรมดา</a></li>
+                        <li data-page="approval-legal"><a href="{{route('backend.approval.legal')}}">ผู้ขายนิติบุคคล</a></li>
                     </ul>
                 </li>
                 <!-- DropDown -->
@@ -82,7 +94,7 @@
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-star"></i> <span class="nav_name">จัดการรีวิว</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class='far fa-comments'></i> <span class="nav_name">Chat</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-book-open"></i> <span class="nav_name">จัดการ PDPA</span> </a></li>
-                <li><a href="{{route('backend.company')}}" class="nav_link"> <i class="fa-solid fa-gear"></i> <span class="nav_name">ตั้งค่าบริษัท</span> </a></li>
+                <li><a data-page="settingcompany" href="{{route('backend.company')}}" class="nav_link"> <i class="fa-solid fa-gear"></i> <span class="nav_name">ตั้งค่าบริษัท</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-screwdriver-wrench"></i> <span class="nav_name">ตั้งค่าหมวดหมู่สินค้า</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-money-check"></i> <span class="nav_name">จัดการ Banner</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-table-list"></i><span class="nav_name">จัดการบทความ</span> </a></li>

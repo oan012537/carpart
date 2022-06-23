@@ -22,7 +22,7 @@
 
 #sec-confirm .card .card-header {
     background-color: #4F4F4F;
-    height: 50px;
+    height: 55px;
 }
 
 #sec-confirm .card-header p {
@@ -77,6 +77,12 @@
     color: #E0E0E0;
     font-weight: 300;
 }
+
+#id04 {
+    z-index: 2;
+
+}
+
 
 .div1 {
     width: 600px;
@@ -151,7 +157,7 @@
     text-align: center;
 }
 
-button:not(:disabled),
+/*button:not(:disabled),
 [type="button"]:not(:disabled),
 [type="reset"]:not(:disabled),
 [type="submit"]:not(:disabled) {
@@ -166,7 +172,36 @@ button:not(:disabled),
     font-size: 15px;
     transition-duration: 0.4s;
     border-radius: 4px;
+}*/
+
+.button {
+    background-color: #e8d95f;
+    border: none;
+    color: #282828;
+    padding: 6px 32px ;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Kanit", sans-serif;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    cursor: pointer;
 }
+
+.button4 {
+    background-color: #282828;
+    color: #e8d95f;
+    border: 2px solid #e8d95f;
+}
+
+.button4:hover {
+    background-color: #e8d95f;
+    color: #3F3F3F;
+    border: 2px solid #e8d95f;
+}
+
 
 #sec-confirm .input-group>.form-control,
 .input-group>.form-select {
@@ -226,6 +261,13 @@ button:not(:disabled),
     float: right;
     margin-right: 27px;
     margin-top: -37px;
+    background-color: #3f3f3f;
+}
+
+.w3-black,
+.w3-hover-black:hover {
+    color: #fff !important;
+    /* background-color: #000!important; */
 }
 
 #sec-confirm .card5 {
@@ -347,9 +389,9 @@ button:not(:disabled),
 }
 
 .button1 {
-    background-color: #828282;
-    color: white;
-    border: 2px solid #828282;
+    background-color: #E8D95F;
+    color: #282828;
+    border: 2px solid #E8D95F;
 }
 
 .button1:hover {
@@ -368,23 +410,184 @@ button:not(:disabled),
     color: #E8D95F;
 }
 
-.button3:hover {
+.button3 {
     background-color: #4F4F4F;
     color: white;
     border: 2px solid #4F4F4F;
 }
 
-.button4:hover {
+.button3:hover {
+    background-color: #828282;
+    color: white;
+    border: 2px solid #828282;
+}
+
+
+.button6 {
     background-color: #282828;
     color: #E8D95F;
+    border: 2px solid #E8D95F;
+    float: right;
+    margin-top: -50px;
 }
+
+.button6:hover {
+    background-color: #E8D95F;
+    color: #282828;
+    border: 2px solid #E8D95F;
+}
+
+
+
+.button7 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+}
+
+.button7:hover {
+    background-color: #828282;
+    color: white;
+    border: 2px solid #828282;
+}
+
+.img-lo-iconniti {
+    width: 4%;
+    margin-left: 200px;
+    margin-top: -41px;
+}
+
+.tt-text-niti p {
+    font-size: 18px;
+    color: #6FCF97;
+    margin-left: 255px;
+    margin-top: -41px;
+
+}
+
+.text-t-haer-pakan p {
+    font-size: 18px;
+    color: white;
+    text-align: center;
+}
+
+.text-t-deail-pakan p {
+    font-size: 14px;
+    color: white;
+    padding: 20px;
+}
+
+.w3-container,
+.w3-panel {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background-color: #3b3a3a;
+}
+
+
+.text-t-deail-add-edit .form-control {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    border-top: 2px solid #828282;
+    border-left: 2px solid #828282;
+    border-right: 2px solid #828282;
+    border-bottom: 2px solid #828282;
+    border-radius: 4px;
+    color: #747575;
+    background-color: #333;
+}
+
+.text-t-deail-add-edit .form-select {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747575;
+    background-color: #333;
+}
+
+
+
+/*---- ปรับ scrollbar .b-text-t-b ------*/
+.text-t-deail-pakan {
+    overflow-y: scroll;
+    height: 350px;
+    border: 2px solid #8e8e8c;
+    border-radius: 5px;
+}
+
+/* width */
+.text-t-deail-pakan::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.text-t-deail-pakan::-webkit-scrollbar-track {
+    background-color: #828282;
+    border-radius: 100px;
+}
+
+/* Handle */
+.text-t-deail-pakan::-webkit-scrollbar-thumb {
+    background-color: #3F3F3F;
+    border-radius: 100px;
+}
+
+/* Handle on hover */
+.text-t-deail-pakan::-webkit-scrollbar-thumb {
+    background-color: #dddddd;
+    border-radius: 100px;
+}
+
+#sec-confirm .card-con {
+    background-color: #3F3F3F;
+    height: 477px;
+    padding: 30px;
+}
+
+#sec-confirm .card-con label {
+    color: #dddddd;
+}
+
+#sec-confirm .card-con span {
+    color: rgb(227, 118, 118);
+}
+
+
+#sec-confirm .card-con .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    border-top: 2px solid #828282;
+    border-left: 2px solid #828282;
+    border-right: 2px solid #828282;
+    border-bottom: 2px solid #828282;
+    background-color: #333333;
+    color: white;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+
 
 /* The Modal (background) */
 #sec-confirm .modal {
     display: none;
     position: fixed;
-    z-index: 1;
     padding-top: 100px;
+    z-index: 2;
     left: 0;
     top: 0;
     width: 100%;
@@ -396,26 +599,27 @@ button:not(:disabled),
 
 /* Modal Content */
 #sec-confirm .modal-content {
-    background-color: #fefefe;
+    background-color: #3F3F3F;
     margin: auto;
     /* padding: 20px;
-    border: 1px solid #888;*/
-    width: 35%;
+    border: 1px solid #fefefe;*/
+    width: 45%;
+    margin-top: -9px;
 }
 
 /* The Close Button */
 #sec-confirm .close {
-    color: #000000f2;
+    color: #f4eeeef2;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
-    margin-left: 500px;
-    margin-top: 10px;
+    font-size: 45px;
+    font-weight: 300;
+    margin-left: 640px;
+    margin-top: -13px;
 }
 
 #sec-confirm .close:hover,
 .close:focus {
-    color: #000;
+    color: white;
     text-decoration: none;
     cursor: pointer;
 }
@@ -433,4 +637,133 @@ button:not(:disabled),
     background-color: #282828;
     padding: 50px;
     justify-content: center;
+}
+
+#sec-confirm .t-body-text p {
+    font-size: 14px;
+    text-align: center;
+    color: white;
+    font-weight: 400px;
+}
+
+.box-body-address .form-control {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    border-top: 2px solid #828282;
+    border-left: 2px solid #828282;
+    border-right: 2px solid #828282;
+    border-bottom: 2px solid #828282;
+    background-color: #333333;
+    color: white;
+    border-radius: 4px;
+}
+
+.box-body-address .form-select {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747575;
+    background-color: #333;
+}
+
+.box-body-address .form-label {
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .card7 {
+    background-color: #555454;
+    height: 195px;
+    border-radius: 6px;
+}
+
+.card7 .card-title7 {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+.card7 .text-edit7 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-right: 27px;
+    margin-top: 21px;
+}
+
+.card7 .card-tadail7 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 21px;
+}
+
+.card7 .card-tadail7 .text-t-detail p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+
+#sec-confirm .card8 {
+    background-color: #555454;
+    height: 195px;
+    border-radius: 6px;
+}
+
+.card8 .card-title8 {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+.card8 .text-edit8 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-right: 27px;
+    margin-top: 21px;
+}
+
+.card8 .card-tadail8 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 21px;
+}
+
+.card8 .card-tadail8 .text-t-detail p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+
+.b-but-addplus .button {
+    background-color: #555454;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 283px 15px 270px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+}
+
+.b-but-addplus .button-inadd:hover {
+    box-shadow: 0 12px 16px 0 rgba(38, 37, 37, 0.428), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }

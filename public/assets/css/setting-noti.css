@@ -1,0 +1,255 @@
+#history-request .txt__titlenoti  {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: white;
+    margin-left: 1.5rem;
+    padding-top: 1rem;
+}
+
+#history-request .box__contentmain .underline-noti {
+    border-color: #727272 !important;
+    opacity: 1;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0;
+}
+
+#history-request .txt__detailtitlenoti {
+    font-size: 1rem;
+    font-weight: 300;
+    color: white;
+    margin-left: 1.5rem;
+    margin-top: -13px;
+}
+
+#history-request .card-s {
+    background-color: #4F4F4F;
+    height: 110px;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+
+.container2 {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container2 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 23px;
+    width: 23px;
+    margin: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark2 {
+    background-color: #ffffff;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container2 input:checked~.checkmark2 {
+    background-color: #ffffff;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark2:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container2 input:checked~.checkmark2:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container2 .checkmark2:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #373737;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.tt-roon-text-tt p {
+    font-size: 14px;
+    color: white;
+    margin-left: 53px;
+    padding-top: 16px;
+}
+
+.text-delate-text p {
+    font-size: 14px;
+    color: white;
+    float: right;
+    padding-top: 16px;
+    margin-right: 30px;
+}
+
+
+#history-request .button5 {
+    background-color: #3a3636;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 6px 20px 6px 20px;
+    border-radius: 8px;
+    margin-left: 13px;
+    margin-right: -15px;
+}
+
+.b-but-addplus .button {
+    background-color: #3a3636;
+    border: none;
+    color: white;
+    padding: 14px 270px 15px 336px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 19px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#id02 .w3-modal-content {
+    outline: 0;
+    padding: 25px;
+    width: 70%;
+    background-color: #282828;
+    margin-top: -26px;
+}
+
+.tt-add-text-tt P {
+    font-size: 14px;
+    color: white;
+}
+
+
+#id02 .text-h-roon p {
+    font-size: 18px;
+    color: white;
+}
+
+#id02 .text-tt-roon {
+    margin-left: -83px;
+}
+
+#id02 .text-tt-roon span {
+    font-size: 16px;
+    color: white;
+}
+
+#id02 .text-detail-roon p {
+    font-size: 14px;
+    color: white;
+    margin-top: 16px;
+}
+
+.box-roon-box {
+    padding: 30px 30px;
+    border: 1px solid #ccc;
+}
+
+.button-close {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 10px 50px 10px 50px;
+    border-radius: 5px;
+}
+
+.button-close:hover {
+    background-color: #3f3e3e;
+    color: white;
+    border: 2px solid #3f3e3e;
+    padding: 10px 50px 10px 50px;
+    border-radius: 5px;
+}
+
+.button-up {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    padding: 10px 50px 10px 50px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.button-up:hover {
+    background-color: black;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    padding: 10px 50px 10px 50px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+
+/*---- ปรับ scrollbar .b-text-t-b ------*/
+
+.box-scoll-roon {
+    overflow-y: scroll;
+    height: 280px;
+    border-radius: 5px;
+}
+
+/* width */
+.box-scoll-roon::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.box-scoll-roon::-webkit-scrollbar-track {
+    background-color: white;
+    border-radius: 100px;
+}
+
+/* Handle */
+.box-scoll-roon::-webkit-scrollbar-thumb {
+    background-color: #3F3F3F;
+    border-radius: 100px;
+}
+
+/* Handle on hover */
+.box-scoll-roon::-webkit-scrollbar-thumb {
+    background-color: #E8D95F;
+    border-radius: 100px;
+}
+
+
+
+
+
+
+
+

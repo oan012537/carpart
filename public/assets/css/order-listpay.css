@@ -1,0 +1,999 @@
+#sec-confirm {
+    padding-top: 20px;
+    padding-bottom: 350px;
+}
+
+#sec-confirm .h-text-confirm p {
+    font-size: 26px;
+    font-weight: 500;
+    color: white;
+}
+
+#sec-confirm .d-text-confirm p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .card {
+    background-color: #3F3F3F;
+}
+
+#sec-confirm .card .card-header {
+    background-color: #4F4F4F;
+    height: 43px;
+}
+
+#sec-confirm .card-header .text-span-t1 p {
+    font-size: 15px;
+    color: #ffc107;
+    font-weight: 400;
+}
+
+#sec-confirm .text-span-t1 span {
+    width: 23px;
+    height: 23px;
+    background-color: #ffc107;
+    display: inline-block;
+    border-radius: 50px;
+    color: var(--clrdarks2);
+    padding-left: 9px;
+}
+
+#sec-confirm .card-header .text-span-t2 p {
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 400;
+    margin-left: -35px;
+}
+
+#sec-confirm .text-span-t2 span {
+    width: 23px;
+    height: 23px;
+    background-color: #ffffff;
+    display: inline-block;
+    border-radius: 50px;
+    color: var(--clrdarks2);
+    padding-left: 7px;
+}
+
+#sec-confirm .card-header .text-span-t3 p {
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 400;
+    margin-left: -93px;
+}
+
+#sec-confirm .text-span-t3 span {
+    width: 23px;
+    height: 23px;
+    background-color: #ffffff;
+    display: inline-block;
+    border-radius: 50px;
+    color: var(--clrdarks2);
+    padding-left: 7px;
+}
+
+#sec-confirm .t-roon-img .card-title {
+    font-size: 18px;
+    color: #56cbf1;
+    margin-left: 55px;
+    margin-top: -37px;
+}
+
+#sec-confirm .t-roon-img .card-detail {
+    font-size: 18px;
+    color: #ffffff;
+    margin-left: -20px;
+    margin-top: 21px;
+}
+
+.num-order p {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 300;
+}
+
+.pay-payment p {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 300;
+}
+
+
+#sec-confirm .card-title  {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .card-text  {
+    font-size: 14px;
+    color: #E0E0E0;
+    font-weight: 300;
+}
+
+#sec-confirm .card2 {
+    background-color: #3F3F3F;
+    height: 120px;
+}
+
+#sec-confirm .card2 .card-title {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+}
+
+#sec-confirm .card-detail {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding-left: 20px;
+    margin-top: -13px;
+}
+
+#sec-confirm .card-d {
+    background-color: #3F3F3F;
+    height: 153px;
+}
+#sec-confirm .card-d .card-header {
+    background-color: #4F4F4F;
+    height: 65px;
+    padding: 15px 20px;
+    margin-bottom: 6px;
+}
+
+
+#sec-confirm .card-d .card-body {
+    background-color: #3F3F3F;
+    padding: 20px;
+}
+
+#sec-confirm .card-d .card-header p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+}
+
+
+#sec-confirm .card-pay {
+    background-color: #3F3F3F;
+    height: 530px;
+}
+
+#sec-confirm .select-text-t p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    text-align: center;
+}
+
+#sec-confirm .detail-check1 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .detail-check1 font {
+    font-size: 11px;
+    color: white;
+    font-weight: 300;
+    background-color: #4F4F4F;
+    padding: 3px 9px 3px 9px;
+    border-radius: 15px;
+}
+
+#sec-confirm .detail-check2 p {
+    font-size: 14px;
+    color: rgb(205, 202, 202);
+    font-weight: 300;
+}
+
+#sec-confirm .detail-check2 font {
+    font-size: 11px;
+    color: #FF7B7B;
+    font-weight: 300;
+}
+
+.b-box-pay2 {
+    border: 1px solid #ccc;
+    padding: 76px;
+}
+
+.text-t-pay p{
+    font-size: 14px;
+    color: #E8D95F;
+    font-weight: 300;
+    text-decoration: underline;
+}
+
+.b-box-pay3 {
+    border: 1px solid #ccc;
+    padding: 85px;
+}
+
+.w3-container,
+.w3-panel {
+    padding-top: 20px;
+    /* background-color: #3b3a3a; */
+}
+
+.text-t-payment-text p {
+    font-size: 14px;
+    color: white;
+}
+
+.button11 {
+    background-color: #E8D95F;
+    color: #282828;
+    padding: 9px 40px 9px 40px;
+    border-radius: 5px;
+    border: 2px solid #E8D95F;
+    margin-top: 54px;
+    float: right;
+}
+
+.button11:hover {
+    background-color: #282828;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+}
+
+
+/* Modal Content */
+#sec-confirm .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    /* padding: 20px;
+    border: 1px solid #888;*/
+    width: 35%;
+}
+
+/* The Close Button */
+#sec-confirm .close {
+    color: #0b0000f2;
+    float: right;
+    font-size: 45px;
+    font-weight: 300;
+    margin-left: 497px;
+    margin-top: -6px;
+}
+
+#sec-confirm .close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#sec-confirm .tt-text-con p {
+    color: white;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+    margin-top: -64px;
+}
+
+#sec-confirm .modal-footer {
+    background-color: #282828;
+    padding-top: 42px;
+    justify-content: center;
+}
+/* End Modal Content */
+
+#sec-confirm .text-t-haer-pay p {
+    font-size: 22px;
+    font-weight: 500;
+    color: #000;
+    text-align: center;
+}
+
+#sec-confirm .text-t-deail-pay-ment p {
+    font-size: 14px;
+    color: #747575;
+    font-weight: 300;
+}
+
+#sec-confirm .text-t-deail-pay-ment2 p {
+    font-size: 14px;
+    color: #747575;
+    font-weight: 300;
+}
+
+#sec-confirm .text-t-deail-pay-ment3 p {
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+    text-align: right;
+}
+
+#sec-confirm .text-t-deail-pay-ment4 p {
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+    text-align: right;
+}
+
+#sec-confirm .box-col-b {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.fa-arrow-right:before {
+    color: white;
+}
+
+.button12 {
+    background-color: #E8D95F;
+    color: #282828;
+    padding: 9px 40px 9px 40px;
+    border-radius: 5px;
+    border: 2px solid #E8D95F;
+    margin-top: 54px;
+}
+
+.button12:hover {
+    background-color: #282828;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+}
+
+#sec-confirm .w3-modal-content {
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+    padding: 0;
+    outline: 0;
+    width: 40%;
+    border-radius: 10px;
+}
+
+#sec-confirm .b-but-concon {
+    margin-top: -90px;
+}
+
+
+
+
+
+/*
+ CSS for the main interaction
+*/
+.tabset>input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+}
+
+.tabset .tab-panel {
+    display: none;
+}
+
+.tabset>input:first-child:checked~.tab-panels>.tab-panel:first-child,
+.tabset>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2),
+.tabset>input:nth-child(5):checked~.tab-panels>.tab-panel:nth-child(3),
+.tabset>input:nth-child(7):checked~.tab-panels>.tab-panel:nth-child(4),
+.tabset>input:nth-child(9):checked~.tab-panels>.tab-panel:nth-child(5),
+.tabset>input:nth-child(11):checked~.tab-panels>.tab-panel:nth-child(6) {
+    display: block;
+}
+
+/*
+ Styling
+*/
+body {
+    font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+    color: #333;
+    font-weight: 300;
+}
+
+.tabset>label {
+    position: relative;
+    display: inline-block;
+    padding: 10px 30px 10px 30px;
+    border: 1px solid #828282;
+    border-radius: 10px 10px 0px 0px;
+    margin-right: 3px;
+    background-color: #4F4F4F;
+    color: white;
+    border-bottom: 0;
+    cursor: pointer;
+    font-weight: 300;
+}
+
+.tabset>label::after {
+    content: "";
+    /*position: absolute;*/
+    left: 15px;
+    bottom: 10px;
+    width: 22px;
+    height: 4px;
+    background: #8d8d8d;
+}
+
+.tabset>label:hover,
+.tabset>input:focus+label {
+    color: 282828;
+}
+
+
+.tabset>input:checked+label {
+    border-color: #E8D95F;
+    border-bottom: 1px solid #E8D95F;
+    margin-bottom: -1px;
+    background-color: #E8D95F;
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.tab-panel {
+    padding: 30px 30px;
+    border: 1px solid #ccc;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/*
+ Demo purposes only
+*/
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 30px;
+}
+
+.tabset {
+    max-width: 79em;
+    margin: 19px;
+}
+
+.img-payment {
+    max-width: 45%;
+    margin-left: 89px;
+}
+
+.img-payment2 {
+    max-width: 50%;
+    margin-top: 26px;
+    margin-left: 87px;
+}
+
+.text-t-qr span {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.button10 {
+    background-color: #282828;
+    color: #E8D95F;
+    padding: 9px 20px 9px 20px;
+    border-radius: 5px;
+    border: 2px solid #E8D95F;
+    margin-top: 6px;
+}
+
+.button10:hover {
+    background-color: #E8D95F;
+    color: #282828;
+    border: 2px solid #E8D95F;
+}
+
+.detail-de-text p {
+    font-size: 14px;
+    color: white;
+    float: right;
+}
+
+.detail-de-text2 p {
+    font-size: 14px;
+    color: white;
+    float: right;
+    font-weight: 400;
+}
+
+.detail-de-text3 p {
+    font-size: 18px;
+    color: #E8D95F;
+    float: right;
+    font-weight: 400;
+}
+
+.text-pay-t p {
+    font-size: 14px;
+}
+
+.b-box-pay {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+
+
+
+
+.div1 {
+    width: 600px;
+    height: 200px;
+    padding: 20px;
+    border: 1px solid #9c9a9a;
+}
+
+
+/*---- img upload ------*/
+.drop-zone {
+    max-width: 156px;
+    height: 158px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    background-color: #ffffff0f;
+    /* border: 4px dashed #009578; */
+    border-radius: 10px;
+    margin-left: 200px;
+
+}
+
+.drop-zone p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    margin-top: 5px;
+}
+
+.drop-zone .tt-img-detail p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: #cccccc;
+    margin-top: -14px;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+}
+
+/*button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+    cursor: pointer;
+    background-color: #E8D95F;
+    border: none;
+    color: #282828;
+    padding: 7px 36px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+}*/
+
+
+
+
+#sec-confirm .tt-text-log p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    display: flex;
+    color: white;
+}
+
+#sec-confirm .card4 {
+    background-color: #3F3F3F;
+    height: 130px;
+}
+
+#sec-confirm .card4 .card-title {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+}
+
+#sec-confirm .card4 .card-detail {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding-left: 20px;
+    margin-top: -13px;
+}
+#sec-confirm .card4 .card-detail2 {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding-left: 20px;
+    margin-top: -7px;
+}
+
+#sec-confirm .text-edit p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-right: 27px;
+    margin-top: -37px;
+}
+
+#sec-confirm .card5 {
+    background-color: #3F3F3F;
+    height: 180px;
+}
+
+#sec-confirm .h-text-h p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+}
+
+#sec-confirm .h-text-h2 p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+    margin-left: -22px;
+}
+
+#sec-confirm .card-ko .col-form-label {
+    padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+    padding-left: 32px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #BDBDBD;
+}
+
+#sec-confirm .card-ko .form-control { 
+    position: relative;
+    flex: 1 1 auto;
+    width: 60%;
+    min-width: 0;
+    border-top: 2px solid #828282;
+    border-left: 2px solid #828282;
+    border-right: 2px solid #828282;
+    border-bottom: 2px solid #828282;
+    background-color: #333333;
+    color: white;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+#sec-confirm .card-ko {
+    background-color: #3F3F3F;
+    height: 150px;
+}
+
+#sec-confirm .text-h-head p {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+}
+
+#sec-confirm .img-lo-icon {
+    padding-left: 20px;
+}
+
+#sec-confirm .detail-text-t p {
+    font-size: 12px;
+    color: white;
+    font-weight: 300;
+    padding: 10px 20px;
+    padding-left: 20px;
+}
+
+#sec-confirm .img-lo-icon p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .hh-text-h p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .img-lo-icon2 {
+    width: 23%;
+    margin-left: 109px;
+    margin-top: -41px;
+}
+
+#sec-confirm .img-lo-icon3 {
+    width: 23%;
+    margin-left: 121px;
+    margin-top: -41px;
+}
+
+#sec-confirm .date-detail-text-t p {
+    font-size: 12px;
+    color: white;
+    font-weight: 300;
+    padding-top: 10px;
+}
+
+#sec-confirm .date-detail-text-t2 p {
+    font-size: 12px;
+    color: white;
+    font-weight: 300;
+    margin-top: -10px;
+}
+
+#sec-confirm .price-text-t p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .card6 {
+    background-color: #3F3F3F;
+    height: 180px;
+}
+
+#sec-confirm .card6 .form-check font {
+    font-size: 16px;
+    color: #E8D95F;
+    font-weight: 300;
+}
+
+#sec-confirm .d-detail-t-card6 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+}
+
+#sec-confirm .d-detail-t2-card6 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    padding-left: 20px;
+    margin-top: -31px;
+}
+
+#sec-confirm .text-ko-t p {
+    font-size: 14px;
+    color: #BDBDBD;
+    font-weight: 300;
+    padding-left: 20px;
+    margin-top: -13px;
+}
+
+.button6 {
+    background-color: #282828;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    padding: 9px 20px 9px 20px;
+    border-radius: 5px;
+    float: right;
+    margin-top: -65px;
+}
+
+.button6:hover {
+    background-color: #E8D95F;
+    color: #282828;
+    border: 2px solid #E8D95F;
+}
+
+.img-lo-iconniti {
+    width: 4%;
+    margin-left: 195px;
+    margin-top: -50px;
+}
+
+.tt-text-niti p {
+    font-size: 18px;
+    color: #56cbf1;
+    margin-left: 255px;
+    margin-top: -56px;
+}
+
+.text-t-haer-pakan p {
+    font-size: 18px;
+    color: white;
+    text-align: center;
+}
+
+.text-t-deail-pakan p {
+    font-size: 14px;
+    color: white;
+    padding: 20px;
+}
+
+/* The Modal (background) */
+#sec-confirm .modal {
+    display: none;
+    position: fixed;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+
+#sec-confirm .modal-footer {
+    background-color: #282828;
+    padding: 50px;
+    justify-content: center;
+}
+
+#sec-confirm .t-body-text p {
+    font-size: 14px;
+    text-align: center;
+    color: white;
+    font-weight: 400px;
+}
+
+.box-body-address .form-control {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    border-top: 2px solid #828282;
+    border-left: 2px solid #828282;
+    border-right: 2px solid #828282;
+    border-bottom: 2px solid #828282;
+    background-color: #333333;
+    color: white;
+    border-radius: 4px;
+}
+
+.box-body-address .form-select {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747575;
+    background-color: #333;
+}
+
+.box-body-address .form-label {
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 300;
+}
+
+#sec-confirm .card7 {
+    background-color: #555454;
+    height: 195px;
+    border-radius: 6px;
+}
+
+.card7 .card-title7 {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+.card7 .text-edit7 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-right: 27px;
+    margin-top: 21px;
+}
+
+.card7 .card-tadail7 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 21px;
+}
+
+.card7 .card-tadail7 .text-t-detail p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+
+#sec-confirm .card8 {
+    background-color: #555454;
+    height: 195px;
+    border-radius: 6px;
+}
+
+.card8 .card-title8 {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+.card8 .text-edit8 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-right: 27px;
+    margin-top: 21px;
+}
+
+.card8 .card-tadail8 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 21px;
+}
+
+.card8 .card-tadail8 .text-t-detail p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+}
+
+.b-but-addplus .button {
+    background-color: #555454;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 277px 15px 276px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+}
+
+.b-but-addplus .button1:hover {
+    box-shadow: 0 12px 16px 0 rgba(38, 37, 37, 0.428), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}

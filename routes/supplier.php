@@ -21,7 +21,7 @@ use App\Http\Controllers\Supplier as Supplier;
 
 
 // Route::group(['middleware' => 'supplier'], function(){
-    Route::prefix('supplier')->group(function () {
-        Route::get('/', function(){});
-    });
+    // Route::prefix('supplier')->group(function () {
+    //     Route::get('/', function(){});
+    // });
 // });

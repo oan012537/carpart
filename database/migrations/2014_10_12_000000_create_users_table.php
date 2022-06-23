@@ -25,8 +25,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->char('status',1)->nullable();
+            $table->string('role',10);
             $table->string('social_id')->nullable();
             $table->string('social_type')->nullable();
+                        
+            $table->string('lang',2)->default('en');
+            // $table->decimal('refunddata_profix', $precision = 11, $scale = 2);
+            // $table->foreign('refunddata_ref')->references('refund_id')->on('refund')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
