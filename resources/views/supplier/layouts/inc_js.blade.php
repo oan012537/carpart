@@ -53,4 +53,41 @@
         var id = $(this).attr('id');
         $('.nav_list  .item-show-' + id).toggleClass("show");
     });
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    function toastralert(type,msg) {
+        // if(type == 'info'){
+        //     toastr.info(msg);
+        // }else if(type == 'warning'){
+        //     toastr.warning(msg);
+        // }else if(type == 'success'){
+        //     toastr.success(msg);
+        // }else if(type == 'error'){
+        //     toastr.error(msg);
+        // }else{
+        //     toastr.clear()
+        // }
+        toastr[type](msg)
+    }
+    $('.number').keypress(function(event) {
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+    $("input[type='number']").attr('inputmode','numeric');
 </script>

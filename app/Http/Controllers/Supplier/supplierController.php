@@ -30,7 +30,7 @@ class supplierController extends Controller
         // dd($request->all());
         if (Auth::guard('supplier')->attempt(['email' => $username, 'password' => $password]) )
         {
-            return redirect('supplier/supplier-profile')->withErrors(['success' => 'เข้าสู่ระบบสำเร็จ!!']);
+            return redirect('supplier/profile')->withErrors(['success' => 'เข้าสู่ระบบสำเร็จ!!']);
       
         }else{
 

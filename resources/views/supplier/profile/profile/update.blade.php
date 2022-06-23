@@ -24,14 +24,14 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label> ชื่อ <span>*</span></label>
-                                        <input type="text" class="form-control" name="firstname" placeholder="ระบุ" required>
+                                        <input type="text" class="form-control" name="firstname" placeholder="ระบุ" required value="{{$supplier->first_name}}">
                                     </div>
                                 </div>
 
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="">นามสกุล <span>*</span></label>
-                                        <input type="text" class="form-control" name="lastname" placeholder="ระบุ" required>
+                                        <input type="text" class="form-control" name="lastname" placeholder="ระบุ" required value="{{$supplier->last_name}}">
 
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="">อีเมล</label>
-                                        <input type="email" class="form-control" name="email" placeholder="emily@sample.com" required>
+                                        <input type="email" class="form-control" name="email" placeholder="emily@sample.com" required value="{{$supplier->email}}">
 
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="">โทรศัพท์ <span>*</span></label>
-                                        <input type="text" class="form-control" name="phone" maxlength="10" placeholder="0123344565" required>
+                                        <input type="text" class="form-control" name="phone" maxlength="10" placeholder="0123344565" required value="{{$supplier->phone}}">
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="">ที่อยู่ตามบัตรประชาชน <span>*</span></label>
-                                        <textarea name="address" class="form-control" required></textarea>
+                                        <textarea name="address" class="form-control" required>{{$supplier->address}}</textarea>
 
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($provinces))
                                             @foreach ($provinces as $item)
-                                                <option value="{{$item->id}}" >{{$item->name_th}}</option>
+                                                <option value="{{$item->id}}" @if($supplier->address_province == $item->id)selected @endif>{{$item->name_th}}</option>
                                                 {{-- @if($supplier->address_province == $item->id)selected @endif --}}
                                             @endforeach
                                             @endif
@@ -130,8 +130,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="zipcode">รหัสไปรษณีย์ <span>*</span></label>
-                                        <input type="text" name="zipcode" id="zipcode" required readonly class="form-control" value="">
-                                        {{-- {{$supplier->address_zipcode}} --}}
+                                        <input type="text" name="zipcode" id="zipcode" required readonly class="form-control" value="{{$supplier->address_zipcode}}">
                                     </div>
                                 </div>
 
