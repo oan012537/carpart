@@ -74,7 +74,8 @@ Route::post('supplier/registerpass-sup-post', [Supplier\supplierController::clas
 // Route::get('supplier/supplier-profile', [Supplier\supplierController::class, 'supplier_profile'])->name('supplier.supplier_profile');
 
 Route::group(['middleware' => ['supplier']], function () {
-    Route::get('supplier/supplier-profile', [Supplier\supplierController::class, 'supplier_profile'])->name('supplier.supplier_profile');
+    // Route::get('supplier/supplier-profile', [Supplier\supplierController::class, 'supplier_profile'])->name('supplier.supplier_profile');
+    Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile');
 });
 ////////// END SUPPLIER
 
