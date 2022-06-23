@@ -153,8 +153,16 @@ Route::get('changedistricts/{id}', [Backend\CompanyController::class,'districts'
 Route::get('supplier/profile/store', [Supplier\ProfileController::class,'storeindex'])->name('supplier.profile.store');
 Route::get('supplier/profile/store/edit', [Supplier\ProfileController::class,'storeedit'])->name('supplier.profile.store.edit');
 Route::post('supplier/profile/store/update', [Supplier\ProfileController::class,'storeupdate'])->name('supplier.profile.store.update');
+Route::post('supplier/profile/store/verify/update', [Supplier\ProfileController::class,'storeverifyupdate'])->name('supplier.profile.store.verify.update');
+
 
 Route::get('supplier/profile/bank', [Supplier\ProfileController::class,'bankindex'])->name('supplier.profile.bank');
+Route::get('supplier/profile/bank/add', [Supplier\ProfileController::class,'bankadd'])->name('supplier.profile.bank.add');
+Route::post('supplier/profile/bank/store', [Supplier\ProfileController::class,'bankstore'])->name('supplier.profile.bank.store');
+
 Route::get('supplier/profile/setting', [Supplier\ProfileController::class,'settingindex'])->name('supplier.profile.setting');
+Route::post('supplier/profile/setting/role/add', [Supplier\ProfileController::class,'settingrolestore'])->name('supplier.profile.setting.role.add');
+Route::post('supplier/profile/setting/user/add', [Supplier\ProfileController::class,'settinguserstore'])->name('supplier.profile.setting.user.store');
+
 // Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile.noti');
 require __DIR__.'/auth.php';

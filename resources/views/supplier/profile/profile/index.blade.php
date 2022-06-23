@@ -40,11 +40,11 @@
                         );
 
                         $result = array(
-                            '1' => 'สมมติ',
-                            '2' => 'แซ่ตัน',
-                            '3' => 'emily@sample.com',
-                            '4' => '012345678',
-                            '5' => '123 หมู่ 0 ถนน เจริญกรุง ซอย 5  ตำบล ทุ่งสุลา อำเภอ ศรีราชา จังหวัด ชลบุรี 12345',
+                            '1' => $supplier->first_name,
+                            '2' => $supplier->last_name,
+                            '3' => $supplier->email,
+                            '4' => $supplier->phone,
+                            '5' => $supplier->addressfull,
                         );
 
                         for ($i = 1; $i <= 5; $i++) {

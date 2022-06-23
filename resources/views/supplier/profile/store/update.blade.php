@@ -29,7 +29,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label> ชื่อ <span> *</span></label>
-                                        <input type="text" class="form-control" name="name" placeholder="ระบุ" required>
+                                        <input type="text" class="form-control" name="name" placeholder="ระบุ" required value="{{$supplier->store_name}}">
                                     </div>
                                 </div>
 
@@ -37,28 +37,28 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label> อีเมล </label>
-                                        <input type="email" class="form-control" name="email" placeholder="ระบุ" required>
+                                        <input type="email" class="form-control" name="email" placeholder="ระบุ" required value="{{$supplier->company_email}}">
                                     </div>
                                 </div>
 
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label> โทรศัพท์ <span> *</span></label>
-                                        <input type="text" class="form-control" name="phone" placeholder="ระบุ" required>
+                                        <input type="text" class="form-control" name="phone" placeholder="ระบุ" required value="{{$supplier->phone}}">
                                     </div>
                                 </div>
 
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label> Page URL/Facebook URL </label>
-                                        <textarea name="pagefacebook" class="form-control" placeholder="ระบุ"></textarea>
+                                        <textarea name="pagefacebook" class="form-control" placeholder="ระบุ">{{$supplier->facebook}}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label> Google Map Url <span> *</span></label>
-                                        <textarea name="googlemap" class="form-control" placeholder="ระบุ" required></textarea>
+                                        <textarea name="googlemap" class="form-control" placeholder="ระบุ" required>{{$supplier->googlemap}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                 <div class="col-12">
                                     <div class="box__setdefault">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" @if($supplier->store_addressidcard == '1') checked @endif name="addressidcard">
                                             <label class="form-check-label" for="flexCheckChecked">
                                                 ที่อยู่ร้านค้าตรงตามบัตรประชาชน
                                             </label>
@@ -84,7 +84,7 @@
                                     <div class="form-group">
                                         <label for="">ที่อยู่ร้านค้า <span> *</span></label>
 
-                                        <textarea name="address" class="form-control" placeholder="ระบุ" id="address" required></textarea>
+                                        <textarea name="address" class="form-control" placeholder="ระบุ" id="address" required>{{$supplier->store_address}}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -94,8 +94,7 @@
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($provinces))
                                             @foreach ($provinces as $item)
-                                                <option value="{{$item->id}}" >{{$item->name_th}}</option>
-                                                {{-- @if($supplier->address_province == $item->id)selected @endif --}}
+                                                <option value="{{$item->id}}" @if($supplier->store_province == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -110,7 +109,7 @@
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($amphures))
                                             @foreach ($amphures as $item)
-                                                <option value="{{$item->id}}" @if($supplier->address_amphure == $item->id)selected @endif>{{$item->name_th}}</option>
+                                                <option value="{{$item->id}}" @if($supplier->store_amphure == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -125,7 +124,7 @@
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($districts))
                                             @foreach ($districts as $item)
-                                                <option value="{{$item->id}}" @if($supplier->address_district == $item->id)selected @endif>{{$item->name_th}}</option>
+                                                <option value="{{$item->id}}" @if($supplier->store_district == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -136,7 +135,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="">รหัสไปรษณีย์ <span>*</span></label>
-                                        <input type="text" name="zipcode" id="zipcode" required readonly class="form-control" value="">
+                                        <input type="text" name="zipcode" id="zipcode" required readonly class="form-control"  value="{{$supplier->store_zipcode}}">
                                     </div>
                                 </div>
                             </div>

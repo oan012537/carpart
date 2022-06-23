@@ -21,7 +21,7 @@
                             <div class="avatar-edit">
                                 <form action="" method="post" id="form-image">
                                     <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-                                    <label for="imageUpload"><i class="fa-solid fa-pencil"></i> แก้ไข</label>
+                                    {{-- <label for="imageUpload"><i class="fa-solid fa-pencil"></i> แก้ไข</label> --}}
                                 </form>
                             </div>
                             <div class="avatar-preview">

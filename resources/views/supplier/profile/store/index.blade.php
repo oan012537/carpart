@@ -40,7 +40,15 @@
                         );
 
                         $result = array(
-                            '1' => 'สมมติ <img src="assets/img/icon/icon__notverify.svg" class="img-fluid"> ร้านค้ายังไม่ได้ยืนยันตัวตน || สมมติ <img src="assets/img/icon/iconverify2__success.svg" class="img-fluid"> ผ่านการยืนยันตัวตนขั้น 2',
+                            '1' => $supplier->store_name,
+                            '2' => $supplier->company_email,
+                            '3' => $supplier->phone,
+                            '4' => $supplier->facebook,
+                            '5' => $supplier->googlemap,
+                            '6' => $supplier->store_addressfull,
+                        );
+                        $result1 = array(
+                            '1' => 'สมมติ <img src="'.asset('assets/img/icon/icon__notverify.svg').'" class="img-fluid"> ร้านค้ายังไม่ได้ยืนยันตัวตน || สมมติ <img src="'.asset('assets/img/icon/iconverify2__success.svg').'" class="img-fluid"> ผ่านการยืนยันตัวตนขั้น 2',
                             '2' => 'emily@sample.com',
                             '3' => '012345678',
                             '4' => 'www,.sample.com',
@@ -90,27 +98,30 @@
 
                 <div class="box__content">
                     <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-                            <div class="box__drop">
-                                <div class="drop-zone">
-                                    <span class="drop-zone__prompt"> <i class="fa fa-plus-circle"></i>
-                                        <p> แนบรูปภาพหรือ PDF </p>
-                                        <div class="tt-img-detail">
-                                            <p> ขนาดไม่เกิน 5 Mb.</p>
-                                        </div>
-                                    </span>
-                                    <input type="file" name="myFile" class="drop-zone__input">
+                        <form method="POST" enctype="multipart/form-data" action="{{route('supplier.profile.store.verify.update')}}" id="formverify">
+                            @csrf
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                                <div class="box__drop">
+                                    <div class="drop-zone">
+                                        <span class="drop-zone__prompt"> <i class="fa fa-plus-circle"></i>
+                                            <p> แนบรูปภาพหรือ PDF </p>
+                                            <div class="tt-img-detail">
+                                                <p> ขนาดไม่เกิน 5 Mb.</p>
+                                            </div>
+                                        </span>
+                                        <input type="file" name="myFile" class="drop-zone__input">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                            <p>ท่านสามารถใช้รูปเอกสารตัวจริง หรือรูปถ่ายสำเนาของเอกสาร (เซ็นหรือไม่เซ็นรับรองเอกสารก็ได้)
-                                หากท่านเซ็นรับรองเอกสาร จะต้องไม่บดบังข้อมูลใดๆ บนเอกสาร
-                                ภาพที่อัปโหลดต้องชัด ข้อมูลครบถ้วน และเอกสารยังไม่หมดอายุ
-                                ภาพเอกสารต้องเห็นรายละเอียด หน้าแรกที่ระบุรายละเอียดเกี่ยวกับบ้าน และหน้าเอกสารที่แสดงชื่อ นามสกุลของท่าน
-                                สำหรับเอกสารเพิ่มเติม (เอกสารประกอบอื่นที่น่าเชื่อถือ) ท่านสามารถอัปโหลดเอกสารได้มากกว่า 1 รายการเพื่อประกอบการพิจารณาการเปิดบัญชี
-                                ระบบรองรับไฟล์ JPG, JPEG และ PDF ที่มีขนาดไม่เกิน 20 MB ต่อไฟล์</p>
-                        </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-12">
+                                <p>ท่านสามารถใช้รูปเอกสารตัวจริง หรือรูปถ่ายสำเนาของเอกสาร (เซ็นหรือไม่เซ็นรับรองเอกสารก็ได้)
+                                    หากท่านเซ็นรับรองเอกสาร จะต้องไม่บดบังข้อมูลใดๆ บนเอกสาร
+                                    ภาพที่อัปโหลดต้องชัด ข้อมูลครบถ้วน และเอกสารยังไม่หมดอายุ
+                                    ภาพเอกสารต้องเห็นรายละเอียด หน้าแรกที่ระบุรายละเอียดเกี่ยวกับบ้าน และหน้าเอกสารที่แสดงชื่อ นามสกุลของท่าน
+                                    สำหรับเอกสารเพิ่มเติม (เอกสารประกอบอื่นที่น่าเชื่อถือ) ท่านสามารถอัปโหลดเอกสารได้มากกว่า 1 รายการเพื่อประกอบการพิจารณาการเปิดบัญชี
+                                    ระบบรองรับไฟล์ JPG, JPEG และ PDF ที่มีขนาดไม่เกิน 20 MB ต่อไฟล์</p>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -119,7 +130,7 @@
 
             <div class="box__btn">
                 <button type="button" class="btn btn__back" data-bs-dismiss="modal">กลับ</button>
-                <button type="button" class="btn btn__yes">ยืนยัน</button>
+                <button form="formverify" type="button" class="btn btn__yes">ยืนยัน</button>
                 <p class="txt__time">ใช้เวลาตรวจสอบประมาณ 5-10 วัน</p>
             </div>
 
@@ -131,6 +142,10 @@
 @stop
 
 @section('script')
+<script>
+    const limitsize = 20;
+</script>
+<script src="{{asset('assets/js/dropzone.js')}}"></script>
 <script>
     $(document).ready(function() {
 
