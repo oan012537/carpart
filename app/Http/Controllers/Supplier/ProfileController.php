@@ -132,6 +132,15 @@ class ProfileController extends Controller
         return view('supplier.profile.bank.index');
     }
 
+    public function bankadd(){
+        return view('supplier.profile.bank.index');
+    }
+
+    public function bankstore(Request $request){
+        dd($request->all());
+        return view('supplier.profile.bank.index');
+    }
+
     public function settingindex(){
         return view('supplier.profile.setting.index');
     }

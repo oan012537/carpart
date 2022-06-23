@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="col-12">
-                        <a href="supplier-addbank.php" class="btn btn__addbank"> <i class="fa-solid fa-circle-plus"></i> เพิ่มบัญชีธนาคาร</a>
+                        <a href="{{route('supplier.profile.bank.add')}}" class="btn btn__addbank"> <i class="fa-solid fa-circle-plus"></i> เพิ่มบัญชีธนาคาร</a>
                     </div>
                 </div>
         </div>
