@@ -85,7 +85,7 @@ return [
         // ],
         'supplier' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Supplier::class,
+            'model' => App\Models\Supplier\Users_supplier::class,
         ],
 
         'buyer' => [

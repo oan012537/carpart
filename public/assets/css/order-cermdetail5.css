@@ -822,3 +822,31 @@ text-.form-control
     margin-left: 20px;
     margin-top: 21px;
 }
+
+.card-text-money {
+    background-color: #3F3F3F;
+    height: 120px;
+    padding: 30px;
+}
+
+.card-text-money .heard-text-t-text P {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+
+.card-text-money .heard-text-t-date p {
+    font-size: 14px;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+

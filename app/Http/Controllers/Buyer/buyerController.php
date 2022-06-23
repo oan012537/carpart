@@ -47,6 +47,16 @@ class buyerController extends Controller
         }
     }
 
+    public function regis(){
+        return view('buyer.regis');
+    }
+    public function regis_post(Request $request){
+            Session::put([
+                'pdpa' => $request->pdpa,
+            ]);
+        return view('buyer.registerpass-buy');
+    }
+
     public function regis_buyer(){
         return view('buyer.regis-buy');
     }
@@ -105,7 +115,7 @@ class buyerController extends Controller
 
             Session::flush(); // ลบ Session ทั้งหมด
 
-            return response()->json(["status"=>true,"redirect_location"=>url("backend/dashboard")]);
+            return response()->json(["message"=>"สมัครสมาชิกสำเร็จ","status"=>true,"redirect_location"=>url("backend/dashboard")]);
         }else{
             dd("ไม่สำเร็จ");
             return view("alert.alert", [
@@ -117,7 +127,7 @@ class buyerController extends Controller
 
     }
     public function home_search(){
-
+        
         return view('buyer.home-search');
     }
 

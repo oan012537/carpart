@@ -25,6 +25,9 @@ Route::get('buyer/login-buy', [Buyer\buyerController::class, 'login_buyer']);
 Route::get('buyer/logout-buy', [Buyer\buyerController::class, 'logout_buyer']);
 Route::post('buyer/login-buy-post', [Buyer\buyerController::class, 'login_buyer_post'])->name('buyer.login');
 
+Route::get('buyer/regis', [Buyer\buyerController::class, 'regis']);
+Route::post('buyer/regis-post', [Buyer\buyerController::class, 'regis_post'])->name('pdpa');
+
 Route::get('buyer/regis-buy', [Buyer\buyerController::class, 'regis_buyer']);
 Route::post('buyer/regis-buy-post', [Buyer\buyerController::class, 'regis_buyer_post'])->name('step1');
 
@@ -43,8 +46,8 @@ Route::group(['middleware' => ['buyer']], function () {
 /////////// SUPPLIER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Login
 
-Route::get('supplier/login', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
-Route::post('supplier/login', [Supplier\supplierController::class,'login_supplier_post'])->name('supplier.login');
+Route::get('supplier/login-sup', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
+Route::post('supplier/login-sup-post', [Supplier\supplierController::class,'login_supplier_post'])->name('supplier.login');
 
 Route::get('supplier/login/verify/phone', [Supplier\supplierController::class, 'logphone_supplier'])->name('supplier.login.verify.phone');
 Route::post('supplier/login/verify/phone', [Supplier\Auth\SupplierAuthController::class,'verifyphone'])->name('supplier.login.verify.phone.post');
@@ -71,6 +74,12 @@ Route::get('supplier/registerbank-sup', [Supplier\supplierController::class, 're
 Route::get('supplier/registerpass-sup', [Supplier\supplierController::class, 'registerpass_supplier']);
 Route::post('supplier/registerpass-sup-post', [Supplier\supplierController::class, 'registerpass_supplier_post'])->name('registerpass-sup');
 
+// Route::get('supplier/supplier-profile', [Supplier\supplierController::class, 'supplier_profile'])->name('supplier.supplier_profile');
+
+Route::group(['middleware' => ['supplier']], function () {
+    // Route::get('supplier/supplier-profile', [Supplier\supplierController::class, 'supplier_profile'])->name('supplier.supplier_profile');
+    Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile');
+});
 ////////// END SUPPLIER
 
 // Route::get('/', function () {

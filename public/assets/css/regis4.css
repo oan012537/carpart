@@ -62,7 +62,7 @@
     font-size: 14px;
     color: #e8d95f;
     font-weight: 300;
-    margin-left: 96px;
+    margin-left: 77px;
     margin-top: 10px;
 }
 
@@ -71,7 +71,77 @@
     color: white;
     font-weight: 300;
     margin-top: -37px;
-    margin-left: 237px;
+    margin-left: 167px;
+}
+
+#sec-regis4 .tt-text-send3 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: -37px;
+    margin-left: 253px;
+}
+
+#sec-regis4 .text-t-log p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 30px;
+    display: flex;
+    color: #FF7B7B;
+    margin-top: -26px;
+}
+
+
+.drop-zone {
+    max-width: 156px;
+    height: 158px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    background-color: #ffffff0f;
+    /* border: 4px dashed #009578; */
+    border-radius: 10px;
+    margin-left: 91px;
+}
+
+.drop-zone p {
+    font-size: 13px;
+    font-family: 'Prompt', sans-serif;
+    color: white;
+    margin-top: 5px;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.text-size-tt p {
+    font-size: 13px;
+    color: #b4aeae;
+}
+
+.text-size-t p {
+    font-size: 13px;
+    color: #b4aeae;
+    margin-top: -16px;
+}
+
+.text-tt-img-detail p {
+    font-size: 14px;
+    color: white;
+    margin-top: -13px;
+}
+
+.box-b-detail {
+    overflow-y: scroll;
+    height: 300px;
 }
 
 #sec-regis4 .input-group>.form-control,

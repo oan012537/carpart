@@ -16,12 +16,14 @@ class users_supplier extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var string[]
      */
 
     protected $table = 'users_supplier';
     protected $fillable = [
-        'name', 'email', 'phone', 'password', 'role', 'status', 'social_id', 'social_type'
+
+        'email', 'password',
+        // 'name', 'email', 'phone', 'password', 'role', 'status', 'social_id', 'social_type'
     ];
 
     /**

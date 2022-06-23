@@ -66,7 +66,7 @@ hr.new1 {
     padding-left: 2.5em;
     float: right;
     margin-top: 8px;
-    margin-right: 18px;
+    margin-right: 36px;
 }
 
 hr.new2 {
@@ -78,20 +78,22 @@ hr.new2 {
     font-size: 14px;
     color: white;
     margin-top: 45px;
+    margin-left: 15px;
 }
 
 #sec-login1 .s-switch3 p {
     padding-left: 2.5em;
     float: right;
     margin-top: -36px;
-    margin-right: 26px;
+    margin-right: 44px;
     font-size: 14px;
     color: #FF7B7B;
 }
 
 hr.new3 {
     border-top: 1px solid rgb(216, 216, 216);
-    width: 94%;
+    width: 87.2%;
+    margin-left: 16px;
 }
 
 #sec-login1 .t-text-s4 p {
@@ -115,13 +117,15 @@ hr.new4 {
 #sec-login1 .t-text-s5 p {
     font-size: 14px;
     color: white;
-    margin-top: 13px;
+    margin-top: 11px;
+    margin-left: 15px;
 }
 
 #sec-login1 .t-text-s6 p {
     font-size: 14px;
     color: white;
-    margin-top: 13px;
+    margin-top: 33px;
+    margin-left: 15px;
 }
 
 #sec-login1 .d-detail2 {
@@ -142,12 +146,13 @@ hr.new4 {
     padding-left: 2.5em;
     float: right;
     margin-top: -40px;
-    margin-right: 18px;
+    margin-right: 35px;
 }
 
 hr.new5 {
     border-top: 1px solid rgb(216, 216, 216);
-    width: 94%;
+    width: 86.2%;
+    margin-left: 16px;
 }
 
 .button {
@@ -235,4 +240,20 @@ hr.new5 {
 .b-box-big::-webkit-scrollbar-thumb {
     background-color: #5d5b59;
     border-radius: 100px;
+}
+
+#sec-login1 .w3-black,
+.w3-hover-black:hover {
+    color: #fff !important;
+    background-color: #3f3f3f !important;
+}
+
+#sec-login1 .w3-btn:hover {
+    box-shadow: 0 8px 0px 0 rgb(0 0 0 / 0%),
+        0 0px 0px 0 rgb(0 0 0 / 0%);
+}
+
+#sec-login1 .w3-container,
+.w3-panel {
+    padding: 0rem;
 }
