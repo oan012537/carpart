@@ -8,6 +8,7 @@ use App\Http\Controllers\SocialController;
 use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\ImportdataController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\cFunction;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,18 +23,14 @@ use Illuminate\Support\Facades\Auth;
 /////////// BUYER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('buyer/login-buy', [Buyer\buyerController::class, 'login_buyer']);
-Route::get('buyer/logout-buy', [Buyer\buyerController::class, 'logout_buyer']);
 Route::post('buyer/login-buy-post', [Buyer\buyerController::class, 'login_buyer_post'])->name('buyer.login');
-
+Route::get('buyer/logout-buy', [Buyer\buyerController::class, 'logout_buyer']);
 Route::get('buyer/regis', [Buyer\buyerController::class, 'regis']);
 Route::post('buyer/regis-post', [Buyer\buyerController::class, 'regis_post'])->name('pdpa');
-
 Route::get('buyer/regis-buy', [Buyer\buyerController::class, 'regis_buyer']);
 Route::post('buyer/regis-buy-post', [Buyer\buyerController::class, 'regis_buyer_post'])->name('step1');
-
 Route::get('buyer/regiscon-buy', [Buyer\buyerController::class, 'regiscon_buyer']);
 Route::post('buyer/regiscon-buy-post', [Buyer\buyerController::class, 'regiscon_buyer_post'])->name('step2');
-
 Route::get('buyer/registerpass-buy', [Buyer\buyerController::class, 'registerpass_buyer']);
 Route::post('buyer/registerpass-buy-post', [Buyer\buyerController::class, 'registerpass_buyer_post'])->name('step3');
 
