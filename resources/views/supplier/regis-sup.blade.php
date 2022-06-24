@@ -17,6 +17,8 @@
     <link type="image/ico" rel="shortcut icon" href="assets/img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="assets/css/regis.css" rel="stylesheet">
 
     @include('inc_stylesheet')
@@ -34,45 +36,56 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-
                         <div class="b-box-big">
-                            <div class="t-text-s">
-                                <p>
-                                    Strictly Necessary Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
-                                </p>
-                                <div class="s-switch">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                            checked>
+                            <button onclick="myFunction('Demo1')" class="w3-btn w3-block w3-black w3-left-align">
+                                <div class="t-text-s">
+                                    <p>
+                                        Strictly Necessary Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
+                                    </p>
+                                    <div class="s-switch">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                checked>
+                                        </div>
+                                    </div>
+                                    <hr class="new1">
+                                </div>
+                            </button>
+                            <div id="Demo1" class="w3-container w3-hide">
+                                <div class="ko-text-t">
+                                    <p>
+                                        ข้อตกลง / เงื่อนไข
+                                    </p>
+                                </div>
+                                <div class="b-text-t-b">
+                                    <div class="d-detail">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem
+                                            Ipsum
+                                            has been the industry's standard dummy text ever since the 1500s, when an
+                                            unknown
+                                            printer took a galley of type and scrambled it to make a type specimen book.
+                                            It
+                                            has
+                                            survived not only five centuries, but also the leap into electronic
+                                            typesetting,
+                                            remaining essentially unchanged. </p>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem
+                                            Ipsum
+                                            has been the industry's standard dummy text ever since the 1500s, when an
+                                            unknown
+                                            printer took a galley of type and scrambled it to make a type specimen book.
+                                            It
+                                            has
+                                            survived not only five centuries, but also the leap into electronic
+                                            typesetting,
+                                            remaining essentially unchanged. </p>
                                     </div>
                                 </div>
-                                <hr class="new1">
                             </div>
-                            <div class="ko-text-t">
-                                <p>
-                                    ข้อตกลง / เงื่อนไข
-                                </p>
-                            </div>
-                            <div class="b-text-t-b">
-                                <div class="d-detail">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                        Ipsum
-                                        has been the industry's standard dummy text ever since the 1500s, when an
-                                        unknown
-                                        printer took a galley of type and scrambled it to make a type specimen book. It
-                                        has
-                                        survived not only five centuries, but also the leap into electronic typesetting,
-                                        remaining essentially unchanged. </p>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                        Ipsum
-                                        has been the industry's standard dummy text ever since the 1500s, when an
-                                        unknown
-                                        printer took a galley of type and scrambled it to make a type specimen book. It
-                                        has
-                                        survived not only five centuries, but also the leap into electronic typesetting,
-                                        remaining essentially unchanged. </p>
-                                </div>
-                            </div>
+
+
                             <div class="t-text-s2">
                                 <div class="s-switch2">
                                     <div class="form-check form-switch">
@@ -95,28 +108,44 @@
                                 </div>
                                 <hr class="new3">
                             </div>
-                            <div class="t-text-s4">
-                                <p>
-                                    Analytics Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
-                                </p>
-                                <div class="s-switch4">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                            checked>
+                            <button onclick="myFunction('Demo2')" class="w3-btn w3-block w3-black w3-left-align">
+                                <div class="t-text-s4">
+                                    <p>
+                                        Analytics Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
+                                    </p>
+                                    <div class="s-switch4">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                checked>
+                                        </div>
                                     </div>
+                                    <hr class="new4">
                                 </div>
-                                <hr class="new4">
+                            </button>
+                            <div id="Demo2" class="w3-container w3-hide">
+                                <div class="ko-text-t">
+                                    <p>
+                                        ข้อตกลง / เงื่อนไข
+                                    </p>
+                                </div>
+
+                                <div class="d-detail2">
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                        Lorem
+                                        Ipsum
+                                        has been the industry's standard dummy text ever since the 1500s, when an
+                                        unknown
+                                        printer took a galley of type and scrambled it to make a type specimen book.
+                                        It
+                                        has
+                                        survived not only five centuries, but also the leap into electronic
+                                        typesetting,
+                                        remaining essentially unchanged. </p>
+                                </div>
+
                             </div>
-                            <div class="d-detail2">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum
-                                    has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown
-                                    printer took a galley of type and scrambled it to make a type specimen book. It
-                                    has
-                                    survived not only five centuries, but also the leap into electronic typesetting,
-                                    remaining essentially unchanged. </p>
-                            </div>
+
+
                             <div class="t-text-s5">
                                 <p>
                                     Functional Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
@@ -156,7 +185,19 @@
     </section>
 
     @include('inc_footer')
-    @include('inc_javascript')
+
+
+    <script>
+    function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+    </script>
+
 
 </body>
 

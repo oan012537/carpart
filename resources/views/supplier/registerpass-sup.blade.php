@@ -69,6 +69,7 @@
                             </a>
                             &nbsp;
                             <button class="button button2" id="myBtn"> ถัดไป &nbsp; <i class='fas fa-angle-right'></i>
+                                {{-- <a href="{{url('supplier/login-sup')}}"> --}}
                             </button>
                             <!-- The Modal -->
                              <div id="myModal" class="modal">
@@ -86,6 +87,7 @@
                                         </div>
                                         <br>
                                         <div class="but-bb">
+                                            <a href="{{url('supplier/login-sup')}}">
                                             <button class="button button3"> ตกลง
                                             </button>
                                         </div>

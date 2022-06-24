@@ -55,6 +55,7 @@ Route::post('supplier/login/verify/otp', [Supplier\Auth\SupplierAuthController::
 
 //Register
 Route::get('supplier/regis-sup', [Supplier\supplierController::class, 'regis_supplier']);
+Route::post('supplier/regis-sup-post', [Supplier\supplierController::class, 'regis_supplier_post'])->name('supp-pdpa');
 
 Route::get('supplier/regisphone-sup', [Supplier\supplierController::class, 'regisphone_supplier']);
 
@@ -63,8 +64,12 @@ Route::get('supplier/regisotp-sup', [Supplier\supplierController::class, 'regiso
 Route::get('supplier/register-sup', [Supplier\supplierController::class, 'register_supplier']);
 Route::post('supplier/regiser-sup-post', [Supplier\supplierController::class, 'register_supplier_post'])->name('regiser-sup');
 
+
 Route::get('supplier/registercon-sup', [Supplier\supplierController::class, 'registercon_supplier']);
 Route::post('supplier/registercon-sup-post', [Supplier\supplierController::class, 'registercon_supplier_post'])->name('registercon-sup');
+
+Route::get('supplier/registercon-sup2', [Supplier\supplierController::class, 'registercon_supplier2']);
+Route::post('supplier/registercon-sup2-post', [Supplier\supplierController::class, 'registercon_supplier2_post'])->name('registercon-sup2');
 
 Route::get('supplier/registerbank-sup', [Supplier\supplierController::class, 'registerbank_supplier']);
 
