@@ -13,7 +13,7 @@
             <div class="col-lg-3">
                 @include('supplier.layouts.inc_nav')
             </div>
-
+            @if($supplier->type == 'บุคคลธรรมดา')
             <div class="col-lg-9">
                 <div class="box__profile">
                     <div class="row">
@@ -69,6 +69,68 @@
                     </div>
                 </div>
             </div>
+            @else
+            <div class="col-lg-9">
+                <div class="box__profile">
+                    <div class="row">
+                        <div class="col-10">
+                            <p class="title__box">ข้อมูลผู้ขาย</p>
+                        </div>
+                        <div class="col-2">
+                            <div class="box__edit">
+                                <a href="{{route('supplier.profile.edit')}}" class="btn__edit"><i class="fa-solid fa-pencil"></i> แก้ไข</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box__info">
+                        <?php
+                        $heading = array(
+                            '1' => 'ชื่อ',
+                            '2' => 'นามสกุล',
+                            '3' => 'อีเมล',
+                            '4' => 'โทรศัพท์',
+
+                        );
+
+                        $result = array(
+                            '1' => 'สมมติ',
+                            '2' => 'แซ่ตัน',
+                            '3' => 'emily@sample.com',
+                            '4' => '012345678',
+                        );
+                        $result = array(
+                            '1' => $supplier->first_name,
+                            '2' => $supplier->last_name,
+                            '3' => $supplier->email,
+                            '4' => $supplier->phone,
+                            // '5' => $supplier->addressfull,
+                        );
+
+                        for ($i = 1; $i <= 4; $i++) {
+                        ?>
+                            <div class="box__itemsinfo">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <p class="title__txt"><?php echo $heading[$i]; ?></p>
+                                    </div>
+                                    <div class="col-9">
+                                        <p class="title__result"><?php echo $result[$i]; ?></p>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <?php if ($i != 4) { ?>
+                                            <hr>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>

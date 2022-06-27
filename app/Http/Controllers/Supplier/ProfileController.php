@@ -177,6 +177,93 @@ class ProfileController extends Controller
         $supplier->save();
         return redirect()->route('supplier.profile.store');
     }
+
+    public function legalstoreupdate(Request $request){
+        // dd($request->all());
+        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        
+        $certificate = '';
+        if($request->hasFile('myFile')){
+			$files = $request->file('myFile');
+            $filename 	= $files->getClientOriginalName();
+            $extension 	= $files->getClientOriginalExtension();
+            $size		= $files->getSize();
+            $certificate 	= 'certificate'.date('His').$filename;
+            $destinationPath = public_path()."/suppliers".'/'.$supplier->id.'/'.'Company';
+            // dd($destinationPath);
+            if(!File::exists(public_path().'/suppliers')){
+                File::makeDirectory(public_path().'/suppliers');
+            }
+            if(File::exists($destinationPath)){
+                $files->move($destinationPath, $certificate);
+                $certificate = "/suppliers".'/'.$supplier->id.'/'.'Company'.'/'.$certificate;
+            }else{
+                if(!File::exists(public_path().'/suppliers'.'/'.$supplier->id)){
+                    File::makeDirectory(public_path().'/suppliers'.'/'.$supplier->id);
+                }
+                
+                $pathforder = public_path().'/suppliers'.'/'.$supplier->id.'/'.'Company';
+                // $pathforder = base_path().'/suppliers'.'/'.Auth::user()->id.'IDcard';
+                
+                File::makeDirectory($pathforder);
+                // dd($pathforder);
+                $files->move($destinationPath, $certificate);
+                $certificate = "/suppliers".'/'.$supplier->id.'/'.'Company'.'/'.$certificate;
+            }
+            
+		}
+
+        $vatcopy = '';
+        if($request->hasFile('myFile1')){
+			$files = $request->file('myFile1');
+            $filename 	= $files->getClientOriginalName();
+            $extension 	= $files->getClientOriginalExtension();
+            $size		= $files->getSize();
+            $vatcopy 	= 'vatcopy'.date('His').$filename;
+            $destinationPath = public_path()."/suppliers".'/'.$supplier->id.'/'.'Company';
+            // dd($destinationPath);
+            if(!File::exists(public_path().'/suppliers')){
+                File::makeDirectory(public_path().'/suppliers');
+            }
+            if(File::exists($destinationPath)){
+                $files->move($destinationPath, $vatcopy);
+                $vatcopy = "/suppliers".'/'.$supplier->id.'/'.'Company'.'/'.$vatcopy;
+            }else{
+                if(!File::exists(public_path().'/suppliers'.'/'.$supplier->id)){
+                    File::makeDirectory(public_path().'/suppliers'.'/'.$supplier->id);
+                }
+                
+                $pathforder = public_path().'/suppliers'.'/'.$supplier->id.'/'.'Company';
+                // $pathforder = base_path().'/suppliers'.'/'.Auth::user()->id.'IDcard';
+                
+                File::makeDirectory($pathforder);
+                // dd($pathforder);
+                $files->move($destinationPath, $vatcopy);
+                $vatcopy = "/suppliers".'/'.$supplier->id.'/'.'Company'.'/'.$vatcopy;
+                
+            }
+            
+		}
+        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        
+        $supplier->company_name = $request->nameorg;
+        $supplier->branch = $request->branch;
+        $supplier->vat_id = $request->taxid;
+        $supplier->company_email = $request->companyemail;
+        $supplier->phone = $request->phone;
+        $supplier->facebook = $request->pageurl;
+        $supplier->googlemap = $request->googlemap;
+        $supplier->store_addressfull = $request->addressorg.' ตำบล '.str_replace('ตำบล','',$request->districthid).' อำเภอ '.str_replace('เขต','',$request->amphurehid).' จังหวัด '.$request->provincehid.' '.$request->zipcode;
+        $supplier->store_address = $request->addressorg;
+        $supplier->store_province = $request->province;
+        $supplier->store_amphure = $request->amphure;
+        $supplier->store_district = $request->district;
+        $supplier->store_zipcode = $request->zipcode;
+        $supplier->pic_certificate = ($certificate =='')?$supplier->pic_certificate:$certificate;
+        $supplier->pic_vat = ($vatcopy =='')?$supplier->pic_vat:$vatcopy;
+        $supplier->save();
+        return redirect()->route('supplier.profile.store');
+    }
     
     public function storeverifyupdate(Request $request){
         dd($request->all());
@@ -313,6 +400,33 @@ class ProfileController extends Controller
             'created_for' => !empty(Auth::user()->name)?Auth::user()->name:'',
         ]);
         return redirect()->route('supplier.profile.setting');
+    }
+
+    public function changepermission(Request $request){
+        try {
+            $permission = Permission::where('permission_role',$request->roleid)->first();
+            $namefield = $request->namefield;
+            $permission->$namefield = $request->status;
+            // dd($permission);
+            $permission->save();
+            $json['status'] = 'success';
+            $json['msg'] = 'บันทึกเรียบร้อย';
+            return Response::json($json);
+        } catch (\Illuminate\Database\QueryException $e) {
+            $json['status'] = 'error';
+            $json['msg'] = 'เกิดข้อผิดพลาด';
+            return Response::json($json);
+        }
+        
+    }
+
+    public function searchrole(Request $request){
+        $role = Role::where('role_name','NOT LIKE','%'.$request->searchrole.'%')->get();
+        return Response::json($role);
+    }
+
+    public function notificationindex(){
+        return view('supplier.profile.notification.index');
     }
 
 }

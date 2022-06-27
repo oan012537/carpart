@@ -40,7 +40,8 @@
                             '3' => $bank->banks_name,
                             '4' => $bank->banks_branch,
                             '5' => $bank->banks_type,
-                            '6' => '<a href="javascript:void(0)" class="btn btn__pdf"> <img src="'.asset($bank->banks_refimage).'" class="img-fluid"> </a>',
+                            '6' => '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset($bank->banks_refimage).'" data-fancybox-group="gallery'.$bank->banks_id.'"> <img src="'.asset('assets/img/icon/icon-pdf.svg').'" class="img-fluid"> </a>',
+                            // data-type="pdf"
                         );
                         @endphp
                         @for($i=1;$i<7;$i++)
@@ -56,8 +57,8 @@
                                         @if ($i == 1)
                                             <div class="box__setdefault">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" @if($bank->banks_active == '1') checked @endif>
-                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked{{$bank->banks_id}}" @if($bank->banks_active == '1') checked @endif>
+                                                    <label class="form-check-label" for="flexCheckChecked{{$bank->banks_id}}">
                                                         ตั้งเป็นบัญชีรับเงิน
                                                     </label>
                                                 </div>
@@ -98,6 +99,28 @@
                 $('#imagePreview').fadeIn(650);
             }
         });
+        
     });
+    $('.fancybox').fancybox(
+        {
+            selector : '.imglist a:visible',
+            Escape: "close",
+            Delete: "close",
+            Backspace: "close",
+            PageUp: "next",
+            PageDown: "prev",
+            ArrowUp: "next",
+            ArrowDown: "prev",
+            ArrowRight: "next",
+            ArrowLeft: "prev",
+            groupAttr: false,
+            Image: {
+                zoom: false,
+            },
+            thumbs   : {
+                autoStart : false
+            }
+        }
+    ); 
 </script>
 @stop

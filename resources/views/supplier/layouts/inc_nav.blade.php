@@ -46,7 +46,7 @@
             </li>
 
             <li data-page="">
-                <a href="javascript:void(0)">
+                <a href="{{route('supplier.profile.notification')}}">
                     <div class="icon5"></div> ตั้งค่าแจ้งเตือน
                 </a>
             </li>

@@ -13,12 +13,12 @@
             <div class="col-lg-3">
                 @include('supplier.layouts.inc_nav')
             </div>
-
+            @if($supplier->type == 'บุคคลธรรมดา')
             <div class="col-lg-9">
                 <div class="box__profilestore">
                     <div class="row">
                         <div class="col-10">
-                            <p class="title__box">ข้อมูลบริษัท/นิติบุคคล</p>
+                            <p class="title__box">ข้อมูลร้านค้า</p>
                         </div>
                         <div class="col-2">
                             <div class="box__edit">
@@ -40,7 +40,7 @@
                         );
 
                         $result = array(
-                            '1' => $supplier->store_name,
+                            '1' => $supplier->store_name.'<img src="'.asset('assets/img/icon/icon__notverify.svg').'" class="img-fluid"> ร้านค้ายังไม่ได้ยืนยันตัวตน',
                             '2' => $supplier->company_email,
                             '3' => $supplier->phone,
                             '4' => $supplier->facebook,
@@ -79,10 +79,91 @@
                 </div>
 
                 <div class="box__verify2">
-                    <a href="javascript:void(0)" class="btn btn__viewverify" data-bs-toggle="modal" data-bs-target="#verify2">ยืนยันตัวตนขั้น 2 เพื่อเพิ่มความน่าเชื่อถือให้ร้านของคุณ</a>
+                    <a href="javascript:void(0)" class="btn btn__viewverify" data-bs-toggle="modal" data-bs-target="#verify2">ยืนยันตัวตนขั้น 2 เพื่อเพิ่มความน่าเชื่อถือให้ร้านของคุณ</a> 
+                    {{-- ถ้าสองขึั้นตอนแล้วตรงนี้ไม่จ้องขึ้น --}}
                 </div>
 
             </div>
+            @else
+            <div class="col-lg-9">
+                <div class="box__profilestore">
+                    <div class="row">
+                        <div class="col-10">
+                            <p class="title__box">ข้อมูลบริษัท/นิติบุคคล</p>
+                        </div>
+                        <div class="col-2">
+                            <div class="box__edit">
+                                <a href="{{route('supplier.profile.store.edit')}}" class="btn__edit"><i class="fa-solid fa-pencil"></i> แก้ไขที่อยู่</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box__info">
+                        <?php
+                        $heading = array(
+                            '1' => 'ชื่อบริษัท',
+                            '2' => 'สาขา',
+                            '3' => 'เลขประจำตัวผู้เสียภาษี',
+                            '4' => 'ที่อยู่',
+                            '5' => 'อีเมล',
+                            '6' => 'โทรศัพท์',
+                            '7' => 'Page URL/Facebook URL',
+                            '8' => 'Google Map',
+                            '9' => 'หนังสือรับรองบริษัท',
+                            '10' => 'สำเนา ภ.พ.20',
+
+                        );
+
+                        $result1 = array(
+                            '1' => 'เฮงเฮงอะไหล่ยนต์ <img src="assets/img/icon/icon-verify.svg" class="img-fluid"> นิติบุคคล',
+                            '2' => 'สำนักงานใหญ่',
+                            '3' => '1234445657676',
+                            '4' => '123 หมู่ 0 ถนน เจริญกรุง ซอย 5  ตำบล ทุ่งสุลา อำเภอ ศรีราชา จังหวัด ชลบุรี 12345',
+                            '5' => 'sample@gmail.com',
+                            '6' => '012345678',
+                            '7' => 'www.sample.com',
+                            '8' => 'www.sample.com',
+                            '9' => 'หนังสือรับรองบริษัท',
+                            '10' => 'สำเนา ภ.พ.20 <a data-fancybox="gallery" class="btn__viewimage" href="https://lipsum.app/id/46/1600x1200"><i class="fa-solid fa-image"></i></a>',
+                        );
+                        $result = array(
+                            '1' => $supplier->store_name.' <img src="'.asset('assets/img/icon/icon-verify.svg').'" class="img-fluid"> นิติบุคคล',
+                            '2' => $supplier->branch,
+                            '3' => $supplier->vat_id,
+                            '4' => $supplier->store_addressfull,
+                            '5' => $supplier->company_email,
+                            '6' => $supplier->phone,
+                            '7' => $supplier->facebook,
+                            '8' => $supplier->googlemap,
+                            '9' => '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset($supplier->pic_certificate).'" > <img src="'.asset('assets/img/icon/icon-pdf.svg').'" class="img-fluid"> </a>',
+                            '10' => '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset($supplier->pic_vat).'" > <img src="'.asset('assets/img/icon/icon-pdf.svg').'" class="img-fluid"> </a>',
+                        );
+
+                        for ($i = 1; $i <= 10; $i++) {
+                        ?>
+                            <div class="box__itemsinfo">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <p class="title__txt"><?php echo $heading[$i]; ?></p>
+                                    </div>
+                                    <div class="col-9">
+                                        <p class="title__result"><?php echo $result[$i]; ?></p>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <?php if ($i != 4) { ?>
+                                            <hr>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+
+            </div>
+            @endif
         </div>
     </div>
 </div>
@@ -130,7 +211,7 @@
 
             <div class="box__btn">
                 <button type="button" class="btn btn__back" data-bs-dismiss="modal">กลับ</button>
-                <button form="formverify" type="button" class="btn btn__yes">ยืนยัน</button>
+                <button form="formverify" type="submit" class="btn btn__yes">ยืนยัน</button>
                 <p class="txt__time">ใช้เวลาตรวจสอบประมาณ 5-10 วัน</p>
             </div>
 

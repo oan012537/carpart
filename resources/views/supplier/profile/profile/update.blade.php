@@ -12,7 +12,7 @@
         <div class="col-lg-3">
             @include('supplier.layouts.inc_nav')
         </div>
-
+        @if($supplier->type == 'บุคคลธรรมดา')
         <div class="col-lg-9">
             <div class="box__editprofile">
                 <form method="POST" enctype="multipart/form-data" action="{{route('supplier.profile.update')}}" id="formedit">
@@ -146,6 +146,56 @@
             </div>
             <!--  -->
         </div>
+        @else
+        <div class="col-lg-9">
+            <div class="box__editprofile">
+                <form method="POST" enctype="multipart/form-data" action="{{route('supplier.profile.update')}}" id="formedit">
+                    @csrf
+                    <div class="groupedit1">
+                        <p class="title__txt">ขอเปลี่ยนแปลงข้อมูลผู้ติดต่อ</p>
+                        <div class="itemsorg">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> ชื่อ <span>*</span></label>
+                                        <input type="text" class="form-control" name="firstname" placeholder="ระบุ" required value="{{$supplier->first_name}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="">นามสกุล <span>*</span></label>
+                                        <input type="text" class="form-control" name="lastname" placeholder="ระบุ" required value="{{$supplier->last_name}}">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="">อีเมล</label>
+                                        <input type="email" class="form-control" name="email" placeholder="emily@sample.com" required value="{{$supplier->email}}">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="">โทรศัพท์ <span>*</span></label>
+                                        <input type="text" class="form-control" name="phone" maxlength="10" placeholder="0123344565" required value="{{$supplier->phone}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </form>
+            </div>
+            <div class="box__btneditprofile">
+                <a class="btn btn__back" href="{{route('supplier.profile')}}">กลับ</a>
+                <button type="submit" form="formedit" class="btn btn__yes">ยืนยัน</button>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 @stop

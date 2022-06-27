@@ -12,7 +12,7 @@
         <div class="col-lg-3">
             @include('supplier.layouts.inc_nav')
         </div>
-
+        @if($supplier->type == 'บุคคลธรรมดา')
         <div class="col-lg-9">
             <div class="box__profileeditstore">
                 <div class="groupedit1">
@@ -153,6 +153,192 @@
             </div>
 
         </div>
+        @else
+        <div class="col-lg-9">
+            <div class="box__profileeditstore">
+                <div class="groupedit1">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="title__box">ขอเปลี่ยนแปลงข้อมูลบริษัท <span>เจ้าหน้าที่จะตรวจสอบและเปลี่ยนแปลงข้อมูลให้ภายใน ....</span></p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="itemseditstore">
+                        <form method="POST" enctype="multipart/form-data" action="{{route('supplier.profile.legal.store.update')}}" id="formedit">
+                            @csrf
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> ชื่อบริษัท <span> *</span></label>
+                                        <input type="text" class="form-control" name="nameorg" placeholder="ระบุ" required value="{{$supplier->company_name}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-6"></div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> สาขา </label>
+                                        <input type="text" class="form-control" name="branch" placeholder="ระบุ" required value="{{$supplier->branch}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> เลขประจำตัวผู้เสียภาษี <span> *</span></label>
+                                        <input type="text" class="form-control" name="taxid" placeholder="ระบุ" required value="{{$supplier->vat_id}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label> ที่อยู่ตามหนังสือรับรองบริษัท <span> *</span></label>
+                                        <textarea name="addressorg" class="form-control" placeholder="ระบุ">{{$supplier->store_address}}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="">จังหวัด <span>*</span></label>
+                                        <select class="form-select" aria-label="Default select example" required name="province" id="province" onchange="changeprovinces(this.value)">
+                                            <option disabled selected value="">Choose</option>
+                                            @if(!empty($provinces))
+                                            @foreach ($provinces as $item)
+                                                <option value="{{$item->id}}" @if($supplier->store_province == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            @endforeach
+                                            @endif
+                                        </select>
+                                        <input type="hidden" name="provincehid" id="provincehid" value="{{$nameprovinces}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="">เขต/อำเภอ <span>*</span></label>
+                                        <select class="form-select" aria-label="Default select example" required name="amphure" id="amphure"  onchange="changeamphures(this.value)">
+                                            <option disabled selected value="">Choose</option>
+                                            @if(!empty($amphures))
+                                            @foreach ($amphures as $item)
+                                                <option value="{{$item->id}}" @if($supplier->store_amphure == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            @endforeach
+                                            @endif
+                                        </select>
+                                        <input type="hidden" name="amphurehid" id="amphurehid" value="{{$nameamphures}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="">แขวง/ตำบล <span>*</span></label>
+                                        <select class="form-select" aria-label="Default select example" required name="district" id="district" onchange="changedistricts(this.value)">
+                                            <option disabled selected value="">Choose</option>
+                                            @if(!empty($districts))
+                                            @foreach ($districts as $item)
+                                                <option value="{{$item->id}}" @if($supplier->store_district == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            @endforeach
+                                            @endif
+                                        </select>
+                                        <input type="hidden" name="districthid" id="districthid" value="{{$namedistricts}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="">รหัสไปรษณีย์ <span>*</span></label>
+                                        <input type="text" name="zipcode" id="zipcode" required readonly class="form-control"  value="{{$supplier->store_zipcode}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> อีเมล </label>
+                                        <input type="email" class="form-control" name="companyemail" placeholder="ระบุ" value="{{$supplier->company_email}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> โทรศัพท์ <span> *</span></label>
+                                        <input type="text" class="form-control" name="phone" maxlength="10" placeholder="ระบุ"  value="{{$supplier->phone}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> Page URL/Facebook URL <span> *</span></label>
+                                        <input type="text" class="form-control" name="pageurl" placeholder="ระบุ"  value="{{$supplier->facebook}}">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label> Google Map Url <span> *</span></label>
+                                        <input type="text" class="form-control" name="googlemap" placeholder="ระบุ"  value="{{$supplier->googlemap}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="tt-text-log">
+                                        <p>
+                                            หนังสือรับรองบริษัท อายุไม่เกิน 6 เดือน <span class="dot__color">* (รองรับไฟล์ .jpg .png หรือ .pdf เท่านั้น ขนาดไม่เกิน 5Mb.)</span>
+                                        </p>
+
+                                    </div>
+
+                                    <div class="box__drop">
+                                        <div class="drop-zone">
+                                            <span class="drop-zone__prompt"> <i class="fa fa-plus-circle"></i>
+                                                <p> แนบรูปภาพ หรือ PDF</p>
+                                                <div class="tt-img-detail">
+                                                    <p> ขนาดไม่เกิน 5 Mb.</p>
+                                                </div>
+                                            </span>
+                                            <input type="file" name="myFile" class="drop-zone__input">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12">
+                                    <div class="tt-text-log">
+                                        <p>
+                                            สำเนา ภ.พ.20 <span> (รองรับไฟล์ .jpg .png หรือ .pdf เท่านั้น ขนาดไม่เกิน 5Mb.)
+                                            </span>
+                                        </p>
+
+                                    </div>
+
+                                    <div class="box__drop">
+                                        <div class="drop-zone">
+                                            <span class="drop-zone__prompt"> <i class="fa fa-plus-circle"></i>
+                                                <p> แนบรูปภาพ หรือ PDF</p>
+                                                <div class="tt-img-detail">
+                                                    <p> ขนาดไม่เกิน 5 Mb.</p>
+                                                </div>
+                                            </span>
+                                            <input type="file" name="myFile1" class="drop-zone__input">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <!--  -->
+                        <div class="box__btn">
+                            <a class="btn btn__back" href="{{route('supplier.profile.store')}}">กลับ</a>
+                            <button type="submit" form="formedit" class="btn btn__yes">ยืนยัน</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        @endif
     </div>
 </div>
 @stop
