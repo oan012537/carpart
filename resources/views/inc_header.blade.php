@@ -26,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link btn__yellow" href="{{url('buyer/login-buy')}}">
+                    <a class="nav-link btn__yellow" href="{{url(Session('lang')."/buyer/login-buy/")}}">
                         <div class="icon"><span>เข้าสู่ระบบผู้ซื้อ</span></div>
                     </a>
                 </li>
@@ -42,11 +42,11 @@
                         <img src="assets/img/icon/icon-web.svg" class="img-fluid" alt=""> @if(Session::get('lang')=='th')ไทย @else English @endif
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{url('setlang/th')}}">ไทย</a></li>
+                        <li><a class="dropdown-item" href="{{url('set/lang/th')}}">ไทย</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{{url('setlang/en')}}">English</a></li>
+                        <li><a class="dropdown-item" href="{{url('set/lang/en')}}">English</a></li>
                     </ul>
                 </li>
 

@@ -109,20 +109,22 @@
                 <br><br>
                 <div class="box-scoll-roon">
                     <div class="row">
-                        <div class="col-sm">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <img src="assets/img/home-seach/r1.png" class="img-fluid" alt="shoe image">
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="text-detail-roon">
-                                        <p>
-                                            Aston Martin
-                                        </p>
+                        {{-- @foreach ($brand as $item)
+                            <div class="col-sm">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <img src="assets/img/home-seach/r1.png" class="img-fluid" alt="shoe image">
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="text-detail-roon">
+                                            <p>
+                                                {{$item->brand_name}}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach --}}
                         <div class="col-sm">
                             <div class="row">
                                 <div class="col-lg-5">

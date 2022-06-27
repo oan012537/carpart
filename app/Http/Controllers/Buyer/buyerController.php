@@ -28,17 +28,16 @@ class buyerController extends Controller
 
         if (Auth::guard('buyer')->attempt(['email' => $username, 'password' => $password]) )
         {
-            return view('buyer.home-search');
+            return redirect('buyer/home-search');
         }
         elseif (Auth::guard('buyer')->attempt(['phone' => $username, 'password' => $password]) )
         {
-            return redirect('/buyer/home-search')->withErrors(['success' => 'เข้าสู่ระบบสำเร็จ!!']);
+            return redirect('buyer/home-search');
         }else{
 
             dd("username หรือ password ผิด");
             return redirect('backend\login')->with(['error' => 'ชื่อผู้ใช้งาน หรือรหัสผ่านผิด !']);
         }
-        return view('buyer.login-buy-post');
     }
 
     public function logout_buyer(){
@@ -114,7 +113,6 @@ class buyerController extends Controller
             $data->save();
 
             Session::flush(); // ลบ Session ทั้งหมด
-
             return response()->json(["message"=>"สมัครสมาชิกสำเร็จ","status"=>true,"redirect_location"=>url("backend/dashboard")]);
         }else{
             dd("ไม่สำเร็จ");
@@ -127,8 +125,8 @@ class buyerController extends Controller
 
     }
     public function home_search(){
-        
-        return view('buyer.home-search');
+        $brand = DB::table('brand')->get();
+        return view('buyer.home-search',compact('brand'));
     }
 
 }
