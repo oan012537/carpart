@@ -18,9 +18,9 @@
             <div class="col-lg-9">
 
                 <div class="wrapper__add">
-                    <div class="box__btn">
+                    {{-- <div class="box__btn">
                         <a href="javascript:void(0)" class="btn btn__add" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-circle-plus"></i> เพิ่มบทบาท</a>
-                    </div>
+                    </div> --}}
 
                     <div class="box__search">
                         <div class="input-group ">

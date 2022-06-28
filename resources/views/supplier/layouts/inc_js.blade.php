@@ -8,7 +8,8 @@
 <script src="{{asset('assets/js/add_active.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+<script src="{{asset('daterangepicker-master/daterangepicker.js')}}"></script>
+<script src="{{asset('daterangepicker-master/moment.min.js')}}"></script>
 
 <script>
     // to top

@@ -399,7 +399,9 @@ class ProfileController extends Controller
             'password' => Hash::make('12345678'),
             'created_for' => !empty(Auth::user()->name)?Auth::user()->name:'',
         ]);
-        return redirect()->route('supplier.profile.setting');
+        $sendsms = $this->sendsms($request->email,'12345678',$request->phone);
+        dd($sendsms);
+        // return redirect()->route('supplier.profile.setting');
     }
 
     public function changepermission(Request $request){
@@ -427,6 +429,98 @@ class ProfileController extends Controller
 
     public function notificationindex(){
         return view('supplier.profile.notification.index');
+    }
+
+    public function getotp($token,$otpcode){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "token"=>$token,
+            "otp_code"=>$otpcode,
+            )),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        // echo $response;
+        $response = json_decode($response,true);
+        return Response::json($response);
+    }
+
+    public function gettokenotp($number){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "project_key"=>"9b9279e805",
+            "phone"=>$number,
+            )),
+        ));
+        $response = curl_exec($curl);
+        $info = curl_getinfo($curl);
+        // echo $info["http_code"];
+        curl_close($curl);
+        // echo $response;
+        //เพิ่มเอง
+        $response = json_decode($response,true);
+        if($info["http_code"] == '200'){
+            return $response['result']['token'];
+        }
+        //เพิ่มเอง
+        
+    }
+
+    public function sendsms($user,$pass,$phone){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/send-message',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "message"=>"CPN-Role : ชื่อผู้ใช้งาน/Username : ".$user."\n รหัสผ่าน/Password : ".$pass,
+            "phone"=>$phone,
+            "sender"=>"Demo-SMS",
+            )),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        // echo $response;
+        $response = json_decode($response,true);
+        return Response::json($response);
     }
 
 }

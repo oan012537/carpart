@@ -172,5 +172,12 @@ Route::get('supplier/profile/setting/user/searchrole', [Supplier\ProfileControll
 Route::get('supplier/profile/notification', [Supplier\ProfileController::class,'notificationindex'])->name('supplier.profile.notification');
 
 
+Route::get('supplier/requests', [Supplier\RequestsController::class,'index'])->name('supplier.requests');
+Route::get('supplier/requests/view/{id}', [Supplier\RequestsController::class,'view'])->name('supplier.requests.view');
+Route::get('supplier/requests/details/{id}', [Supplier\RequestsController::class,'details'])->name('supplier.requests.details');
+Route::get('supplier/requests/offer/{id}', [Supplier\RequestsController::class,'offer'])->name('supplier.requests.offer');
+
+
+
 // Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile.noti');
 require __DIR__.'/auth.php';

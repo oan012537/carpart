@@ -73,7 +73,8 @@
                 </li>
 
                 <li>
-                    <a href="spareparts-card.php" class="nav_link" data-page="spareparts-card">
+                    {{-- spareparts-card.php --}}
+                    <a href="{{route('supplier.requests')}}" class="nav_link" data-page="spareparts-card">
                         <div class="icon__sidebar4"></div>
                         <span class="nav_name">คำขอหาอะไหล่ </span>
                     </a>
