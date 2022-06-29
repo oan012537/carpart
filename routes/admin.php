@@ -108,6 +108,37 @@ Route::group(['middleware' => 'auth'], function(){
 
             });
         });
+
+        Route::prefix('requestspares')->group(function () {
+            Route::get('/', [Backend\RequestSparesController::class,'index'])->name('backend.requestspares');
+            Route::get('view/{id}', [Backend\RequestSparesController::class,'view'])->name('backend.requestspares.view');
+            Route::get('details/{id}', [Backend\RequestSparesController::class,'details'])->name('backend.requestspares.details');
+            Route::post('update', [Backend\RequestSparesController::class,'update'])->name('backend.requestspares.update');
+        });
+
+        Route::prefix('manageproduct')->group(function () {
+            Route::get('/', [Backend\ProductController::class,'index'])->name('backend.product');
+            Route::get('edit/{id}', [Backend\ProductController::class,'edit'])->name('backend.product.edit');
+            Route::post('update', [Backend\ProductController::class,'update'])->name('backend.product.update');
+        });
+
+        Route::prefix('settingcategory')->group(function () {
+            Route::get('/', [Backend\CategoryController::class,'index'])->name('backend.category');
+            Route::get('add', function(){})->name('backend.category.add');
+            Route::post('store', function(){})->name('backend.category.store');
+            Route::post('update', [Backend\CategoryController::class,'update'])->name('backend.category.update');
+            Route::post('updatesub', [Backend\CategoryController::class,'updatesub'])->name('backend.categorysub.update');
+            Route::post('updatesubs', [Backend\CategoryController::class,'updatesubs'])->name('backend.categorysubs.update');
+        });
+
+        Route::prefix('settingbrand')->group(function () {
+            Route::get('/', [Backend\BrandController::class,'index'])->name('backend.brand');
+            Route::get('add', function(){})->name('backend.brand.add');
+            Route::post('store', function(){})->name('backend.brand.store');
+            Route::get('edit', [Backend\BrandController::class,'edit'])->name('backend.brand.edit');
+            Route::post('update', [Backend\BrandController::class,'update'])->name('backend.brand.update');
+        });
+
     });
     // Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');
 });

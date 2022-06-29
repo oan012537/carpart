@@ -84,10 +84,10 @@
                 <!-- DropDown -->
                 <li> <a href="#" class="nav_link"> <i class="fa-solid fa-cart-shopping"></i> <span class="nav_name">รายการสั่งซื้อ</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class='fas fa-exclamation-circle'></i> <span class="nav_name">รายการเคลม</span> </a></li>
-                <li><a href="#" class="nav_link"> <i class='far fa-file'></i> <span class="nav_name">ประวัติคำขอหาอะไหล่</span> </a></li>
+                <li><a data-page="requestspares" href="{{route('backend.requestspares')}}" class="nav_link"> <i class='far fa-file'></i> <span class="nav_name">ประวัติคำขอหาอะไหล่</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-hand-holding-dollar"></i> <span class="nav_name">ระบบการเงิน</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class='fas fa-file-alt'></i> <span class="nav_name">รายงาน</span> </a></li>
-                <li><a href="#" class="nav_link"> <i class="fas fa-box"></i> <span class="nav_name">จัดการสินค้า</span> </a></li>
+                <li><a data-page="manageproduct" href="{{route('backend.product')}}" class="nav_link"> <i class="fas fa-box"></i> <span class="nav_name">จัดการสินค้า</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fas fa-store"></i> <span class="nav_name">จัดการผู้ขาย</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-user-gear"></i> <span class="nav_name">จัดการผู้ซื้อ</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class='fas fa-truck'></i> <span class="nav_name">จัดการขนส่ง</span> </a></li>
@@ -95,7 +95,9 @@
                 <li><a href="#" class="nav_link"> <i class='far fa-comments'></i> <span class="nav_name">Chat</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-book-open"></i> <span class="nav_name">จัดการ PDPA</span> </a></li>
                 <li><a data-page="settingcompany" href="{{route('backend.company')}}" class="nav_link"> <i class="fa-solid fa-gear"></i> <span class="nav_name">ตั้งค่าบริษัท</span> </a></li>
-                <li><a href="#" class="nav_link"> <i class="fa-solid fa-screwdriver-wrench"></i> <span class="nav_name">ตั้งค่าหมวดหมู่สินค้า</span> </a></li>
+                <li><a data-page="settingcategory" href="{{route('backend.category')}}" class="nav_link"> <i class="fa-solid fa-screwdriver-wrench"></i> <span class="nav_name">ตั้งค่าหมวดหมู่สินค้า</span> </a></li>
+                <li><a data-page="settingbrand" href="{{route('backend.brand')}}" class="nav_link"> <i class="fa-solid fa-screwdriver-wrench"></i> <span class="nav_name">ตั้งค่าแบรนด์</span> </a></li>
+
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-money-check"></i> <span class="nav_name">จัดการ Banner</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-table-list"></i><span class="nav_name">จัดการบทความ</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-tower-broadcast"></i> <span class="nav_name">จัดการ Broadcast</span> </a></li>
