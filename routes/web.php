@@ -105,7 +105,7 @@ Route::get('/articles', function () {return view('articles');})->name('frontend.
 Route::get('/contactus', function () {return view('contactus');})->name('frontend.contactus');
 Route::get('/articles-content', function () {return view('articles-content');})->name('frontend.articlecontent');
 
-Route::get('setlang/{lang}', function ($lang) {
+Route::get('set/lang/{lang}', function ($lang) {
     Session::put('lang', $lang);
     return Redirect::back();
 });
