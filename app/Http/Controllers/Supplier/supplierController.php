@@ -16,7 +16,7 @@ use DB;
 use App\Models\Supplier\Users_supplier;
 
 
-class supplierController extends Controller
+class SupplierController extends Controller
 {
     public function login_supplier(){
         return view('supplier.login-sup');

@@ -5,19 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class IssueYear extends Model
 {
-    protected $table = 'categories';
-
     protected $fillable =[
-        "code",
-        "name_th",
-        "name_en",
-        "image",
+        "sub_model_id",
+        "from_year",
+        "to_year",
+        "master_data",
         "is_active",
         "created_by",
         "updated_by",
     ];
-    
-    
 }
