@@ -128,34 +128,49 @@
                                         <input type="text" class="form-control" placeholder="ระบุ" name="address" aria-label="Username"
                                             aria-describedby="basic-addon1">
                                     </div>
+                                    
                                     <div class="tt-text-log">
                                         <p>
-                                            จังหวัด *
+                                            จังหวัด <span class="dot__color">*</span>
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
-                                            aria-describedby="basic-addon1">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected> ระบุ </option>
+                                            <option value="1"> 1 </option>
+                                            <option value="2"> 2</option>
+                                            <option value="3"> 3 </option>
+                                        </select>
                                     </div>
+                                    
                                     <div class="tt-text-log">
                                         <p>
-                                            เขต/อำเภอ *
+                                            เขต/อำเภอ <span class="dot__color">*</span>
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
-                                            aria-describedby="basic-addon1">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected> ระบุ </option>
+                                            <option value="1"> 1 </option>
+                                            <option value="2"> 2</option>
+                                            <option value="3"> 3 </option>
+                                        </select>
                                     </div>
+                                 
                                     <div class="tt-text-log">
                                         <p>
-                                            แขวง/ตำบล *
+                                            แขวง/ตำบล <span class="dot__color">*</span>
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
-                                            aria-describedby="basic-addon1">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected> ระบุ </option>
+                                            <option value="1"> 1 </option>
+                                            <option value="2"> 2</option>
+                                            <option value="3"> 3 </option>
+                                        </select>
                                     </div>
-
+                                 
                                     <div class="tt-text-log">
                                         <p>
                                             สำเนาบัตรประชาชน *

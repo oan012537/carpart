@@ -538,17 +538,3 @@
     color: var(--clrmain) !important;
   }
 }
-.btn__back {
-  color: var(--clrwhites);
-  background-color: var(--clrdarks5);
-  border-radius: 4px;
-  border: 1px solid var(--clrdarks5);
-  padding: 7px 2rem;
-  @extend %transition-3;
-
-  &:hover {
-    @extend %transition-3;
-    background-color: transparent;
-    color: var(--clrwhites);
-  }
-}

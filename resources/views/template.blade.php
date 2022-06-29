@@ -12,7 +12,7 @@
     <meta name='copyright' content='orange technology solution co.,ltd.'>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link type="image/ico" rel="shortcut icon" href="assets/img/favicon.ico">
+    <link type="image/ico" rel="shortcut icon" href="{{asset('assets/img/favicon.ico')}}">
 
     @include('inc_css')
 </head>
@@ -35,7 +35,7 @@
     @include('inc_footer')
     @include('inc_js')
 
-    <script src="assets/js/slide-homepage.js"></script>
+    <script src="{{asset('assets/js/slide-homepage.js')}}"></script>
 
 </body>
 @yield('script')

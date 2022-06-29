@@ -400,8 +400,8 @@ class ProfileController extends Controller
             'created_for' => !empty(Auth::user()->name)?Auth::user()->name:'',
         ]);
         $sendsms = $this->sendsms($request->email,'12345678',$request->phone);
-        dd($sendsms);
-        // return redirect()->route('supplier.profile.setting');
+        // dd($sendsms);
+        return redirect()->route('supplier.profile.setting');
     }
 
     public function changepermission(Request $request){
@@ -511,9 +511,9 @@ class ProfileController extends Controller
                 "secret_key:SCFmYT1IgPXJT4nr",
             ),
             CURLOPT_POSTFIELDS =>json_encode(array(
-            "message"=>"CPN-Role : ชื่อผู้ใช้งาน/Username : ".$user."\n รหัสผ่าน/Password : ".$pass,
+            "message"=>"ชื่อผู้ใช้งาน/Username : ".$user."\n รหัสผ่าน/Password : ".$pass,
             "phone"=>$phone,
-            "sender"=>"Demo-SMS",
+            "sender"=>"CAR-PARTS",
             )),
         ));
         $response = curl_exec($curl);
