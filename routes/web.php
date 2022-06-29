@@ -34,6 +34,15 @@ Route::post('buyer/regiscon-buy-post', [Buyer\buyerController::class, 'regiscon_
 Route::get('buyer/registerpass-buy', [Buyer\buyerController::class, 'registerpass_buyer']);
 Route::post('buyer/registerpass-buy-post', [Buyer\buyerController::class, 'registerpass_buyer_post'])->name('step3');
 
+Route::get('buyer/requestspares', [Buyer\RequestSparesController::class, 'index'])->name('buyer.requestspares');
+Route::get('buyer/requestspares/add', [Buyer\RequestSparesController::class, 'add'])->name('buyer.requestspares.add');
+Route::post('buyer/requestspares/add', function(){})->name('buyer.requestspares.store');
+
+Route::get('buyer/requestspares/view', [Buyer\RequestSparesController::class, 'view'])->name('buyer.requestspares.view');
+Route::get('buyer/requestspares/details', [Buyer\RequestSparesController::class, 'details'])->name('buyer.requestspares.details');
+
+
+
 Route::group(['middleware' => ['buyer']], function () {
     Route::get('buyer/home-search', [Buyer\buyerController::class, 'home_search'])->name('buyer.home-search');
 });
