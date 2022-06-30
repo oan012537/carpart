@@ -55,7 +55,7 @@ Route::group(['middleware' => ['buyer']], function () {
 Route::get('supplier/login-sup', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
 Route::post('supplier/login-sup-post', [Supplier\supplierController::class,'login_supplier_post'])->name('supplier.login');
 
-Route::get('supplier/login/verify/phone', [Supplier\supplierController::class, 'logphone_supplier'])->name('supplier.login.verify.phone');
+Route::get('supplier/login/verify/phone', [Supplier\SupplierController::class, 'logphone_supplier'])->name('supplier.login.verify.phone');
 Route::post('supplier/login/verify/phone', [Supplier\Auth\SupplierAuthController::class,'verifyphone'])->name('supplier.login.verify.phone.post');
 
 Route::get('supplier/login/verify/otp', [Supplier\supplierController::class, 'logotp_supplier'])->name('supplier.login.verify.otp');
@@ -90,6 +90,10 @@ Route::post('supplier/registerpass-sup-post', [Supplier\supplierController::clas
 Route::group(['middleware' => ['supplier']], function () {
     // Route::get('supplier/supplier-profile', [Supplier\supplierController::class, 'supplier_profile'])->name('supplier.supplier_profile');
     Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile');
+
+    // impliment product controller
+    Route::resource('products', Supplier\ProductController::class);
+
 });
 ////////// END SUPPLIER
 
@@ -105,7 +109,7 @@ Route::get('/articles', function () {return view('articles');})->name('frontend.
 Route::get('/contactus', function () {return view('contactus');})->name('frontend.contactus');
 Route::get('/articles-content', function () {return view('articles-content');})->name('frontend.articlecontent');
 
-Route::get('setlang/{lang}', function ($lang) {
+Route::get('set/lang/{lang}', function ($lang) {
     Session::put('lang', $lang);
     return Redirect::back();
 });

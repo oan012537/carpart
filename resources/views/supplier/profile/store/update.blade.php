@@ -37,7 +37,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label> อีเมล </label>
-                                        <input type="email" class="form-control" name="email" placeholder="ระบุ" required value="{{$supplier->company_email}}">
+                                        <input type="email" class="form-control" name="email" placeholder="ระบุ" required value="{{$supplier->email}}">
                                     </div>
                                 </div>
 

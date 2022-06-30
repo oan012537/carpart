@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class SubCategory extends Model
 {
-    protected $table = 'categories';
-
     protected $fillable =[
+        "category_id",
         "code",
         "name_th",
         "name_en",
@@ -18,6 +17,4 @@ class Category extends Model
         "created_by",
         "updated_by",
     ];
-    
-    
 }
