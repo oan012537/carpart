@@ -1,0 +1,265 @@
+.card-1 {
+    background-color: #3F3F3F;
+}
+
+.card-1 .box__contentmain .box__tab .box__content {
+    margin: 30px 20px;
+    padding: 15px;
+    background-color: var(--clrdarks5);
+}
+
+.txt__title {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.txt__detail {
+    color: #ff7b7b;
+    margin-left: -37px;
+}
+
+.txt__detail2 {
+    color: #ff7b7b;
+    margin-left: -132px;
+}
+
+.txt__detail3 {
+    color: #ff7b7b;
+    margin-left: -158px;
+}
+
+.txt__numid {
+    color: #BDBDBD;
+    margin-left: -36px;
+}
+
+.txt_price {
+    float: right;
+    margin-top: 25px;
+    margin-right: 50px;
+}
+
+.txt__name {
+    padding-top: 20px;
+    margin-left: -35px;
+}
+
+.box__sta {
+    margin-bottom: 0;
+    float: right;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+.box__image {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.card-1 hr {
+    margin: 0rem 0;
+    color: inherit;
+    border: 0;
+    border-top: 1px solid;
+    opacity: 0.25;
+}
+
+.txt__close {
+    color: white;
+    margin-top: 43px;
+    margin-left: 122px;
+}
+
+.box__navleft .nav_list {
+    height: 550px;
+    width: 75%;
+    overflow-y: auto;
+    background-color: #3f3f3f;
+}
+
+#history-request .box__contentmain {
+    background-color: var(--clrdarks6);
+    margin-top: 3rem;
+    border-radius: 4px;
+    margin-left: -100px;
+}
+
+.button-detail {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.button-detail:hover {
+    background-color: black;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Start accordion */
+
+.accordion {
+    background-color: #3f3f3f;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active,
+.accordion:hover {
+    background-color: #3f3f3f;
+}
+
+.accordion:after {
+    content: "\2228";
+    color: white;
+    padding: 2px 9px 2px 9px;
+    font-size: 16px;
+    float: right;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-right: 20px;
+    background-color: #5a5a5a;
+}
+
+.active:after {
+    content: "\2227";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: #3f3f3f;
+    color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+/* End accordion */
+
+.card-4 {
+    padding: 20px;
+    background-color: #3F3F3F;
+}
+
+.tt-textt-tt p {
+    font-size: 16px;
+    color: white;
+    padding-top: 10px;
+}
+
+.tt-textt-tt2 p {
+    font-size: 14px;
+    color: #E8D95F;
+    text-decoration: underline;
+}
+
+.box-box-bb-card {
+    background-color: #ff7b7b36;
+    border: 2px solid #ff7b7b;
+}
+
+.logo-img-img {
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.tt-tt-text-t {
+    color: white;
+}
+
+.button-mi {
+    background-color: #282828;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.button-nomi {
+    background-color: #282828;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+
+.button-nominomi {
+    background-color: #282828;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+}
+
+
+.button-close {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 10px 50px 10px 50px;
+    border-radius: 5px;
+}
+
+.button-close:hover {
+    background-color: #3f3e3e;
+    color: white;
+    border: 2px solid #3f3e3e;
+    padding: 10px 50px 10px 50px;
+    border-radius: 5px;
+}
+
+.button-up {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    padding: 10px 50px 10px 50px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.button-up:hover {
+    background-color: black;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    padding: 10px 50px 10px 50px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

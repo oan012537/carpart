@@ -1,0 +1,121 @@
+.box__navleft .nav_list {
+    height: 550px;
+    width: 75%;
+    overflow-y: auto;
+    background-color: #3f3f3f;
+}
+
+/*  Start navbar ย่อย  */
+
+#history-request .box__profilemenu {
+    background-color: var(--clrdarks6);
+    border-radius: 4px;
+    padding-bottom: 1rem;
+    padding-top: 0.1rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 48px;
+    margin-left: -100px;
+    margin-right: 52px;
+}
+
+#history-request .box__profile {
+    background: var(--clrdarks6);
+    border-radius: 4px;
+    padding: 1rem 0;
+    margin-left: -40px;
+    margin-top: 48px;
+}
+
+#history-request .box__profilemenu .box__nav ul li {
+    list-style: none;
+    padding-left: 30px;
+}
+ 
+/*  End navbar ย่อย  */
+
+.box__navleft .nav_link:hover {
+    color: var(--clrmain);
+}
+
+#history-request .active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 9px;
+    height: 32px;
+    background-color: #e4bf57;
+}
+
+#history-request .box__profilemenu .box__nav ul .activemenusub {
+    background: var(--clrdarks5);
+    border-radius: 20px;
+}
+
+#history-request .text-head-tt {
+    color: white;
+    font-size: 16px;
+}
+
+#history-request .box__contentmain {
+    background-color: var(--clrdarks6);
+    margin-top: 3rem;
+    border-radius: 4px;
+}
+
+.box__profilemenu .box__nav ul .activemenusub a {
+    color: var(--clrmain);
+}
+
+.box__navleft .nav_list {
+    height: 550px;
+    overflow-y: auto;
+}
+
+.text-question-t p {
+    font-size: 18px;
+    color: white;
+}
+
+.box__titlepage p {
+    font-size: 18px;
+    color: white;
+    margin-left: 20px;
+}
+
+hr.new1 {
+    border-top: 1px solid white;
+    margin-top: -15px;
+}
+
+#history-request .box__profile .box__itemsinfo hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+#history-request .box__profile .box__itemsinfo .title__txt {
+    color: var(--clrgrays);
+    margin-bottom: 0.5rem;
+    margin-bottom: 17px;
+    color: white;
+}
+
+#history-request .fa-chevron-circle-right:before,
+.fa-circle-chevron-right:before {
+    font-size: 20px;
+    color: white;
+    margin-left: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

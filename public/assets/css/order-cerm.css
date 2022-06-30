@@ -127,3 +127,17 @@
   .fa-right-left:before {
       color: #f7912b;
   }
+
+ .box__navleft .nav_list {
+    height: 550px;
+    width: 75%;
+    overflow-y: auto;
+    background-color: #3f3f3f;
+}
+                
+#history-request .box__contentmain {
+    background-color: var(--clrdarks6);
+    margin-top: 3rem;
+    border-radius: 4px;
+    margin-left: -100px;
+}

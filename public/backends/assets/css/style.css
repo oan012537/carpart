@@ -2873,10 +2873,22 @@ li {
   color: #F2994A;
 }
 
-.status #delivered {
+.status #delivered2 {
   color: #E8D95F;
 }
 
+.status #received2 {
+  color: #6FCF97;
+}
+
+.box__filter .btn-flash {
+  background-color: #F8EA29;
+  border-radius: 20px;
+  width: 120px;
+  height: 32px;
+  padding: 0;
+  border: none;
+}
 
 .view-all {
   display: flex;
@@ -3233,6 +3245,15 @@ li {
   float: right;
 }
 
+.btn-down {
+  color: var(--clrcopy) !important;
+  background-color: var(--clrdarks5);
+  border: none;
+  float: right;
+  padding: 0.15rem 0.5rem;
+  border-radius: 50%;
+}
+
 .collapse .box__filter {
   border-radius: 0;
 }
@@ -3254,8 +3275,9 @@ li {
 
 .form-box-input .form-switch .form-check-input:checked {
   background-position: right center;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000'/%3e%3c/svg%3e") !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !important;
 }
+
 
 .form-box-input .form-switch .form-check-input {
   width: 3em;
@@ -3409,10 +3431,13 @@ li {
 .box__accordian__edit .box__edit__cate {
   background-color: var(--clrdarks6);
   height: 680px;
+  overflow: auto;
 }
 
 .box__accordian__edit .box__edit__cate .nav {
   justify-content: unset;
+  display: block;
+  overflow: auto;
 }
 
 .box__accordian__edit .box__edit__cate .tab-content .tab-pane .form-box-input .edit-items-product2 {
@@ -3501,170 +3526,6 @@ li {
   content: 'none';
 }
 
-
-#admin-register {
-  padding: 100px;
-  background-color: #282828;
-}
-
-#admin-register .box-b-login {
-  background-color: #3f3f3f;
-  -webkit-box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  border-radius: 5px;
-  margin: 20px;
-}
-
-#admin-register .text-log-back {
-  background-color: #3f3f3f;
-}
-
-#admin-register .img-img-log {
-  padding-right: 15px;
-}
-
-#admin-register .h-text-log p {
-  color: white;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 36px;
-  /* identical to box height */
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 1.5rem;
-}
-
-#admin-register .tt-text-log p {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.15rem;
-  margin-bottom: 5px;
-  /* identical to box height */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  color: #bdbdbd;
-}
-
-#admin-register .tt-text-log2 p {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  /* identical to box height */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  color: #bdbdbd;
-}
-
-#admin-register .tt-text-log2 p span {
-  color: #eb5757;
-  margin-left: 5px;
-}
-
-#admin-register .text-or-t {
-  margin-left: -33px;
-  position: relative;
-}
-
-#admin-register .text-or-t::before {
-  position: absolute;
-  content: "";
-  left: 35px;
-  top: 10px;
-  background-color: #bdbdbd;
-  width: 35%;
-  height: 2px;
-}
-
-#admin-register .text-or-t::after {
-  position: absolute;
-  content: "";
-  right: 35px;
-  top: 10px;
-  background-color: #bdbdbd;
-  width: 35%;
-  height: 2px;
-}
-
-#admin-register .box-backend {
-  position: relative;
-}
-
-#admin-register .box-backend .form-control {
-  outline: none;
-  border: none !important;
-  background-color: transparent !important;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-#admin-register .box-backend .box-border {
-  border: 2px solid #828282;
-  background-color: #333333;
-}
-
-#admin-register .box-backend .icon-signin {
-  margin-top: 0.2rem;
-  margin-left: 10px;
-}
-
-#admin-register .box-backend .icon-key {
-  margin-top: 0.2rem;
-  margin-left: 10px;
-}
-
-#admin-register .box-backend .icon-eye {
-  margin-top: 0.2rem;
-  margin-right: 15px;
-}
-
-#admin-register .box-backend .icon-eye:hover {
-  cursor: pointer;
-}
-
-#admin-register .t-pass-t {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  /* identical to box height */
-  /* gold */
-  color: #e8d95f;
-}
-
-#admin-register .input-group>.form-control,
-.input-group>.form-select {
-  position: relative;
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  width: 1%;
-  min-width: 0;
-  border-top: 2px solid #828282;
-  border-left: 2px solid #828282;
-  border-right: 2px solid #828282;
-  border-bottom: 2px solid #828282;
-  background-color: #333333;
-  color: white;
-  border-radius: 4px;
-}
-
-#admin-register .input-group {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  width: 91%;
-}
-
-
 #footer {
   background: -webkit-gradient(linear, left top, right top, color-stop(27.6%, #e5d346), color-stop(101.61%, rgba(157, 139, 0, 0.76)));
   background: linear-gradient(90deg, #e5d346 27.6%, rgba(157, 139, 0, 0.76) 101.61%);
@@ -3694,83 +3555,187 @@ li {
   color: var(--clrblacks2);
 }
 
-#admin-register .admin-regis #progressbar {
-  margin-bottom: 30px;
-  overflow: hidden;
-  counter-reset: step;
-  padding-left: 0;
-  width: 315px;
-  margin: auto;
-}
-
-#admin-register .admin-regis #progressbar li {
-  list-style-type: none;
-  color: var(--clrgrays);
-  text-transform: uppercase;
-  font-size: 14px;
-  width: calc(100% / 3);
-  float: left;
-  position: relative;
-  text-align: center;
-}
-
-#admin-register .admin-regis #progressbar li.active {
-  color: var(--clrmain);
-}
-
-#admin-register .admin-regis #progressbar li.active p {
-  background: var(--clrmain);
-  color: #000;
-}
-
-#admin-register .admin-regis #progressbar li.active::before {
-  display: none;
-}
-
-#admin-register .admin-regis #progressbar li p {
-  content: " ";
-  counter-increment: step;
-  width: 40px;
-  height: 40px;
-  line-height: 2;
-  border-radius: 50%;
-  display: block;
-  font-size: 20px;
-  color: var(--clrdarks4);
-  background: var(--clrdarks5);
-  margin: 0 auto 5px auto;
-  z-index: 2;
-}
-
-#admin-register .admin-regis #progressbar li:after {
-  content: '';
-  width: 60%;
-  height: 1px;
-  background: var(--clrgrays);
-  position: absolute;
-  left: -30%;
-  top: 20px;
-  z-index: 0;
-}
-
-#admin-register .admin-regis #progressbar li:first-child::after {
-  display: none;
-}
-
-#admin-register .admin-regis {
-  padding: 2rem 0;
-}
-
-#admin-register .admin-regis h5 {
-  color: #fff;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
 .head-card-tabs {
   background-color: var(--clrdarks7);
   padding: 0.5rem 1rem;
   border: 1px solid var(--clrdarks5);
   border-radius: 4px 4px 0px 0px;
   color: #fff;
+}
+
+.box__accordian__edit .box__filter .text-area {
+  height: 300px;
+}
+
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar {
+  padding-left: 0;
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li {
+  padding: 0.5rem 0;
+  color: var(--clrcopy);
+
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li span {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li span:before {
+  content: '';
+  width: 2px;
+  height: 50px;
+  background: #828282;
+  position: absolute;
+  left: 55px;
+  z-index: 0;
+  top: -31px;
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li.active span:before {
+  background: var(--clrmain);
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li:first-child span:before {
+  background: none;
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li .Step1 {
+  width: 80px;
+  height: 80px;
+  margin: 1rem;
+  border-radius: 50%;
+  display: block;
+  font-size: 40px;
+  line-height: 2;
+  background-color: #828282;
+  border: 5px solid #4F4F4F;
+  z-index: 1;
+  background-image: url(../img/request-form/Step1.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li.active .Step1 {
+  background-color: #E8D95F;
+  border: 5px solid #D4C01B;
+  background-image: url(../img/request-form/Step1.png);
+}
+
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li .Step2 {
+  width: 80px;
+  height: 80px;
+  margin: 1rem;
+  border-radius: 50%;
+  display: block;
+  font-size: 40px;
+  line-height: 2;
+  color: #ddd;
+  background-color: #828282;
+  border: 5px solid #4F4F4F;
+  z-index: 1;
+  background-image: url(../img/request-form/Step2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li.active .Step2 {
+  background-color: #E8D95F;
+  border: 5px solid #D4C01B;
+  background-image: url(../img/request-form/Step2-1.png);
+}
+
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li .Step3 {
+  width: 80px;
+  height: 80px;
+  margin: 1rem;
+  border-radius: 50%;
+  display: block;
+  font-size: 40px;
+  line-height: 2;
+  color: #ddd;
+  background-color: #828282;
+  border: 5px solid #4F4F4F;
+  z-index: 1;
+  background-image: url(../img/request-form/Step3.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li.active .Step3 {
+  background-color: #E8D95F;
+  border: 5px solid #D4C01B;
+  background-image: url(../img/request-form/Step3-1.png);
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li .Step4 {
+  width: 80px;
+  height: 80px;
+  margin: 1rem;
+  border-radius: 50%;
+  display: block;
+  font-size: 40px;
+  line-height: 2;
+  color: #ddd;
+  background-color: #828282;
+  border: 5px solid #4F4F4F;
+  z-index: 1;
+  background-image: url(../img/request-form/Step4.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li.active .Step4 {
+  background-color: #E8D95F;
+  border: 5px solid #D4C01B;
+  background-image: url(../img/request-form/Step4-1.png);
+}
+
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li .Step5 {
+  width: 80px;
+  height: 80px;
+  margin: 1rem;
+  border-radius: 50%;
+  display: block;
+  font-size: 40px;
+  line-height: 2;
+  color: #ddd;
+  background-color: #828282;
+  border: 5px solid #4F4F4F;
+  z-index: 1;
+  background-image: url(../img/request-form/Step5.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li.active .Step5 {
+  background-color: #E8D95F;
+  border: 5px solid #D4C01B;
+  background-image: url(../img/request-form/Step5-1.png);
+}
+
+.box__approvel .box__accordian__edit .modal-content {
+  background-color: var(--clrdarks6);
+}
+
+.box__approvel .box__accordian__edit .modal-content .card {
+  background-color: var(--clrdarks6);
+}
+
+.box__approvel .box__accordian__edit .modal-content .card .card-header {
+  background-color: var(--clrdarks5);
+}
+
+.box__accordian__edit .box__filter #hirtory-order #progressbar li.active .step-text {
+  color: var(--clrmain);
+}
+
+.box__accordian__edit .score{
+  color: var(--clrmain);
 }

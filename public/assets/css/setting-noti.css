@@ -1,3 +1,17 @@
+.box__navleft .nav_list {
+    height: 550px;
+    width: 75%;
+    overflow-y: auto;
+    background-color: #3f3f3f;
+}
+
+#history-request .box__contentmain {
+    background-color: var(--clrdarks6);
+    margin-top: 3rem;
+    border-radius: 4px;
+    margin-left: -100px;
+}
+
 #history-request .txt__titlenoti  {
     font-size: 1.5rem;
     font-weight: 300;
@@ -130,12 +144,12 @@
     background-color: #3a3636;
     border: none;
     color: white;
-    padding: 14px 270px 15px 336px;
+    padding: 15px 352px 15px 348px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    margin: 4px 19px;
+    margin: 2px 23px 2px;
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
@@ -144,7 +158,7 @@
 #id02 .w3-modal-content {
     outline: 0;
     padding: 25px;
-    width: 70%;
+    width: 80%;
     background-color: #282828;
     margin-top: -26px;
 }
@@ -246,9 +260,690 @@
     border-radius: 100px;
 }
 
+#id02 .fa-circle-exclamation:before,
+.fa-exclamation-circle:before {
+    color: #12c4c4;
+}
+
+
+#id02 .input-group> :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#id02 .header2 .box__group2 .box__search .btn__search,
+.header2 .box__group2 .box__search #spareparts-sendoffer .box__allcontent .box__sendoffer .btn__sendlist,
+#spareparts-sendoffer .box__allcontent .box__sendoffer .header2 .box__group2 .box__search .btn__sendlist {
+    background-color: var(--clrmain);
+    color: var(--clrdarks3);
+    border: 1px solid var(--clrmain);
+}
 
 
 
+/*---- modal 3 ----*/
+
+#id03 .w3-modal-content {
+    outline: 0;
+    padding: 25px;
+    width: 80%;
+    background-color: #282828;
+    margin-top: -26px;
+}
+
+#id03 .text-h-roon p {
+    font-size: 18px;
+    color: white;
+}
+
+#id03 .text-tt-roon {
+    margin-left: -83px;
+}
+
+#id03 .text-tt-roon span {
+    font-size: 16px;
+    color: white;
+}
+
+#id03 .text-detail-roon p {
+    font-size: 14px;
+    color: white;
+    margin-top: 16px;
+}
+
+#id03 .button5 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 5px 12px 6px 15px;
+    margin-right: 6px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#id03 .button6 {
+    background-color: #282828;
+    color: white;
+    border: 2px solid #282828;
+    padding: 6px 20px 6px 20px;
+    margin-right: 10px;
+}
+
+#id03 .fa-chevron-right:before {
+    color: white;
+}
+
+
+#id03 .w3-modal-content {
+    outline: 0;
+    padding: 25px;
+    width: 70%;
+    background-color: #282828;
+    margin-top: -26px;
+}
+
+#id03 .text-h-roon p {
+    font-size: 18px;
+    color: white;
+}
+
+#id03 .text-tt-roon {
+    margin-left: -83px;
+}
+
+#id03 .text-tt-roon span {
+    font-size: 16px;
+    color: white;
+}
+
+#id03 .text-detail-roon p {
+    font-size: 14px;
+    color: white;
+    margin-top: 16px;
+}
+
+#id03 .button5 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 5px 12px 6px 15px;
+    margin-right: 6px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#id03 .button6 {
+    background-color: #282828;
+    color: white;
+    border: 2px solid #282828;
+    padding: 6px 20px 6px 20px;
+    margin-right: 10px;
+}
+
+#id03 .fa-chevron-right:before {
+    color: white;
+}
+
+
+/*---- modal 4 ----*/
+
+#id04 .w3-modal-content {
+    outline: 0;
+    padding: 25px;
+    width: 80%;
+    background-color: #282828;
+    margin-top: -26px;
+}
+
+#id04 .text-h-roon p {
+    font-size: 18px;
+    color: white;
+}
+
+#id04 .text-tt-roon {
+    margin-left: -83px;
+}
+
+#id04 .text-tt-roon span {
+    font-size: 16px;
+    color: white;
+}
+
+#id04 .text-detail-roon p {
+    font-size: 14px;
+    color: white;
+    margin-top: 16px;
+}
+
+#id04 .button5 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 5px 12px 6px 15px;
+    margin-right: 6px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#id04 .button6 {
+    background-color: #282828;
+    color: white;
+    border: 2px solid #282828;
+    padding: 6px 20px 6px 20px;
+    margin-right: 10px;
+}
+
+#id04 .fa-chevron-right:before {
+    color: white;
+}
+
+
+
+/*---- modal 5 ----*/
+
+#id05 .w3-modal-content {
+    outline: 0;
+    padding: 25px;
+    width: 80%;
+    background-color: #282828;
+    margin-top: -26px;
+}
+
+#id05 .text-h-roon p {
+    font-size: 18px;
+    color: white;
+}
+
+#id05 .text-tt-roon {
+    margin-left: -83px;
+}
+
+#id05 .text-tt-roon span {
+    font-size: 16px;
+    color: white;
+}
+
+#id05 .text-detail-roon p {
+    font-size: 14px;
+    color: white;
+    margin-top: 16px;
+}
+
+#id05 .button5 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 5px 12px 6px 15px;
+    margin-right: 6px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#id05 .button6 {
+    background-color: #282828;
+    color: white;
+    border: 2px solid #282828;
+    padding: 6px 20px 6px 20px;
+    margin-right: 10px;
+}
+
+#id05 .fa-chevron-right:before {
+    color: white;
+}
+
+.container3 {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container3 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark3 {
+    position: absolute;
+    top: -13px;
+    left: -6px;
+    height: 23px;
+    width: 23px;
+    margin: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark3 {
+    background-color: #ffffff;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container2 input:checked~.checkmark3 {
+    background-color: #ffffff;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark3:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container3 input:checked~.checkmark3:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container3 .checkmark3:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #373737;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+
+
+/*---- modal 6 ----*/
+
+#id06 .w3-modal-content {
+    outline: 0;
+    padding: 25px;
+    width: 80%;
+    background-color: #282828;
+    margin-top: -26px;
+}
+
+#id06 .text-h-roon p {
+    font-size: 18px;
+    color: white;
+}
+
+#id05 .text-tt-roon {
+    margin-left: -83px;
+}
+
+#id06 .text-tt-roon span {
+    font-size: 16px;
+    color: white;
+}
+
+#id06 .text-detail-roon p {
+    font-size: 14px;
+    color: white;
+    margin-top: 16px;
+}
+
+#id06 .button5 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 5px 12px 6px 15px;
+    margin-right: 6px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#id06 .button6 {
+    background-color: #282828;
+    color: white;
+    border: 2px solid #282828;
+    padding: 6px 20px 6px 20px;
+    margin-right: 10px;
+}
+
+#id06 .fa-chevron-right:before {
+    color: white;
+}
+
+#id06 .text-tt-roon {
+    margin-left: -83px;
+}
+
+.container3 {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container3 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark3 {
+    position: absolute;
+    top: -13px;
+    left: -6px;
+    height: 23px;
+    width: 23px;
+    margin: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark3 {
+    background-color: #ffffff;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container2 input:checked~.checkmark3 {
+    background-color: #ffffff;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark3:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container3 input:checked~.checkmark3:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container3 .checkmark3:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #373737;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+
+
+/*---- modal 7 ----*/
+
+#id07 .w3-modal-content {
+    outline: 0;
+    padding: 25px;
+    width: 80%;
+    background-color: #282828;
+    margin-top: -26px;
+}
+
+#id07 .text-h-roon p {
+    font-size: 18px;
+    color: white;
+}
+
+#id07 .text-tt-roon {
+    margin-left: -83px;
+}
+
+#id07 .text-tt-roon span {
+    font-size: 16px;
+    color: white;
+}
+
+#id07 .text-detail-roon p {
+    font-size: 14px;
+    color: white;
+    margin-top: 16px;
+}
+
+#id07 .button5 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 5px 12px 6px 15px;
+    margin-right: 6px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#id07 .button6 {
+    background-color: #282828;
+    color: white;
+    border: 2px solid #282828;
+    padding: 6px 20px 6px 20px;
+    margin-right: 10px;
+}
+
+#id07 .fa-chevron-right:before {
+    color: white;
+}
+
+#id07 .text-tt-roon {
+    margin-left: -83px;
+}
+
+.container3 {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container3 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark3 {
+    position: absolute;
+    top: -13px;
+    left: -6px;
+    height: 23px;
+    width: 23px;
+    margin: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark3 {
+    background-color: #ffffff;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container2 input:checked~.checkmark3 {
+    background-color: #ffffff;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark3:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container3 input:checked~.checkmark3:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container3 .checkmark3:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #373737;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+
+
+/*---- modal 8 ----*/
+
+#id08 .w3-modal-content {
+    outline: 0;
+    padding: 25px;
+    width: 80%;
+    background-color: #282828;
+    margin-top: -26px;
+}
+
+#id08 .text-h-roon p {
+    font-size: 18px;
+    color: white;
+}
+
+#id08 .text-tt-roon {
+    margin-left: -83px;
+}
+
+#id08 .text-tt-roon span {
+    font-size: 16px;
+    color: white;
+}
+
+#id08 .text-detail-roon p {
+    font-size: 14px;
+    color: white;
+    margin-top: 16px;
+}
+
+#id08 .button5 {
+    background-color: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+    padding: 5px 12px 6px 15px;
+    margin-right: 6px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#id08 .button6 {
+    background-color: #282828;
+    color: white;
+    border: 2px solid #282828;
+    padding: 6px 20px 6px 20px;
+    margin-right: 10px;
+}
+
+#id08 .fa-chevron-right:before {
+    color: white;
+}
+
+#id08 .text-tt-roon {
+    margin-left: -83px;
+}
+
+.container3 {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container3 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark3 {
+    position: absolute;
+    top: -13px;
+    left: -6px;
+    height: 23px;
+    width: 23px;
+    margin: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark3 {
+    background-color: #ffffff;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container2 input:checked~.checkmark3 {
+    background-color: #ffffff;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark3:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container3 input:checked~.checkmark3:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container3 .checkmark3:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #373737;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
 
 
 

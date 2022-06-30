@@ -27,6 +27,8 @@ class TableBrandModels extends Migration
             // $table->string('model_master_data');
             $table->string('created_for',200)->nullable();
             $table->string('updated_for',200)->nullable();
+            $table->string('model_active',1)->default('1');
+
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
