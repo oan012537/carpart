@@ -121,3 +121,31 @@
 .fa-right-left:before {
     color: #f7912b;
 }
+
+#history-request .text-t-icon-cart {
+    float: right;
+    margin-right: 38px;
+    margin-top: 14px;
+}
+
+#history-request .text-tt-cart-t p {
+    font-size: 14px;
+    color: white;
+    float: right;
+    margin-top: 73px;
+    margin-right: -62px;
+}
+
+.box__navleft .nav_list {
+    height: 550px;
+    width: 75%;
+    overflow-y: auto;
+    background-color: #3f3f3f;
+}
+
+#history-request .box__contentmain {
+    background-color: var(--clrdarks6);
+    margin-top: 3rem;
+    border-radius: 4px;
+    margin-left: -100px;
+}

@@ -117,6 +117,13 @@
     border: 2px solid #1e1e1c;
 }
 
+#history-request .box__contentmain {
+    background-color: var(--clrdarks6);
+    margin-top: 3rem;
+    border-radius: 4px;
+    margin-left: -100px;
+}
+
 .box-line {
     display: flex;
     justify-content: center;
@@ -221,6 +228,11 @@
     margin-bottom: 5px;
 }
 
+#history-request .nav__top i {
+    color: var(--clrwhites);
+    padding: 0 15px;
+}
+
 .button-bank {
     background-color: #E8D95F;
     color: black;
@@ -238,7 +250,7 @@
     background-color: #555454;
     border: none;
     color: white;
-    padding: 11px 344px 15px 375px;
+    padding: 11px 423px 15px 395px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -606,7 +618,7 @@
     background-color: #555454;
     border: none;
     color: white;
-    padding: 11px 362px 15px 390px;
+    padding: 11px 423px 15px 427px;     
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -733,6 +745,13 @@
     font-size: 14px;
     color: white;
     text-align: center;
+}
+
+.box__navleft .nav_list {
+    height: 550px;
+    width: 75%;
+    overflow-y: auto;
+    background-color: #3f3f3f;
 }
 
 .num-text-otp p {

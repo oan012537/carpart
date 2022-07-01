@@ -1,0 +1,115 @@
+.box__navleft .nav_list {
+    height: 550px;
+    width: 75%;
+    overflow-y: auto;
+    background-color: #3f3f3f;
+}
+
+#history-request .box__contentmain {
+    background-color: var(--clrdarks6);
+    margin-top: 3rem;
+    border-radius: 4px;
+    margin-left: -100px;
+}
+
+#history-request .txt__titlenoti {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: white;
+    margin-left: 1.5rem;
+    padding-top: 1rem;
+}
+
+#history-request .back-txt-bb {
+    background-color: #282828;
+    padding: 21px;
+    margin-left: 24px;
+    margin-right: 24px;
+    border-radius: 5px;
+    margin-top: -62px;
+}
+
+.txt-txt-detail p {
+    font-size: 18px;
+    color: white;
+}
+
+.txt-txt-detail-date p {
+    font-size: 12px;
+    color: white;
+    margin-top: -13px;
+}
+
+#history-request .backback-detail {
+    background-color: #3F3F3F;
+    color: white;
+    padding: 21px;
+    border-radius: 5px;
+}
+
+
+/*---- ปรับ scrollbar .backback-detail ------*/
+
+.backback-detail {
+    overflow-y: scroll;
+    height: 250px;
+    border-radius: 5px;
+}
+
+/* width */
+.backback-detail::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.backback-detail::-webkit-scrollbar-track {
+    background-color: white;
+    border-radius: 100px;
+}
+
+/* Handle */
+.backback-detail::-webkit-scrollbar-thumb {
+    background-color: #3F3F3F;
+    border-radius: 100px;
+}
+
+/* Handle on hover */
+.backback-detail::-webkit-scrollbar-thumb {
+    background-color: #E8D95F;
+    border-radius: 100px;
+}
+
+
+
+/*---- accordion------*/
+
+.accordion {
+    background-color: #3f3f3f;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active,
+.accordion:hover {
+    background-color: #3f3f3f;;
+}
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: #BDBDBD;
+    overflow: hidden;
+}
+
+
+
+
+
+

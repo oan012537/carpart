@@ -41,19 +41,11 @@ document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
  * @param {File} file
  */
 function updateThumbnail(dropZoneElement, file) {
-  if(parseFloat((file.size / (1024*1024)).toFixed(2)) > limitsize){
-    $(this).val('');
-    $('.drop-zone__thumb').remove();
-    $('.drop-zone__prompt').css('display','block'); //เพิ่มเอง
-    toastr['error']('Notification of files exceeding the specified size.')
-    return false;
-  }
   let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
 
   // First time - remove the prompt
   if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-    // dropZoneElement.querySelector(".drop-zone__prompt").remove();
-    $('.drop-zone__prompt').css('display','none');//เพิ่มเอง
+    dropZoneElement.querySelector(".drop-zone__prompt").remove();
   }
 
   // First time - there is no thumbnail element, so lets create it

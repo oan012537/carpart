@@ -38,14 +38,6 @@
     margin-bottom: 0;
 }
 
-#history-request .txt__detailtitlenoti {
-    font-size: 1rem;
-    font-weight: 300;
-    color: white;
-    margin-left: 1.5rem;
-    margin-top: -13px;
-}
-
 #history-request .img-text-noti {
     margin-left: 3rem;
     padding-top: 1.3rem;
@@ -107,36 +99,51 @@
     margin-top: 3rem;
 }
 
-
-/*---- ปรับ scrollbar .b-text-t-b ------*/
-
-.box__tab {
-    overflow-y: scroll;
-    height: 550px;
-    border-radius: 5px;
+.main {
+    margin: -52px 30px -12px 30px;
 }
 
-/* width */
-.box__tab::-webkit-scrollbar {
-    width: 8px;
+
+.pagination2 {
+    display: inline-block;
 }
 
-/* Track */
-.box__tab::-webkit-scrollbar-track {
-    background-color: white;
-    border-radius: 100px;
+.pagination2 a {
+    color: white;
+    float: left;
+    padding: 8px 25px;
+    text-decoration: none;
 }
 
-/* Handle */
-.box__tab::-webkit-scrollbar-thumb {
-    background-color: #3F3F3F;
-    border-radius: 100px;
+
+.pagination2 {
+    --bs-pagination-padding-x: 0.75rem;
+    --bs-pagination-padding-y: 0.375rem;
+    --bs-pagination-font-size: 1rem;
+    --bs-pagination-color: #373737;
+    /* --bs-pagination-bg: #fff; */
+    --bs-pagination-border-width: 1px;
+    /* --bs-pagination-border-color: #dee2e6; */
+    /*--bs-pagination-border-radius: 0.375rem;*/
+    --bs-pagination-hover-color: #000000;
+    --bs-pagination-hover-bg: #E8D95F;
+    --bs-pagination-hover-border-color: #E8D95F;
+    --bs-pagination-focus-color: #000000;
+    --bs-pagination-focus-bg: #e9ecef;
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 25%);
+    --bs-pagination-active-color: #fff;
+    --bs-pagination-active-bg: #000;
+    --bs-pagination-active-border-color: #000;
+    --bs-pagination-disabled-color: white;
+    --bs-pagination-disabled-bg: #4F4F4F;
+    --bs-pagination-disabled-border-color: #dee2e6;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    margin-left: 22px;
 }
 
-/* Handle on hover */
-.box__tab::-webkit-scrollbar-thumb {
-    background-color: #E8D95F;
-    border-radius: 100px;
-}
+
+
 
 
