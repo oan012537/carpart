@@ -8,6 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Brandmodels extends Model
 {
     use HasFactory;
-    protected $table = 'brand_models';
-    protected $primaryKey = 'models_id';
+    protected $table = 'sub_models';
 }

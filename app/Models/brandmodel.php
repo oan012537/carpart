@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Brandmodel extends Model
 {
-    protected $table = 'brand_model';
+    protected $table = 'models';
 
     protected $fillable =[
         "code",

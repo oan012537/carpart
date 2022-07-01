@@ -8,6 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Brandyear extends Model
 {
     use HasFactory;
-    protected $table = 'brand_year';
-    protected $primaryKey = 'year_id';
+    protected $table = 'issue_years';
 }
