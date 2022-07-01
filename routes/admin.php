@@ -137,6 +137,27 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('store', function(){})->name('backend.brand.store');
             Route::get('edit', [Backend\BrandController::class,'edit'])->name('backend.brand.edit');
             Route::post('update', [Backend\BrandController::class,'update'])->name('backend.brand.update');
+            Route::post('updatemodel', [Backend\BrandController::class,'updatemodel'])->name('backend.brandmodel.update');
+            Route::post('updatemodelsub', [Backend\BrandController::class,'updatemodelsub'])->name('backend.brandmodelsub.update');
+            Route::post('updateyear', [Backend\BrandController::class,'updateyear'])->name('backend.brandyear.update');
+
+            Route::get('getbrandmodel', [Backend\BrandController::class,'getbrandmodel'])->name('backend.brand.getbrandmodel');
+            Route::get('getbrandmodelsub', [Backend\BrandController::class,'getbrandmodelsub'])->name('backend.brand.getbrandmodelsub');
+            Route::get('getbrandmodelyear', [Backend\BrandController::class,'getbrandmodelyear'])->name('backend.brand.getbrandmodelyear');
+            
+        });
+
+        Route::get('settingmanufac', [Backend\BrandController::class,'settingmanufac'])->name('backend.settingmanufac');
+        Route::get('settingmanufac/datatables', [Backend\BrandController::class,'datatables'])->name('backend.settingmanufac.datatables');
+        Route::get('settingmanufac/changeactive', [Backend\BrandController::class,'changeactive'])->name('backend.settingmanufac.changeactive');
+
+        Route::prefix('settingbanner')->group(function () {
+            Route::get('/', [Backend\BannerController::class,'index'])->name('backend.banner');
+            Route::get('add', function(){})->name('backend.banner.add');
+            Route::post('store', function(){})->name('backend.banner.store');
+            Route::get('edit', [Backend\BannerController::class,'edit'])->name('backend.banner.edit');
+            Route::post('update', [Backend\BannerController::class,'update'])->name('backend.banner.update');
+            
         });
 
     });

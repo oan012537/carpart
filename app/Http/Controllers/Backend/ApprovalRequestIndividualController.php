@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Datatables;
 use App\Models\Backend\Role;
-use App\Models\User;
+use App\Models\Supplier\users_supplier;
 use Response;
 
 class ApprovalRequestIndividualController extends Controller
@@ -16,8 +16,8 @@ class ApprovalRequestIndividualController extends Controller
     }
 
     public function datatables(){
-
-		$data = User::all();
+        
+        $data = users_supplier::where('type','บุคคลธรรมดา');
 		$sQuery	= Datatables::of($data)
 		// ->filter(function ($query) use ($dataserch){
 		// 	$explodesearch = explode(',',$dataserch);
@@ -88,7 +88,7 @@ class ApprovalRequestIndividualController extends Controller
 
     public function datatables_wait(){
 
-		$data = User::all();
+        $data = users_supplier::where('status','2')->where('type','บุคคลธรรมดา');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));
@@ -129,7 +129,7 @@ class ApprovalRequestIndividualController extends Controller
 
     public function datatables_approval(){
 
-		$data = User::all();
+        $data = users_supplier::where('status','1')->where('type','บุคคลธรรมดา');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));
@@ -170,7 +170,7 @@ class ApprovalRequestIndividualController extends Controller
 
 	public function datatables_disapproved(){
 
-		$data = User::all();
+        $data = users_supplier::where('status','3')->where('type','บุคคลธรรมดา');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));

@@ -23,6 +23,7 @@ class TableCategorys extends Migration
             $table->string('category_name_en')->unique();
             $table->string('created_for',200)->nullable();
             $table->string('updated_for',200)->nullable();
+            $table->string('category_active',1)->default('1');
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();

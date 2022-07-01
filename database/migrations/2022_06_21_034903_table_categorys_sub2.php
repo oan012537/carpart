@@ -25,6 +25,8 @@ class TableCategorysSub2 extends Migration
             $table->string('categorysubs_name_en');
             $table->string('created_for',200)->nullable();
             $table->string('updated_for',200)->nullable();
+            $table->string('categorysubs_active',1)->default('1');
+
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();

@@ -39,11 +39,12 @@
                                     <div class="box__edit__cate p-0">
                                         <ul class="nav nav-pills form-box-input">
                                             <li class="nav-item edit-items-product">
-                                                <div class="nav-link" data-bs-toggle="pill" href="#home">
-                                                    <div id="box1">
+                                                @foreach($brands as $item)
+                                                <div class="nav-link brands brand{{$item->brand_id}}" data-id="{{$item->brand_id}}" data-bs-toggle="pill" href="#brand{{$item->brand_id}}">
+                                                    <div id="box1" class="brand_{{$item->brand_id}}">
                                                         <div class="d-flex justify-content-between">
                                                             <div>
-                                                                <p class="mb-2">แบรนด์<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement()"><i class="fas fa-pencil-alt"></i></span></p>
+                                                                <p class="mb-2">{{$item->brand_name_th}}<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('{{$item->brand_id}}')"><i class="fas fa-pencil-alt"></i></span></p>
                                                             </div>
                                                             <span id="next-brand"><i class="fas fa-angle-right"></i></span>
                                                             <span id="delete-brand"><i class="fas fa-trash"></i></span>
@@ -51,21 +52,26 @@
                                                         </div>
                                                     </div>
                                                     <div id="box2">
-                                                        <div class="row">
-                                                            <div class="col-9">
-                                                                <div class="row">
-                                                                    <div class="col-12">
-                                                                        <input type="text" class="form-control mb-2" id="" placeholder="รุ่น">
+                                                        <form method="POST" action="{{ route('backend.brand.update') }}" enctype="multipart/form-data" id="formupdatebrand{{$item->brand_id}}">
+                                                            @csrf
+                                                            <input type="hidden" name="brandid" value="{{$item->brand_id}}">
+                                                            <div class="row">
+                                                                <div class="col-9">
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <input type="text" class="form-control mb-2" id="editbrand" placeholder="รุ่น" value="{{$item->brand_name_th}}" name="editbrand">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
+                                                                <div class="col-3 d-flex align-items-center">
+                                                                    <button type="submit" class="btn btn__app btn__waitapproval px-4" onclick="saveElement('formupdatebrand{{$item->brand_id}}')">บันทึก</button>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-3 d-flex align-items-center">
-                                                                <a class="btn btn__app btn__waitapproval px-4" href="" onclick="saveElement()">บันทึก</a>
-                                                            </div>
-                                                        </div>
+                                                        </form>
 
                                                     </div>
                                                 </div>
+                                                @endforeach
                                             </li>
                                         </ul>
                                     </div>
@@ -87,14 +93,17 @@
                                 <div class="box__accordian__edit">
                                     <div class="box__edit__cate p-0">
                                         <div class="tab-content">
-                                            <div id="home" class="tab-pane">
+                                            @if(!empty($brandmodel))
+                                            @foreach($brandmodel as $key => $item)
+                                            <div id="brand{{$key}}" class="tab-pane">
                                                 <ul class="nav nav-pills form-box-input no-style-list ps-0">
+                                                    @foreach($item as $value)
                                                     <li class="nav-item edit-items-product">
-                                                        <div class="nav-link" data-bs-toggle="pill" href="#main2">
-                                                            <div id="box1">
+                                                        <div class="nav-link brandmodels brandmodels{{$value->model_id}}" data-id="{{$value->model_id}}" data-bs-toggle="pill" href="#brandmodel{{$value->model_id}}">
+                                                            <div id="box1" class="brandmodel_{{$value->model_id}}">
                                                                 <div class="d-flex justify-content-between">
                                                                     <div>
-                                                                        <p class="mb-2">รุ่น<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement()"><i class="fas fa-pencil-alt"></i></span></p>
+                                                                        <p class="mb-2">{{$value->model_name_th}}<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('{{$value->model_id}}')"><i class="fas fa-pencil-alt"></i></span></p>
                                                                     </div>
                                                                     <span id="next-brand"><i class="fas fa-angle-right"></i></span>
                                                                     <span id="delete-brand"><i class="fas fa-trash"></i></span>
@@ -102,52 +111,35 @@
                                                                 </div>
                                                             </div>
                                                             <div id="box2">
-                                                                <div class="row">
-                                                                    <div class="col-9">
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                <input type="text" class="form-control mb-2" id="" placeholder="รุ่น">
+                                                                <form method="POST" action="{{ route('backend.brandmodel.update') }}" enctype="multipart/form-data" id="formupdatebrandmodel{{$item->model_id}}">
+                                                                    @csrf
+                                                                    <input type="hidden" name="modelid" value="{{$value->model_id}}">
+                                                                    <div class="row">
+                                                                        <div class="col-9">
+                                                                            <div class="row">
+                                                                                <div class="col-12">
+                                                                                    <input type="text" class="form-control mb-2" id="editmodel" name="editmodel" placeholder="รุ่น" value="{{$value->model_name_th}}" required>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="col-3 d-flex align-items-center">
+                                                                            <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('formupdatebrandmodel{{$item->model_id}}')">บันทึก</button>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-3 d-flex align-items-center">
-                                                                        <a class="btn btn__app btn__waitapproval px-4" href="" onclick="saveElement()">บันทึก</a>
-                                                                    </div>
-                                                                </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </li>
-                                                    <li class="nav-item edit-items-product">
-                                                        <div class="nav-link" data-bs-toggle="pill" href="#main3">
-                                                            <div id="box1">
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div>
-                                                                        <p class="mb-2">รุ่น<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement()"><i class="fas fa-pencil-alt"></i></span></p>
-                                                                    </div>
-                                                                    <span id="next-brand"><i class="fas fa-angle-right"></i></span>
-                                                                    <span id="delete-brand"><i class="fas fa-trash"></i></span>
-
-                                                                </div>
-                                                            </div>
-                                                            <div id="box2">
-                                                                <div class="row">
-                                                                    <div class="col-9">
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                <input type="text" class="form-control mb-2" id="" placeholder="รุ่น">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-3 d-flex align-items-center">
-                                                                        <a class="btn btn__app btn__waitapproval px-4" href="" onclick="saveElement()">บันทึก</a>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
+                                            @endforeach
+                                            @else
+                                            {{-- <div id="brand" class="tab-pane"> --}}
+                                                <ul class="nav nav-pills form-box-input no-style-list ps-0" id="showbrandmodel">
+                                                </ul>
+                                            {{-- </div> --}}
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -168,50 +160,51 @@
                                 <div class="box__accordian__edit">
                                     <div class="box__edit__cate p-0">
                                         <div class="tab-content">
-                                            <div id="main2" class="tab-pane">
+                                            @if(!empty($brandmodelsub))
+                                            @foreach($brandmodelsub as $key => $item)
+                                            <div id="brandmodelsub{{$key}}" class="tab-pane">
                                                 <ul class="nav nav-pills form-box-input no-style-list ps-0">
+                                                    @foreach($item as $key => $value)
                                                     <li class="nav-item edit-items-product">
-                                                        <div class="nav-link" data-bs-toggle="pill" href="#main4">
-                                                            <div class="d-flex justify-content-between">
-                                                                <div>
-                                                                    <p class="mb-2">รุ่นย่อย<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement()"><i class="fas fa-pencil-alt"></i></span></p>
-                                                                </div>
-                                                                <span id="next-brand"><i class="fas fa-angle-right"></i></span>
-                                                                <span id="delete-brand"><i class="fas fa-trash"></i></span>
+                                                        <div class="nav-link brandmodelsubs brandmodelsub{{$value->models_id}}" data-id="{{$value->models_id}}" data-bs-toggle="pill" href="#brandmodelsub{{$value->models_id}}">
+                                                            <div id="box1" class="brandmodelsub_{{$value->models_id}}">
+                                                                <div class="d-flex justify-content-between">
+                                                                    <div>
+                                                                        <p class="mb-2">{{$value->models_name_th}}<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('{{$value->models_id}}')"><i class="fas fa-pencil-alt"></i></span></p>
+                                                                    </div>
+                                                                    <span id="next-brand"><i class="fas fa-angle-right"></i></span>
+                                                                    <span id="delete-brand"><i class="fas fa-trash"></i></span>
 
+                                                                </div>
+                                                            </div>
+                                                            <div id="box2">
+                                                                <form method="POST" action="{{ route('backend.brandmodelsub.update') }}" enctype="multipart/form-data" id="formupdatebrandmodelsub{{$item->models_id}}">
+                                                                    @csrf
+                                                                    <input type="hidden" name="modelsubid" value="{{$value->models_id}}">
+                                                                    <div class="row">
+                                                                        <div class="col-9">
+                                                                            <div class="row">
+                                                                                <div class="col-12">
+                                                                                    <input type="text" class="form-control mb-2" id="editmodelsub" name="editmodelsub" placeholder="รุ่น" value="{{$value->models_name_th}}" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-3 d-flex align-items-center">
+                                                                            <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('formupdatebrandmodelsub{{$item->models_id}}')">บันทึก</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
-                                            <div id="main3" class="tab-pane">
-                                                <ul class="nav nav-pills form-box-input no-style-list ps-0">
-                                                    <li class="nav-item edit-items-product">
-                                                        <div class="nav-link" data-bs-toggle="pill" href="#main5">
-                                                            <div class="d-flex justify-content-between">
-                                                                <div>
-                                                                    <p class="mb-2">รุ่นย่อย<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement()"><i class="fas fa-pencil-alt"></i></span></p>
-                                                                </div>
-                                                                <span id="next-brand"><i class="fas fa-angle-right"></i></span>
-                                                                <span id="delete-brand"><i class="fas fa-trash"></i></span>
-
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="nav-item edit-items-product">
-                                                        <div class="nav-link" data-bs-toggle="pill" href="#main6">
-                                                            <div class="d-flex justify-content-between">
-                                                                <div>
-                                                                    <p class="mb-2">รุ่นย่อย<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement()"><i class="fas fa-pencil-alt"></i></span></p>
-                                                                </div>
-                                                                <span id="next-brand"><i class="fas fa-angle-right"></i></span>
-                                                                <span id="delete-brand"><i class="fas fa-trash"></i></span>
-
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            @endforeach
+                                            @else
+                                            <ul class="nav nav-pills form-box-input no-style-list ps-0" id="showbrandmodelsub">
+                                            </ul>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -232,30 +225,52 @@
                                 <div class="box__accordian__edit">
                                     <div class="box__edit__cate p-0">
                                         <div class="tab-content">
-                                            <div id="main4" class="tab-pane">
+                                            @if(!empty($brandyear))
+                                            @foreach($brandyear as $key => $item)
+                                            <div id="brandmodelsub{{$key}}" class="tab-pane">
                                                 <ul class="form-box-input no-style-list ps-0">
+                                                    @foreach($item as $key => $value)
                                                     <li class="edit-items-product2">
-                                                        <p class="mb-2">1991</p>
+                                                        <div class="nav-link brandyears brandyears{{$value->year_id}}"  data-id="{{$value->year_id}}" data-bs-toggle="pill" >
+                                                            <div id="box1" class="brandyear_{{$value->year_id}}">
+                                                                <div class="d-flex justify-content-between">
+                                                                    <div>
+                                                                        <p class="mb-2">{{$value->year_year_from}}<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('{{$value->year_id}}')"><i class="fas fa-pencil-alt"></i></span></p>
+                                                                    </div>
+                                                                    <span id="next-brand"><i class="fas fa-angle-right"></i></span>
+                                                                    <span id="delete-brand"><i class="fas fa-trash"></i></span>
+
+                                                                </div>
+                                                            </div>
+                                                            <div id="box2">
+                                                                <form method="POST" action="{{ route('backend.brandyear.update') }}" enctype="multipart/form-data" id="formupdatebrandyear{{$item->year_id}}">
+                                                                    @csrf
+                                                                    <input type="hidden" name="yearid" value="{{$value->year_id}}">
+                                                                    <div class="row">
+                                                                        <div class="col-9">
+                                                                            <div class="row">
+                                                                                <div class="col-12">
+                                                                                    <input type="text" class="form-control mb-2" id="edityear" placeholder="ปี" value="{{$value->year_year_from}}" name="edityear">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-3 d-flex align-items-center">
+                                                                            <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('formupdatebrandyear{{$item->year_id}}')">บันทึก</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+        
+                                                            </div>
+                                                        </div>
                                                     </li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
-                                            <div id="main5" class="tab-pane">
-                                                <ul class="form-box-input no-style-list ps-0">
-                                                    <li class="edit-items-product2">
-                                                        <p class="mb-2">1992</p>
-                                                    </li>
-                                                    <li class="edit-items-product2">
-                                                        <p class="mb-2">1993</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div id="main6" class="tab-pane">
-                                                <ul class="form-box-input no-style-list ps-0">
-                                                    <li class="edit-items-product2">
-                                                        <p class="mb-2">1994</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            @endforeach
+                                            @else
+                                            <ul class="nav nav-pills form-box-input no-style-list ps-0" id="showbrandmodelyear">
+                                            </ul>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -280,11 +295,34 @@
 
 @section('script')
 <script>
-</script>
-<script>
-    function changeElement() {
-        document.getElementById("box1").style.display = "none";
-        document.getElementById("box2").style.display = "block";
+    var selectdata = '';
+    var selectdataclass = '';
+    function changeElement(id) {
+        console.log('id ' +id)
+        console.log('selectdata ' +selectdata)
+        console.log('selectdataclass ' +selectdataclass)
+        // document.getElementById("box1").style.display = "none";
+        // document.getElementById("box2").style.display = "block";
+        if(selectdata != ''){
+            $(".brands #box1").show();
+            $(".brands #box2").hide();
+
+            $(".brandmodels #box1").show();
+            $(".brandmodels #box2").hide();
+
+            $(".brandmodelsubs #box1").show();
+            $(".brandmodelsubs #box2").hide();
+            
+            $(".brandyears #box1").show();
+            $(".brandyears #box2").hide();
+
+            var pointer = selectdataclass.replace('_','');
+
+            console.log('pointer ' +pointer)
+
+            $("."+pointer+selectdata+" #box1").hide();
+            $("."+pointer+selectdata+" #box2").show();
+        }
     }
 
     function updateElement() {
@@ -293,9 +331,105 @@
     }
 
     function EditElement() {
-        document.getElementById("edit-brand").style.display = "block";
-        document.getElementById("delete-brand").style.display = "block";
-        document.getElementById("next-brand").style.display = "none";
+        if(selectdata != ''){
+            // document.getElementById("edit-brand").style.display = "block";
+            // document.getElementById("delete-brand").style.display = "block";
+            // document.getElementById("next-brand").style.display = "none";
+
+            // $(".brand #box1").show();
+            $(".brands #box1 #edit-brand").hide();
+            $(".brands #box1 #delete-brand").hide();
+            $(".brands #box1 #next-brand").show();
+            
+            $(".brandmodels #box1 #edit-brand").hide();
+            $(".brandmodels #box1 #delete-brand").hide();
+            $(".brandmodels #box1 #next-brand").show();
+            
+            $(".brandmodelsubs #box1 #edit-brand").hide();
+            $(".brandmodelsubs #box1 #delete-brand").hide();
+            $(".brandmodelsubs #box1 #next-brand").show();
+
+            $(".brandyears #box1 #edit-brand").hide();
+            $(".brandyears #box1 #delete-brand").hide();
+            $(".brandyears #box1 #next-brand").show();
+            
+
+            $("."+selectdataclass+selectdata+' #edit-brand').show();
+            $("."+selectdataclass+selectdata+' #delete-brand').show();
+            $("."+selectdataclass+selectdata+' #next-brand').hide();
+            console.log(selectdata);
+        }
+    }
+    $(".brands").click(function (e) { 
+        selectdata = $(this).data('id');
+        selectdataclass = 'brand_';
+        getbrandmodel(selectdata);
+        e.preventDefault();
+    });
+    $(".brandmodels").click(function (e) { 
+        selectdata = $(this).data('id');
+        selectdataclass = 'brandmodel_';
+        getbrandmodelsub(selectdata);
+        e.preventDefault();
+    });
+    $(".brandmodelsubs").click(function (e) { 
+        selectdata = $(this).data('id');
+        selectdataclass = 'brandmodelsub_';
+        getbrandmodelyear(selectdata);
+        e.preventDefault();
+    });
+    $(".brandyears").click(function (e) { 
+        selectdata = $(this).data('id');
+        selectdataclass = 'brandyear_';
+        e.preventDefault();
+    });
+    function saveElement(id){
+        $("#"+id).submit();
+    }
+    function getbrandmodel(id){
+        $.get("{{route('backend.brand.getbrandmodel')}}",{'id':id},function (result) {
+            var txt = '';
+            $.each(result, function (key, value) { 
+                txt += value;
+            });
+            $("#showbrandmodel").empty().append(txt);
+            if(txt != ''){
+                $(".brandmodels").click(function (e) { 
+                    selectdata = $(this).data('id');
+                    selectdataclass = 'brandmodel_';
+                    getbrandmodelsub(selectdata);
+                    e.preventDefault();
+                });
+            }
+        });
+    }
+
+    function getbrandmodelsub(id){
+        $.get("{{route('backend.brand.getbrandmodelsub')}}",{'id':id},function (result) {
+            var txt = '';
+            $.each(result, function (key, value) { 
+                txt += value;
+            });
+            $("#showbrandmodelsub").empty().append(txt);
+            if(txt != ''){
+                $(".brandmodelsubs").click(function (e) { 
+                    selectdata = $(this).data('id');
+                    selectdataclass = 'brandmodelsub_';
+                    getbrandmodelyear(selectdata);
+                    e.preventDefault();
+                });
+            }
+        });
+    }
+
+    function getbrandmodelyear(id){
+        $.get("{{route('backend.brand.getbrandmodelyear')}}",{'id':id},function (result) {
+            var txt = '';
+            $.each(result, function (key, value) { 
+                txt += value;
+            });
+            $("#showbrandmodelyear").empty().append(txt);
+        });
     }
 </script>
 <script>

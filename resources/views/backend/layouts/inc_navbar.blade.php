@@ -98,7 +98,7 @@
                 <li><a data-page="settingcategory" href="{{route('backend.category')}}" class="nav_link"> <i class="fa-solid fa-screwdriver-wrench"></i> <span class="nav_name">ตั้งค่าหมวดหมู่สินค้า</span> </a></li>
                 <li><a data-page="settingbrand" href="{{route('backend.brand')}}" class="nav_link"> <i class="fa-solid fa-screwdriver-wrench"></i> <span class="nav_name">ตั้งค่าแบรนด์</span> </a></li>
 
-                <li><a href="#" class="nav_link"> <i class="fa-solid fa-money-check"></i> <span class="nav_name">จัดการ Banner</span> </a></li>
+                <li><a data-page="settingbanner" href="{{route('backend.banner')}}" class="nav_link"> <i class="fa-solid fa-money-check"></i> <span class="nav_name">จัดการ Banner</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-table-list"></i><span class="nav_name">จัดการบทความ</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-tower-broadcast"></i> <span class="nav_name">จัดการ Broadcast</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-bullhorn"></i> <span class="nav_name">จัดการโปรโมชั่น</span> </a></li>

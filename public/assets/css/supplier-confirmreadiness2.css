@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 .content .txt__page {
     font-family: "Kanit", sans-serif !important;
     font-weight: 500;
     font-size: 2rem;
 }
 
+=======
+>>>>>>> dc4305075962f3a82c4f299a361734873ec3257c
 .card-1 {
     background-color: #3F3F3F;
 }
@@ -56,7 +59,10 @@
     margin-right: 50px;
     margin-top: 20px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> dc4305075962f3a82c4f299a361734873ec3257c
 .box__image {
     padding-top: 20px;
     padding-left: 20px;
@@ -198,8 +204,13 @@
 
 .button-nomi {
     background-color: #282828;
+<<<<<<< HEAD
     color: #828282;
     border: 2px solid #828282;
+=======
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+>>>>>>> dc4305075962f3a82c4f299a361734873ec3257c
     padding: 5px 20px 5px 20px;
     border-radius: 5px;
     margin-right: 10px;
@@ -208,11 +219,18 @@
 
 .button-nominomi {
     background-color: #282828;
+<<<<<<< HEAD
     color: #828282;
     border: 2px solid #828282;
     padding: 5px 20px 5px 20px;
     border-radius: 5px;
     margin-right: 10px;
+=======
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+>>>>>>> dc4305075962f3a82c4f299a361734873ec3257c
 }
 
 
@@ -250,6 +268,7 @@
     margin-left: 10px;
 }
 
+<<<<<<< HEAD
 .card-img {
     padding: 20px;
     background-color: #3F3F3F;
@@ -1717,3 +1736,26 @@ hr.line-l {
     float: left;
     color: white;
 }
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> dc4305075962f3a82c4f299a361734873ec3257c
