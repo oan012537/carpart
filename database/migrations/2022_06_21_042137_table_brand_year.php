@@ -13,26 +13,26 @@ class TableBrandYear extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('brand_year')) {
-            Schema::dropIfExists('brand_year');
+        if (Schema::hasTable('issue_years')) {
+            Schema::dropIfExists('issue_years');
         }
-        Schema::create('brand_year', function (Blueprint $table) {
-            $table->increments('year_id');
-            $table->integer('year_modelsid')->unsigned();
+        Schema::create('issue_years', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('sub_model_id')->unsigned();
             // $table->integer('year_modelsid')->unsigned();
-            $table->string('year_year_from');
-            $table->string('year_year_to');
-            $table->string('year_master_data');
-            $table->string('created_for',200)->nullable();
-            $table->string('updated_for',200)->nullable();
-            $table->string('year_active',1)->default('1');
+            $table->string('from_year');
+            $table->string('to_year');
+            $table->string('master_data')->nullable();
+            $table->string('is_active',1)->default('1');
+            $table->string('created_by',200)->nullable();
+            $table->string('updated_by',200)->nullable();
 
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
 
             // $table->foreign('year_modelid')->references('model_id')->on('brand_model')->onDelete('cascade');
-            $table->foreign('year_modelsid')->references('models_id')->on('brand_models')->onDelete('cascade');
+            $table->foreign('sub_model_id')->references('id')->on('sub_models')->onDelete('cascade');
 
         });
     }

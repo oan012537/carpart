@@ -176,6 +176,10 @@ Route::get('supplier/profile/bank', [Supplier\ProfileController::class,'bankinde
 Route::get('supplier/profile/bank/add', [Supplier\ProfileController::class,'bankadd'])->name('supplier.profile.bank.add');
 Route::post('supplier/profile/bank/store', [Supplier\ProfileController::class,'bankstore'])->name('supplier.profile.bank.store');
 
+Route::get('supplier/gettoken/{number}', [Supplier\ProfileController::class,'gettokenotp']);
+Route::post('supplier/getotp', [Supplier\ProfileController::class,'getotp']);
+
+
 Route::get('supplier/profile/setting', [Supplier\ProfileController::class,'settingindex'])->name('supplier.profile.setting');
 Route::post('supplier/profile/setting/role/add', [Supplier\ProfileController::class,'settingrolestore'])->name('supplier.profile.setting.role.add');
 Route::post('supplier/profile/setting/user/add', [Supplier\ProfileController::class,'settinguserstore'])->name('supplier.profile.setting.user.store');

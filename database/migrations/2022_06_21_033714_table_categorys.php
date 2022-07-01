@@ -13,17 +13,18 @@ class TableCategorys extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('category')) {
-            Schema::dropIfExists('category');
+        if (Schema::hasTable('categories')) {
+            Schema::dropIfExists('categories');
         }
-        Schema::create('category', function (Blueprint $table) {
-            $table->increments('category_id');
-            $table->string('category_code')->unique();
-            $table->string('category_name_th')->unique();
-            $table->string('category_name_en')->unique();
-            $table->string('created_for',200)->nullable();
-            $table->string('updated_for',200)->nullable();
-            $table->string('category_active',1)->default('1');
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code')->unique();
+            $table->string('name_th')->unique();
+            $table->string('name_en')->unique();
+            $table->string('image')->nullable();
+            $table->string('is_active',1)->default('1');
+            $table->string('created_by',200)->nullable();
+            $table->string('updated_by',200)->nullable();
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
@@ -37,6 +38,6 @@ class TableCategorys extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('categories');
     }
 }

@@ -13,18 +13,18 @@ class TableBrand extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('brand')) {
-            Schema::dropIfExists('brand');
+        if (Schema::hasTable('brands')) {
+            Schema::dropIfExists('brands');
         }
-        Schema::create('brand', function (Blueprint $table) {
-            $table->increments('brand_id');
-            $table->string('brand_code')->unique();
-            $table->string('brand_name_th')->unique();
-            $table->string('brand_name_en')->unique();
-            $table->string('brand_image');
-            $table->string('created_for',200)->nullable();
-            $table->string('updated_for',200)->nullable();
-            $table->string('brand_active',1)->default('1');
+        Schema::create('brands', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code')->unique();
+            $table->string('name_th')->unique();
+            $table->string('name_en')->unique();
+            $table->string('image')->nullable();
+            $table->string('is_active',1)->default('1');
+            $table->string('created_by',200)->nullable();
+            $table->string('updated_by',200)->nullable();
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
