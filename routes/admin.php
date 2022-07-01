@@ -157,7 +157,12 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::prefix('orderlist')->group(function () {
             Route::get('/', [Backend\OrderlistController::class,'index'])->name('backend.orderlist');
-            Route::get('/', [Backend\OrderlistController::class,'index'])->name('backend.orderlist');
+            Route::get('unpaid/details/{id}', [Backend\OrderlistController::class,'unpaiddetails'])->name('backend.orderlist.unpaid');
+            Route::get('delivered/details/{id}', [Backend\OrderlistController::class,'delivereddetails'])->name('backend.orderlist.delivered');
+            Route::get('shipping/details/{id}', [Backend\OrderlistController::class,'shippingdetails'])->name('backend.orderlist.shipping');
+            Route::get('received/details/{id}', [Backend\OrderlistController::class,'receiveddetails'])->name('backend.orderlist.received');
+            Route::get('cancel/details/{id}', [Backend\OrderlistController::class,'canceldetails'])->name('backend.orderlist.cancel');
+            Route::get('review/details/{id}', [Backend\OrderlistController::class,'reviewdetails'])->name('backend.orderlist.review');
             Route::get('add', [Backend\OrderlistController::class,'add'])->name('backend.orderlist.add');
             Route::post('store', [Backend\OrderlistController::class,'store'])->name('backend.orderlist.store');
             Route::get('edit', [Backend\OrderlistController::class,'edit'])->name('backend.orderlist.edit');

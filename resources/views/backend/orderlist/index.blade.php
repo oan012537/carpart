@@ -119,7 +119,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="form-check me-5">
-                                                        <input class="form-check-input me-4" type="checkbox" id="check1" name="option[all][]" value="something">
+                                                        <input class="form-check-input me-4" type="checkbox" id="check1" name="option1" value="something">
                                                         <div class="d-flex">
                                                             <div class="me-3">
                                                                 <img src="{{asset('backends/assets/img/request-form/Frame 24513.png')}}" class="img-request">
@@ -147,7 +147,7 @@
                                                         18.00</span>
                                                 </div>
                                                 <div class="col-2 text-center">
-                                                    <a href="unpaid-order-detail.php" class="btn btn-search mt-0">ดูรายละเอียด</a>
+                                                    <a href="orderlist/unpaid/details/1" class="btn btn-search mt-0">ดูรายละเอียด</a>
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="img-product">
@@ -229,7 +229,7 @@
                                                         18.00</span>
                                                 </div>
                                                 <div class="col-2 text-center">
-                                                    <a href="unpaid-order-detail.php" class="btn btn-search mt-0">ดูรายละเอียด</a>
+                                                    <a href="orderlist/unpaid/details/1" class="btn btn-search mt-0">ดูรายละเอียด</a>
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="img-product">
@@ -300,7 +300,7 @@
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="status">
-                                                        <p id="unpaid">ยังไม่ได้ชำระ</p>
+                                                        <p id="delivered2">ที่ต้องจัดส่ง</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-1">
@@ -311,7 +311,7 @@
                                                         18.00</span>
                                                 </div>
                                                 <div class="col-2 text-center">
-                                                    <a href="unpaid-order-detail.php" class="btn btn-search mt-0">ดูรายละเอียด</a>
+                                                    <a href="orderlist/delivered/details/1" class="btn btn-search mt-0">ดูรายละเอียด</a>
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="img-product">
@@ -382,18 +382,19 @@
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="status">
-                                                        <p id="unpaid">ยังไม่ได้ชำระ</p>
+                                                        <p id="open">กำลังจัดส่ง</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-1">
-                                                    <span>-</span>
+                                                    <span>Kerry
+                                                        TH1234567890</span>
                                                 </div>
                                                 <div class="col-1">
                                                     <span>15/15/2560
                                                         18.00</span>
                                                 </div>
                                                 <div class="col-2 text-center">
-                                                    <a href="unpaid-order-detail.php" class="btn btn-search mt-0">ดูรายละเอียด</a>
+                                                    <a href="orderlist/shipping/details/1" class="btn btn-search mt-0">ดูรายละเอียด</a>
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="img-product">
@@ -464,18 +465,19 @@
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="status">
-                                                        <p id="unpaid">ยังไม่ได้ชำระ</p>
+                                                        <p id="received2">ได้รับสินค้าแล้ว</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-1">
-                                                    <span>-</span>
+                                                    <span>Kerry
+                                                        TH1234567890</span>
                                                 </div>
                                                 <div class="col-1">
                                                     <span>15/15/2560
                                                         18.00</span>
                                                 </div>
                                                 <div class="col-2 text-center">
-                                                    <a href="unpaid-order-detail.php" class="btn btn-search mt-0">ดูรายละเอียด</a>
+                                                    <a href="orderlist/received/details/1" class="btn btn-search mt-0">ดูรายละเอียด</a>
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="img-product">
@@ -546,7 +548,7 @@
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="status">
-                                                        <p id="unpaid">ยังไม่ได้ชำระ</p>
+                                                        <p id="closed">ยกเลิกคำสั่งซื้อ</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-1">
@@ -557,7 +559,7 @@
                                                         18.00</span>
                                                 </div>
                                                 <div class="col-2 text-center">
-                                                    <a href="unpaid-order-detail.php" class="btn btn-search mt-0">ดูรายละเอียด</a>
+                                                    <a href="orderlist/cancel/details/1" class="btn btn-search mt-0">ดูรายละเอียด</a>
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="img-product">
@@ -628,18 +630,18 @@
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="status">
-                                                        <p id="unpaid">ยังไม่ได้ชำระ</p>
+                                                        <p>ได้รับการรีวิว</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-1">
-                                                    <span>-</span>
+                                                    <span>Kerry TH1234567890</span>
                                                 </div>
                                                 <div class="col-1">
                                                     <span>15/15/2560
                                                         18.00</span>
                                                 </div>
                                                 <div class="col-2 text-center">
-                                                    <a href="unpaid-order-detail.php" class="btn btn-search mt-0">ดูรายละเอียด</a>
+                                                    <a href="orderlist/review/details/1" class="btn btn-search mt-0">ดูรายละเอียด</a>
                                                 </div>
                                                 <div class="col-1">
                                                     <div class="img-product">
