@@ -64,6 +64,8 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('addrole', [Backend\SettinguserController::class,'addrole'])->name('backend.setting.user.role.add');
             Route::get('changepermission', [Backend\SettinguserController::class,'changepermission'])->name('backend.setting.user.changepermission');
 
+            Route::get('searchrole', [Backend\SettinguserController::class,'searchrole'])->name('backend.setting.user.role.searchrole');
+
         });
 
         Route::prefix('approvalrequest')->group(function () {
@@ -132,10 +134,10 @@ Route::group(['middleware' => 'auth'], function(){
         });
 
         Route::prefix('settingbrand')->group(function () {
-            Route::get('/', [Backend\BrandController::class,'index'])->name('backend.brand');
-            Route::get('add', function(){})->name('backend.brand.add');
+            Route::get('/', [Backend\BrandController::class,'show'])->name('backend.brand');
+            Route::get('edit', [Backend\BrandController::class,'index'])->name('backend.brand.edit');
             Route::post('store', function(){})->name('backend.brand.store');
-            Route::get('edit', [Backend\BrandController::class,'edit'])->name('backend.brand.edit');
+            // Route::get('edit', [Backend\BrandController::class,'edit'])->name('backend.brand.edit');
             Route::post('update', [Backend\BrandController::class,'update'])->name('backend.brand.update');
             Route::post('updatemodel', [Backend\BrandController::class,'updatemodel'])->name('backend.brandmodel.update');
             Route::post('updatemodelsub', [Backend\BrandController::class,'updatemodelsub'])->name('backend.brandmodelsub.update');
@@ -144,12 +146,25 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('getbrandmodel', [Backend\BrandController::class,'getbrandmodel'])->name('backend.brand.getbrandmodel');
             Route::get('getbrandmodelsub', [Backend\BrandController::class,'getbrandmodelsub'])->name('backend.brand.getbrandmodelsub');
             Route::get('getbrandmodelyear', [Backend\BrandController::class,'getbrandmodelyear'])->name('backend.brand.getbrandmodelyear');
+
+            Route::get('changeactive', [Backend\BrandController::class,'changeactive'])->name('backend.brand.changeactive');
+            Route::get('datatables', [Backend\BrandController::class,'datatables'])->name('backend.settingbrand.datatables');
             
         });
 
-        Route::get('settingmanufac', [Backend\BrandController::class,'settingmanufac'])->name('backend.settingmanufac');
-        Route::get('settingmanufac/datatables', [Backend\BrandController::class,'datatables'])->name('backend.settingmanufac.datatables');
-        Route::get('settingmanufac/changeactive', [Backend\BrandController::class,'changeactive'])->name('backend.settingmanufac.changeactive');
+        // Route::get('settingmanufac', [Backend\BrandController::class,'settingmanufac'])->name('backend.settingmanufac');
+        
+
+        Route::prefix('orderlist')->group(function () {
+            Route::get('/', [Backend\OrderlistController::class,'index'])->name('backend.orderlist');
+            Route::get('/', [Backend\OrderlistController::class,'index'])->name('backend.orderlist');
+            Route::get('add', [Backend\OrderlistController::class,'add'])->name('backend.orderlist.add');
+            Route::post('store', [Backend\OrderlistController::class,'store'])->name('backend.orderlist.store');
+            Route::get('edit', [Backend\OrderlistController::class,'edit'])->name('backend.orderlist.edit');
+            Route::post('update', [Backend\OrderlistController::class,'update'])->name('backend.orderlist.update');
+            
+        });
+        
 
         Route::prefix('settingbanner')->group(function () {
             Route::get('/', [Backend\BannerController::class,'index'])->name('backend.banner');
@@ -159,6 +174,8 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('update', [Backend\BannerController::class,'update'])->name('backend.banner.update');
             
         });
+
+
 
     });
     // Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');

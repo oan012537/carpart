@@ -17,11 +17,11 @@ class CategoryController extends Controller
         $categorysubs = Categorysubs::all();
         $datacategorysub = [];
         foreach($categorysub as $item){
-            $datacategorysub[$item->categorysub_categoryid][] = $item;
+            $datacategorysub[$item->category_id][] = $item;
         }
         $datacategorysubs = [];
         foreach($categorysubs as $item){
-            $datacategorysubs[$item->categorysubs_subid][] = $item;
+            $datacategorysubs[$item->sub_category_id][] = $item;
         }
         // ->paginate(4)
         // dd($datacategorysub,$datacategorysubs);

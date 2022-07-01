@@ -152,4 +152,9 @@ class SettinguserController extends Controller
         
     }
 
+    public function searchrole(Request $request){
+        $role = Role::where('role_name','NOT LIKE','%'.$request->searchrole.'%')->get();
+        return Response::json($role);
+    }
+
 }

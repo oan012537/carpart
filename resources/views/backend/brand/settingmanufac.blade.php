@@ -28,8 +28,10 @@
 
                                 <div class="col-2">
                                     <label class="title__txt">สถานะ</label>
-                                    <select class="setting-manufac form-select">
-                                        <option>ทั้งหมด</option>
+                                    <select class="setting-manufac form-select" name="status">
+                                        <option value="">ทั้งหมด</option>
+                                        <option value="1">ใช้งาน</option>
+                                        <option value="0">ยกเลิก</option>
                                     </select>
                                 </div>
                             </div>
@@ -108,20 +110,18 @@
             responsive: true,
             scrollX: true,
 			ajax:{ 
-				url : "{{url('backend/settingmanufac/datatables')}}",
+				url : "{{url('backend/settingbrand/datatables')}}",
 				data: function (d) {
-					d.search = $('#search').val();
-					// d.lastname = $('#lastname').val();
-					d.radiodate = $('input[name="radiodate"]:checked').val();
-					d.date = $('#date').val();
+					d.search = $('input[name="search"]').val();
+					d.date = $('select[name="status"]').val();
 				},
 			},
 			columns: [
-				{ 'className': "text-center", data: 'brand_id', name: 'brand_id' },
-				{ 'className': "text-center", data: 'brand_name_th', name: 'brand_name_th' },
+				{ 'className': "text-center", data: 'id', name: 'id' },
+				{ 'className': "text-center", data: 'name_th', name: 'name_th' },
 				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
-				{ 'className': "text-center", data: 'updated_for', name: 'updated_for' },
-				{ 'className': "text-center", data: 'brand_active', name: 'brand_active',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'updated_by', name: 'updated_by' },
+				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'changestatus', name: 'changestatus',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
 			],
@@ -150,29 +150,10 @@
             }
 		});
 		
-		$('#btnsearch').click(function(e){
-			oTable.draw();
-			e.preventDefault();
-            $("#alerttotal").text(oTable.data().count());
-            if(oTable.data().count() > 0){
-                $("#alerttotal").show();
-            }
-		});
         
-		// $("#noorder").keyup(function(e){
-		// 	oTable.draw();
-		// 	e.preventDefault();
-		// });
-
-
-        $("#search").keyup(function (e) { 
+        $("input[name='search']").keyup(function (e) { 
             oTable.draw();
 			e.preventDefault();
-            $("#alerttotal").text(oTable.data().count());
-            if(oTable.data().count() > 0){
-                $("#alerttotal").show();
-            }
-
 
         });
 	});
@@ -182,9 +163,10 @@
         if(mySwitch){
             status = '1';
         }
-        $.get("{{route('backend.settingmanufac.changeactive')}}",{'status':status,'id':id},function (result) {
-                toastralert(result.status,result.msg);
-            });
+        $.get("{{route('backend.brand.changeactive')}}",{'status':status,'id':id},function (result) {
+            $(".showtext"+id+" td:nth-child(5)").html(result.statustext);
+            toastralert(result.status,result.msg);
+        });
     }
 </script>
 @stop

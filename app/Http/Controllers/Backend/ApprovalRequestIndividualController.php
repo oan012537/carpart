@@ -52,12 +52,12 @@ class ApprovalRequestIndividualController extends Controller
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));
 		})
-		->editColumn('status',function($data){
-            if($data->status == '1'){
+		->editColumn('active',function($data){
+            if($data->active == 'approved'){
                 return '<div class="approvel ap-success"><p>อนุมัติ</p></div>';
-            }else if($data->status == '2'){
+            }else if($data->active == 'request_approval'){
                 return '<div class="approvel ap-wait"><p>รออนุมัติ</p></div>';
-            }else if($data->status == '3'){
+            }else if($data->active == 'un_approve'){
                 return '<div class="approvel ap-no"><p>ไม่อนุมัติ</p></div>';
             }else{
                 return '';
@@ -70,11 +70,11 @@ class ApprovalRequestIndividualController extends Controller
             $btn__approval = '';
             $btn__waitapproval = '';
             $btn__noapproval = '';
-			if($data->status == '1'){
+			if($data->active == 'approved'){
                 $btn__approval = 'btn__approval';
-            }else if($data->status == '2'){
+            }else if($data->active == 'request_approval'){
                 $btn__waitapproval = 'btn__waitapproval';
-            }else if($data->status == '3'){
+            }else if($data->active == 'un_approve'){
                 $btn__noapproval = 'btn__noapproval';
             }
 			return '<div class="box__btn">
@@ -88,17 +88,17 @@ class ApprovalRequestIndividualController extends Controller
 
     public function datatables_wait(){
 
-        $data = users_supplier::where('status','2')->where('type','บุคคลธรรมดา');
+        $data = users_supplier::where('active','2')->where('type','บุคคลธรรมดา');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));
 		})
-		->editColumn('status',function($data){
-            if($data->status == '1'){
+		->editColumn('active',function($data){
+            if($data->active == 'approved'){
                 return '<div class="approvel ap-success"><p>อนุมัติ</p></div>';
-            }else if($data->status == '2'){
+            }else if($data->active == 'request_approval'){
                 return '<div class="approvel ap-wait"><p>รออนุมัติ</p></div>';
-            }else if($data->status == '3'){
+            }else if($data->active == 'un_approve'){
                 return '<div class="approvel ap-no"><p>ไม่อนุมัติ</p></div>';
             }else{
                 return '';
@@ -111,11 +111,11 @@ class ApprovalRequestIndividualController extends Controller
             $btn__approval = '';
             $btn__waitapproval = '';
             $btn__noapproval = '';
-			if($data->status == '1'){
+			if($data->active == 'approved'){
                 $btn__approval = 'btn__approval';
-            }else if($data->status == '2'){
+            }else if($data->active == 'request_approval'){
                 $btn__waitapproval = 'btn__waitapproval';
-            }else if($data->status == '3'){
+            }else if($data->active == 'un_approve'){
                 $btn__noapproval = 'btn__noapproval';
             }
 			return '<div class="box__btn">
@@ -129,17 +129,17 @@ class ApprovalRequestIndividualController extends Controller
 
     public function datatables_approval(){
 
-        $data = users_supplier::where('status','1')->where('type','บุคคลธรรมดา');
+        $data = users_supplier::where('active','1')->where('type','บุคคลธรรมดา');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));
 		})
-		->editColumn('status',function($data){
-            if($data->status == '1'){
+		->editColumn('active',function($data){
+            if($data->active == 'approved'){
                 return '<div class="approvel ap-success"><p>อนุมัติ</p></div>';
-            }else if($data->status == '2'){
+            }else if($data->active == 'request_approval'){
                 return '<div class="approvel ap-wait"><p>รออนุมัติ</p></div>';
-            }else if($data->status == '3'){
+            }else if($data->active == 'un_approve'){
                 return '<div class="approvel ap-no"><p>ไม่อนุมัติ</p></div>';
             }else{
                 return '';
@@ -152,11 +152,11 @@ class ApprovalRequestIndividualController extends Controller
             $btn__approval = '';
             $btn__waitapproval = '';
             $btn__noapproval = '';
-			if($data->status == '1'){
+			if($data->active == 'approved'){
                 $btn__approval = 'btn__approval';
-            }else if($data->status == '2'){
+            }else if($data->active == 'request_approval'){
                 $btn__waitapproval = 'btn__waitapproval';
-            }else if($data->status == '3'){
+            }else if($data->active == 'un_approve'){
                 $btn__noapproval = 'btn__noapproval';
             }
 			return '<div class="box__btn">
@@ -170,17 +170,17 @@ class ApprovalRequestIndividualController extends Controller
 
 	public function datatables_disapproved(){
 
-        $data = users_supplier::where('status','3')->where('type','บุคคลธรรมดา');
+        $data = users_supplier::where('active','3')->where('type','บุคคลธรรมดา');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));
 		})
-		->editColumn('status',function($data){
-            if($data->status == '1'){
+		->editColumn('active',function($data){
+            if($data->active == 'approved'){
                 return '<div class="approvel ap-success"><p>อนุมัติ</p></div>';
-            }else if($data->status == '2'){
+            }else if($data->active == 'request_approval'){
                 return '<div class="approvel ap-wait"><p>รออนุมัติ</p></div>';
-            }else if($data->status == '3'){
+            }else if($data->active == 'un_approve'){
                 return '<div class="approvel ap-no"><p>ไม่อนุมัติ</p></div>';
             }else{
                 return '';
@@ -193,11 +193,11 @@ class ApprovalRequestIndividualController extends Controller
             $btn__approval = '';
             $btn__waitapproval = '';
             $btn__noapproval = '';
-			if($data->status == '1'){
+			if($data->active == 'approved'){
                 $btn__approval = 'btn__approval';
-            }else if($data->status == '2'){
+            }else if($data->active == 'request_approval'){
                 $btn__waitapproval = 'btn__waitapproval';
-            }else if($data->status == '3'){
+            }else if($data->active == 'un_approve'){
                 $btn__noapproval = 'btn__noapproval';
             }
 			return '<div class="box__btn">

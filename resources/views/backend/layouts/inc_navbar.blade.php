@@ -82,7 +82,7 @@
                     </ul>
                 </li>
                 <!-- DropDown -->
-                <li> <a href="#" class="nav_link"> <i class="fa-solid fa-cart-shopping"></i> <span class="nav_name">รายการสั่งซื้อ</span> </a></li>
+                <li> <a data-page="orderlist" href="{{route('backend.orderlist')}}" class="nav_link"> <i class="fa-solid fa-cart-shopping"></i> <span class="nav_name">รายการสั่งซื้อ</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class='fas fa-exclamation-circle'></i> <span class="nav_name">รายการเคลม</span> </a></li>
                 <li><a data-page="requestspares" href="{{route('backend.requestspares')}}" class="nav_link"> <i class='far fa-file'></i> <span class="nav_name">ประวัติคำขอหาอะไหล่</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-hand-holding-dollar"></i> <span class="nav_name">ระบบการเงิน</span> </a></li>
