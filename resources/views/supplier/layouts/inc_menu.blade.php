@@ -93,11 +93,11 @@
                         <span class="nav_name">ระบบการเงิน <span class="box__iconmenu"> <span class="circle">12</span></span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="#" class="nav_link">
+                {{-- inventory --}}
+                <li id="product">
+                    <a id="product-list-menu" href="{{ route('products.index') }}" class="nav_link active">
                         <div class="icon__sidebar7"></div>
-                        <span class="nav_name">จัดการสินค้า </span>
+                        <span class="nav_name">จัดการสินค้า</span>
                     </a>
                 </li>
 

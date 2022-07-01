@@ -20,13 +20,19 @@ class ProductController extends Controller
 {
     public function index()
     {
-        //
+        $product_list_data = Product::with('brand', 'model', 'category', 'subCategory')
+                                     ->get();
+
+        return view('supplier.product.index', compact('product_list_data'));
     }
 
 
     public function create()
     {
-        //
+        $brand_list_data = Brand::where('is_active', true)->get();
+        $category_list_data = Category::where('is_active', true)->get();
+
+        return view('supplier.product.create', compact('brand_list_data', 'category_list_data'));
     }
 
 
