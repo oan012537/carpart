@@ -54,6 +54,8 @@
                             </nav>
                             <div class="tab-content mt-4" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="open-request" role="tabpanel" aria-labelledby="open-request-tab">
+                                    @if(!empty($brands))
+                                    @foreach($brands as $key => $value)
                                     <div class="card form-box-input">
                                         <div class="card-header">
                                             <div class="d-flex justify-content-between">
@@ -100,157 +102,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card form-box-input">
-                                        <div class="card-header">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="form-check me-5">
-                                                        <input class="form-check-input me-3" type="checkbox" id="check1" name="option1" value="something">
-                                                        <label class="form-check-label">หมายเลขใบคำขอหาอะไหล่ : W123467845123</label>
-                                                    </div>
-                                                    <p>ID ผู้ซื้อ : W123467845123</p>
-                                                </div>
-                                                <div class="">
-                                                    <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="me-3">
-                                                        <img src="{{asset('backends/assets/img/request-form/Frame 24513.png')}}" class="img-request">
-                                                    </div>
-                                                    <div class="text-request">
-                                                        <p>กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA AE80 , AE90 , AE101 16V</p>
-                                                        <span>รหัสสินค้า 1234</span>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <a href="{{url('backend/requestspares/view/1')}}" class="btn btn__viewdetail">ดูรายละเอียด</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="box__btn me-3">
-                                                        <a href="#" class="btn btn__viewdetail">ลบ</a>
-                                                    </div>
-                                                    <span>ข้อเสนอที่ได้รับ 12,000 สินค้า</span>
-                                                </div>
-                                                <div class="status">
-                                                    <p id="open">สถานะ : เปิดรับคำขอ</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card form-box-input">
-                                        <div class="card-header">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="form-check me-5">
-                                                        <input class="form-check-input me-3" type="checkbox" id="check1" name="option1" value="something">
-                                                        <label class="form-check-label">หมายเลขใบคำขอหาอะไหล่ : W123467845123</label>
-                                                    </div>
-                                                    <p>ID ผู้ซื้อ : W123467845123</p>
-                                                </div>
-                                                <div class="">
-                                                    <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="me-3">
-                                                        <img src="{{asset('backends/assets/img/request-form/Frame 24513.png')}}" class="img-request">
-                                                    </div>
-                                                    <div class="text-request">
-                                                        <p>กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA AE80 , AE90 , AE101 16V</p>
-                                                        <span>รหัสสินค้า 1234</span>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <a href="{{url('backend/requestspares/view/1')}}" class="btn btn__viewdetail">ดูรายละเอียด</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="box__btn me-3">
-                                                        <a href="#" class="btn btn__viewdetail">ลบ</a>
-                                                    </div>
-                                                    <span>ข้อเสนอที่ได้รับ 12,000 สินค้า</span>
-                                                </div>
-                                                <div class="status">
-                                                    <p id="open">สถานะ : เปิดรับคำขอ</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card form-box-input">
-                                        <div class="card-header">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="form-check me-5">
-                                                        <input class="form-check-input me-3" type="checkbox" id="check1" name="option1" value="something">
-                                                        <label class="form-check-label">หมายเลขใบคำขอหาอะไหล่ : W123467845123</label>
-                                                    </div>
-                                                    <p>ID ผู้ซื้อ : W123467845123</p>
-                                                </div>
-                                                <div class="">
-                                                    <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="me-3">
-                                                        <img src="{{asset('backends/assets/img/request-form/Frame 24513.png')}}" class="img-request">
-                                                    </div>
-                                                    <div class="text-request">
-                                                        <p>กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA AE80 , AE90 , AE101 16V</p>
-                                                        <span>รหัสสินค้า 1234</span>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <a href="{{url('backend/requestspares/view/1')}}" class="btn btn__viewdetail">ดูรายละเอียด</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="box__btn me-3">
-                                                        <a href="#" class="btn btn__viewdetail">ลบ</a>
-                                                    </div>
-                                                    <span>ข้อเสนอที่ได้รับ 12,000 สินค้า</span>
-                                                </div>
-                                                <div class="status">
-                                                    <p id="open">สถานะ : เปิดรับคำขอ</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="view-all">
-                                        <div>
-                                            <p>แสดงทั้งหมด 20 จาก 214 รายการ</p>
-                                        </div>
-                                        <ul class="pagination justify-content-end">
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="fas fa-chevron-left"></i></a></li>
-                                            <li class="page-item">1/11</li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </div>
+                                    @endforeach
+                                    {{ $brands->links('vendor.pagination.custom') }}
+                                    @endif
                                 </div>
 
                                 <div class="tab-pane fade" id="closed-request" role="tabpanel" aria-labelledby="closed-request-tab">
+                                    @if(!empty($brands))
+                                    @foreach($brands as $key => $value)
                                     <div class="card form-box-input">
                                         <div class="card-header">
                                             <div class="d-flex justify-content-between">
@@ -291,115 +150,15 @@
                                                     <span>ข้อเสนอที่ได้รับ 12,000 สินค้า</span>
                                                 </div>
                                                 <div class="status">
-                                                    <p id="closed">สถานะ : ปิดรับคำขอแล้ว</p>
+                                                    <p id="open">สถานะ : เปิดรับคำขอ</p>
                                                 </div>
 
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card form-box-input">
-                                        <div class="card-header">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="form-check me-5">
-                                                        <input class="form-check-input me-3" type="checkbox" id="check1" name="option1" value="something">
-                                                        <label class="form-check-label">หมายเลขใบคำขอหาอะไหล่ : W123467845123</label>
-                                                    </div>
-                                                    <p>ID ผู้ซื้อ : W123467845123</p>
-                                                </div>
-                                                <div class="">
-                                                    <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="me-3">
-                                                        <img src="{{asset('backends/assets/img/request-form/Frame 24513.png')}}" class="img-request">
-                                                    </div>
-                                                    <div class="text-request">
-                                                        <p>กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA AE80 , AE90 , AE101 16V</p>
-                                                        <span>รหัสสินค้า 1234</span>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <a href="{{url('backend/requestspares/view/1')}}" class="btn btn__viewdetail">ดูรายละเอียด</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="box__btn me-3">
-                                                        <a href="#" class="btn btn__viewdetail">ลบ</a>
-                                                    </div>
-                                                    <span>ข้อเสนอที่ได้รับ 12,000 สินค้า</span>
-                                                </div>
-                                                <div class="status">
-                                                    <p id="closed">สถานะ : ปิดรับคำขอแล้ว</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card form-box-input">
-                                        <div class="card-header">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="form-check me-5">
-                                                        <input class="form-check-input me-3" type="checkbox" id="check1" name="option1" value="something">
-                                                        <label class="form-check-label">หมายเลขใบคำขอหาอะไหล่ : W123467845123</label>
-                                                    </div>
-                                                    <p>ID ผู้ซื้อ : W123467845123</p>
-                                                </div>
-                                                <div class="">
-                                                    <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="me-3">
-                                                        <img src="{{asset('backends/assets/img/request-form/Frame 24513.png')}}" class="img-request">
-                                                    </div>
-                                                    <div class="text-request">
-                                                        <p>กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA AE80 , AE90 , AE101 16V</p>
-                                                        <span>รหัสสินค้า 1234</span>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <a href="{{url('backend/requestspares/view/1')}}" class="btn btn__viewdetail">ดูรายละเอียด</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex">
-                                                    <div class="box__btn me-3">
-                                                        <a href="#" class="btn btn__viewdetail">ลบ</a>
-                                                    </div>
-                                                    <span>ข้อเสนอที่ได้รับ 12,000 สินค้า</span>
-                                                </div>
-                                                <div class="status">
-                                                    <p id="closed">สถานะ : ปิดรับคำขอแล้ว</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="view-all">
-                                        <div>
-                                            <p>แสดงทั้งหมด 20 จาก 214 รายการ</p>
-                                        </div>
-                                        <ul class="pagination justify-content-end">
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="fas fa-chevron-left"></i></a></li>
-                                            <li class="page-item">1/11</li>
-                                            <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </div>
+                                    @endforeach
+                                    {{ $brands->links('vendor.pagination.custom') }}
+                                    @endif
                                 </div>
                             </div>
                         </div>
