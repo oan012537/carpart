@@ -31,4 +31,19 @@ $(function () {
       }
     });
   }
+
+  // var getPagenavmenu = document.getElementById("navpageName");
+  const Pagenavmenu = $("#navpageName").val();
+  console.log(Pagenavmenu);
+  if (Pagenavmenu !== undefined) {
+    // const Pagenavmenu = getPagenavmenu.value;
+    $(".box__profilemenu .box__nav li").removeClass('activemenusub');
+    $(".box__profilemenu .box__nav li").each(function () {
+      var getMenu = $(this).attr("data-page");
+      console.log(getMenu)
+      if (Pagenavmenu == getMenu) {
+        $(this).addClass("activemenusub");
+      }
+    });
+  }
 });
