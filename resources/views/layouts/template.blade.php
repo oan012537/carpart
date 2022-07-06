@@ -16,10 +16,12 @@
     <link type="image/ico" rel="shortcut icon" href="{{asset('assets/img/favicon.ico')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{asset('assets/css/login1.css')}}" rel="stylesheet">
     
     @include('layouts.inc_css')
 </head>
 <body id="homepage">
+    @include('layouts.inc_header')
 
     @yield('content')
 
@@ -27,6 +29,8 @@
     @include('layouts.inc_js')
 
     <script src="{{asset('assets/js/slide-homepage.js')}}"></script>
+
+    @yield('script')
 
 </body>
 @yield('script')

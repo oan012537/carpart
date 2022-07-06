@@ -30,7 +30,7 @@
                             <?php for ($i = 1; $i <= 7; $i++) { ?>
                                 <a href="javascript:void(0)">
                                     <div class="box__itemsbrand">
-                                        <img src="assets/img/home/brands<?php echo $i; ?>.png" class="img-fluid" alt="">
+                                        <img src="{{ url('assets/img/home/brands') }} {{ $i }}.pang" class="img-fluid" alt="">
                                     </div>
                                 </a>
                             <?php } ?>

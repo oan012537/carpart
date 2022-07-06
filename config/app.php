@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Bangkok',
 
     /*
     |--------------------------------------------------------------------------
@@ -234,6 +234,7 @@ return [
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Datatables' => Yajra\DataTables\Facades\DataTables::class,
+        'Keygen' => Keygen\Keygen::class,
 
     ],
 

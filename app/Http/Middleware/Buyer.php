@@ -17,7 +17,6 @@ class Buyer
      */
     public function handle(Request $request, Closure $next)
     {
-        // dd("เข้า Middleware Buyer");
         if(Auth::guard('buyer')->user()){
             return $next($request);
         }

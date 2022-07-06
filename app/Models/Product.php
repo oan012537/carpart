@@ -15,25 +15,29 @@ class Product extends Model
         "category_id",
         "sub_category_id",
         "sub_sub_category_id",
-        "sku_code",
-        "product_type",
+        "product_code",
+        "product_type", 
         "name_th",
         "name_en",
         "trading_name",
-        "video",
+        "grade",
+        "marker",
+        "sku_code",
         "quality",
         "shop_original_code",
         "vin_code",
         "full_model_code",
         "engine_model_code",
-        "trim",
         "color",
+        "trim",
         "is_warranty",
+        "term_and_condition",
         "price",
         "commission",
         "revenue",
         "qty",
         "status_code",
+        "salesman_code",
         "is_active",
         "created_by",
         "updated_by",
@@ -46,7 +50,7 @@ class Product extends Model
 
     public function model()
     {
-    	return $this->belongsTo('App\Models\Model', 'model_id');
+    	return $this->belongsTo('App\Models\ProductModel', 'model_id');
     }
 
     public function subModel()

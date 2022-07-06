@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
@@ -20,13 +20,12 @@
     @php
         // dd(Auth::user(),Auth::guard('supplier')->check());
     @endphp
-    @if(!Auth::guard('supplier')->check() && !Auth::guard('buyer')->check())
+    @if(!Auth::guard('supplier')->check() || !Auth::guard('buyer')->check())
         @include('inc_header')
     @else
         @include('inc_headerlogin')
     @endif
-    
-    
+
 
     {{-- @include('inc_slide') --}}
 

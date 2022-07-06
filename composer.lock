@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b8d0cba21c8c67c15a6644880e77f0a",
+    "content-hash": "2e570039e16bae2bca2d61f1cc72a776",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1392,6 +1392,57 @@
                 }
             ],
             "time": "2022-02-23T14:25:13+00:00"
+        },
+        {
+            "name": "gladcodes/keygen",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gladchinda/keygen-php.git",
+                "reference": "8806d4440edd37a5545802a82202098b01bbafb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gladchinda/keygen-php/zipball/8806d4440edd37a5545802a82202098b01bbafb9",
+                "reference": "8806d4440edd37a5545802a82202098b01bbafb9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Keygen\\": "src/Keygen"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Glad Chinda",
+                    "email": "gladxeqs@gmail.com"
+                }
+            ],
+            "description": "A fluent PHP random key generator.",
+            "keywords": [
+                "generator",
+                "key",
+                "key generator",
+                "keygen",
+                "php",
+                "random"
+            ],
+            "support": {
+                "issues": "https://github.com/gladchinda/keygen-php/issues",
+                "source": "https://github.com/gladchinda/keygen-php/tree/master"
+            },
+            "time": "2018-07-15T23:24:35+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -8908,16 +8959,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.9.3",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "018c0ae683e19136a2f3177ea33d6b5b09d94b12"
+                "reference": "e98e855ab4bde5bf0083c4a4d73c0f5b474241ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/018c0ae683e19136a2f3177ea33d6b5b09d94b12",
-                "reference": "018c0ae683e19136a2f3177ea33d6b5b09d94b12",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/e98e855ab4bde5bf0083c4a4d73c0f5b474241ae",
+                "reference": "e98e855ab4bde5bf0083c4a4d73c0f5b474241ae",
                 "shasum": ""
             },
             "require": {
@@ -8961,7 +9012,7 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2022-06-01T13:44:02+00:00"
+            "time": "2022-06-28T11:52:06+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -10964,5 +11015,5 @@
         "php": "^7.3"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }

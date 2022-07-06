@@ -32,7 +32,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link btn__yellow2" href="{{route('supplier')}}">
+                    <a class="nav-link btn__yellow2" href="{{ route('supplier.index') }}">
                         <div class="icon2"><span>เข้าสู่ระบบผู้ขาย</span></div>
                     </a>
                 </li>
@@ -42,11 +42,13 @@
                         <img src="{{asset('assets/img/icon/icon-web.svg')}}" class="img-fluid" alt=""> @if(Session::get('lang')=='th')ไทย @else English @endif
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{url('set/lang/th')}}">ไทย</a></li>
                         <li>
-                            <hr class="dropdown-divider">
+                            <a class="dropdown-item" href="{{ url('language_switch/th') }}">{{ trans('file.Thai') }}</a>
                         </li>
-                        <li><a class="dropdown-item" href="{{url('set/lang/en')}}">English</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="{{ url('language_switch/en') }}">{{ trans('file.English') }}</a>
+                        </li>
                     </ul>
                 </li>
 
