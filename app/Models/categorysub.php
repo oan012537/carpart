@@ -8,6 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Categorysub extends Model
 {
     use HasFactory;
-    protected $table = 'category_sub';
-    protected $primaryKey = 'categorysub_id';
+    protected $table = 'sub_categories';
 }

@@ -51,7 +51,7 @@ class BrandController extends Controller
     public function updatemodel(Request $request){
         // dd($request->all());
         $brandsub = Brandmodel::find($request->modelid);
-        $brandsub->model_name_th = $request->editmodel;
+        $brandsub->name_th = $request->editmodel;
         // $brandsub->model_name_en = $request->editbrandsubth;
         $brandsub->created_for = Auth::user()->name;
         $brandsub->save();
@@ -61,7 +61,7 @@ class BrandController extends Controller
     public function updatemodelsub(Request $request){
         // dd($request->all());
         $brandsubs = Brandmodels::find($request->modelsubid);
-        $brandsubs->models_name_th = $request->editmodelsub;
+        $brandsubs->name_th = $request->editmodelsub;
         // $brandsubs->models_name_en = $request->editbrandsubth;
         $brandsubs->updated_for = Auth::user()->name;
         $brandsubs->save();
@@ -72,7 +72,7 @@ class BrandController extends Controller
     public function updateyear(Request $request){
         // dd($request->all());
         $brandsubs = Brandyear::find($request->yearid);
-        $brandsubs->year_year_from = $request->edityear;
+        $brandsubs->from_year = $request->edityear;
         // $brandsubs->year_year_to = $request->editbrandsubth;
         $brandsubs->updated_for = Auth::user()->name;
         $brandsubs->save();
@@ -81,15 +81,15 @@ class BrandController extends Controller
     }
 
     public function getbrandmodel(Request $request){
-        $data = Brandmodel::where('model_brandid',$request->id)->get();
+        $data = Brandmodel::where('brand_id',$request->id)->get();
         $result = [];
         foreach($data as $value){
             $result[] = '<li class="nav-item edit-items-product">
-                <div class="nav-link brandmodels brandmodel'.$value->model_id.'" data-id="'.$value->model_id.'" data-bs-toggle="pill" href="#brandmodel'.$value->model_id.'">
-                    <div id="box1" class="brandmodel_'.$value->model_id.'">
+                <div class="nav-link brandmodels brandmodel'.$value->id.'" data-id="'.$value->id.'" data-bs-toggle="pill" href="#brandmodel'.$value->id.'">
+                    <div id="box1" class="brandmodel_'.$value->id.'">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <p class="mb-2">'.$value->model_name_th.'<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('.$value->model_id.')"><i class="fas fa-pencil-alt"></i></span></p>
+                                <p class="mb-2">'.$value->name_th.'<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('.$value->id.')"><i class="fas fa-pencil-alt"></i></span></p>
                             </div>
                             <span id="next-brand"><i class="fas fa-angle-right"></i></span>
                             <span id="delete-brand"><i class="fas fa-trash"></i></span>
@@ -97,19 +97,19 @@ class BrandController extends Controller
                         </div>
                     </div>
                     <div id="box2">
-                        <form method="POST" action="'. route('backend.brandmodel.update') .'" enctype="multipart/form-data"  id="formupdatebrandmodel'.$value->model_id.'">
+                        <form method="POST" action="'. route('backend.brandmodel.update') .'" enctype="multipart/form-data"  id="formupdatebrandmodel'.$value->id.'">
                             <input type="hidden" name="_token" value="'.csrf_token().'">
-                            <input type="hidden" name="modelid" value="'.$value->model_id.'">
+                            <input type="hidden" name="modelid" value="'.$value->id.'">
                             <div class="row">
                                 <div class="col-9">
                                     <div class="row">
                                         <div class="col-12">
-                                            <input type="text" class="form-control mb-2" id="editmodel" name="editmodel" placeholder="รุ่น" value="'.$value->model_name_th.'" required>
+                                            <input type="text" class="form-control mb-2" id="editmodel" name="editmodel" placeholder="รุ่น" value="'.$value->name_th.'" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-3 d-flex align-items-center">
-                                    <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('."'formupdatebrandmodel".$value->model_id."'".')">บันทึก</button>
+                                    <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('."'formupdatebrandmodel".$value->id."'".')">บันทึก</button>
                                 </div>
                             </div>
                         </form>
@@ -122,15 +122,15 @@ class BrandController extends Controller
     }
 
     public function getbrandmodelsub(Request $request){
-        $data = Brandmodels::where('models_modelid',$request->id)->get();
+        $data = Brandmodels::where('model_id',$request->id)->get();
         $result = [];
         foreach($data as $value){
             $result[] ='<li class="nav-item edit-items-product">
-            <div class="nav-link brandmodelsubs brandmodelsub'.$value->models_id.'" data-id="'.$value->models_id.'" data-bs-toggle="pill" href="#brandmodelsub'.$value->models_id.'">
-                <div id="box1" class="brandmodelsub_'.$value->models_id.'">
+            <div class="nav-link brandmodelsubs brandmodelsub'.$value->id.'" data-id="'.$value->id.'" data-bs-toggle="pill" href="#brandmodelsub'.$value->id.'">
+                <div id="box1" class="brandmodelsub_'.$value->id.'">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <p class="mb-2">'.$value->models_name_th.'<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('.$value->models_id.')"><i class="fas fa-pencil-alt"></i></span></p>
+                            <p class="mb-2">'.$value->name_th.'<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('.$value->id.')"><i class="fas fa-pencil-alt"></i></span></p>
                         </div>
                         <span id="next-brand"><i class="fas fa-angle-right"></i></span>
                         <span id="delete-brand"><i class="fas fa-trash"></i></span>
@@ -138,19 +138,19 @@ class BrandController extends Controller
                     </div>
                 </div>
                 <div id="box2">
-                    <form method="POST" action="'. route('backend.brandmodelsub.update') .'" enctype="multipart/form-data" id="formupdatebrandmodelsub'.$value->models_id.'">
+                    <form method="POST" action="'. route('backend.brandmodelsub.update') .'" enctype="multipart/form-data" id="formupdatebrandmodelsub'.$value->id.'">
                         <input type="hidden" name="_token" value="'.csrf_token().'">
-                        <input type="hidden" name="modelsubid" value="'.$value->models_id.'">
+                        <input type="hidden" name="modelsubid" value="'.$value->id.'">
                         <div class="row">
                             <div class="col-9">
                                 <div class="row">
                                     <div class="col-12">
-                                        <input type="text" class="form-control mb-2" id="editmodelsub" name="editmodelsub" placeholder="รุ่น" value="'.$value->models_name_th.'" required>
+                                        <input type="text" class="form-control mb-2" id="editmodelsub" name="editmodelsub" placeholder="รุ่น" value="'.$value->name_th.'" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-3 d-flex align-items-center">
-                                <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('."'formupdatebrandmodelsub".$value->models_id."'".')">บันทึก</button>
+                                <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('."'formupdatebrandmodelsub".$value->id."'".')">บันทึก</button>
                             </div>
                         </div>
                     </form>
@@ -163,35 +163,34 @@ class BrandController extends Controller
     }
 
     public function getbrandmodelyear(Request $request){
-        $data = Brandyear::where('year_modelid',$request->id)->get();
+        $data = Brandyear::where('sub_model_id',$request->id)->get();
         $result = [];
         foreach($data as $value){
             $result[] ='<li class="edit-items-product2">
-            <div class="nav-link brandyears brandyear'.$value->year_id.'"  data-id="'.$value->year_id.'" data-bs-toggle="pill" >
-                <div id="box1" class="brandyear_'.$value->year_id.'">
+            <div class="nav-link brandyears brandyear'.$value->id.'"  data-id="'.$value->id.'" data-bs-toggle="pill" >
+                <div id="box1" class="brandyear_'.$value->id.'">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <p class="mb-2">'.$value->year_year_from.'<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('.$value->year_id.')"><i class="fas fa-pencil-alt"></i></span></p>
+                            <p class="mb-2">'.$value->from_year.'<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('.$value->id.')"><i class="fas fa-pencil-alt"></i></span></p>
                         </div>
-                        <span id="next-brand"><i class="fas fa-angle-right"></i></span>
                         <span id="delete-brand"><i class="fas fa-trash"></i></span>
 
                     </div>
                 </div>
-                <div id="box2">
-                    <form method="POST" action="'. route('backend.brandyear.update') .'" enctype="multipart/form-data"  id="formupdatebrandyear'.$value->year_id.'">
+                <div id="box2" style="display:none;">
+                    <form method="POST" action="'. route('backend.brandyear.update') .'" enctype="multipart/form-data"  id="formupdatebrandyear'.$value->id.'">
                         <input type="hidden" name="_token" value="'.csrf_token().'">
-                        <input type="hidden" name="yearid" value="'.$value->year_id.'">
+                        <input type="hidden" name="yearid" value="'.$value->id.'">
                         <div class="row">
                             <div class="col-9">
                                 <div class="row">
                                     <div class="col-12">
-                                        <input type="text" class="form-control mb-2" id="edityear" placeholder="ปี" value="'.$value->year_year_from.'" name="edityear">
+                                        <input type="text" class="form-control mb-2" id="edityear" placeholder="ปี" value="'.$value->from_year.'" name="edityear">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-3 d-flex align-items-center">
-                                <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('."'formupdatebrandyear".$value->year_id."'".')">บันทึก</button>
+                                <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('."'formupdatebrandyear".$value->id."'".')">บันทึก</button>
                             </div>
                         </div>
                     </form>
@@ -204,7 +203,7 @@ class BrandController extends Controller
 
     }
 
-    public function settingmanufac(){
+    public function show(){
         return view('backend.brand.settingmanufac');
     }
 
@@ -215,8 +214,8 @@ class BrandController extends Controller
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));
 		})
-		->editColumn('brand_active',function($data){
-            if($data->brand_active == '1'){
+		->editColumn('is_active',function($data){
+            if($data->is_active == '1'){
                 return '<small class="status-success"><i class="fas fa-check-circle"></i> ใช้งาน</small>';
             }else{
                 return '<small class="status-suspended">ระงับการใช้งาน</small>';
@@ -224,14 +223,17 @@ class BrandController extends Controller
 		})
 		->addColumn('changestatus',function($data){
             $status = '';
-            if($data->brand_active == '1'){
+            if($data->is_active == '1'){
                 $status = 'checked';
             }
-			return '<div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="mySwitch'.$data->brand_id.'" name="darkmode" value="1" '.$status.' onclick="changestatus('."'".$data->brand_id."'".')"></div>';
+			return '<div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="mySwitch'.$data->id.'" name="darkmode" value="1" '.$status.' onclick="changestatus('."'".$data->id."'".')"></div>';
 		})
+        ->setRowClass(function ($data) {
+            return 'showtext'.$data->id;
+        })
 		->addColumn('btnaction',function($data){
             
-			return '<a class="btn btn-table-edit" href="#"><i class="fas fa-pencil-alt"></i></a>';
+			return '<a class="btn btn-table-edit" href="'.route('backend.brand.edit').'"><i class="fas fa-pencil-alt"></i></a>';
 		});
 		return $sQuery->escapeColumns([])->make(true);
 	}
@@ -239,15 +241,22 @@ class BrandController extends Controller
     public function changeactive(Request $request){
         try {
             $brand = Brand::find($request->id);
-            $brand->brand_active = $request->status;
-            $brand->updated_for = Auth::user()->name;
+            $brand->is_active = $request->status;
+            $brand->updated_by = Auth::user()->name;
             $brand->save();
             $json['status'] = 'success';
             $json['msg'] = 'บันทึกเรียบร้อย';
+            if($request->status == 1){
+                $json['statustext'] = '<small class="status-success"><i class="fas fa-check-circle"></i> ใช้งาน</small>';
+            }else{
+                $json['statustext'] = '<small class="status-suspended">ระงับการใช้งาน</small>';
+            }
+            
             return Response::json($json);
         } catch (\Illuminate\Database\QueryException $e) {
             $json['status'] = 'error';
             $json['msg'] = 'เกิดข้อผิดพลาด';
+            $json['statustext'] = '';
             return Response::json($json);
         }
         

@@ -1,5 +1,23 @@
 @extends('backend.layouts.templateadminlogin')
 @section('content')
+<style>
+    #modalerror .modal-footer {
+        background-color: #282828;
+        padding: 50px;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+    #modalerror p {
+        color: white;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 36px;
+        display: block;
+        text-align: center;
+    }
+</style>
 <section id="sec-login1">
     <div class="container">
         <div class="box-b-login box-backend">
@@ -83,12 +101,36 @@
                 <br>
                 <div class="but-bb">
                     <a href="#" id="loginsuccess"><button class="button button3" data-bs-dismiss="modal" type="button"> ตกลง</button></a>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modalerror" tabindex="-1" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="{{asset('backends/assets/img/login/conf-noapprov.png')}}" class="img-fluid" alt="" style="margin-left: 4px;">
+            </div>
+            <div class="modal-footer">
+                <div class="tt-text-con">
+                    <p>
+                        เกิดข้อผิดพลาด
+                    </p>
+                </div>
+                <br>
+                <div class="but-bb">
+                    <button class="button button3" data-bs-dismiss="modal" type="button"> ตกลง</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @stop
 
 @section('script')
@@ -103,6 +145,9 @@
                 // alert(data.msg)
                 // window.location=data.redirect_location;
                 $("#loginsuccess").attr('href',data.redirect_location)
+            }else{
+                $("#modalerror").modal('show');
+                
             }
 
         }).fail(function(response) {

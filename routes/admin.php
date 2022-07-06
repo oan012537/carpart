@@ -64,6 +64,8 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('addrole', [Backend\SettinguserController::class,'addrole'])->name('backend.setting.user.role.add');
             Route::get('changepermission', [Backend\SettinguserController::class,'changepermission'])->name('backend.setting.user.changepermission');
 
+            Route::get('searchrole', [Backend\SettinguserController::class,'searchrole'])->name('backend.setting.user.role.searchrole');
+
         });
 
         Route::prefix('approvalrequest')->group(function () {
@@ -132,10 +134,10 @@ Route::group(['middleware' => 'auth'], function(){
         });
 
         Route::prefix('settingbrand')->group(function () {
-            Route::get('/', [Backend\BrandController::class,'index'])->name('backend.brand');
-            Route::get('add', function(){})->name('backend.brand.add');
+            Route::get('/', [Backend\BrandController::class,'show'])->name('backend.brand');
+            Route::get('edit', [Backend\BrandController::class,'index'])->name('backend.brand.edit');
             Route::post('store', function(){})->name('backend.brand.store');
-            Route::get('edit', [Backend\BrandController::class,'edit'])->name('backend.brand.edit');
+            // Route::get('edit', [Backend\BrandController::class,'edit'])->name('backend.brand.edit');
             Route::post('update', [Backend\BrandController::class,'update'])->name('backend.brand.update');
             Route::post('updatemodel', [Backend\BrandController::class,'updatemodel'])->name('backend.brandmodel.update');
             Route::post('updatemodelsub', [Backend\BrandController::class,'updatemodelsub'])->name('backend.brandmodelsub.update');
@@ -144,12 +146,41 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('getbrandmodel', [Backend\BrandController::class,'getbrandmodel'])->name('backend.brand.getbrandmodel');
             Route::get('getbrandmodelsub', [Backend\BrandController::class,'getbrandmodelsub'])->name('backend.brand.getbrandmodelsub');
             Route::get('getbrandmodelyear', [Backend\BrandController::class,'getbrandmodelyear'])->name('backend.brand.getbrandmodelyear');
+
+            Route::get('changeactive', [Backend\BrandController::class,'changeactive'])->name('backend.brand.changeactive');
+            Route::get('datatables', [Backend\BrandController::class,'datatables'])->name('backend.settingbrand.datatables');
             
         });
 
-        Route::get('settingmanufac', [Backend\BrandController::class,'settingmanufac'])->name('backend.settingmanufac');
-        Route::get('settingmanufac/datatables', [Backend\BrandController::class,'datatables'])->name('backend.settingmanufac.datatables');
-        Route::get('settingmanufac/changeactive', [Backend\BrandController::class,'changeactive'])->name('backend.settingmanufac.changeactive');
+        // Route::get('settingmanufac', [Backend\BrandController::class,'settingmanufac'])->name('backend.settingmanufac');
+        
+
+        Route::prefix('orderlist')->group(function () {
+            Route::get('/', [Backend\OrderlistController::class,'index'])->name('backend.orderlist');
+            Route::get('unpaid/details/{id}', [Backend\OrderlistController::class,'unpaiddetails'])->name('backend.orderlist.unpaid');
+            Route::get('delivered/details/{id}', [Backend\OrderlistController::class,'delivereddetails'])->name('backend.orderlist.delivered');
+            Route::get('shipping/details/{id}', [Backend\OrderlistController::class,'shippingdetails'])->name('backend.orderlist.shipping');
+            Route::get('received/details/{id}', [Backend\OrderlistController::class,'receiveddetails'])->name('backend.orderlist.received');
+            Route::get('cancel/details/{id}', [Backend\OrderlistController::class,'canceldetails'])->name('backend.orderlist.cancel');
+            Route::get('review/details/{id}', [Backend\OrderlistController::class,'reviewdetails'])->name('backend.orderlist.review');
+            Route::get('add', [Backend\OrderlistController::class,'add'])->name('backend.orderlist.add');
+            Route::post('store', [Backend\OrderlistController::class,'store'])->name('backend.orderlist.store');
+            Route::get('edit', [Backend\OrderlistController::class,'edit'])->name('backend.orderlist.edit');
+            Route::post('update', [Backend\OrderlistController::class,'update'])->name('backend.orderlist.update');
+            
+        });
+        
+        Route::prefix('pdpa')->group(function () {
+            Route::get('/', [Backend\PDPAController ::class,'index'])->name('backend.pdpa');
+            Route::post('store', [Backend\PDPAController::class,'store'])->name('backend.pdpa.store');
+            Route::get('datatables', [Backend\PDPAController ::class,'datatables'])->name('backend.pdpa.datatables');
+            Route::get('datatables/expired', [Backend\PDPAController ::class,'datatablesexpired'])->name('backend.pdpa.datatables.expired');
+            Route::get('consentlist', [Backend\PDPAController ::class,'consentlist'])->name('backend.pdpa.consentlist');
+            Route::get('consentlist/datatables', [Backend\PDPAController ::class,'datatablesconsent'])->name('backend.pdpa.consentlist.datatables');
+            Route::get('consentlist/datatables/expired', [Backend\PDPAController ::class,'datatablesconsentexpired'])->name('backend.pdpa.consentlist.datatables.expired');
+            Route::post('update', [Backend\PDPAController::class,'update'])->name('backend.pdpa.update');
+            
+        });
 
         Route::prefix('settingbanner')->group(function () {
             Route::get('/', [Backend\BannerController::class,'index'])->name('backend.banner');
@@ -157,6 +188,74 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('store', function(){})->name('backend.banner.store');
             Route::get('edit', [Backend\BannerController::class,'edit'])->name('backend.banner.edit');
             Route::post('update', [Backend\BannerController::class,'update'])->name('backend.banner.update');
+            
+        });
+
+        Route::prefix('manage')->group(function () {
+            Route::prefix('supplier')->group(function () {
+                Route::prefix('individual')->group(function () {
+                    Route::get('/', [Backend\ManageSupplierController::class,'individualindex'])->name('backend.manage.supplier.individual');
+                    Route::get('datatables', [Backend\ManageSupplierController ::class,'individualdatatables'])->name('backend.manage.supplier.individual.datatables');
+                    
+                    Route::get('profile/{id}', [Backend\ManageSupplierController::class,'individualprofile'])->name('backend.manage.supplier.individual.profile');
+                    Route::get('profile/edit/{id}', [Backend\ManageSupplierController::class,'individualprofileedit'])->name('backend.manage.supplier.individual.profile.edit');
+                    Route::post('profile/update/{id}', [Backend\ManageSupplierController::class,'individualprofileupdate'])->name('backend.manage.supplier.individual.profile.update');
+
+                    Route::get('profile/address/edit/{id}', [Backend\ManageSupplierController::class,'individualprofileaddressedit'])->name('backend.manage.supplier.individual.profile.edit');
+                    Route::post('profile/address/update/{id}', [Backend\ManageSupplierController::class,'individualprofileaddressupdate'])->name('backend.manage.supplier.individual.profile.update');
+
+                    
+                    Route::get('profile/store/edit/{id}', [Backend\ManageSupplierController::class,'individualprofilestoreedit'])->name('backend.manage.supplier.individual.profile.edit');
+                    Route::post('profile/store/update/{id}', [Backend\ManageSupplierController::class,'individualprofilestoreupdate'])->name('backend.manage.supplier.individual.profile.update');
+
+                    Route::get('historyparts/{id}', [Backend\ManageSupplierController::class,'individualhistoryparts'])->name('backend.manage.supplier.individual.historyparts');
+
+                    Route::get('pendinglist/{id}', [Backend\ManageSupplierController::class,'individualpendinglist'])->name('backend.manage.supplier.individual.pendinglist');
+
+                    Route::get('historysales/{id}', [Backend\ManageSupplierController::class,'individualhistorysales'])->name('backend.manage.supplier.individual.historysales');
+
+                    Route::get('claimlist/{id}', [Backend\ManageSupplierController::class,'individualclaimlist'])->name('backend.manage.supplier.individual.claimlist');
+
+                    Route::get('productlist/{id}', [Backend\ManageSupplierController::class,'individualproductlist'])->name('backend.manage.supplier.individual.productlist');
+
+
+
+                });
+
+                Route::prefix('legal')->group(function () {
+                    Route::get('/', [Backend\ManageSupplierController::class,'legalindex'])->name('backend.manage.supplier.legal');
+                    Route::get('datatables', [Backend\ManageSupplierController ::class,'legaldatatables'])->name('backend.manage.supplier.legal.datatables');
+                    
+                    Route::get('profile/{id}', [Backend\ManageSupplierController::class,'legalprofile'])->name('backend.manage.supplier.legal.profile');
+                    Route::get('profile/edit/{id}', [Backend\ManageSupplierController::class,'legalprofileedit'])->name('backend.manage.supplier.legal.profile.edit');
+                    Route::post('profile/update/{id}', [Backend\ManageSupplierController::class,'legalprofileupdate'])->name('backend.manage.supplier.legal.profile.update');
+                    
+                    Route::get('profile/address/edit/{id}', [Backend\ManageSupplierController::class,'legalprofileaddressedit'])->name('backend.manage.supplier.legal.profile.edit');
+                    Route::post('profile/address/update/{id}', [Backend\ManageSupplierController::class,'legalprofileaddressupdate'])->name('backend.manage.supplier.legal.profile.update');
+
+                    
+                    Route::get('profile/store/edit/{id}', [Backend\ManageSupplierController::class,'legalprofilestoreedit'])->name('backend.manage.supplier.legal.profile.edit');
+                    Route::post('profile/store/update/{id}', [Backend\ManageSupplierController::class,'legalprofilestoreupdate'])->name('backend.manage.supplier.legal.profile.update');
+
+                    Route::get('historyparts/{id}', [Backend\ManageSupplierController::class,'legalhistoryparts'])->name('backend.manage.supplier.legal.historyparts');
+
+                    Route::get('pendinglist/{id}', [Backend\ManageSupplierController::class,'legalpendinglist'])->name('backend.manage.supplier.legal.pendinglist');
+
+                    Route::get('historysales/{id}', [Backend\ManageSupplierController::class,'legalhistorysales'])->name('backend.manage.supplier.legal.historysales');
+
+                    Route::get('claimlist/{id}', [Backend\ManageSupplierController::class,'legalclaimlist'])->name('backend.manage.supplier.legal.claimlist');
+
+                    Route::get('productlist/{id}', [Backend\ManageSupplierController::class,'legalproductlist'])->name('backend.manage.supplier.legal.productlist');
+                });
+
+                Route::prefix('commission')->group(function () {
+                    Route::get('/', [Backend\ManageSupplierController::class,'commissionindex'])->name('backend.manage.supplier.commission');
+                });
+            });
+            Route::prefix('buyer')->group(function () {
+                Route::get('/', [Backend\ManageBuyerController::class,'index'])->name('backend.manage.buyer');
+            });
+            
             
         });
 

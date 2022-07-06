@@ -41,7 +41,7 @@ class BackendController extends Controller
                 return response()->json(["status"=>true,"redirect_location"=>url("backend/dashboard")]);
                 
             } else {
-                return response()->json([["Invalid credentials"]],422);
+                return response()->json([["Invalid credentials"]],200);
                 
             }
         }

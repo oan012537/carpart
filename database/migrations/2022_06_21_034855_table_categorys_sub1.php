@@ -13,24 +13,25 @@ class TableCategorysSub1 extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('category_sub')) {
-            Schema::dropIfExists('category_sub');
+        if (Schema::hasTable('sub_categories')) {
+            Schema::dropIfExists('sub_categories');
         }
-        Schema::create('category_sub', function (Blueprint $table) {
-            $table->increments('categorysub_id');
-            $table->integer('categorysub_categoryid')->unsigned();
-            $table->string('categorysub_code');
-            $table->string('categorysub_name_th');
-            $table->string('categorysub_name_en');
-            $table->string('created_for',200)->nullable();
-            $table->string('updated_for',200)->nullable();
-            $table->string('categorysub_active',1)->default('1');
+        Schema::create('sub_categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('category_id')->unsigned();
+            $table->string('code');
+            $table->string('name_th')->nullable();
+            $table->string('name_en')->nullable();
+            $table->string('image')->nullable();
+            $table->string('is_active',1)->default('1');
+            $table->string('created_by',200)->nullable();
+            $table->string('updated_by',200)->nullable();
 
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
 
-            $table->foreign('categorysub_categoryid')->references('category_id')->on('category')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
@@ -41,6 +42,6 @@ class TableCategorysSub1 extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_sub');
+        Schema::dropIfExists('sub_categories');
     }
 }

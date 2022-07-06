@@ -33,6 +33,12 @@
                         <div class="input-group mb-3">
                             <input type="email" name="email" class="form-control" id="email" placeholder="carparts.navi@gmail.com" required  autocomplete="off">
                         </div>
+                        @if ($errors->has('email'))
+                        <span class="invalid-feedback" style="display: block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                        <br>
+                        @endif
 
                         <div class="tt-text-log2">
                             <p>
@@ -42,8 +48,6 @@
                         <div class="input-group mb-3">
                             <input type="text" name="phone" class="form-control" id="phone" placeholder="ระบุ" required  autocomplete="off">
                         </div>
-
-
 
                         <br>
                         <div class='but-bb-log'>

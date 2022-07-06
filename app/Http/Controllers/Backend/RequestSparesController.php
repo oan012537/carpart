@@ -9,7 +9,7 @@ use App\Models\Category;
 class RequestSparesController extends Controller
 {
     public function index(){
-        $brand = Brand::all();
+        $brand = Brand::paginate(20);
         $category = Category::all();
         $dataopen = [];
         $dataclose = [];

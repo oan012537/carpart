@@ -274,7 +274,8 @@ class ProfileController extends Controller
     }
 
     public function bankadd(){
-        return view('supplier.profile.bank.add');
+        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        return view('supplier.profile.bank.add',['supplier'=>$supplier]);
     }
 
     public function bankstore(Request $request){
@@ -429,7 +430,8 @@ class ProfileController extends Controller
         return view('supplier.profile.notification.index');
     }
 
-    public function getotp($token,$otpcode){
+    public function getotp(Request $request){
+        $otpcode = $request->otp1.$request->otp2.$request->otp3.$request->otp4.$request->otp5.$request->otp6;
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
@@ -446,7 +448,7 @@ class ProfileController extends Controller
                 "secret_key:SCFmYT1IgPXJT4nr",
             ),
             CURLOPT_POSTFIELDS =>json_encode(array(
-            "token"=>$token,
+            "token"=>$request->token,
             "otp_code"=>$otpcode,
             )),
         ));

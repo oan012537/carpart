@@ -29,12 +29,12 @@
                             <ul class="nav nav-pills form-box-input">
                                 <li class="nav-item edit-items-product">
                                     @foreach($category as $item)
-                                    <div class="nav-link category category{{$item->category_id}}" data-id="{{$item->category_id}}" data-bs-toggle="pill" href="#category{{$item->category_id}}">
-                                        <div id="box1" class="category_{{$item->category_id}}" data-name-th="{{$item->category_name_th}}" data-name-en="{{$item->category_name_en}}" data-code="{{$item->category_code}}">
+                                    <div class="nav-link category category{{$item->id}}" data-id="{{$item->id}}" data-bs-toggle="pill" href="#category{{$item->id}}">
+                                        <div id="box1" class="category_{{$item->id}}" data-name-th="{{$item->name_th}}" data-name-en="{{$item->name_en}}" data-code="{{$item->code}}">
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <p class="mb-2">{{$item->category_name_th}} (TH)<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('{{$item->category_id}}')"><i class="fas fa-pencil-alt"></i></span></p>
-                                                    <p class="title__txt mb-0">{{$item->category_name_en}} (EN)</p>
+                                                    <p class="mb-2">{{$item->name_th}} (TH)<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('{{$item->id}}')"><i class="fas fa-pencil-alt"></i></span></p>
+                                                    <p class="title__txt mb-0">{{$item->name_en}} (EN)</p>
                                                 </div>
                                                 <span id="next-brand"><i class="fas fa-angle-right"></i></span>
                                                 <span id="delete-brand"><i class="fas fa-trash"></i></span>
@@ -44,27 +44,27 @@
                                         <div id="box2">
                                             <div class="row">
                                                 <div class="col-9">
-                                                    <form method="POST" action="{{ route('backend.category.update') }}" id="formupdate{{$item->category_id}}" enctype="multipart/form-data">
+                                                    <form method="POST" action="{{ route('backend.category.update') }}" id="formupdate{{$item->id}}" enctype="multipart/form-data">
                                                         @csrf
-                                                        <input type="hidden" name="categoryid" value="{{$item->category_id}}">
+                                                        <input type="hidden" name="categoryid" value="{{$item->id}}">
                                                         <div class="row">
                                                             <div class="col-1">
                                                                 <label class="me-2">ไทย</label>
                                                             </div>
                                                             <div class="col-11">
-                                                                <input type="text" class="form-control mb-2" id="editnameth" placeholder="อะไหล่" name="editnameth" value="{{$item->category_name_th}}">
+                                                                <input type="text" class="form-control mb-2" id="editnameth" placeholder="อะไหล่" name="editnameth" value="{{$item->name_th}}">
                                                             </div>
                                                             <div class="col-1">
                                                                 <label class="me-2">EN</label>
                                                             </div>
                                                             <div class="col-11">
-                                                                <input type="text" class="form-control" id="editnameen" placeholder="Parts" name="editnameen" value="{{$item->category_name_en}}">
+                                                                <input type="text" class="form-control" id="editnameen" placeholder="Parts" name="editnameen" value="{{$item->name_en}}">
                                                             </div>
                                                         </div>
                                                     </form>
                                                 </div>
                                                 <div class="col-3 d-flex align-items-center">
-                                                    <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('formupdate{{$item->category_id}}')">บันทึก</button>
+                                                    <button type="submit" class="btn btn__app btn__waitapproval px-4"  onclick="saveElement('formupdate{{$item->id}}')">บันทึก</button>
                                                 </div>
                                             </div>
 
@@ -95,12 +95,12 @@
                                     <ul class="nav nav-pills form-box-input no-style-list ps-0">
                                         @foreach($item as $value)
                                         <li class="nav-item edit-items-product">
-                                            <div class="nav-link categorysub categorysub{{$value->categorysub_id}}" data-id="{{$value->categorysub_id}}" data-bs-toggle="pill" href="#categorysub{{$value->categorysub_id}}">
-                                                <div id="box1" class="categorysub_{{$value->categorysub_id}}">
+                                            <div class="nav-link categorysub categorysub{{$value->id}}" data-id="{{$value->id}}" data-bs-toggle="pill" href="#categorysub{{$value->id}}">
+                                                <div id="box1" class="categorysub_{{$value->id}}">
                                                     <div class="d-flex justify-content-between">
                                                         <div>
-                                                            <p class="mb-2">{{$value->categorysub_name_th}} (TH)<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('{{$value->categorysub_id}}')"><i class="fas fa-pencil-alt"></i></span></p>
-                                                            <p class="title__txt mb-0">{{$value->categorysub_name_en}} (EN)</p>
+                                                            <p class="mb-2">{{$value->name_th}} (TH)<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('{{$value->id}}')"><i class="fas fa-pencil-alt"></i></span></p>
+                                                            <p class="title__txt mb-0">{{$value->name_en}} (EN)</p>
                                                         </div>
                                                         <span id="next-brand"><i class="fas fa-angle-right"></i></span>
                                                         <span id="delete-brand"><i class="fas fa-trash"></i></span>
@@ -110,27 +110,27 @@
                                                 <div id="box2">
                                                     <div class="row">
                                                         <div class="col-9">
-                                                            <form method="POST" action="{{ route('backend.categorysub.update') }}" id="formupdatesub{{$value->categorysub_id}}" enctype="multipart/form-data">
+                                                            <form method="POST" action="{{ route('backend.categorysub.update') }}" id="formupdatesub{{$value->id}}" enctype="multipart/form-data">
                                                                 @csrf
-                                                                <input type="hidden" name="categorysubid" value="{{$value->categorysub_id}}">
+                                                                <input type="hidden" name="categorysubid" value="{{$value->id}}">
                                                                 <div class="row">
                                                                     <div class="col-1">
                                                                         <label class="me-2">ไทย</label>
                                                                     </div>
                                                                     <div class="col-11">
-                                                                        <input type="text" class="form-control mb-2" id="" placeholder="อะไหล่" name="editcategorysubth" value="{{$value->categorysub_name_th}}" required>
+                                                                        <input type="text" class="form-control mb-2" id="" placeholder="อะไหล่" name="editcategorysubth" value="{{$value->name_th}}" required>
                                                                     </div>
                                                                     <div class="col-1">
                                                                         <label class="me-2">EN</label>
                                                                     </div>
                                                                     <div class="col-11">
-                                                                        <input type="text" class="form-control" id="" placeholder="Parts" name="editcategorysuben" value="{{$value->categorysub_name_en}}" required>
+                                                                        <input type="text" class="form-control" id="" placeholder="Parts" name="editcategorysuben" value="{{$value->name_en}}" required>
                                                                     </div>
                                                                 </div>
                                                             </form>
                                                         </div>
                                                         <div class="col-3 d-flex align-items-center">
-                                                            <button type="submit" class="btn btn__app btn__waitapproval px-4" onclick="saveElement('formupdatesub{{$value->categorysub_id}}')">บันทึก</button>
+                                                            <button type="submit" class="btn btn__app btn__waitapproval px-4" onclick="saveElement('formupdatesub{{$value->id}}')">บันทึก</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -164,16 +164,16 @@
                                     {{-- <ul class="nav nav-pills form-box-input no-style-list ps-0"> --}}
                                         @foreach($item as $key => $value)
                                         <li class="edit-items-product">
-                                            {{-- <p class="mb-2">{{$value->categorysubs_name_th}} (TH)</p> --}}
-                                            {{-- <p class="title__txt mb-0">{{$value->categorysubs_name_en}} (EN)</p> --}}
-                                            <div class="nav-link categorysubs categorysubs{{$value->categorysubs_id}}"  data-id="{{$value->categorysubs_id}}" data-bs-toggle="pill" >
-                                                <div id="box1" class="categorysubs_{{$value->categorysubs_id}}">
+                                            {{-- <p class="mb-2">{{$value->name_th}} (TH)</p> --}}
+                                            {{-- <p class="title__txt mb-0">{{$value->name_en}} (EN)</p> --}}
+                                            <div class="nav-link categorysubs categorysubs{{$value->id}}"  data-id="{{$value->id}}" data-bs-toggle="pill" >
+                                                <div id="box1" class="categorysubs_{{$value->id}}">
                                                     <div class="d-flex justify-content-between">
                                                         <div>
-                                                            <p class="mb-2">{{$value->categorysubs_name_th}} (TH)<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('{{$value->categorysubs_id}}')"><i class="fas fa-pencil-alt"></i></span></p>
-                                                            <p class="title__txt mb-0">{{$value->categorysubs_name_en}} (EN)</p>
+                                                            <p class="mb-2">{{$value->name_th}} (TH)<span class="btn-shot ms-1" id="edit-brand" onclick="changeElement('{{$value->id}}')"><i class="fas fa-pencil-alt"></i></span></p>
+                                                            <p class="title__txt mb-0">{{$value->name_en}} (EN)</p>
                                                         </div>
-                                                        <span id="next-brand"><i class="fas fa-angle-right"></i></span>
+                                                        {{-- <span id="next-brand"><i class="fas fa-angle-right"></i></span> --}}
                                                         <span id="delete-brand"><i class="fas fa-trash"></i></span>
 
                                                     </div>
@@ -181,27 +181,27 @@
                                                 <div id="box2">
                                                     <div class="row">
                                                         <div class="col-9">
-                                                            <form method="POST" action="{{ route('backend.categorysubs.update') }}" id="formupdatesubs{{$value->categorysubs_id}}" enctype="multipart/form-data">
+                                                            <form method="POST" action="{{ route('backend.categorysubs.update') }}" id="formupdatesubs{{$value->id}}" enctype="multipart/form-data">
                                                                 @csrf
-                                                                <input type="hidden" name="categorysubid" value="{{$value->categorysubs_id}}">
+                                                                <input type="hidden" name="categorysubid" value="{{$value->id}}">
                                                                 <div class="row">
                                                                     <div class="col-1">
                                                                         <label class="me-2">ไทย</label>
                                                                     </div>
                                                                     <div class="col-11">
-                                                                        <input type="text" class="form-control mb-2" id="" placeholder="อะไหล่" name="editcategorysubth" value="{{$value->categorysubs_name_th}}" required>
+                                                                        <input type="text" class="form-control mb-2" id="" placeholder="อะไหล่" name="editcategorysubth" value="{{$value->name_th}}" required>
                                                                     </div>
                                                                     <div class="col-1">
                                                                         <label class="me-2">EN</label>
                                                                     </div>
                                                                     <div class="col-11">
-                                                                        <input type="text" class="form-control" id="" placeholder="Parts" name="editcategorysuben" value="{{$value->categorysubs_name_en}}" required>
+                                                                        <input type="text" class="form-control" id="" placeholder="Parts" name="editcategorysuben" value="{{$value->name_en}}" required>
                                                                     </div>
                                                                 </div>
                                                             </form>
                                                         </div>
                                                         <div class="col-3 d-flex align-items-center">
-                                                            <button type="submit" class="btn btn__app btn__waitapproval px-4" onclick="saveElement('formupdatesubs{{$value->categorysubs_id}}')">บันทึก</button>
+                                                            <button type="submit" class="btn btn__app btn__waitapproval px-4" onclick="saveElement('formupdatesubs{{$value->id}}')">บันทึก</button>
                                                         </div>
                                                     </div>
                                                 </div>

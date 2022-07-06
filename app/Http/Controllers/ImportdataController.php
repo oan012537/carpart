@@ -9,13 +9,13 @@ use Response;
 use Excel;
 use File;
 use Auth;
-use App\Models\category;
-use App\Models\categorysub;
-use App\Models\categorysubs;
-use App\Models\brand;
-use App\Models\brandmodel;
-use App\Models\brandmodels;
-use App\Models\brandyear;
+use App\Models\Category;
+use App\Models\Categorysub;
+use App\Models\Categorysubs;
+use App\Models\Brand;
+use App\Models\Brandmodel;
+use App\Models\Brandmodels;
+use App\Models\Brandyear;
 
 class ImportdataController extends Controller
 {
@@ -28,7 +28,7 @@ class ImportdataController extends Controller
         ini_set('max_execution_time', 3000);
         
         $rows = Excel::toArray(false,$request->file('file'));
-        // dd($rows[0]);
+        // dd($rows);
 
         foreach ($rows[0] as $key => $value) {
             // dd($value);
@@ -37,37 +37,44 @@ class ImportdataController extends Controller
 
             if($key > 0 && $key <= 82){
                 if($value[1] != '' && $value[2] != ''){
-                    $category = new category;
-                    $category->category_code = $value[1];
-                    $category->category_name_th = $value[2];
-                    $category->category_name_en = $value[3];
-                    $category->created_for = '';
-                    $category->updated_for = '';
+                    $category = new Category;
+                    $category->code = $value[1];
+                    $category->name_th = $value[2];
+                    $category->name_en = $value[3];
+                    $category->image = '';
+                    $category->is_active = '1';
+                    $category->created_by = 'oan';
+                    $category->updated_by = '';
                     $category->save();
+
                     foreach ($rows[1] as $key2 => $value2) {
                         if($key2 > 0 && $key2 <= 203){
                             if($value2[1] != '' && $value2[2] != '' && $value2[3] != ''){
                                 if($value[1] == $value2[1]){
-                                    $categorysub = new categorysub;
-                                    $categorysub->categorysub_categoryid = $category->category_id;
-                                    $categorysub->categorysub_code = $value2[2];
-                                    $categorysub->categorysub_name_th = $value2[3];
-                                    $categorysub->categorysub_name_en = !empty($value2[4])?$value2[4]:'';
-                                    $categorysub->created_for = '';
-                                    $categorysub->updated_for = '';
+                                    $categorysub = new Categorysub;
+                                    $categorysub->category_id = $category->id;
+                                    $categorysub->code = $value2[2];
+                                    $categorysub->name_th = $value2[3];
+                                    $categorysub->name_en = !empty($value2[4])?$value2[4]:'';
+                                    $categorysub->image = '';
+                                    $categorysub->is_active = '1';
+                                    $categorysub->created_by = 'oan';
+                                    $categorysub->updated_by = '';
                                     $categorysub->save();
                                     foreach ($rows[2] as $key3 => $value3) {
                                         if($key3 > 0 && $key3 <= 296){
                                             if($value3[1] != '' && $value3[2] != '' && $value3[3] != '' && $value3[4] != ''){
                                                 if($value[1] == $value3[1] && $value2[2] == $value3[2]){
-                                                    $categorysubs = new categorysubs;
-                                                    $categorysubs->categorysubs_categoryid = $category->category_id;
-                                                    $categorysubs->categorysubs_subid = $categorysub->categorysub_id;
-                                                    $categorysubs->categorysubs_code = $value3[3];
-                                                    $categorysubs->categorysubs_name_th = $value3[4];
-                                                    $categorysubs->categorysubs_name_en = !empty($value3[5])?$value3[5]:'';
-                                                    $categorysubs->created_for = '';
-                                                    $categorysubs->updated_for = '';
+                                                    $categorysubs = new Categorysubs;
+                                                    $categorysubs->category_id = $category->id;
+                                                    $categorysubs->sub_category_id = $categorysub->id;
+                                                    $categorysubs->code = $value3[3];
+                                                    $categorysubs->name_th = $value3[4];
+                                                    $categorysubs->name_en = !empty($value3[5])?$value3[5]:'';
+                                                    $categorysubs->image = '';
+                                                    $categorysubs->is_active = '1';
+                                                    $categorysubs->created_by = 'oan';
+                                                    $categorysubs->updated_by = '';
                                                     $categorysubs->save();
                                                 }
                                             }
@@ -376,13 +383,13 @@ class ImportdataController extends Controller
 
             if($key > 0 && $key <= 82){
                 if($value[1] != '' && $value[2] != ''){
-                    $brand = new brand;
-                    $brand->brand_code = $value[1];
-                    $brand->brand_name_th = $value[2];
-                    $brand->brand_name_en = $value[3];
-                    $brand->brand_image = 'Brand Logo/'.$value[2].'.png.png';
-                    $brand->created_for = '';
-                    $brand->updated_for = '';
+                    $brand = new Brand;
+                    $brand->code = $value[1];
+                    $brand->name_th = $value[2];
+                    $brand->name_en = $value[3];
+                    $brand->image = 'brand_logo/'.$value[2].'.png.png';
+                    $brand->created_by = 'oan';
+                    $brand->updated_by = '';
                     $brand->save();
                 }
             }
@@ -402,7 +409,7 @@ class ImportdataController extends Controller
         $brands = brand::all();
         $brand = [];
         foreach($brands as $key => $items){
-            $brand[$items->brand_code] = $items;
+            $brand[$items->code] = $items;
         }
         // dd($brand,$rows[0]);
         
@@ -415,35 +422,47 @@ class ImportdataController extends Controller
                 if($value[0] != '' && $value[1] != '' && $value[2] != ''){
                     // $brand = brand::where('brand_code',$value[0])->where('brand_name_th',$value[1])->first();
                     if(array_key_exists($value[0],$brand)){
-                        $brandid = $brand[$value[0]]['brand_id'];
+                        $brandid = $brand[$value[0]]['id'];
                     }else{
                         $insert = new brand;
-                        $insert->brand_code = $value[0];
-                        $insert->brand_name_th = $value[1];
-                        $insert->brand_name_en = $value[1];
-                        $insert->brand_image = 'Brand Logo/'.$value[1].'.png.png';
-                        $insert->created_for = '';
-                        $insert->updated_for = '';
+                        $insert->code = $value[0];
+                        $insert->name_th = $value[1];
+                        $insert->name_en = $value[1];
+                        $insert->image = 'brand_logo/'.$value[1].'.png.png';
+                        $insert->created_by = 'oan';
+                        $insert->updated_by = '';
                         $insert->save();
-                        $brandid = $insert->brand_id;
+                        $brandid = $insert->id;
                     }
-                    $brandmodel = new brandmodel;
-                    $brandmodel->model_brandid = $brandid;
-                    $brandmodel->model_code = $value[2];
-                    $brandmodel->model_name_th = $value[3];
-                    $brandmodel->model_name_en = $value[4];
-                    $brandmodel->created_for = '';
-                    $brandmodel->updated_for = '';
+                    $brandmodel = new Brandmodel;
+                    $brandmodel->brand_id = $brandid;
+                    $brandmodel->code = '';
+                    $brandmodel->name_th = $value[2];
+                    $brandmodel->name_en = $value[2];
+                    $brandmodel->image = '';
+                    $brandmodel->created_by = 'oan';
+                    $brandmodel->updated_by = '';
                     $brandmodel->save();
+
+                    $brandmodels = new Brandmodels;
+                    $brandmodels->brand_id = $brandid;
+                    $brandmodels->model_id = $brandmodel->id;
+                    $brandmodels->code = '';
+                    $brandmodels->name_th = $value[3];
+                    $brandmodels->name_en = $value[4];
+                    $brandmodels->image = '';
+                    $brandmodels->created_by = 'oan';
+                    $brandmodels->updated_by = '';
+                    $brandmodels->save();
                     
-                    $brandyear = new brandyear;
-                    $brandyear->year_modelid = $brandmodel->model_id;
+                    $brandyear = new Brandyear;
+                    $brandyear->sub_model_id = $brandmodel->id;
                     // $brandyear->year_modelsid = $brandmodel->model_id;
-                    $brandyear->year_year_from = !empty($value[5])?$value[5]:'';
-                    $brandyear->year_year_to = !empty($value[6])?$value[6]:'';
-                    $brandyear->year_master_data = !empty($value[7])?$value[7]:'';
-                    $brandyear->created_for = '';
-                    $brandyear->updated_for = '';
+                    $brandyear->from_year = !empty($value[5])?$value[5]:'';
+                    $brandyear->to_year = !empty($value[6])?$value[6]:'';
+                    $brandyear->master_data = !empty($value[7])?$value[7]:'';
+                    $brandyear->created_by = '';
+                    $brandyear->updated_by = '';
                     $brandyear->save();
                     
                 }

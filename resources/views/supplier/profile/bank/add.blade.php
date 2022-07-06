@@ -135,17 +135,18 @@
             <div class="modal-body">
                 <div class="box__contentotp">
                     <p class="txt__title">กรุณากรอกรหัส OTP ที่ส่งไปยังหมายเลข</p>
-                    <p class="txt__phone">012-345-6789</p>
+                    <p class="txt__phone">{{$supplier->phone}}</p>
 
 
                     <form class="digit-group" data-group-name="digits" autocomplete="off" id="formotp">
                         @csrf
-                        <input class="otp number" type="text" maxlength="1">
-                        <input class="otp number" type="text" maxlength="1">
-                        <input class="otp number" type="text" maxlength="1">
-                        <input class="otp number" type="text" maxlength="1">
-                        <input class="otp number" type="text" maxlength="1">
-                        <input class="otp number" type="text" maxlength="1">
+                        <input type="hidden" id="token" name="token">
+                        <input class="otp number" type="text" maxlength="1" name="otp1">
+                        <input class="otp number" type="text" maxlength="1" name="otp2">
+                        <input class="otp number" type="text" maxlength="1" name="otp3">
+                        <input class="otp number" type="text" maxlength="1" name="otp4">
+                        <input class="otp number" type="text" maxlength="1" name="otp5">
+                        <input class="otp number" type="text" maxlength="1" name="otp6">
                     </form>
 
                     <p class="txt__time">หากไม่ได้รับรหัสผ่านใน 1 นาที</p>
@@ -221,19 +222,29 @@
         $("#modalotp").modal('show');
         setTimeout(() => {
             $('#modalotp input[class="otp"]:first').focus();
+            $.get("{{url('supplier/gettoken')}}/"+$('.txt__phone').text(),
+                function (data, textStatus, jqXHR) {
+                    $("#token").val(data);
+                },
+                // "dataType"
+            );
         }, 2000);
         
         return false;
     }
     $("#btnsubmitotp").click(function (e) { 
-        $("#formadd").removeAttr('onsubmit').submit();
-        // $.post("url", $("#formotp").serialize(),
-        //     function (data, textStatus, jqXHR) {
-                
-        //     },
-        //     // "dataType"
-        // );
-        // e.preventDefault();
+        $.post("{{url('supplier/getotp')}}", $("#formotp").serialize(),
+            function (data, textStatus, jqXHR) {
+                console.log(data);
+                if(data.result.status){
+                    $("#formadd").removeAttr('onsubmit').submit();
+                }else{
+                    toastralert('error','เกิดข้อผิดพลาด');
+                }
+            },
+            // "dataType"
+        );
+        e.preventDefault();
         
     });
 </script>

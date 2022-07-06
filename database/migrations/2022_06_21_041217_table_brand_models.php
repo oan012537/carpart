@@ -13,27 +13,25 @@ class TableBrandModels extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('brand_model')) {
-            Schema::dropIfExists('brand_model');
+        if (Schema::hasTable('models')) {
+            Schema::dropIfExists('models');
         }
-        Schema::create('brand_model', function (Blueprint $table) {
-            $table->increments('model_id');
-            $table->integer('model_brandid')->unsigned();
-            $table->string('model_code');
-            $table->string('model_name_th')->nullable();
-            $table->string('model_name_en')->nullable();
-            // $table->string('model_year_from');
-            // $table->string('model_year_to');
-            // $table->string('model_master_data');
-            $table->string('created_for',200)->nullable();
-            $table->string('updated_for',200)->nullable();
-            $table->string('model_active',1)->default('1');
+        Schema::create('models', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('brand_id')->unsigned();
+            $table->string('code');
+            $table->string('name_th')->nullable();
+            $table->string('name_en')->nullable();
+            $table->string('image')->nullable();
+            $table->string('is_active',1)->default('1');
+            $table->string('created_by',200)->nullable();
+            $table->string('updated_by',200)->nullable();
 
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
 
-            $table->foreign('model_brandid')->references('brand_id')->on('brand')->onDelete('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
 
         });
     }

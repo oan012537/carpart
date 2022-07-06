@@ -61,7 +61,7 @@
 
                     <div class="box__search">
                         <div class="input-group ">
-                            <input type="text" class="form-control" placeholder="Search for anything .." aria-label="Search for anything .." aria-describedby="button-addon2">
+                            <input type="text" class="form-control" placeholder="Search for anything .." aria-label="Search for anything .." aria-describedby="button-addon2" id="searchrole" name="searchrole">
                             <button class="btn btn__search" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         <div class="col-3">
                             <ul class="nav nav-tabs tab-left" id="myTab" role="tablist">
                                 @foreach($roles as $key => $role)
-                                <li class="nav-item" role="presentation">
+                                <li class="nav-item roles" role="presentation" id="role{{$role->role_id}}">
                                     <button class="nav-link @if($key == 0) active @endif" id="permission{{$role->role_id}}-tab" data-bs-toggle="tab" data-bs-target="#permission{{$role->role_id}}" type="button" role="tab" aria-controls="permission{{$role->role_id}}" aria-selected="true">{{$role->role_name}}</button>
                                 </li>
                                 @endforeach
@@ -513,5 +513,14 @@
             toastralert(result.status,result.msg);
         });
     }
+
+    $("#searchrole").keyup(function(){
+        $.get('{{route("backend.setting.user.role.searchrole")}}',{'searchrole':$(this).val()},function(result){
+            $(".roles").show();
+            $.each(result,function (key,item) {
+                $("#role"+item.role_id).hide();
+            });
+        });
+    })
 </script>
 @stop
