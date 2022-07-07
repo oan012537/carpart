@@ -184,7 +184,7 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::prefix('settingbanner')->group(function () {
             Route::get('/', [Backend\BannerController::class,'index'])->name('backend.banner');
-            Route::get('add', function(){})->name('backend.banner.add');
+            Route::get('add', [Backend\BannerController::class,'add'])->name('backend.banner.add');
             Route::post('store', function(){})->name('backend.banner.store');
             Route::get('edit', [Backend\BannerController::class,'edit'])->name('backend.banner.edit');
             Route::post('update', [Backend\BannerController::class,'update'])->name('backend.banner.update');

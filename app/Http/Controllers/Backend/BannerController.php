@@ -11,4 +11,8 @@ class BannerController extends Controller
     public function index(){
         return view('backend.banner.index');
     }
+
+    public function add(){
+        return view('backend.banner.add');
+    }
 }
