@@ -108,7 +108,7 @@ text-.form-control
     font-size: 16px;
     color: white;
     font-weight: 300;
-    padding: 20px;
+    padding: 15px 0px 15px 0px;
 }
 
 #sec-confirm .card7 {
@@ -185,9 +185,10 @@ text-.form-control
 }
 
 
+/* Start accordion */
+
 .accordion {
-    background-color: #ffffff0f;
-    border-bottom: 2px solid #828282;
+    background-color: #3f3f3f;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -201,16 +202,37 @@ text-.form-control
 
 .active,
 .accordion:hover {
-    background-color: #3b393933;
+    background-color: #3f3f3f;
+}
+
+.accordion:after {
+    content: "\2228";
+    color: white;
+    padding: 2px 9px 2px 9px;
+    font-size: 16px;
+    float: right;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-right: 20px;
+    background-color: #5a5a5a;
+}
+
+.active:after {
+    content: "\2227";
 }
 
 .panel {
-    border-bottom: 2px solid #828282;
-    color: white;
     padding: 0 18px;
-    display: none;
+    background-color: #3f3f3f;
+    color: white;
+    max-height: 0;
     overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }
+
+/* End accordion */
+
+
 
 .pay-payment p {
     font-size: 18px;
@@ -366,7 +388,7 @@ text-.form-control
 }
 
 .w3-modal-content {
-    margin-top: -71px;
+    margin-bottom: 10px;
     background-color: #2f2f2f;
     position: relative;
     padding: 0;
@@ -374,10 +396,22 @@ text-.form-control
      width: 850px;
 }
 
-#sec-confirm .card-review {
+/*#sec-confirm .card-review {
     background-color: #3F3F3F;
     height: 170px;
+}*/
+
+
+.b-img-b {
+    display: inline-block;
+    background-color: #4f4f4f;
+    color: white;
+    padding: 0.7rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 0rem;
 }
+
 
 
 #sec-confirm .card-header-re p {
@@ -421,18 +455,19 @@ text-.form-control
 
 .card-review .form-select {
     display: block;
-    width: 40%;
-    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-    -moz-padding-start: calc(0.75rem - 3px);
+    width: 100%;
+    padding: 0.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
+    color: #212529;
+    border-top: 2px solid #3f3f3f;
+    border-left: 2px solid #3f3f3f;
+    border-right: 2px solid #3f3f3f;
+    border-bottom: 2px solid #3f3f3f;
+    background-color: #3f3f3f;
     color: white;
-    border-top: 2px solid #616161;
-    border-left: 2px solid #616161;
-    border-right: 2px solid #616161;
-    border-bottom: 2px solid #616161;
-    background-color: #616161;
+    border-radius: 4px;
 }
 
 .text-detail-review-re {
@@ -447,17 +482,19 @@ text-.form-control
 
 .card-review .form-control {
     display: block;
-    width: 97%;
+    width: 100%;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    border-top: 2px solid #3f3f3f;
+    border-left: 2px solid #3f3f3f;
+    border-right: 2px solid #3f3f3f;
+    border-bottom: 2px solid #3f3f3f;
+    background-color: #3f3f3f;
     color: white;
-    background-color: #616161;
-    background-clip: padding-box;
-    border-top: 2px solid #616161;
-    border-left: 2px solid #616161;
-    border-right: 2px solid #616161;
-    border-bottom: 2px solid #616161;
+    border-radius: 4px;
 }
 
 hr.new1 {
@@ -620,6 +657,7 @@ hr.new1 {
     color: #747575;
     background-color: #333;
 }
+
 
 
 
@@ -1056,6 +1094,9 @@ hr.new1 {
     border: 2px solid #E8D95F;
 }
 
+
+
+
 .text-detail-t p {
     font-size: 16px;
     color: #E8D95F;
@@ -1063,6 +1104,21 @@ hr.new1 {
     font-weight: 200;
     text-decoration: underline;
 }
+
+#sec-confirm .card7 .w3-button {
+    color: #e8d95f !important;
+    background-color: #3f3f3f !important;
+}
+
+#sec-confirm .card7 .w3-button:hover {
+    color: #e8d95f !important;
+    background-color: #3f3f3f !important;
+}
+
+
+
+
+
 
 .button7 {
     background-color: #4F4F4F;
@@ -1150,7 +1206,7 @@ hr.new1 {
     padding-top: 40px;
 }
 
-.tt-text-pay p {
+review.tt-text-pay p {
     font-size: 18px;
     color: white;
     font-weight: 300;
@@ -1175,16 +1231,386 @@ hr.new1 {
 }
 
 
-
 .but-but-review button:not(:disabled),
 [type="button"]:not(:disabled),
 [type="reset"]:not(:disabled),
 [type="submit"]:not(:disabled) {
     cursor: pointer;
-    padding: 10px 20px 10px 20px;
+    padding: 8px 20px 8px 20px;
     background-color: #2f2f2f;
     border: 1px solid #e8d95f;
+    border-radius: 6px;
     color: #e8d95f;
     margin-right: 15px;
     font-family: "Kanit", sans-serif;
 }
+
+.w3-button:hover {
+    color: #2f2f2f !important;
+    background-color: #e8d95f !important;
+    border-radius: 6px;
+}
+
+
+
+
+
+
+/* The ccheckk */
+.ccheckk {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.ccheckk input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.ccheckk .checkmark {
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    height: 19px;
+    width: 19px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.ccheckk:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.ccheckk input:checked~.checkmark {
+    background-color: #eee;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.ccheckk .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.ccheckk input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.ccheckk .checkmark:after {
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #282828;
+}
+
+
+
+
+
+
+
+
+#id08 .ttext-rabu-text-t .form-control {
+    display: block;
+    width: 30%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    margin-left: 33px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    background-color: #616161;
+    background-clip: padding-box;
+    border: 1px solid #616161;
+}
+
+
+
+#id08 .text-t-check-text label {
+    font-size: 14px;
+    color: white;
+}
+
+
+/* The con-cerm */
+.con-persent {
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    margin-top: 8px;
+    margin-left: 45px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.con-persent input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.con-persent .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.con-persent:hover input~.checkmark {
+    background-color: #eee;
+}
+
+/* When the radio button is checked, add a blue background */
+.con-persent input:checked~.checkmark {
+    background-color: #eee;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.con-persent .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.con-persent input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.con-persent .checkmark:after {
+    top: 5px;
+    left: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #282828;
+}
+
+
+#id08 .text-check-text label {
+    color: white;
+    font-size: 14px;
+}
+
+
+
+/* The box-ch-box */
+.box-ch-box {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.box-ch-box input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.box-ch-box:hover input~.checkmark-box {
+    background-color: white;
+}
+
+/* When the checkbox is checked, add a blue background */
+.box-ch-box input:checked~.checkmark-box {
+    background-color: white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark-box:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.box-ch-box input:checked~.checkmark-box:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.box-ch-box .checkmark-box:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #373737;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+
+
+/* The con-cerm-con */
+.con-cerm-con {
+    display: block;
+    position: relative;
+    padding-left: 62px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.con-cerm-con input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.con-cerm-con .checkmark {
+    position: absolute;
+    top: 0;
+    left: 33px;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.con-cerm-con:hover input~.checkmark {
+    background-color: #eee;
+}
+
+/* When the radio button is checked, add a blue background */
+.con-cerm-con input:checked~.checkmark {
+    background-color: #eee;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.con-cerm-con .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.con-cerm-con input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.con-cerm-con .checkmark:after {
+    top: 5px;
+    left: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #282828;
+}
+
+
+.tt-text-niti-re p {
+    margin-top: 10px;
+}
+
+.t-card-textcard p {
+    font-size: 16px;
+    color: white;
+    margin: 10px 0px 0px 15px;
+}
+
+.img-text-img {
+    margin-top: 8px;
+    margin-left: -15px;
+}
+
+.t-card-textcard2 p {
+    font-size: 16px;
+    color: #6FCF97;
+    margin: 10px 0px 0px -40px;
+}
+
+.t-card-textcard3 p {
+    font-size: 16px;
+    color: white;
+    float: right;
+    margin: 10px 0px 0px 0px;
+}
+
+.t-card-textcard4 p {
+    font-size: 16px;
+    color: white;
+    margin: -1px 57px 0px 0px;
+    float: right;
+}
+
+.button5 {
+    background: #4F4F4F;
+    color: white;
+    border: 2px solid #4F4F4F;
+}
+
+
+.button5:hover {
+    background-color: #302e2e;
+    color: white;
+    border: 2px solid #302e2e;
+}
+
+
+
+
+
+
+

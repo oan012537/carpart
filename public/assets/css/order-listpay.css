@@ -1,3 +1,15 @@
+#sec-confirm .header2 .box__group2 .box__search .btn__search,
+.header2 .box__group2 .box__search #spareparts-sendoffer .box__allcontent .box__sendoffer .btn__sendlist,
+#spareparts-sendoffer .box__allcontent .box__sendoffer .header2 .box__group2 .box__search .btn__sendlist,
+.header2 .box__group2 .box__search #setting-product .table-responsive .box__wrapperbutton .btn__edit,
+#setting-product .table-responsive .box__wrapperbutton .header2 .box__group2 .box__search .btn__edit {
+    background-color: var(--clrmain);
+    color: var(--clrdarks3);
+    border: 1px solid var(--clrmain);
+    padding-bottom: 1px;
+}
+
+
 #sec-confirm {
     padding-top: 20px;
     padding-bottom: 350px;
@@ -26,14 +38,14 @@
 
 #sec-confirm .card-header .text-span-t1 p {
     font-size: 15px;
-    color: #ffc107;
+    color: #e8d95f;
     font-weight: 400;
 }
 
 #sec-confirm .text-span-t1 span {
     width: 23px;
     height: 23px;
-    background-color: #ffc107;
+    background-color: #e8d95f;
     display: inline-block;
     border-radius: 50px;
     color: var(--clrdarks2);
@@ -101,13 +113,13 @@
 }
 
 
-#sec-confirm .card-title  {
+#sec-confirm .card-title {
     font-size: 18px;
     color: white;
     font-weight: 300;
 }
 
-#sec-confirm .card-text  {
+#sec-confirm .card-text {
     font-size: 14px;
     color: #E0E0E0;
     font-weight: 300;
@@ -115,7 +127,7 @@
 
 #sec-confirm .card2 {
     background-color: #3F3F3F;
-    height: 120px;
+    height: 100px;
 }
 
 #sec-confirm .card2 .card-title {
@@ -137,6 +149,7 @@
     background-color: #3F3F3F;
     height: 153px;
 }
+
 #sec-confirm .card-d .card-header {
     background-color: #4F4F4F;
     height: 65px;
@@ -198,10 +211,10 @@
 
 .b-box-pay2 {
     border: 1px solid #ccc;
-    padding: 76px;
+    padding: 61px;
 }
 
-.text-t-pay p{
+.text-t-pay p {
     font-size: 14px;
     color: #E8D95F;
     font-weight: 300;
@@ -231,6 +244,7 @@
     border-radius: 5px;
     border: 2px solid #E8D95F;
     margin-top: 54px;
+    margin-right: -30px;
     float: right;
 }
 
@@ -282,6 +296,7 @@
     padding-top: 42px;
     justify-content: center;
 }
+
 /* End Modal Content */
 
 #sec-confirm .text-t-haer-pay p {
@@ -518,6 +533,7 @@ body {
 
 
 
+
 .div1 {
     width: 600px;
     height: 200px;
@@ -639,6 +655,7 @@ body {
     padding-left: 20px;
     margin-top: -13px;
 }
+
 #sec-confirm .card4 .card-detail2 {
     font-size: 14px;
     color: white;
@@ -686,7 +703,7 @@ body {
     color: #BDBDBD;
 }
 
-#sec-confirm .card-ko .form-control { 
+#sec-confirm .card-ko .form-control {
     position: relative;
     flex: 1 1 auto;
     width: 60%;
@@ -997,3 +1014,80 @@ body {
 .b-but-addplus .button1:hover {
     box-shadow: 0 12px 16px 0 rgba(38, 37, 37, 0.428), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
+
+
+
+
+
+/* The ch-ch2 */
+.ch-ch2 {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.ch-ch2 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 21px;
+    width: 21px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.ch-ch2:hover input~.checkmark {
+    background-color: #fff;
+}
+
+/* When the radio button is checked, add a blue background */
+.ch-ch2 input:checked~.checkmark {
+    background-color: #fff;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.ch-ch2 input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.ch-ch2 .checkmark:after {
+    top: 7px;
+    left: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3F3F3F;
+}
+
+
+
+
+
+
+
+

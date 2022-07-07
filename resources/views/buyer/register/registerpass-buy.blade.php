@@ -63,9 +63,8 @@
                             </div>
                             <br>
                             <div class='but-bb-log'>
-                                <a href="regiscon-buy.php">
-                                    <button class="button button1"> ย้อนกลับ
-                                    </button>
+                                <a href="buyer/regiscon-buy"  class="button button1">
+                                ย้อนกลับ
                                 </a>
                                 &nbsp;
                                 <button type="submit" class="button button2"> ยืนยัน &nbsp; <i class='fas fa-angle-right'></i>
@@ -101,9 +100,8 @@
             </form>
 
         </div>
-        {{-- <!-- The Modal -->
-        <div id="myModal" class="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <!-- Modal content -->
+        <!-- The Modal -->
+        <!-- <div id="myModal" class="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <div class="modal-body">
@@ -122,14 +120,15 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>  -->
     </section>
     @include('inc_footer')
 
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <script>
     function loginfn() {
 

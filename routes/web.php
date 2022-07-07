@@ -28,7 +28,6 @@ use App\Http\Controllers\LanguageController;
 */
 
 
-
 // supplier module
 Route::group(['prefix' => 'supplier'], function () {
 
@@ -88,7 +87,7 @@ Route::group(['prefix' => 'supplier'], function () {
 });
 
 // buyer module
-Route::group(['prefix' => 'buyer'], function () {
+/*Route::group(['prefix' => 'buyer'], function () {
 
     Route::get('login-buy', [BuyerController::class, 'login_buyer']);
     Route::post('login-buy-post', [BuyerController::class, 'login_buyer_post'])->name('buyer.login');
@@ -111,7 +110,7 @@ Route::group(['prefix' => 'buyer'], function () {
     Route::get('buyer/requestspares/details', [RequestSparesController::class, 'details'])->name('buyer.requestspares.details')->middleware('buyer');
 
     Route::get('buyer/home-search', [BuyerController::class, 'home_search'])->name('buyer.home-search')->middleware('buyer');
-});
+});*/
 
 Route::get('language_switch/{locale}', [LanguageController::class, 'switchLanguage'])->middleware('supplier');
 
