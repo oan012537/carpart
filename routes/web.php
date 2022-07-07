@@ -29,13 +29,13 @@ use App\Http\Controllers\LanguageController;
 
 
 // supplier module
-Route::group(['prefix' => 'supplier'], function () {
-
+Route::group(['prefix' => 'supplier'], function() {
+    
     Route::get('/login', [SupplierAuthController::class, 'index'])->name('supplier.index');
     Route::post('/login/owner', [SupplierAuthController::class, 'login'])->name('supplier.login');
     Route::post('/logout', [SupplierAuthController::class, 'logout'])->name('supplier.logout')->middleware('supplier');
     Route::get('/register', [SupplierAuthController::class, 'register'])->name('supplier.register');
-    Route::post('/register/create', [SupplierAuthController::class, 'store'])->name('supplier.register.store');
+    Route::post('/register/create', [SupplierAuthController::class, 'store'])->name('supplier.register.store');    
     Route::get('sms-confirm', [SupplierAuthController::class, 'smsConfirm'])->name('supplier.register.smsConfirm');
     Route::get('verify-otp', [SupplierAuthController::class, 'verifyOtp'])->name('supplier.register.verifyOtp');
     Route::get('supplier-info', [SupplierAuthController::class, 'supplierInfo'])->name('supplier.register.supplierInfo');
@@ -52,36 +52,36 @@ Route::group(['prefix' => 'supplier'], function () {
     Route::get('products/create_product_info', [ProductController::class, 'createProductInfo'])->name('products.create_product_info')->middleware('supplier');
     Route::get('products/get_sub_items', [ProductController::class, 'getSubItems'])->middleware('supplier');
     Route::resource('products', ProductController::class)->middleware('supplier');
-
+    
     // supplier profile
-    Route::get('profile', [ProfileController::class, 'index'])->name('supplier.profile')->middleware('supplier');
-    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('supplier.profile.edit')->middleware('supplier');
-    Route::post('profile/update', [ProfileController::class, 'update'])->name('supplier.profile.update')->middleware('supplier');
+    Route::get('profile', [ProfileController::class,'index'])->name('supplier.profile')->middleware('supplier');
+    Route::get('profile/edit', [ProfileController::class,'edit'])->name('supplier.profile.edit')->middleware('supplier');
+    Route::post('profile/update', [ProfileController::class,'update'])->name('supplier.profile.update')->middleware('supplier');
 
-    Route::get('profile/store', [ProfileController::class, 'storeindex'])->name('supplier.profile.store')->middleware('supplier');
-    Route::get('profile/store/edit', [ProfileController::class, 'storeedit'])->name('supplier.profile.store.edit')->middleware('supplier');
-    Route::post('profile/store/update', [ProfileController::class, 'storeupdate'])->name('supplier.profile.store.update')->middleware('supplier');
-    Route::post('profile/legal/store/update', [ProfileController::class, 'legalstoreupdate'])->name('supplier.profile.legal.store.update')->middleware('supplier');
-    Route::post('profile/store/verify/update', [ProfileController::class, 'storeverifyupdate'])->name('supplier.profile.store.verify.update')->middleware('supplier');
+    Route::get('profile/store', [ProfileController::class,'storeindex'])->name('supplier.profile.store')->middleware('supplier');
+    Route::get('profile/store/edit', [ProfileController::class,'storeedit'])->name('supplier.profile.store.edit')->middleware('supplier');
+    Route::post('profile/store/update', [ProfileController::class,'storeupdate'])->name('supplier.profile.store.update')->middleware('supplier');
+    Route::post('profile/legal/store/update', [ProfileController::class,'legalstoreupdate'])->name('supplier.profile.legal.store.update')->middleware('supplier');
+    Route::post('profile/store/verify/update', [ProfileController::class,'storeverifyupdate'])->name('supplier.profile.store.verify.update')->middleware('supplier');
 
-    Route::get('profile/bank', [ProfileController::class, 'bankindex'])->name('supplier.profile.bank')->middleware('supplier');
-    Route::get('profile/bank/add', [ProfileController::class, 'bankadd'])->name('supplier.profile.bank.add')->middleware('supplier');
-    Route::post('profile/bank/store', [ProfileController::class, 'bankstore'])->name('supplier.profile.bank.store')->middleware('supplier');
+    Route::get('profile/bank', [ProfileController::class,'bankindex'])->name('supplier.profile.bank')->middleware('supplier');
+    Route::get('profile/bank/add', [ProfileController::class,'bankadd'])->name('supplier.profile.bank.add')->middleware('supplier');
+    Route::post('profile/bank/store', [ProfileController::class,'bankstore'])->name('supplier.profile.bank.store')->middleware('supplier');
 
-    Route::get('profile/setting', [ProfileController::class, 'settingindex'])->name('supplier.profile.setting')->middleware('supplier');
-    Route::post('profile/setting/role/add', [ProfileController::class, 'settingrolestore'])->name('supplier.profile.setting.role.add')->middleware('supplier');
-    Route::post('profile/setting/user/add', [ProfileController::class, 'settinguserstore'])->name('supplier.profile.setting.user.store')->middleware('supplier');
-    Route::get('profile/setting/user/changepermission', [ProfileController::class, 'changepermission'])->name('supplier.profile.setting.user.changepermission')->middleware('supplier');
-    Route::get('profile/setting/user/searchrole', [ProfileController::class, 'searchrole'])->name('supplier.profile.setting.user.searchrole')->middleware('supplier');
+    Route::get('profile/setting', [ProfileController::class,'settingindex'])->name('supplier.profile.setting')->middleware('supplier');
+    Route::post('profile/setting/role/add', [ProfileController::class,'settingrolestore'])->name('supplier.profile.setting.role.add')->middleware('supplier');
+    Route::post('profile/setting/user/add', [ProfileController::class,'settinguserstore'])->name('supplier.profile.setting.user.store')->middleware('supplier');
+    Route::get('profile/setting/user/changepermission', [ProfileController::class,'changepermission'])->name('supplier.profile.setting.user.changepermission')->middleware('supplier');
+    Route::get('profile/setting/user/searchrole', [ProfileController::class,'searchrole'])->name('supplier.profile.setting.user.searchrole')->middleware('supplier');
 
-    Route::get('supplier/profile/notification', [ProfileController::class, 'notificationindex'])->name('supplier.profile.notification')->middleware('supplier');
+    Route::get('supplier/profile/notification', [ProfileController::class,'notificationindex'])->name('supplier.profile.notification')->middleware('supplier');
 
-    Route::get('requests', [RequestsController::class, 'index'])->name('supplier.requests')->middleware('supplier');
-    Route::get('requests/view/{id}', [RequestsController::class, 'view'])->name('supplier.requests.view')->middleware('supplier');
-    Route::get('requests/details/{id}', [RequestsController::class, 'details'])->name('supplier.requests.details')->middleware('supplier');
-    Route::get('requests/offer/{id}', [RequestsController::class, 'offer'])->name('supplier.requests.offer')->middleware('supplier');
+    Route::get('requests', [RequestsController::class,'index'])->name('supplier.requests')->middleware('supplier');
+    Route::get('requests/view/{id}', [RequestsController::class,'view'])->name('supplier.requests.view')->middleware('supplier');
+    Route::get('requests/details/{id}', [RequestsController::class,'details'])->name('supplier.requests.details')->middleware('supplier');
+    Route::get('requests/offer/{id}', [RequestsController::class,'offer'])->name('supplier.requests.offer')->middleware('supplier');
 
-
+    
 
     // Route::get('/profile', [SupplierController::class, 'SellerDashboard'])->name('supplier.profile')->middleware('supplier');
 });
