@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Supplier;
+use App\Models\UserSupplier;
 use App\Models\Province;
 use App\Models\Amphure;
 use App\Models\District;
