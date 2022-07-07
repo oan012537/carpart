@@ -11,11 +11,11 @@
                 </div>
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-xl-3 col-lg-12">
                 @include('supplier.layouts.inc_nav')
             </div>
 
-            <div class="col-lg-9">
+            <div class="col-xl-9 col-lg-12">
 
                 <div class="wrapper__add">
                     {{-- <div class="box__btn">
@@ -34,7 +34,7 @@
 
                 <div class="box__infoorg">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-xl-3 col-md-12 col-12">
 
                             <ul class="nav nav-tabs tab-left" id="myTab" role="tablist">
                                 @if(!empty($roles))
@@ -67,135 +67,135 @@
 
 
                         </div>
-                        <div class="col-9">
+                        <div class="col-xl-9 col-md-12 col-12">
                             <div class="tab-content" id="tabright">
                                 @foreach($roles as $key => $role)
-                                    <div class="tab-pane fade @if($key == 0) show active @endif " id="permission{{$role->role_id}}" role="tabpanel" aria-labelledby="permission{{$role->role_id}}-tab">
+                                <div class="tab-pane fade @if($key == 0) show active @endif " id="permission{{$role->role_id}}" role="tabpanel" aria-labelledby="permission{{$role->role_id}}-tab">
 
-                                        <!--  -->
-                                        <ul class="nav nav-tabs" id="myTab2" role="tablist">
-                                            <li class="nav-item" role="presentation" onclick="showaddbtn('1','{{$role->role_id}}')">
-                                                <button class="nav-link active" id="setpermission{{$role->role_id}}-tab" data-bs-toggle="tab" data-bs-target="#setpermission{{$role->role_id}}" type="button" role="tab" aria-controls="setpermission{{$role->role_id}}" aria-selected="true">ตั้งค่าบทบาท</button>
-                                            </li>
-                                            <li class="nav-item" role="presentation" onclick="showaddbtn('2','{{$role->role_id}}')">
-                                                <button class="nav-link" id="setmember{{$role->role_id}}-tab" data-bs-toggle="tab" data-bs-target="#setmember{{$role->role_id}}" type="button" role="tab" aria-controls="setmember{{$role->role_id}}" aria-selected="false">จัดการสมาชิก ( @if(array_key_exists($role->role_id,$datas)) {{count($datas[$role->role_id])}} @else 0 @endif คน )</button>
-                                            </li>
-                                            <li id="btnaddmember{{$role->role_id}}" class="btn__addmember" onclick="fnaddmember('{{$role->role_name}}')" role="presentation" style="display: none;">
-                                                <button class="nav-link" class="btn btn__addpermission" type="button" data-bs-toggle="modal" data-bs-target="#myModal1"> <img src="{{asset('backends/assets/img/setting/icon-role-active.svg')}}" class="img-fluid" alt=""> เพิ่มสมาชิก</button>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content" id="myTabContentsetting">
-                                            <div class="tab-pane fade show active" id="setpermission{{$role->role_id}}" role="tabpanel" aria-labelledby="setpermission{{$role->role_id}}-tab">
-                                                <div class="form-group">
-                                                    <label for="">ชื่อบทบาท</label>
-                                                    <input type=" text" name="namepermission" class="form-control" aria-describedby="button-addon3" value="{{$role->role_name}}">
-                                                    <button type="button" id="button-addon3" class="btn btn__popover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="ลบบทบาทนี้" data-role="{{$role->role_id}}">
-                                                        <i class="fa-solid fa-trash-can"></i>
-                                                    </button>
-                                                </div>
+                                    <!--  -->
+                                    <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                                        <li class="nav-item" role="presentation" onclick="showaddbtn('1','{{$role->role_id}}')">
+                                            <button class="nav-link active" id="setpermission{{$role->role_id}}-tab" data-bs-toggle="tab" data-bs-target="#setpermission{{$role->role_id}}" type="button" role="tab" aria-controls="setpermission{{$role->role_id}}" aria-selected="true">ตั้งค่าบทบาท</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation" onclick="showaddbtn('2','{{$role->role_id}}')">
+                                            <button class="nav-link" id="setmember{{$role->role_id}}-tab" data-bs-toggle="tab" data-bs-target="#setmember{{$role->role_id}}" type="button" role="tab" aria-controls="setmember{{$role->role_id}}" aria-selected="false">จัดการสมาชิก ( @if(array_key_exists($role->role_id,$datas)) {{count($datas[$role->role_id])}} @else 0 @endif คน )</button>
+                                        </li>
+                                        <li id="btnaddmember{{$role->role_id}}" class="btn__addmember" onclick="fnaddmember('{{$role->role_name}}')" role="presentation" style="display: none;">
+                                            <button class="nav-link" class="btn btn__addpermission" type="button" data-bs-toggle="modal" data-bs-target="#myModal1"> <img src="{{asset('backends/assets/img/setting/icon-role-active.svg')}}" class="img-fluid" alt=""> เพิ่มสมาชิก</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContentsetting">
+                                        <div class="tab-pane fade show active" id="setpermission{{$role->role_id}}" role="tabpanel" aria-labelledby="setpermission{{$role->role_id}}-tab">
+                                            <div class="form-group">
+                                                <label for="">ชื่อบทบาท</label>
+                                                <input type=" text" name="namepermission" class="form-control" aria-describedby="button-addon3" value="{{$role->role_name}}">
+                                                <button type="button" id="button-addon3" class="btn btn__popover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="ลบบทบาทนี้" data-role="{{$role->role_id}}">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </div>
 
 
-                                                <div class="box__contentsetting">
-                                                    <div class="contentswitch">
-                                                        <h3 class="txt__title">สิทธิการใช้งาน</h3>
-                                                        <?php
-                                                        $namepermiss = array(
-                                                            '1' => 'จัดการบทบาท',
-                                                            '2' => 'ดูแลการขาย',
-                                                            '3' => 'ดูแลการเงิน',
-                                                            '4' => 'จัดการโปรโมชั่น',
-                                                            '5' => 'จัดการข้อมูลธนาคาร',
-                                                            '6' => 'ดูแลการขาย',
-                                                            '7' => 'ดูแลการเงิน',
-                                                        );
-                                                        for ($z = 1; $z <= 7; $z++) {
-                                                            $namefield = 'permission_manage'.$z;
-                                                        ?>
-                                                            <div class="row">
-                                                                <div class="col-6">
-                                                                    <p class="txt__subtitle"> <?php echo $namepermiss[$z]; ?></p>
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <div class="form-check form-switch">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault{{$role->role_id}}{{$z}}" data-status="{{$role->$namefield}}" @if($role->$namefield == '1') checked @endif onclick="changepermission('{{$role->role_id}}','{{$namefield}}','{{$z}}')">
-                                                                        <label class="form-check-label" for="flexSwitchCheckDefault{{$role->role_id}}"></label>
-                                                                    </div>
-
+                                            <div class="box__contentsetting">
+                                                <div class="contentswitch">
+                                                    <h3 class="txt__title">สิทธิการใช้งาน</h3>
+                                                    <?php
+                                                    $namepermiss = array(
+                                                        '1' => 'จัดการบทบาท',
+                                                        '2' => 'ดูแลการขาย',
+                                                        '3' => 'ดูแลการเงิน',
+                                                        '4' => 'จัดการโปรโมชั่น',
+                                                        '5' => 'จัดการข้อมูลธนาคาร',
+                                                        '6' => 'ดูแลการขาย',
+                                                        '7' => 'ดูแลการเงิน',
+                                                    );
+                                                    for ($z = 1; $z <= 7; $z++) {
+                                                        $namefield = 'permission_manage' . $z;
+                                                    ?>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <p class="txt__subtitle"> <?php echo $namepermiss[$z]; ?></p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault{{$role->role_id}}{{$z}}" data-status="{{$role->$namefield}}" @if($role->$namefield == '1') checked @endif onclick="changepermission('{{$role->role_id}}','{{$namefield}}','{{$z}}')">
+                                                                    <label class="form-check-label" for="flexSwitchCheckDefault{{$role->role_id}}"></label>
                                                                 </div>
 
-                                                                <div class="col-12">
-                                                                    <div class="box__content">
-                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s, </p>
-                                                                        <hr>
-                                                                    </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="box__content">
+                                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s, </p>
+                                                                    <hr>
                                                                 </div>
                                                             </div>
-                                                        <?php } ?>
-                                                    </div>
+                                                        </div>
+                                                    <?php } ?>
                                                 </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="setmember{{$role->role_id}}" role="tabpanel" aria-labelledby="setmember{{$role->role_id}}-tab">
-                                                
-                                                <div class="table-respoonsive tablestyle">
-                                                    <table class="table text-center">
-                                                        <thead>
-                                                            <tr>
-                                                                <td scope="col">รหัสสมาชิก</td>
-                                                                <td scope="col">ชื่อ - นามสกุล</td>
-                                                                <td scope="col">เบอร์ติดต่อ</td>
-                                                                <td scope="col">อีเมล</td>
-                                                                <td scope="col">สถานะ</td>
-                                                                <td scope="col"></td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @if(array_key_exists($role->role_id,$datas))
-                                                            @foreach ($datas[$role->role_id] as $user)
-                                                            <tr id="datausers{{$user->id}}">
-                                                                <td>{{$user->id}}</td>
-                                                                <td>{{$user->name}}</td>
-                                                                <td>{{$user->phone}}</td>
-                                                                <td>{{$user->email}}</td>
-                                                                <td class="text-center">
-                                                                    <div class="form-check form-switch ">
-                                                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked{{$user->id}}" @if($user->status == '1') checked @endif onclick="changestatus('{{$user->id}}')">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="dropdown">
-                                                                        <a href="javascript:void(0)" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                            <i class="fa-solid fa-ellipsis"></i>
-                                                                        </a>
-                                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal1" onclick="fnedit('{{$user->id}}')"><i class="fa-solid fa-pencil"></i> แก้ไข</a></li>
-                                                                            <li><a class="dropdown-item" href="#" onclick="fneremove('{{$user->id}}')"><i class="fa-solid fa-trash-can"></i> ลบ</a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            @endforeach
-                                                            @else
-                                                            <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <div class="box__nouser">
-                                                                        <p>ยังไม่มีสมาชิกในบทบาทนี้</p>
-                                                                    </div>
-                                                                </td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            @endif
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-
                                             </div>
                                         </div>
+                                        <div class="tab-pane fade" id="setmember{{$role->role_id}}" role="tabpanel" aria-labelledby="setmember{{$role->role_id}}-tab">
 
-                                        <!--  -->
+                                            <div class="table-respoonsive tablestyle">
+                                                <table class="table text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <td scope="col">รหัสสมาชิก</td>
+                                                            <td scope="col">ชื่อ - นามสกุล</td>
+                                                            <td scope="col">เบอร์ติดต่อ</td>
+                                                            <td scope="col">อีเมล</td>
+                                                            <td scope="col">สถานะ</td>
+                                                            <td scope="col"></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if(array_key_exists($role->role_id,$datas))
+                                                        @foreach ($datas[$role->role_id] as $user)
+                                                        <tr id="datausers{{$user->id}}">
+                                                            <td>{{$user->id}}</td>
+                                                            <td>{{$user->name}}</td>
+                                                            <td>{{$user->phone}}</td>
+                                                            <td>{{$user->email}}</td>
+                                                            <td class="text-center">
+                                                                <div class="form-check form-switch ">
+                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked{{$user->id}}" @if($user->status == '1') checked @endif onclick="changestatus('{{$user->id}}')">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="dropdown">
+                                                                    <a href="javascript:void(0)" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <i class="fa-solid fa-ellipsis"></i>
+                                                                    </a>
+                                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal1" onclick="fnedit('{{$user->id}}')"><i class="fa-solid fa-pencil"></i> แก้ไข</a></li>
+                                                                        <li><a class="dropdown-item" href="#" onclick="fneremove('{{$user->id}}')"><i class="fa-solid fa-trash-can"></i> ลบ</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                        @else
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>
+                                                                <div class="box__nouser">
+                                                                    <p>ยังไม่มีสมาชิกในบทบาทนี้</p>
+                                                                </div>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        @endif
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
                                     </div>
+
+                                    <!--  -->
+                                </div>
                                 @endforeach
 
                             </div>
@@ -222,7 +222,7 @@
                             <div class="col-xl-12 col-md-12 col-12">
                                 <div class="form-group">
                                     <label for="">ชื่อบทบาท <span>*</span></label>
-                                    <input type="text" name="rolename" id="rolename" required class="form-control" placeholder="ระบุ" autocomplete="off" >
+                                    <input type="text" name="rolename" id="rolename" required class="form-control" placeholder="ระบุ" autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -231,7 +231,7 @@
             </div>
             <div class="modal-footer ">
                 <button type="button" class="btn btn__back" data-bs-dismiss="modal">กลับ</button>
-                <button type="submit" class="btn btn__yes"  form="formrole">ยืนยัน</button>
+                <button type="submit" class="btn btn__yes" form="formrole">ยืนยัน</button>
             </div>
         </div>
     </div>
@@ -385,15 +385,15 @@
 
     });
 
-    $("#myModal2 input[type='checkbox']").click(function (param) {
-        $("#myModal2 input[type='checkbox']").prop('checked',false);
-        $(this).prop('checked',true);
+    $("#myModal2 input[type='checkbox']").click(function(param) {
+        $("#myModal2 input[type='checkbox']").prop('checked', false);
+        $(this).prop('checked', true);
         // $("#role").val($(this).val());
     });
-    $("#myModal2 .btn__yes").click(function () {
+    $("#myModal2 .btn__yes").click(function() {
         var checkeds = $("#myModal2 input[type='checkbox']:checked").val();
         // $(this).prop('checked',true);
-        var rolename = $("#permissionbox"+checkeds).data('name');
+        var rolename = $("#permissionbox" + checkeds).data('name');
         $("#role").val(rolename);
         $("#roleid").val(checkeds);
 
@@ -402,14 +402,14 @@
     });
 
     function addrole() {
-        $.post("{{ route('supplier.profile.setting.role.add') }}",$("#formrole").serialize(),function (result) {
+        $.post("{{ route('supplier.profile.setting.role.add') }}", $("#formrole").serialize(), function(result) {
             var content = '';
-            toastralert(result.status,result.msg);
-            $.each(result.data, function(key,value){
+            toastralert(result.status, result.msg);
+            $.each(result.data, function(key, value) {
                 content += '<div class="form-check">';
-                content += '<input class="form-check-input" type="checkbox" value="'+value.role_name +'" id="permissionbox'+value.role_id +'">';
-                content += '<label class="form-check-label" for="permissionbox'+value.role_id +'">'+value.role_name +'</label>';
-                content += '</div>'; 
+                content += '<input class="form-check-input" type="checkbox" value="' + value.role_name + '" id="permissionbox' + value.role_id + '">';
+                content += '<label class="form-check-label" for="permissionbox' + value.role_id + '">' + value.role_name + '</label>';
+                content += '</div>';
             });
             $("#myModal2 .modal-body").empty().append(content);
             window.location.reload();
@@ -419,54 +419,60 @@
 
     function changestatus(id) {
         var checkeds = 0;
-        if($("#flexSwitchCheckChecked"+id).is(':checked')){
+        if ($("#flexSwitchCheckChecked" + id).is(':checked')) {
             checkeds = 1;
         }
-        $.get("{{url('backend/settinguser/changestatus')}}",{'id':id,'status':checkeds},function (result) {
-            toastralert(result.status,result.msg);
+        $.get("{{url('backend/settinguser/changestatus')}}", {
+            'id': id,
+            'status': checkeds
+        }, function(result) {
+            toastralert(result.status, result.msg);
         });
     }
 
     function fnedit(id) {
-        $.get("{{url('backend/settinguser/edit')}}/"+id,function (result) {
-            $("#name").val(result.name);
-            $("#topic").val('');
-            $("#email").val(result.email);
-            $("#phone").val(result.phone);
-            $("#role").val(result.role_name);
-            $("#roleid").val(result.role);
-            $("#id").val(result.id);
+        $.get("{{url('backend/settinguser/edit')}}/" + id, function(result) {
+                $("#name").val(result.name);
+                $("#topic").val('');
+                $("#email").val(result.email);
+                $("#phone").val(result.phone);
+                $("#role").val(result.role_name);
+                $("#roleid").val(result.role);
+                $("#id").val(result.id);
 
-            $("#permissionbox"+result.role).prop('checked',true);
-            
-            if($("#flexSwitchCheckChecked").is(":checked")){
-                if(result.status == '0'){
-                    $("#flexSwitchCheckChecked").click();
+                $("#permissionbox" + result.role).prop('checked', true);
+
+                if ($("#flexSwitchCheckChecked").is(":checked")) {
+                    if (result.status == '0') {
+                        $("#flexSwitchCheckChecked").click();
+                    }
+                } else {
+                    if (result.status == '1') {
+                        $("#flexSwitchCheckChecked").click();
+                    }
                 }
-            }else{
-                if(result.status == '1'){
-                    $("#flexSwitchCheckChecked").click();
-                }
-            }
-            $("#formusers").attr('action',"{{ route('backend.setting.user.update') }}")
-        })
-        .always(function() {
-            $("#myModal1").modal('show');
-        });
+                $("#formusers").attr('action', "{{ route('backend.setting.user.update') }}")
+            })
+            .always(function() {
+                $("#myModal1").modal('show');
+            });
     }
+
     function fneremove(id) {
-        $.get("{{url('backend/settinguser/destroy')}}",{'id':id},function (result) {
-            if(result == 'Y'){
-                $("#datausers"+id).remove();
-                toastralert('success','ลบข้อมูลเรียบร้อย');
-            }else{
-                toastralert('error','เกิดข้อผิดพลาด');
+        $.get("{{url('backend/settinguser/destroy')}}", {
+            'id': id
+        }, function(result) {
+            if (result == 'Y') {
+                $("#datausers" + id).remove();
+                toastralert('success', 'ลบข้อมูลเรียบร้อย');
+            } else {
+                toastralert('error', 'เกิดข้อผิดพลาด');
             }
         });
     }
-    $(".btn__addmember").click(function () {
+    $(".btn__addmember").click(function() {
         // alert();
-        $("#formusers").attr('action',"{{ route('supplier.profile.setting.user.store') }}");
+        $("#formusers").attr('action', "{{ route('supplier.profile.setting.user.store') }}");
         $("#name").val('');
         $("#topic").val('');
         $("#email").val('');
@@ -474,25 +480,27 @@
         $("#role").val('');
         $("#roleid").val('');
         $("#id").val('');
-        $("#myModal2 input[type='checkbox']").prop('checked',false);
-        if(!$("#flexSwitchCheckChecked").is(":checked")){
-            if(result.status == '0'){
+        $("#myModal2 input[type='checkbox']").prop('checked', false);
+        if (!$("#flexSwitchCheckChecked").is(":checked")) {
+            if (result.status == '0') {
                 $("#flexSwitchCheckChecked").click();
             }
         }
     });
+
     function fnaddmember(name) {
         // alert(name);
     }
-    function showaddbtn(type,id) {
-        if(type == '1'){
-            $("#btnaddmember"+id).hide();
-        }else{
-            $("#btnaddmember"+id).show();
+
+    function showaddbtn(type, id) {
+        if (type == '1') {
+            $("#btnaddmember" + id).hide();
+        } else {
+            $("#btnaddmember" + id).show();
         }
-        
+
     }
-    $(".btn__popover").click(function (e) {
+    $(".btn__popover").click(function(e) {
         var datarole = $(this).data('role');
         bootbox.confirm({
             message: "ต้องการลบข้อมูลใช่หรือไม่?",
@@ -506,19 +514,24 @@
                     className: 'btn-danger'
                 }
             },
-            callback: function (result) {
-                toastralert('success','ยังทำไม่เรียบร้อย');
+            callback: function(result) {
+                toastralert('success', 'ยังทำไม่เรียบร้อย');
             }
         });
-        
+
     });
-    function changepermission(roleid,namefield,rowid) {
+
+    function changepermission(roleid, namefield, rowid) {
         var checkeds = 0;
-        if($("#flexSwitchCheckDefault"+roleid+rowid).is(':checked')){
+        if ($("#flexSwitchCheckDefault" + roleid + rowid).is(':checked')) {
             checkeds = 1;
         }
-        $.get("{{route('supplier.profile.setting.user.changepermission')}}",{'roleid':roleid,'namefield':namefield,'status':checkeds},function (result) {
-            toastralert(result.status,result.msg);
+        $.get("{{route('supplier.profile.setting.user.changepermission')}}", {
+            'roleid': roleid,
+            'namefield': namefield,
+            'status': checkeds
+        }, function(result) {
+            toastralert(result.status, result.msg);
         });
     }
 
@@ -531,11 +544,13 @@
         $("#formusers").removeAttr('onsubmit').submit();
     }
 
-    $("#searchrole").keyup(function(){
-        $.get('{{route("supplier.profile.setting.user.searchrole")}}',{'searchrole':$(this).val()},function(result){
+    $("#searchrole").keyup(function() {
+        $.get('{{route("supplier.profile.setting.user.searchrole")}}', {
+            'searchrole': $(this).val()
+        }, function(result) {
             $(".roles").show();
-            $.each(result,function (key,item) {
-                $("#role"+item.role_id).hide();
+            $.each(result, function(key, item) {
+                $("#role" + item.role_id).hide();
             });
         });
     })

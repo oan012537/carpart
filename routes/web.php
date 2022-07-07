@@ -36,7 +36,8 @@ Route::post('buyer/registerpass-buy-post', [Buyer\buyerController::class, 'regis
 
 Route::get('buyer/requestspares', [Buyer\RequestSparesController::class, 'index'])->name('buyer.requestspares');
 Route::get('buyer/requestspares/add', [Buyer\RequestSparesController::class, 'add'])->name('buyer.requestspares.add');
-Route::post('buyer/requestspares/add', function(){})->name('buyer.requestspares.store');
+Route::post('buyer/requestspares/add', function () {
+})->name('buyer.requestspares.store');
 
 Route::get('buyer/requestspares/view', [Buyer\RequestSparesController::class, 'view'])->name('buyer.requestspares.view');
 Route::get('buyer/requestspares/details', [Buyer\RequestSparesController::class, 'details'])->name('buyer.requestspares.details');
@@ -53,13 +54,13 @@ Route::group(['middleware' => ['buyer']], function () {
 //Login
 
 Route::get('supplier/login-sup', [Supplier\supplierController::class, 'login_supplier'])->name('supplier');
-Route::post('supplier/login-sup-post', [Supplier\supplierController::class,'login_supplier_post'])->name('supplier.login');
+Route::post('supplier/login-sup-post', [Supplier\supplierController::class, 'login_supplier_post'])->name('supplier.login');
 
 Route::get('supplier/login/verify/phone', [Supplier\SupplierController::class, 'logphone_supplier'])->name('supplier.login.verify.phone');
-Route::post('supplier/login/verify/phone', [Supplier\Auth\SupplierAuthController::class,'verifyphone'])->name('supplier.login.verify.phone.post');
+Route::post('supplier/login/verify/phone', [Supplier\Auth\SupplierAuthController::class, 'verifyphone'])->name('supplier.login.verify.phone.post');
 
 Route::get('supplier/login/verify/otp', [Supplier\supplierController::class, 'logotp_supplier'])->name('supplier.login.verify.otp');
-Route::post('supplier/login/verify/otp', [Supplier\Auth\SupplierAuthController::class,'verifyotp'])->name('supplier.login.verify.otp.post');
+Route::post('supplier/login/verify/otp', [Supplier\Auth\SupplierAuthController::class, 'verifyotp'])->name('supplier.login.verify.otp.post');
 
 
 //Register
@@ -89,11 +90,10 @@ Route::post('supplier/registerpass-sup-post', [Supplier\supplierController::clas
 
 Route::group(['middleware' => ['supplier']], function () {
     // Route::get('supplier/supplier-profile', [Supplier\supplierController::class, 'supplier_profile'])->name('supplier.supplier_profile');
-    Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile');
+    Route::get('supplier/profile', [Supplier\ProfileController::class, 'index'])->name('supplier.profile');
 
     // impliment product controller
     Route::resource('products', Supplier\ProductController::class);
-
 });
 ////////// END SUPPLIER
 
@@ -102,37 +102,49 @@ Route::group(['middleware' => ['supplier']], function () {
 //     // return redirect("/$lang");
 //     return view('welcome');
 // });
-Route::get('/', function () {return view('home');})->name('frontend.index');
-Route::get('/request', function () {return view('request');})->name('frontend.request');
-Route::get('/promotion', function () {return view('promotion');})->name('frontend.promotion');
-Route::get('/articles', function () {return view('articles');})->name('frontend.articles');
-Route::get('/contactus', function () {return view('contactus');})->name('frontend.contactus');
-Route::get('/articles-content', function () {return view('articles-content');})->name('frontend.articlecontent');
+Route::get('/', function () {
+    return view('home');
+})->name('frontend.index');
+Route::get('/request', function () {
+    return view('request');
+})->name('frontend.request');
+Route::get('/promotion', function () {
+    return view('promotion');
+})->name('frontend.promotion');
+Route::get('/articles', function () {
+    return view('articles');
+})->name('frontend.articles');
+Route::get('/contactus', function () {
+    return view('contactus');
+})->name('frontend.contactus');
+Route::get('/articles-content', function () {
+    return view('articles-content');
+})->name('frontend.articlecontent');
 
 Route::get('set/lang/{lang}', function ($lang) {
     Session::put('lang', $lang);
     return Redirect::back();
 });
-Route::get('import/category', [ImportdataController::class,'category']);
-Route::post('import/category', [ImportdataController::class,'importcategory']);
+Route::get('import/category', [ImportdataController::class, 'category']);
+Route::post('import/category', [ImportdataController::class, 'importcategory']);
 
-Route::get('import/categorysub', [ImportdataController::class,'categorysub']);
-Route::post('import/categorysub', [ImportdataController::class,'importcategorysub']);
+Route::get('import/categorysub', [ImportdataController::class, 'categorysub']);
+Route::post('import/categorysub', [ImportdataController::class, 'importcategorysub']);
 
-Route::get('import/categorysubs', [ImportdataController::class,'categorysubs']);
-Route::post('import/categorysubs', [ImportdataController::class,'importcategorysubs']);
+Route::get('import/categorysubs', [ImportdataController::class, 'categorysubs']);
+Route::post('import/categorysubs', [ImportdataController::class, 'importcategorysubs']);
 
-Route::get('import/brand', [ImportdataController::class,'brand']);
-Route::post('import/brand', [ImportdataController::class,'importbrand']);
+Route::get('import/brand', [ImportdataController::class, 'brand']);
+Route::post('import/brand', [ImportdataController::class, 'importbrand']);
 
-Route::get('import/brandmodel', [ImportdataController::class,'brandmodel']);
-Route::post('import/brandmodel', [ImportdataController::class,'importbrandmodel']);
+Route::get('import/brandmodel', [ImportdataController::class, 'brandmodel']);
+Route::post('import/brandmodel', [ImportdataController::class, 'importbrandmodel']);
 
-Route::get('import/brandmodels', [ImportdataController::class,'brandmodels']);
-Route::post('import/brandmodels', [ImportdataController::class,'importbrandmodels']);
+Route::get('import/brandmodels', [ImportdataController::class, 'brandmodels']);
+Route::post('import/brandmodels', [ImportdataController::class, 'importbrandmodels']);
 
-Route::get('import/brandyear', [ImportdataController::class,'brandyear']);
-Route::post('import/brandyear', [ImportdataController::class,'importbrandyear']);
+Route::get('import/brandyear', [ImportdataController::class, 'brandyear']);
+Route::post('import/brandyear', [ImportdataController::class, 'importbrandyear']);
 // Auth::routes();
 
 // Route::get('/chat', [ChatsController::class, 'index']);
@@ -147,7 +159,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/clearcache', function() {
+Route::get('/clearcache', function () {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('optimize');
     $exitCode = Artisan::call('route:cache');
@@ -157,44 +169,44 @@ Route::get('/clearcache', function() {
     return '<h1>Cache facade value cleared</h1>';
 });
 
-Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile');
-Route::get('supplier/profile/edit', [Supplier\ProfileController::class,'edit'])->name('supplier.profile.edit');
-Route::post('supplier/profile/update', [Supplier\ProfileController::class,'update'])->name('supplier.profile.update');
+Route::get('supplier/profile', [Supplier\ProfileController::class, 'index'])->name('supplier.profile');
+Route::get('supplier/profile/edit', [Supplier\ProfileController::class, 'edit'])->name('supplier.profile.edit');
+Route::post('supplier/profile/update', [Supplier\ProfileController::class, 'update'])->name('supplier.profile.update');
 
-Route::get('changeprovinces/{id}', [Backend\CompanyController::class,'provinces']);
-Route::get('changeamphures/{id}', [Backend\CompanyController::class,'amphures']);
-Route::get('changedistricts/{id}', [Backend\CompanyController::class,'districts']);
+Route::get('changeprovinces/{id}', [Backend\CompanyController::class, 'provinces']);
+Route::get('changeamphures/{id}', [Backend\CompanyController::class, 'amphures']);
+Route::get('changedistricts/{id}', [Backend\CompanyController::class, 'districts']);
 
-Route::get('supplier/profile/store', [Supplier\ProfileController::class,'storeindex'])->name('supplier.profile.store');
-Route::get('supplier/profile/store/edit', [Supplier\ProfileController::class,'storeedit'])->name('supplier.profile.store.edit');
-Route::post('supplier/profile/store/update', [Supplier\ProfileController::class,'storeupdate'])->name('supplier.profile.store.update');
-Route::post('supplier/profile/legal/store/update', [Supplier\ProfileController::class,'legalstoreupdate'])->name('supplier.profile.legal.store.update');
-Route::post('supplier/profile/store/verify/update', [Supplier\ProfileController::class,'storeverifyupdate'])->name('supplier.profile.store.verify.update');
-
-
-Route::get('supplier/profile/bank', [Supplier\ProfileController::class,'bankindex'])->name('supplier.profile.bank');
-Route::get('supplier/profile/bank/add', [Supplier\ProfileController::class,'bankadd'])->name('supplier.profile.bank.add');
-Route::post('supplier/profile/bank/store', [Supplier\ProfileController::class,'bankstore'])->name('supplier.profile.bank.store');
-
-Route::get('supplier/gettoken/{number}', [Supplier\ProfileController::class,'gettokenotp']);
-Route::post('supplier/getotp', [Supplier\ProfileController::class,'getotp']);
+Route::get('supplier/profile/store', [Supplier\ProfileController::class, 'storeindex'])->name('supplier.profile.store');
+Route::get('supplier/profile/store/edit', [Supplier\ProfileController::class, 'storeedit'])->name('supplier.profile.store.edit');
+Route::post('supplier/profile/store/update', [Supplier\ProfileController::class, 'storeupdate'])->name('supplier.profile.store.update');
+Route::post('supplier/profile/legal/store/update', [Supplier\ProfileController::class, 'legalstoreupdate'])->name('supplier.profile.legal.store.update');
+Route::post('supplier/profile/store/verify/update', [Supplier\ProfileController::class, 'storeverifyupdate'])->name('supplier.profile.store.verify.update');
 
 
-Route::get('supplier/profile/setting', [Supplier\ProfileController::class,'settingindex'])->name('supplier.profile.setting');
-Route::post('supplier/profile/setting/role/add', [Supplier\ProfileController::class,'settingrolestore'])->name('supplier.profile.setting.role.add');
-Route::post('supplier/profile/setting/user/add', [Supplier\ProfileController::class,'settinguserstore'])->name('supplier.profile.setting.user.store');
-Route::get('supplier/profile/setting/user/changepermission', [Supplier\ProfileController::class,'changepermission'])->name('supplier.profile.setting.user.changepermission');
-Route::get('supplier/profile/setting/user/searchrole', [Supplier\ProfileController::class,'searchrole'])->name('supplier.profile.setting.user.searchrole');
+Route::get('supplier/profile/bank', [Supplier\ProfileController::class, 'bankindex'])->name('supplier.profile.bank');
+Route::get('supplier/profile/bank/add', [Supplier\ProfileController::class, 'bankadd'])->name('supplier.profile.bank.add');
+Route::post('supplier/profile/bank/store', [Supplier\ProfileController::class, 'bankstore'])->name('supplier.profile.bank.store');
 
-Route::get('supplier/profile/notification', [Supplier\ProfileController::class,'notificationindex'])->name('supplier.profile.notification');
+Route::get('supplier/gettoken/{number}', [Supplier\ProfileController::class, 'gettokenotp']);
+Route::post('supplier/getotp', [Supplier\ProfileController::class, 'getotp']);
 
 
-Route::get('supplier/requests', [Supplier\RequestsController::class,'index'])->name('supplier.requests');
-Route::get('supplier/requests/view/{id}', [Supplier\RequestsController::class,'view'])->name('supplier.requests.view');
-Route::get('supplier/requests/details/{id}', [Supplier\RequestsController::class,'details'])->name('supplier.requests.details');
-Route::get('supplier/requests/offer/{id}', [Supplier\RequestsController::class,'offer'])->name('supplier.requests.offer');
+Route::get('supplier/profile/setting', [Supplier\ProfileController::class, 'settingindex'])->name('supplier.profile.setting');
+Route::post('supplier/profile/setting/role/add', [Supplier\ProfileController::class, 'settingrolestore'])->name('supplier.profile.setting.role.add');
+Route::post('supplier/profile/setting/user/add', [Supplier\ProfileController::class, 'settinguserstore'])->name('supplier.profile.setting.user.store');
+Route::get('supplier/profile/setting/user/changepermission', [Supplier\ProfileController::class, 'changepermission'])->name('supplier.profile.setting.user.changepermission');
+Route::get('supplier/profile/setting/user/searchrole', [Supplier\ProfileController::class, 'searchrole'])->name('supplier.profile.setting.user.searchrole');
+
+Route::get('supplier/profile/notification', [Supplier\ProfileController::class, 'notificationindex'])->name('supplier.profile.notification');
+
+
+Route::get('supplier/requests', [Supplier\RequestsController::class, 'index'])->name('supplier.requests');
+Route::get('supplier/requests/view/{id}', [Supplier\RequestsController::class, 'view'])->name('supplier.requests.view');
+Route::get('supplier/requests/details/{id}', [Supplier\RequestsController::class, 'details'])->name('supplier.requests.details');
+Route::get('supplier/requests/offer/{id}', [Supplier\RequestsController::class, 'offer'])->name('supplier.requests.offer');
 
 
 
 // Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile.noti');
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

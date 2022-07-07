@@ -10,11 +10,11 @@
                     <h3>ข้อมูลธนาคาร</h3>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-xl-3 col-lg-12">
                 @include('supplier.layouts.inc_nav')
             </div>
 
-            <div class="col-lg-9">
+            <div class="col-xl-9 col-lg-12">
                 <div class="box__profilebank">
 
                     <div class="box__info">
@@ -29,57 +29,56 @@
 
                         );
 
-                        
+
                         ?>
                         @if(!empty($banks))
                         @foreach($banks as $key => $bank)
                         @php
                         $result = array(
-                            '1' => $bank->banks_accountnumber,
-                            '2' => $bank->banks_accountname,
-                            '3' => $bank->banks_name,
-                            '4' => $bank->banks_branch,
-                            '5' => $bank->banks_type,
-                            '6' => '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset($bank->banks_refimage).'" data-fancybox-group="gallery'.$bank->banks_id.'"> <img src="'.asset('assets/img/icon/icon-pdf.svg').'" class="img-fluid"> </a>',
-                            // data-type="pdf"
+                        '1' => $bank->banks_accountnumber,
+                        '2' => $bank->banks_accountname,
+                        '3' => $bank->banks_name,
+                        '4' => $bank->banks_branch,
+                        '5' => $bank->banks_type,
+                        '6' => '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset($bank->banks_refimage).'" data-fancybox-group="gallery'.$bank->banks_id.'"> <img src="'.asset('assets/img/icon/icon-pdf.svg').'" class="img-fluid"> </a>',
+                        // data-type="pdf"
                         );
                         @endphp
-                        @for($i=1;$i<7;$i++)
-                            <div class="box__itemsinfo">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <p class="title__txt"><?php echo $heading[$i]; ?></p>
-
-                                    </div>
-                                    <div class="col-9">
-                                        <p class="title__result"><?php echo $result[$i]; ?></p>
-
-                                        @if ($i == 1)
-                                            <div class="box__setdefault">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked{{$bank->banks_id}}" @if($bank->banks_active == '1') checked @endif>
-                                                    <label class="form-check-label" for="flexCheckChecked{{$bank->banks_id}}">
-                                                        ตั้งเป็นบัญชีรับเงิน
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
+                        @for($i=1;$i<7;$i++) <div class="box__itemsinfo">
+                            <div class="row">
+                                <div class="col-xl-3 col-md-6 col-12">
+                                    <p class="title__txt"><?php echo $heading[$i]; ?></p>
 
                                 </div>
-                            </div>
-                        @endfor
-                        @endforeach
-                        @endif
-                    </div>
-                </div>
+                                <div class="col-xl-9 col-md-6 col-12">
+                                    <p class="title__result"><?php echo $result[$i]; ?></p>
 
-                <div class="col-12">
-                    <a href="{{route('supplier.profile.bank.add')}}" class="btn btn__addbank"> <i class="fa-solid fa-circle-plus"></i> เพิ่มบัญชีธนาคาร</a>
+                                    @if ($i == 1)
+                                    <div class="box__setdefault">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked{{$bank->banks_id}}" @if($bank->banks_active == '1') checked @endif>
+                                            <label class="form-check-label" for="flexCheckChecked{{$bank->banks_id}}">
+                                                ตั้งเป็นบัญชีรับเงิน
+                                            </label>
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+
+                            </div>
+                    </div>
+                    @endfor
+                    @endforeach
+                    @endif
                 </div>
+            </div>
+
+            <div class="col-12">
+                <a href="{{route('supplier.profile.bank.add')}}" class="btn btn__addbank"> <i class="fa-solid fa-circle-plus"></i> เพิ่มบัญชีธนาคาร</a>
             </div>
         </div>
     </div>
+</div>
 </div>
 @stop
 
@@ -99,28 +98,26 @@
                 $('#imagePreview').fadeIn(650);
             }
         });
-        
+
     });
-    $('.fancybox').fancybox(
-        {
-            selector : '.imglist a:visible',
-            Escape: "close",
-            Delete: "close",
-            Backspace: "close",
-            PageUp: "next",
-            PageDown: "prev",
-            ArrowUp: "next",
-            ArrowDown: "prev",
-            ArrowRight: "next",
-            ArrowLeft: "prev",
-            groupAttr: false,
-            Image: {
-                zoom: false,
-            },
-            thumbs   : {
-                autoStart : false
-            }
+    $('.fancybox').fancybox({
+        selector: '.imglist a:visible',
+        Escape: "close",
+        Delete: "close",
+        Backspace: "close",
+        PageUp: "next",
+        PageDown: "prev",
+        ArrowUp: "next",
+        ArrowDown: "prev",
+        ArrowRight: "next",
+        ArrowLeft: "prev",
+        groupAttr: false,
+        Image: {
+            zoom: false,
+        },
+        thumbs: {
+            autoStart: false
         }
-    ); 
+    });
 </script>
 @stop
