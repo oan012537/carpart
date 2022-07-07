@@ -11,28 +11,28 @@
                 </li>
 
                 <li data-page="historyparts">
-                    <a href="{{url('backend/manage/buyer/legal/profile')}}/{{$id}}">
+                    <a href="{{url('backend/manage/buyer/legal/historyparts')}}/{{$id}}">
                         <i class='far fa-file' style='font-size:20px'></i> &nbsp;
                         ประวัติคำขอหาอะไหล่
                     </a>
                 </li>
 
                 <li data-page="pendinglist">
-                    <a href="{{url('backend/manage/buyer/legal/profile')}}/{{$id}}">
+                    <a href="{{url('backend/manage/buyer/legal/pendinglist')}}/{{$id}}">
                         <i class='far fa-file-alt' style='font-size:20px'></i> &nbsp;
                         รายการรอยืนยัน
                     </a>
                 </li>
 
                 <li data-page="historysales">
-                    <a href="{{url('backend/manage/buyer/legal/profile')}}/{{$id}}">
+                    <a href="{{url('backend/manage/buyer/legal/historysales')}}/{{$id}}">
                         <i class="fa fa-shopping-cart" style='font-size:20px'></i> &nbsp;
                         ประวัติการสั่งซื้อ
                     </a>
                 </li>
 
                 <li data-page="claimlist">
-                    <a href="{{url('backend/manage/buyer/legal/profile')}}/{{$id}}">
+                    <a href="{{url('backend/manage/buyer/legal/claimlist')}}/{{$id}}">
                         <i class='fas fa-exclamation-circle' style='font-size:20px'></i>
                         &nbsp; รายการเคลม
                     </a>
