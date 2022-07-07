@@ -1,7 +1,7 @@
 @extends('supplier.layouts.template')
 @section('content')
 <input type="hidden" id="pageName" name="pageName" value="supplier-profile">
-    <input type="hidden" id="pageName2" name="pageName2" value="profilestore">
+<input type="hidden" id="pageName2" name="pageName2" value="profilestore">
 <div class="content">
     <div class="row">
         <div class="col-lg-12">
@@ -9,11 +9,11 @@
                 <h3>ข้อมูลร้านค้า</h3>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-12">
             @include('supplier.layouts.inc_nav')
         </div>
         @if($supplier->type == 'บุคคลธรรมดา')
-        <div class="col-lg-9">
+        <div class="col-xl-9 col-lg-12">
             <div class="box__profileeditstore">
                 <div class="groupedit1">
                     <div class="row">
@@ -26,36 +26,36 @@
                         @csrf
                         <div class="itemseditstore">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> ชื่อ <span> *</span></label>
                                         <input type="text" class="form-control" name="name" placeholder="ระบุ" required value="{{$supplier->store_name}}">
                                     </div>
                                 </div>
 
-                                <div class="col-6"></div>
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12"></div>
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> อีเมล </label>
                                         <input type="email" class="form-control" name="email" placeholder="ระบุ" required value="{{$supplier->email}}">
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> โทรศัพท์ <span> *</span></label>
                                         <input type="text" class="form-control" name="phone" placeholder="ระบุ" required value="{{$supplier->phone}}">
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> Page URL/Facebook URL </label>
                                         <textarea name="pagefacebook" class="form-control" placeholder="ระบุ">{{$supplier->facebook}}</textarea>
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> Google Map Url <span> *</span></label>
                                         <textarea name="googlemap" class="form-control" placeholder="ระบุ" required>{{$supplier->googlemap}}</textarea>
@@ -87,14 +87,14 @@
                                         <textarea name="address" class="form-control" placeholder="ระบุ" id="address" required>{{$supplier->store_address}}</textarea>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">จังหวัด <span>*</span></label>
                                         <select class="form-select" aria-label="Default select example" required name="province" id="province" onchange="changeprovinces(this.value)">
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($provinces))
                                             @foreach ($provinces as $item)
-                                                <option value="{{$item->id}}" @if($supplier->store_province == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            <option value="{{$item->id}}" @if($supplier->store_province == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -102,14 +102,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">เขต/อำเภอ <span>*</span></label>
-                                        <select class="form-select" aria-label="Default select example" required name="amphure" id="amphure"  onchange="changeamphures(this.value)">
+                                        <select class="form-select" aria-label="Default select example" required name="amphure" id="amphure" onchange="changeamphures(this.value)">
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($amphures))
                                             @foreach ($amphures as $item)
-                                                <option value="{{$item->id}}" @if($supplier->store_amphure == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            <option value="{{$item->id}}" @if($supplier->store_amphure == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -117,14 +117,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">แขวง/ตำบล <span>*</span></label>
                                         <select class="form-select" aria-label="Default select example" required name="district" id="district" onchange="changedistricts(this.value)">
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($districts))
                                             @foreach ($districts as $item)
-                                                <option value="{{$item->id}}" @if($supplier->store_district == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            <option value="{{$item->id}}" @if($supplier->store_district == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -132,10 +132,10 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">รหัสไปรษณีย์ <span>*</span></label>
-                                        <input type="text" name="zipcode" id="zipcode" required readonly class="form-control"  value="{{$supplier->store_zipcode}}">
+                                        <input type="text" name="zipcode" id="zipcode" required readonly class="form-control" value="{{$supplier->store_zipcode}}">
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@
 
         </div>
         @else
-        <div class="col-lg-9">
+        <div class="col-xl-9 col-lg-12">
             <div class="box__profileeditstore">
                 <div class="groupedit1">
                     <div class="row">
@@ -169,22 +169,22 @@
                         <form method="POST" enctype="multipart/form-data" action="{{route('supplier.profile.legal.store.update')}}" id="formedit">
                             @csrf
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> ชื่อบริษัท <span> *</span></label>
                                         <input type="text" class="form-control" name="nameorg" placeholder="ระบุ" required value="{{$supplier->company_name}}">
                                     </div>
                                 </div>
 
-                                <div class="col-6"></div>
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12"></div>
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> สาขา </label>
                                         <input type="text" class="form-control" name="branch" placeholder="ระบุ" required value="{{$supplier->branch}}">
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> เลขประจำตัวผู้เสียภาษี <span> *</span></label>
                                         <input type="text" class="form-control" name="taxid" placeholder="ระบุ" required value="{{$supplier->vat_id}}">
@@ -198,14 +198,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">จังหวัด <span>*</span></label>
                                         <select class="form-select" aria-label="Default select example" required name="province" id="province" onchange="changeprovinces(this.value)">
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($provinces))
                                             @foreach ($provinces as $item)
-                                                <option value="{{$item->id}}" @if($supplier->store_province == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            <option value="{{$item->id}}" @if($supplier->store_province == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -213,14 +213,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">เขต/อำเภอ <span>*</span></label>
-                                        <select class="form-select" aria-label="Default select example" required name="amphure" id="amphure"  onchange="changeamphures(this.value)">
+                                        <select class="form-select" aria-label="Default select example" required name="amphure" id="amphure" onchange="changeamphures(this.value)">
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($amphures))
                                             @foreach ($amphures as $item)
-                                                <option value="{{$item->id}}" @if($supplier->store_amphure == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            <option value="{{$item->id}}" @if($supplier->store_amphure == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -228,14 +228,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">แขวง/ตำบล <span>*</span></label>
                                         <select class="form-select" aria-label="Default select example" required name="district" id="district" onchange="changedistricts(this.value)">
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($districts))
                                             @foreach ($districts as $item)
-                                                <option value="{{$item->id}}" @if($supplier->store_district == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            <option value="{{$item->id}}" @if($supplier->store_district == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -243,39 +243,39 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">รหัสไปรษณีย์ <span>*</span></label>
-                                        <input type="text" name="zipcode" id="zipcode" required readonly class="form-control"  value="{{$supplier->store_zipcode}}">
+                                        <input type="text" name="zipcode" id="zipcode" required readonly class="form-control" value="{{$supplier->store_zipcode}}">
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> อีเมล </label>
                                         <input type="email" class="form-control" name="companyemail" placeholder="ระบุ" value="{{$supplier->company_email}}">
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> โทรศัพท์ <span> *</span></label>
-                                        <input type="text" class="form-control" name="phone" maxlength="10" placeholder="ระบุ"  value="{{$supplier->phone}}">
+                                        <input type="text" class="form-control" name="phone" maxlength="10" placeholder="ระบุ" value="{{$supplier->phone}}">
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> Page URL/Facebook URL <span> *</span></label>
-                                        <input type="text" class="form-control" name="pageurl" placeholder="ระบุ"  value="{{$supplier->facebook}}">
+                                        <input type="text" class="form-control" name="pageurl" placeholder="ระบุ" value="{{$supplier->facebook}}">
                                     </div>
                                 </div>
 
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> Google Map Url <span> *</span></label>
-                                        <input type="text" class="form-control" name="googlemap" placeholder="ระบุ"  value="{{$supplier->googlemap}}">
+                                        <input type="text" class="form-control" name="googlemap" placeholder="ระบุ" value="{{$supplier->googlemap}}">
                                     </div>
                                 </div>
 
@@ -365,33 +365,35 @@
         });
     });
 
-    function changeprovinces(id){
-        $.get("{{url('changeprovinces')}}/"+id,function(result){
+    function changeprovinces(id) {
+        $.get("{{url('changeprovinces')}}/" + id, function(result) {
             $("#amphure").empty().append('<option disabled selected>Choose</option>');
-            $.each(result, function (indexInArray, valueOfElement) { 
-                $("#amphure").append('<option value="'+valueOfElement.id+'" >'+valueOfElement.name_th+'</option>');
+            $.each(result, function(indexInArray, valueOfElement) {
+                $("#amphure").append('<option value="' + valueOfElement.id + '" >' + valueOfElement.name_th + '</option>');
             });
         });
         $("#provincehid").val($("#province option:selected").text());
     }
-    function changeamphures(id){
-        $.get("{{url('changeamphures')}}/"+id,function(result){
+
+    function changeamphures(id) {
+        $.get("{{url('changeamphures')}}/" + id, function(result) {
             $("#district").empty().append('<option disabled selected>Choose</option>');
-            $.each(result, function (indexInArray, valueOfElement) { 
-                $("#district").append('<option value="'+valueOfElement.id+'" >'+valueOfElement.name_th+'</option>');
+            $.each(result, function(indexInArray, valueOfElement) {
+                $("#district").append('<option value="' + valueOfElement.id + '" >' + valueOfElement.name_th + '</option>');
             });
         });
         $("#amphurehid").val($("#amphure option:selected").text());
     }
-    function changedistricts(id){
-        $.get("{{url('changedistricts')}}/"+id,function(result){
+
+    function changedistricts(id) {
+        $.get("{{url('changedistricts')}}/" + id, function(result) {
             // alert(result)
             $("#zipcode").val(result);
         });
         $("#districthid").val($("#district option:selected").text());
     }
 
-    $("#myFile").change(function(){
+    $("#myFile").change(function() {
         var input = document.getElementById('myFile');
         if (!input.files) { // This is VERY unlikely, browser support is near-universal
             console.error("This browser doesn't seem to support the `files` property of file inputs.");
@@ -401,58 +403,59 @@
             const limitsize = 5;
             var file = input.files[0];
             // console.log("File " + file.name + " is " + file.size + " bytes in size");
-            console.log(parseFloat((file.size / (1024*1024)).toFixed(2)))
-            if(parseFloat((file.size / (1024*1024)).toFixed(2)) > 5){
+            console.log(parseFloat((file.size / (1024 * 1024)).toFixed(2)))
+            if (parseFloat((file.size / (1024 * 1024)).toFixed(2)) > 5) {
                 $("#myFile").val('');
                 $("#drop-zone__thumb").remove();
 
             }
         }
-        
+
     });
-    $("#flexCheckChecked").click(function (e) { 
-        if($(this).is(":checked")){
-            $("#address").attr('required',false);
-            $("#province").attr('required',false);
-            $("#amphure").attr('required',false);
-            $("#district").attr('required',false);
-            $("#zipcode").attr('required',false);
-        }else{
-            $("#address").attr('required',true);
-            $("#province").attr('required',true);
-            $("#amphure").attr('required',true);
-            $("#district").attr('required',true);
-            $("#zipcode").attr('required',true);
+    $("#flexCheckChecked").click(function(e) {
+        if ($(this).is(":checked")) {
+            $("#address").attr('required', false);
+            $("#province").attr('required', false);
+            $("#amphure").attr('required', false);
+            $("#district").attr('required', false);
+            $("#zipcode").attr('required', false);
+        } else {
+            $("#address").attr('required', true);
+            $("#province").attr('required', true);
+            $("#amphure").attr('required', true);
+            $("#district").attr('required', true);
+            $("#zipcode").attr('required', true);
         }
         // e.preventDefault();
-        
+
     });
 
-    function changeprovinces(id){
-        $.get("{{url('changeprovinces')}}/"+id,function(result){
+    function changeprovinces(id) {
+        $.get("{{url('changeprovinces')}}/" + id, function(result) {
             $("#amphure").empty().append('<option disabled selected>Choose</option>');
-            $.each(result, function (indexInArray, valueOfElement) { 
-                $("#amphure").append('<option value="'+valueOfElement.id+'" >'+valueOfElement.name_th+'</option>');
+            $.each(result, function(indexInArray, valueOfElement) {
+                $("#amphure").append('<option value="' + valueOfElement.id + '" >' + valueOfElement.name_th + '</option>');
             });
         });
         $("#provincehid").val($("#province option:selected").text());
     }
-    function changeamphures(id){
-        $.get("{{url('changeamphures')}}/"+id,function(result){
+
+    function changeamphures(id) {
+        $.get("{{url('changeamphures')}}/" + id, function(result) {
             $("#district").empty().append('<option disabled selected>Choose</option>');
-            $.each(result, function (indexInArray, valueOfElement) { 
-                $("#district").append('<option value="'+valueOfElement.id+'" >'+valueOfElement.name_th+'</option>');
+            $.each(result, function(indexInArray, valueOfElement) {
+                $("#district").append('<option value="' + valueOfElement.id + '" >' + valueOfElement.name_th + '</option>');
             });
         });
         $("#amphurehid").val($("#amphure option:selected").text());
     }
-    function changedistricts(id){
-        $.get("{{url('changedistricts')}}/"+id,function(result){
+
+    function changedistricts(id) {
+        $.get("{{url('changedistricts')}}/" + id, function(result) {
             // alert(result)
             $("#zipcode").val(result);
         });
         $("#districthid").val($("#district option:selected").text());
     }
-
 </script>
 @stop

@@ -35,7 +35,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('supplier.index') }}">
                         <div class="iconimage">
                             <img src="{{asset('assets/img/icon/icon-chat.svg')}}" class="img-fluid icon__chat" alt="">
                             <div class="box__number"><span>1</span></div>

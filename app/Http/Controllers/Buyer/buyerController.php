@@ -16,7 +16,7 @@ use DB;
 use App\Models\Buyer\mUsers_buyer;
 
 
-class buyerController extends Controller
+class BuyerController extends Controller
 {
     public function login_buyer(){
         return view('buyer.login-buy');

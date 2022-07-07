@@ -78,14 +78,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
         'supplier' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Supplier\Users_supplier::class,
+            'model' => App\Models\UserSupplier::class,
         ],
 
         'buyer' => [

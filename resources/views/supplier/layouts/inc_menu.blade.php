@@ -9,6 +9,8 @@
                 </div>
             </a>
         </li>
+
+      
         <!--  -->
 
         <li class="nav-item box__icon2">
@@ -30,20 +32,28 @@
         <!--  -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{{asset('assets/img/icon/icon-web.svg')}}" class="img-fluid" alt=""> ไทย
+                <img src="{{asset('assets/img/icon/icon-web.svg')}}" class="img-fluid" alt=""> {{ trans('file.Language') }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">ไทย</a></li>
+                <li><a class="dropdown-item" href="{{ url('language_switch/th') }}">ไทย</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">English</a></li>
+                <li><a class="dropdown-item" href="{{ url('language_switch/en') }}">English</a></li>
             </ul>
         </li>
 
         <!--  -->
 
-        <li class="header_img"> <img src="{{asset('backends/assets/img/hczKIze.jpg')}}" alt=""> </li>
+        <li class="header_img"> 
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <img src="{{asset('backends/assets/img/hczKIze.jpg')}}" alt="profile">
+            </a>
+            <form id="logout-form" action="{{ route('supplier.logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </li>
+        
     </ul>
 
 </header>
@@ -95,9 +105,9 @@
                 </li>
                 {{-- inventory --}}
                 <li id="product">
-                    <a id="product-list-menu" href="{{ route('products.index') }}" class="nav_link active">
+                    <a id="product-list-menu" href="{{ route('products.index') }}" class="nav_link">
                         <div class="icon__sidebar7"></div>
-                        <span class="nav_name">จัดการสินค้า</span>
+                        <span class="nav_name">{{ trans('file.Manage Product') }}</span>
                     </a>
                 </li>
 

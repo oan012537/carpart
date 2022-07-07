@@ -10,6 +10,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="{{asset('daterangepicker-master/daterangepicker.js')}}"></script>
 <script src="{{asset('daterangepicker-master/moment.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/dropzone.js') }}"></script>
 
 <script>
     // to top

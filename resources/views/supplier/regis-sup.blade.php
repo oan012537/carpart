@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="assets/css/regis.css" rel="stylesheet">
 
-    @include('inc_stylesheet')
+    @include('supplier.auth.layouts.inc_stylesheet')
 </head>
 
 <body>
@@ -184,7 +184,7 @@
         </div>
     </section>
 
-    @include('inc_footer')
+    @include('supplier.auth.layouts.inc_footer')
 
 
     <script>

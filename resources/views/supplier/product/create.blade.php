@@ -14,7 +14,7 @@
 
             <div class="col-lg-12">
                 <p class="txt__title"><i class="fa-solid fa-circle-exclamation"></i> <span class="title__headbox">{{ trans('file.Product Information')}}</span></p>
-                <form id="msform">
+                <form id="msform" action="" method="post">
                     <div class="box__allstep">
 
                         <div class="box__step">
@@ -25,8 +25,8 @@
                                 <a href="javascript:void(0)" class="btn__label step3 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__subseries"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
                                 <a href="javascript:void(0)" class="btn__label step4 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__years"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
                                 <a href="javascript:void(0)" class="btn__label step5 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__cat"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span></a>
-                                <a href="javascript:void(0)" class="btn__label step6 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__cat"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span></a>
-                                <a href="javascript:void(0)" class="btn__label step7 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__cat"></span> </a>
+                                <a href="javascript:void(0)" class="btn__label step6 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__sub_cat"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span></a>
+                                <a href="javascript:void(0)" class="btn__label step7 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__sub_sub_cat"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span></a></a>
                             </div>
 
                             <div class="row">
@@ -51,217 +51,45 @@
                                 @foreach ($brand_list_data as $brand)
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-12 next">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="image-option" id="image-options{{ $brand->id }}" value="{{ $brand->id }}">
+                                            <input class="form-check-input" type="radio" name="brand" id="image-options{{ $brand->id }}" value="{{ $brand->id }}">
                                             <label class="form-check-label" for="image-options{{ $brand->id }}">
                                                 <img src="{{ asset('brand_logo').'/'. $brand->image }}" class="img-fluid img-circleimg" alt="{{ $brand->name_th }}">
-                                                {{ $brand->name_th }}
+                                                {{-- concat id is for test --}}
+                                                {{ $brand->name_th . ' ('. $brand->id }}
                                             </label>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
 
+                            {{-- model   --}}
                             <fieldset attr-id="1">
-                                {{-- model   --}}
                                 <div class="row box__scroll" id="fieldset2">
-                                    @foreach ($category_list_data as $category)
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    {{ $category->name_th }}
-                                                </label>
-                                            </div>
-                                        </div>    
-                                    @endforeach
                                 </div>
 
+                                {{-- sub model --}}
                                 <fieldset attr-id="2">
                                     <div class="row box__scroll" id="fieldset3">
-                                        <?php $name = array(
-                                            '1' => '2.4 E',
-                                            '2' => '2.4 E Plus 4WD',
-                                            '3' => '2.4 J',
-                                            '4' => '2.4 E 4WD',
-                                            '5' => '2.4 Entry',
-                                            '6' => '2.4 E',
-                                            '7' => '2.4 E Plus 4WD',
-                                            '8' => '2.4 J',
-                                            '9' => '2.4 E 4WD',
-                                            '10' => '2.4 Entry',
-                                            '11' => '2.4 E',
-                                            '12' => '2.4 E Plus 4WD',
-                                            '13' => '2.4 J',
-                                            '14' => '2.4 E 4WD',
-                                            '15' => '2.4 Entry',
-                                            '16' => '2.4 E',
-                                            '17' => '2.4 E Plus 4WD',
-                                            '18' => '2.4 J',
-                                            '19' => '2.4 E 4WD',
-                                            '20' => '2.4 Entry',
-
-                                        );
-                                        for ($i = 1; $i <= 20; $i++) {
-                                        ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        <?php echo $name[$i]; ?>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
                                     </div>
-
-                                    <!--  -->
+                                    {{-- issue year --}}
                                     <fieldset attr-id="3">
                                         <div class="row box__scroll" id="fieldset4">
-                                            <?php $years = array(
-                                                '1' => '2022',
-                                                '2' => '2022',
-                                                '3' => '2022',
-                                                '4' => '2022',
-                                                '5' => '2022',
-                                                '6' => '2022 ',
-                                                '7' => '2022',
-                                                '8' => '2022',
-                                                '9' => '2022',
-                                                '10' => '2022',
-                                                '11' => '2022 ',
-                                                '12' => '2022',
-                                                '13' => '2022',
-                                                '14' => '2022',
-                                                '15' => '2022',
-                                            );
-                                            for ($i = 1; $i <= 15; $i++) {
-                                            ?>
-                                                <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                        <label class="form-check-label" for="flexCheckDefault">
-                                                            <?php echo $years[$i]; ?>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
                                         </div>
-                                        <!--  -->
+
+                                        {{-- category --}}
                                         <fieldset attr-id="4">
                                             <div class="row box__scroll" id="fieldset5">
-                                                <?php $content = array(
-                                                    '1' => 'ถังน้ำสำรอง',
-                                                    '2' => 'ชุดสายไฟ',
-                                                    '3' => 'กล่องฟิวส์',
-                                                    '4' => 'ถังน้ำมัน',
-                                                    '5' => 'ออยล์คูเลอร์',
-                                                    '6' => 'ออยล์คูเลอร์ ',
-                                                    '7' => 'ถังน้ำสำรอง',
-                                                    '8' => 'ชุดสายไฟ',
-                                                    '9' => 'กล่องฟิวส์',
-                                                    '10' => 'ถังน้ำมัน',
-                                                    '11' => 'ถังน้ำสำรอง ',
-                                                    '12' => 'ชุดสายไฟ',
-                                                    '13' => 'กล่องฟิวส์',
-                                                    '14' => 'ถังน้ำมัน',
-                                                    '15' => 'ออยล์คูเลอร์',
-                                                    '16' => 'ถังน้ำมัน',
-                                                    '17' => 'ถังน้ำสำรอง ',
-                                                    '18' => 'ชุดสายไฟ',
-                                                    '19' => 'กล่องฟิวส์',
-                                                    '20' => 'ถังน้ำมัน',
-                                                );
-                                                for ($i = 1; $i <= 15; $i++) {
-                                                ?>
-                                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                            <label class="form-check-label" for="flexCheckDefault">
-                                                                <?php echo $content[$i]; ?>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
                                             </div>
 
-                                            <!--  -->
-
+                                            {{-- sub category --}}
                                             <fieldset attr-id="5">
                                                 <div class="row box__scroll" id="fieldset6">
-                                                    <?php $content = array(
-                                                        '1' => 'ถังน้ำสำรอง',
-                                                        '2' => 'ชุดสายไฟ',
-                                                        '3' => 'กล่องฟิวส์',
-                                                        '4' => 'ถังน้ำมัน',
-                                                        '5' => 'ออยล์คูเลอร์',
-                                                        '6' => 'ออยล์คูเลอร์ ',
-                                                        '7' => 'ถังน้ำสำรอง',
-                                                        '8' => 'ชุดสายไฟ',
-                                                        '9' => 'กล่องฟิวส์',
-                                                        '10' => 'ถังน้ำมัน',
-                                                        '11' => 'ถังน้ำสำรอง ',
-                                                        '12' => 'ชุดสายไฟ',
-                                                        '13' => 'กล่องฟิวส์',
-                                                        '14' => 'ถังน้ำมัน',
-                                                        '15' => 'ออยล์คูเลอร์',
-                                                        '16' => 'ถังน้ำมัน',
-                                                        '17' => 'ถังน้ำสำรอง ',
-                                                        '18' => 'ชุดสายไฟ',
-                                                        '19' => 'กล่องฟิวส์',
-                                                        '20' => 'ถังน้ำมัน',
-                                                    );
-                                                    for ($i = 1; $i <= 15; $i++) {
-                                                    ?>
-                                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                                <label class="form-check-label" for="flexCheckDefault">
-                                                                    <?php echo $content[$i]; ?>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    <?php } ?>
                                                 </div>
 
-                                                <!--  -->
-
+                                                {{-- sub sub category --}}
                                                 <fieldset attr-id="6">
                                                     <div class="row box__scroll" id="fieldset7">
-                                                        <?php $content = array(
-                                                            '1' => 'ถังน้ำสำรอง',
-                                                            '2' => 'ชุดสายไฟ',
-                                                            '3' => 'กล่องฟิวส์',
-                                                            '4' => 'ถังน้ำมัน',
-                                                            '5' => 'ออยล์คูเลอร์',
-                                                            '6' => 'ออยล์คูเลอร์ ',
-                                                            '7' => 'ถังน้ำสำรอง',
-                                                            '8' => 'ชุดสายไฟ',
-                                                            '9' => 'กล่องฟิวส์',
-                                                            '10' => 'ถังน้ำมัน',
-                                                            '11' => 'ถังน้ำสำรอง ',
-                                                            '12' => 'ชุดสายไฟ',
-                                                            '13' => 'กล่องฟิวส์',
-                                                            '14' => 'ถังน้ำมัน',
-                                                            '15' => 'ออยล์คูเลอร์',
-                                                            '16' => 'ถังน้ำมัน',
-                                                            '17' => 'ถังน้ำสำรอง ',
-                                                            '18' => 'ชุดสายไฟ',
-                                                            '19' => 'กล่องฟิวส์',
-                                                            '20' => 'ถังน้ำมัน',
-                                                        );
-                                                        for ($i = 1; $i <= 15; $i++) {
-                                                        ?>
-                                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12 ">
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                                        <?php echo $content[$i]; ?>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        <?php } ?>
                                                     </div>
-
 
                                                 </fieldset>
                                                 <!--  -->
@@ -276,35 +104,45 @@
                         </div>
                     </div>
                 </form>
-                <!--  -->
+                
 
+                {{-- select product type --}}
                 <div class="box__condition">
                     <div class="box__title">
                         <p class="txt__title"><i class="fa-solid fa-circle-exclamation"></i> {{ trans('file.Product Quality') }}</p>
                     </div>
 
+                    <form id="frm-product-info" action="{{ route('products.create_product_info') }}" method="get">
+                        <input type="hidden" name="brand_id" >
+                        <input type="hidden" name="model_id" >
+                        <input type="hidden" name="sub_model_id" >
+                        <input type="hidden" name="issue_year_id" >
+                        <input type="hidden" name="category_id" >
+                        <input type="hidden" name="sub_category_id" >
+                        <input type="hidden" name="sub_sub_category_id" >
+                    </form>
+
                     <div class="box__wrapperbutton">
-                        <a href="setting-producttwohand.php" class="btn btn__producttwohand">
+                        <a href="javascript:document.getElementById('frm-product-info').submit();" class="btn btn__producttwohand">
                             <img src="{{ asset('assets/img/icon/icon__mdicar.svg') }}" class="img-fluid" alt="second hand">
                             <p>{{ trans('file.Second Hand') }}</p>
                             <span>{{ trans('file.The product has been used') }}</span>
                         </a>
 
-                        <a href="setting-createnewproduct.php" class="btn btn__productnew">
+                        <a href="javascript:document.getElementById('frm-product-info').submit();" class="btn btn__productnew">
                             <img src="{{ asset('assets/img/icon/icon__new.svg') }}" class="img-fluid" alt="new product">
                             <p>{{ trans('file.New Product') }}</p>
                             <span>{{ trans('file.First-hand products have not been used.') }}</span>
                         </a>
                     </div>
                 </div>
-                <!--  -->
+                {{-- select product type --}}
 
                 <div class="box__btn">
                     <a href="javascript:void(0)" class="btn btn__back">{{ trans('file.Back') }}</a>
                     <a href="javascript:void(0)" class="btn btn__next">{{ trans('file.Next') }}</a>
                 </div>
 
-                <!--  -->
             </div>
         </div>
 
@@ -316,12 +154,16 @@
 @section('script')
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <script>
+    $(".nav_list #product #product-list-menu").addClass("active");
     var current_fs, next_fs, previous_fs;
     var left, opacity, scale;
     var animating;
+    var itemId;
+    
+    $(document).on('click', '.next', function() {
 
-    $(".next").click(function() {
-        alert('xxx');
+        itemId  = $(this).children().children().val();
+        
         if (animating) return false;
         animating = true;
 
@@ -332,8 +174,12 @@
 
         next_fs.show();
         const attr__value = next_fs.attr('attr-id');
-            // alert(attr__value);
+        
+        // alert(attr__value);
         if (attr__value == 1) {
+            $('#frm-product-info input[name="brand_id"]').val(itemId);
+            getSub(itemId, 'models');
+
             $('.txt__titlestep').addClass('d-none');
             $('.step1').removeClass('d-none');
             $('.txt__brands').html('{{ trans("file.Brand") }}');
@@ -341,25 +187,42 @@
             $('.txt__series').html('{{ trans("file.Model") }}');
             $('.title__headbox').html('{{ trans("file.Model") }}')
         } else if (attr__value == 2) {
+            $('#frm-product-info input[name="model_id"]').val(itemId);
+            getSub(itemId, 'sub_models');
+
             $('.step3').removeClass('d-none');
             $('.txt__subseries').html('{{ trans("file.Sub Model") }}');
             $('.title__headbox').html('{{ trans("file.Sub Model") }}')
         } else if (attr__value == 3) {
+            $('#frm-product-info input[name="sub_model_id"]').val(itemId);
+            getSub(itemId, 'issue_years');
+
             $('.step4').removeClass('d-none');
-            $('.txt__years').html('ปี');
+            $('.txt__years').html('{{ trans("file.Year") }}');
             $('.title__headbox').html('{{ trans("file.Year") }}')
         } else if (attr__value == 4) {
+            $('#frm-product-info input[name="issue_year_id"]').val(itemId);
+            getSub(itemId, 'categories');
+
             $('.step5').removeClass('d-none');
             $('.txt__cat').html('{{ trans("file.Category") }}');
             $('.title__headbox').html('{{ trans("file.Category") }}')
         } else if (attr__value == 5) {
+            $('#frm-product-info input[name="category_id"]').val(itemId);
+            getSub(itemId, 'sub_categories');
+
             $('.step6').removeClass('d-none');
-            $('.txt__cat').html('{{ trans("file.Sub Category") }}');
+            $('.txt__sub_cat').html('{{ trans("file.Sub Category") }}');
             $('.title__headbox').html('{{ trans("file.Sub Category") }}')
         } else if (attr__value == 6) {
-            $('.step6').removeClass('d-none');
-            $('.txt__cat').html('{{ trans("file.Sub Sub Category") }}');
+            $('#frm-product-info input[name="sub_category_id"]').val(itemId);
+            getSub(itemId, 'sub_sub_categories');
+
+            $('.step7').removeClass('d-none');
+            $('.txt__sub_sub_cat').html('{{ trans("file.Sub Sub Category") }}');
             $('.title__headbox').html('{{ trans("file.Sub Sub Category") }}')
+        } else {
+            $('#frm-product-info input[name="sub_sub_category_id"]').val(itemId);
         }
 
         current_fs.animate({
@@ -424,5 +287,125 @@
     $(".submit").click(function() {
         return false;
     })
+
+
+    // helper function
+        function getSub(id, tableName) {
+            $.ajax({
+                type: 'GET',
+                url: 'get_sub_items',
+                data: {
+                    'id': id,
+                    'tableName': tableName
+                },
+                success: function(data){
+                    var htmltext;
+
+                    if (tableName === 'models') {
+                        if (data.length === 0) {
+                            alert('Model not found');
+                        } else {
+                            data.forEach(model => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ model.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + model.name_en + ' ('+ model.id // concat id is for test
+                                        +'</label>'
+                                    +'</div></div>';
+                                $('#fieldset2').append(htmltext);
+                            });
+                        }       
+                    } 
+                    else if (tableName === 'sub_models') {
+                        if (data.length === 0) {
+                            alert('Sub Model not found');
+                        } else {
+                            data.forEach(subModel => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subModel.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subModel.name_en + ' ('+ subModel.id // concat id is for test
+                                        +'</label>'
+                                    +'</div></div>';
+                                $('#fieldset3').append(htmltext);
+                            });
+                        }
+                    }     
+                    else if (tableName === 'issue_years') {
+                        if (data.length === 0) {
+                            alert('Issue year not found');
+                        } else {
+                            data.forEach(issueYear => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ issueYear.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + issueYear.from_year + ' ('+ issueYear.id // concat id is for test
+                                        +'</label>'
+                                    +'</div></div>';
+                                $('#fieldset4').append(htmltext);
+                            });
+                        }       
+                    }  
+                    else if (tableName === 'categories') {
+                        if (data.length === 0) {
+                            alert('Category not found');
+                        } else {
+                            data.forEach(category => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ category.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + category.name_en + ' ('+ category.id // concat id is for test
+                                        +'</label>'
+                                    +'</div></div>';
+                                $('#fieldset5').append(htmltext);
+                            });
+                        }       
+                    }  
+                    else if (tableName === 'sub_categories') {
+                        if (data.length === 0) {
+                            alert('Sub Category not found');
+                        } else {
+                            data.forEach(subCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
+                                        +'</label>'
+                                    +'</div></div>';
+                                $('#fieldset6').append(htmltext);
+                            });
+                        }       
+                    }  
+                    else if (tableName === 'sub_sub_categories') {
+                        if (data.length === 0) {
+                            alert('Sub Sub Category not found');
+                        } else {
+                            data.forEach(subSubCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
+                                        +'</label>'
+                                    +'</div></div>';
+                                $('#fieldset7').append(htmltext);
+                            });
+                        }       
+                    }  
+                  
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+
+            })
+        }
+
+    // helper function
 </script>
 @endsection
