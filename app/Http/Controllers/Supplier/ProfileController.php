@@ -22,14 +22,12 @@ use Illuminate\Support\Facades\Hash;
 class ProfileController extends Controller
 {
     public function index(){
-        // dd(Auth::guard('supplier')->user());
         $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
         return view('supplier.profile.profile.index',['supplier'=>$supplier]);
     }
 
     public function edit(){
         $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
-        // dd($users_supplier);
         // $supplier = [];
         $amphures = Amphures::where('province_id',$supplier->address_province)->get();
         $districts = Districts::where('amphure_id',$supplier->address_amphure)->get();
@@ -50,7 +48,7 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request){
-        // dd($request->all());
+        
         $imgcover1 = '';
         $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
         if($request->hasFile('myFile')){

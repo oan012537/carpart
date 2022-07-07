@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class Supplier
 {
@@ -17,11 +17,10 @@ class Supplier
      */
     public function handle(Request $request, Closure $next)
     {
-        // return $next($request);
-        // if(!Auth::check()){
         if(!Auth::guard('supplier')->check()){
-            return redirect()->route('supplier.login')->with('message', 'Authentication Error.');
+            return redirect()->route('supplier.index')->with('error','Plz Login First');
         }
+
         return $next($request);
         
     }

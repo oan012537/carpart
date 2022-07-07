@@ -121,7 +121,7 @@
                                                 <td scope="col">{{ trans('file.Model')}}
                                                     <p class="filter"><i class="fa-solid fa-filter"></i> {{ trans('file.Show All')}}</p>
                                                 </td>
-                                                <td scope="col">{{ trans('file.Price')}}</td>
+                                                <td scope="col">{{ trans('file.Sell Price')}}</td>
                                                 <td scope="col">{{ trans('file.Status')}} <p class="filter"><i class="fa-solid fa-filter"></i> {{ trans('file.All')}} <i class="fa-solid fa-chevron-down"></i></p>
                                                 </td>
                                                 <td scope="col">{{ trans('file.Updated By')}}</td>
