@@ -35,72 +35,112 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="input-group box__search">
-                        <input type="text" class="form-control" aria-describedby="button-addon2">
-                        <button class="btn btn__search" type="button" id="button-addon2"><i
+                        <input type="text" class="form-control" id="search-brand" aria-describedby="button-addon2">
+                        <button class="btn btn__search" type="button" onclick="searchBrands()" id="button-addon2"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
                     <div class="text-tt-roon">
-                        <span> A </span>
-                        <span> B </span>
-                        <span> C </span>
-                        <span> D </span>
-                        <span> E </span>
-                        <span> F </span>
-                        <span> G </span>
-                        <span> H </span>
-                        <span> I </span>
-                        <span> J </span>
-                        <span> K </span>
-                        <span> L </span>
-                        <span> M </span>
-                        <span> N </span>
-                        <span> O </span>
-                        <span> P </span>
-                        <span> Q </span>
-                        <span> R </span>
-                        <span> S </span>
-                        <span> T </span>
-                        <span> U </span>
-                        <span> V </span>
-                        <span> W </span>
-                        <span> X </span>
-                        <span> Y </span>
-                        <span> Z </span>
-
+                        <a onclick="filterBrands('A')"><span> A </span></a>
+                        <a onclick="filterBrands('B')"><span> B </span></a>
+                        <a onclick="filterBrands('C')"><span> C </span></a>
+                        <a onclick="filterBrands('D')"><span> D </span></a>
+                        <a onclick="filterBrands('E')"><span> E </span></a>
+                        <a onclick="filterBrands('F')"><span> F </span></a>
+                        <a onclick="filterBrands('G')"><span> G </span></a>
+                        <a onclick="filterBrands('H')"><span> H </span></a>
+                        <a onclick="filterBrands('I')"><span> I </span></a>
+                        <a onclick="filterBrands('J')"><span> J </span></a>
+                        <a onclick="filterBrands('K')"><span> K </span></a>
+                        <a onclick="filterBrands('L')"><span> L </span></a>
+                        <a onclick="filterBrands('M')"><span> M </span></a>
+                        <a onclick="filterBrands('N')"><span> N </span></a>
+                        <a onclick="filterBrands('O')"><span> O </span></a>
+                        <a onclick="filterBrands('P')"><span> P </span></a>
+                        <a onclick="filterBrands('Q')"><span> Q </span></a>
+                        <a onclick="filterBrands('R')"><span> R </span></a>
+                        <a onclick="filterBrands('S')"><span> S </span></a>
+                        <a onclick="filterBrands('T')"><span> T </span></a>
+                        <a onclick="filterBrands('U')"><span> U </span></a>
+                        <a onclick="filterBrands('V')"><span> V </span></a>
+                        <a onclick="filterBrands('W')"><span> W </span></a>
+                        <a onclick="filterBrands('X')"><span> X </span></a>
+                        <a onclick="filterBrands('Y')"><span> Y </span></a>
+                        <a onclick="filterBrands('Z')"><span> Z </span></a>
                     </div>
                 </div>
             </div>
 
             <br><br>
             <div class="box-scoll-roon">
-                @foreach($brands as $key => $brand)
-                <div class="row">
-                    @foreach($brand as $item)
-                    <div class="col-sm">
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <img src="{{asset($item->brand_image)}}" class="img-fluid" alt="shoe image">
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="text-detail-roon">
-                                    <p>
-                                        {{$item->brand_name_th}}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                @if((count($brands)-1) != $key)
-                <br>
-                @endif
-                
-                @endforeach
+                <div class="brands-all">
+                    @php 
+                        $count_brands = DB::table('brands')->count();
+                        $checkcolumn = ceil($count_brands/5); //ไม่เอาเศษ
+                        $checkcount = $count_brands%5; //ค่าที่เกิน
+                    @endphp
 
+                    @for($i=0;$i<$checkcolumn;$i++)
+                    @php
+                        if($i==0){
+                            $store_id[] = '';
+                        }
+                        $brands = DB::table('brands')->whereNotIn('id',$store_id)->limit(5)->get();
+                    @endphp
+                    <div class="row">
+                        @if($i == $checkcolumn-1)
+                            @if(!empty($checkcount))
+                                @php $check = 5 - $checkcount; @endphp
+                                @foreach($brands as $brand)
+                                @php $store_id[] = $brand->id; @endphp
+                                <div class="col-sm">
+                                    <a onclick="selectBrands({{$brand->id}})">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <img src="{{$brand->image}}" class="img-fluid" alt="shoe image">
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="text-detail-roon">
+                                                <p>
+                                                    {{$brand->name_en}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </a>
+                                </div>
+                                @endforeach
+                                @for($x=0;$x<$check;$x++)
+                                <div class="col-sm"></div>
+                                @endfor
+                            @endif
+                        @else
+                            @foreach($brands as $brand)
+                            @php $store_id[] = $brand->id; @endphp
+                            <div class="col-sm">
+                                <a onclick="selectBrands({{$brand->id}})">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <img src="{{$brand->image}}" class="img-fluid" alt="shoe image">
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="text-detail-roon">
+                                            <p>
+                                                {{$brand->name_en}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                            @endforeach
+                        @endif
+                    </div>
+                    <br>
+                    @endfor
+                </div>
             </div>
         </div>
     </div>
@@ -141,6 +181,8 @@
         <br><br>
         <div class="row">
             <div class="col-lg-3">
+                <form action="{{url('buyer/search-product')}}" method="post" style="margin:0;" enctype="multipart/form-data">
+                @csrf
                 <div class="sidenav">
                     <div class="row">
                         <div class="col-lg-6">
@@ -151,97 +193,98 @@
                         <div class="col-lg-6">
                             <div class="tt-seach-text2">
                                 <i class="fa fa-close"></i>
-                                <p> ล้าง </p>
+                                <a href="" style="padding:0;"><p> ล้าง </p></a>
                             </div>
                         </div>
                     </div>
                     <hr class="new1">
-                    <span> Toyota </span>
-                    <button class="dropdown-btn">แบรนด์
+                    <span id="text-brands"> แบรนด์ </span>
+                    <input type="hidden" name="brand" id="brand-search">
+                    <button type="button" class="dropdown-btn">แบรนด์
                         <i class="fa fa-caret-down"></i>
                     </button>
-                    <div class="dropdown-container">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                    <div class="dropdown-container" id="dropdown-brand">
+                        @foreach($brands_select as $bs)
+                        <a class="dropdown" onclick="searchnavBrands({{$bs->id}})">{{$bs->name_en}}</a>
+                        @endforeach
                     </div>
                     <hr class="new1">
-                    <span> รุ่น </span>
-                    <button class="dropdown-btn"> เลือก
+                    <span id="text-model"> รุ่น </span>
+                    <input type="hidden" name="model" id="model-search">
+                    <button type="button" class="dropdown-btn"> เลือก
                         <i class="fa fa-caret-down"></i>
                     </button>
-                    <div class="dropdown-container">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                    <div class="dropdown-container" id="dropdown-model">
+                        <!-- <a href="#">Link 1</a> -->
                     </div>
                     <hr class="new1">
-                    <span> รุ่นย่อย </span>
-                    <button class="dropdown-btn"> เลือก
+                    <span id="text-submodel"> รุ่นย่อย </span>
+                    <input type="hidden" name="submodel" id="submodel-search">
+                    <button type="button" class="dropdown-btn"> เลือก
                         <i class="fa fa-caret-down"></i>
                     </button>
-                    <div class="dropdown-container">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                    <div class="dropdown-container" id="dropdown-submodel">
+                        <!-- <a href="#">Link 1</a> -->
                     </div>
                     <hr class="new1">
-                    <span> ปีรถ </span>
-                    <button class="dropdown-btn"> เบือก
+                    <span id="text-year"> ปีรถ </span>
+                    <input type="hidden" name="year" id="year-search">
+                    <button type="button" class="dropdown-btn"> เบือก
                         <i class="fa fa-caret-down"></i>
                     </button>
-                    <div class="dropdown-container">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                    <div class="dropdown-container" id="dropdown-year">
+                        <!-- <a href="#">Link 1</a> -->
                     </div>
                     <hr class="new1">
-                    <span> หมวดหมู่สินค้า </span>
-                    <button class="dropdown-btn"> เลือก
+                    <span id="text-category"> หมวดหมู่สินค้า </span>
+                    <input type="hidden" name="category" id="category-search">
+                    <button type="button" class="dropdown-btn"> เลือก
                         <i class="fa fa-caret-down"></i>
                     </button>
-                    <div class="dropdown-container">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                    <div class="dropdown-container" id="dropdown-category">
+                        @foreach($category as $cg)
+                        <a class="category{{$cg->id}}" onclick="searchnavCategory({{$cg->id}})">{{$cg->name_th}}</a>
+                        @endforeach
                     </div>
                     <hr class="new1">
-                    <span> หมวดหมู่ย่อย 1 </span>
-                    <button class="dropdown-btn"> เลือก
+                    <span id="text-subcategory"> หมวดหมู่ย่อย 1 </span>
+                    <input type="hidden" name="subcategory" id="subcategory-search">
+                    <button type="button" class="dropdown-btn"> เลือก
                         <i class="fa fa-caret-down"></i>
                     </button>
-                    <div class="dropdown-container">
-                        <a href="#">Link 1</a>
+                    <div class="dropdown-container" id="dropdown-subcategory">
+                        <!-- <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                        <a href="#">Link 3</a> -->
                     </div>
                     <hr class="new1">
-                    <span> หมวดหมู่ย่อย 2 </span>
-                    <button class="dropdown-btn"> เลือก
+                    <span id="text-subsubcategory"> หมวดหมู่ย่อย 2 </span>
+                    <input type="hidden" name="subsubcategory" id="subsubcategory-search">
+                    <button type="button" class="dropdown-btn"> เลือก
                         <i class="fa fa-caret-down"></i>
                     </button>
-                    <div class="dropdown-container">
-                        <a href="#">Link 1</a>
+                    <div class="dropdown-container"  id="dropdown-subsubcategory">
+                        <!-- <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                        <a href="#">Link 3</a> -->
                     </div>
                     <hr class="new1">
                     <span> สภาพสินค้า </span>
 
                     <label class="check"> ใหม่
-                        <input type="radio" checked="checked" name="radio">
+                        <input type="radio" checked="checked" name="condition" value="new">
                         <span class="checkmark"></span>
                     </label>
                     <label class="check"> มือสอง
-                        <input type="radio" name="radio">
+                        <input type="radio" name="condition" value="secondhand">
                         <span class="checkmark"></span>
                     </label>
                     <label class="check"> แท้
-                        <input type="radio" name="radio">
+                        <input type="radio" name="condition" value="genuine">
                         <span class="checkmark"></span>
                     </label>
                     <label class="check"> OEM
-                        <input type="radio" name="radio">
+                        <input type="radio" name="condition" value="OEM">
                         <span class="checkmark"></span>
                     </label>
 
@@ -252,7 +295,7 @@
                         <div class="col-sm-6">
                             <div class="box-col-b">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    <input type="number" name="minprice" class="form-control" min="0" id="exampleFormControlInput1"
                                         placeholder="ระบุ">
                                 </div>
                             </div>
@@ -260,18 +303,19 @@
                         <div class="col-sm-6">
                             <div class="box-col-b">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    <input type="number" name="maxprice" class="form-control" min="0" id="exampleFormControlInput1"
                                         placeholder="ระบุ">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <br>
-                    <button class="button button2"> ค้นหา
+                    <button type="submit" class="button button2"> ค้นหา
                     </button>
                 </div>
-            </div>
+                </form>
 
+            </div>
             <div class="col-lg-9">
                 <div class="row">
                     <div class="col-lg-3"></div>
@@ -302,10 +346,6 @@
                     </div>
                     <div class="col-lg-3"> </div>
                 </div>
-
-
-
-
             </div>
         </div>
 
@@ -336,6 +376,155 @@
 
 @section('script')
 <script>
+    function filterBrands(text){
+        text = text;
+        // alert(text);
+        $('.brands-all').css('display','none');
+        $.ajax({
+            method: "GET",
+            url: "{!! url('/buyer/filterBrands/" + text + "') !!}",
+            dataType: "json"
+        }).done(function(rec){
+            console.log(rec)
+            // count = rec.length;
+
+            $('.box-scoll-roon').append(rec);
+        });
+    }
+
+    $(document).on('keyup','#search-brand',function(){
+        name = $('#search-brand').val();
+        $('.brands-all').css('display','none');
+        if(name != null){
+            $.ajax({
+                method: "GET",
+                url: "{!! url('/buyer/searchBrands/" + name + "') !!}",
+                dataType: "json"
+            }).done(function(rec){
+                console.log(rec)
+                // count = rec.length;
+                $('.box-scoll-roon').append(rec);
+            });
+        }
+    });
+
+    function selectBrands(id){
+        //
+    }
+
+    function searchnavBrands(id){
+        $('#brand-search').val(id);
+        $('.dropdown-model').remove();
+        //close dropdown
+        $('#dropdown-brand').css('display','none');
+        $.ajax({
+            method: "GET",
+            url: "{!! url('/buyer/GetModel/"+id+"') !!}",
+            dataType: "json"
+        }).done(function(rec){
+            $('#text-brands').html(rec.brand['name_en']);
+            text = '';
+            for(i=0;i<rec.model.length;i++){
+                text += '<a class="dropdown-model" onclick="searchnavModels('+rec.model[i]['id']+')">'+rec.model[i]['name_en']+'</a>'; 
+            }
+            $('#dropdown-model').append(text);
+        });
+    }
+
+    function searchnavModels(id){
+        $('#model-search').val(id);
+        $('.dropdown-submodel').remove();
+        $('#dropdown-model').css('display','none');
+        $.ajax({
+            method: "GET",
+            url: "{!! url('/buyer/GetsubModel/"+id+"') !!}",
+            dataType: "json"
+        }).done(function(rec){
+            $('#text-model').html(rec.model['name_en']);
+
+            text = '';
+            for(i=0;i<rec.submodel.length;i++){
+                text += '<a class="dropdown-submodel" onclick="searchnavsubModels('+rec.submodel[i]['id']+')">'+rec.submodel[i]['name_en']+'</a>'; 
+            }
+            $('#dropdown-submodel').append(text);
+        });
+    }
+
+    function searchnavsubModels(id){
+        $('#submodel-search').val(id);
+        $('.dropdown-year').remove();
+        $('#dropdown-submodel').css('display','none');
+        $.ajax({
+            method: "GET",
+            url: "{!! url('/buyer/GetYear/"+id+"') !!}",
+            dataType: "json"
+        }).done(function(rec){
+            $('#text-submodel').html(rec.submodel['name_en']);
+
+            text = '';
+            for(i=0;i<rec.year.length;i++){
+                text += '<a class="dropdown-year" onclick="searchnavYear('+rec.year[i]['id']+')">'+rec.year[i]['from_year']+'</a>'; 
+            }
+            $('#dropdown-year').append(text);
+        });
+    }
+
+    function searchnavYear(id){
+        $('#year-search').val(id);
+        $('#dropdown-year').css('display','none');
+        $.ajax({
+            method: "GET",
+            url: "{!! url('/buyer/GetYearID/"+id+"') !!}",
+            dataType: "json"
+        }).done(function(rec){
+            $('#text-year').html(rec.year['from_year']);
+        });
+    }
+
+    function searchnavCategory(id){
+        $('#category-search').val(id);
+        $('.dropdown-subcategory').remove();
+        $('#dropdown-category').css('display','none');
+        $('#text-category').html($('.category'+id).text());
+        $.ajax({
+            method: "GET",
+            url: "{!! url('/buyer/GetsubCategory/"+id+"') !!}",
+            dataType: "json"
+        }).done(function(rec){
+            text = '';
+            // console.log(rec.subcategory.length)
+            for(i=0;i<rec.subcategory.length;i++){
+                text += '<a class="dropdown-subcategory" id="subcategory'+rec.subcategory[i]['id']+'" onclick="searchnavSubcate('+rec.subcategory[i]['id']+')">'+rec.subcategory[i]['name_th']+'</a>'; 
+            }
+            $('#dropdown-subcategory').append(text);
+        });
+    }
+
+    function searchnavSubcate(id){
+        $('#subcategory-search').val(id);
+        $('.dropdown-subsubcategory').remove();
+        $('#dropdown-subcategory').css('display','none');
+        $('#text-subcategory').html($('#subcategory'+id).text());
+        $.ajax({
+            method: "GET",
+            url: "{!! url('/buyer/GetSubsubCategory/"+id+"') !!}",
+            dataType: "json"
+        }).done(function(rec){
+            text = '';
+            for(i=0;i<rec.subsubcategory.length;i++){
+                text += '<a class="dropdown-subsubcategory" id="subsubcategory'+rec.subsubcategory[i]['id']+'" onclick="searchnavSub_subcate('+rec.subsubcategory[i]['id']+')">'+rec.subsubcategory[i]['name_th']+'</a>'; 
+            }
+            console.log(text)
+            $('#dropdown-subsubcategory').append(text);
+        });
+    }
+
+    function searchnavSub_subcate(id){
+        $('#subsubcategory-search').val(id);
+        // $('.dropdown-subsubcategory').remove();
+        $('#dropdown-subsubcategory').css('display','none');
+        $('#text-subsubcategory').html($('#subsubcategory'+id).text());
+    }
 
 </script>
 <script>

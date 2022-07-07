@@ -61,7 +61,7 @@
                             </p>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="0123456789" name="phone" aria-label="Username"
+                            <input type="text" class="form-control" placeholder="0123456789" name="phone" aria-label="Username" value="{{session('phone')}}"
                                 aria-describedby="basic-addon1" required>
                         </div>
                         <div class="tt-text-log2">
@@ -70,7 +70,7 @@
                             </p>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="sample@gmail.com" name="email" aria-label="Username"
+                            <input type="text" class="form-control" placeholder="sample@gmail.com" name="email" aria-label="Username" value="{{session('email')}}"
                                 aria-describedby="basic-addon1" required>
                         </div>
                         <br>

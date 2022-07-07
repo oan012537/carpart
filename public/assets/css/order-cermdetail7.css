@@ -211,9 +211,10 @@ text-.form-control
 }
 
 
+/* Start accordion */
+
 .accordion {
-    background-color: #ffffff0f;
-    border-bottom: 2px solid #828282;
+    background-color: #3f3f3f;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -227,16 +228,36 @@ text-.form-control
 
 .active,
 .accordion:hover {
-    background-color: #3b393933;
+    background-color: #3f3f3f;
+}
+
+.accordion:after {
+    content: "\2228";
+    color: white;
+    padding: 2px 9px 2px 9px;
+    font-size: 16px;
+    float: right;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-right: 20px;
+    background-color: #5a5a5a;
+}
+
+.active:after {
+    content: "\2227";
 }
 
 .panel {
-    /*border-bottom: 2px solid #828282;*/
-    color: white;
     padding: 0 18px;
-    display: none;
+    background-color: #3f3f3f;
+    color: white;
+    max-height: 0;
     overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }
+
+/* End accordion */
+
 
 .pay-payment p {
     font-size: 18px;

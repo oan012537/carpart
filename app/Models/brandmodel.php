@@ -20,6 +20,5 @@ class Brandmodel extends Model
         "name_en",
         "image",
         "is_active",
-
     ];
 }
