@@ -318,7 +318,7 @@ class BuyerController extends Controller
     }
 
     public function GetYear($id){
-        $data['year'] = IssueYear::where('model_brandid',$id)->get();
+        $data['year'] = IssueYear::where('sub_model_id',$id)->get();
         $data['submodel'] = SubModel::where('id',$id)->get()->first();
 
         return json_encode($data);
