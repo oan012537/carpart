@@ -3489,8 +3489,6 @@
                 }
             ],
             "time": "2022-06-29T21:43:55+00:00"
-<<<<<<< Updated upstream
-=======
         },
         {
             "name": "nette/schema",
@@ -3638,7 +3636,6 @@
                 "source": "https://github.com/nette/utils/tree/v3.2.7"
             },
             "time": "2022-01-24T11:29:14+00:00"
->>>>>>> Stashed changes
         },
         {
             "name": "nikic/php-parser",
@@ -11341,9 +11338,5 @@
         "php": "^7.3"
     },
     "platform-dev": [],
-<<<<<<< Updated upstream
-    "plugin-api-version": "2.2.0"
-=======
     "plugin-api-version": "2.1.0"
->>>>>>> Stashed changes
 }

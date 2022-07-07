@@ -27,12 +27,12 @@
     <!-- link navbar -->
     <link href="{{asset('assets/css/home-seach1.css')}}" rel="stylesheet">
 
-    @include('inc_stylesheet')
+    @include('buyer.layouts.inc_stylesheet')
 </head>
 
 <body>
 
-    @include('inc_headerlogin')
+    @include('buyer.layouts.inc_headerlogin')
 
 
     <section id="sec-home-seach">
@@ -489,8 +489,8 @@
     </section>
 
     <br>
-    @include('inc_footer')
-    @include('inc_js')
+    @include('buyer.layouts.inc_footer')
+    @include('buyer.layouts.inc_js')
     <script>
         function filterBrands(text){
             text = text;
