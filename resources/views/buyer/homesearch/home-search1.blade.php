@@ -525,10 +525,8 @@
         });
 
         function selectBrands(id){
-            brand = id;
             $.ajax({
-                method: "POST",
-                url: "{{url('buyer')}}"
+                
             })
         }
 
