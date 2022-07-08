@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Supplier;
 use App\Models\UserSupplier;
-<<<<<<< HEAD
 use App\Models\Store;
-=======
->>>>>>> b408f0eb681a2d6473f994150ab25ba955704986
 use App\Models\Province;
 use App\Models\Amphure;
 use App\Models\District;
