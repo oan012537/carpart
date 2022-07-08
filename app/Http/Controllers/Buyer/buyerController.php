@@ -23,6 +23,7 @@ use App\Models\IssueYear;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
+use Response;
 
 class BuyerController extends Controller
 {
@@ -73,7 +74,88 @@ class BuyerController extends Controller
                 'function_cookies' => $request->function_cookies,
                 'targeting_cookies' => $request->targeting_cookies,
             ]);
-        return view('buyer.register.regis-buy');
+        // return view('buyer.register.regis-buy');
+        return view('buyer.register.confirmphone');
+    }
+
+    public function registerphone()
+    {
+        Session::forget('phone');
+        return view('buyer.register.confirmphone');
+    }
+
+    public function confirmphone(Request $request)
+    {
+        Session::put([
+            'phone' => $request->phone,
+        ]);
+        $tokens = $this->gettokenotp($request->phone);
+        // $tokens = '1217ed55-953e-4bd2-b4f9-58e4b8729f00';
+        return view('buyer.register.confirmotp',['tokens'=>$tokens,'phone'=>$request->phone]);
+    }
+
+    public function confirmotp(Request $request){
+        $otpcode = $request->otp1.$request->otp2.$request->otp3.$request->otp4.$request->otp5.$request->otp6;
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "token"=>$request->tokenotp,
+            "otp_code"=>$otpcode,
+            )),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        // echo $response;
+        $response = json_decode($response,true);
+        return Response::json($response);
+    }
+
+    public function gettokenotp($number){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "project_key"=>"9b9279e805",
+            "phone"=>$number,
+            )),
+        ));
+        $response = curl_exec($curl);
+        $info = curl_getinfo($curl);
+        // echo $info["http_code"];
+        curl_close($curl);
+        // echo $response;
+        //เพิ่มเอง
+        $response = json_decode($response,true);
+        if($info["http_code"] == '200'){
+            return $response['result']['token'];
+        }
+        //เพิ่มเอง
+        
     }
 
     public function regis_buyer()
@@ -142,10 +224,9 @@ class BuyerController extends Controller
 
             Session::flush(); // ลบ Session ทั้งหมด
             // dd('ok');
-            // return response()->json(["message"=>"สมัครสมาชิกสำเร็จ","status"=>true,"redirect_location"=>url("backend/dashboard")]);
-            return Redirect::back();
+            return response()->json(["message"=>"สมัครสมาชิกสำเร็จ","status"=>true,"redirect_location"=>url("buyer/login-buy")]);
+            // return Redirect::back();
         }else{
-            dd("ไม่สำเร็จ");
             return view("alert.alert", [
                 'url' => '/buyer/registerpass-buy',
                 'title' => "เกิดข้อผิดพลาด",
@@ -153,6 +234,10 @@ class BuyerController extends Controller
             ]);
         }
 
+    }
+
+    public function createpassword(){
+        return view('buyer.register.registerpass-buy');
     }
 
     public function home_search()

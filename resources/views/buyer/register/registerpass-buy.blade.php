@@ -18,7 +18,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="assets/css/regis3.css" rel="stylesheet">
 
     @include('buyer.layouts.inc_stylesheet')
@@ -67,13 +68,13 @@
                                 ย้อนกลับ
                                 </a>
                                 &nbsp;
-                                <button type="submit" class="button button2"> ยืนยัน &nbsp; <i class='fas fa-angle-right'></i>
+                                <button type="button" id="showmodal" class="button button2"> ยืนยัน &nbsp; <i class='fas fa-angle-right'></i>
                                 </button>
                                 <!-- The Modal -->
-                                <div id="myModal2" class="modal">
+                                <div id="myModal" class="modal">
                                     <!-- Modal content -->
                                     <div class="modal-content">
-                                        <span class="close">&times;</span>
+                                        <span class="close" data-dismiss="modal">&times;</span>
                                         <div class="modal-body">
                                             <img src="assets/img/login/sf.png" class="img-fluid" alt="">
                                         </div>
@@ -85,8 +86,8 @@
                                             </div>
                                             <br>
                                             <div class="but-bb">
-                                                <button class="button button3"> ตกลง
-                                                </button>
+                                                {{-- <button class="button button3"> ตกลง</button> --}}
+                                                <a href="#" id="loginsuccess" class="button button3">ตกลง</a>
                                             </div>
                                         </div>
                                     </div>
@@ -100,47 +101,23 @@
             </form>
 
         </div>
-        <!-- The Modal -->
-        <!-- <div id="myModal" class="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="modal-body">
-                    <img src="assets/img/login/sf.png" class="img-fluid" alt="">
-                </div>
-                <div class="modal-footer">
-                    <div class="tt-text-con">
-                        <p>
-                            สมัครสมาชิกสำเร็จ
-                        </p>
-                    </div>
-                    <br>
-                    <div class="but-bb">
-                        <button class="button button3"> ตกลง
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>  -->
     </section>
     @include('buyer.layouts.inc_footer')
+    @include('buyer.layouts.inc_javascript')
 
 </body>
 </html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script>
     function loginfn() {
+        $.post("{{route('step3')}}",$("#formlogin").serialize(),function(data){
 
-        console.log($("#formlogin").serialize());
-        // $("#myModal").modal('show');
-        $.post($("#formlogin").attr('action'),$("#formlogin").serialize(),function(data){
-
-            console.log(data);
+            // console.log(data);
             if(data.status){
                 // var modal = document.getElementById("myModal");
                 // modal.style.display = "block";
                 // $("#myModal").modal('show');
+                $("#myModal").css('display','block');
                 // alert(data.msg)
                 // window.location=data.redirect_location;
                 $("#loginsuccess").attr('href',data.redirect_location)
@@ -158,14 +135,14 @@
         });
         return false;
     }
-    $(".button2").click(function(){
-        $("#myModal").modal('show');
-    })
+    // $(".button2").click(function(){
+    //     $("#myModal").modal('show');
+    // })
 
 </script>
-{{-- <script>
-    var modal = document.getElementById("myModal");
-    var btn = document.getElementById("myBtn");
+<script>
+    var modal = document.getElementById("myModals");
+    var btn = document.getElementById("showmodals");
     var span = document.getElementsByClassName("close")[0];
     btn.onclick = function() {
         modal.style.display = "block";
@@ -178,5 +155,5 @@
             modal.style.display = "none";
         }
     }
-    // $("#myModal").modal('show');
-</script> --}}
+    
+</script>

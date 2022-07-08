@@ -22,12 +22,17 @@ Route::post('buyer/login-buy-post', [Buyer\BuyerController::class, 'login_buyer_
 Route::get('buyer/logout-buy', [Buyer\BuyerController::class, 'logout_buyer']);
 Route::get('buyer/regis', [Buyer\BuyerController::class, 'regis']);
 Route::post('buyer/regis', [Buyer\BuyerController::class, 'regis_post'])->name('pdpa');
+Route::get('buyer/register/phone', [Buyer\BuyerController::class, 'registerphone'])->name('buyer.register.phone');
+Route::post('buyer/register/phone', [Buyer\BuyerController::class, 'confirmphone'])->name('buyer.register.confirmphone');
+Route::post('buyer/register/confirmotp', [Buyer\BuyerController::class, 'confirmotp'])->name('buyer.register.confirmotp');
+Route::post('buyer/register/member', [Buyer\BuyerController::class, 'regis_buyer'])->name('buyer.register.member');
 Route::get('buyer/regis-buy', [Buyer\BuyerController::class, 'regis_buyer']);
 Route::post('buyer/regis-buy-post', [Buyer\BuyerController::class, 'regis_buyer_post'])->name('step1');
 Route::get('buyer/regiscon-buy', [Buyer\BuyerController::class, 'regiscon_buyer']);
 Route::post('buyer/regiscon-buy-post', [Buyer\BuyerController::class, 'regiscon_buyer_post'])->name('step2');
 Route::get('buyer/registerpass-buy', [Buyer\BuyerController::class, 'registerpass_buyer']);
 Route::post('buyer/registerpass-buy-post', [Buyer\BuyerController::class, 'registerpass_buyer_post'])->name('step3');
+Route::get('buyer/register/password', [Buyer\BuyerController::class, 'createpassword']);
 
 Route::get('buyer/requestspares', [Buyer\RequestSparesController::class, 'index'])->name('buyer.requestspares');
 Route::get('buyer/requestspares/add', [Buyer\RequestSparesController::class, 'add'])->name('buyer.requestspares.add');
