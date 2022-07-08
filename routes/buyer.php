@@ -19,6 +19,10 @@ use App\Http\Controllers\Buyer as Buyer;
 
 Route::get('buyer/login-buy', [Buyer\BuyerController::class, 'login_buyer']);
 Route::post('buyer/login-buy-post', [Buyer\BuyerController::class, 'login_buyer_post'])->name('buyer.login');
+Route::post('buyer/login/phone', [Buyer\BuyerController::class, 'loginphone'])->name('buyer.login.confirmphone');
+Route::get('buyer/login/gettoken', [Buyer\BuyerController::class, 'logingettoken'])->name('buyer.login.gettoken');
+Route::post('buyer/login/confirmotp', [Buyer\BuyerController::class, 'loginconfirmotp'])->name('buyer.login.confirmotp');
+Route::post('buyer/login/success', [Buyer\BuyerController::class, 'loginsuccess'])->name('buyer.login.success');
 Route::get('buyer/logout-buy', [Buyer\BuyerController::class, 'logout_buyer']);
 Route::get('buyer/regis', [Buyer\BuyerController::class, 'regis']);
 Route::post('buyer/regis', [Buyer\BuyerController::class, 'regis_post'])->name('pdpa');
