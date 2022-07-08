@@ -26,15 +26,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- link navbar -->
 
-    @include('inc_css')
-    @include('inc_stylesheet')
+    @include('layouts.inc_css')
+    @include('buyer.layouts.inc_stylesheet')
 </head>
 <body>
 
     @if(!empty(Auth::user()))
-        @include('inc_headerlogin')
+        @include('layouts.inc_headerlogin')
     @else
-        @include('inc_header')
+        @include('layouts.inc_header')
     @endif
     
     
@@ -43,8 +43,8 @@
 
     @yield('content')
 
-    @include('inc_footer')
-    @include('inc_js')
+    @include('layouts.inc_footer')
+    @include('layouts.inc_js')
 
     {{-- <script src="{{asset('assets/js/slide-homepage.js')}}"></script> --}}
 
