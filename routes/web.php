@@ -9,7 +9,7 @@ use App\Http\Controllers\Supplier\RequestsController;
 use App\Http\Controllers\Supplier\ProductController;
 use App\Http\Controllers\Backend as Backend;
 use App\Http\Controllers\SocialController;
-use App\Http\Controllers\ChatsController;   
+use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\ImportdataController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\cFunction;
@@ -26,7 +26,6 @@ use App\Http\Controllers\LanguageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 
 // supplier module
@@ -89,7 +88,7 @@ Route::group(['prefix' => 'supplier'], function() {
 });
 
 // buyer module
-Route::group(['prefix' => 'buyer'], function() {
+/*Route::group(['prefix' => 'buyer'], function () {
 
     Route::get('login-buy', [BuyerController::class, 'login_buyer']);
     Route::post('login-buy-post', [BuyerController::class, 'login_buyer_post'])->name('buyer.login');
@@ -105,44 +104,57 @@ Route::group(['prefix' => 'buyer'], function() {
 
     Route::get('requestspares', [RequestSparesController::class, 'index'])->name('buyer.requestspares')->middleware('buyer');
     Route::get('requestspares/add', [RequestSparesController::class, 'add'])->name('buyer.requestspares.add')->middleware('buyer');
-    Route::post('requestspares/add', function(){})->name('buyer.requestspares.store')->middleware('buyer');
+    Route::post('requestspares/add', function () {
+    })->name('buyer.requestspares.store')->middleware('buyer');
 
     Route::get('buyer/requestspares/view', [RequestSparesController::class, 'view'])->name('buyer.requestspares.view')->middleware('buyer');
     Route::get('buyer/requestspares/details', [RequestSparesController::class, 'details'])->name('buyer.requestspares.details')->middleware('buyer');
 
     Route::get('buyer/home-search', [BuyerController::class, 'home_search'])->name('buyer.home-search')->middleware('buyer');
-});
+});*/
 
-    Route::get('language_switch/{locale}', [LanguageController::class, 'switchLanguage'])->middleware('supplier');
+Route::get('language_switch/{locale}', [LanguageController::class, 'switchLanguage'])->middleware('supplier');
 
 
-Route::get('/', function () {return view('home');})->name('frontend.index');
-Route::get('/request', function () {return view('request');})->name('frontend.request');
-Route::get('/promotion', function () {return view('promotion');})->name('frontend.promotion');
-Route::get('/articles', function () {return view('articles');})->name('frontend.articles');
-Route::get('/contactus', function () {return view('contactus');})->name('frontend.contactus');
-Route::get('/articles-content', function () {return view('articles-content');})->name('frontend.articlecontent');
+Route::get('/', function () {
+    return view('home');
+})->name('frontend.index');
+Route::get('/request', function () {
+    return view('request');
+})->name('frontend.request');
+Route::get('/promotion', function () {
+    return view('promotion');
+})->name('frontend.promotion');
+Route::get('/articles', function () {
+    return view('articles');
+})->name('frontend.articles');
+Route::get('/contactus', function () {
+    return view('contactus');
+})->name('frontend.contactus');
+Route::get('/articles-content', function () {
+    return view('articles-content');
+})->name('frontend.articlecontent');
 
-Route::get('import/category', [ImportdataController::class,'category']);
-Route::post('import/category', [ImportdataController::class,'importcategory']);
+Route::get('import/category', [ImportdataController::class, 'category']);
+Route::post('import/category', [ImportdataController::class, 'importcategory']);
 
-Route::get('import/categorysub', [ImportdataController::class,'categorysub']);
-Route::post('import/categorysub', [ImportdataController::class,'importcategorysub']);
+Route::get('import/categorysub', [ImportdataController::class, 'categorysub']);
+Route::post('import/categorysub', [ImportdataController::class, 'importcategorysub']);
 
-Route::get('import/categorysubs', [ImportdataController::class,'categorysubs']);
-Route::post('import/categorysubs', [ImportdataController::class,'importcategorysubs']);
+Route::get('import/categorysubs', [ImportdataController::class, 'categorysubs']);
+Route::post('import/categorysubs', [ImportdataController::class, 'importcategorysubs']);
 
-Route::get('import/brand', [ImportdataController::class,'brand']);
-Route::post('import/brand', [ImportdataController::class,'importbrand']);
+Route::get('import/brand', [ImportdataController::class, 'brand']);
+Route::post('import/brand', [ImportdataController::class, 'importbrand']);
 
-Route::get('import/brandmodel', [ImportdataController::class,'brandmodel']);
-Route::post('import/brandmodel', [ImportdataController::class,'importbrandmodel']);
+Route::get('import/brandmodel', [ImportdataController::class, 'brandmodel']);
+Route::post('import/brandmodel', [ImportdataController::class, 'importbrandmodel']);
 
-Route::get('import/brandmodels', [ImportdataController::class,'brandmodels']);
-Route::post('import/brandmodels', [ImportdataController::class,'importbrandmodels']);
+Route::get('import/brandmodels', [ImportdataController::class, 'brandmodels']);
+Route::post('import/brandmodels', [ImportdataController::class, 'importbrandmodels']);
 
-Route::get('import/brandyear', [ImportdataController::class,'brandyear']);
-Route::post('import/brandyear', [ImportdataController::class,'importbrandyear']);
+Route::get('import/brandyear', [ImportdataController::class, 'brandyear']);
+Route::post('import/brandyear', [ImportdataController::class, 'importbrandyear']);
 
 // Route::get('/chat', [ChatsController::class, 'index']);
 // Route::get('messages', [ChatsController::class, 'fetchMessages']);
@@ -152,12 +164,12 @@ Route::post('import/brandyear', [ImportdataController::class,'importbrandyear'])
 Route::get('google/login', [SocialController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('google/callback', [SocialController::class, 'handleCallback'])->name('google.callback');
 
-Route::get('changeprovinces/{id}', [Backend\CompanyController::class,'provinces']);
-Route::get('changeamphures/{id}', [Backend\CompanyController::class,'amphures']);
-Route::get('changedistricts/{id}', [Backend\CompanyController::class,'districts']);
+Route::get('changeprovinces/{id}', [Backend\CompanyController::class, 'provinces']);
+Route::get('changeamphures/{id}', [Backend\CompanyController::class, 'amphures']);
+Route::get('changedistricts/{id}', [Backend\CompanyController::class, 'districts']);
 
 
-Route::get('/clearcache', function() {
+Route::get('/clearcache', function () {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('optimize');
     $exitCode = Artisan::call('route:cache');
@@ -173,4 +185,3 @@ Route::get('/clearcache', function() {
 // })->middleware(['auth'])->name('dashboard');
 
 // require __DIR__.'/auth.php';
-

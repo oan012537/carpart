@@ -184,7 +184,7 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::prefix('settingbanner')->group(function () {
             Route::get('/', [Backend\BannerController::class,'index'])->name('backend.banner');
-            Route::get('add', function(){})->name('backend.banner.add');
+            Route::get('add', [Backend\BannerController::class,'add'])->name('backend.banner.add');
             Route::post('store', function(){})->name('backend.banner.store');
             Route::get('edit', [Backend\BannerController::class,'edit'])->name('backend.banner.edit');
             Route::post('update', [Backend\BannerController::class,'update'])->name('backend.banner.update');
@@ -253,7 +253,61 @@ Route::group(['middleware' => 'auth'], function(){
                 });
             });
             Route::prefix('buyer')->group(function () {
-                Route::get('/', [Backend\ManageBuyerController::class,'index'])->name('backend.manage.buyer');
+                // Route::get('/', [Backend\ManageBuyerController::class,'index'])->name('backend.manage.buyer');
+                Route::prefix('individual')->group(function () {
+                    Route::get('/', [Backend\ManageBuyerController::class,'individualindex'])->name('backend.manage.buyer.individual');
+                    Route::get('datatables', [Backend\ManageBuyerController ::class,'individualdatatables'])->name('backend.manage.buyer.individual.datatables');
+                    
+                    Route::get('profile/{id}', [Backend\ManageBuyerController::class,'individualprofile'])->name('backend.manage.buyer.individual.profile');
+                    Route::get('profile/edit/{id}', [Backend\ManageBuyerController::class,'individualprofileedit'])->name('backend.manage.buyer.individual.profile.edit');
+                    Route::post('profile/update/{id}', [Backend\ManageBuyerController::class,'individualprofileupdate'])->name('backend.manage.buyer.individual.profile.update');
+
+                    Route::get('profile/address/edit/{id}', [Backend\ManageBuyerController::class,'individualprofileaddressedit'])->name('backend.manage.buyer.individual.profile.edit');
+                    Route::post('profile/address/update/{id}', [Backend\ManageBuyerController::class,'individualprofileaddressupdate'])->name('backend.manage.buyer.individual.profile.update');
+
+                    
+                    Route::get('profile/store/edit/{id}', [Backend\ManageBuyerController::class,'individualprofilestoreedit'])->name('backend.manage.buyer.individual.profile.edit');
+                    Route::post('profile/store/update/{id}', [Backend\ManageBuyerController::class,'individualprofilestoreupdate'])->name('backend.manage.buyer.individual.profile.update');
+
+                    Route::get('historyparts/{id}', [Backend\ManageBuyerController::class,'individualhistoryparts'])->name('backend.manage.buyer.individual.historyparts');
+
+                    Route::get('pendinglist/{id}', [Backend\ManageBuyerController::class,'individualpendinglist'])->name('backend.manage.buyer.individual.pendinglist');
+
+                    Route::get('historysales/{id}', [Backend\ManageBuyerController::class,'individualhistorysales'])->name('backend.manage.buyer.individual.historysales');
+
+                    Route::get('claimlist/{id}', [Backend\ManageBuyerController::class,'individualclaimlist'])->name('backend.manage.buyer.individual.claimlist');
+
+                    Route::get('productlist/{id}', [Backend\ManageBuyerController::class,'individualproductlist'])->name('backend.manage.buyer.individual.productlist');
+
+
+
+                });
+
+                Route::prefix('legal')->group(function () {
+                    Route::get('/', [Backend\ManageBuyerController::class,'legalindex'])->name('backend.manage.buyer.legal');
+                    Route::get('datatables', [Backend\ManageBuyerController ::class,'legaldatatables'])->name('backend.manage.buyer.legal.datatables');
+                    
+                    Route::get('profile/{id}', [Backend\ManageBuyerController::class,'legalprofile'])->name('backend.manage.buyer.legal.profile');
+                    Route::get('profile/edit/{id}', [Backend\ManageBuyerController::class,'legalprofileedit'])->name('backend.manage.buyer.legal.profile.edit');
+                    Route::post('profile/update/{id}', [Backend\ManageBuyerController::class,'legalprofileupdate'])->name('backend.manage.buyer.legal.profile.update');
+                    
+                    Route::get('profile/address/edit/{id}', [Backend\ManageBuyerController::class,'legalprofileaddressedit'])->name('backend.manage.buyer.legal.profile.edit');
+                    Route::post('profile/address/update/{id}', [Backend\ManageBuyerController::class,'legalprofileaddressupdate'])->name('backend.manage.buyer.legal.profile.update');
+
+                    
+                    Route::get('profile/store/edit/{id}', [Backend\ManageBuyerController::class,'legalprofilestoreedit'])->name('backend.manage.buyer.legal.profile.edit');
+                    Route::post('profile/store/update/{id}', [Backend\ManageBuyerController::class,'legalprofilestoreupdate'])->name('backend.manage.buyer.legal.profile.update');
+
+                    Route::get('historyparts/{id}', [Backend\ManageBuyerController::class,'legalhistoryparts'])->name('backend.manage.buyer.legal.historyparts');
+
+                    Route::get('pendinglist/{id}', [Backend\ManageBuyerController::class,'legalpendinglist'])->name('backend.manage.buyer.legal.pendinglist');
+
+                    Route::get('historysales/{id}', [Backend\ManageBuyerController::class,'legalhistorysales'])->name('backend.manage.buyer.legal.historysales');
+
+                    Route::get('claimlist/{id}', [Backend\ManageBuyerController::class,'legalclaimlist'])->name('backend.manage.buyer.legal.claimlist');
+
+                    Route::get('productlist/{id}', [Backend\ManageBuyerController::class,'legalproductlist'])->name('backend.manage.buyer.legal.productlist');
+                });
             });
             
             

@@ -21,11 +21,12 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="assets/css/regis.css" rel="stylesheet">
 
-    @include('inc_stylesheet')
+    @include('buyer.layouts.inc_stylesheet')
 </head>
 
 <body>
-
+    <form method="POST" action=""  enctype="multipart/form-data">
+    @csrf
     <section id="sec-login1">
         <div class="container">
             <div class="box-b-login">
@@ -37,20 +38,19 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="b-box-big">
-                            <button onclick="myFunction('Demo1')" class="w3-btn w3-block w3-black w3-left-align">
+                            <a onclick="myFunction('Demo1')" class="w3-btn w3-block w3-black w3-left-align">
                                 <div class="t-text-s">
                                     <p>
                                         Strictly Necessary Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
                                     </p>
                                     <div class="s-switch">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                checked>
+                                            <input class="form-check-input" name="necessary_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
                                         </div>
                                     </div>
                                     <hr class="new1">
                                 </div>
-                            </button>
+                            </a>
                             <div id="Demo1" class="w3-container w3-hide">
                                 <div class="ko-text-t">
                                     <p>
@@ -89,8 +89,7 @@
                             <div class="t-text-s2">
                                 <div class="s-switch2">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                            checked>
+                                        <input class="form-check-input" name="acept_reject" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
                                     </div>
                                 </div>
                                 <p>
@@ -108,20 +107,19 @@
                                 </div>
                                 <hr class="new3">
                             </div>
-                            <button onclick="myFunction('Demo2')" class="w3-btn w3-block w3-black w3-left-align">
+                            <a onclick="myFunction('Demo2')" class="w3-btn w3-block w3-black w3-left-align">
                                 <div class="t-text-s4">
                                     <p>
                                         Analytics Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
                                     </p>
                                     <div class="s-switch4">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                checked>
+                                            <input class="form-check-input" name="analytic_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
                                         </div>
                                     </div>
                                     <hr class="new4">
                                 </div>
-                            </button>
+                            </a>
                             <div id="Demo2" class="w3-container w3-hide">
                                 <div class="ko-text-t">
                                     <p>
@@ -152,8 +150,7 @@
                                 </p>
                                 <div class="s-switch5">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                            checked>
+                                        <input class="form-check-input" name="function_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
                                     </div>
                                 </div>
                                 <hr class="new5">
@@ -164,8 +161,7 @@
                                 </p>
                                 <div class="s-switch5">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                            checked>
+                                        <input class="form-check-input" name="targeting_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
                                     </div>
                                 </div>
                                 <hr class="new5">
@@ -173,18 +169,18 @@
                         </div>
                         <br>
                         <div class='but-bb-log'>
-                            <a href="{{url('buyer/regis-buy')}}">
-                                <button class="button button1"> ยอมรับข้อตกลง & เงื่อนไข &nbsp; <i
-                                        class='fas fa-angle-right'></i> </button>
-                            </a>
+                            <!-- <a href="{{url('buyer/regis-buy')}}"> -->
+                                <button type="submit" class="button button1"> ยอมรับข้อตกลง & เงื่อนไข &nbsp; <i class='fas fa-angle-right'></i> </button>
+                            <!-- </a> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    </form>
 
-    @include('inc_footer')
+    @include('buyer.layouts.inc_footer')
 
 
     <script>

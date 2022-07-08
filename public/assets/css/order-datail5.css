@@ -187,9 +187,11 @@ text-.form-control
 }
 
 
+
+/* Start accordion */
+
 .accordion {
-    background-color: #ffffff0f;
-    border-bottom: 2px solid #828282;
+    background-color: #3f3f3f;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -203,16 +205,37 @@ text-.form-control
 
 .active,
 .accordion:hover {
-    background-color: #3b393933;
+    background-color: #3f3f3f;
+}
+
+.accordion:after {
+    content: "\2228";
+    color: white;
+    padding: 2px 9px 2px 9px;
+    font-size: 16px;
+    float: right;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-right: 20px;
+    background-color: #5a5a5a;
+}
+
+.active:after {
+    content: "\2227";
 }
 
 .panel {
-    border-bottom: 2px solid #828282;
-    color: white;
     padding: 0 18px;
-    display: none;
+    background-color: #3f3f3f;
+    color: white;
+    max-height: 0;
     overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }
+
+/* End accordion */
+
+
 
 .pay-payment p {
     font-size: 18px;
@@ -836,3 +859,116 @@ text-.form-control
     margin-left: 20px;
     margin-top: 21px;
 }
+
+
+
+
+.text-detail-t p {
+    font-size: 16px;
+    color: #E8D95F;
+    padding-left: 20px;
+    font-weight: 200;
+    text-decoration: underline;
+}
+
+#sec-confirm .card7 .w3-button {
+    color: #e8d95f !important;
+    background-color: #3f3f3f !important;
+}
+
+#sec-confirm .card7 .w3-button:hover {
+    color: #e8d95f !important;
+    background-color: #3f3f3f !important;
+}
+
+#id06 .w3-modal-content {
+    margin-bottom: 10px;
+    background-color: #373737;
+    position: relative;
+    padding: 0;
+    outline: 0;
+    width: 850px;
+}
+
+#sec-confirm .card-con-re {
+    /* background-color: #3F3F3F; */
+    height: 390px;
+    padding: 20px 30px 20px 30px;
+}
+
+.text-t-deail-pakan {
+    overflow-y: scroll;
+    height: 350px;
+    border: 2px solid #8e8e8c;
+    border-radius: 5px;
+    background-color: #4b4b4b;
+}
+
+.text-t-haer-pakan p {
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    padding-top: 34px;
+}
+
+.text-t-deail-pakan p {
+    font-size: 14px;
+    color: white;
+    padding: 20px;
+}
+
+.w3-container,
+.w3-panel {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    background-color: #373737;
+}
+
+/*---- ปรับ scrollbar .b-text-t-b ------*/
+.text-t-deail-pakan {
+    overflow-y: scroll;
+    height: 350px;
+    border: 2px solid #8e8e8c;
+    border-radius: 5px;
+    background-color: #4b4b4b;
+}
+
+/* width */
+.text-t-deail-pakan::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.text-t-deail-pakan::-webkit-scrollbar-track {
+    background-color: #828282;
+    border-radius: 100px;
+}
+
+/* Handle */
+.text-t-deail-pakan::-webkit-scrollbar-thumb {
+    background-color: #3F3F3F;
+    border-radius: 100px;
+}
+
+/* Handle on hover */
+.text-t-deail-pakan::-webkit-scrollbar-thumb {
+    background-color: #dddddd;
+    border-radius: 100px;
+}
+
+#sec-confirm .card-con-re {
+    /* background-color: #3F3F3F; */
+    height: 390px;
+    padding: 20px 30px 20px 30px;
+}
+
+#sec-confirm .card-con label {
+    color: #dddddd;
+}
+
+#sec-confirm .card-con span {
+    color: rgb(227, 118, 118);
+}
+
+
+

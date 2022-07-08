@@ -9,11 +9,11 @@
                 <h3>ข้อมูลผู้ติดต่อ</h3>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-12">
             @include('supplier.layouts.inc_nav')
         </div>
         @if($supplier->type == 'บุคคลธรรมดา')
-        <div class="col-lg-9">
+        <div class="col-xl-9 col-lg-12">
             <div class="box__editprofile">
                 <form method="POST" enctype="multipart/form-data" action="{{route('supplier.profile.update')}}" id="formedit">
                     @csrf
@@ -21,14 +21,14 @@
                         <p class="title__txt">ขอเปลี่ยนแปลงข้อมูลผู้ติดต่อ</p>
                         <div class="itemsorg">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> ชื่อ <span>*</span></label>
                                         <input type="text" class="form-control" name="firstname" placeholder="ระบุ" required value="{{$supplier->first_name}}">
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">นามสกุล <span>*</span></label>
                                         <input type="text" class="form-control" name="lastname" placeholder="ระบุ" required value="{{$supplier->last_name}}">
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">อีเมล</label>
                                         <input type="email" class="form-control" name="email" placeholder="emily@sample.com" required value="{{$supplier->email}}">
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">โทรศัพท์ <span>*</span></label>
                                         <input type="text" class="form-control" name="phone" maxlength="10" placeholder="0123344565" required value="{{$supplier->phone}}">
@@ -81,15 +81,15 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">จังหวัด <span>*</span></label>
                                         <select class="form-select" aria-label="Default select example" required name="province" id="province" onchange="changeprovinces(this.value)">
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($provinces))
                                             @foreach ($provinces as $item)
-                                                <option value="{{$item->id}}" @if($supplier->address_province == $item->id)selected @endif>{{$item->name_th}}</option>
-                                                {{-- @if($supplier->address_province == $item->id)selected @endif --}}
+                                            <option value="{{$item->id}}" @if($supplier->address_province == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            {{-- @if($supplier->address_province == $item->id)selected @endif --}}
                                             @endforeach
                                             @endif
                                         </select>
@@ -97,14 +97,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">เขต/อำเภอ <span>*</span></label>
-                                        <select class="form-select" aria-label="Default select example" required name="amphure" id="amphure"  onchange="changeamphures(this.value)">
+                                        <select class="form-select" aria-label="Default select example" required name="amphure" id="amphure" onchange="changeamphures(this.value)">
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($amphures))
                                             @foreach ($amphures as $item)
-                                                <option value="{{$item->id}}" @if($supplier->address_amphure == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            <option value="{{$item->id}}" @if($supplier->address_amphure == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -112,14 +112,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">แขวง/ตำบล <span>*</span></label>
                                         <select class="form-select" aria-label="Default select example" required name="district" id="district" onchange="changedistricts(this.value)">
                                             <option disabled selected value="">Choose</option>
                                             @if(!empty($districts))
                                             @foreach ($districts as $item)
-                                                <option value="{{$item->id}}" @if($supplier->address_district == $item->id)selected @endif>{{$item->name_th}}</option>
+                                            <option value="{{$item->id}}" @if($supplier->address_district == $item->id)selected @endif>{{$item->name_th}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="zipcode">รหัสไปรษณีย์ <span>*</span></label>
                                         <input type="text" name="zipcode" id="zipcode" required readonly class="form-control" value="{{$supplier->address_zipcode}}">
@@ -147,7 +147,7 @@
             <!--  -->
         </div>
         @else
-        <div class="col-lg-9">
+        <div class="col-xl-9 col-lg-12">
             <div class="box__editprofile">
                 <form method="POST" enctype="multipart/form-data" action="{{route('supplier.profile.update')}}" id="formedit">
                     @csrf
@@ -155,14 +155,14 @@
                         <p class="title__txt">ขอเปลี่ยนแปลงข้อมูลผู้ติดต่อ</p>
                         <div class="itemsorg">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label> ชื่อ <span>*</span></label>
                                         <input type="text" class="form-control" name="firstname" placeholder="ระบุ" required value="{{$supplier->first_name}}">
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">นามสกุล <span>*</span></label>
                                         <input type="text" class="form-control" name="lastname" placeholder="ระบุ" required value="{{$supplier->last_name}}">
@@ -170,7 +170,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">อีเมล</label>
                                         <input type="email" class="form-control" name="email" placeholder="emily@sample.com" required value="{{$supplier->email}}">
@@ -178,7 +178,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6">
+                                <div class="col-xl-6 col-12">
                                     <div class="form-group">
                                         <label for="">โทรศัพท์ <span>*</span></label>
                                         <input type="text" class="form-control" name="phone" maxlength="10" placeholder="0123344565" required value="{{$supplier->phone}}">
@@ -222,33 +222,35 @@
         });
     });
 
-    function changeprovinces(id){
-        $.get("{{url('changeprovinces')}}/"+id,function(result){
+    function changeprovinces(id) {
+        $.get("{{url('changeprovinces')}}/" + id, function(result) {
             $("#amphure").empty().append('<option disabled selected>Choose</option>');
-            $.each(result, function (indexInArray, valueOfElement) { 
-                $("#amphure").append('<option value="'+valueOfElement.id+'" >'+valueOfElement.name_th+'</option>');
+            $.each(result, function(indexInArray, valueOfElement) {
+                $("#amphure").append('<option value="' + valueOfElement.id + '" >' + valueOfElement.name_th + '</option>');
             });
         });
         $("#provincehid").val($("#province option:selected").text());
     }
-    function changeamphures(id){
-        $.get("{{url('changeamphures')}}/"+id,function(result){
+
+    function changeamphures(id) {
+        $.get("{{url('changeamphures')}}/" + id, function(result) {
             $("#district").empty().append('<option disabled selected>Choose</option>');
-            $.each(result, function (indexInArray, valueOfElement) { 
-                $("#district").append('<option value="'+valueOfElement.id+'" >'+valueOfElement.name_th+'</option>');
+            $.each(result, function(indexInArray, valueOfElement) {
+                $("#district").append('<option value="' + valueOfElement.id + '" >' + valueOfElement.name_th + '</option>');
             });
         });
         $("#amphurehid").val($("#amphure option:selected").text());
     }
-    function changedistricts(id){
-        $.get("{{url('changedistricts')}}/"+id,function(result){
+
+    function changedistricts(id) {
+        $.get("{{url('changedistricts')}}/" + id, function(result) {
             // alert(result)
             $("#zipcode").val(result);
         });
         $("#districthid").val($("#district option:selected").text());
     }
 
-    $("#myFile").change(function(){
+    $("#myFile").change(function() {
         var input = document.getElementById('myFile');
         if (!input.files) { // This is VERY unlikely, browser support is near-universal
             console.error("This browser doesn't seem to support the `files` property of file inputs.");
@@ -258,17 +260,17 @@
             const limitsize = 5;
             var file = input.files[0];
             // console.log("File " + file.name + " is " + file.size + " bytes in size");
-            console.log(parseFloat((file.size / (1024*1024)).toFixed(2)))
-            if(parseFloat((file.size / (1024*1024)).toFixed(2)) > 5){
+            console.log(parseFloat((file.size / (1024 * 1024)).toFixed(2)))
+            if (parseFloat((file.size / (1024 * 1024)).toFixed(2)) > 5) {
                 $("#myFile").val('');
                 $("#drop-zone__thumb").remove();
 
             }
         }
-        
+
     });
     // var totalsize = 0.0;
-    // $("#myFile").dropzone({ 
+    // $("#myFile").dropzone({
     //     maxFileWidth:300,
     //     maxFileHeight:300,
     //     maxFilesize: 1,
@@ -277,12 +279,12 @@
     //         if (totalsize >= MAX_TOTAL_SIZE) {
     //             file.status = Dropzone.CANCELED;
     //             this._errorProcessing([file],  "Max limit reached", null);
-    //         }else { 
+    //         }else {
     //             done();
     //         }
     //     },
     //     init: function() {
-    //         this.on("addedfile", function(file) { 
+    //         this.on("addedfile", function(file) {
     //             totalsize += parseFloat((file.size / (1024*1024)).toFixed(2));
     //         });
     //         this.on("removedfile", function(file) {
@@ -294,7 +296,6 @@
     //             totalsize -= parseFloat((file.size / (1024*1024)).toFixed(2));
     //         });
     //     }
-    // }); 
-
+    // });
 </script>
 @stop

@@ -23,11 +23,11 @@
                         <h3>ข้อมูลผู้ติดต่อ</h3>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-xl-3 col-lg-12">
                     @include('supplier-navprofile')
                 </div>
 
-                <div class="col-lg-9">
+                <div class="col-xl-9 col-lg-12 ">
                     <div class="box__profile">
                         <div class="row">
                             <div class="col-10">

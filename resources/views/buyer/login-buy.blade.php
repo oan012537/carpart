@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="assets/css/login1.css" rel="stylesheet">
 
-    @include('inc_stylesheet')
+    @include('buyer.layouts.inc_stylesheet')
 </head>
 
 <body>
@@ -115,7 +115,7 @@
                             @endif
     </section>
     </form>
-    @include('inc_footer')
+    @include('buyer.layouts.inc_footer')
 
 </body>
 

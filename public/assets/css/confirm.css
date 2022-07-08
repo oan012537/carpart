@@ -261,14 +261,23 @@
     float: right;
     margin-right: 27px;
     margin-top: -37px;
-    background-color: #3f3f3f;
 }
 
-.w3-black,
+#sec-confirm .w3-black,
+.w3-hover-black {
+    color: #fff !important;
+    background-color: #3f3f3f !important;
+}
+
+#sec-confirm .w3-black,
 .w3-hover-black:hover {
     color: #fff !important;
-    /* background-color: #000!important; */
+    background-color: #3f3f3f !important;
 }
+
+
+
+
 
 #sec-confirm .card5 {
     background-color: #3F3F3F;
@@ -422,6 +431,13 @@
     border: 2px solid #828282;
 }
 
+.b-but-addplus .button-c {
+    background-color: #3e3e3e;
+    color: white;
+    border: 2px solid #3e3e3e;
+    padding: 10px 10px 10px 10px;
+}
+
 
 .button6 {
     background-color: #282828;
@@ -435,6 +451,11 @@
     background-color: #E8D95F;
     color: #282828;
     border: 2px solid #E8D95F;
+}
+
+
+.text-center {
+    text-align: center;
 }
 
 
@@ -752,7 +773,7 @@
     /* Green */
     border: none;
     color: white;
-    padding: 15px 283px 15px 270px;
+    padding: 15px 283px 15px 278px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

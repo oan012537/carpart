@@ -68,7 +68,7 @@
                 </li>
                 <!-- DropDown -->
                 <li>
-                    <a href="javascript:void(0)" class="nav_link" data-page="approval" id="1">
+                    <a href="javascript:void(0)" class="nav_link" data-page="approval" id="approval">
                         <i class="fa-solid fa-list"></i>
                         <div class="nav_name">คำขออนุมัติ <div class="box__iconmenu"> <span class="circle">12</span></div>
                             <div class="icondropdown">
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                     </a>
-                    <ul class="item-show-1 itemdropdown">
+                    <ul class="item-show-approval itemdropdown">
                         <li data-page="approval-individual"><a href="{{route('backend.approval.individual')}}">ผู้ขายบุคคลธรรมดา</a></li>
                         <li data-page="approval-legal"><a href="{{route('backend.approval.legal')}}">ผู้ขายนิติบุคคล</a></li>
                     </ul>
@@ -90,7 +90,7 @@
                 <li><a data-page="manageproduct" href="{{route('backend.product')}}" class="nav_link"> <i class="fas fa-box"></i> <span class="nav_name">จัดการสินค้า</span> </a></li>
                 {{-- <li><a href="#" class="nav_link"> <i class="fas fa-store"></i> <span class="nav_name">จัดการผู้ขาย</span> </a></li> --}}
                 <li>
-                    <a href="javascript:void(0)" class="nav_link" data-page="managesupplier" id="1">
+                    <a href="javascript:void(0)" class="nav_link" data-page="managesupplier" id="managesupplier">
                         <i class="fa-solid fas fa-store"></i>
                         <div class="nav_name">จัดการผู้ขาย
                             <div class="icondropdown">
@@ -98,19 +98,33 @@
                             </div>
                         </div>
                     </a>
-                    <ul class="item-show-1 itemdropdown">
+                    <ul class="item-show-managesupplier itemdropdown">
                         <li data-page="managesupplierindividual"><a href="{{route('backend.manage.supplier.individual')}}">บุคคลธรรมดา</a></li>
                         <li data-page="managesupplierlegal"><a href="{{route('backend.manage.supplier.legal')}}">นิติบุคคล</a></li>
                         <li data-page="managesuppliercommission"><a href="{{route('backend.manage.supplier.commission')}}">ตั้งค่าคอมมิชชั่น</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav_link"> <i class="fa-solid fa-user-gear"></i> <span class="nav_name">จัดการผู้ซื้อ</span> </a></li>
+                {{-- <li><a href="#" class="nav_link"> <i class="fa-solid fa-user-gear"></i> <span class="nav_name">จัดการผู้ซื้อ</span> </a></li> --}}
+                <li>
+                    <a href="javascript:void(0)" class="nav_link" data-page="managebuyer" id="managebuyer">
+                        <i class="fa-solid fas fa-store"></i>
+                        <div class="nav_name">จัดการผู้ซื้อ
+                            <div class="icondropdown">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <ul class="item-show-managebuyer itemdropdown">
+                        <li data-page="managebuyerindividual"><a href="{{route('backend.manage.buyer.individual')}}">บุคคลธรรมดา</a></li>
+                        <li data-page="managebuyerlegal"><a href="{{route('backend.manage.buyer.legal')}}">นิติบุคคล</a></li>
+                    </ul>
+                </li>
                 <li><a href="#" class="nav_link"> <i class='fas fa-truck'></i> <span class="nav_name">จัดการขนส่ง</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-star"></i> <span class="nav_name">จัดการรีวิว</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class='far fa-comments'></i> <span class="nav_name">Chat</span> </a></li>
                 {{-- <li><a href="#" class="nav_link"> <i class="fa-solid fa-book-open"></i> <span class="nav_name">จัดการ PDPA</span> </a></li> --}}
                 <li>
-                    <a href="javascript:void(0)" class="nav_link" data-page="pdpa" id="1">
+                    <a href="javascript:void(0)" class="nav_link" data-page="pdpa" id="pdpa">
                         <i class="fa-solid fa-book-open"></i>
                         <div class="nav_name">จัดการ PDPA
                             <div class="icondropdown">
@@ -118,7 +132,7 @@
                             </div>
                         </div>
                     </a>
-                    <ul class="item-show-1 itemdropdown">
+                    <ul class="item-show-pdpa itemdropdown">
                         <li data-page="settingpdpa"><a href="{{route('backend.pdpa')}}">ตั้งค่าPDPA</a></li>
                         <li data-page="consentlist"><a href="{{route('backend.pdpa.consentlist')}}">รายชื่อผู้ยินยอม</a></li>
                     </ul>

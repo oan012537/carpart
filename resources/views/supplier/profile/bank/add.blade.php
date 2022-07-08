@@ -10,11 +10,11 @@
                     <h3>ข้อมูลธนาคาร</h3>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-xl-3 col-lg-12">
                 @include('supplier.layouts.inc_nav')
             </div>
 
-            <div class="col-lg-9">
+            <div class="col-xl-9 col-lg-12">
                 <div class="box__profileaddbank">
                     <div class="groupedit1">
                         <div class="row">
@@ -39,21 +39,21 @@
                                     </div>
 
 
-                                    <div class="col-6">
+                                    <div class="col-xl-6 col-md-6 col-12">
                                         <div class="form-group">
                                             <label> หมายเลขบัญชี <span> *</span></label>
                                             <input type="text" class="form-control" name="numberbank" id="numberbank" placeholder="ระบุ" required>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-xl-6 col-md-6 col-12">
                                         <div class="form-group">
                                             <label> ชื่อบัญชี <span>*</span> </label>
                                             <input type="text" class="form-control" name="namebank" id="namebank" placeholder="ระบุ" required>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-xl-6 col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">ธนาคาร <span>*</span></label>
                                             <select class="form-select" aria-label="Default select example" required name="bank" id="bank">
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-xl-6 col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">สาขา <span>*</span></label>
                                             <select class="form-select" aria-label="Default select example" required name="bankbranch" id="bankbranch">
@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-xl-6 col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">ประเภทบัญชี <span>*</span></label>
                                             <select class="form-select" aria-label="Default select example" required name="banktype" id="banktype">
@@ -115,7 +115,7 @@
                         <!--  -->
                         <div class="box__btn">
                             <a href="{{route('supplier.profile.bank')}}" class="btn btn__back">กลับ</a>
-                            <button type="submit" form="formadd" class="btn btn__yes" >ยืนยัน</button>
+                            <button type="submit" form="formadd" class="btn btn__yes">ยืนยัน</button>
                             {{-- <button type="submit" form="formadd" class="btn btn__yes" data-bs-toggle="modal" data-bs-target="#modalotp">ยืนยัน</button> --}}
                         </div>
 
@@ -195,57 +195,58 @@
                     var nexEl = this.nextElementSibling;
                     nexEl.focus();
                 }
-                
+
             });
         })
 
         function backSp(backKey) {
             if (backKey.keyCode == 8) {
                 var prev = this.previousElementSibling.focus()
-            }else{
-                
+            } else {
+
                 if ((parseInt(backKey.keyCode) > 47 && parseInt(backKey.keyCode) < 58)) {
                     // console.log(backKey.keyCode)
                     var nexEl = this.nextElementSibling.focus();
                 }
-                
+
             }
         }
-        
-        
+
+
 
     });
+
     function fncheckotp() {
         // alert();
         // return false;
-        
+
         $("#modalotp").modal('show');
         setTimeout(() => {
             $('#modalotp input[class="otp"]:first').focus();
-            $.get("{{url('supplier/gettoken')}}/"+$('.txt__phone').text(),
-                function (data, textStatus, jqXHR) {
+            $.get("{{url('supplier/gettoken')}}/" + $('.txt__phone').text(),
+                function(data, textStatus, jqXHR) {
                     $("#token").val(data);
                 },
                 // "dataType"
             );
         }, 2000);
-        
+
         return false;
     }
-    $("#btnsubmitotp").click(function (e) { 
+    $("#btnsubmitotp").click(function(e) {
         $.post("{{url('supplier/getotp')}}", $("#formotp").serialize(),
-            function (data, textStatus, jqXHR) {
+            function(data, textStatus, jqXHR) {
                 console.log(data);
-                if(data.result.status){
+                if (data.result.status) {
                     $("#formadd").removeAttr('onsubmit').submit();
-                }else{
-                    toastralert('error','เกิดข้อผิดพลาด');
+                } else {
+                    toastralert('error', 'เกิดข้อผิดพลาด');
                 }
             },
             // "dataType"
         );
         e.preventDefault();
-        
+
     });
 </script>
 @stop

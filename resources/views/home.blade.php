@@ -23,7 +23,7 @@
 
                 <!--  -->
                 <div class="box__brands">
-                    <h3>หมวดหมู่ยอดนิยม</h3>
+                    <h3>แบรนด์</h3>
 
                     <div class="row" data-sectionname="brand-home">
                         <div class="col-12 carousel-brandhomepage" data-slick='{"slidesToShow":5, "slidesToScroll": 1,  "rows":1, "autoplay": true, "arrows": true, "dots": false, "autoplaySpeed": 3000}'>
@@ -81,7 +81,7 @@
                     <div class="box__allcoupon">
                         <div class="row">
                             <?php for ($i = 1; $i <= 3; $i++) { ?>
-                                <div class="col-xl-4 col-lg-6 col-6">
+                                <div class="col-xl-4 col-lg-6 col-md-12 col-12">
                                     <div class="box__itemscoupon">
                                         <p class="coupon__title">ส่วนลด 10%</p>
                                         <p class="coupon__deail">เมื่อซื้ออะไหล่ในกลุ่มสินค้าของ Aston Martin</p>

@@ -183,6 +183,13 @@
     color: white;
 }
 
+#id02 .input-group> :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #E8D95F;
+}
+
 #id02 .text-detail-roon p {
     font-size: 14px;
     color: white;
@@ -301,6 +308,13 @@
     margin-left: -83px;
 }
 
+#id03 .input-group> :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #E8D95F;
+}
+
 #id03 .text-tt-roon span {
     font-size: 16px;
     color: white;
@@ -401,6 +415,13 @@
     color: white;
 }
 
+#id04 .input-group> :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #E8D95F;
+}
+
 #id04 .text-tt-roon {
     margin-left: -83px;
 }
@@ -457,6 +478,13 @@
 
 #id05 .text-tt-roon {
     margin-left: -83px;
+}
+
+#id05 .input-group> :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #E8D95F;
 }
 
 #id05 .text-tt-roon span {
@@ -577,6 +605,13 @@
 #id06 .text-h-roon p {
     font-size: 18px;
     color: white;
+}
+
+#id06 .input-group> :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #E8D95F;
 }
 
 #id05 .text-tt-roon {
@@ -711,6 +746,13 @@
     margin-left: -83px;
 }
 
+#id07 .input-group> :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #E8D95F;
+}
+
 #id07 .text-tt-roon span {
     font-size: 16px;
     color: white;
@@ -837,6 +879,13 @@
 
 #id08 .text-tt-roon {
     margin-left: -83px;
+}
+
+#id08 .input-group> :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #E8D95F;
 }
 
 #id08 .text-tt-roon span {

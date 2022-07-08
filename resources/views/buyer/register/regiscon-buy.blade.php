@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="assets/css/regis2.css" rel="stylesheet">
 
-    @include('inc_stylesheet')
+    @include('buyer.layouts.inc_stylesheet')
 </head>
 
 <body>
@@ -61,7 +61,7 @@
                             </p>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="0123456789" name="phone" aria-label="Username"
+                            <input type="text" class="form-control" placeholder="0123456789" name="phone" aria-label="Username" value="{{session('phone')}}"
                                 aria-describedby="basic-addon1" required>
                         </div>
                         <div class="tt-text-log2">
@@ -70,7 +70,7 @@
                             </p>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="sample@gmail.com" name="email" aria-label="Username"
+                            <input type="text" class="form-control" placeholder="sample@gmail.com" name="email" aria-label="Username" value="{{session('email')}}"
                                 aria-describedby="basic-addon1" required>
                         </div>
                         <br>
@@ -86,7 +86,7 @@
         </div>
     </section>
     </form>
-    @include('inc_footer')
+    @include('buyer.layouts.inc_footer')
 
 </body>
 

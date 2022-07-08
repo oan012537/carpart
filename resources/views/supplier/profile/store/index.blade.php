@@ -10,17 +10,17 @@
                     <h3>ข้อมูลร้านค้า</h3>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-xl-3 col-lg-12">
                 @include('supplier.layouts.inc_nav')
             </div>
             @if($supplier->type == 'บุคคลธรรมดา')
-            <div class="col-lg-9">
+            <div class="col-xl-9 col-lg-12">
                 <div class="box__profilestore">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-xl-10 col-md-8 col-12">
                             <p class="title__box">ข้อมูลร้านค้า</p>
                         </div>
-                        <div class="col-2">
+                        <div class="col-xl-2 col-md-4 col-12">
                             <div class="box__edit">
                                 <a href="{{route('supplier.profile.store.edit')}}" class="btn__edit"><i class="fa-solid fa-pencil"></i> แก้ไขที่อยู่</a>
 
@@ -40,7 +40,7 @@
                         );
 
                         $result = array(
-                            '1' => $supplier->store_name.'<img src="'.asset('assets/img/icon/icon__notverify.svg').'" class="img-fluid"> ร้านค้ายังไม่ได้ยืนยันตัวตน',
+                            '1' => $supplier->store_name . '<img src="' . asset('assets/img/icon/icon__notverify.svg') . '" class="img-fluid"> ร้านค้ายังไม่ได้ยืนยันตัวตน',
                             '2' => $supplier->company_email,
                             '3' => $supplier->phone,
                             '4' => $supplier->facebook,
@@ -48,7 +48,7 @@
                             '6' => $supplier->store_addressfull,
                         );
                         $result1 = array(
-                            '1' => 'สมมติ <img src="'.asset('assets/img/icon/icon__notverify.svg').'" class="img-fluid"> ร้านค้ายังไม่ได้ยืนยันตัวตน || สมมติ <img src="'.asset('assets/img/icon/iconverify2__success.svg').'" class="img-fluid"> ผ่านการยืนยันตัวตนขั้น 2',
+                            '1' => 'สมมติ <img src="' . asset('assets/img/icon/icon__notverify.svg') . '" class="img-fluid"> ร้านค้ายังไม่ได้ยืนยันตัวตน || สมมติ <img src="' . asset('assets/img/icon/iconverify2__success.svg') . '" class="img-fluid"> ผ่านการยืนยันตัวตนขั้น 2',
                             '2' => 'emily@sample.com',
                             '3' => '012345678',
                             '4' => 'www,.sample.com',
@@ -60,15 +60,15 @@
                         ?>
                             <div class="box__itemsinfo">
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-xl-3 col-md-6 col-12">
                                         <p class="title__txt"><?php echo $heading[$i]; ?></p>
                                     </div>
-                                    <div class="col-9">
+                                    <div class="col-xl-9 col-md-6 col-12">
                                         <p class="title__result"><?php echo $result[$i]; ?></p>
                                     </div>
 
                                     <div class="col-12">
-                                        <?php if ($i != 4) { ?>
+                                        <?php if ($i != 6) { ?>
                                             <hr>
                                         <?php } ?>
                                     </div>
@@ -79,19 +79,19 @@
                 </div>
 
                 <div class="box__verify2">
-                    <a href="javascript:void(0)" class="btn btn__viewverify" data-bs-toggle="modal" data-bs-target="#verify2">ยืนยันตัวตนขั้น 2 เพื่อเพิ่มความน่าเชื่อถือให้ร้านของคุณ</a> 
+                    <a href="javascript:void(0)" class="btn btn__viewverify" data-bs-toggle="modal" data-bs-target="#verify2">ยืนยันตัวตนขั้น 2 เพื่อเพิ่มความน่าเชื่อถือให้ร้านของคุณ</a>
                     {{-- ถ้าสองขึั้นตอนแล้วตรงนี้ไม่จ้องขึ้น --}}
                 </div>
 
             </div>
             @else
-            <div class="col-lg-9">
+            <div class="col-xl-9 col-lg-12">
                 <div class="box__profilestore">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-xl-10 col-md-8 col-12">
                             <p class="title__box">ข้อมูลบริษัท/นิติบุคคล</p>
                         </div>
-                        <div class="col-2">
+                        <div class="col-xl-2 col-md-4 col-12">
                             <div class="box__edit">
                                 <a href="{{route('supplier.profile.store.edit')}}" class="btn__edit"><i class="fa-solid fa-pencil"></i> แก้ไขที่อยู่</a>
 
@@ -128,7 +128,7 @@
                             '10' => 'สำเนา ภ.พ.20 <a data-fancybox="gallery" class="btn__viewimage" href="https://lipsum.app/id/46/1600x1200"><i class="fa-solid fa-image"></i></a>',
                         );
                         $result = array(
-                            '1' => $supplier->store_name.' <img src="'.asset('assets/img/icon/icon-verify.svg').'" class="img-fluid"> นิติบุคคล',
+                            '1' => $supplier->store_name . ' <img src="' . asset('assets/img/icon/icon-verify.svg') . '" class="img-fluid"> นิติบุคคล',
                             '2' => $supplier->branch,
                             '3' => $supplier->vat_id,
                             '4' => $supplier->store_addressfull,
@@ -136,23 +136,23 @@
                             '6' => $supplier->phone,
                             '7' => $supplier->facebook,
                             '8' => $supplier->googlemap,
-                            '9' => '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset($supplier->pic_certificate).'" > <img src="'.asset('assets/img/icon/icon-pdf.svg').'" class="img-fluid"> </a>',
-                            '10' => '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset($supplier->pic_vat).'" > <img src="'.asset('assets/img/icon/icon-pdf.svg').'" class="img-fluid"> </a>',
+                            '9' => '<a class="btn btn__pdf fancybox" data-fancybox href="' . asset($supplier->pic_certificate) . '" > <img src="' . asset('assets/img/icon/icon-pdf.svg') . '" class="img-fluid"> </a>',
+                            '10' => '<a class="btn btn__pdf fancybox" data-fancybox href="' . asset($supplier->pic_vat) . '" > <img src="' . asset('assets/img/icon/icon-pdf.svg') . '" class="img-fluid"> </a>',
                         );
 
                         for ($i = 1; $i <= 10; $i++) {
                         ?>
                             <div class="box__itemsinfo">
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-xl-3 col-md-6 col-12">
                                         <p class="title__txt"><?php echo $heading[$i]; ?></p>
                                     </div>
-                                    <div class="col-9">
+                                    <div class="col-xl-9 col-md-6 col-12">
                                         <p class="title__result"><?php echo $result[$i]; ?></p>
                                     </div>
 
                                     <div class="col-12">
-                                        <?php if ($i != 4) { ?>
+                                        <?php if ($i != 6) { ?>
                                             <hr>
                                         <?php } ?>
                                     </div>
@@ -181,7 +181,7 @@
                     <div class="row">
                         <form method="POST" enctype="multipart/form-data" action="{{route('supplier.profile.store.verify.update')}}" id="formverify">
                             @csrf
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                                 <div class="box__drop">
                                     <div class="drop-zone">
                                         <span class="drop-zone__prompt"> <i class="fa fa-plus-circle"></i>
@@ -194,7 +194,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-8 col-lg-8 col-md-8 col-12">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-12 mt-2">
                                 <p>ท่านสามารถใช้รูปเอกสารตัวจริง หรือรูปถ่ายสำเนาของเอกสาร (เซ็นหรือไม่เซ็นรับรองเอกสารก็ได้)
                                     หากท่านเซ็นรับรองเอกสาร จะต้องไม่บดบังข้อมูลใดๆ บนเอกสาร
                                     ภาพที่อัปโหลดต้องชัด ข้อมูลครบถ้วน และเอกสารยังไม่หมดอายุ

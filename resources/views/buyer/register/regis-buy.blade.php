@@ -20,11 +20,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="assets/css/regis4.css" rel="stylesheet">
 
-    @include('inc_stylesheet')
+    @include('buyer.layouts.inc_stylesheet')
 </head>
 
 <body>
-    <form method="POST" action="{{route('step1')}}">
+    <form method="POST" action="{{route('step1')}}"  enctype="multipart/form-data">
     @csrf
     <section id="sec-regis4">
         <div class="container">
@@ -65,11 +65,11 @@
                             </div>
                             <div class="box-check">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tabs" value="normal" id="onetab" checked="">
+                                    <input class="form-check-input" type="radio" name="type" value="normal" id="onetab" checked="">
                                     <label class=" form-check-label" for="one"> บุคคลธรรมดา </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tabs" value="niti" id="twotab">
+                                    <input class="form-check-input" type="radio" name="type" value="niti" id="twotab">
                                     <label class="form-check-label" for="two"> นิติบุคคล </label>
                                 </div>
                             </div>
@@ -163,12 +163,12 @@
         </div>
     </section>
 </form>
-    @include('inc_footer')
-    @include('inc_javascript')
+    @include('buyer.layouts.inc_footer')
+    @include('buyer.layouts.inc_javascript')
 
     <!-- JS tabcheckbox -->
     <script>
-        $('[name=tabs]').each(function(i, d) {
+        $('[name=type]').each(function(i, d) {
             var p = $(this).prop('checked');
             if (p) {
                 $('.contenttab').eq(i)
@@ -176,10 +176,10 @@
             }
         });
 
-        $('[name=tabs]').on('change', function() {
+        $('[name=type]').on('change', function() {
             var p = $(this).prop('checked');
 
-            var i = $('[name=tabs]').index(this);
+            var i = $('[name=type]').index(this);
 
             $('.contenttab').removeClass('on');
             $('.contenttab').eq(i).addClass('on');
