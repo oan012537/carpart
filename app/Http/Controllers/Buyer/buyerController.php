@@ -35,11 +35,11 @@ class BuyerController extends Controller
         $username = $request->username;
         $password = $request->password;
 
-        if (Auth::guard('buyer')->attempt(['profile_name' => $username, 'password' => $password]) )
+        if (Auth::guard('buyer')->attempt(['phone' => $username, 'password' => $password]) )
         {
             return redirect('buyer/home-search');
         }
-        elseif (Auth::guard('buyer')->attempt(['email' => $username, 'password' => $password]) )
+        else if(Auth::guard('buyer')->attempt(['email' => $username, 'password' => $password]) )
         {
             return redirect('buyer/home-search');
         }else{
