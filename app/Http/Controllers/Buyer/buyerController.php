@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Session;
 use Helper;
 use DB;
-use Redirect;
+use Illuminate\Support\Facades\Redirect;;
 use App\Models\Buyer\mUsers_buyer;
 
 use App\Models\Brand;
@@ -206,7 +206,7 @@ class BuyerController extends Controller
 
     public function registerpass_buyer_post(Request $request)
     {
-        
+        // dd($request);
         if($request->password == $request->confirm_password){
 
             $data = new mUsers_buyer;
