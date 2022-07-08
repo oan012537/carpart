@@ -1,3 +1,4 @@
+
 @extends('supplier.layouts.template')
 
 @section('content')
@@ -1109,29 +1110,8 @@
         // return true;
     }
 
-    $(document).on('click', '#submit-btn', function (e) {
-        e.preventDefault();
-        // if ( $("#msform").valid() ) {
-            $.ajax({
-                type:'POST',
-                url:'{{route('products.store')}}',
-                data: $("#msform").serialize(),
-                success: function(data){
-                   console.log(data);
-                    $('input[name="product_code"]').val(data.product_code);
-                    $('input[name="old_id"]').val(data.id);
-
-                    alert(data.message);
-                    // location.href = '/products';
-                },
-                error: function(error) {
-                   console.log(error);
-
-                },
-            });
-        // }
-        
-    });
+   
+   
 
 
 </script>

@@ -41,6 +41,7 @@ Route::group(['prefix' => 'supplier'], function() {
     Route::get('supplier-info', [SupplierAuthController::class, 'supplierInfo'])->name('supplier.register.supplierInfo');
     Route::post('contact-info', [SupplierAuthController::class, 'contactInfo'])->name('supplier.register.contactInfo');
     Route::get('bank-info', [SupplierAuthController::class, 'bankInfo'])->name('supplier.register.bankInfo');
+    Route::post('register/upload-file', [SupplierAuthController::class, 'uploadFile'])->name('supplier.register.uploadFile');
 
     Route::get('get_address', [SupplierAuthController::class, 'getAddress'])->name('get_address');
 
