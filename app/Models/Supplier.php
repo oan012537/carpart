@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Authenticatable
+class Supplier extends Model
 {
     
     protected $fillable =[
@@ -33,6 +32,7 @@ class Supplier extends Authenticatable
         "bank_account_no",
         "bank_account_name",
         "bank_name",
+        "bank_branch",
         "bank_account_type",
         "bank_book_image",
         "personal_first_name",

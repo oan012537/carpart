@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Supplier;
+use App\Models\UserSupplier;
+use App\Models\Store;
 use App\Models\Province;
 use App\Models\Amphure;
 use App\Models\District;
@@ -177,7 +179,6 @@ class SupplierAuthController extends Controller
 
         public function contactInfo(Request $request)
         {
-            
             $data = $request->except('company_certificate', 'vat_registration_doc', 'personal_card_id_image', 'personal_house_registration');
 
             $supplier_type = $data['supplier_type'];
@@ -241,9 +242,72 @@ class SupplierAuthController extends Controller
             return view('supplier.auth.contact-info', compact('data', 'company_cert_img_name', 'vat_reg_doc_name', 'personal_cardId_img_name', 'personal_house_reg_name', 'province_list_data'));
         }
 
-        public function bankInfo()
+        public function bankInfo(Request $request)
         {
-            return view('supplier.auth.bank-info');
+            $data = $request->all();
+
+            $isDiffLocation = isset($data['is_different_location']) ? $data['is_different_location'] : null;
+            if ($isDiffLocation)
+                $data['store_province'] = $data['province'];
+
+            $bank_list_data = array (
+                    [
+                        'id' => 1,
+                        'name' => 'กรุงไทย'
+                    ],
+                    [
+                        'id' => 2,
+                        'name' => 'กสิกร'
+                    ],
+                    [
+                        'id' => 3,
+                        'name' => 'กรุงเทพ'
+                    ],
+                    [
+                        'id' => 4,
+                        'name' => 'ไทยพาณิชย์'
+                    ]
+            );
+
+            $bank_branch_data = array (
+                    [
+                        'id' => 1,
+                        'name' => 'ประชาอุทิศ'
+                    ],
+                    [
+                        'id' => 2,
+                        'name' => 'พญาไท'
+                    ],
+                    [
+                        'id' => 3,
+                        'name' => 'เทเวศน์'
+                    ],
+                    [
+                        'id' => 4,
+                        'name' => 'บางซื่อ'
+                    ]
+            );
+
+            $bank_type_data = array (
+                [
+                    'id' => 1,
+                    'name' => 'บัญชีเงินฝากกระแสรายวัน'
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'บัญชีออมทรัพย์'
+                ],
+                [
+                    'id' => 3,
+                    'name' => 'บัญชีเงินฝากเงินตราต่างประเทศ'
+                ],
+                [
+                    'id' => 4,
+                    'name' => 'บัญชีฝากประจํา'
+                ]
+            );
+
+            return view('supplier.auth.bank-info', compact('bank_list_data', 'bank_branch_data', 'bank_type_data', 'data'));
         }
 
         public function verifyphone(Request $request)
@@ -263,22 +327,77 @@ class SupplierAuthController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $data = $request->all();
+
+        // $data->validate([
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'email', 'max:191', 'unique:user_supplliers'],
+        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        // ]);
+
+        $supplier_type = $data['supplier_type'];
+
+        if ($supplier_type == 'personal') {
+            $user_name = $data['personal_first_name'];
+        } else {
+            $user_name = $data['company_name'];
+        }
+        
 
         $user = UserSupplier::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phone' => '0986948341',
+            'name' => $user_name,
+            'email' => $data['email'],
+            'password' => Hash::make('12345678'),
+            'phone' => $data['phone'],
             'role_id' => 1,
-            'is_active' => 1
+            'is_active' => 0
         ]);
+        
+        
+        $data['user_id'] = $user->id;
+        $data['status_code'] = 'request_approval';
+        $data['is_active'] = 0;
+        $data['created_by'] = $user_name;
+        $data['updated_by'] = $user_name;
 
-        return redirect()->route('suppplier.login')->with('message','Supplier Created Successfully');
+        $supplier_data = Supplier::create($data);
+
+        $store_data = Store::create([
+            'supplier_id' => $supplier_data->id,
+            'store_name' => $data['store_name'],
+            'address' => $data['store_address'],
+            'province' => $data['store_province'],
+            'amphure' => $data['store_district'],
+            'district' => $data['store_district'],
+            'postcode' => $data['store_postcode'],
+            'googlemap' => $data['google_map_url'],
+            'is_active' => 0,
+            'created_by' => $user_name,
+            'created_by' => $user_name
+        ]);
+        
+        return 'success';
+
+        // return redirect()->route('suppplier.login')->with('message','Supplier Created Successfully');
+    }
+
+    public function uploadFile(Request $request)
+    {
+        $image = $request->file('file');
+    
+        $imageName = time().'.'.$image->extension();
+        $image->move(public_path('suppliers/document/'), $imageName);
+    
+        return $imageName;
+    }
+
+    public function removeFile(Request $request)
+    {
+        $imageName = $request->imageName;
+        
+        unlink('suppliers/document/'. $imageName);
+
+        return 'success';
     }
 
 

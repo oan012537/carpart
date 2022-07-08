@@ -42,6 +42,7 @@ Route::group(['prefix' => 'supplier'], function() {
     Route::get('supplier-info', [SupplierAuthController::class, 'supplierInfo'])->name('supplier.register.supplierInfo');
     Route::post('contact-info', [SupplierAuthController::class, 'contactInfo'])->name('supplier.register.contactInfo');
     Route::get('bank-info', [SupplierAuthController::class, 'bankInfo'])->name('supplier.register.bankInfo');
+    Route::post('register/upload-file', [SupplierAuthController::class, 'uploadFile'])->name('supplier.register.uploadFile');
 
     Route::get('get_address', [SupplierAuthController::class, 'getAddress'])->name('get_address');
 
@@ -171,40 +172,5 @@ Route::get('/clearcache', function() {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-<<<<<<< HEAD
 // require __DIR__.'/auth.php';
-=======
-Route::get('supplier/profile/store', [Supplier\ProfileController::class,'storeindex'])->name('supplier.profile.store');
-Route::get('supplier/profile/store/edit', [Supplier\ProfileController::class,'storeedit'])->name('supplier.profile.store.edit');
-Route::post('supplier/profile/store/update', [Supplier\ProfileController::class,'storeupdate'])->name('supplier.profile.store.update');
-Route::post('supplier/profile/legal/store/update', [Supplier\ProfileController::class,'legalstoreupdate'])->name('supplier.profile.legal.store.update');
-Route::post('supplier/profile/store/verify/update', [Supplier\ProfileController::class,'storeverifyupdate'])->name('supplier.profile.store.verify.update');
 
-
-Route::get('supplier/profile/bank', [Supplier\ProfileController::class,'bankindex'])->name('supplier.profile.bank');
-Route::get('supplier/profile/bank/add', [Supplier\ProfileController::class,'bankadd'])->name('supplier.profile.bank.add');
-Route::post('supplier/profile/bank/store', [Supplier\ProfileController::class,'bankstore'])->name('supplier.profile.bank.store');
-
-Route::get('supplier/gettoken/{number}', [Supplier\ProfileController::class,'gettokenotp']);
-Route::post('supplier/getotp', [Supplier\ProfileController::class,'getotp']);
-
-
-Route::get('supplier/profile/setting', [Supplier\ProfileController::class,'settingindex'])->name('supplier.profile.setting');
-Route::post('supplier/profile/setting/role/add', [Supplier\ProfileController::class,'settingrolestore'])->name('supplier.profile.setting.role.add');
-Route::post('supplier/profile/setting/user/add', [Supplier\ProfileController::class,'settinguserstore'])->name('supplier.profile.setting.user.store');
-Route::get('supplier/profile/setting/user/changepermission', [Supplier\ProfileController::class,'changepermission'])->name('supplier.profile.setting.user.changepermission');
-Route::get('supplier/profile/setting/user/searchrole', [Supplier\ProfileController::class,'searchrole'])->name('supplier.profile.setting.user.searchrole');
-
-Route::get('supplier/profile/notification', [Supplier\ProfileController::class,'notificationindex'])->name('supplier.profile.notification');
-
-
-Route::get('supplier/requests', [Supplier\RequestsController::class,'index'])->name('supplier.requests');
-Route::get('supplier/requests/view/{id}', [Supplier\RequestsController::class,'view'])->name('supplier.requests.view');
-Route::get('supplier/requests/details/{id}', [Supplier\RequestsController::class,'details'])->name('supplier.requests.details');
-Route::get('supplier/requests/offer/{id}', [Supplier\RequestsController::class,'offer'])->name('supplier.requests.offer');
-
-
-
-// Route::get('supplier/profile', [Supplier\ProfileController::class,'index'])->name('supplier.profile.noti');
-require __DIR__.'/auth.php';
->>>>>>> 8b3d0b103678b0c39b5df1cbda6147345c653099

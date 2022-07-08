@@ -18,9 +18,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="h-text-log">
-                            <p>
-                                {{ trans('file.Register') }}
-                            </p>
+                            <p>{{ trans('file.Register') }}</p>
                         </div>
                         <div class="img-send-img">
                             <div class="text-center">
@@ -37,121 +35,123 @@
                             <p>{{ trans('file.Bank information') }}</p>
                         </div>
                         <div class="box-b-detail">
-                            <div class="tt-text-log">
-                                <p>{{ trans('file.Email') }}</p>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="sample@gmail.com"
-                                  name="email" aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="tt-text-log">
-                                <p>{{ trans('file.Phone Number') }} *</p>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="0123456789" aria-label="Username"
-                                  name="phone" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="tt-text-log">
-                                <p>{{ trans('file.Page URL/Facebook Page') }} *</p>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Sample Name" aria-label="Username"
-                                  name="facebook_url" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="tt-text-log">
-                                <p>{{ trans('file.GoogleMapsURL') }} *</p>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="www.sample.com"
-                                   name="google_map_url" aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-                            {{-- option --}}
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="store-location" checked>
-                                <label class="form-check-label" for="store-location">
-                                    {{ trans('file.Store address as on the ID card') }}
-                                </label>
-                            </div>
-                            {{-- option --}}
-                            <br>
-                            <div class="tt-text-log">
-                                <p>{{ trans('file.Store address') }} *</p>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
-                                   name="store_address" aria-describedby="basic-addon1" value="{{ $data['address'] }}">
-                            </div>
-                            <div class="tt-text-log">
-                                <p>
-                                    {{ trans('file.Province') }} *
-                                </p>
-                            </div>
-                            <div class="input-group mb-3">
-                                <select class="form-select" aria-label="Default select example" name="store_province">
-                                    <option value="">{{ trans('file.Specify') }}</option>
-                                    @foreach ($province_list_data as $province)
-                                        <option value="{{ $province->id }}">{{ $province->name_th }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="tt-text-log">
-                                <p>{{ trans('file.Amphure') }} *</p>
-                            </div>
-                            <div class="input-group mb-3">
-                                <select class="form-select" aria-label="Default select example" name="store_amphure">
-                                    <option value="{{ $data['amphure'] }}">{{ $data['amphure'] }}</option>
-                                </select>
-                            </div>
-                            <div class="tt-text-log">
-                                <p>
-                                    {{ trans('file.District') }} *
-                                </p>
-                            </div>
-                            <div class="input-group mb-3">
-                                <select class="form-select" aria-label="Default select example" name="store_district">
-                                    <option value="{{ $data['district'] }}">{{ $data['district'] }}</option>
-                                </select>
-                            </div>
-                            
-                            <div class="tt-text-log">
-                                <p>
-                                    {{ trans('file.Postal Code') }} *
-                                </p>
-                            </div>
-                            <div class="input-group mb-3">
-                                <select class="form-select" aria-label="Default select example" name="store_postcode">
-                                    <option value="{{ $data['postcode'] }}">{{ $data['postcode'] }}</option>
-                                </select>
-                            </div>
+                            <form action="{{ route('supplier.register.bankInfo') }}" method="get">
+                                <div class="tt-text-log">
+                                    <p>{{ trans('file.Email') }}</p>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="sample@gmail.com"
+                                      name="email" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="tt-text-log">
+                                    <p>{{ trans('file.Phone Number') }} *</p>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="0123456789" aria-label="Username"
+                                      name="phone" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="tt-text-log">
+                                    <p>{{ trans('file.Page URL/Facebook Page') }} *</p>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Sample Name" aria-label="Username"
+                                      name="facebook_url" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="tt-text-log">
+                                    <p>{{ trans('file.GoogleMapsURL') }} *</p>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="www.sample.com"
+                                       name="google_map_url" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                                {{-- option --}}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="store-location" name="is_different_location" value="true" checked>
+                                    <label class="form-check-label" for="store-location">
+                                        {{ trans('file.Store address as on the ID card') }}
+                                    </label>
+                                </div>
+                                {{-- option --}}
+                                <br>
+                                <div class="tt-text-log">
+                                    <p>{{ trans('file.Store address') }} *</p>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
+                                       name="store_address" aria-describedby="basic-addon1" value="{{ $data['address'] }}">
+                                </div>
+                                <div class="tt-text-log">
+                                    <p>
+                                        {{ trans('file.Province') }} *
+                                    </p>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" aria-label="Default select example" name="store_province">
+                                        <option value="">{{ trans('file.Specify') }}</option>
+                                        @foreach ($province_list_data as $province)
+                                            <option value="{{ $province->id }}">{{ $province->name_th }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="tt-text-log">
+                                    <p>{{ trans('file.Amphure') }} *</p>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" aria-label="Default select example" name="store_amphure">
+                                        <option value="{{ $data['amphure'] }}">{{ $data['amphure'] }}</option>
+                                    </select>
+                                </div>
+                                <div class="tt-text-log">
+                                    <p>
+                                        {{ trans('file.District') }} *
+                                    </p>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" aria-label="Default select example" name="store_district">
+                                        <option value="{{ $data['district'] }}">{{ $data['district'] }}</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="tt-text-log">
+                                    <p>
+                                        {{ trans('file.Postal Code') }} *
+                                    </p>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" aria-label="Default select example" name="store_postcode">
+                                        <option value="{{ $data['postcode'] }}">{{ $data['postcode'] }}</option>
+                                    </select>
+                                </div>
 
-                            {{-- personal --}}
-                            <input type="hidden" name="store_name" value="{{ $data['store_name'] }}">
-                            <input type="hidden" name="personal_first_name" value="{{ $data['personal_first_name'] }}">
-                            <input type="hidden" name="personal_last_name" value="{{ $data['personal_last_name'] }}">
-                            <input type="hidden" name="personal_card_id" value="{{ $data['personal_card_id'] }}">
-                            <input type="hidden" name="personal_cardId_img_name" value="{{ $personal_cardId_img_name }}">
-                            <input type="hidden" name="personal_house_reg_name" value="{{ $personal_house_reg_name }}">
+                                {{-- personal --}}
+                                <input type="hidden" name="store_name" value="{{ $data['store_name'] }}">
+                                <input type="hidden" name="personal_first_name" value="{{ $data['personal_first_name'] }}">
+                                <input type="hidden" name="personal_last_name" value="{{ $data['personal_last_name'] }}">
+                                <input type="hidden" name="personal_card_id" value="{{ $data['personal_card_id'] }}">
+                                <input type="hidden" name="personal_cardId_img_name" value="{{ $personal_cardId_img_name }}">
+                                <input type="hidden" name="personal_house_reg_name" value="{{ $personal_house_reg_name }}">
 
-                            <input type="hidden" name="address" value="{{ $data['address'] }}">
-                            <input type="hidden" name="province" value="{{ $data['province'] }}">
-                            <input type="hidden" name="amphure" value="{{ $data['amphure'] }}">
-                            <input type="hidden" name="district" value="{{ $data['district'] }}">
-                            
-                            {{-- company --}}
-                            <input type="hidden" name="company_name" value="{{ $data['company_name'] }}">
-                            <input type="hidden" name="branch" value="{{ $data['branch'] }}">
-                            <input type="hidden" name="vat_registration_number" value="{{ $data['vat_registration_number'] }}">
-                            <input type="hidden" name="postcode" value="{{ $data['postcode'] }}">
-                            <input type="hidden" name="company_cert_img_name" value="{{ $company_cert_img_name }}">
-                            <input type="hidden" name="vat_reg_doc_name" value="{{ $vat_reg_doc_name }}">
-
-                            <br>
-                            <div class='but-bb-log2'>
-                                <a href="{{ route('supplier.register.bankInfo') }}">
-                                    <button class="button button1"> {{ trans('file.Next') }} &nbsp; <i class='fas fa-angle-right'></i>
-                                    </button>
-                                </a>
-                            </div>
+                                <input type="hidden" name="supplier_type" value="{{ $data['supplier_type'] }}">
+                                <input type="hidden" name="address" value="{{ $data['address'] }}">
+                                <input type="hidden" name="province" value="{{ $data['province'] }}">
+                                <input type="hidden" name="amphure" value="{{ $data['amphure'] }}">
+                                <input type="hidden" name="district" value="{{ $data['district'] }}">
+                                
+                                {{-- company --}}
+                                <input type="hidden" name="company_name" value="{{ $data['company_name'] }}">
+                                <input type="hidden" name="branch" value="{{ $data['branch'] }}">
+                                <input type="hidden" name="vat_registration_number" value="{{ $data['vat_registration_number'] }}">
+                                <input type="hidden" name="postcode" value="{{ $data['postcode'] }}">
+                                <input type="hidden" name="company_cert_img_name" value="{{ $company_cert_img_name }}">
+                                <input type="hidden" name="vat_reg_doc_name" value="{{ $vat_reg_doc_name }}">
+                                <br>
+                                <div class='but-bb-log2'>
+                                    <a href="{{ route('supplier.register.bankInfo') }}">
+                                        <button type="submit" class="button button1"> {{ trans('file.Next') }} &nbsp; <i class='fas fa-angle-right'></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
