@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="assets/css/regis.css" rel="stylesheet">
 
-    @include('inc_stylesheet')
+    @include('buyer.layouts.inc_stylesheet')
 </head>
 
 <body>
@@ -180,7 +180,7 @@
     </section>
     </form>
 
-    @include('inc_footer')
+    @include('buyer.layouts.inc_footer')
 
 
     <script>

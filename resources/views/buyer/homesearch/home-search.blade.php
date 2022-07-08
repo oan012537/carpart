@@ -131,7 +131,7 @@
                                         <a onclick="selectBrands({{$brand->id}})">
                                         <div class="row">
                                             <div class="col-lg-5">
-                                                <img src="{{$brand->image}}" class="img-fluid" alt="shoe image">
+                                                <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
                                             </div>
                                             <div class="col-lg-7">
                                                 <div class="text-detail-roon">
@@ -155,7 +155,7 @@
                                     <a onclick="selectBrands({{$brand->id}})">
                                     <div class="row">
                                         <div class="col-lg-5">
-                                            <img src="{{$brand->image}}" class="img-fluid" alt="shoe image">
+                                            <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
                                         </div>
                                         <div class="col-lg-7">
                                             <div class="text-detail-roon">

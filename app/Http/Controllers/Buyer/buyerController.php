@@ -190,7 +190,7 @@ class BuyerController extends Controller
                         $html .= '<a href="#">';
                         $html .= '<div class="row">';
                         $html .= '<div class="col-lg-5">';
-                        $html .= '<img src="'.$brand->image.'" class="img-fluid" alt="shoe image">';
+                        $html .= '<img src="'.$brand->image.'" class="img-fluid img-circleimg" alt="shoe image">';
                         $html .= '</div>';
                         $html .= '<div class="col-lg-7">';
                         $html .= '<div class="text-detail-roon">';
@@ -212,7 +212,7 @@ class BuyerController extends Controller
                     $html .= '<a href="#">';
                     $html .= '<div class="row">';
                     $html .= '<div class="col-lg-5">';
-                    $html .= '<img src="'.$brand->image.'" class="img-fluid" alt="shoe image">';
+                    $html .= '<img src="'.$brand->image.'" class="img-fluid img-circleimg" alt="shoe image">';
                     $html .= '</div>';
                     $html .= '<div class="col-lg-7">';
                     $html .= '<div class="text-detail-roon">';
@@ -260,7 +260,7 @@ class BuyerController extends Controller
                         $html .= '<a onclick="selectBrands('.$brand->id.')">';
                         $html .= '<div class="row">';
                         $html .= '<div class="col-lg-5">';
-                        $html .= '<img src="'.$brand->image.'" class="img-fluid" alt="shoe image">';
+                        $html .= '<img src="'.$brand->image.'" class="img-fluid img-circleimg" alt="shoe image">';
                         $html .= '</div>';
                         $html .= '<div class="col-lg-7">';
                         $html .= '<div class="text-detail-roon">';
@@ -282,7 +282,7 @@ class BuyerController extends Controller
                     $html .= '<a onclick="selectBrands('.$brand->id.')">';
                     $html .= '<div class="row">';
                     $html .= '<div class="col-lg-5">';
-                    $html .= '<img src="'.$brand->image.'" class="img-fluid" alt="shoe image">';
+                    $html .= '<img src="'.$brand->image.'" class="img-fluid img-circleimg" alt="shoe image">';
                     $html .= '</div>';
                     $html .= '<div class="col-lg-7">';
                     $html .= '<div class="text-detail-roon">';

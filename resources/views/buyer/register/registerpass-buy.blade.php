@@ -21,7 +21,7 @@
 
     <link href="assets/css/regis3.css" rel="stylesheet">
 
-    @include('inc_stylesheet')
+    @include('buyer.layouts.inc_stylesheet')
 </head>
 
 <body>
@@ -122,7 +122,7 @@
             </div>
         </div>  -->
     </section>
-    @include('inc_footer')
+    @include('buyer.layouts.inc_footer')
 
 </body>
 </html>
