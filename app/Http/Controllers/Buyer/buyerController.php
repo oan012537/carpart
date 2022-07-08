@@ -16,7 +16,7 @@ use DB;
 use App\Models\Buyer\mUsers_buyer;
 
 use App\Models\Brand;
-use App\Models\BrandModel;
+use App\Models\ProductModel;
 use App\Models\SubModel;
 use App\Models\IssueYear;
 use App\Models\Category;
@@ -304,7 +304,7 @@ class BuyerController extends Controller
     }
 
     public function GetModel($brand){
-        $data['model'] = BrandModel::where('brand_id',$brand)->get();
+        $data['model'] = ProductModel::where('brand_id',$brand)->get();
         $data['brand'] = Brand::where('id',$brand)->get()->first();
 
         return json_encode($data);
@@ -312,7 +312,7 @@ class BuyerController extends Controller
 
     public function GetsubModel($id){
         $data['submodel'] = SubModel::where('model_id',$id)->get();
-        $data['model'] = BrandModel::where('id',$id)->get()->first();
+        $data['model'] = ProductModel::where('id',$id)->get()->first();
 
         return json_encode($data);
     }

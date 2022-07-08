@@ -16,7 +16,7 @@ use DB;
 use App\Models\Buyer\mUsers_buyer;
 
 use App\Models\Brand;
-use App\Models\BrandModel;
+use App\Models\ProductModel;
 use App\Models\SubModel;
 use App\Models\IssueYear;
 use App\Models\Category;
@@ -47,7 +47,7 @@ class RequestSparesController extends Controller
         // dd(Brand::where('id',session('search_fail.brand'))->first());
         return view('buyer.requestspares.add',[
             'brand' => Brand::where('id',session('search_fail.brand'))->first(),
-            'model' => BrandModel::where('id', session('search_fail.model'))->first(),
+            'model' => ProductModel::where('id', session('search_fail.model'))->first(),
             'submodel' => SubModel::where('id',session('search_fail.submodel'))->first(),
             'year' => IssueYear::where('id',session('search_fail.year'))->first(),
             'category' => Category::where('id',session('search_fail.category'))->first(),
