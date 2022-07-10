@@ -74,6 +74,13 @@
 
                         </div>
                         </form>
+                        <div class="social-log">
+                            <img src="assets/img/login/i1.png" class="img-fluid" alt="">
+                            &nbsp;
+                            <img src="assets/img/login/i2.png" class="img-fluid" alt="">
+                            &nbsp;
+                            <img src="assets/img/login/i3.png" class="img-fluid" alt="">
+                        </div>
                         <div class="text-or-t">
                             <p>
                                 หรือ
