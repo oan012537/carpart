@@ -44,13 +44,13 @@
 
                                 <div class="box__radio">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault1">
+                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault1" value="created_at">
                                         <label class="form-check-label" for="flexRadioDefault1">
                                             วันที่สมัคร
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault2" checked>
+                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault2" checked value="updated_at">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             วันที่อนุมัติ
                                         </label>
@@ -61,6 +61,7 @@
                                     <label for="">ช่วงวัน-เวลา</label>
                                     <div class="input-group ">
                                         <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="button-yes"  name="date" id="date" readonly>
+                                        <input type="hidden"   name="dates" id="dates" readonly value="{{date("Y-m-d")}},{{date("Y-m-d")}}">
                                     </div>
                                 </div>
 
@@ -363,7 +364,7 @@
 					d.search = $('#search').val();
 					// d.lastname = $('#lastname').val();
 					d.radiodate = $('input[name="radiodate"]:checked').val();
-					d.date = $('#date').val();
+					d.date = $('#dates').val();
 				},
 			},
 			columns: [
@@ -371,8 +372,8 @@
 				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
 				{ 'className': "text-center", data: 'first_name', name: 'first_name' },
 				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at' },
-				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
+				{ 'className': "text-center", data: 'created_at', name: 'created_at',searchable: false },
+				{ 'className': "text-center", data: 'updated_at', name: 'updated_at',searchable: false },
 				{ 'className': "text-center", data: 'active', name: 'status',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'comment', name: 'comment' },
 				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
@@ -643,13 +644,15 @@
         });
     }
     $('input[name="date"]').daterangepicker({
-        "startDate": moment().subtract(1, 'months'),
+        // "startDate": moment().subtract(1, 'months'),
+        "startDate": moment(),
         "endDate": moment(),
         locale: {
             format: 'DD/MM/Y'
         }
     }, function(start, end, label) {
         console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+        $("#dates").val(start.format('YYYY-MM-DD')+','+end.format('YYYY-MM-DD'));
     });
 </script>
 @stop
