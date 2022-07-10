@@ -240,14 +240,6 @@ class BuyerController extends Controller
         return view('buyer.register.registerpass-buy');
     }
 
-    public function home_search()
-    {
-        // $data['brands'] = DB::table('brands')->get();
-        return view('buyer.homesearch.home-search',[
-            'brands_select' => Brand::get(),
-            'category' => Category::get(),
-        ]);
-    }
 
     public function filterBrands($text)
     {

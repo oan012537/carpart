@@ -108,70 +108,7 @@
                 <br><br>
                 <div class="box-scoll-roon">
                     <div class="brands-all">
-                        @php 
-                            $count_brands = DB::table('brands')->count();
-                            $checkcolumn = ceil($count_brands/5); //ไม่เอาเศษ
-                            $checkcount = $count_brands%5; //ค่าที่เกิน
-                        @endphp
-
-                        @for($i=0;$i<$checkcolumn;$i++)
-                        @php
-                            if($i==0){
-                                $store_id[] = '';
-                            }
-                            $brands = DB::table('brands')->whereNotIn('id',$store_id)->limit(5)->get();
-                        @endphp
-                        <div class="row">
-                            @if($i == $checkcolumn-1)
-                                @if(!empty($checkcount))
-                                    @php $check = 5 - $checkcount; @endphp
-                                    @foreach($brands as $brand)
-                                    @php $store_id[] = $brand->id; @endphp
-                                    <div class="col-sm">
-                                        <a onclick="selectBrands({{$brand->id}})">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="text-detail-roon">
-                                                    <p>
-                                                        {{$brand->name_en}}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                    @endforeach
-                                    @for($x=0;$x<$check;$x++)
-                                    <div class="col-sm"></div>
-                                    @endfor
-                                @endif
-                            @else
-                                @foreach($brands as $brand)
-                                @php $store_id[] = $brand->id; @endphp
-                                <div class="col-sm">
-                                    <a onclick="selectBrands({{$brand->id}})">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <div class="text-detail-roon">
-                                                <p>
-                                                    {{$brand->name_en}}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </a>
-                                </div>
-                                @endforeach
-                            @endif
-                        </div>
-                        <br>
-                        @endfor
+                        
                     </div>
                 </div>
             </div>

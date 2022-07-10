@@ -26,6 +26,27 @@ use App\Models\SubSubCategory;
 
 class SearchProductController extends Controller
 {
-    
+    public function home_search()
+    {
+        // $data['brands'] = DB::table('brands')->get();
+        return view('buyer.homesearch.home-search',[
+            'brands_select' => Brand::get(),
+            'category' => Category::get(),
+        ]);
+    }
+
+    public function Getsearch(Request $request){
+        if(!empty($request->brand)){
+            $request->session()->put('search-brand',$request->brand);
+        }
+    }
+
+    public function home_search_brand(){
+        
+        return view('buyer.homesearch.home-search',[
+            'brands_select' => Brand::get(),
+            'category' => Category::get(),
+        ]);
+    }
 
 }

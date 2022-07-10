@@ -525,11 +525,14 @@
         });
 
         function selectBrands(id){
-            brand = id;
+            // brand = id
             $.ajax({
                 method: "POST",
-                url: "{{url('buyer')}}"
-            })
+                url: "{{url('buyer/GetsearchBox')}}",
+                data: {"_token":" {{ csrf_token() }} ",brand:id}
+            }).done(function(rec){
+                location.href = "{{url('buyer/home-search1')}}";
+            });
         }
 
         function searchnavBrands(id){
