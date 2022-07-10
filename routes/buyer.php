@@ -52,14 +52,15 @@ Route::prefix('buyer')->group(function(){
     Route::group(['middleware' => ['buyer']], function () {
         Route::get('home-search', [Buyer\SearchProductController::class, 'home_search'])->name('buyer.home-search');
         Route::post('search-product', [Buyer\BuyerController::class, 'search_product']);
-        Route::get('home-search1',[Buyer\SearchProductController::class, 'home_search_brand']);
-
+        Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand']);
+        Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
         
     });
 
     //Ajax
     Route::get('filterBrands/{id}', [Buyer\BuyerController::class, 'filterBrands']);
     Route::get('searchBrands/{id}', [Buyer\BuyerController::class, 'searchBrands']);
+    Route::get('searchBox/{id}', [Buyer\SearchProductController::class, 'searchBox']);
     Route::get('GetModel/{id}', [Buyer\BuyerController::class, 'GetModel']);
     Route::get('GetsubModel/{id}', [Buyer\BuyerController::class, 'GetsubModel']);
     Route::get('GetYear/{id}', [Buyer\BuyerController::class, 'GetYear']);

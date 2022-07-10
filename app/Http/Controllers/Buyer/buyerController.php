@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Session;
 use Helper;
 use DB;
-use Illuminate\Support\Facades\Redirect;;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\Buyer\mUsers_buyer;
 
 use App\Models\Brand;

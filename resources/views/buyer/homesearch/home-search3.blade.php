@@ -25,7 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- link navbar -->
-    <link href="{{asset('assets/css/home-seach1.css')}}" rel="stylesheet">
+    <link href="assets/css/home-seach3.css" rel="stylesheet">
 
     @include('buyer.layouts.inc_stylesheet')
 </head>
@@ -60,10 +60,22 @@
         <div class="container">
             <div class="box-roon-box">
                 <div class="text-h-roon">
-                    <p>
-                        เลือกแบรนด์
-                    </p>
+                    @php
+                        $brands_button = DB::table('brands')->where('id',session('search-brand'))->first();
+                        $models_button = DB::table('brands')->where('id',session('search-model'))->first();
+                    @endphp
+                    <button class="button button5">
+                     <i class="fa fa-close"></i>  {{$brands_button->name_en}} </button>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
+                    &nbsp;
+                    <button class="button button5">
+                       <i class="fa fa-close"></i> {{$models_button->name_en}} </button>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
+                    <button class="button button6">
+                    &nbsp;
+                    <i class="fa fa-close"></i> รุ่นย่อย </button>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="input-group box__search">
@@ -74,7 +86,7 @@
                     </div>
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
-                        <div class="text-tt-roon">
+                        <!-- <div class="text-tt-roon">
                             <a onclick="filterBrands('A')"><span> A </span></a>
                             <a onclick="filterBrands('B')"><span> B </span></a>
                             <a onclick="filterBrands('C')"><span> C </span></a>
@@ -101,15 +113,42 @@
                             <a onclick="filterBrands('X')"><span> X </span></a>
                             <a onclick="filterBrands('Y')"><span> Y </span></a>
                             <a onclick="filterBrands('Z')"><span> Z </span></a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
                 <br><br>
                 <div class="box-scoll-roon">
-                    <div class="brands-all">
+
+                    <!-- model  -->
+                    <div class="models-all">
+                        <div class="row">
+                            @foreach($submodels as $subm)
+                            <div class="col-sm-3">
+                                <a onclick="selectSubModel({{$subm->id}})">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <!--<img src="assets/img/home-seach/r1.png" class="img-fluid" alt="shoe image">-->
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="text-detail-roon">
+                                            <p>
+                                                {{$subm->name_en}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="submodel-all row" style="display:none;">
                         
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -429,22 +468,6 @@
     @include('buyer.layouts.inc_footer')
     @include('buyer.layouts.inc_js')
     <script>
-        function filterBrands(text){
-            text = text;
-            // alert(text);
-            $('.brands-all').css('display','none');
-            $.ajax({
-                method: "GET",
-                url: "{!! url('/buyer/filterBrands/" + text + "') !!}",
-                dataType: "json"
-            }).done(function(rec){
-                console.log(rec)
-                // count = rec.length;
-
-                $('.box-scoll-roon').append(rec);
-            });
-        }
-
         $(document).on('keyup','#search-brand',function(){
             name = $('#search-brand').val();
             $('.brands-all').css('display','none');
@@ -461,10 +484,21 @@
             }
         });
 
-        function selectBrands(id){
+        function selectModel(id){
+            // brand = id
             $.ajax({
-                
-            })
+                method: "POST",
+                url: "{{url('buyer/GetsearchBox')}}",
+                data: {"_token":" {{ csrf_token() }} ",model:id},
+                dataType: "json"
+            }).done(function(rec){
+                location.href = "{{url('buyer/home-search1')}}";
+                // location.reload();
+                // console.log(rec)
+                // $('.models-all').css('display','none');
+                // $('.submodel-all').css('display','block');
+                // $('.submodel-all').append(rec);
+            });
         }
 
         function searchnavBrands(id){
@@ -584,57 +618,64 @@
 
     </script>
 
-    <script>
-        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-        var dropdown = document.getElementsByClassName("dropdown-btn");
-        var i;
+<script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
 
-        for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var dropdownContent = this.nextElementSibling;
-                if (dropdownContent.style.display === "block") {
-                    dropdownContent.style.display = "none";
-                } else {
-                    dropdownContent.style.display = "block";
-                }
-            });
-        }
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
     </script>
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
 
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        }
+
+
+    <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
     </script>
+
 
     <!-- JS  modal edit -->
     <script>
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("myBtn");
-        var span = document.getElementsByClassName("close")[0];
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-        span.onclick = function() {
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+    }
     </script>
+
+
+
 
     <!-- <script>
     $("div[id^='myModal']").each(function() {
@@ -662,7 +703,6 @@
 
     <!-- JS  upload-->
     <!-- <script src="./src/main.js"></script> -->
-    <!-- <script src="{{asset('assets/js/main.js')}}"></script> -->
     <script>
     document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
         const dropZoneElement = inputElement.closest(".drop-zone");
@@ -736,6 +776,7 @@
         }
     }
     </script>
+
 
 </body>
 
