@@ -80,11 +80,12 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::post('store', [Backend\ApprovalRequestIndividualController::class,'store'])->name('backend.approval.individual.store');
                 Route::get('edit/{id}', [Backend\ApprovalRequestIndividualController::class,'edit'])->name('backend.approval.individual.edit');
                 Route::post('update', [Backend\ApprovalRequestIndividualController::class,'update'])->name('backend.approval.individual.update');
+                Route::post('updates', [Backend\ApprovalRequestIndividualController::class,'fastupdate'])->name('backend.approval.individual.fast.update');
                 Route::get('destroy', [Backend\ApprovalRequestIndividualController::class,'destroy'])->name('backend.approval.individual.destroy');
 
                 Route::get('changestatus', [Backend\ApprovalRequestIndividualController::class,'changestatus']);
 
-                Route::post('addrole', [Backend\ApprovalRequestIndividualController::class,'addrole'])->name('backend.approval.individual.role.add');
+                Route::post('approve', [Backend\ApprovalRequestLegalController::class,'approval'])->name('backend.approval.individual.approve');
 
                 Route::get('getdetails', [Backend\ApprovalRequestIndividualController::class,'getdetails'])->name('backend.approval.individual.getdetails');
             });
