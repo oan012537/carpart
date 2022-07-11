@@ -120,7 +120,7 @@
                     <div class="models-all">
                         <div class="row">
                             @foreach($models as $model)
-                            <div class="col-sm-3">
+                            <div class="col-sm">
                                 <a onclick="selectModel({{$model->id}})">
                                 <div class="row">
                                     <div class="col-lg-5">
