@@ -27,6 +27,7 @@
 
     <!-- link navbar -->
     <link href="{{asset('assets/css/home-seach1.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet">
 
     @include('buyer.layouts.inc_stylesheet')
 </head>
@@ -532,7 +533,7 @@
                 url: "{{url('buyer/GetsearchBox')}}",
                 data: {"_token":" {{ csrf_token() }} ",brand:id}
             }).done(function(rec){
-                location.href = "{{url('buyer/home-search2')}}";
+                location.href = "buyer/home-search2?brand="+id;
             });
         }
 

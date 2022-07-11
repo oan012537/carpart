@@ -23,6 +23,7 @@ use App\Models\IssueYear;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
+use App\Models\Product;
 use Response;
 
 class BuyerController extends Controller

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\Buyer\mUsers_buyer;
 
 use App\Models\Brand;
+use App\Models\Product;
 use App\Models\ProductModel;
 use App\Models\SubModel;
 use App\Models\IssueYear;
@@ -70,14 +71,20 @@ class SearchProductController extends Controller
         }
     }
 
-    public function home_search_brand(){
+    public function home_search_brand(Request $request){
+        // dd($request);
+        // $like = $request;
         $submodel = SubModel::where('model_id',session('search-model'))->get();
+
+        $products = Product::orderby('updated_at','asc')->where('brand_id',$request->brand)->get();
+        // dd($products);
         
         return view('buyer.homesearch.home-search2',[
             'brands_select' => Brand::get(),
             'category' => Category::get(),
             'models' => ProductModel::where('brand_id',session('search-brand'))->get(),
             'submodels' => @$submodel,
+            'products' => $products,
         ]);
     }
 
