@@ -21,7 +21,7 @@ class ApprovalRequestLegalController extends Controller
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
-        if(!$search){
+        if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
                 ->orwhere('store_name ','LIKE','%'.$search.'%')
@@ -31,8 +31,11 @@ class ApprovalRequestLegalController extends Controller
                 ;
             });
         }
-        if(!$date){
-            $data->whereBetween($radiodate,[$date]);
+        if($date!= ''){
+            $dates = explode(',',$date);
+            $sdate = $dates[0];
+            $edate = $dates[1];
+            $data->whereBetween('user_suppliers.'.$radiodate,[$sdate,$edate]);
         }
 		$sQuery	= Datatables::of($data)
 		// ->filter(function ($query) use ($dataserch){
@@ -108,7 +111,7 @@ class ApprovalRequestLegalController extends Controller
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
-        if(!$search){
+        if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
                 ->orwhere('store_name ','LIKE','%'.$search.'%')
@@ -118,8 +121,11 @@ class ApprovalRequestLegalController extends Controller
                 ;
             });
         }
-        if(!$date){
-            $data->whereBetween($radiodate,[$date]);
+        if($date!= ''){
+            $dates = explode(',',$date);
+            $sdate = $dates[0];
+            $edate = $dates[1];
+            $data->whereBetween('user_suppliers.'.$radiodate,[$sdate,$edate]);
         }
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
@@ -165,7 +171,7 @@ class ApprovalRequestLegalController extends Controller
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
-        if(!$search){
+        if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
                 ->orwhere('store_name ','LIKE','%'.$search.'%')
@@ -175,8 +181,11 @@ class ApprovalRequestLegalController extends Controller
                 ;
             });
         }
-        if(!$date){
-            $data->whereBetween($radiodate,[$date]);
+        if($date!= ''){
+            $dates = explode(',',$date);
+            $sdate = $dates[0];
+            $edate = $dates[1];
+            $data->whereBetween('user_suppliers.'.$radiodate,[$sdate,$edate]);
         }
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
@@ -222,7 +231,7 @@ class ApprovalRequestLegalController extends Controller
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
-        if(!$search){
+        if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
                 ->orwhere('store_name ','LIKE','%'.$search.'%')
@@ -232,8 +241,11 @@ class ApprovalRequestLegalController extends Controller
                 ;
             });
         }
-        if(!$date){
-            $data->whereBetween($radiodate,[$date]);
+        if($date!= ''){
+            $dates = explode(',',$date);
+            $sdate = $dates[0];
+            $edate = $dates[1];
+            $data->whereBetween('user_suppliers.'.$radiodate,[$sdate,$edate]);
         }
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){

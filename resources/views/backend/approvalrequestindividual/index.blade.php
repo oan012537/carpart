@@ -362,7 +362,6 @@
 				url : "{{url('backend/approvalrequest/individual/datatables')}}",
 				data: function (d) {
 					d.search = $('#search').val();
-					// d.lastname = $('#lastname').val();
 					d.radiodate = $('input[name="radiodate"]:checked').val();
 					d.date = $('#dates').val();
 				},
@@ -449,7 +448,9 @@
 			ajax:{ 
 				url : "{{url('backend/approvalrequest/individual/datatables/wait')}}",
 				data: function (d) {
-					d.name = $('#name').val();
+					d.search = $('#search').val();
+					d.radiodate = $('input[name="radiodate"]:checked').val();
+					d.date = $('#dates').val();
 				},
 			},
 			columns: [
@@ -499,7 +500,9 @@
 			ajax:{ 
 				url : "{{url('backend/approvalrequest/individual/datatables/approval')}}",
 				data: function (d) {
-					d.name = $('#name').val();
+					d.search = $('#search').val();
+					d.radiodate = $('input[name="radiodate"]:checked').val();
+					d.date = $('#dates').val();
 				},
 			},
 			columns: [
@@ -548,7 +551,9 @@
 			ajax:{ 
 				url : "{{url('backend/approvalrequest/individual/datatables/disapproved')}}",
 				data: function (d) {
-					d.name = $('#name').val();
+					d.search = $('#search').val();
+					d.radiodate = $('input[name="radiodate"]:checked').val();
+					d.date = $('#dates').val();
 				},
 			},
 			columns: [

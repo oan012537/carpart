@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- link navbar -->
     <link href="assets/css/home-seach2.css" rel="stylesheet">
+    <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet">
 
     @include('buyer.layouts.inc_stylesheet')
 </head>
@@ -119,7 +120,7 @@
                     <div class="models-all">
                         <div class="row">
                             @foreach($models as $model)
-                            <div class="col-sm-3">
+                            <div class="col-sm">
                                 <a onclick="selectModel({{$model->id}})">
                                 <div class="row">
                                     <div class="col-lg-5">
@@ -326,12 +327,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <?php for ($i = 1; $i <= 3; $i++) { ?>
-                                <div class="col-xl-4 col-lg-6 col-6">
+                                @foreach($products as $product)
+                                <div class="col-xl-4 col-lg- col-6">
                                     <a href="javascript:void(0)">
                                         <div class="box__itemssproductintro">
                                             <div class="box__image">
-                                                <img src="assets/img/home/product-intro<?php echo $i; ?>.png"
+                                                <img src="assets/img/home/product-intro2.png"
                                                     class="img-fluid" alt="">
 
                                                 <div class="box__status">
@@ -356,81 +357,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <?php } ?>
-                            </div>
-
-                            <br>
-                            <div class="row">
-                                <?php for ($i = 1; $i <= 3; $i++) { ?>
-                                <div class="col-xl-4 col-lg-6 col-6">
-                                    <a href="javascript:void(0)">
-                                        <div class="box__itemssproductintro">
-                                            <div class="box__image">
-                                                <img src="assets/img/home/product-intro<?php echo $i; ?>.png"
-                                                    class="img-fluid" alt="">
-
-                                                <div class="box__status">
-                                                    <p>Promotion</p>
-                                                </div>
-
-                                                <div class="box__grade">
-                                                    <p>Grade</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="box__content">
-                                                <h5 class="intro__title">กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA
-                                                    AE80 ,
-                                                    AE90 ,
-                                                    AE101
-                                                    16V
-                                                </h5>
-                                                <p class="intro__serial">รหัส: 90915-YZZE1 - TOYOTA </p>
-                                                <p class="intro__price">฿ <span>72.00</span> /ชิ้น</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <?php } ?>
-                            </div>
-
-                            <br>
-                            <div class="row">
-                                <?php for ($i = 1; $i <= 3; $i++) { ?>
-                                <div class="col-xl-4 col-lg-6 col-6">
-                                    <a href="javascript:void(0)">
-                                        <div class="box__itemssproductintro">
-                                            <div class="box__image">
-                                                <img src="assets/img/home/product-intro<?php echo $i; ?>.png"
-                                                    class="img-fluid" alt="">
-
-                                                <div class="box__status">
-                                                    <p>Promotion</p>
-                                                </div>
-
-                                                <div class="box__grade">
-                                                    <p>Grade</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="box__content">
-                                                <h5 class="intro__title">กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA
-                                                    AE80 ,
-                                                    AE90 ,
-                                                    AE101
-                                                    16V
-                                                </h5>
-                                                <p class="intro__serial">รหัส: 90915-YZZE1 - TOYOTA </p>
-                                                <p class="intro__price">฿ <span>72.00</span> /ชิ้น</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <?php } ?>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
 
             <br>

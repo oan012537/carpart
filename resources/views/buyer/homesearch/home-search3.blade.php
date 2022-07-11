@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- link navbar -->
     <link href="assets/css/home-seach3.css" rel="stylesheet">
+    <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet">
 
     @include('buyer.layouts.inc_stylesheet')
 </head>
