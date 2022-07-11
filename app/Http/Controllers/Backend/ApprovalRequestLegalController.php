@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Datatables;
 use App\Models\Backend\Role;
-use App\Models\Supplier\users_supplier;
+use App\Models\UserSupplier;
 use Response;
 
 class ApprovalRequestLegalController extends Controller
@@ -17,7 +17,23 @@ class ApprovalRequestLegalController extends Controller
 
     public function datatables(){
 
-		$data = users_supplier::where('type','นิติบุคคล');
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->where('supplier_type','นิติบุคคล');
+        $search = request('search');
+        $radiodate = request('radiodate');
+        $date = request('date');
+        if(!$search){
+            $data->where(function ($query) use ($search){
+                $query->where('code','LIKE','%'.$search.'%')
+                ->orwhere('store_name ','LIKE','%'.$search.'%')
+                ->orwhere('name','LIKE','%'.$search.'%')
+                ->orwhere('personal_card_id','LIKE','%'.$search.'%')
+                ->orwhere('comment','LIKE','%'.$search.'%')
+                ;
+            });
+        }
+        if(!$date){
+            $data->whereBetween($radiodate,[$date]);
+        }
 		$sQuery	= Datatables::of($data)
 		// ->filter(function ($query) use ($dataserch){
 		// 	$explodesearch = explode(',',$dataserch);
@@ -88,7 +104,23 @@ class ApprovalRequestLegalController extends Controller
 
     public function datatables_wait(){
 
-		$data = users_supplier::where('active','2')->where('type','นิติบุคคล');
+		$data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->where('supplier_type','นิติบุคคล')->where('active','2');
+        $search = request('search');
+        $radiodate = request('radiodate');
+        $date = request('date');
+        if(!$search){
+            $data->where(function ($query) use ($search){
+                $query->where('code','LIKE','%'.$search.'%')
+                ->orwhere('store_name ','LIKE','%'.$search.'%')
+                ->orwhere('name','LIKE','%'.$search.'%')
+                ->orwhere('personal_card_id','LIKE','%'.$search.'%')
+                ->orwhere('comment','LIKE','%'.$search.'%')
+                ;
+            });
+        }
+        if(!$date){
+            $data->whereBetween($radiodate,[$date]);
+        }
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));
@@ -129,7 +161,23 @@ class ApprovalRequestLegalController extends Controller
 
     public function datatables_approval(){
 
-        $data = users_supplier::where('active','1')->where('type','นิติบุคคล');
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->where('supplier_type','นิติบุคคล')->where('active','1');
+        $search = request('search');
+        $radiodate = request('radiodate');
+        $date = request('date');
+        if(!$search){
+            $data->where(function ($query) use ($search){
+                $query->where('code','LIKE','%'.$search.'%')
+                ->orwhere('store_name ','LIKE','%'.$search.'%')
+                ->orwhere('name','LIKE','%'.$search.'%')
+                ->orwhere('personal_card_id','LIKE','%'.$search.'%')
+                ->orwhere('comment','LIKE','%'.$search.'%')
+                ;
+            });
+        }
+        if(!$date){
+            $data->whereBetween($radiodate,[$date]);
+        }
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));
@@ -170,7 +218,23 @@ class ApprovalRequestLegalController extends Controller
 
 	public function datatables_disapproved(){
 
-        $data = users_supplier::where('active','3')->where('type','นิติบุคคล');
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->where('supplier_type','นิติบุคคล')->where('active','0');
+        $search = request('search');
+        $radiodate = request('radiodate');
+        $date = request('date');
+        if(!$search){
+            $data->where(function ($query) use ($search){
+                $query->where('code','LIKE','%'.$search.'%')
+                ->orwhere('store_name ','LIKE','%'.$search.'%')
+                ->orwhere('name','LIKE','%'.$search.'%')
+                ->orwhere('personal_card_id','LIKE','%'.$search.'%')
+                ->orwhere('comment','LIKE','%'.$search.'%')
+                ;
+            });
+        }
+        if(!$date){
+            $data->whereBetween($radiodate,[$date]);
+        }
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y',strtotime($data->updated_at));

@@ -17,10 +17,15 @@ use App\Http\Controllers\Buyer\ProductDetailController;
 // Route::get('/buyer/login-buyer', 'App\Http\Controllers\Buyer\buyerController@login_buyer');
 
 /////////// BUYER ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Route::prefix('buyer')->group(function(){
 
     Route::get('login-buy', [Buyer\BuyerController::class, 'login_buyer']);
     Route::post('login-buy-post', [Buyer\BuyerController::class, 'login_buyer_post'])->name('buyer.login');
+    Route::post('login/phone', [Buyer\BuyerController::class, 'loginphone'])->name('buyer.login.confirmphone');
+    Route::get('login/gettoken', [Buyer\BuyerController::class, 'logingettoken'])->name('buyer.login.gettoken');
+    Route::post('login/confirmotp', [Buyer\BuyerController::class, 'loginconfirmotp'])->name('buyer.login.confirmotp');
+    Route::post('login/success', [Buyer\BuyerController::class, 'loginsuccess'])->name('buyer.login.success');
     Route::get('logout-buy', [Buyer\BuyerController::class, 'logout_buyer']);
     Route::get('regis', [Buyer\BuyerController::class, 'regis']);
     Route::post('regis', [Buyer\BuyerController::class, 'regis_post'])->name('pdpa');
@@ -46,19 +51,25 @@ Route::prefix('buyer')->group(function(){
 
 
     Route::group(['middleware' => ['buyer']], function () {
-        Route::get('home-search', [Buyer\BuyerController::class, 'home_search'])->name('buyer.home-search');
+        Route::get('home-search', [Buyer\SearchProductController::class, 'home_search'])->name('buyer.home-search');
         Route::post('search-product', [Buyer\BuyerController::class, 'search_product']);
-
-        //Ajax
-        Route::get('filterBrands/{id}', [Buyer\BuyerController::class, 'filterBrands']);
-        Route::get('searchBrands/{id}', [Buyer\BuyerController::class, 'searchBrands']);
-        Route::get('GetModel/{id}', [Buyer\BuyerController::class, 'GetModel']);
-        Route::get('GetsubModel/{id}', [Buyer\BuyerController::class, 'GetsubModel']);
-        Route::get('GetYear/{id}', [Buyer\BuyerController::class, 'GetYear']);
-        Route::get('GetYearID/{id}', [Buyer\BuyerController::class, 'GetYearID']);
-        Route::get('GetsubCategory/{id}', [Buyer\BuyerController::class, 'GetsubCategory']);
-        Route::get('GetSubsubCategory/{id}', [Buyer\BuyerController::class, 'GetSubsubCategory']);
+        Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand']);
+        Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
+        
     });
+
+    //Ajax
+    Route::get('filterBrands/{id}', [Buyer\BuyerController::class, 'filterBrands']);
+    Route::get('searchBrands/{id}', [Buyer\BuyerController::class, 'searchBrands']);
+    Route::get('searchBox/{id}', [Buyer\SearchProductController::class, 'searchBox']);
+    Route::get('GetModel/{id}', [Buyer\BuyerController::class, 'GetModel']);
+    Route::get('GetsubModel/{id}', [Buyer\BuyerController::class, 'GetsubModel']);
+    Route::get('GetYear/{id}', [Buyer\BuyerController::class, 'GetYear']);
+    Route::get('GetYearID/{id}', [Buyer\BuyerController::class, 'GetYearID']);
+    Route::get('GetsubCategory/{id}', [Buyer\BuyerController::class, 'GetsubCategory']);
+    Route::get('GetSubsubCategory/{id}', [Buyer\BuyerController::class, 'GetSubsubCategory']);
+
+    Route::post('GetsearchBox',[Buyer\SearchProductController::class, 'Getsearch']);
 });
 
 

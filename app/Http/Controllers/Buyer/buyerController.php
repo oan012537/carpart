@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Session;
 use Helper;
 use DB;
-use Illuminate\Support\Facades\Redirect;;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\Buyer\mUsers_buyer;
 
 use App\Models\Brand;
@@ -39,16 +39,65 @@ class BuyerController extends Controller
 
         if (Auth::guard('buyer')->attempt(['phone' => $username, 'password' => $password]) )
         {
-            return redirect('buyer/home-search');
+            // return redirect('buyer/home-search');
+            return view('buyer.login.phone');
         }
         else if(Auth::guard('buyer')->attempt(['email' => $username, 'password' => $password]) )
         {
-            return redirect('buyer/home-search');
+            // return redirect('buyer/home-search');
+            return view('buyer.login.phone');
         }else{
 
             // dd("username หรือ password ผิด");
             return redirect('backend\login')->with(['error' => 'ชื่อผู้ใช้งาน หรือรหัสผ่านผิด !']);
         }
+    }
+    public function loginphone(Request $request)
+    {
+        $tokens = $this->gettokenotp($request->phone);
+        return view('buyer.login.otp',['tokens'=>$tokens,'phone'=>$request->phone]);
+    }
+    public function logingettoken(Request $request){
+        $tokens = $this->gettokenotp($request->phone);
+        return $tokens;
+    }
+
+    public function loginsuccess(Request $request){
+        return redirect('buyer/home-search');
+    }
+    public function loginconfirmotp(Request $request)
+    {
+        // dd($request->all());
+        $otpcode = $request->otp1.$request->otp2.$request->otp3.$request->otp4.$request->otp5.$request->otp6;
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "token"=>$request->tokenotp,
+            "otp_code"=>$otpcode,
+            )),
+        ));
+        $response = curl_exec($curl);
+        $info = curl_getinfo($curl);
+        curl_close($curl);
+        // echo $response;
+        $response = json_decode($response,true);
+        // if($info["http_code"] == '200'){
+        //     return redirect('buyer/home-search');
+        // }
+        return Response::json($response);
     }
 
     public function logout_buyer()
@@ -240,14 +289,6 @@ class BuyerController extends Controller
         return view('buyer.register.registerpass-buy');
     }
 
-    public function home_search()
-    {
-        // $data['brands'] = DB::table('brands')->get();
-        return view('buyer.homesearch.home-search',[
-            'brands_select' => Brand::get(),
-            'category' => Category::get(),
-        ]);
-    }
 
     public function filterBrands($text)
     {
