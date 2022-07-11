@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Buyer as Buyer;
-use App\Http\Controllers\Buyer\ProductDetailController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,6 +75,6 @@ Route::prefix('buyer')->group(function(){
 
 // ========== Product Detail ================
 
-Route::get('product/{productname}/{id}', [ProductDetailController::class, 'index']);
+Route::get('product/{productname}/{id}', [Buyer\ProductDetailController::class, 'index']);
 
 // ========== Product Detail ================
