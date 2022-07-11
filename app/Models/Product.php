@@ -82,5 +82,4 @@ class Product extends Model
         return $this->hasMany('App\Models\Buyer\ProductReview');
     }
 
-
 }

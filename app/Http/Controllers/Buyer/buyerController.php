@@ -54,11 +54,13 @@ class BuyerController extends Controller
     }
     public function loginphone(Request $request)
     {
-        $tokens = $this->gettokenotp($request->phone);
+        // $tokens = $this->gettokenotp($request->phone); //-- OAT คอมเม้นต์ ถ้าใช้งาจริงให้เปิด และลบ $tokens = ""; ออก
+        $tokens = "";
         return view('buyer.login.otp',['tokens'=>$tokens,'phone'=>$request->phone]);
     }
     public function logingettoken(Request $request){
-        $tokens = $this->gettokenotp($request->phone);
+        // $tokens = $this->gettokenotp($request->phone); //-- OAT คอมเม้นต์ ถ้าใช้งาจริงให้เปิด และลบ $tokens = ""; ออก
+        $tokens = "";
         return $tokens;
     }
 
@@ -67,37 +69,42 @@ class BuyerController extends Controller
     }
     public function loginconfirmotp(Request $request)
     {
-        // dd($request->all());
-        $otpcode = $request->otp1.$request->otp2.$request->otp3.$request->otp4.$request->otp5.$request->otp6;
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_HTTPHEADER => array(
-                "Content-Type: application/json",
-                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
-                "secret_key:SCFmYT1IgPXJT4nr",
-            ),
-            CURLOPT_POSTFIELDS =>json_encode(array(
-            "token"=>$request->tokenotp,
-            "otp_code"=>$otpcode,
-            )),
-        ));
-        $response = curl_exec($curl);
-        $info = curl_getinfo($curl);
-        curl_close($curl);
-        // echo $response;
-        $response = json_decode($response,true);
-        // if($info["http_code"] == '200'){
-        //     return redirect('buyer/home-search');
-        // }
-        return Response::json($response);
+        //-- OAT คอมเม้นต์เพื่อทดสอบ ข้ามการส่ง OTP ใช้งานจริง ให้ลบ return true; และเอาคอมเม้นต์ด้านล่างออก
+        return true;
+
+        // // dd($request->all());
+        // $otpcode = $request->otp1.$request->otp2.$request->otp3.$request->otp4.$request->otp5.$request->otp6;
+        // $curl = curl_init();
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        //     CURLOPT_HTTPHEADER => array(
+        //         "Content-Type: application/json",
+        //         "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+        //         "secret_key:SCFmYT1IgPXJT4nr",
+        //     ),
+        //     CURLOPT_POSTFIELDS =>json_encode(array(
+        //     "token"=>$request->tokenotp,
+        //     "otp_code"=>$otpcode,
+        //     )),
+        // ));
+        // $response = curl_exec($curl);
+        // $info = curl_getinfo($curl);
+        // curl_close($curl);
+        // // echo $response;
+        // $response = json_decode($response,true);
+        // // if($info["http_code"] == '200'){
+        // //     return redirect('buyer/home-search');
+        // // }
+        // // return Response::json($response);
+
+       
     }
 
     public function logout_buyer()

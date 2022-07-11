@@ -19,7 +19,7 @@ class users_supplier extends Authenticatable
      * @var string[]
      */
 
-    protected $table = 'users_supplier';
+    protected $table = 'user_suppliers';
     protected $fillable = [
 
         'email', 'password',

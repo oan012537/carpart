@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Supplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Supplier\users_supplier;
+use App\Models\UserSupplier;
 use App\Models\Amphures;
 use App\Models\Geographies;
 use App\Models\Districts;
@@ -22,12 +22,12 @@ use Illuminate\Support\Facades\Hash;
 class ProfileController extends Controller
 {
     public function index(){
-        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        $supplier = UserSupplier::find(Auth::guard('supplier')->user()->id);
         return view('supplier.profile.profile.index',['supplier'=>$supplier]);
     }
 
     public function edit(){
-        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        $supplier = UserSupplier::find(Auth::guard('supplier')->user()->id);
         // $supplier = [];
         $amphures = Amphures::where('province_id',$supplier->address_province)->get();
         $districts = Districts::where('amphure_id',$supplier->address_amphure)->get();
@@ -50,7 +50,7 @@ class ProfileController extends Controller
     public function update(Request $request){
         
         $imgcover1 = '';
-        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        $supplier = UserSupplier::find(Auth::guard('supplier')->user()->id);
         if($request->hasFile('myFile')){
 			$files = $request->file('myFile');
             $filename 	= $files->getClientOriginalName();
@@ -93,8 +93,8 @@ class ProfileController extends Controller
         $supplier->pic_card = $imgcover1;
         $supplier->save();
         return redirect()->route('supplier.profile');
-        // $users_supplier = users_supplier::find(Auth::guard('supplier'));
-        // dd($users_supplier);
+        // $UserSupplier = UserSupplier::find(Auth::guard('supplier'));
+        // dd($UserSupplier);
         // return view('supplier.profile.profile.update');
     }
 
@@ -119,13 +119,13 @@ class ProfileController extends Controller
 
 
     public function storeindex(){
-        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        $supplier = UserSupplier::find(Auth::guard('supplier')->user()->id);
         return view('supplier.profile.store.index',['supplier'=>$supplier]);
     }
 
     public function storeedit(){
-        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
-        // dd($users_supplier);
+        $supplier = UserSupplier::find(Auth::guard('supplier')->user()->id);
+        // dd($UserSupplier);
         // $supplier = [];
         $amphures = Amphures::where('province_id',$supplier->store_province)->get();
         $districts = Districts::where('amphure_id',$supplier->store_amphure)->get();
@@ -149,7 +149,7 @@ class ProfileController extends Controller
         // dd($request->all());
         
         $imgcover1 = '';
-        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        $supplier = UserSupplier::find(Auth::guard('supplier')->user()->id);
         
         $supplier->store_name = $request->name;
         $supplier->company_email = $request->email;
@@ -178,7 +178,7 @@ class ProfileController extends Controller
 
     public function legalstoreupdate(Request $request){
         // dd($request->all());
-        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        $supplier = UserSupplier::find(Auth::guard('supplier')->user()->id);
         
         $certificate = '';
         if($request->hasFile('myFile')){
@@ -242,7 +242,7 @@ class ProfileController extends Controller
             }
             
 		}
-        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        $supplier = UserSupplier::find(Auth::guard('supplier')->user()->id);
         
         $supplier->company_name = $request->nameorg;
         $supplier->branch = $request->branch;
@@ -274,7 +274,7 @@ class ProfileController extends Controller
     }
 
     public function bankadd(){
-        $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
+        $supplier = UserSupplier::find(Auth::guard('supplier')->user()->id);
         return view('supplier.profile.bank.add',['supplier'=>$supplier]);
     }
 
@@ -388,7 +388,7 @@ class ProfileController extends Controller
             'role' => ['required', 'string', 'max:255'],
         ]);
 
-        $user = users_supplier::create([
+        $user = UserSupplier::create([
             'first_name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
