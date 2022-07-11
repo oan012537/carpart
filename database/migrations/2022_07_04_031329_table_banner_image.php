@@ -30,7 +30,7 @@ class TableBannerImage extends Migration
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
             // $table->timestamps();
 
-            $table->foreign('banner_id')->references('id')->on('banner')->onDelete('cascade');
+            // $table->foreign('banner_id')->references('id')->on('banner')->onDelete('cascade');
 
 
         });

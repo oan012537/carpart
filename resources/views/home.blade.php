@@ -113,7 +113,10 @@
                     <div class="row">
                         <?php for ($i = 1; $i <= 8; $i++) { ?>
                             <div class="col-xl-3 col-lg-6 col-6">
-                                <a href="javascript:void(0)">
+                                @php 
+                                    $link_url = 'product/กรองน้ำมันเครื่อง-VIOS-YARIS';
+                                @endphp
+                                <a href="{{ url($link_url,$i) }}">
                                     <div class="box__itemssproductintro">
                                         <div class="box__image">
                                             <img src="assets/img/home/product-intro<?php echo $i; ?>.png" class="img-fluid" alt="">

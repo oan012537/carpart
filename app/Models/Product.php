@@ -77,5 +77,10 @@ class Product extends Model
     	return $this->belongsTo('App\Models\SubSubCategory', 'sub_sub_category_id');
     }
 
+    public function productReviews()
+    {
+        return $this->hasMany('App\Models\Buyer\ProductReview');
+    }
+
 
 }
