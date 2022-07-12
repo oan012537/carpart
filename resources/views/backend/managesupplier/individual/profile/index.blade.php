@@ -19,12 +19,12 @@
 
                                 <div class="text_name_t">
                                     <p>
-                                        สมมติ แซ่ตัน
+                                        {{$supplier->personal_first_name}} {{$supplier->personal_last_name}}
                                     </p>
                                 </div>
                                 <div class="text_id_t">
                                     <p>
-                                        รหัสสมาชิก : 1234567
+                                        รหัสสมาชิก : {{$supplier->code}}
                                     </p>
                                 </div>
 
@@ -79,7 +79,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        สมมติ
+                                                        {{$supplier->personal_first_name}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -96,7 +96,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        แซ่ตัน
+                                                        {{$supplier->personal_last_name}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -113,7 +113,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        emily@sample.com
+                                                        {{$user->email}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -130,7 +130,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        012345678
+                                                        {{$user->phone}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -147,7 +147,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        12345678901234
+                                                        {{$supplier->personal_card_id}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -164,8 +164,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        123 หมู่ 0 ถนน เจริญกรุง ซอย 5 ตำบล ทุ่งสุลา อำเภอ ศรีราชา
-                                                        จังหวัด ชลบุรี 12345
+                                                        {{$supplier->addressidcard}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -182,7 +181,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        ดูรูปภาพ
+                                                        ดูรูปภาพ <a data-fancybox class="btn__viewimage fancybox" href="{{asset('suppliers/document')}}/{{$supplier->personal_card_id_image}}"><i class="fa-solid fa-image"></i></a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -199,7 +198,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        ดูรูปภาพ
+                                                        ดูรูปภาพ <a data-fancybox class="btn__viewimage fancybox" href="{{asset('suppliers/document')}}/{{$supplier->personal_house_registration}}"><i class="fa-solid fa-image"></i></a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -229,11 +228,11 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        เฮงเฮงอะไหล่ยนต์
+                                                        {{$store->store_name}}
                                                     </p>
                                                 </div>
                                                 <div class="img-proname">
-                                                    <img src="assets/img/mana/chack1.png" class="img-nameimg">
+                                                    <img src="{{asset('backends/assets/img/mana/chack1.png')}}" class="img-nameimg">
                                                 </div>
                                                 <div class="txt_namedetail_t2">
                                                     <p>
@@ -254,7 +253,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        012345678
+                                                        {{$supplier->phone}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -271,7 +270,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        emily@sample.com
+                                                        {{$supplier->email}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -288,7 +287,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        HengHeng Sell
+                                                        {{$supplier->facebook_url}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -305,7 +304,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        www,.sample.com
+                                                        {{$store->googlemap}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -322,8 +321,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        123 หมู่ 0 ถนน เจริญกรุง ซอย 5 ตำบล ทุ่งสุลา อำเภอ ศรีราชา
-                                                        จังหวัด ชลบุรี 12345
+                                                        {{$store->addressfull}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -335,8 +333,9 @@
 
 
                                     <div id="sold" class="tab-pane fade"><br>
-
-
+                                        @foreach ($banks as $bank)
+                                            
+                                        
                                         <div class="txt-pen-edit">
                                             <a href="#">
                                                 <p> <i class="fas fa-pencil-alt"></i> แก้ไข </p>
@@ -355,7 +354,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        123-123456-1
+                                                        {{$bank->bank_account_no}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -373,7 +372,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        บริษัท เฮงเฮงอะไหล่ยนต์
+                                                        {{$bank->bank_account_name}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -391,7 +390,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        กรุงไทย
+                                                        {{$bank->bank_name}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -409,7 +408,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        ประชาอุทิศ
+                                                        {{$bank->bank_branch}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -427,7 +426,7 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        ออมทรัพย์
+                                                        {{$bank->bank_account_type}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -444,10 +443,12 @@
                                             </div>
                                             <div class="col-9">
                                                 <div class="img-bookbank">
-                                                    <img src="assets/img/mana/img1.png" class="img-bookbook">
+                                                    {{-- <img src="{{asset('backends/assets/img/mana')}}/{{{{$bank->bank_book_image}}}}" class="img-bookbook"> --}}
+                                                    <a class="btn btn__pdf fancybox" data-fancybox href="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}" > <img src="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}" class="img-bookbook"> </a>
                                                 </div>
                                             </div>
                                         </div>
+                                        @endforeach
 
 
                                     </div>
@@ -808,5 +809,6 @@
 
 @section('script')
 <script>
+    
 </script>
 @stop   

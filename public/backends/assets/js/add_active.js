@@ -21,6 +21,7 @@ $(function () {
       var getMenuMain = $(this).attr("data-page");
       if (getPageMain2 == getMenuMain) {
         $(this).addClass("activemenumain");
+        $('.item-show-'+getMenuMain).addClass("show");
       }
     });
 

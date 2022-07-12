@@ -20,12 +20,12 @@
 
                                 <div class="text_name_t">
                                     <p>
-                                        โฉมงาม เฉิดฉาย
+                                        {{$user->first_name}} {{$user->last_name}}
                                     </p>
                                 </div>
                                 <div class="text_id_t">
                                     <p>
-                                        รหัสสมาชิก : 1234567
+                                        รหัสสมาชิก : {{$user->code}}
                                     </p>
                                 </div>
 
@@ -78,7 +78,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            โฉมงาม
+                                                            {{$user->profile_name}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -95,7 +95,41 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            โฉมงาม เฉิดฉาย
+                                                            {{$user->first_name}} {{$user->last_name}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="underline-pro">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="txt_name_t">
+                                                        <p>
+                                                            ชื่อนิติบุคคล/บริษัท
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="txt_namedetail_t">
+                                                        <p>
+                                                            {{$user->company_name}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="underline-pro">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="txt_name_t">
+                                                        <p>
+                                                            เลขที่ประจำตัวผู้เสียภาษี
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="txt_namedetail_t">
+                                                        <p>
+                                                            {{$user->vat_id}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -112,7 +146,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            emily@sample.com
+                                                            {{$user->email}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -129,7 +163,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            012345678
+                                                            {{$user->phone}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -146,7 +180,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            123 หมู่ 0 ถนน เจริญกรุง แขวง เยาวราช ซอย 5
+                                                            @if(!empty($profile)){{$profile->addressfull}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -163,7 +197,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            ทุ่งสุขลา
+                                                            @if(!empty($profile)){{$profile->district}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -180,7 +214,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            ศรีราชา
+                                                            @if(!empty($profile)){{$profile->amphure}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -197,7 +231,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            ชลบุรี
+                                                            @if(!empty($profile)){{$profile->province}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -214,7 +248,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            12345
+                                                            @if(!empty($profile)){{$profile->zip_code}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -256,7 +290,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            นายสมมุติ สมุด
+                                                            @if(!empty($buyertax)){{$profile->name}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -273,7 +307,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            0812345677
+                                                            @if(!empty($buyertax)){{$buyertax->texid}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -290,7 +324,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            1 234 5678 9101 2
+                                                            @if(!empty($buyertax)){{$buyertax->texid}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -307,7 +341,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            123 หมู่ 0 ถนน เจริญกรุง แขวง เยาวราช ซอย 5
+                                                            @if(!empty($buyertax)){{$buyertax->addressfull}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -324,7 +358,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            ทุ่งสุขลา
+                                                            @if(!empty($buyertax)){{$buyertax->district}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -341,7 +375,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            ศรีราชา
+                                                            @if(!empty($buyertax)){{$buyertax->amphure}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -358,7 +392,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            ชลบุรี
+                                                            @if(!empty($buyertax)){{$buyertax->province}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -375,7 +409,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            12345
+                                                            @if(!empty($buyertax)){{$buyertax->zip_code}} @endif
                                                         </p>
                                                     </div>
                                                 </div>

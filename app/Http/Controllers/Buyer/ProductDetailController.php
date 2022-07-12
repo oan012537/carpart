@@ -16,9 +16,10 @@ class ProductDetailController extends Controller
     {
         $data['product'] = Product::where('products.id', $id)
             //->where('products.status_code','!=','cancle')
-            ->with('brand', 'model', 'category', 'subCategory', 'subSubCategory', 'productReviews', 'productImages')
+            ->with('brand', 'model', 'category', 'subCategory', 'subSubCategory', 
+            'warranty', 'productReviews', 'productImages', 'transportation', 'supplier')
             ->first();
-
+        
         // -- สินค้าจากแบรนด์เดียวกัน    
         $data['products_brand'] = Product::where('products.brand_id', $data['product']->brand->id)
             ->where('products.id', '!=' , $id)
@@ -41,7 +42,6 @@ class ProductDetailController extends Controller
             ->paginate(12);
         
         
-
         //-- รีวิวทั้งหมด
         $review_score_all = $product_review = ProductReview::where('product_id', $data['product']->id);
         $data['review_score_all_count'] = $review_score_all->count();

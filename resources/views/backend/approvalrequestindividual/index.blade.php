@@ -413,37 +413,44 @@
                     $("#alerttotal").show();
                 }
                 
+            },
+            "drawCallback": function( settings ) {
+                $("#alerttotal").text(oTable.data().count());
+                if(oTable.data().count() > 0){
+                    $("#alerttotal").show();
+                }
             }
 		});
 		
 		$('#btnsearch').click(function(e){
 			oTable.draw();
-			e.preventDefault();
+			// e.preventDefault();
             $("#alerttotal").text(oTable.data().count());
             if(oTable.data().count() > 0){
                 $("#alerttotal").show();
             }
 
             oTablewait.draw();
-			e.preventDefault();
+			// e.preventDefault();
             $("#alertwait").text(oTablewait.data().count());
             if(oTablewait.data().count() > 0){
                 $("#alertwait").show();
             }
 
             oTableapproval.draw();
-			e.preventDefault();
+			// e.preventDefault();
             $("#alertapproval").text(oTableapproval.data().count());
             if(oTableapproval.data().count() > 0){
                 $("#alertapproval").show();
             }
 
             oTabledisapproved.draw();
-			e.preventDefault();
+			// e.preventDefault();
             $("#alertdisapproved").text(oTabledisapproved.data().count());
             if(oTabledisapproved.data().count() > 0){
                 $("#alertdisapproved").show();
             }
+            e.preventDefault();
 		});
         
 		// $("#noorder").keyup(function(e){
@@ -495,6 +502,12 @@
 			},
             initComplete:function( settings, json){
                 console.log(json);
+                $("#alertwait").text(oTablewait.data().count());
+                if(oTablewait.data().count() > 0){
+                    $("#alertwait").show();
+                }
+            },
+            "drawCallback": function( settings ) {
                 $("#alertwait").text(oTablewait.data().count());
                 if(oTablewait.data().count() > 0){
                     $("#alertwait").show();
@@ -551,6 +564,12 @@
                 if(oTableapproval.data().count() > 0){
                     $("#alertapproval").show();
                 }
+            },
+            "drawCallback": function( settings ) {
+                $("#alertapproval").text(oTableapproval.data().count());
+                if(oTableapproval.data().count() > 0){
+                    $("#alertapproval").show();
+                }
             }
 		});
 
@@ -602,6 +621,12 @@
                 if(oTabledisapproved.data().count() > 0){
                     $("#alertdisapproved").show();
                 }
+            },
+            "drawCallback": function( settings ) {
+                $("#alertdisapproved").text(oTabledisapproved.data().count());
+                if(oTabledisapproved.data().count() > 0){
+                    $("#alertdisapproved").show();
+                }
             }
 		});
 
@@ -642,16 +667,16 @@
             
             $('#modalviewdetailapp .box__codenumber #showcodemember').html(result.code); //อนุมัตเมื่อ
             $('#modalviewdetailapp #supplierid').val(result.id); //ID
-
+            var images = "{{asset('suppliers/document')}}/"+result.personal_card_id_image;
             $('#modalviewdetailapp .itemsdetail #shop').html(result.store_name); //ชื่อร้าน
             $('#modalviewdetailapp .itemsdetail #name').html(result.personal_first_name); //ชื่อ
             $('#modalviewdetailapp .itemsdetail #surname').html(result.personal_last_name); //นามสกุล
             $('#modalviewdetailapp .itemsdetail #email').html(result.email); //อีเมล
             $('#modalviewdetailapp .itemsdetail #phone').html(result.phone); //โทรศัพท์
             $('#modalviewdetailapp .itemsdetail #idcard').html(result.personal_card_id); //เลขบัตรประชาชน
-            $('#modalviewdetailapp .itemsdetail #addresstoidcard').html(result.personal_card_id_image); //ที่อยู่ตามบัตรประชาชน
-            $('#modalviewdetailapp .itemsdetail #addressshop').html(result.code); //ที่อยู่ร้าน
-            $('#modalviewdetailapp .itemsdetail #copyidcard').html(result.code); //สำเนาบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #addresstoidcard').html(result.addressidcard); //ที่อยู่ตามบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #addressshop').html(result.addressfull); //ที่อยู่ร้าน
+            $('#modalviewdetailapp .itemsdetail #copyidcard').html('ดูรูปภาพ <a data-fancybox class="btn__viewimage fancybox" href="'+images+'"><i class="fa-solid fa-image"></i></a>'); //สำเนาบัตรประชาชน
             $('#modalviewdetailapp .itemsdetail #pageurl').html(result.facebook_url); //Page Url/Facebook Url
             $('#modalviewdetailapp .itemsdetail #gps').html(result.google_map_url); //Google Map
             $('#modalviewdetailapp #approvestatus').val(result.status_code); //สถานะ
@@ -692,5 +717,24 @@
         
         $('#modalapproval').modal('show');
     }
+    $('.fancybox').fancybox({
+        selector: '.imglist a:visible',
+        Escape: "close",
+        Delete: "close",
+        Backspace: "close",
+        PageUp: "next",
+        PageDown: "prev",
+        ArrowUp: "next",
+        ArrowDown: "prev",
+        ArrowRight: "next",
+        ArrowLeft: "prev",
+        groupAttr: false,
+        Image: {
+            zoom: false,
+        },
+        thumbs: {
+            autoStart: false
+        }
+    });
 </script>
 @stop
