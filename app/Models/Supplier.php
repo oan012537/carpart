@@ -45,6 +45,21 @@ class Supplier extends Model
         "created_by",
         "updated_by"
     ];
+
+    public function Province()
+    {
+    	return $this->belongsTo('App\Models\Province', 'province');
+    }
+
+    public function Amphure()
+    {
+    	return $this->belongsTo('App\Models\Amphure', 'amphure');
+    }
+
+    public function District()
+    {
+    	return $this->belongsTo('App\Models\District', 'district');
+    }
     
     
 }
