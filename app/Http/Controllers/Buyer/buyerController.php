@@ -145,37 +145,40 @@ class BuyerController extends Controller
         Session::put([
             'phone' => $request->phone,
         ]);
-        $tokens = $this->gettokenotp($request->phone);
-        // $tokens = '1217ed55-953e-4bd2-b4f9-58e4b8729f00';
+        // $tokens = $this->gettokenotp($request->phone);
+        $tokens = '1217ed55-953e-4bd2-b4f9-58e4b8729f00';
         return view('buyer.register.confirmotp',['tokens'=>$tokens,'phone'=>$request->phone]);
     }
 
     public function confirmotp(Request $request){
         $otpcode = $request->otp1.$request->otp2.$request->otp3.$request->otp4.$request->otp5.$request->otp6;
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_HTTPHEADER => array(
-                "Content-Type: application/json",
-                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
-                "secret_key:SCFmYT1IgPXJT4nr",
-            ),
-            CURLOPT_POSTFIELDS =>json_encode(array(
-            "token"=>$request->tokenotp,
-            "otp_code"=>$otpcode,
-            )),
-        ));
-        $response = curl_exec($curl);
-        curl_close($curl);
-        // echo $response;
-        $response = json_decode($response,true);
+        // $curl = curl_init();
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        //     CURLOPT_HTTPHEADER => array(
+        //         "Content-Type: application/json",
+        //         "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+        //         "secret_key:SCFmYT1IgPXJT4nr",
+        //     ),
+        //     CURLOPT_POSTFIELDS =>json_encode(array(
+        //     "token"=>$request->tokenotp,
+        //     "otp_code"=>$otpcode,
+        //     )),
+        // ));
+        // $response = curl_exec($curl);
+        // curl_close($curl);
+        // // echo $response;
+        // $response = json_decode($response,true);
+        $response['result'] = [
+            'status'=>true,
+        ];
         return Response::json($response);
     }
 
@@ -205,6 +208,7 @@ class BuyerController extends Controller
         // echo $info["http_code"];
         curl_close($curl);
         // echo $response;
+        dd($response);
         //เพิ่มเอง
         $response = json_decode($response,true);
         if($info["http_code"] == '200'){
@@ -266,6 +270,7 @@ class BuyerController extends Controller
         if($request->password == $request->confirm_password){
 
             $data = new mUsers_buyer;
+            $data->code = 'B123456';
             $data->type = Session::get('type');
             $data->profile_name = Session::get('profile_name');
             $data->first_name = Session::get('first_name');

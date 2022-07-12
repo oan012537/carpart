@@ -219,7 +219,7 @@ Route::group(['middleware' => 'auth'], function(){
 
                     Route::get('productlist/{id}', [Backend\ManageSupplierController::class,'individualproductlist'])->name('backend.manage.supplier.individual.productlist');
 
-
+                    Route::get('changestatus', [Backend\ManageSupplierController::class,'changestatus'])->name('backend.manage.supplier.individual.changestatus');
 
                 });
 
@@ -309,6 +309,9 @@ Route::group(['middleware' => 'auth'], function(){
 
                     Route::get('productlist/{id}', [Backend\ManageBuyerController::class,'legalproductlist'])->name('backend.manage.buyer.legal.productlist');
                 });
+
+                Route::get('changestatus', [Backend\ManageBuyerController::class,'changestatus'])->name('backend.manage.buyer.changestatus');
+
             });
             
             

@@ -44,30 +44,6 @@ class SearchProductController extends Controller
         if(!empty($request->model)){
             // dd($request->model);
             $request->session()->put('search-model',$request->model);
-            /*$submodels = SubModel::where('model_id',$request->model)->get();
-
-            $html = '';
-
-            foreach($submodels as $subm){
-                $html .= '<div class="col-sm-3">';
-                $html .=  '<a onclick="selectSubModel('.$subm->id.')">';
-                $html .= '<div class="row">';
-                $html .=  '<div class="col-lg-5">';
-                $html .=  '</div>';
-                $html .=  '<div class="col-lg-7">';
-                $html .=  '<div class="text-detail-roon">';
-                $html .= '<p>'.$subm->name_en.'</p>';
-                $html .= '</div>';
-                $html .= '</div>';
-                $html .= '</div>';
-                $html .= '</a>';
-                $html .= '</div>';
-            }
-
-            $html .= '';
-            // dd($html);
-
-            return json_encode($html);*/
         }
     }
 

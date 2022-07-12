@@ -8,6 +8,7 @@ use Datatables;
 use App\Models\Backend\Role;
 use App\Models\UserSupplier;
 use App\Models\Supplier;
+use App\Models\Store;
 use Illuminate\Support\Facades\Auth;
 use Response;
 use Illuminate\Support\Facades\DB;
@@ -355,6 +356,11 @@ class ApprovalRequestIndividualController extends Controller
 
     public function getdetails(Request $request){
         $result = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('user_suppliers.id',$request->id)->first();
+        $getaddress = Store::where('supplier_id',$request->id)->first();
+        $result->addressfull = $result->address.' ตำบล/แขวง '.$getaddress->District->name_th.' อำเภอ/เขต '.$getaddress->Amphure->name_th.' จังหวัด '.$getaddress->Province->name_th.' '.$getaddress->District->zip_code;
+        
+        $getaddress = Supplier::where('user_id',$request->id)->first();
+        $result->addressidcard = $result->address.' ตำบล/แขวง '.$getaddress->District->name_th.' อำเภอ/เขต '.$getaddress->Amphure->name_th.' จังหวัด '.$getaddress->Province->name_th.' '.$getaddress->District->zip_code;
         return Response::json($result);
     }
 

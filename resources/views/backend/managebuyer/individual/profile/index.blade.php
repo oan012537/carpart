@@ -19,12 +19,12 @@
 
                                 <div class="text_name_t">
                                     <p>
-                                        โฉมงาม เฉิดฉาย
+                                        {{$user->email}} {{$user->email}}
                                     </p>
                                 </div>
                                 <div class="text_id_t">
                                     <p>
-                                        รหัสสมาชิก : 1234567
+                                        รหัสสมาชิก : {{$user->email}}
                                     </p>
                                 </div>
 
@@ -77,7 +77,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            โฉมงาม
+                                                            {{$user->profile_name}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -94,7 +94,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            โฉมงาม เฉิดฉาย
+                                                            {{$user->first_name}} {{$user->last_name}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -111,7 +111,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            emily@sample.com
+                                                            {{$user->email}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -128,7 +128,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            012345678
+                                                            {{$user->phone}}
                                                         </p>
                                                     </div>
                                                 </div>
