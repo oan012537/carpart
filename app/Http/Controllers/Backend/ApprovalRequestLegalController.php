@@ -315,7 +315,6 @@ class ApprovalRequestLegalController extends Controller
     public function getdetails(Request $request){
         $result = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->where('user_suppliers.id',$request->id)->first();
         $getaddress = Supplier::where('user_id',$request->id)->first();
-        // dd($getaddress->Province,$getaddress->Amphure,$getaddress->District);
         $result->addressfull = $result->address.' ตำบล/แขวง '.$getaddress->District->name_th.' อำเภอ/เขต '.$getaddress->Amphure->name_th.' จังหวัด '.$getaddress->Province->name_th.' '.$getaddress->District->zip_code;
         return Response::json($result);
     }

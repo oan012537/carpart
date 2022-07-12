@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Datatables;
+use App\Models\UserSupplier;
+use App\Models\Supplier;
+use App\Models\Store;
+use Illuminate\Support\Facades\DB;
 
 class ManageSupplierController extends Controller
 {
@@ -13,47 +17,68 @@ class ManageSupplierController extends Controller
     }
 
     public function individualdatatables(){
-        $data = users_supplier::where('type','บุคคลธรรมดา');
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','personal')->select(DB::raw("store_name,concat(suppliers.personal_first_name,' ', suppliers.personal_last_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,supplier_type,suppliers.is_active,user_suppliers.id,user_suppliers.created_at,approve_at,suppliers.id as supplierid"));
+        $search = request('search');
+        $radiodate = request('radiodate');
+        $date = request('date');
+        if($search != ''){
+            $data->where(function ($query) use ($search){
+                $query->where('code','LIKE','%'.$search.'%')
+                ->orwhere(DB::raw("concat(suppliers.personal_first_name,' ', suppliers.personal_last_name)"),'LIKE','%'.$search.'%')
+                ->orwhere('personal_card_id','LIKE','%'.$search.'%')
+                ->orwhere('supplier_type','LIKE','%'.$search.'%')
+                ->orwhere('comment','LIKE','%'.$search.'%')
+                ;
+            });
+        }
+        if($date!= ''){
+            $dates = explode(',',$date);
+            $sdate = $dates[0];
+            $edate = $dates[1];
+            if($radiodate == '1'){
+                $data->whereBetween('user_suppliers.created_at',[$sdate.' 00:00',$edate.' 23:59']);
+            }else{
+                $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
+            }
+        }
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
-			return date('d/m/Y',strtotime($data->updated_at));
+			return date('d/m/Y H:i',strtotime($data->updated_at));
 		})
-		->editColumn('active',function($data){
-            if($data->active == 'approved'){
-                return '<div class="approvel ap-success"><p>อนุมัติ</p></div>';
-            }else if($data->active == 'request_approval'){
-                return '<div class="approvel ap-wait"><p>รออนุมัติ</p></div>';
-            }else if($data->active == 'un_approve'){
-                return '<div class="approvel ap-no"><p>ไม่อนุมัติ</p></div>';
+        ->editColumn('created_at',function($data){
+			return date('d/m/Y H:i',strtotime($data->created_at));
+		})
+		->editColumn('is_active',function($data){
+            if($data->is_active == '0'){
+                return '<div class="approvel ap-no"><p>ระงับการใช้งาน</p></div>';
+            }else if($data->is_active == '1'){
+                return '<div class="approvel ap-success"><p> <i class="fa fa-check-circle"></i> ใช้งาน</p></div>';
             }else{
                 return '';
             }
 		})
-		->addColumn('btnview',function($data){
-			return '<a href="javascript:void(0)" class="btn btn__viewdetail" data-bs-toggle="modal" data-bs-target="#modalviewdetailapp"  onclick="viewdetail('.$data->id.')">ดูรายละเอียด</a>';
+        ->addColumn('usertype',function($data){
+			return 'ผู้ขาย';
+		})
+		->addColumn('switchstatus',function($data){
+			return '<div class="form-check form-switch" onclick="switchsfn('."'".$data->supplierid."'".')"><input class="form-check-input" type="checkbox"
+                id="flexSwitch'.$data->supplierid.'" '.(($data->is_active == '1')?'checked':'').'></div>';
 		})
 		->addColumn('btnaction',function($data){
-            $btn__approval = '';
-            $btn__waitapproval = '';
-            $btn__noapproval = '';
-			if($data->active == 'approved'){
-                $btn__approval = 'btn__approval';
-            }else if($data->active == 'request_approval'){
-                $btn__waitapproval = 'btn__waitapproval';
-            }else if($data->active == 'un_approve'){
-                $btn__noapproval = 'btn__noapproval';
-            }
-			return '<div class="box__btn">
-                    <button class="btn btn__app '.$btn__approval.'" data-bs-toggle="modal" data-bs-target="#modalapproval">อนุมัติ</button>
-                    <button class="btn btn__app '.$btn__waitapproval.'">รออนุมัติ</button>
-                    <button class="btn btn__app '.$btn__noapproval.'">ไม่อนุมัติ</button>
-                    </div>';
+			return '<div class="bux-bb-but"><a class="btn btn-table-edit" href="'.url('backend/manage/supplier/individual/profile').'/'.$data->id.'"><i class="fas fa-pencil-alt"></i> </a></div>';
 		});
 		return $sQuery->escapeColumns([])->make(true);
     }
 
     public function individualprofile($id){
-        return view('backend.managesupplier.individual.profile.index',['id'=>$id]);
+        $user = UserSupplier::find($id);
+        $supplier = Supplier::where('user_id',$id)->first();
+        $store = Store::where('supplier_id',$id)->first();
+        $store->addressfull = $store->address.' ตำบล/แขวง '.$store->District->name_th.' อำเภอ/เขต '.$store->Amphure->name_th.' จังหวัด '.$store->Province->name_th.' '.$store->District->zip_code;
+        
+        $supplier->addressidcard = $supplier->address.' ตำบล/แขวง '.$supplier->District->name_th.' อำเภอ/เขต '.$supplier->Amphure->name_th.' จังหวัด '.$supplier->Province->name_th.' '.$supplier->District->zip_code;
+        $banks = Supplier::where('user_id',$id)->get();
+        return view('backend.managesupplier.individual.profile.index',['id'=>$id,'user'=>$user,'supplier'=>$supplier,'store'=>$store,'banks'=>$banks]);
     }
 
     public function individualprofileedit($id){
@@ -107,8 +132,69 @@ class ManageSupplierController extends Controller
         return view('backend.managesupplier.legal.index');
     }
 
+    public function legaldatatables(){
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->select(DB::raw("store_name,concat(suppliers.personal_first_name,' ', suppliers.personal_last_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,supplier_type,suppliers.is_active,user_suppliers.id,user_suppliers.created_at,approve_at,suppliers.id as supplierid"));
+        $search = request('search');
+        $radiodate = request('radiodate');
+        $date = request('date');
+        if($search != ''){
+            $data->where(function ($query) use ($search){
+                $query->where('code','LIKE','%'.$search.'%')
+                ->orwhere(DB::raw("concat(suppliers.personal_first_name,' ', suppliers.personal_last_name)"),'LIKE','%'.$search.'%')
+                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere('vat_registration_number','LIKE','%'.$search.'%')
+                ->orwhere('comment','LIKE','%'.$search.'%')
+                ;
+            });
+        }
+        if($date!= ''){
+            $dates = explode(',',$date);
+            $sdate = $dates[0];
+            $edate = $dates[1];
+            if($radiodate == '1'){
+                $data->whereBetween('user_suppliers.created_at',[$sdate.' 00:00',$edate.' 23:59']);
+            }else{
+                $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
+            }
+        }
+		$sQuery	= Datatables::of($data)
+		->editColumn('updated_at',function($data){
+			return date('d/m/Y H:i',strtotime($data->updated_at));
+		})
+        ->editColumn('created_at',function($data){
+			return date('d/m/Y H:i',strtotime($data->created_at));
+		})
+		->editColumn('is_active',function($data){
+            if($data->is_active == '0'){
+                return '<div class="approvel ap-no"><p>ระงับการใช้งาน</p></div>';
+            }else if($data->is_active == '1'){
+                return '<div class="approvel ap-success"><p> <i class="fa fa-check-circle"></i> ใช้งาน</p></div>';
+            }else{
+                return '';
+            }
+		})
+        ->addColumn('usertype',function($data){
+			return 'ผู้ขาย';
+		})
+		->addColumn('switchstatus',function($data){
+			return '<div class="form-check form-switch" onclick="switchsfn('."'".$data->supplierid."'".')"><input class="form-check-input" type="checkbox"
+                id="flexSwitch'.$data->supplierid.'" '.(($data->is_active == '1')?'checked':'').'></div>';
+		})
+		->addColumn('btnaction',function($data){
+			return '<div class="bux-bb-but"><a class="btn btn-table-edit" href="'.url('backend/manage/supplier/legal/profile').'/'.$data->id.'"><i class="fas fa-pencil-alt"></i> </a></div>';
+		});
+		return $sQuery->escapeColumns([])->make(true);
+    }
+
     public function legalprofile ($id){
-        return view('backend.managesupplier.legal.profile.index',['id'=>$id]);
+        $user = UserSupplier::find($id);
+        $supplier = Supplier::where('user_id',$id)->first();
+        // $store = Store::where('supplier_id',$id)->first();
+        // $store->addressfull = $store->address.' ตำบล/แขวง '.$store->District->name_th.' อำเภอ/เขต '.$store->Amphure->name_th.' จังหวัด '.$store->Province->name_th.' '.$store->District->zip_code;
+        
+        $supplier->addressidcard = $supplier->address.' ตำบล/แขวง '.$supplier->District->name_th.' อำเภอ/เขต '.$supplier->Amphure->name_th.' จังหวัด '.$supplier->Province->name_th.' '.$supplier->District->zip_code;
+        $banks = Supplier::where('user_id',$id)->get();
+        return view('backend.managesupplier.legal.profile.index',['id'=>$id,'user'=>$user,'supplier'=>$supplier,'banks'=>$banks]);
     }
 
     public function legalprofileedit($id){
@@ -160,5 +246,11 @@ class ManageSupplierController extends Controller
 
     public function commissionindex(){
         return view('backend.managesupplier.commission.index');
+    }
+
+    public function changestatus(Request $request){
+        $update = Supplier::find($request->id);
+        $update->is_active = $request->status;
+        $update->save();
     }
 }

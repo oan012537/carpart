@@ -45,13 +45,17 @@
                             <div class="tab-pane fade show active" id="total" role="tabpanel"
                                 aria-labelledby="total-tab">
                                 <div class="table-responsive">
-                                    <table id="table-user" class="table table-striped" style="width:100%">
+                                    <table id="datatables" class="table table-striped" style="width:250%">
                                         <thead>
                                             <tr>
                                                 <td>รหัสสมาชิก</td>
-                                                <td>ชื่อ-นามสกุลผู้ขาย</td>
-                                                <td>เลขบัตรประชาชน</td>
-                                                <td>ประเภทผูู้ใช้งาน</td>
+                                                <td>ชื่อโปรไฟล์</td>
+                                                <td>ชื่อนิติบุคคล/บริษัท</td>
+                                                <td>เลขประจำตัวผู้เสียภาษี</td>
+                                                <td>ชื่อผู้ติดต่อ</td>
+                                                <td>อีเมลล์</td>
+                                                <td>เบอร์โทรศัพท์</td>
+                                                <td>ประเภทผู้ใช้งาน</td>
                                                 <td>ประเภทสมาชิก</td>
                                                 <td>วันที่สมัคร</td>
                                                 <td>วันที่อนุมัติ</td>
@@ -62,76 +66,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php for ($i = 1; $i <= 10; $i++) { ?>
-                                            <tr>
-                                                <td>1234</td>
-                                                <td>ชื่อ-นามสกุล</td>
-                                                <td>1234567890123</td>
-                                                <td>ผู้ซื้อ</td>
-                                                <td>บุคคลธรรมดา</td>
-                                                <td>15/12/2565 18.00</td>
-                                                <td>15/12/2565 18.00</td>
-                                                <td>
-                                                    <?php if ($i == 1 || $i == 2 || $i == 4 || $i == 5 
-                                                        || $i == 7 || $i == 8 || $i == 9 || $i == 10) { ?>
-                                                    <div class="approvel ap-success">
-                                                        <p> <i class="fa fa-check-circle"></i> ใช้งาน</p>
-                                                    </div>
-
-                                                    <?php } else { ?>
-                                                    <div class="approvel ap-no">
-                                                        <p>ระงับการใช้งาน</p>
-                                                    </div>
-
-                                                    <?php   }  ?>
-                                                </td>
-
-                                                <td>
-                                                    <?php if ($i == 1 || $i == 2 || $i == 4 || $i == 5 
-                                                        || $i == 7 || $i == 8 || $i == 9 || $i == 10) { ?>
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            id="flexSwitchCheckChecked" checked>
-
-                                                        <?php } else { ?>
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="flexSwitchCheckDefault">
-                                                        </div>
-
-                                                        <?php   }  ?>
-                                                </td>
-
-                                                <td>
-                                                    <div class="box__btn">
-
-                                                        <div class="box__status <?php if ($i == 1 || $i == 2 || $i == 4 || $i == 5 
-                                                        || $i == 7 || $i == 8 || $i == 9 || $i == 10) {
-                                                                            echo 'status-success';
-                                                                        } else if ($i == 3 || $i == 6) {
-                                                                            echo 'status-waiting';
-                                                                        } ?>">
-                                                            <?php if ($i == 1 || $i == 2 || $i == 4 || $i == 5 
-                                                        || $i == 7 || $i == 8 || $i == 9 || $i == 10) {
-                                                        echo '<p> - </p>';
-                                                    } else if ($i == 3 || $i == 6) {
-                                                        echo '<p> ผิดกฏ </p>';
-                                                    } ?>
-
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="bux-bb-but">
-                                                        <a class="btn btn-table-edit" href="{{url('backend/manage/buyer/legal/profile/1')}}">
-                                                            <i class="fas fa-pencil-alt"></i> </a>
-                                                    </div>
-                                                </td>
-
-
-
-                                            </tr>
-                                            <?php } ?>
 
                                         </tbody>
 
@@ -140,7 +74,7 @@
                             </div>
                         </div>
 
-                        <br><br><br>
+                        {{-- <br><br><br>
                         <div class="view-all">
                             <div>
                                 <p>แสดงทั้งหมด 20 จาก 214 รายการ</p>
@@ -152,19 +86,10 @@
                                 <li class="page-item"><a class="page-link" href="javascript:void(0);"><i
                                             class="fas fa-chevron-right"></i></a></li>
                             </ul>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
 
             </div>
         </div>
@@ -178,12 +103,13 @@
 {{-- <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> --}}
 {{-- <script src="{{asset('daterangepicker-master/daterangepicker.js')}}"></script> --}}
 <script>
+    var oTable
     $(document).ready(function(){
         $('.nav-link').on('shown.bs.tab', function (e) {
             console.log('tab');
             $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
         });
-		var oTable = $('#datatables').DataTable({
+		oTable = $('#datatables').DataTable({
 			processing: true,
 			serverSide: true,
 			searching: false,
@@ -191,22 +117,27 @@
             responsive: true,
             scrollX: true,
 			ajax:{ 
-				url : "{{route('backend.manage.buyer.individual.datatables')}}",
+				url : "{{route('backend.manage.buyer.legal.datatables')}}",
 				data: function (d) {
 					d.search = $('#search').val();
 					d.status = $('#status').val();
 				},
 			},
 			columns: [
-				{ 'className': "text-center", data: 'id', name: 'id' },
-				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'first_name', name: 'first_name' },
-				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at' },
-				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
-				{ 'className': "text-center", data: 'active', name: 'status',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'code', name: 'code' },
+				{ 'className': "text-center", data: 'profile_name', name: 'profile_name' },
+				{ 'className': "text-center", data: 'company_name', name: 'company_name' },
+				{ 'className': "text-center", data: 'vat_id', name: 'vat_id' },
+				{ 'className': "text-center", data: 'name', name: 'name' },
+				{ 'className': "text-center", data: 'email', name: 'email' },
+				{ 'className': "text-center", data: 'phone', name: 'phone' },
+				{ 'className': "text-center", data: 'usertype', name: 'usertype',orderable: false,searchable: false  },
+				{ 'className': "text-center", data: 'type', name: 'type' },
+				{ 'className': "text-center", data: 'created_at', name: 'created_at',searchable: false },
+				{ 'className': "text-center", data: 'approve_at', name: 'suppliers.approve_at',searchable: false },
+				{ 'className': "text-center", data: 'is_active', name: 'is_active',searchable: false },
+				{ 'className': "text-center", data: 'switchstatus', name: 'switchstatus',orderable: false,searchable: false  },
 				{ 'className': "text-center", data: 'comment', name: 'comment' },
-				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
 			],
 			order: [[0, 'asc']],
@@ -260,28 +191,19 @@
         });
 	});
 
-    function viewdetail(id) {
-        $.get('{{route("backend.approval.legal.getdetails")}}',{'id':id},function (result) {
+    function switchsfn(id) {
             
-            $('.box__codenumber #showcodemember').text(); //อนุมัตเมื่อ
-            $('.box__codenumber #buyerid').val(); //อนุมัตเมื่อ
-
-            $('.itemsdetail .txt__right #shop').text(); //ชื่อร้าน
-            $('.itemsdetail .txt__right #name').text(); //ชื่อ
-            $('.itemsdetail .txt__right #surname').text(); //นามสกุล
-            $('.itemsdetail .txt__right #email').text(); //อีเมล
-            $('.itemsdetail .txt__right #phone').text(); //โทรศัพท์
-            $('.itemsdetail .txt__right #idcard').text(); //เลขบัตรประชาชน
-            $('.itemsdetail .txt__right #addresstoidcard').text(); //ที่อยู่ตามบัตรประชาชน
-            $('.itemsdetail .txt__right #addressshop').text(); //ที่อยู่ร้าน
-            $('.itemsdetail .txt__right #copyidcard').text(); //สำเนาบัตรประชาชน
-            $('.itemsdetail .txt__right #pageurl').text(); //Page Url/Facebook Url
-            $('.itemsdetail .txt__right #gps').text(); //Google Map
-            $('.box__status #status').text(); //สถานะ
-            $('.box__status #txt__note').text(); //หมายเหตุ
-
-            $('.wrapper__approvaldate .box__date span').text(); //อนุมัตเมื่อ
-            $('.wrapper__approvaldate .box__userapproval span').text(); //ผู้อนุมัติ
+        var flexSwitch = $("#flexSwitch"+id).is(":checked");
+        console.log(id);
+        console.log(flexSwitch);
+        // return  false;
+        if(flexSwitch){
+            flexSwitch = '1';
+        }else{
+            flexSwitch = '0';
+        }
+        $.get("{{route('backend.manage.buyer.changestatus')}}", {'id':id,'status':flexSwitch},function (data, textStatus, jqXHR) {
+            oTable.draw( false );
         });
     }
 </script>
