@@ -272,7 +272,7 @@
                                                 <div class="col-9">
                                                     <div class="txt_namedetail_t">
                                                         <p>
-                                                            @if(!empty($buyertax)){{$buyertax->texid}} @endif
+                                                            @if(!empty($buyertax)){{$buyertax->phone}} @endif
                                                         </p>
                                                     </div>
                                                 </div>
