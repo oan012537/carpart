@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Buyer as Buyer;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,14 +49,13 @@ Route::prefix('buyer')->group(function(){
 
 
 
-    Route::group(['middleware' => ['buyer']], function () {
+    // Route::group(['middleware' => ['buyer']], function () {
         Route::get('home-search', [Buyer\SearchProductController::class, 'home_search'])->name('buyer.home-search');
         Route::post('search-product', [Buyer\BuyerController::class, 'search_product']);
         Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand']);
         Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
-
-        Route::get('myaccount', [Buyer\ProductDetailController::class, 'index']);
-    });
+        
+    // });
 
     //Ajax
     Route::get('filterBrands/{id}', [Buyer\BuyerController::class, 'filterBrands']);
@@ -74,8 +72,3 @@ Route::prefix('buyer')->group(function(){
 });
 
 
-// ========== Product Detail ================
-
-Route::get('product/{productname}/{id}', [Buyer\ProductDetailController::class, 'index']);
-
-// ========== Product Detail ================
