@@ -27,7 +27,7 @@
 
     <!-- link navbar -->
     <link href="{{asset('assets/css/home-seach1.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet">
+    <!-- <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet"> -->
 
     @include('buyer.layouts.inc_stylesheet')
 </head>
@@ -133,7 +133,9 @@
                                         <a onclick="selectBrands({{$brand->id}})">
                                         <div class="row">
                                             <div class="col-lg-5">
-                                                <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
+                                                <div class="box_imgroonimg">
+                                                    <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
+                                                </div>
                                             </div>
                                             <div class="col-lg-7">
                                                 <div class="text-detail-roon">
@@ -157,7 +159,9 @@
                                     <a onclick="selectBrands({{$brand->id}})">
                                     <div class="row">
                                         <div class="col-lg-5">
-                                            <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
+                                            <div class="box_imgroonimg">
+                                                <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
+                                            </div>
                                         </div>
                                         <div class="col-lg-7">
                                             <div class="text-detail-roon">

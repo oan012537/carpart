@@ -12,7 +12,7 @@ class UserSupplier extends Authenticatable
     use Notifiable;
     protected $table = 'user_suppliers';
     
-    protected $guard = 'supplier';
+    protected $guard = 'suppliers';
 
     protected $fillable = [
        'name', 

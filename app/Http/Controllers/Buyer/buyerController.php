@@ -199,6 +199,7 @@ class BuyerController extends Controller
         // echo $info["http_code"];
         curl_close($curl);
         // echo $response;
+        dd($response);
         //เพิ่มเอง
         $response = json_decode($response,true);
         if($info["http_code"] == '200'){
