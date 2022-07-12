@@ -326,7 +326,7 @@ class BuyerController extends Controller
                     $check = 5 - $checkcount;
                     foreach($brands as $brand){
                         $html .= '<div class="col-sm">';
-                        $html .= '<a href="#">';
+                        $html .= '<a onclick="selectBrands('.$brand->id.')">';
                         $html .= '<div class="row">';
                         $html .= '<div class="col-lg-5">';
                         $html .= '<img src="'.$brand->image.'" class="img-fluid img-circleimg" alt="shoe image">';
@@ -348,7 +348,7 @@ class BuyerController extends Controller
                 foreach($brands as $brand){
                     $store_id[] = $brand->id;
                     $html .= '<div class="col-sm">';
-                    $html .= '<a href="#">';
+                    $html .= '<a onclick="selectBrands('.$brand->id.')">';
                     $html .= '<div class="row">';
                     $html .= '<div class="col-lg-5">';
                     $html .= '<img src="'.$brand->image.'" class="img-fluid img-circleimg" alt="shoe image">';

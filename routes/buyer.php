@@ -62,7 +62,8 @@ Route::prefix('buyer')->group(function(){
     //Ajax
     Route::get('filterBrands/{id}', [Buyer\BuyerController::class, 'filterBrands']);
     Route::get('searchBrands/{id}', [Buyer\BuyerController::class, 'searchBrands']);
-    Route::get('searchBox/{id}', [Buyer\SearchProductController::class, 'searchBox']);
+    
+    Route::get('SearchBox', [Buyer\SearchProductController::class, 'searchBox']);
     Route::get('GetModel/{id}', [Buyer\BuyerController::class, 'GetModel']);
     Route::get('GetsubModel/{id}', [Buyer\BuyerController::class, 'GetsubModel']);
     Route::get('GetYear/{id}', [Buyer\BuyerController::class, 'GetYear']);

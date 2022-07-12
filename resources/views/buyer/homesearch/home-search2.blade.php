@@ -120,7 +120,7 @@
                     <div class="models-all">
                         <div class="row">
                             @foreach($models as $model)
-                            <div class="col-sm">
+                            <div class="col-sm-3">
                                 <a onclick="selectModel({{$model->id}})">
                                 <div class="row">
                                     <div class="col-lg-5">
@@ -394,13 +394,15 @@
     @include('buyer.layouts.inc_footer')
     @include('buyer.layouts.inc_js')
     <script>
+        test = {{$brand}};
+        alert(test);   
         $(document).on('keyup','#search-box-model',function(){
             name = $('#search-box-model').val();
-            $('.brands-all').css('display','none');
+            $('.models-all').css('display','none');
             if(name != null){
                 $.ajax({
                     method: "GET",
-                    url: "{!! url('/buyer/searchBox/" + name + "') !!}",
+                    url: "buyer/SearchBox?model=" + name,
                     dataType: "json"
                 }).done(function(rec){
                     console.log(rec)
