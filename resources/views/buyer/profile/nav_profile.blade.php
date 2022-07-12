@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/css/nav_profile.css">
+<link rel="stylesheet" href="{{ asset('assets/css/nav_profile.css') }}">
 
 
 <section id="navprofile">
@@ -13,7 +13,7 @@
 
                 <div class="nav_list">
                     <li>
-                        <a href="account-buy.php" class="nav_link activemenumain" data-page="account-buy">
+                        <a href="{{ url('buyer/myaccount') }}" class="nav_link activemenumain" data-page="account-buy">
                             <i class='fas fa-user-cog'></i>
                             <span class="nav_name">บัญชีของฉัน </span>
                             </span>

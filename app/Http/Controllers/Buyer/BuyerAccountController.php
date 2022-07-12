@@ -21,7 +21,9 @@ class BuyerAccountController extends Controller
             ->orderBy('updated_at', 'desc')
             ->orderBy('created_at', 'desc')
             ->with('Province', 'Amphure', 'District')
-            ->first();
+            ->get();
+
+        $data['address_profiles'] = $data['buyer_profiles']->where('is_profile', '1')->first();
 
         $data['buyer_tax_invoices'] = BuyerTaxInvoice::where('users_buyer_id', $data['user_buyer']->id)
             ->where('is_active','1')
@@ -30,8 +32,6 @@ class BuyerAccountController extends Controller
             ->with('Province', 'Amphure', 'District')
             ->first();
         
-        // dd($data['buyer_profiles']);
-
         return view('buyer.profile.profile.index', $data);
     }
 }

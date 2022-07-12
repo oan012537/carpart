@@ -49,7 +49,7 @@
             <div class="txt__detailtitle2">
                 <p>
                     @php 
-                        $name_user = $buyer_profiles->first_name." ".$buyer_profiles->last_name;
+                        $name_user = $address_profiles->first_name." ".$address_profiles->last_name;
                     @endphp
                     {{ ($name_user == "" || $name_user == null) ? '-' : $name_user }}
                 </p>
@@ -102,7 +102,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    {{ (is_null($buyer_profiles->address) ? '-' : $buyer_profiles->address) }}
+                    {{ (is_null($address_profiles->address) ? '-' : $address_profiles->address) }}
                 </p>
             </div>
         </div>
@@ -119,7 +119,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    {{ (is_null($buyer_profiles->District) ? '-' : $buyer_profiles->District->name_th) }}
+                    {{ (is_null($address_profiles->District) ? '-' : $address_profiles->District->name_th) }}
                 </p>
             </div>
         </div>
@@ -136,7 +136,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    {{ (is_null($buyer_profiles->Amphure) ? '-' : $buyer_profiles->Amphure->name_th) }}
+                    {{ (is_null($address_profiles->Amphure) ? '-' : $address_profiles->Amphure->name_th) }}
                 </p>
             </div>
         </div>
@@ -153,7 +153,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    {{ (is_null($buyer_profiles->Province) ? '-' : $buyer_profiles->Province->name_th) }}
+                    {{ (is_null($address_profiles->Province) ? '-' : $address_profiles->Province->name_th) }}
                 </p>
             </div>
         </div>
@@ -170,7 +170,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    {{ (is_null($buyer_profiles->postcode) ? '-' : $buyer_profiles->postcode) }}
+                    {{ (is_null($address_profiles->postcode) ? '-' : $address_profiles->postcode) }}
                 </p>
             </div>
         </div>
