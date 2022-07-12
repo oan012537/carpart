@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Datatables;
 use App\Models\Buyer\mUsers_buyer;
+use App\Models\Buyer\BuyerProfile;
+use App\Models\Buyer\BuyerTaxInvoice;
 use App\Models\Supplier;
 use App\Models\Store;
 use Illuminate\Support\Facades\DB;
@@ -74,7 +76,30 @@ class ManageBuyerController extends Controller
 
     public function individualprofile($id){
         $user = mUsers_buyer::find($id);
-        return view('backend.managebuyer.individual.profile.index',['id'=>$id,'user'=>$user]);
+        $profilearray = $user->buyerProfiles;
+        $buyertaxarray = $user->buyerTaxInvoices;
+        $profile = BuyerProfile::where('users_buyer_id',$id)->first();
+        $buyertax = BuyerTaxInvoice::where('users_buyer_id',$id)->first();
+        
+        if(!empty($profile)){
+            // $profiles = BuyerProfile::find($profile->id);
+            $profile->addressfull = $profile->address.' ตำบล/แขวง '.$profile->District->name_th.' อำเภอ/เขต '.$profile->Amphure->name_th.' จังหวัด '.$profile->Province->name_th.' '.$profile->District->zip_code;
+            $profile->district = $profile->District->name_th;
+            $profile->amphure = $profile->Amphure->name_th;
+            $profile->province = $profile->Province->name_th;
+            $profile->zip_code = $profile->District->name_th;
+        }
+
+        if(!empty($buyertax)){
+            $buyertax->addressfull = $buyertax->address.' ตำบล/แขวง '.$buyertax->District->name_th.' อำเภอ/เขต '.$buyertax->Amphure->name_th.' จังหวัด '.$buyertax->Province->name_th.' '.$buyertax->District->zip_code;
+            $buyertax->district = $buyertax->District->name_th;
+            $buyertax->amphure = $buyertax->Amphure->name_th;
+            $buyertax->province = $buyertax->Province->name_th;
+            $buyertax->zip_code = $buyertax->District->name_th;
+        }
+
+
+        return view('backend.managebuyer.individual.profile.index',['id'=>$id,'user'=>$user,'profile'=>$profile,'buyertax'=>$buyertax]);
     }
 
     public function individualprofileedit($id){
@@ -189,7 +214,31 @@ class ManageBuyerController extends Controller
     
     public function legalprofile ($id){
         $user = mUsers_buyer::find($id);
-        return view('backend.managebuyer.legal.profile.index',['id'=>$id,'user'=>$user]);
+        $profilearray = $user->buyerProfiles;
+        $buyertaxarray = $user->buyerTaxInvoices;
+        $profile = BuyerProfile::where('users_buyer_id',$id)->first();
+        $buyertax = BuyerTaxInvoice::where('users_buyer_id',$id)->first();
+        if(!empty($profile)){
+            // $profiles = BuyerProfile::find($profile->id);
+            $profile->addressfull = $profile->address.' ตำบล/แขวง '.$profile->District->name_th.' อำเภอ/เขต '.$profile->Amphure->name_th.' จังหวัด '.$profile->Province->name_th.' '.$profile->District->zip_code;
+            $profile->district = $profile->District->name_th;
+            $profile->amphure = $profile->Amphure->name_th;
+            $profile->province = $profile->Province->name_th;
+            $profile->zip_code = $profile->District->name_th;
+        }
+
+        if(!empty($buyertax)){
+            $buyertax->addressfull = $buyertax->address.' ตำบล/แขวง '.$buyertax->District->name_th.' อำเภอ/เขต '.$buyertax->Amphure->name_th.' จังหวัด '.$buyertax->Province->name_th.' '.$buyertax->District->zip_code;
+            $buyertax->district = $buyertax->District->name_th;
+            $buyertax->amphure = $buyertax->Amphure->name_th;
+            $buyertax->province = $buyertax->Province->name_th;
+            $buyertax->zip_code = $buyertax->District->name_th;
+        }
+
+        
+
+
+        return view('backend.managebuyer.legal.profile.index',['id'=>$id,'user'=>$user,'profile'=>$profile,'buyertax'=>$buyertax]);
     }
 
     public function legalprofileedit($id){
