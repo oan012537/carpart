@@ -55,7 +55,8 @@ Route::prefix('buyer')->group(function(){
         Route::post('search-product', [Buyer\BuyerController::class, 'search_product']);
         Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand']);
         Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
-        
+
+        Route::get('myaccount', [Buyer\ProductDetailController::class, 'index']);
     });
 
     //Ajax

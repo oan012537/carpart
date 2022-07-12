@@ -26,7 +26,12 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link btn__yellow" href="{{url(Session('lang')."/buyer/login-buy/")}}">
+                    {{--
+                        <!-- OAT คอมเม้นต์ มาใช้อันล่าง 
+                        <a class="nav-link btn__yellow" href="{{url(Session('lang')."/buyer/login-buy/")}}"> 
+                        -->
+                    --}}
+                    <a class="nav-link btn__yellow" href="{{route('buyer.login')}}">
                         <div class="icon"><span>เข้าสู่ระบบผู้ซื้อ</span></div>
                     </a>
                 </li>

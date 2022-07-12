@@ -77,9 +77,16 @@ class Product extends Model
     	return $this->belongsTo('App\Models\SubSubCategory', 'sub_sub_category_id');
     }
 
+    public function productImages()
+    {
+        return $this->hasMany('App\Models\ProductImage');
+    }
+
     public function productReviews()
     {
         return $this->hasMany('App\Models\Buyer\ProductReview');
     }
+
+    
 
 }
