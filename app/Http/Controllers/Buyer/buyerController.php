@@ -40,26 +40,29 @@ class BuyerController extends Controller
 
         if (Auth::guard('buyer')->attempt(['phone' => $username, 'password' => $password]) )
         {
-            // return redirect('buyer/home-search');
-            return view('buyer.login.phone');
+            return redirect('buyer/home-search');
+            // return view('buyer.login.phone'); //-- OAT คอมเม้นต์ใช้ตัวบน
         }
         else if(Auth::guard('buyer')->attempt(['email' => $username, 'password' => $password]) )
         {
-            // return redirect('buyer/home-search');
-            return view('buyer.login.phone');
+            return redirect('buyer/home-search');
+            // return view('buyer.login.phone'); //-- OAT คอมเม้นต์ใช้ตัวบน
         }else{
 
             // dd("username หรือ password ผิด");
-            return redirect('backend\login')->with(['error' => 'ชื่อผู้ใช้งาน หรือรหัสผ่านผิด !']);
+            return back()->with('message','Invaild Email Or Password');
+            // return redirect('backend\login')->with(['error' => 'ชื่อผู้ใช้งาน หรือรหัสผ่านผิด !']);
         }
     }
     public function loginphone(Request $request)
     {
-        $tokens = $this->gettokenotp($request->phone);
+        $tokens = $this->gettokenotp($request->phone); //-- OAT คอมเม้นต์ ถ้าใช้งาจริงให้เปิด และลบ $tokens = ""; ออก
+        // $tokens = "";
         return view('buyer.login.otp',['tokens'=>$tokens,'phone'=>$request->phone]);
     }
     public function logingettoken(Request $request){
-        $tokens = $this->gettokenotp($request->phone);
+        $tokens = $this->gettokenotp($request->phone); //-- OAT คอมเม้นต์ ถ้าใช้งาจริงให้เปิด และลบ $tokens = ""; ออก
+        // $tokens = "";
         return $tokens;
     }
 
@@ -68,6 +71,9 @@ class BuyerController extends Controller
     }
     public function loginconfirmotp(Request $request)
     {
+        //-- OAT คอมเม้นต์เพื่อทดสอบ ข้ามการส่ง OTP ใช้งานจริง ให้ลบ return true; และเอาคอมเม้นต์ด้านล่างออก
+        // return true;
+
         // dd($request->all());
         $otpcode = $request->otp1.$request->otp2.$request->otp3.$request->otp4.$request->otp5.$request->otp6;
         $curl = curl_init();
@@ -98,7 +104,7 @@ class BuyerController extends Controller
         // if($info["http_code"] == '200'){
         //     return redirect('buyer/home-search');
         // }
-        return Response::json($response);
+        // return Response::json($response); 
     }
 
     public function logout_buyer()

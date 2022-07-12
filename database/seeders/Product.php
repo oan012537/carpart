@@ -17,7 +17,7 @@ class Product extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach(range(1,100) as $value){
+        foreach(range(1,1000) as $value){
             DB::table('products')
             ->insert([
                 'brand_id' => $faker->numberBetween(1,81),
@@ -27,7 +27,7 @@ class Product extends Seeder
                 'category_id' => $faker->numberBetween(1,11),
                 'sub_category_id' => $faker->numberBetween(1,203),
                 'sub_sub_category_id' => $faker->numberBetween(1,296),
-                'product_code' => $faker->phoneNumber,
+                'product_code' => $faker->numberBetween(100000,999999),
                 'product_type' => 'second',
                 'name_th' => $faker->name,
                 'name_en' => $faker->name,

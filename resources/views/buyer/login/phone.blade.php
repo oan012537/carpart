@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="01xxxxxxxx" aria-label="Username"
-                                        aria-describedby="basic-addon1" name="phone" maxlength="10" required>
+                                        aria-describedby="basic-addon1" name="phone" maxlength="10">
                                 </div>
                                 <br>
                                 <div class='but-bb-log'>

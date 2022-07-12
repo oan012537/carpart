@@ -173,13 +173,13 @@
         $.post("{{route('buyer.login.confirmotp')}}", $("#formotp").serialize(),
             function(data, textStatus, jqXHR) {
                 console.log(data);
-                if (data.result.status) {
+                //if (data.result.status) {
                     // $("#formotp").submit();
                     $("#myModal").css('display','block');
                     // $("#loginsuccess").attr('href',data.redirect_location)
-                } else {
-                    toastralert('error', 'เกิดข้อผิดพลาด');
-                }
+               // } else {
+                    //toastralert('error', 'เกิดข้อผิดพลาด');
+                //}
             },
             // "dataType"
         );
