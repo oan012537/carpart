@@ -47,6 +47,35 @@ class SearchProductController extends Controller
         }
     }
 
+    public function searchBox(Request $request){
+        // dd('ok');
+        if(!empty($request->model)){
+            $models = ProductModel::where('name_en', 'like','%'. $request->model. '%')->get();
+
+            $html = '<div class="row">';
+            foreach($models as $model){
+                $html .= '<div class="col-sm-3">
+                            <a onclick="selectModel('.$model->id.')">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="text-detail-roon">
+                                        <p>
+                                            '.$model->name_en.'
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>';
+            }
+            $html .= '</div>';
+
+            return json_encode($html);
+        }
+    }
+
     public function home_search_brand(Request $request){
         // dd($request);
         // $like = $request;
