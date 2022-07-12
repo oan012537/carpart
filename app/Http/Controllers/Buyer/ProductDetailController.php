@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Buyer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -15,12 +16,8 @@ class ProductDetailController extends Controller
     {
         $data['product'] = Product::where('products.id', $id)
             //->where('products.status_code','!=','cancle')
-            ->with('brand', 'model', 'category', 'subCategory', 'subSubCategory', 'productReviews')
+            ->with('brand', 'model', 'category', 'subCategory', 'subSubCategory', 'productReviews', 'productImages')
             ->first();
-
-        $data['product_image'] = ProductImage::where('product_id', $data['product']->id)
-            ->orderby('line_item_no', 'asc')
-            ->get();
 
         // -- สินค้าจากแบรนด์เดียวกัน    
         $data['products_brand'] = Product::where('products.brand_id', $data['product']->brand->id)

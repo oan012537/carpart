@@ -1,9 +1,9 @@
 @extends('buyer.layouts.template')
 
+
 <link href="{{ asset('assets/css/product-detail.css') }}" rel="stylesheet">
 
 @section('content')
-
     <section id="sec-product-de1">
         <div class="container">
             <div class="row">
@@ -29,7 +29,7 @@
                     <div class="product-imgs">
                         <div class="img-display">
                             <div class="img-showcase"> 
-                                @foreach($product_image as $productimage)
+                                @foreach($product->productImages as $productimage)
                                     @php 
                                         $proimage = "";
                                         $proimage = "assets/img/prodetail/".$productimage->image ; 
@@ -40,7 +40,7 @@
                         </div>
                         <div class="img-select">
                             
-                            @foreach($product_image as $key => $productimage)
+                            @foreach($product->productImages as $key => $productimage)
                                 @php 
                                     $proimage = "";
                                     $proimage = "assets/img/prodetail/".$productimage->image ; 
