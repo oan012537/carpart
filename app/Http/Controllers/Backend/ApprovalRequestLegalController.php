@@ -9,6 +9,7 @@ use App\Models\Backend\Role;
 use App\Models\UserSupplier;
 use App\Models\Supplier;
 use Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ApprovalRequestLegalController extends Controller
@@ -314,29 +315,33 @@ class ApprovalRequestLegalController extends Controller
     public function getdetails(Request $request){
         $result = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->where('user_suppliers.id',$request->id)->first();
         $getaddress = Supplier::where('user_id',$request->id)->first();
-        dd($getaddress->Province,$getaddress->Amphure,$getaddress->District);
+        // dd($getaddress->Province,$getaddress->Amphure,$getaddress->District);
+        $result->addressfull = $result->address.' ตำบล/แขวง '.$getaddress->District->name_th.' อำเภอ/เขต '.$getaddress->Amphure->name_th.' จังหวัด '.$getaddress->Province->name_th.' '.$getaddress->District->zip_code;
         return Response::json($result);
     }
 
     public function update(Request $request){
         // dd($request->all());
-        $supplier = Supplier::where('user_id',$request->supplierid)->first();
+        // $supplier = Supplier::where('user_id',$request->supplierid)->first();
+        $supplier = Supplier::find($request->supplierid);
         $supplier->status_code = $request->approvestatus;
         $supplier->approve_at = date('Y-m-d H:i:s');
         $supplier->approve_by = Auth::user()->name;
         $supplier->comment = !empty($request->txt__note)?$request->txt__note:'';
+        // dd($request->all(),$supplier);
         $supplier->save();
-        return redirect()->route('backend.approval.individual');
+        return redirect()->route('backend.approval.legal');
     }
 
     public function approval(Request $request){
         // dd($request->all());
         $supplier = Supplier::where('user_id',$request->supplierid)->first();
+        // $supplier = Supplier::find($request->supplierid);
         $supplier->status_code = $request->approvestatus;
         $supplier->approve_at = date('Y-m-d H:i:s');
         $supplier->approve_by = Auth::user()->name;
         $supplier->comment = !empty($request->txt__note)?$request->txt__note:'';
         $supplier->save();
-        return redirect()->route('backend.approval.individual');
+        return redirect()->route('backend.approval.legal');
     }
 }

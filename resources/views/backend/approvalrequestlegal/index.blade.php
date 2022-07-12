@@ -675,23 +675,23 @@
     function viewdetail(id) {
         $.get('{{route("backend.approval.legal.getdetails")}}',{'id':id},function (result) {
             
-            $('.box__codenumber #showcodemember').html(result.code); //อนุมัตเมื่อ
-            $('#supplierid').val(result.id); //ID
+            $('#modalviewdetailapp .box__codenumber #showcodemember').html(result.code); //อนุมัตเมื่อ
+            $('#modalviewdetailapp #supplierid').val(result.id); //ID
 
-            $('.itemsdetail #shop').html(result.company_name); //ชื่อบริษัท
-            $('.itemsdetail #idcard').html(result.vat_registration_number); //อีเมล
-            $('.itemsdetail #phone').html(result.phone); //โทรศัพท์
-            $('.itemsdetail #email').html(result.email); //เลขผู้เสียภาษี
-            $('.itemsdetail #certificate').html(result.company_certificate); //ที่อยู่ตามบัตรประชาชน
-            $('.itemsdetail #registrationdoc').html(result.code); //ที่อยู่ร้าน
-            $('.itemsdetail #address').html(result.code); //สำเนาบัตรประชาชน
-            $('.itemsdetail #url').html(result.facebook_url); //Page Url/Facebook Url
+            $('#modalviewdetailapp .itemsdetail #shop').html(result.company_name); //ชื่อบริษัท
+            $('#modalviewdetailapp .itemsdetail #idcard').html(result.vat_registration_number); //อีเมล
+            $('#modalviewdetailapp .itemsdetail #phone').html(result.phone); //โทรศัพท์
+            $('#modalviewdetailapp .itemsdetail #email').html(result.email); //เลขผู้เสียภาษี
+            $('#modalviewdetailapp .itemsdetail #certificate').html(result.company_certificate); //ที่อยู่ตามบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #registrationdoc').html(result.code); //ที่อยู่ร้าน
+            $('#modalviewdetailapp .itemsdetail #address').html(result.addressfull); //สำเนาบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #url').html(result.facebook_url); //Page Url/Facebook Url
             
             $('#modalviewdetailapp #approvestatus').val(result.status_code); //สถานะ
             $('#modalviewdetailapp #txt__note').val(result.comment); //หมายเหตุ
             if(result.status_code == 'approved'){
-                $('.wrapper__approvaldate .box__date span').html(result.approve_at); //อนุมัตเมื่อ
-                $('.wrapper__approvaldate .box__userapproval span').html(result.approve_by); //ผู้อนุมัติ
+                $('#modalviewdetailapp .wrapper__approvaldate .box__date span').html(result.approve_at); //อนุมัตเมื่อ
+                $('#modalviewdetailapp .wrapper__approvaldate .box__userapproval span').html(result.approve_by); //ผู้อนุมัติ
             }else{
                 $('.wrapper__approvaldate').hide();
             }

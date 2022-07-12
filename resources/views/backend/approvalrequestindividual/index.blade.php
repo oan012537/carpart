@@ -640,20 +640,20 @@
     function viewdetail(id) {
         $.get('{{route("backend.approval.individual.getdetails")}}',{'id':id},function (result) {
             
-            $('.box__codenumber #showcodemember').html(result.code); //อนุมัตเมื่อ
-            $('#supplierid').val(result.id); //ID
+            $('#modalviewdetailapp .box__codenumber #showcodemember').html(result.code); //อนุมัตเมื่อ
+            $('#modalviewdetailapp #supplierid').val(result.id); //ID
 
-            $('.itemsdetail #shop').html(result.store_name); //ชื่อร้าน
-            $('.itemsdetail #name').html(result.personal_first_name); //ชื่อ
-            $('.itemsdetail #surname').html(result.personal_last_name); //นามสกุล
-            $('.itemsdetail #email').html(result.email); //อีเมล
-            $('.itemsdetail #phone').html(result.phone); //โทรศัพท์
-            $('.itemsdetail #idcard').html(result.personal_card_id); //เลขบัตรประชาชน
-            $('.itemsdetail #addresstoidcard').html(result.personal_card_id_image); //ที่อยู่ตามบัตรประชาชน
-            $('.itemsdetail #addressshop').html(result.code); //ที่อยู่ร้าน
-            $('.itemsdetail #copyidcard').html(result.code); //สำเนาบัตรประชาชน
-            $('.itemsdetail #pageurl').html(result.facebook_url); //Page Url/Facebook Url
-            $('.itemsdetail #gps').html(result.google_map_url); //Google Map
+            $('#modalviewdetailapp .itemsdetail #shop').html(result.store_name); //ชื่อร้าน
+            $('#modalviewdetailapp .itemsdetail #name').html(result.personal_first_name); //ชื่อ
+            $('#modalviewdetailapp .itemsdetail #surname').html(result.personal_last_name); //นามสกุล
+            $('#modalviewdetailapp .itemsdetail #email').html(result.email); //อีเมล
+            $('#modalviewdetailapp .itemsdetail #phone').html(result.phone); //โทรศัพท์
+            $('#modalviewdetailapp .itemsdetail #idcard').html(result.personal_card_id); //เลขบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #addresstoidcard').html(result.personal_card_id_image); //ที่อยู่ตามบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #addressshop').html(result.code); //ที่อยู่ร้าน
+            $('#modalviewdetailapp .itemsdetail #copyidcard').html(result.code); //สำเนาบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #pageurl').html(result.facebook_url); //Page Url/Facebook Url
+            $('#modalviewdetailapp .itemsdetail #gps').html(result.google_map_url); //Google Map
             $('#modalviewdetailapp #approvestatus').val(result.status_code); //สถานะ
             $('#modalviewdetailapp #txt__note').val(result.comment); //หมายเหตุ
             if(result.status_code == 'approved'){
