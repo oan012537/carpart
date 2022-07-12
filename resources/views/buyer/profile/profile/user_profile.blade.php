@@ -49,7 +49,7 @@
             <div class="txt__detailtitle2">
                 <p>
                     @php 
-                        $name_user = $user_buyer->first_name." ".$user_buyer->last_name;
+                        $name_user = $buyer_profiles->first_name." ".$buyer_profiles->last_name;
                     @endphp
                     {{ ($name_user == "" || $name_user == null) ? '-' : $name_user }}
                 </p>
@@ -102,7 +102,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    {{ (is_null($user_buyer->phone) ? '-' : $user_buyer->phone) }}
+                    {{ (is_null($buyer_profiles->address) ? '-' : $buyer_profiles->address) }}
                 </p>
             </div>
         </div>
@@ -119,7 +119,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    ทุ่งสุขลา
+                    {{ (is_null($buyer_profiles->District) ? '-' : $buyer_profiles->District->name_th) }}
                 </p>
             </div>
         </div>
@@ -136,7 +136,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    ศรีราชา
+                    {{ (is_null($buyer_profiles->Amphure) ? '-' : $buyer_profiles->Amphure->name_th) }}
                 </p>
             </div>
         </div>
@@ -153,7 +153,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    ชลบุรี
+                    {{ (is_null($buyer_profiles->Province) ? '-' : $buyer_profiles->Province->name_th) }}
                 </p>
             </div>
         </div>
@@ -170,7 +170,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    12345
+                    {{ (is_null($buyer_profiles->postcode) ? '-' : $buyer_profiles->postcode) }}
                 </p>
             </div>
         </div>
@@ -211,7 +211,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    นายสมมุติ สมุด
+                    {{ (is_null($buyer_tax_invoices->name) ? '-' : $buyer_tax_invoices->name) }}
                 </p>
             </div>
         </div>
@@ -228,7 +228,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    0812345677
+                    {{ (is_null($buyer_tax_invoices->phone) ? '-' : $buyer_tax_invoices->phone) }}
                 </p>
             </div>
         </div>
@@ -245,7 +245,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    1 234 5678 9101 2
+                    {{ (is_null($buyer_tax_invoices->texid) ? '-' : $buyer_tax_invoices->texid) }}
                 </p>
             </div>
         </div>
@@ -262,7 +262,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    123 หมู่ 0 ถนน เจริญกรุง แขวง เยาวราช ซอย 5
+                    {{ (is_null($buyer_tax_invoices->address) ? '-' : $buyer_tax_invoices->address) }}
                 </p>
             </div>
         </div>
@@ -279,7 +279,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    ทุ่งสุขลา
+                    {{ (is_null($buyer_tax_invoices->District) ? '-' : $buyer_tax_invoices->District->name_th) }}
                 </p>
             </div>
         </div>
@@ -296,7 +296,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    ศรีราชา
+                    {{ (is_null($buyer_tax_invoices->Amphure) ? '-' : $buyer_tax_invoices->Amphure->name_th) }}
                 </p>
             </div>
         </div>
@@ -313,7 +313,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    ชลบุรี
+                    {{ (is_null($buyer_tax_invoices->Province) ? '-' : $buyer_tax_invoices->Province->name_th) }}
                 </p>
             </div>
         </div>
@@ -330,7 +330,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
                 <p>
-                    12345
+                    {{ (is_null($buyer_tax_invoices->postcode) ? '-' : $buyer_tax_invoices->postcode) }}
                 </p>
             </div>
         </div>

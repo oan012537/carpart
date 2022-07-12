@@ -28,4 +28,20 @@ class BuyerProfile extends Model
     {
         return $this->belongsTo('App\Models\Buyer\mUsers_buyer', 'users_buyer_id');
     }
+
+    public function Province()
+    {
+        return $this->belongsTo('App\Models\Province', 'province');
+    }
+
+    public function Amphure()
+    {
+        return $this->belongsTo('App\Models\Amphure', 'amphure');
+    }
+
+    public function District()
+    {
+        return $this->belongsTo('App\Models\District', 'district');
+    }
+
 }
