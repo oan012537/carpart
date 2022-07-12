@@ -1,6 +1,5 @@
 @extends('buyer.layouts.template')
 
-
 <link href="{{ asset('assets/css/product-detail.css') }}" rel="stylesheet">
 
 @section('content')
@@ -60,12 +59,8 @@
                         <p class="product-title"> {{ $product->name_th }} </p>
                         <div class="pro-detail-pro">
                             <p>
-                                *** -- [..สอบถาม column ?..] -- ***<br>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled it to make a type specimen book. It has
-                                survived not only five centuries, but also the leap into electronic typesetting,
-                                remaining essentially unchanged.</p>
+                                {{ $product->subtitle_th }}
+                            </p>
                         </div>
 
                         {{-- 
@@ -126,7 +121,7 @@
                         </div>
 
                         <div class="product-detail">
-                            <p> <span> สถานะ : </span> &nbsp;&nbsp; พร้อมส่ง ** สอบถาม column</p>
+                            <p> <span> สถานะ : </span> &nbsp;&nbsp; <!--พร้อมส่ง--> {{ (is_null($product->status_code) ? '-' : $product->status_code) }}</p>
                             <p> <span> แบรนด์ : </span> &nbsp;&nbsp; {{ (is_null($product->brand->name_th) ? '-' : $product->brand->name_th) }} </p>
                             <p> <span> สภาพสินค้า : </span> &nbsp;&nbsp; {{ (is_null($product->grade) ? '-' : $product->grade) }}</p>
                         </div>
@@ -356,7 +351,15 @@
                             <div class="col-lg-3">
                                 <div class="tt-detail-tt2">
                                     <p>
-                                        กว้าง x ยาว x สูง  *** สอบถาม column
+                                        <!-- กว้าง x ยาว x สูง :  -->
+                                        @if(!is_null($product->transportation))
+                                            {{ $product->transportation->width }} x 
+                                            {{ $product->transportation->length }} x 
+                                            {{ $product->transportation->height }} 
+                                            {{ $product->transportation->uom }}
+                                        @else
+                                            -
+                                        @endif
                                     </p>
                                 </div>
                             </div>
@@ -371,7 +374,13 @@
                             <div class="col-lg-3">
                                 <div class="tt-detail-tt4">
                                     <p>
-                                        10 กิโลกรัม *** สอบถาม column
+                                        <!-- 10 กิโลกรัม  -->
+                                        @if(!is_null($product->transportation))
+                                            {{ $product->transportation->weight }}
+                                            {{ $product->transportation->unit }}
+                                        @else
+                                            -
+                                        @endif
                                     </p>
                                 </div>
                             </div>
@@ -422,7 +431,7 @@
                             <div class="col-lg-3">
                                 <div class="tt-detail-tt2">
                                     <p>
-                                        สมุทรปราการ ** เชื่อมตารางไหน supplier store ?
+                                        {{ (is_null($product->supplier) ? '-' : $product->supplier->Province->name_th) }}
                                     </p>
                                 </div>
                             </div>
@@ -437,7 +446,7 @@
                             <div class="col-lg-3">
                                 <div class="tt-detail-tt4">
                                     <p>
-                                        พร้อมส่ง *** สอบถาม column
+                                        {{ (is_null($product->status_code) ? '-' : $product->status_code) }}
                                     </p>
                                 </div>
                             </div>
@@ -464,9 +473,11 @@
                             <div class="col-lg-3">
                                 <div class="tt-detail-tt4">
                                     <p>
-                                        <!-- รับประกัน....... 3 เดือน -->
-                                        {{ (is_null($product->is_warranty) ? '-' : $product->is_warranty) }}
-                                        ** หน่วย เป็น ? อาจจะมี (เดือน, ปี)
+                                        @if(!is_null($product->warranty))
+                                            {{ $product->warranty->duration }} {{ $product->warranty->year_month_day }}
+                                        @else
+                                            -
+                                        @endif
                                     </p>
                                 </div>
                             </div>
@@ -481,11 +492,6 @@
                         </div>
                         <div class="d-detail-text">
                             <p>
-                                <!-- อาท์ดอร์รูบิคสถาปัตย์ควิกกรีน
-                                ทาวน์เฮาส์โอเวอร์ไฟลท์พะเรอบ็อกซ์ ต่อรองยิมครัวซองโหงวเฮ้งจอหงวน อาข่า บัสฮัม
-                                ไทม์ยะเยือกฮ็อต เพนกวินมะกันไฮบริดโฮป ไทม์โชห่วยออร์แกนิกเซลส์แคร็กเกอร์ เฮีย
-                                คอรัปชันไมค์ โซนี่คาแรคเตอร์ สแล็กแอคทีฟคลับ สุริยยาตรเปปเปอร์มินต์ดราม่าพาสตาสันทนาการ
-                                สตาร์ แซวแชมพู บลูเบอร์รีอะสเก็ตช์ -->
                                 {{ (is_null($product->term_and_condition) ? '-' : $product->term_and_condition) }}
                             </p>
                         </div>
