@@ -6,10 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Amphure;
+use App\Models\District;
+use App\Models\Province;
 use App\Models\Buyer\mUsers_buyer;
 use App\Models\Buyer\BuyerProfile;
 use App\Models\Buyer\BuyerTaxInvoice;
 use App\Models\Buyer\BuyerBank;
+
 
 class BuyerAccountController extends Controller
 {
@@ -38,6 +42,8 @@ class BuyerAccountController extends Controller
             ->orderBy('updated_at', 'desc')
             ->orderBy('created_at', 'desc')
             ->get();
+        
+        $data['provinces'] = Province::get();
         
         return view('buyer.profile.profile.index', $data);
     }

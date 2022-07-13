@@ -72,6 +72,9 @@ Route::prefix('buyer')->group(function(){
     Route::get('GetSubsubCategory/{id}', [Buyer\BuyerController::class, 'GetSubsubCategory']);
 
     Route::post('GetsearchBox',[Buyer\SearchProductController::class, 'Getsearch']);
+
+    Route::get('fetch_amphur/{id}', [Buyer\BuyerController::class, 'GetsubCategory']);
+
 });
 
 
@@ -80,3 +83,4 @@ Route::prefix('buyer')->group(function(){
 Route::get('product/{productname}/{id}', [Buyer\ProductDetailController::class, 'index']);
 
 // ========== Product Detail ================
+
