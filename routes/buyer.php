@@ -52,7 +52,7 @@ Route::prefix('buyer')->group(function(){
 
     Route::group(['middleware' => ['buyer']], function () {
         Route::get('home-search', [Buyer\SearchProductController::class, 'home_search'])->name('buyer.home-search');
-        Route::post('search-product', [Buyer\BuyerController::class, 'search_product']);
+        Route::post('search-product', [Buyer\SearchProductController::class, 'search_product']);
         Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand']);
         Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
 
@@ -60,18 +60,18 @@ Route::prefix('buyer')->group(function(){
     });
 
     //Ajax
-    Route::get('filterBrands/{id}', [Buyer\BuyerController::class, 'filterBrands']);
-    Route::get('searchBrands/{id}', [Buyer\BuyerController::class, 'searchBrands']);
+    Route::get('filterBrands/{id}', [Buyer\SearchProductController::class, 'filterBrands']);
+    Route::get('searchBrands/{id}', [Buyer\SearchProductController::class, 'searchBrands']);
     
     Route::get('SearchBox', [Buyer\SearchProductController::class, 'searchBox']);
-    Route::get('GetModel/{id}', [Buyer\BuyerController::class, 'GetModel']);
-    Route::get('GetsubModel/{id}', [Buyer\BuyerController::class, 'GetsubModel']);
-    Route::get('GetYear/{id}', [Buyer\BuyerController::class, 'GetYear']);
-    Route::get('GetYearID/{id}', [Buyer\BuyerController::class, 'GetYearID']);
-    Route::get('GetsubCategory/{id}', [Buyer\BuyerController::class, 'GetsubCategory']);
-    Route::get('GetSubsubCategory/{id}', [Buyer\BuyerController::class, 'GetSubsubCategory']);
+    Route::get('GetModel/{id}', [Buyer\SearchProductController::class, 'GetModel']);
+    Route::get('GetsubModel/{id}', [Buyer\SearchProductController::class, 'GetsubModel']);
+    Route::get('GetYear/{id}', [Buyer\SearchProductController::class, 'GetYear']);
+    Route::get('GetYearID/{id}', [Buyer\SearchProductController::class, 'GetYearID']);
+    Route::get('GetsubCategory/{id}', [Buyer\SearchProductController::class, 'GetsubCategory']);
+    Route::get('GetSubsubCategory/{id}', [Buyer\SearchProductController::class, 'GetSubsubCategory']);
 
-    Route::post('GetsearchBox',[Buyer\SearchProductController::class, 'Getsearch']);
+    // Route::post('GetsearchBox',[Buyer\SearchProductController::class, 'Getsearch']);
 });
 
 

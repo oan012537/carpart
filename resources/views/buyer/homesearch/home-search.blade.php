@@ -514,6 +514,8 @@
             });
         }
 
+
+        //ช่องค้นหาbrand ใน box search
         $(document).on('keyup','#search-brand',function(){
             name = $('#search-brand').val();
             $('.brands-all').css('display','none');
@@ -530,16 +532,21 @@
             }
         });
 
+        
         function selectBrands(id){
-            // brand = id
-            $.ajax({
+            location.href = "buyer/home-search2?brand="+id;
+            /*$.ajax({
                 method: "POST",
                 url: "{{url('buyer/GetsearchBox')}}",
                 data: {"_token":" {{ csrf_token() }} ",brand:id}
             }).done(function(rec){
                 location.href = "buyer/home-search2?brand="+id;
-            });
+            });*/
         }
+
+    </script>
+    <script>
+        //การดึงค่าสำหรับ search navbar
 
         function searchnavBrands(id){
             $('#brand-search').val(id);
