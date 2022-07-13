@@ -80,3 +80,4 @@ Route::prefix('buyer')->group(function(){
 Route::get('product/{productname}/{id}', [Buyer\ProductDetailController::class, 'index']);
 
 // ========== Product Detail ================
+

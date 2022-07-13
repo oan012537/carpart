@@ -47,7 +47,7 @@
                 <div class="col-8">
                     <div class="box__contentmain">
                         <div class="box__tab">
-                            <nav>
+                        <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <button class="nav-link active" id="taball-tab" data-bs-toggle="tab"
                                         data-bs-target="#taball" type="button" role="tab" aria-controls="taball"
@@ -64,7 +64,6 @@
                                     <button class="nav-link" id="navaddress-tab" data-bs-toggle="tab"
                                         data-bs-target="#navaddress" type="button" role="tab" aria-controls="navaddress"
                                         aria-selected="false">จัดการที่อยู่ </button>
-
                                 </div>
                             </nav>
 
@@ -75,25 +74,22 @@
                                     @include('buyer.profile.profile.user_profile')
                                 </div>
 
-
                                 <div class="tab-pane fade" id="tabrequest" role="tabpanel" aria-labelledby="tabrequest-tab">
                                     @include('buyer.profile.profile.user_password')
                                 </div>
 
-
                                 <div class="tab-pane fade" id="navopen" role="tabpanel" aria-labelledby="navopen-tab">
                                     @include('buyer.profile.profile.user_socialmedia')
                                 </div>
-
-
+                                
                                 <div class="tab-pane fade" id="navbank" role="tabpanel" aria-labelledby="navbank-tab">
                                     @include('buyer.profile.profile.user_bank')  
                                 </div>
 
-
                                 <div class="tab-pane fade" id="navaddress" role="tabpanel" aria-labelledby="navaddress-tab">
                                     @include('buyer.profile.profile.user_address')  
                                 </div>
+
                             </div>
                             <br><br>
                         </div>
@@ -495,107 +491,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-            <!-- The Modal -->
-            <div id="id06" class="w3-modal">
-                <div class="w3-modal-content">
-                    <div class="w3-container">
-                        <div class="text-t-haer-pakan">
-                            <p>
-                                เพิ่ม/แก้ไขที่อยู่
-                            </p>
-                        </div>
-                        <div class="card-con w-100">
-                            <div class="text-t-deail-add-edit">
-                                <form class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="inputEmail4" class="form-label"> ชื่อผู้ติดต่อ <span> + </span>
-                                        </label>
-                                        <input type="email" class="form-control" id="inputEmail4">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputPassword4" class="form-label"> เบอร์โทรศัพท์ <span> + </span>
-                                        </label>
-                                        <input type="text" class="form-control" id="inputPassword4">
-                                    </div>
-                                </form>
-                                <br>
-                                <form class="row g-3">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label"> ที่อยู่ <span> +
-                                            </span></label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1"
-                                            rows="3"></textarea>
-                                    </div>
-                                </form>
-                                <br>
-                                <form class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="inputEmail4" class="form-label"> จังหวัด <span> + </span>
-                                        </label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected> ระบุ </option>
-                                            <option value="1"> 1 </option>
-                                            <option value="2"> 2 </option>
-                                            <option value="3"> 3 </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputPassword4" class="form-label"> เขต/อำเภอ <span> + </span>
-                                        </label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected> ระบุ </option>
-                                            <option value="1"> 1 </option>
-                                            <option value="2"> 2 </option>
-                                            <option value="3"> 3 </option>
-                                        </select>
-                                    </div>
-                                </form>
-                                <br>
-                                <form class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="inputEmail4" class="form-label"> แขวง/ตำบล <span> + </span>
-                                        </label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected> ระบุ </option>
-                                            <option value="1"> 1 </option>
-                                            <option value="2"> 2 </option>
-                                            <option value="3"> 3 </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputPassword4" class="form-label"> รหัสไปรษณีย์ <span> + </span>
-                                        </label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected> ระบุ </option>
-                                            <option value="1"> 1 </option>
-                                            <option value="2"> 2 </option>
-                                            <option value="3"> 3 </option>
-                                        </select>
-                                    </div>
-                                </form>
-
-
-                            </div>
-                        </div>
-                        <br>
-                        <div style="text-align:center;">
-                            <div class="b-but-concon">
-                                <button class="button button-close"
-                                    onclick="document.getElementById('id06').style.display='none'"
-                                    class="w3-button w3-display-topright"> ยกเลิก </button>
-                                <button class="button button-up"
-                                    onclick="document.getElementById('id06').style.display='none'"
-                                    class="w3-button w3-display-topright"> อัพเดท </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
     <br><br><br>
@@ -604,8 +499,8 @@
     @include('buyer.layouts.inc_js')
 
 
-    <!-- JS  upload img -->
-    <script>
+     <!-- JS  upload img -->
+     <script>
     onChangeHandler = () => {
         let reader = new FileReader();
         let file = $(".upload-image__file")[0].files[0]
@@ -731,10 +626,104 @@
     }
     </script>
 
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 
+
+
+
+<script>
+
+    $(document).ready(function() {
+        $.get("{{url('fetchamphures')}}/1",function(result) {
+            $("#amphure").empty().append('<option disabled selected>Choose</option>');
+            $.each(result, function(indexInArray, valueOfElement) {
+                $("#amphure").append('<option value="' + valueOfElement.id + '" >' + valueOfElement.name_th + '</option>');
+            });
+        });
+    });
+
+
+
+    $("#form_insertaddress").on("submit", function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        console.log(formData);
+        // $.ajax({
+        //     type:'POST',
+        //     url: '{{ url("/create_customer") }}',
+        //     data:formData,
+        //     cache:false,
+        //     contentType: false,
+        //     processData: false,
+        //     success:function(response){
+        //         console.log(response);
+        //         if(response.status == 200){
+        //             Swal.fire({
+        //                 icon: 'success',
+        //                 title: 'Your work has been saved',
+        //                 showConfirmButton: false,
+        //                 timer: 1500
+        //             });
+        //             $("#addCustomer").modal('hide');
+        //             $("shop_name").val('');
+        //             $("contact_name").val('');
+        //             $("shop_phone").val('');
+        //             $("shop_address").val('');
+        //             location.reload();
+        //         }else{
+        //             Swal.fire({
+        //                 icon: 'error',
+        //                 title: 'Your work has been saved',
+        //                 text: response.message,
+        //                 showConfirmButton: false,
+        //                 timer: 1500
+        //             })
+        //         }
+        //     },
+        //     error: function(response){
+        //         console.log("error");
+        //         console.log(response);
+        //     }
+        // });
+    });
+
+    $(document).on("change","#province", function(e){
+        e.preventDefault();
+        let id = $(this).val();
+        $.get("{{url('fetchamphures')}}/" + id, function(result) {
+            $("#amphure").empty().append('<option disabled selected>Choose</option>');
+            $("#district").empty().append('<option disabled selected>Choose</option>');
+            $("#postcode").val('');
+            $.each(result, function(indexInArray, valueOfElement) {
+                $("#amphure").append('<option value="' + valueOfElement.id + '" >' + valueOfElement.name_th + '</option>');
+            });
+        });
+    });
+    
+    $(document).on("change","#amphure", function(e){
+        e.preventDefault();
+        let id = $(this).val();
+        $.get("{{url('fetchdistricts')}}/" + id, function(result) {
+            $("#district").empty().append('<option disabled selected>Choose</option>');
+            $("#postcode").val('');
+            $.each(result, function(indexInArray, valueOfElement) {
+                $("#district").append('<option value="' + valueOfElement.id + '" >' + valueOfElement.name_th + '</option>');
+            });
+        });
+    });
+
+    $(document).on("change","#district", function(e){
+        e.preventDefault();
+        let id = $(this).val();
+        $.get("{{url('fetchzipcode')}}/" + id, function(result) {
+            $("#postcode").val(result);
+        });
+    });
+
+</script>
 
 </body>
 
