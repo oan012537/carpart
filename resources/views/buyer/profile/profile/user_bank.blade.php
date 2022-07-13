@@ -1,7 +1,15 @@
+@foreach($buyer_banks as $key => $bank)
+
+    @php
+        $bank_checked = "";
+        if($bank->banks_active == 1){
+            $bank_checked = "checked";
+        }
+    @endphp
 <div class="box__content">
     <div class="box-check-set">
         <label class="b-bank"> ตั้งเป็นบัญชีรับเงิน
-            <input type="checkbox" checked="checked">
+            <input type="radio" name="bank_checked" {{ $bank_checked }}>
             <span class="checkmark"></span>
         </label>
     </div>
@@ -17,7 +25,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2-bank">
                 <p>
-                    123-123456-1
+                    {{ (is_null($bank->banks_accountnumber) ? '-' : $bank->banks_accountnumber) }}
                 </p>
             </div>
         </div>
@@ -34,7 +42,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2-bank">
                 <p>
-                    บริษัท เฮงเฮงอะไหล่ยนต์
+                    {{ (is_null($bank->banks_accountname) ? '-' : $bank->banks_accountname) }}
                 </p>
             </div>
         </div>
@@ -51,13 +59,13 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2-bank">
                 <p>
-                    emily@sample.com
+                    {{ (is_null($bank->banks_name) ? '-' : $bank->banks_name) }}
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-lg-3">
             <div class="txt__title2-bank">
                 <p>
@@ -72,7 +80,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="row">
         <div class="col-lg-3">
@@ -85,7 +93,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2-bank">
                 <p>
-                    ประชาอุทิศ
+                    {{ (is_null($bank->banks_branch) ? '-' : $bank->banks_branch) }}
             </div>
         </div>
     </div>
@@ -101,7 +109,7 @@
         <div class="col-lg-9">
             <div class="txt__detailtitle2-bank">
                 <p>
-                    ออมทรัพย์
+                    {{ (is_null($bank->banks_type) ? '-' : $bank->banks_type) }}
                 </p>
             </div>
         </div>
@@ -123,6 +131,9 @@
         </div>
     </div>
 </div>
+
+@endforeach
+
 <div class="but-bank">
 
 </div>

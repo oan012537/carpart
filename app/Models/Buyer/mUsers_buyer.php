@@ -61,4 +61,9 @@ class mUsers_buyer extends Authenticatable
         return $this->hasMany('App\Models\Buyer\BuyerTaxInvoice', 'users_buyer_id');
     }
 
+    public function buyerBanks()
+    {
+        return $this->hasMany('App\Models\Buyer\BuyerBank', 'users_buyer_id');
+    }
+
 }
