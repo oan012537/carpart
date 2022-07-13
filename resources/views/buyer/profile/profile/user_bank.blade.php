@@ -125,7 +125,7 @@
         </div>
         <div class="col-lg-9">
             <div class="txt__detailtitle2-bank">
-                <img src="assets/img/account/img-bank.png" class="img-fluid"
+                <img src="{{ asset('assets/img/account/img-bank.png') }}" class="img-fluid"
                     alt="shoe image">
             </div>
         </div>
