@@ -394,7 +394,7 @@
     @include('buyer.layouts.inc_footer')
     @include('buyer.layouts.inc_js')
     <script>
-        test = {{$brand}};
+        test = <?php echo $_GET['brand']; ?>;
         alert(test);   
         $(document).on('keyup','#search-box-model',function(){
             name = $('#search-box-model').val();
