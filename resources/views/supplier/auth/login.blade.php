@@ -4,6 +4,12 @@
 
 @section('style')
     <link href="{{asset('assets/css/login1.css')}}" rel="stylesheet">
+    <style>
+        .dot__color {
+            color: rgb(224, 91, 91);
+            margin-left: 5px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -26,18 +32,27 @@
                             <div class="tt-text-log">
                                 <p>{{ trans('file.Mobile number / email') }}</p>
                             </div>
-                            <div class="input-group mb-3 box-border">
+                            <div class="input-group box-border">
                                 <input type="text" class="form-control{{ $errors->has('name') || $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="01xx-xxx-xxxxx"
-                                    aria-label="Username" aria-describedby="basic-addon1" required autofocus>
-                                
+                                    aria-label="Username" aria-describedby="basic-addon1" required autofocus  value="{{old('email')}}">
+                            </div>
+                            <div class="tt-text-log mb-3">
+                                @if(session()->has('error'))
+                                        <span class="dot__color">{{ session()->get('error') }}</span>
+                                @endif
                             </div>
 
                             <div class="tt-text-log2">
                                 <p>{{ trans('file.Password') }}</p>
                             </div>
-                            <div class="input-group mb-3 box-border">
+                            <div class="input-group box-border">
                                 <input type="password" name="password" class="form-control" id="password"
                                     placeholder="*************" required>
+                            </div>
+                            <div class="tt-text-log mb-3">
+                                @if(session()->has('error'))
+                                        <span class="dot__color">{{ session()->get('error') }}</span>
+                                @endif
                             </div>
 
                             <div class="t-pass-t">

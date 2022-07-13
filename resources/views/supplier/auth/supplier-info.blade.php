@@ -63,62 +63,62 @@
                         {{-- personal --}}
                             <div class="contenttab">
                                 <fieldset>
-                                    <form id="frm-personal" action="{{ route('supplier.register.contactInfo') }}" method="post" enctype="multipart/form-data">
-                                        @csrf
+                                    <form id="frm-personal" action="{{ route('supplier.register.contactInfo') }}" method="get" enctype="multipart/form-data">
+                                        
                                         <input type="hidden" name="supplier_type" value="personal">
                                         <div class="box-b-detail">
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.Store Name') }} *
+                                                    {{ trans('file.Store Name') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="store_name"  aria-describedby="basic-addon1">
+                                                  name="store_name"  aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.Name') }} *
+                                                    {{ trans('file.Name') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                   name="personal_first_name" aria-describedby="basic-addon1">
+                                                   name="personal_first_name" aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.Surname') }} *
+                                                    {{ trans('file.Surname') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="personal_last_name"  aria-describedby="basic-addon1">
+                                                  name="personal_last_name"  aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.ID card number') }} *
+                                                    {{ trans('file.ID card number') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="personal_card_id"  aria-describedby="basic-addon1">
+                                                  name="personal_card_id"  aria-describedby="basic-addon1" required> 
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.Address (according to ID card)') }} *
+                                                    {{ trans('file.Address (according to ID card)') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                   name="address" aria-describedby="basic-addon1">
+                                                   name="address" aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.Province') }} *
+                                                    {{ trans('file.Province') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="province">
+                                                <select class="form-select" aria-label="Default select example" name="province" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                     @foreach ($province_list_data as $province)
                                                         <option value="{{ $province->id }}">{{ $province->name_th }}</option>
@@ -127,33 +127,44 @@
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.Amphure') }} *
+                                                    {{ trans('file.Amphure') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="amphure">
+                                                <select class="form-select" aria-label="Default select example" name="amphure" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.District') }} *
+                                                    {{ trans('file.District') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="district">
+                                                <select class="form-select" aria-label="Default select example" name="district" required>
+                                                    <option value="">{{ trans('file.Specify') }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="tt-text-log">
+                                                <p>
+                                                    {{ trans('file.Postal Code') }} <span class="dot__color">*</span>
+                                                </p>
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <select class="form-select" aria-label="Default select example" name="postcode">
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
                                             {{-- attach doc --}}
                                             <div class="tt-text-log">
-                                                <p>{{ trans('file.Copy of ID card') }} *</p>
+                                                <p>{{ trans('file.Copy of ID card') }} <span class="dot__color"> *</span></p>
                                                 <div class="text-t-log">
                                                     <p>{{ trans('file.accept file extension') }}</p>
                                                 </div>
                                             </div>
                                             <div class="drop-zone">
-                                                <span class="drop-zone__prompt"> 
+                                                <label class="drop-zone__prompt"> 
+                                                    <input type="file" id="personal-card-id-image" class="drop-zone__input" style="opacity: 0; width: 50%;">
                                                     <i class="fa fa-plus-circle" style="font-size:35px"></i>
                                                     <p> {{ trans('file.Attach a Jpeg Image') }}</p>
                                                     <div class="tt-img-detail">
@@ -164,18 +175,18 @@
                                                             <p> {{ trans('file.Size does not exceed 5 Mb.') }} </p>
                                                         </div>
                                                     </div>
-                                                    <input type="file" name="personal_card_id_image" class="drop-zone__input">
-                                                </span>
+                                                </label>
                                             </div>
                                             <br>
                                             <div class="tt-text-log">
-                                                <p>{{ trans('file.Copy of house registration') }} *</p>
+                                                <p>{{ trans('file.Copy of house registration') }} <span class="dot__color"> *</span></p>
                                                 <div class="text-t-log">
                                                     <p>{{ trans('file.accept file extension') }}</p>
                                                 </div>
                                             </div>
                                             <div class="drop-zone">
-                                                <span class="drop-zone__prompt"> 
+                                                <label class="drop-zone__prompt"> 
+                                                    <input type="file" id="personal-house-registration" class="drop-zone__input" style="opacity: 0;width: 50%;">
                                                     <i class="fa fa-plus-circle" style="font-size:35px"></i>
                                                     <p> {{ trans('file.Attach a Jpeg Image') }}</p>
                                                     <div class="tt-img-detail">
@@ -183,10 +194,15 @@
                                                             <p> {{ trans('file.Size does not exceed 5 Mb.') }} </p>
                                                         </div>
                                                     </div>
-                                                    <input type="file" name="personal_house_registration" class="drop-zone__input">
-                                                </span>
+                                                </label>
                                             </div>
                                             {{-- attach doc --}}
+
+                                             <div class='but-bb-log2 mt-3'>
+                                                <button type="submit" class="button button1"> {{ trans('file.Next') }} &nbsp; 
+                                                    <i class='fas fa-angle-right'></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </form>
                                 </fieldset>
@@ -195,47 +211,48 @@
                             {{-- company --}}
                             <div class="contenttab">
                                 <fieldset>
-                                    <form id="frm-company" action="{{ route('supplier.register.contactInfo') }}" method="post" enctype="multipart/form-data">
-                                        @csrf
+                                    <form id="frm-company" action="{{ route('supplier.register.contactInfo') }}" method="get" enctype="multipart/form-data">
+                                        
                                         <input type="hidden" name="supplier_type" value="corporate">
                                         <div class="box-b-detail">
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.Company Name') }} <span class="dot__color">*</span>
+                                                    {{ trans('file.Company Name') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="company_name"  aria-describedby="basic-addon1">
+                                                  name="company_name"  aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.Branch') }} <span class="dot__color">*</span>
+                                                    {{ trans('file.Branch') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="branch"  aria-describedby="basic-addon1">
+                                                  name="branch"  aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.VAT Registration Number') }} <span class="dot__color">*</span>
+                                                    {{ trans('file.VAT Registration Number') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="vat_registration_number"  aria-describedby="basic-addon1">
+                                                  name="vat_registration_number"  aria-describedby="basic-addon1" required>
                                             </div>
                                             {{-- attach doc --}}
                                             <div class="tt-text-log">
-                                                <p>{{ trans('file.Company certificate not older than 6 months') }} *</p>
+                                                <p>{{ trans('file.Company certificate not older than 6 months') }} <span class="dot__color"> *</span></p>
                                                 <div class="text-t-log">
                                                     <p>{{ trans('file.accept file extension') }}</p>
                                                 </div>
                                             </div>
 
                                             <div class="drop-zone">
-                                                <span class="drop-zone__prompt">
+                                                <label class="drop-zone__prompt">
+                                                    <input type="file" id="company-certificate" class="drop-zone__input">
                                                     <i class="fa fa-plus-circle" style="font-size:35px"></i>
                                                     <p> {{ trans('file.Attach a Jpeg Image') }}</p>
                                                     <div class="tt-img-detail">
@@ -243,8 +260,7 @@
                                                             <p>{{ trans('file.Size does not exceed 5 Mb.') }} </p>
                                                         </div>
                                                     </div>
-                                                    <input type="file" name="company_certificate" class="drop-zone__input">
-                                                </span>
+                                                </label>
                                             </div>
 
                                             <div class="tt-text-log">
@@ -261,9 +277,9 @@
                                                     </a>
                                                 </p>
                                             </div>
-
                                             <div class="drop-zone">
-                                                <span class="drop-zone__prompt"> 
+                                                <label class="drop-zone__prompt"> 
+                                                    <input type="file" id="vat-registration-doc" class="drop-zone__input">
                                                     <i class="fa fa-plus-circle" style="font-size:35px"></i>
                                                     <p> {{ trans('file.Attach a Jpeg Image') }}</p>
                                                     <div class="tt-img-detail">
@@ -271,8 +287,7 @@
                                                             <p> {{ trans('file.Size does not exceed 5 Mb.') }} </p>
                                                         </div>
                                                     </div>
-                                                    <input type="file" name="vat_registration_doc" class="drop-zone__input">
-                                                </span>
+                                                </label>
                                             </div>
                                             {{-- attach doc --}}
                                             <br>
@@ -287,11 +302,11 @@
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.Province') }} <span class="dot__color">*</span>
+                                                    {{ trans('file.Province') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="province">
+                                                <select class="form-select" aria-label="Default select example" name="province" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                     @foreach ($province_list_data as $province)
                                                         <option value="{{ $province->id }}">{{ $province->name_th }}</option>
@@ -300,21 +315,21 @@
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.Amphure') }} <span class="dot__color">*</span>
+                                                    {{ trans('file.Amphure') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="amphure">
+                                                <select class="form-select" aria-label="Default select example" name="amphure" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
-                                                    {{ trans('file.District') }} <span class="dot__color">*</span>
+                                                    {{ trans('file.District') }} <span class="dot__color"> *</span>
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="district">
+                                                <select class="form-select" aria-label="Default select example" name="district" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
@@ -328,15 +343,17 @@
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
+
+                                            <div class='but-bb-log2'>
+                                                <button type="submit" class="button button1"> {{ trans('file.Next') }} &nbsp; 
+                                                    <i class='fas fa-angle-right'></i>
+                                                </button>
+                                            </div>
                                         </div>
+                                       
                                     </form>
                                 </fieldset>
                                 <br>
-                            </div>
-                            <div class='but-bb-log2'>
-                                <button id="btn-submit" type="button" class="button button1"> {{ trans('file.Next') }} &nbsp; 
-                                    <i class='fas fa-angle-right'></i>
-                                </button>
                             </div>
                     </div>
                 </div>
@@ -349,81 +366,7 @@
 
 @section('script')
 
-<script>
-    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-        const dropZoneElement = inputElement.closest(".drop-zone");
-
-        dropZoneElement.addEventListener("click", (e) => {
-            inputElement.click();
-        });
-
-        inputElement.addEventListener("change", (e) => {
-            if (inputElement.files.length) {
-                updateThumbnail(dropZoneElement, inputElement.files[0]);
-            }
-        });
-
-        dropZoneElement.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            dropZoneElement.classList.add("drop-zone--over");
-        });
-
-        ["dragleave", "dragend"].forEach((type) => {
-            dropZoneElement.addEventListener(type, (e) => {
-                dropZoneElement.classList.remove("drop-zone--over");
-            });
-        });
-
-        dropZoneElement.addEventListener("drop", (e) => {
-            e.preventDefault();
-
-            if (e.dataTransfer.files.length) {
-                inputElement.files = e.dataTransfer.files;
-                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-            }
-
-            dropZoneElement.classList.remove("drop-zone--over");
-        });
-    });
-
-    /**
-     * Updates the thumbnail on a drop zone element.
-     *
-     * @param {HTMLElement} dropZoneElement
-     * @param {File} file
-     */
-    function updateThumbnail(dropZoneElement, file) {
-        let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
-
-        // First time - remove the prompt
-        if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-            dropZoneElement.querySelector(".drop-zone__prompt").remove();
-        }
-
-        // First time - there is no thumbnail element, so lets create it
-        if (!thumbnailElement) {
-            thumbnailElement = document.createElement("div");
-            thumbnailElement.classList.add("drop-zone__thumb");
-            dropZoneElement.appendChild(thumbnailElement);
-        }
-
-        thumbnailElement.dataset.label = file.name;
-
-        // Show thumbnail for image files
-        if (file.type.startsWith("image/")) {
-            const reader = new FileReader();
-
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-            };
-        } else {
-            thumbnailElement.style.backgroundImage = null;
-        }
-    }
-</script>
-
-<script>
+<script type="text/javascript">
 
     var supplierType = '';
 
@@ -450,14 +393,6 @@
         $('select[name="postcode"]').html('<option value="">{{ trans("file.Specify") }}</option>');
 
     });
-
-    $('#btn-submit').on('click', function(){
-        if (supplierType === 'personal') {
-            $('#frm-personal').submit();
-        } else {
-            $('#frm-company').submit();
-        }
-    })
 
     var current_fs, next_fs, previous_fs;
     var left, opacity, scale;
@@ -596,10 +531,10 @@
                     
                     data.district_list.forEach(district => {
                         if (index === 0) {
-                            option = '<option value="">'+ specify +'</option><option value="'+ district.name_en + '">'+ district.name_th +'</option>';
+                            option = '<option value="">'+ specify +'</option><option value="'+ district.id + '">'+ district.name_th +'</option>';
                             
                         } else {
-                            option = '<option value="'+ district.name_th + '">'+ district.name_th +'</option>';
+                            option = '<option value="'+ district.id + '">'+ district.name_th +'</option>';
                         }
                         if (supplierType === 'personal') {
                             $('#frm-personal select[name="district"]').append(option);    
@@ -633,6 +568,81 @@
             }
         })
     }
+
+    // attach doc
+    $('#personal-card-id-image').on('change', function(){
+        let event = $(this);
+        let fieldName = 'personal_card_id_image';
+        uploadImage(event, fieldName);
+    });
+
+    $('#personal-house-registration').on('change', function(){
+        let event = $(this);
+        let fieldName = 'personal_house_registration';
+        uploadImage(event, fieldName);
+    });
+
+    $('#company-certificate').on('change', function(){
+        let event = $(this);
+        let fieldName = 'company_certificate';
+        uploadImage(event, fieldName);
+    });
+
+    $('#vat-registration-doc').on('change', function(){
+        let event = $(this);
+        let fieldName = 'vat_registration_doc';
+        uploadImage(event, fieldName);
+    });
+
+    function uploadImage(event, fieldName) {
+        var imageUrl = '';
+        var htmlText = '';
+        var file_data = event.prop('files')[0];   
+        var form_data = new FormData(); 
+        form_data.append('_token', '{{ csrf_token() }}');
+        form_data.append('file', file_data);
+        $.ajax({
+            url: 'register/upload-file',
+            dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(data){
+                event.parent().addClass('d-none');
+                imageUrl = "{{ asset('suppliers/document') }}" + '/' + data;
+                htmlText = '<div>'
+                                +'<input type="hidden" name="'+ fieldName +'" value="'+ data +'">'
+                                +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
+                                +'<img src="'+ imageUrl +'" class="img-fluid" alt="Attachment" style="width:115px;height:106px;">'
+                                +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
+                                +'</a></div>';
+                event.parent().parent().append(htmlText);
+            }
+        });
+    }
+
+    // remove doc
+    $(document).on('click', '.btn__trash', function(e){
+        var imageName = $(e.currentTarget).data('image');
+
+        $.ajax({
+            url: 'register/remove-file',
+            dataType: 'text',
+            data: {
+                'imageName': imageName,
+                '_token': '{{ csrf_token() }}'
+            },
+            type: 'post',
+            success: function(data) {
+                $(e.currentTarget).parent().parent().children().removeClass('d-none');
+                $(e.currentTarget).parent().remove();
+                e.preventDefault();
+            }
+        });
+    });
+
 </script>
     
 @endsection

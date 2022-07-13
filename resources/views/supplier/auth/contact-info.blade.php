@@ -4,6 +4,12 @@
 
 @section('style')
     <link href="{{asset('assets/css/regis7.css')}}" rel="stylesheet">
+    <style>
+        .dot__color {
+            color: rgb(224, 91, 91);
+            margin-left: 5px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -36,37 +42,69 @@
                         </div>
                         <div class="box-b-detail">
                             <form action="{{ route('supplier.register.bankInfo') }}" method="get">
+
                                 <div class="tt-text-log">
-                                    <p>{{ trans('file.Email') }}</p>
+                                    <p>{{ trans('file.Email') }}  <span class="dot__color"> *</span></p>
                                 </div>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="sample@gmail.com"
-                                      name="email" aria-label="Username" aria-describedby="basic-addon1">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="sample@gmail.com"
+                                      name="email" aria-label="Username" aria-describedby="basic-addon1" required> 
                                 </div>
+                                <div class="tt-text-log mb-3">
+                                    @if($errors->has('email'))
+                                        <span class="dot__color">{{ $errors->first('email') }}</span>
+                                    @endif
+                                </div>
+
+                                {{-- contact name for company --}}
+                                @if ($data['supplier_type'] == 'corporate')
+                                    <div class="tt-text-log">
+                                        <p>{{ trans('file.Contact Name') }} <span class="dot__color"> *</span></p>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}"
+                                        name="contact_name" aria-label="Username" aria-describedby="basic-addon1" required>
+                                    </div>
+                                    <div class="tt-text-log">
+                                        <p>{{ trans('file.Surname') }} <span class="dot__color"> *</span></p>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}"
+                                        name="contact_last_name" aria-label="Username" aria-describedby="basic-addon1" required>
+                                    </div>
+                                @endif
+                                {{-- contact name for company --}}
+                                
                                 <div class="tt-text-log">
-                                    <p>{{ trans('file.Phone Number') }} *</p>
+                                    <p>{{ trans('file.Phone Number') }} <span class="dot__color"> *</span></p>
                                 </div>
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <input type="text" class="form-control" placeholder="0123456789" aria-label="Username"
                                       name="phone" aria-describedby="basic-addon1">
                                 </div>
+                                <div class="tt-text-log mb-3">
+                                    @if($errors->has('phone'))
+                                        <span class="dot__color">{{ $errors->first('phone') }}</span>
+                                    @endif
+                                </div>
+
                                 <div class="tt-text-log">
-                                    <p>{{ trans('file.Page URL/Facebook Page') }} *</p>
+                                    <p>{{ trans('file.Page URL/Facebook Page') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Sample Name" aria-label="Username"
-                                      name="facebook_url" aria-describedby="basic-addon1">
+                                      name="facebook_url" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="tt-text-log">
-                                    <p>{{ trans('file.GoogleMapsURL') }} *</p>
+                                    <p>{{ trans('file.GoogleMapsURL') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="www.sample.com"
-                                       name="google_map_url" aria-label="Username" aria-describedby="basic-addon1">
+                                       name="google_map_url" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
                                 {{-- option --}}
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="store-location" name="is_different_location" value="true" checked>
+                                    <input class="form-check-input" type="checkbox" id="store-location" name="is_different_location" value="true">
                                     <label class="form-check-label" for="store-location">
                                         {{ trans('file.Store address as on the ID card') }}
                                     </label>
@@ -74,19 +112,19 @@
                                 {{-- option --}}
                                 <br>
                                 <div class="tt-text-log">
-                                    <p>{{ trans('file.Store address') }} *</p>
+                                    <p>{{ trans('file.Store address') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="ระบุ" aria-label="Username"
-                                       name="store_address" aria-describedby="basic-addon1" value="{{ $data['address'] }}">
+                                    <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
+                                       name="store_address" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="tt-text-log">
                                     <p>
-                                        {{ trans('file.Province') }} *
+                                        {{ trans('file.Province') }} <span class="dot__color"> *</span>
                                     </p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="store_province">
+                                    <select class="form-select" aria-label="Default select example" name="store_province" required>
                                         <option value="">{{ trans('file.Specify') }}</option>
                                         @foreach ($province_list_data as $province)
                                             <option value="{{ $province->id }}">{{ $province->name_th }}</option>
@@ -94,32 +132,32 @@
                                     </select>
                                 </div>
                                 <div class="tt-text-log">
-                                    <p>{{ trans('file.Amphure') }} *</p>
+                                    <p>{{ trans('file.Amphure') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="store_amphure">
-                                        <option value="{{ $data['amphure'] }}">{{ $data['amphure'] }}</option>
+                                    <select class="form-select" aria-label="Default select example" name="store_amphure" required>
+                                        <option value="">{{ trans('file.Specify') }}</option>
                                     </select>
                                 </div>
                                 <div class="tt-text-log">
                                     <p>
-                                        {{ trans('file.District') }} *
+                                        {{ trans('file.District') }} <span class="dot__color"> *</span>
                                     </p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="store_district">
-                                        <option value="{{ $data['district'] }}">{{ $data['district'] }}</option>
+                                    <select class="form-select" aria-label="Default select example" name="store_district" required>
+                                        <option value="">{{ trans('file.Specify') }}</option>
                                     </select>
                                 </div>
                                 
                                 <div class="tt-text-log">
                                     <p>
-                                        {{ trans('file.Postal Code') }} *
+                                        {{ trans('file.Postal Code') }} <span class="dot__color"> *</span>
                                     </p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="store_postcode">
-                                        <option value="{{ $data['postcode'] }}">{{ $data['postcode'] }}</option>
+                                    <select class="form-select" aria-label="Default select example" name="store_postcode" required>
+                                        <option value="">{{ trans('file.Specify') }}</option>
                                     </select>
                                 </div>
 
@@ -168,43 +206,37 @@
 
         var specify = "{{ trans('file.Specify') }}";
         var isChkLocation = $('#store-location').prop('checked');
+        var amphureName = "{{ $data['amphure_name'] }}";
+        var districtName = "{{ $data['district_name'] }}";
 
-        $('select[name="store_province"]').val($('input[name="province"]').val());
-
-        $('select[name="store_province"]').prop('disabled', true);
-        $('select[name="store_province"]').attr('style', 'background-color:#333333;');
-        $('select[name="store_amphure"]').prop('readonly', true);
-        $('select[name="store_district"]').prop('readonly', true);
-        $('select[name="store_postcode"]').prop('readonly', true);
-
-        // eveent control address
+        // event control address
         $('#store-location').on('click', function(){
             isChkLocation = $(this).prop('checked');
             if (!isChkLocation) {
+                $('input[name="store_address"]').val('');
                 $('select[name="store_province"]').prop('selectedIndex', 0);
                 $('select[name="store_amphure"]').html('<option value="">' + specify + '</option>');
                 $('select[name="store_district"]').html('<option value="">' + specify + '</option>');
                 $('select[name="store_postcode"]').html('<option value="">' + specify + '</option>');
 
+                $('input[name="store_address"]').prop('readonly', false);
                 $('select[name="store_province"]').prop('disabled', false);
                 $('select[name="store_amphure"]').prop('readonly', false);
                 $('select[name="store_district"]').prop('readonly', false);
                 $('select[name="store_postcode"]').prop('readonly', false);
             } else {
-                $('select[name="store_province"]').prop('readonly', true);
-                $('select[name="store_amphure"]').prop('readonly', true);
-                $('select[name="store_district"]').prop('readonly', true);
-                $('select[name="store_postcode"]').prop('readonly', true);
-
+                let address = $('input[name="address"]').val();
                 let amphure = $('input[name="amphure"]').val();
                 let district = $('input[name="district"]').val();
                 let postcode = $('input[name="postcode"]').val();
 
+                $('input[name="store_address"]').val(address);
                 $('select[name="store_province"]').val($('input[name="province"]').val());
-                $('select[name="store_amphure"]').html(' <option value="'+ amphure +'">' + amphure + '</option>');
-                $('select[name="store_district"]').html(' <option value="'+ district +'">' + district + '</option>');
+                $('select[name="store_amphure"]').html(' <option value="'+ amphure +'">' + amphureName + '</option>');
+                $('select[name="store_district"]').html(' <option value="'+ district +'">' + districtName + '</option>');
                 $('select[name="store_postcode"]').html(' <option value="'+ postcode +'">' + postcode + '</option>');
 
+                $('input[name="store_address"]').prop('readonly', true);
                 $('select[name="store_province"]').prop('disabled', true);
                 $('select[name="store_province"]').attr('style', 'background-color:#333333;');
                 $('select[name="store_amphure"]').prop('readonly', true);
@@ -261,7 +293,7 @@
                                 option = '<option value="">'+ specify +'</option><option value="'+ district.id + '">'+ district.name_th +'</option>';
         
                             } else {
-                                option = '<option value="'+ district.name_en + '">'+ district.name_th +'</option>';
+                                option = '<option value="'+ district.id + '">'+ district.name_th +'</option>';
                             }
                             
                             $('select[name="store_district"]').append(option);

@@ -38,10 +38,15 @@ Route::group(['prefix' => 'supplier'], function() {
     Route::post('/register/create', [SupplierAuthController::class, 'store'])->name('supplier.register.store');    
     Route::get('sms-confirm', [SupplierAuthController::class, 'smsConfirm'])->name('supplier.register.smsConfirm');
     Route::get('verify-otp', [SupplierAuthController::class, 'verifyOtp'])->name('supplier.register.verifyOtp');
+    Route::get('request-otp', [SupplierAuthController::class, 'requestOtp'])->name('supplier.register.requestOtp');
+    Route::post('confirm-otp', [SupplierAuthController::class, 'confirmOtp'])->name('supplier.register.confirmOtp');
     Route::get('supplier-info', [SupplierAuthController::class, 'supplierInfo'])->name('supplier.register.supplierInfo');
-    Route::post('contact-info', [SupplierAuthController::class, 'contactInfo'])->name('supplier.register.contactInfo');
+    Route::get('contact-info', [SupplierAuthController::class, 'contactInfo'])->name('supplier.register.contactInfo');
     Route::get('bank-info', [SupplierAuthController::class, 'bankInfo'])->name('supplier.register.bankInfo');
+    Route::get('create-password', [SupplierAuthController::class, 'createPassword'])->name('supplier.register.createPassword');
+    Route::post('store-password', [SupplierAuthController::class, 'storePassword'])->name('supplier.register.storePassword');
     Route::post('register/upload-file', [SupplierAuthController::class, 'uploadFile'])->name('supplier.register.uploadFile');
+    Route::post('register/remove-file', [SupplierAuthController::class, 'removeFile'])->name('supplier.register.removeFile');
 
     Route::get('get_address', [SupplierAuthController::class, 'getAddress'])->name('get_address');
 

@@ -4,6 +4,12 @@
 
 @section('style')
     <link href="{{asset('assets/css/login2.css')}}" rel="stylesheet">
+    <style>
+        .dot__color {
+            color: rgb(224, 91, 91);
+            margin-left: 5px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -20,7 +26,7 @@
                     <form action="{{ route('supplier.register.verifyOtp') }}" method="get">
                         <div class="h-text-log">
                             <p>
-                                {{ trans('file.Verify phone number') }}
+                                {{ trans('file.Verify phone number') }} 
                             </p>
                         </div>
                         <div class="text-tt-hd">
@@ -29,13 +35,19 @@
                         <br>
                         <div class="tt-text-log">
                             <p>
-                                {{ trans('file.Mobile Number') }}
+                                {{ trans('file.Mobile Number') }} <span class="dot__color"> *</span>
                             </p>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="01xx-xxx-xxxxx" aria-label="Username" name="phone_number"
-                                aria-describedby="basic-addon1">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="01xx-xxx-xxxxx" aria-label="Username" name="phone"
+                                aria-describedby="basic-addon1" required>
                         </div>
+                        <div class="tt-text-log mb-3">
+                            @if($errors->has('phone'))
+                                <span class="dot__color">{{ $errors->first('phone') }}</span>
+                            @endif
+                        </div>
+                        
                         <br>
                         <div class='but-bb-log'>
                             <button type="submit" class="button button1"> {{ trans('file.Next') }} &nbsp; <i class='fas fa-angle-right'></i></button>

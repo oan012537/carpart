@@ -46,11 +46,17 @@ class Supplier extends Model
         "updated_by"
     ];
 
+<<<<<<< HEAD
+    public function brand()
+=======
     public function Province()
+>>>>>>> ff9e3bc25ffb0d6331fdf5d950476ab2915e044a
     {
     	return $this->belongsTo('App\Models\Province', 'province');
     }
 
+<<<<<<< HEAD
+=======
     public function Amphure()
     {
     	return $this->belongsTo('App\Models\Amphure', 'amphure');
@@ -60,6 +66,7 @@ class Supplier extends Model
     {
     	return $this->belongsTo('App\Models\District', 'district');
     }
+>>>>>>> ff9e3bc25ffb0d6331fdf5d950476ab2915e044a
     
     
 }

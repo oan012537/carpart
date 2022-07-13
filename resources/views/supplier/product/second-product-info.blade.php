@@ -1037,7 +1037,7 @@
             type: 'post',
             success: function(data) {
                 $(e.currentTarget).parent().remove();
-                e.preventDefault;
+                e.preventDefault();
             }
         });
         
