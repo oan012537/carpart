@@ -15,8 +15,7 @@ class BuyerAccountController extends Controller
 {
     public function index()
     {
-        $data['user_buyer'] = mUsers_buyer::where('id', Auth::guard('buyer')->user()->id)
-            ->first();
+        $data['user_buyer'] = mUsers_buyer::where('id', Auth::guard('buyer')->user()->id)->first();
 
         $data['buyer_profiles'] = BuyerProfile::where('users_buyer_id', $data['user_buyer']->id)
             ->where('is_active','1')
