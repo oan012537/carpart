@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .dot__color {
+            color: rgb(224, 91, 91);
+            margin-left: 5px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -31,26 +37,32 @@
                         <br>
                         <div class="tt-text-log">
                             <p>
-                                {{ $phone_number }}
+                                {{ $phone }}
                             </p>
                         </div>
                         <br>
+                        
                         <div class="box-bb-num">
-                            <form class="form-inline" action="/action_page.php">
-                                <input type="text" class="form-control" id="otp1" name="otp[]" style="width:40px;">
-                                <input type="text" class="form-control" id="otp2" name="otp[]" style="width:40px;">
-                                <input type="text" class="form-control" id="otp3" name="otp[]" style="width:40px;">
-                                <input type="text" class="form-control" id="otp4" name="otp[]" style="width:40px;">
-                                <input type="text" class="form-control" id="otp5" name="otp[]" style="width:40px;">
-                                <input type="text" class="form-control" id="otp6" name="otp[]" style="width:40px;">
+                            <form id="frm-confirm" method="POST" class="form-inline digit-group" action="{{ route('supplier.register.confirmOtp') }}" data-group-name="digits" data-autosubmit="false" autocomplete="off">
+                                
+                                @csrf
+                                <input type="hidden" name="token" value="{{ $token }}">
+
+                                <input type="text" id="digit-1" class="form-control text-center bg-dark text-white" name="otp_digit[]" data-next="digit-2" style="width:50px;font-size:25px;"/>
+                                <input type="text" id="digit-2" class="form-control text-center bg-dark text-white" name="otp_digit[]" data-next="digit-3" data-previous="digit-1" style="width:50px;font-size:25px;"/>
+                                <input type="text" id="digit-3" class="form-control text-center bg-dark text-white" name="otp_digit[]" data-next="digit-4" data-previous="digit-2" style="width:50px;font-size:25px;"/>
+                                <input type="text" id="digit-4" class="form-control text-center bg-dark text-white" name="otp_digit[]" data-next="digit-5" data-previous="digit-3" style="width:50px;font-size:25px;"/>
+                                <input type="text" id="digit-5" class="form-control text-center bg-dark text-white" name="otp_digit[]" data-next="digit-6" data-previous="digit-4" style="width:50px;font-size:25px;"/>
+                                <input type="text" id="digit-6" class="form-control text-center bg-dark text-white" name="otp_digit[]" data-previous="digit-5" style="width:50px;font-size:25px;"/>
+
+                                <div class="tt-text-log mb-3">
+                                    @if($errors->has('otp_digit.*'))
+                                        <span class="dot__color">{{ $errors->first('otp_digit.*') }}</span>
+                                    @endif
+                                </div>
+                                {{-- Please confirm OTP again. --}}
                            
-                              </form>
-                            {{-- <img src="{{ asset('assets/img/login/b.png') }}" class="img-fluid" alt="">
-                            <img src="{{ asset('assets/img/login/b.png') }}" class="img-fluid" alt="">
-                            <img src="{{ asset('assets/img/login/b.png') }}" class="img-fluid" alt="">
-                            <img src="{{ asset('assets/img/login/b.png') }}" class="img-fluid" alt="">
-                            <img src="{{ asset('assets/img/login/b.png') }}" class="img-fluid" alt="">
-                            <img src="{{ asset('assets/img/login/b.png') }}" class="img-fluid" alt=""> --}}
+                            </form>
                         </div>
                         <br>
                         <div class="tt-text-re-num">
@@ -60,10 +72,10 @@
                         </div>
                         <div class="tt-text-re-num2">
                             <p>
-                                {{ trans('file.Please press') }} <font>{{ trans('file.Resend OTP code') }}</font> &nbsp; <i class='fas fa-sync-alt'></i>
+                                {{ trans('file.Please press') }} <font>{{ trans('file.Resend OTP code') }}</font> &nbsp; 
+                                <a id="request-otp" href="#" ><i class='fas fa-sync-alt'></i></a>
                             </p>
                         </div>
-
                         <br>
                         <div class='but-bb-log'>
                             <a href="{{ route('supplier.register.smsConfirm') }}">
@@ -71,14 +83,71 @@
                                 </button>
                             </a>
                             &nbsp;
-                            <a href="{{ route('supplier.register.supplierInfo') }}">
-                                <button class="button button2"> {{ trans('file.Next') }} &nbsp; <i class='fas fa-angle-right'></i>
-                                </button>
-                            </a>
+                            <button id="btn-submit" class="button button2"> {{ trans('file.Next') }} &nbsp; <i class='fas fa-angle-right'></i></button>
                         </div>
                     </div>
                 </div>
             </div>
     </section>
 
+@endsection
+
+@section('script')
+<script type='text/javascript'>
+    $(document).ready(()=>{
+
+        var phone = "{{ $phone }}";
+
+        // control otp digit
+        $('.digit-group').find('input').each(function() {
+            $(this).attr('maxlength', 1);
+            $(this).on('keyup', function(e) {
+                var parent = $($(this).parent());
+        
+                if(e.keyCode === 8 || e.keyCode === 37) {
+                    var prev = parent.find('input#' + $(this).data('previous'));
+        
+                    if(prev.length) {
+                        $(prev).select();
+                    }
+                } else if((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
+                    var next = parent.find('input#' + $(this).data('next'));
+        
+                    if(next.length) {
+                        $(next).select();
+                    } else {
+                        if(parent.data('autosubmit')) {
+                            parent.submit();
+                        }
+                    }
+                }
+            });
+        });
+
+        // submit otp
+        $('#btn-submit').on('click', function() {
+            $('#frm-confirm').submit();
+        });
+
+       $('#request-otp').on('click', function(){
+            $.ajax({
+                type:'GET',
+                url:'{{route('supplier.register.requestOtp')}}',
+                data: {
+                    'phone': phone
+                },    
+                dataType: 'text',
+                success: function(data){
+                    $('input[name="token"]').val(data);
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+            });
+       });
+        
+    });
+    
+</script>
+    
 @endsection

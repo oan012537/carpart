@@ -45,6 +45,12 @@ class Supplier extends Model
         "created_by",
         "updated_by"
     ];
+
+    public function brand()
+    {
+    	return $this->belongsTo('App\Models\Province', 'province');
+    }
+
     
     
 }
