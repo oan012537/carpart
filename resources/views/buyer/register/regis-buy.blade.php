@@ -66,11 +66,11 @@
                             <div class="box-check">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="type" value="normal" id="onetab" checked="">
-                                    <label class=" form-check-label" for="one"> บุคคลธรรมดา </label>
+                                    <label class=" form-check-label" for="onetab"> บุคคลธรรมดา </label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="type" value="niti" id="twotab">
-                                    <label class="form-check-label" for="two"> นิติบุคคล </label>
+                                    <label class="form-check-label" for="twotab"> นิติบุคคล </label>
                                 </div>
                             </div>
                         </div>

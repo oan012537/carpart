@@ -44,13 +44,13 @@
 
                                 <div class="box__radio">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault1">
+                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault1" value="1">
                                         <label class="form-check-label" for="flexRadioDefault1">
                                             วันที่สมัคร
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault2" checked>
+                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault2" checked value="2">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             วันที่อนุมัติ
                                         </label>
@@ -61,6 +61,7 @@
                                     <label for="">ช่วงวัน-เวลา</label>
                                     <div class="input-group ">
                                         <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="button-yes"  name="date" id="date" readonly>
+                                        <input type="hidden"   name="dates" id="dates" readonly value="{{date("Y-m-d")}},{{date("Y-m-d")}}">
                                     </div>
                                 </div>
 
@@ -79,7 +80,7 @@
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <button class="nav-link active" id="total-tab" data-bs-toggle="tab" data-bs-target="#total" type="button" role="tab" aria-controls="total" aria-selected="true">ทั้งหมด <span class="circle" id="alerttotal" style="display: none;"> </span></button>
                                 <button class="nav-link" id="wait-tab" data-bs-toggle="tab" data-bs-target="#wait" type="button" role="tab" aria-controls="wait" aria-selected="false">รออนุมัติ <span class="circle" id="alertwait" style="display: none;"> </span></button>
-                                <button class="nav-link" id="approval-tab" data-bs-toggle="tab" data-bs-target="#approval" type="button" role="tab" aria-controls="approval" aria-selected="false">อนุมัติแล้ว <span class="circle" id="alertapproval" style="display: none;"> </span></button>
+                                <button class="nav-link" id="approval-tab" data-bs-toggle="tab" data-bs-target="#approvals" type="button" role="tab" aria-controls="approvals" aria-selected="false">อนุมัติแล้ว <span class="circle" id="alertapproval" style="display: none;"> </span></button>
                                 <button class="nav-link" id="approval-tab" data-bs-toggle="tab" data-bs-target="#disapproved" type="button" role="tab" aria-controls="disapproved" aria-selected="false">ไม่อนุมัติ <span class="circle" id="alertdisapproved" style="display: none;"> </span></button>
                             </div>
                         </nav>
@@ -132,7 +133,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="approval" role="tabpanel" aria-labelledby="approval-tab">
+                            <div class="tab-pane fade" id="approvals" role="tabpanel" aria-labelledby="approval-tab">
                                 <div class="table-responsive">
                                     <table id="datatables_approval" class="table table-striped display nowrap" style="width:100%">
                                         <thead>
@@ -197,18 +198,31 @@
                 <h3 class="modal-title" id="modalapprovalLabel">อนุมัติแบบเร่งด่วน</h3>
             </div>
             <div class="modal-body">
-                <div class="box__result">
-                    <p class="txt__result">ผลการพิจารณา :<span>ไม่ผ่าน</span></p>
-                </div>
+                <form method="POST" enctype="multipart/form-data" id="approve" action="{{route('backend.approval.individual.approve')}}">
+                    @csrf
+                    <input type="hidden" id="supplierid" name="supplierid">
+                    <div class="box__result">
+                        <p class="txt__result">ผลการพิจารณา :<span>อนุมัติ</span></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="">สถานะ <span>*</span></label>
+                        <select class="form-select" aria-label="Default select example" name="approvestatus" id="approvestatus" required>
+                            {{-- <option  >อนุมัติ</option> --}}
+                            <option value="approved">อนุมัติ</option>
+                            <option value="request_approval">รออนุมัติ</option>
+                            <option value="un_approve">ไม่อนุมัติ</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="">หมายเหตุ</label>
-                    <textarea name="txt__note" class="form-control" id="txt__note"></textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="">หมายเหตุ</label>
+                        <textarea name="txt__note" class="form-control" id="txt__note"></textarea>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn__back" data-bs-dismiss="modal">ยกเลิก</button>
-                <button type="button" class="btn btn__yes">ยืนยัน</button>
+                <button form="approve" type="submit" class="btn btn__yes">ยืนยัน</button>
             </div>
         </div>
     </div>
@@ -231,7 +245,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data" id="formupdate" action="{{route('backend.approval.individual.update')}}">
+                <form method="POST" enctype="multipart/form-data" id="formapprove" action="{{route('backend.approval.individual.update')}}">
                     @csrf
                     <input type="hidden" id="supplierid" name="supplierid">
                     <div class="box__detail">
@@ -297,11 +311,11 @@
                         <h2 class="txt__titlestatus">ข้อมูลผู้ขาย บุคคลธรรมดา</h2>
                         <div class="form-group">
                             <label for="">สถานะ <span>*</span></label>
-                            <select class="form-select" aria-label="Default select example" name="status" id="status">
+                            <select class="form-select" aria-label="Default select example" name="approvestatus" id="approvestatus" required>
                                 {{-- <option  >อนุมัติ</option> --}}
-                                <option value="1" selected>อนุมัติ</option>
-                                {{-- <option value="2">รออนุมัติ</option> --}}
-                                <option value="3">ไม่อนุมัติ</option>
+                                <option value="approved">อนุมัติ</option>
+                                <option value="request_approval">รออนุมัติ</option>
+                                <option value="un_approve">ไม่อนุมัติ</option>
                             </select>
                         </div>
 
@@ -361,19 +375,18 @@
 				url : "{{url('backend/approvalrequest/individual/datatables')}}",
 				data: function (d) {
 					d.search = $('#search').val();
-					// d.lastname = $('#lastname').val();
 					d.radiodate = $('input[name="radiodate"]:checked').val();
-					d.date = $('#date').val();
+					d.date = $('#dates').val();
 				},
 			},
 			columns: [
-				{ 'className': "text-center", data: 'id', name: 'id' },
+				{ 'className': "text-center", data: 'code', name: 'code' },
 				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'first_name', name: 'first_name' },
+				{ 'className': "text-center", data: 'supplir_name', name: 'supplir_name' },
 				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at' },
-				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
-				{ 'className': "text-center", data: 'active', name: 'status',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'created_at', name: 'created_at',searchable: false },
+				{ 'className': "text-center", data: 'approve_at', name: 'suppliers.approve_at',searchable: false },
+				{ 'className': "text-center", data: 'status_code', name: 'suppliers.status_code',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'comment', name: 'comment' },
 				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
@@ -400,37 +413,44 @@
                     $("#alerttotal").show();
                 }
                 
+            },
+            "drawCallback": function( settings ) {
+                $("#alerttotal").text(oTable.data().count());
+                if(oTable.data().count() > 0){
+                    $("#alerttotal").show();
+                }
             }
 		});
 		
 		$('#btnsearch').click(function(e){
 			oTable.draw();
-			e.preventDefault();
+			// e.preventDefault();
             $("#alerttotal").text(oTable.data().count());
             if(oTable.data().count() > 0){
                 $("#alerttotal").show();
             }
 
             oTablewait.draw();
-			e.preventDefault();
+			// e.preventDefault();
             $("#alertwait").text(oTablewait.data().count());
             if(oTablewait.data().count() > 0){
                 $("#alertwait").show();
             }
 
             oTableapproval.draw();
-			e.preventDefault();
+			// e.preventDefault();
             $("#alertapproval").text(oTableapproval.data().count());
             if(oTableapproval.data().count() > 0){
                 $("#alertapproval").show();
             }
 
             oTabledisapproved.draw();
-			e.preventDefault();
+			// e.preventDefault();
             $("#alertdisapproved").text(oTabledisapproved.data().count());
             if(oTabledisapproved.data().count() > 0){
                 $("#alertdisapproved").show();
             }
+            e.preventDefault();
 		});
         
 		// $("#noorder").keyup(function(e){
@@ -448,17 +468,19 @@
 			ajax:{ 
 				url : "{{url('backend/approvalrequest/individual/datatables/wait')}}",
 				data: function (d) {
-					d.name = $('#name').val();
+					d.search = $('#search').val();
+					d.radiodate = $('input[name="radiodate"]:checked').val();
+					d.date = $('#dates').val();
 				},
 			},
 			columns: [
-				{ 'className': "text-center", data: 'id', name: 'id' },
+				{ 'className': "text-center", data: 'code', name: 'code' },
 				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'first_name', name: 'first_name' },
+				{ 'className': "text-center", data: 'supplir_name', name: 'supplir_name' },
 				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at' },
-				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
-				{ 'className': "text-center", data: 'active', name: 'status',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'created_at', name: 'created_at',searchable: false },
+				{ 'className': "text-center", data: 'approve_at', name: 'suppliers.approve_at',searchable: false },
+				{ 'className': "text-center", data: 'status_code', name: 'suppliers.status_code',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'comment', name: 'comment' },
 				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
@@ -484,6 +506,12 @@
                 if(oTablewait.data().count() > 0){
                     $("#alertwait").show();
                 }
+            },
+            "drawCallback": function( settings ) {
+                $("#alertwait").text(oTablewait.data().count());
+                if(oTablewait.data().count() > 0){
+                    $("#alertwait").show();
+                }
             }
 		});
 
@@ -498,17 +526,19 @@
 			ajax:{ 
 				url : "{{url('backend/approvalrequest/individual/datatables/approval')}}",
 				data: function (d) {
-					d.name = $('#name').val();
+					d.search = $('#search').val();
+					d.radiodate = $('input[name="radiodate"]:checked').val();
+					d.date = $('#dates').val();
 				},
 			},
 			columns: [
-				{ 'className': "text-center", data: 'id', name: 'id' },
+				{ 'className': "text-center", data: 'code', name: 'code' },
 				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'first_name', name: 'first_name' },
+				{ 'className': "text-center", data: 'supplir_name', name: 'supplir_name' },
 				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at' },
-				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
-				{ 'className': "text-center", data: 'active', name: 'status',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'created_at', name: 'created_at',searchable: false },
+				{ 'className': "text-center", data: 'approve_at', name: 'suppliers.approve_at',searchable: false },
+				{ 'className': "text-center", data: 'status_code', name: 'suppliers.status_code',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'comment', name: 'comment' },
 				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
@@ -534,6 +564,12 @@
                 if(oTableapproval.data().count() > 0){
                     $("#alertapproval").show();
                 }
+            },
+            "drawCallback": function( settings ) {
+                $("#alertapproval").text(oTableapproval.data().count());
+                if(oTableapproval.data().count() > 0){
+                    $("#alertapproval").show();
+                }
             }
 		});
 
@@ -547,17 +583,19 @@
 			ajax:{ 
 				url : "{{url('backend/approvalrequest/individual/datatables/disapproved')}}",
 				data: function (d) {
-					d.name = $('#name').val();
+					d.search = $('#search').val();
+					d.radiodate = $('input[name="radiodate"]:checked').val();
+					d.date = $('#dates').val();
 				},
 			},
 			columns: [
-				{ 'className': "text-center", data: 'id', name: 'id' },
+				{ 'className': "text-center", data: 'code', name: 'code' },
 				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'first_name', name: 'first_name' },
+				{ 'className': "text-center", data: 'supplir_name', name: 'supplir_name' },
 				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at' },
-				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
-				{ 'className': "text-center", data: 'active', name: 'status',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'created_at', name: 'created_at',searchable: false },
+				{ 'className': "text-center", data: 'approve_at', name: 'suppliers.approve_at',searchable: false },
+				{ 'className': "text-center", data: 'status_code', name: 'suppliers.status_code',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'comment', name: 'comment' },
 				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
@@ -579,6 +617,12 @@
 			},
             initComplete:function( settings, json){
                 console.log(json);
+                $("#alertdisapproved").text(oTabledisapproved.data().count());
+                if(oTabledisapproved.data().count() > 0){
+                    $("#alertdisapproved").show();
+                }
+            },
+            "drawCallback": function( settings ) {
                 $("#alertdisapproved").text(oTabledisapproved.data().count());
                 if(oTabledisapproved.data().count() > 0){
                     $("#alertdisapproved").show();
@@ -619,37 +663,78 @@
 	});
 
     function viewdetail(id) {
-        $.get('{{route("backend.approval.legal.getdetails")}}',{'id':id},function (result) {
+        $.get('{{route("backend.approval.individual.getdetails")}}',{'id':id},function (result) {
             
-            $('.box__codenumber #showcodemember').text(); //อนุมัตเมื่อ
-            $('.box__codenumber #supplierid').val(); //อนุมัตเมื่อ
-
-            $('.itemsdetail .txt__right #shop').text(); //ชื่อร้าน
-            $('.itemsdetail .txt__right #name').text(); //ชื่อ
-            $('.itemsdetail .txt__right #surname').text(); //นามสกุล
-            $('.itemsdetail .txt__right #email').text(); //อีเมล
-            $('.itemsdetail .txt__right #phone').text(); //โทรศัพท์
-            $('.itemsdetail .txt__right #idcard').text(); //เลขบัตรประชาชน
-            $('.itemsdetail .txt__right #addresstoidcard').text(); //ที่อยู่ตามบัตรประชาชน
-            $('.itemsdetail .txt__right #addressshop').text(); //ที่อยู่ร้าน
-            $('.itemsdetail .txt__right #copyidcard').text(); //สำเนาบัตรประชาชน
-            $('.itemsdetail .txt__right #pageurl').text(); //Page Url/Facebook Url
-            $('.itemsdetail .txt__right #gps').text(); //Google Map
-            $('.box__status #status').text(); //สถานะ
-            $('.box__status #txt__note').text(); //หมายเหตุ
-
-            $('.wrapper__approvaldate .box__date span').text(); //อนุมัตเมื่อ
-            $('.wrapper__approvaldate .box__userapproval span').text(); //ผู้อนุมัติ
+            $('#modalviewdetailapp .box__codenumber #showcodemember').html(result.code); //อนุมัตเมื่อ
+            $('#modalviewdetailapp #supplierid').val(result.id); //ID
+            var images = "{{asset('suppliers/document')}}/"+result.personal_card_id_image;
+            $('#modalviewdetailapp .itemsdetail #shop').html(result.store_name); //ชื่อร้าน
+            $('#modalviewdetailapp .itemsdetail #name').html(result.personal_first_name); //ชื่อ
+            $('#modalviewdetailapp .itemsdetail #surname').html(result.personal_last_name); //นามสกุล
+            $('#modalviewdetailapp .itemsdetail #email').html(result.email); //อีเมล
+            $('#modalviewdetailapp .itemsdetail #phone').html(result.phone); //โทรศัพท์
+            $('#modalviewdetailapp .itemsdetail #idcard').html(result.personal_card_id); //เลขบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #addresstoidcard').html(result.addressidcard); //ที่อยู่ตามบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #addressshop').html(result.addressfull); //ที่อยู่ร้าน
+            $('#modalviewdetailapp .itemsdetail #copyidcard').html('ดูรูปภาพ <a data-fancybox class="btn__viewimage fancybox" href="'+images+'"><i class="fa-solid fa-image"></i></a>'); //สำเนาบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #pageurl').html(result.facebook_url); //Page Url/Facebook Url
+            $('#modalviewdetailapp .itemsdetail #gps').html(result.google_map_url); //Google Map
+            $('#modalviewdetailapp #approvestatus').val(result.status_code); //สถานะ
+            $('#modalviewdetailapp #txt__note').val(result.comment); //หมายเหตุ
+            if(result.status_code == 'approved'){
+                $('.wrapper__approvaldate .box__date span').html(result.approve_at); //อนุมัตเมื่อ
+                $('.wrapper__approvaldate .box__userapproval span').html(result.approve_by); //ผู้อนุมัติ
+            }else{
+                $('.wrapper__approvaldate').hide();
+            }
+            // $("#approvestatus").val(result.status_code);
+            $('#modalviewdetailapp').modal('show');
+            
         });
     }
     $('input[name="date"]').daterangepicker({
-        "startDate": moment().subtract(1, 'months'),
+        // "startDate": moment().subtract(1, 'months'),
+        "startDate": moment(),
         "endDate": moment(),
         locale: {
             format: 'DD/MM/Y'
         }
     }, function(start, end, label) {
         console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+        $("#dates").val(start.format('YYYY-MM-DD')+','+end.format('YYYY-MM-DD'));
+    });
+
+    function approval(id) {
+        var id = $(".suppliers"+id).data('id');
+        var status = $(".suppliers"+id).data('status');
+        var comments = $(".suppliers"+id).data('comment');
+        $("#modalapproval #supplierid").val(id);
+        $("#modalapproval #approvestatus").val(status);
+        $("#modalapproval #txt__note").val(comments);
+        var text = $("#modalapproval #approvestatus option:selected").text();
+        $("#modalapproval .txt__result").html('ผลการพิจารณา :<span>'+text+'</span>');
+        
+        
+        $('#modalapproval').modal('show');
+    }
+    $('.fancybox').fancybox({
+        selector: '.imglist a:visible',
+        Escape: "close",
+        Delete: "close",
+        Backspace: "close",
+        PageUp: "next",
+        PageDown: "prev",
+        ArrowUp: "next",
+        ArrowDown: "prev",
+        ArrowRight: "next",
+        ArrowLeft: "prev",
+        groupAttr: false,
+        Image: {
+            zoom: false,
+        },
+        thumbs: {
+            autoStart: false
+        }
     });
 </script>
 @stop

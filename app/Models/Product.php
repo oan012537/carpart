@@ -77,5 +77,31 @@ class Product extends Model
     	return $this->belongsTo('App\Models\SubSubCategory', 'sub_sub_category_id');
     }
 
+    public function supplier()
+    {
+    	return $this->belongsTo('App\Models\Supplier');
+    }
+
+    public function warranty()
+    {
+        return $this->hasOne('App\Models\Warranty');
+    }
+
+    public function transportation()
+    {
+        return $this->hasOne('App\Models\Transportation');
+    }
+
+    public function productImages()
+    {
+        return $this->hasMany('App\Models\ProductImage');
+    }
+
+    public function productReviews()
+    {
+        return $this->hasMany('App\Models\Buyer\ProductReview');
+    }
+
+    
 
 }

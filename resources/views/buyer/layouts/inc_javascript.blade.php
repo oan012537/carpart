@@ -4,6 +4,8 @@
 <script src="{{asset('assets/js/slick.min.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 <script>
     // to top
@@ -39,4 +41,18 @@
 
 
     });
+    function toastralert(type,msg) {
+        // if(type == 'info'){
+        //     toastr.info(msg);
+        // }else if(type == 'warning'){
+        //     toastr.warning(msg);
+        // }else if(type == 'success'){
+        //     toastr.success(msg);
+        // }else if(type == 'error'){
+        //     toastr.error(msg);
+        // }else{
+        //     toastr.clear()
+        // }
+        toastr[type](msg)
+    }
 </script>

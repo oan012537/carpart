@@ -24,8 +24,10 @@
     <!-- link navbar -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- link navbar -->
     <link href="{{asset('assets/css/home-seach1.css')}}" rel="stylesheet">
+    <!-- <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet"> -->
 
     @include('buyer.layouts.inc_stylesheet')
 </head>
@@ -131,7 +133,9 @@
                                         <a onclick="selectBrands({{$brand->id}})">
                                         <div class="row">
                                             <div class="col-lg-5">
-                                                <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
+                                                <div class="box_imgroonimg">
+                                                    <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
+                                                </div>
                                             </div>
                                             <div class="col-lg-7">
                                                 <div class="text-detail-roon">
@@ -155,7 +159,9 @@
                                     <a onclick="selectBrands({{$brand->id}})">
                                     <div class="row">
                                         <div class="col-lg-5">
-                                            <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
+                                            <div class="box_imgroonimg">
+                                                <img src="{{$brand->image}}" class="img-fluid img-circleimg" alt="shoe image">
+                                            </div>
                                         </div>
                                         <div class="col-lg-7">
                                             <div class="text-detail-roon">
@@ -525,7 +531,14 @@
         });
 
         function selectBrands(id){
-            //
+            // brand = id
+            $.ajax({
+                method: "POST",
+                url: "{{url('buyer/GetsearchBox')}}",
+                data: {"_token":" {{ csrf_token() }} ",brand:id}
+            }).done(function(rec){
+                location.href = "buyer/home-search2?brand="+id;
+            });
         }
 
         function searchnavBrands(id){

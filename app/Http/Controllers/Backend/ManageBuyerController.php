@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Datatables;
+use App\Models\Buyer\mUsers_buyer;
+use App\Models\Buyer\BuyerProfile;
+use App\Models\Buyer\BuyerTaxInvoice;
+use App\Models\Supplier;
+use App\Models\Store;
+use Illuminate\Support\Facades\DB;
 
 class ManageBuyerController extends Controller
 {
@@ -13,47 +19,87 @@ class ManageBuyerController extends Controller
     }
 
     public function individualdatatables(){
-        $data = users_supplier::where('type','บุคคลธรรมดา');
+        $data = mUsers_buyer::select(DB::raw("*,concat(first_name,' ', last_name) as name"))->where('type','normal');
+        $search = request('search');
+        $radiodate = request('radiodate');
+        $date = request('date');
+        if($search != ''){
+            $data->where(function ($query) use ($search){
+                $query->where('code','LIKE','%'.$search.'%')
+                ->orwhere(DB::raw("concat(first_name,' ', last_name)"),'LIKE','%'.$search.'%')
+                // ->orwhere('name','LIKE','%'.$search.'%')
+                ->orwhere('email','LIKE','%'.$search.'%')
+                ->orwhere('phone','LIKE','%'.$search.'%')
+                ->orwhere('type','LIKE','%'.$search.'%')
+                ->orwhere('comment','LIKE','%'.$search.'%')
+                ;
+            });
+        }
+        // if($date!= ''){
+        //     $dates = explode(',',$date);
+        //     $sdate = $dates[0];
+        //     $edate = $dates[1];
+        //     if($radiodate == '1'){
+        //         $data->whereBetween('user_suppliers.created_at',[$sdate.' 00:00',$edate.' 23:59']);
+        //     }else{
+        //         $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
+        //     }
+        // }
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
-			return date('d/m/Y',strtotime($data->updated_at));
+			return date('d/m/Y H:i',strtotime($data->updated_at));
 		})
-		->editColumn('active',function($data){
-            if($data->active == 'approved'){
-                return '<div class="approvel ap-success"><p>อนุมัติ</p></div>';
-            }else if($data->active == 'request_approval'){
-                return '<div class="approvel ap-wait"><p>รออนุมัติ</p></div>';
-            }else if($data->active == 'un_approve'){
-                return '<div class="approvel ap-no"><p>ไม่อนุมัติ</p></div>';
+        ->editColumn('created_at',function($data){
+			return date('d/m/Y H:i',strtotime($data->created_at));
+		})
+		->editColumn('is_active',function($data){
+            if($data->is_active == '0'){
+                return '<div class="approvel ap-no"><p>ระงับการใช้งาน</p></div>';
+            }else if($data->is_active == '1'){
+                return '<div class="approvel ap-success"><p> <i class="fa fa-check-circle"></i> ใช้งาน</p></div>';
             }else{
                 return '';
             }
 		})
-		->addColumn('btnview',function($data){
-			return '<a href="javascript:void(0)" class="btn btn__viewdetail" data-bs-toggle="modal" data-bs-target="#modalviewdetailapp"  onclick="viewdetail('.$data->id.')">ดูรายละเอียด</a>';
+        ->addColumn('usertype',function($data){
+			return 'ผู้ซื้อ';
+		})
+		->addColumn('switchstatus',function($data){
+			return '<div class="form-check form-switch" onclick="switchsfn('."'".$data->id."'".')"><input class="form-check-input" type="checkbox"
+                id="flexSwitch'.$data->id.'" '.(($data->is_active == '1')?'checked':'').'></div>';
 		})
 		->addColumn('btnaction',function($data){
-            $btn__approval = '';
-            $btn__waitapproval = '';
-            $btn__noapproval = '';
-			if($data->active == 'approved'){
-                $btn__approval = 'btn__approval';
-            }else if($data->active == 'request_approval'){
-                $btn__waitapproval = 'btn__waitapproval';
-            }else if($data->active == 'un_approve'){
-                $btn__noapproval = 'btn__noapproval';
-            }
-			return '<div class="box__btn">
-                    <button class="btn btn__app '.$btn__approval.'" data-bs-toggle="modal" data-bs-target="#modalapproval">อนุมัติ</button>
-                    <button class="btn btn__app '.$btn__waitapproval.'">รออนุมัติ</button>
-                    <button class="btn btn__app '.$btn__noapproval.'">ไม่อนุมัติ</button>
-                    </div>';
+			return '<div class="bux-bb-but"><a class="btn btn-table-edit" href="'.url('backend/manage/buyer/individual/profile').'/'.$data->id.'"><i class="fas fa-pencil-alt"></i> </a></div>';
 		});
 		return $sQuery->escapeColumns([])->make(true);
     }
 
     public function individualprofile($id){
-        return view('backend.managebuyer.individual.profile.index',['id'=>$id]);
+        $user = mUsers_buyer::find($id);
+        $profilearray = $user->buyerProfiles;
+        $buyertaxarray = $user->buyerTaxInvoices;
+        $profile = BuyerProfile::where('users_buyer_id',$id)->first();
+        $buyertax = BuyerTaxInvoice::where('users_buyer_id',$id)->first();
+        
+        if(!empty($profile)){
+            // $profiles = BuyerProfile::find($profile->id);
+            $profile->addressfull = $profile->address.' ตำบล/แขวง '.$profile->District->name_th.' อำเภอ/เขต '.$profile->Amphure->name_th.' จังหวัด '.$profile->Province->name_th.' '.$profile->District->zip_code;
+            $profile->district = $profile->District->name_th;
+            $profile->amphure = $profile->Amphure->name_th;
+            $profile->province = $profile->Province->name_th;
+            $profile->zip_code = $profile->District->name_th;
+        }
+
+        if(!empty($buyertax)){
+            $buyertax->addressfull = $buyertax->address.' ตำบล/แขวง '.$buyertax->District->name_th.' อำเภอ/เขต '.$buyertax->Amphure->name_th.' จังหวัด '.$buyertax->Province->name_th.' '.$buyertax->District->zip_code;
+            $buyertax->district = $buyertax->District->name_th;
+            $buyertax->amphure = $buyertax->Amphure->name_th;
+            $buyertax->province = $buyertax->Province->name_th;
+            $buyertax->zip_code = $buyertax->District->name_th;
+        }
+
+
+        return view('backend.managebuyer.individual.profile.index',['id'=>$id,'user'=>$user,'profile'=>$profile,'buyertax'=>$buyertax]);
     }
 
     public function individualprofileedit($id){
@@ -107,8 +153,92 @@ class ManageBuyerController extends Controller
         return view('backend.managebuyer.legal.index');
     }
 
+    public function legaldatatables(){
+        $data = mUsers_buyer::select(DB::raw("*,concat(first_name,' ', last_name) as name"))->where('type','niti');
+        $search = request('search');
+        $radiodate = request('radiodate');
+        $date = request('date');
+        if($search != ''){
+            $data->where(function ($query) use ($search){
+                $query->where('code','LIKE','%'.$search.'%')
+                ->orwhere(DB::raw("concat(first_name,' ', last_name)"),'LIKE','%'.$search.'%')
+                // ->orwhere('name','LIKE','%'.$search.'%')
+                ->orwhere('email','LIKE','%'.$search.'%')
+                ->orwhere('phone','LIKE','%'.$search.'%')
+                ->orwhere('type','LIKE','%'.$search.'%')
+                ->orwhere('comment','LIKE','%'.$search.'%')
+                ;
+            });
+        }
+        // if($date!= ''){
+        //     $dates = explode(',',$date);
+        //     $sdate = $dates[0];
+        //     $edate = $dates[1];
+        //     if($radiodate == '1'){
+        //         $data->whereBetween('user_suppliers.created_at',[$sdate.' 00:00',$edate.' 23:59']);
+        //     }else{
+        //         $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
+        //     }
+        // }
+		$sQuery	= Datatables::of($data)
+		->editColumn('updated_at',function($data){
+			return date('d/m/Y H:i',strtotime($data->updated_at));
+		})
+        ->editColumn('created_at',function($data){
+			return date('d/m/Y H:i',strtotime($data->created_at));
+		})
+		->editColumn('is_active',function($data){
+            if($data->is_active == '0'){
+                return '<div class="approvel ap-no"><p>ระงับการใช้งาน</p></div>';
+            }else if($data->is_active == '1'){
+                return '<div class="approvel ap-success"><p> <i class="fa fa-check-circle"></i> ใช้งาน</p></div>';
+            }else{
+                return '';
+            }
+		})
+        ->addColumn('usertype',function($data){
+			return 'ผู้ซื้อ';
+		})
+        ->addColumn('approve_at',function($data){
+			return '';
+		})
+		->addColumn('switchstatus',function($data){
+			return '<div class="form-check form-switch" onclick="switchsfn('."'".$data->id."'".')"><input class="form-check-input" type="checkbox"
+                id="flexSwitch'.$data->id.'" '.(($data->is_active == '1')?'checked':'').'></div>';
+		})
+		->addColumn('btnaction',function($data){
+			return '<div class="bux-bb-but"><a class="btn btn-table-edit" href="'.url('backend/manage/buyer/legal/profile').'/'.$data->id.'"><i class="fas fa-pencil-alt"></i> </a></div>';
+		});
+		return $sQuery->escapeColumns([])->make(true);
+    }
+    
     public function legalprofile ($id){
-        return view('backend.managebuyer.legal.profile.index',['id'=>$id]);
+        $user = mUsers_buyer::find($id);
+        $profilearray = $user->buyerProfiles;
+        $buyertaxarray = $user->buyerTaxInvoices;
+        $profile = BuyerProfile::where('users_buyer_id',$id)->first();
+        $buyertax = BuyerTaxInvoice::where('users_buyer_id',$id)->first();
+        if(!empty($profile)){
+            // $profiles = BuyerProfile::find($profile->id);
+            $profile->addressfull = $profile->address.' ตำบล/แขวง '.$profile->District->name_th.' อำเภอ/เขต '.$profile->Amphure->name_th.' จังหวัด '.$profile->Province->name_th.' '.$profile->District->zip_code;
+            $profile->district = $profile->District->name_th;
+            $profile->amphure = $profile->Amphure->name_th;
+            $profile->province = $profile->Province->name_th;
+            $profile->zip_code = $profile->District->name_th;
+        }
+
+        if(!empty($buyertax)){
+            $buyertax->addressfull = $buyertax->address.' ตำบล/แขวง '.$buyertax->District->name_th.' อำเภอ/เขต '.$buyertax->Amphure->name_th.' จังหวัด '.$buyertax->Province->name_th.' '.$buyertax->District->zip_code;
+            $buyertax->district = $buyertax->District->name_th;
+            $buyertax->amphure = $buyertax->Amphure->name_th;
+            $buyertax->province = $buyertax->Province->name_th;
+            $buyertax->zip_code = $buyertax->District->name_th;
+        }
+
+        
+
+
+        return view('backend.managebuyer.legal.profile.index',['id'=>$id,'user'=>$user,'profile'=>$profile,'buyertax'=>$buyertax]);
     }
 
     public function legalprofileedit($id){
@@ -160,5 +290,11 @@ class ManageBuyerController extends Controller
 
     public function commissionindex(){
         return view('backend.managebuyer.commission.index');
+    }
+
+    public function changestatus(Request $request){
+        $update = mUsers_buyer::find($request->id);
+        $update->is_active = $request->status;
+        $update->save();
     }
 }

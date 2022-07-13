@@ -58,10 +58,8 @@
 
         <div class="txt_sw_txt">
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                    checked>
-                <label class="form-check-label" for="flexSwitchCheckDefault"> เปิดการใช้งาน
-                </label>
+                <input class="form-check-input" type="checkbox" id="flexSwitch{{$user->id}}" @if($user->is_active == '1') checked @endif onclick="switchsfn('{{$user->id}}')">
+                <label class="form-check-label" for="flexSwitch{{$user->id}}" id="showstatus"> @if($user->is_active == '1') เปิดการใช้งาน @else ระงับการใช้งาน @endif </label>
             </div>
         </div>
 
@@ -111,3 +109,25 @@
 
 
 </div>
+<script>
+    function switchsfn(id) {
+            
+        var flexSwitch = $("#flexSwitch"+id).is(":checked");
+        console.log(id);
+        console.log(flexSwitch);
+        // return  false;
+        if(flexSwitch){
+            flexSwitch = '1';
+        }else{
+            flexSwitch = '0';
+        }
+        $.get("{{route('backend.manage.supplier.individual.changestatus')}}", {'id':id,'status':flexSwitch},function (data, textStatus, jqXHR) {
+            if(flexSwitch == '0'){
+                $("#showstatus").html('ระงับการใช้งาน')
+            }else{
+                $("#showstatus").html('เปิดการใช้งาน')
+            }
+            
+        });
+    }
+</script>
