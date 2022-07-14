@@ -212,7 +212,7 @@ class BuyerAccountController extends Controller
                     </div>
                     <div class="col-lg-6">
                         <div class="ac-detail-text-tt2">
-                            <a href="javascript:modeledit('.$buyerprofile->id.')">
+                            <a href="javascript:void(0)" onclick="model_buyerprofile_edit('.$buyerprofile->id.')">
                                 <p 
                                     class="w3-button w3-black"> <i class="fas fa-pen"
                                         style="font-size:18px"></i> &nbsp;
@@ -220,7 +220,7 @@ class BuyerAccountController extends Controller
                             </a>
                         </div>
                         <div class="ttext-delate">
-                            <a href="javascript:buyerprofile_delete('.$buyerprofile->id.')">
+                            <a href="javascript:void(0)" onclick="buyerprofile_delete('.$buyerprofile->id.')">
                                 <p> ลบ </p>
                             </a>
                         </div>
