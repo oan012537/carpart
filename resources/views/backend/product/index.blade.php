@@ -1,8 +1,8 @@
 @extends('backend.layouts.templates')
 @section('content')
-
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
+<link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+
 <input type="hidden" id="pageName" name="pageName" value="manage-product">
 <input type="hidden" id="pagemenuName" name="pagemenuName" value="manageproduct">
 
@@ -22,58 +22,58 @@
                             <div class="row">
                                 <div class="col-3">
                                     <label class="title__txt">ชื่อสินค้า/SKU</label>
-                                    <input type="text" class="form-control" id="" placeholder="ระบุ">
+                                    <input type="text" class="form-control" id="productname" name="productname" placeholder="ระบุ">
                                 </div>
 
                                 <div class="col-3">
                                     <label class="title__txt">หมวดหมู่หลัก (ประเภท)</label>
-                                    <input type="text" class="form-control" id="" placeholder="Auto complete search">
+                                    <input type="text" class="form-control" id="category" name="category" placeholder="Auto complete search">
                                 </div>
 
                                 <div class="col-3">
                                     <label for="" class="title__txt">แบรนด์</label>
-                                    <input type="text" class="form-control" id="" placeholder="Auto complete search">
+                                    <input type="text" class="form-control" id="brand" name="brand" placeholder="Auto complete search">
                                 </div>
 
                                 <div class="col-3">
                                     <div class="">
-                                        <button class="btn btn-search" type="button" id="">ค้นหา</button>
-                                        <button class="btn btn-reset ms-2" type="button" id="">รีเซต</button>
+                                        <button type="button" class="btn btn-search"  id="">ค้นหา</button>
+                                        <button type="reset" class="btn btn-reset ms-2"id="">รีเซต</button>
                                     </div>
                                 </div>
 
                                 <div class="col-3 mt-3">
                                     <label class="title__txt">ยอดขาย</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="" placeholder="ระบุ">
+                                        <input type="text" class="form-control number" id="minsell" name="minsell" placeholder="ระบุ">
                                         <span class="mx-3">-</span>
-                                        <input type="text" class="form-control" id="" placeholder="ระบุ">
+                                        <input type="text" class="form-control number" id="maxsell" name="maxsell" placeholder="ระบุ">
                                     </div>
                                 </div>
 
                                 <div class="col-3 mt-3">
                                     <label class="title__txt">ผู้ขาย</label>
-                                    <input type="text" class="form-control" id="" placeholder="ระบุ">
+                                    <input type="text" class="form-control" id="seller" name="seller" placeholder="ระบุ">
                                 </div>
 
                                 <div class="col-6 mt-3">
                                     <label class="title__txt">คุณภาพสินค้า</label>
                                     <div class="d-flex mt-2">
                                         <div class="form-check ms-5">
-                                            <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>
-                                            <label class="form-check-label" for="check1">แท้</label>
+                                            <input type="checkbox" class="form-check-input" id="quality1" name="quality[]" value="1">
+                                            <label class="form-check-label" for="quality1">แท้</label>
                                         </div>
                                         <div class="form-check ms-5">
-                                            <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                                            <label class="form-check-label" for="check2">OEM</label>
+                                            <input type="checkbox" class="form-check-input" id="quality2" name="quality[]" value="1">
+                                            <label class="form-check-label" for="quality2">OEM</label>
                                         </div>
                                         <div class="form-check ms-5">
-                                            <input type="checkbox" class="form-check-input" id="check3" name="option3" value="something">
-                                            <label class="form-check-label" for="check2">ใหม่</label>
+                                            <input type="checkbox" class="form-check-input" id="quality3" name="quality[]" value="1">
+                                            <label class="form-check-label" for="quality3">ใหม่</label>
                                         </div>
                                         <div class="form-check ms-5">
-                                            <input type="checkbox" class="form-check-input" id="check4" name="option4" value="something">
-                                            <label class="form-check-label" for="check2">มือสอง</label>
+                                            <input type="checkbox" class="form-check-input" id="quality4" name="quality[]" value="1">
+                                            <label class="form-check-label" for="quality4">มือสอง</label>
                                         </div>
                                     </div>
                                 </div>
@@ -121,10 +121,12 @@
 
                                 <div class="col-12">
                                     <div class="table-responsive form-box-input">
-                                        <table class="table table-bordered">
+                                        <table id="datatables" class="table table-bordered display nowrap" style="width:200%">
                                             <thead>
                                                 <tr>
-                                                    <th><input type="checkbox" class="form-check-input" id="check1" name="option1" value="something"></th>
+                                                    <th width="50px">
+                                                        <input type="checkbox" class="form-check-input" id="checkall" name="checkall" value="1">
+                                                    </th>
                                                     <th>รหัสสินค้าในร้าน</th>
                                                     <th>รูปภาพ</th>
                                                     <th>ชื่อรายการ</th>
@@ -149,7 +151,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                {{-- <tr>
                                                     <td><input type="checkbox" class="form-check-input" id="check2" name="option2" value="something"></td>
                                                     <td>ATCB-1000-01</td>
                                                     <td></td>
@@ -166,120 +168,11 @@
                                                     <td>สมบูรณ์ อิ่มเอม</td>
                                                     <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
                                                     <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" class="form-check-input" id="check3" name="option3" value="something"></td>
-                                                    <td>ATCB-1000-01</td>
-                                                    <td></td>
-                                                    <td>กรองน้ำมัน
-                                                        <span>Barcode : 8885299937</span>
-                                                    </td>
-                                                    <td>เครื่องยนต์
-                                                        <span>เจลแอลกอออล์</span>
-                                                    </td>
-                                                    <td>TOYOTA</td>
-                                                    <td>Revo</td>
-                                                    <td>฿ 240.00 / ลัง</td>
-                                                    <td class="text-center"><small class="status-process">กำลังขาย</small></td>
-                                                    <td>สมบูรณ์ อิ่มเอม</td>
-                                                    <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
-                                                    <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" class="form-check-input" id="check4" name="option4" value="something"></td>
-                                                    <td>ATCB-1000-01</td>
-                                                    <td></td>
-                                                    <td>กรองน้ำมัน
-                                                        <span>Barcode : 8885299937</span>
-                                                    </td>
-                                                    <td>เครื่องยนต์
-                                                        <span>เจลแอลกอออล์</span>
-                                                    </td>
-                                                    <td>TOYOTA</td>
-                                                    <td>Revo</td>
-                                                    <td>฿ 240.00 / ลัง</td>
-                                                    <td class="text-center"><small class="status-cancle">ยกเลิก</small></td>
-                                                    <td>สมบูรณ์ อิ่มเอม</td>
-                                                    <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
-                                                    <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" class="form-check-input" id="check5" name="option5" value="something"></td>
-                                                    <td>ATCB-1000-01</td>
-                                                    <td></td>
-                                                    <td>กรองน้ำมัน
-                                                        <span>Barcode : 8885299937</span>
-                                                    </td>
-                                                    <td>เครื่องยนต์
-                                                        <span>เจลแอลกอออล์</span>
-                                                    </td>
-                                                    <td>TOYOTA</td>
-                                                    <td>Revo</td>
-                                                    <td>฿ 240.00 / ลัง</td>
-                                                    <td class="text-center"><small class="status-suspended">ถูกระงับ</small></td>
-                                                    <td>สมบูรณ์ อิ่มเอม</td>
-                                                    <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
-                                                    <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i><a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" class="form-check-input" id="check6" name="option6" value="something"></td>
-                                                    <td>ATCB-1000-01</td>
-                                                    <td></td>
-                                                    <td>กรองน้ำมัน
-                                                        <span>Barcode : 8885299937</span>
-                                                    </td>
-                                                    <td>เครื่องยนต์
-                                                        <span>เจลแอลกอออล์</span>
-                                                    </td>
-                                                    <td>TOYOTA</td>
-                                                    <td>Revo</td>
-                                                    <td>฿ 240.00 / ลัง</td>
-                                                    <td class="text-center"><small class="status-success">ขายแล้ว</small></td>
-                                                    <td>สมบูรณ์ อิ่มเอม</td>
-                                                    <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
-                                                    <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" class="form-check-input" id="check7" name="option7" value="something"></td>
-                                                    <td>ATCB-1000-01</td>
-                                                    <td></td>
-                                                    <td>กรองน้ำมัน
-                                                        <span>Barcode : 8885299937</span>
-                                                    </td>
-                                                    <td>เครื่องยนต์
-                                                        <span>เจลแอลกอออล์</span>
-                                                    </td>
-                                                    <td>TOYOTA</td>
-                                                    <td>Revo</td>
-                                                    <td>฿ 240.00 / ลัง</td>
-                                                    <td class="text-center"><small class="status-success">ขายแล้ว</small></td>
-                                                    <td>สมบูรณ์ อิ่มเอม</td>
-                                                    <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
-                                                    <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" class="form-check-input" id="check8" name="option8" value="something"></td>
-                                                    <td>ATCB-1000-01</td>
-                                                    <td></td>
-                                                    <td>กรองน้ำมัน
-                                                        <span>Barcode : 8885299937</span>
-                                                    </td>
-                                                    <td>เครื่องยนต์
-                                                        <span>เจลแอลกอออล์</span>
-                                                    </td>
-                                                    <td>TOYOTA</td>
-                                                    <td>Revo</td>
-                                                    <td>฿ 240.00 / ลัง</td>
-                                                    <td class="text-center"><small class="status-success">ขายแล้ว</small></td>
-                                                    <td>สมบูรณ์ อิ่มเอม</td>
-                                                    <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
-                                                    <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
-                                                </tr>
-
+                                                </tr> --}}
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="view-all">
+                                    {{-- <div class="view-all">
                                         <div>
                                             <p>แสดงทั้งหมด 20 จาก 214 รายการ</p>
                                         </div>
@@ -288,7 +181,7 @@
                                             <li class="page-item">1/11</li>
                                             <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div id="process" class="tab-pane fade"><br>
@@ -353,29 +246,11 @@
                                                     <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
                                                     <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
                                                 </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" class="form-check-input" id="check3" name="option3" value="something"></td>
-                                                    <td>ATCB-1000-01</td>
-                                                    <td></td>
-                                                    <td>กรองน้ำมัน
-                                                        <span>Barcode : 8885299937</span>
-                                                    </td>
-                                                    <td>เครื่องยนต์
-                                                        <span>เจลแอลกอออล์</span>
-                                                    </td>
-                                                    <td>TOYOTA</td>
-                                                    <td>Revo</td>
-                                                    <td>฿ 240.00 / ลัง</td>
-                                                    <td class="text-center"><small class="status-process">กำลังขาย</small></td>
-                                                    <td>สมบูรณ์ อิ่มเอม</td>
-                                                    <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
-                                                    <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
-                                                </tr>
 
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="view-all">
+                                    {{-- <div class="view-all">
                                         <div>
                                             <p>แสดงทั้งหมด 20 จาก 214 รายการ</p>
                                         </div>
@@ -384,7 +259,7 @@
                                             <li class="page-item">1/11</li>
                                             <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div id="sold" class="tab-pane fade"><br>
@@ -449,29 +324,11 @@
                                                     <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
                                                     <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
                                                 </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" class="form-check-input" id="check6" name="option6" value="something"></td>
-                                                    <td>ATCB-1000-01</td>
-                                                    <td></td>
-                                                    <td>กรองน้ำมัน
-                                                        <span>Barcode : 8885299937</span>
-                                                    </td>
-                                                    <td>เครื่องยนต์
-                                                        <span>เจลแอลกอออล์</span>
-                                                    </td>
-                                                    <td>TOYOTA</td>
-                                                    <td>Revo</td>
-                                                    <td>฿ 240.00 / ลัง</td>
-                                                    <td class="text-center"><small class="status-success">ขายแล้ว</small></td>
-                                                    <td>สมบูรณ์ อิ่มเอม</td>
-                                                    <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
-                                                    <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
-                                                </tr>
 
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="view-all">
+                                    {{-- <div class="view-all">
                                         <div>
                                             <p>แสดงทั้งหมด 20 จาก 214 รายการ</p>
                                         </div>
@@ -480,9 +337,10 @@
                                             <li class="page-item">1/11</li>
                                             <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
+
                             <div id="suspended" class="tab-pane fade"><br>
                                 <div class="d-flex justify-content-between">
                                     <div class="col-5 d-flex">
@@ -545,29 +403,11 @@
                                                     <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
                                                     <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i><a></td>
                                                 </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" class="form-check-input" id="check5" name="option5" value="something"></td>
-                                                    <td>ATCB-1000-01</td>
-                                                    <td></td>
-                                                    <td>กรองน้ำมัน
-                                                        <span>Barcode : 8885299937</span>
-                                                    </td>
-                                                    <td>เครื่องยนต์
-                                                        <span>เจลแอลกอออล์</span>
-                                                    </td>
-                                                    <td>TOYOTA</td>
-                                                    <td>Revo</td>
-                                                    <td>฿ 240.00 / ลัง</td>
-                                                    <td class="text-center"><small class="status-suspended">ถูกระงับ</small></td>
-                                                    <td>สมบูรณ์ อิ่มเอม</td>
-                                                    <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
-                                                    <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i><a></td>
-                                                </tr>
 
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="view-all">
+                                    {{-- <div class="view-all">
                                         <div>
                                             <p>แสดงทั้งหมด 20 จาก 214 รายการ</p>
                                         </div>
@@ -576,7 +416,7 @@
                                             <li class="page-item">1/11</li>
                                             <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div id="cancle" class="tab-pane fade"><br>
@@ -641,28 +481,11 @@
                                                     <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
                                                     <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
                                                 </tr>
-                                                <tr>
-                                                    <td><input type="checkbox" class="form-check-input" id="check4" name="option4" value="something"></td>
-                                                    <td>ATCB-1000-01</td>
-                                                    <td></td>
-                                                    <td>กรองน้ำมัน
-                                                        <span>Barcode : 8885299937</span>
-                                                    </td>
-                                                    <td>เครื่องยนต์
-                                                        <span>เจลแอลกอออล์</span>
-                                                    </td>
-                                                    <td>TOYOTA</td>
-                                                    <td>Revo</td>
-                                                    <td>฿ 240.00 / ลัง</td>
-                                                    <td class="text-center"><small class="status-cancle">ยกเลิก</small></td>
-                                                    <td>สมบูรณ์ อิ่มเอม</td>
-                                                    <td><button class="btn btn-table-search"><i class="fas fa-search"></i></button></td>
-                                                    <td><a class="btn btn-table-edit" href="{{url('backend/manageproduct/edit/1')}}"><i class="fas fa-pencil-alt"></i></a></td>
-                                                </tr>
+                                                
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="view-all">
+                                    {{-- <div class="view-all">
                                         <div>
                                             <p>แสดงทั้งหมด 20 จาก 214 รายการ</p>
                                         </div>
@@ -671,7 +494,7 @@
                                             <li class="page-item">1/11</li>
                                             <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -703,7 +526,10 @@
 @stop
 
 @section('script')
-
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+{{-- <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> --}}
+<script src="{{asset('daterangepicker-master/daterangepicker.js')}}"></script>
 <script>
     var acc = document.getElementsByClassName("accordion");
     var i;
@@ -719,5 +545,147 @@
             }
         });
     }
+    $(document).ready(function(){
+        $('.nav-link').on('shown.bs.tab', function (e) {
+            console.log('tab');
+            $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+        });
+		var oTable = $('#datatables').DataTable({
+			processing: true,
+			serverSide: true,
+			searching: false,
+			lengthChange: false,
+            responsive: true,
+            scrollX: true,
+			ajax:{ 
+				url : "{{url('backend/manageproduct/datatables')}}",
+				data: function (d) {
+					// d.search = $('#search').val();
+					// d.radiodate = $('input[name="radiodate"]:checked').val();
+					// d.date = $('#dates').val();
+				},
+			},
+			columns: [
+				{ 'className': "text-center", data: 'checkboxs', name: 'checkboxs',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'product_code', name: 'product_code' },
+				{ 'className': "text-center", data: 'name_th', name: 'name_th',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'name_th', name: 'name_th'},
+				{ 'className': "text-center", data: 'categoryname', name: 'categoryname'},
+				{ 'className': "text-center", data: 'brandname', name: 'brandname'},
+				{ 'className': "text-center", data: 'modelname', name: 'modelname'},
+				{ 'className': "text-center", data: 'price', name: 'price'},
+				{ 'className': "text-center", data: 'status_code', name: 'status_code'},
+				{ 'className': "text-center", data: 'updated_by', name: 'updated_by'},
+				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
+			],
+			order: [[1, 'asc']],
+			rowCallback: function(row,data,index ){
+
+			}
+		});
+		
+        
+		// $("#noorder").keyup(function(e){
+		// 	oTable.draw();
+		// 	e.preventDefault();
+		// });
+
+        var oTableactive = $('#datatables_active').DataTable({
+			processing: true,
+			serverSide: true,
+			searching: false,
+			lengthChange: false,
+            responsive: true,
+            scrollX: true,
+			ajax:{ 
+				url : "{{url('backend/banner/datatables/active')}}",
+				data: function (d) {
+					// d.search = $('#search').val();
+					// d.radiodate = $('input[name="radiodate"]:checked').val();
+					// d.date = $('#dates').val();
+				},
+			},
+			columns: [
+				{ 'className': "text-center", data: 'name', name: 'name' },
+				{ 'className': "text-center", data: 'countimage', name: 'countimage',searchable: false },
+				{ 'className': "text-center", data: 'startdate', name: 'startdate'},
+				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
+			],
+			order: [[0, 'asc']],
+			rowCallback: function(row,data,index ){
+				$('td:eq(0)', row).html(index+1);
+				var status = '';
+				// if(data['product_status'] > 0){ //อันเก่า
+				if(data['status'] == 1){
+					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
+				}else if(data['status'] == 0){
+					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
+				}
+				
+				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
+				
+				
+			}
+		});
+
+
+        var oTablenotactive = $('#datatables_notactive').DataTable({
+			processing: true,
+			serverSide: true,
+			searching: false,
+			lengthChange: false,
+            responsive: true,
+            scrollX: true,
+			ajax:{ 
+				url : "{{url('backend/banner/datatables/notactive')}}",
+				data: function (d) {
+					// d.search = $('#search').val();
+					// d.radiodate = $('input[name="radiodate"]:checked').val();
+					// d.date = $('#dates').val();
+				},
+			},
+			columns: [
+				{ 'className': "text-center", data: 'name', name: 'name' },
+				{ 'className': "text-center", data: 'countimage', name: 'countimage',searchable: false },
+				{ 'className': "text-center", data: 'startdate', name: 'startdate'},
+				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
+			],
+			order: [[0, 'asc']],
+			rowCallback: function(row,data,index ){
+				$('td:eq(0)', row).html(index+1);
+				var status = '';
+				// if(data['product_status'] > 0){ //อันเก่า
+				if(data['status'] == 1){
+					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
+				}else if(data['status'] == 0){
+					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
+				}
+				
+				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
+				
+				
+			}
+		});
+
+
+        $("#search").keyup(function (e) { 
+            oTable.search( this.value ).draw();
+            oTableactive.search( this.value ).draw();
+            oTablenotactive.search( this.value ).draw();
+        });
+	});
+
+    $("#checkall").click(function () {
+        // alert();
+        if($("#checkall").is(":checked")){
+            $("input[name='productall[]']").prop('checked',true)
+        }else{
+            $("input[name='productall[]']").prop('checked',false)
+        }
+        
+    })
 </script>
 @stop

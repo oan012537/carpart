@@ -217,7 +217,19 @@
         margin-bottom: 0;
       }
     }
+
+    .text__titlesent {
+        margin-bottom: 0.5rem;
+
+      p {
+          color: var(--clrwhites);
+          font-size: 1rem;
+         }
+        
+        
+    }
   }
+
 
   .box__btn {
     display: flex;
@@ -262,3 +274,4 @@
     }
   }
 }
+

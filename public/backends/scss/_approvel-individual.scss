@@ -76,7 +76,6 @@
     }
   }
 
-
   .box__table {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -94,6 +93,10 @@
 
     .nav {
       justify-content: initial;
+
+      @include breakpoint-down(small) {
+        overflow: scroll;
+      }
     }
 
     .nav-tabs .nav-link.active,
@@ -124,10 +127,20 @@
       border-bottom: 4px solid var(--clrmain) !important;
     }
 
+    nav {
+      @include breakpoint-down(small) {
+        overflow: scroll;
+      }
+    }
+
     .nav-tabs {
       display: flex;
       flex-direction: row;
       border-bottom: 0;
+
+      @include breakpoint-down(small) {
+        width: 680px;
+      }
     }
 
     .table {
@@ -539,9 +552,3 @@
     color: var(--clrmain) !important;
   }
 }
-
-
-
-
-
-

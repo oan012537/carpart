@@ -4,10 +4,18 @@
     justify-content: flex-end;
     margin-top: 2rem;
 
+    @include breakpoint-down(medium) {
+      justify-content: flex-start;
+    }
+
     .txt {
       &__number {
         margin-right: 15px;
         color: var(--clrgrays);
+
+        @include breakpoint-down(last-small) {
+          margin-right: 0;
+        }
 
         span {
           color: var(--clrwhites);
@@ -43,13 +51,13 @@
     .detail {
       &__request {
         color: var(--clrwhites);
-        font-size: 1.15rem;
+        font-size: 1rem;
         font-weight: 400;
       }
 
       &__date {
         color: var(--clrwhites);
-        font-size: 1.15rem;
+        font-size: 1rem;
         text-align: right;
         font-weight: 400;
       }
@@ -62,29 +70,52 @@
     margin-top: 2rem;
     border-radius: 4px;
 
+    @include breakpoint-down(medium) {
+      margin-top: 1rem;
+    }
+
+    .hr-spartpartdetail {
+      margin-top: 0;
+    }
+
     .box__detail {
       margin-bottom: 1.5rem;
 
+      @include breakpoint-down(medium) {
+        margin-bottom: 0;
+      }
+
       .txt__title {
         color: var(--clrgrays);
-        font-size: 1.15rem;
+        font-size: 1rem;
       }
 
       .txt__detail {
         color: var(--clrwhites);
-        font-size: 1.15rem;
+        font-size: 1rem;
       }
 
-      .wrapper__image {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
+      .overflowimage {
+        @include breakpoint-down(medium) {
+          overflow: scroll;
+        }
 
-        .box__image {
-          padding: 5px;
+        .wrapper__image {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
 
-          img {
-            background-color: var(--clrdarks7);
-            border-radius: 5px;
+          @include breakpoint-down(medium) {
+            margin-bottom: 1rem;
+            width: 700px;
+          }
+
+          .box__image {
+            padding: 5px;
+
+            img {
+              background-color: var(--clrdarks7);
+              border-radius: 5px;
+            }
           }
         }
       }
@@ -99,6 +130,10 @@
       background-color: var(--clrdarks5);
       padding: 10px 20px;
 
+      @include breakpoint-down(medium) {
+        padding: 10px 15px;
+      }
+
       .box__model {
         img {
           width: 40px;
@@ -108,14 +143,14 @@
           &__model {
             color: var(--clrblue);
             display: inline-block;
-            font-size: 1.15rem;
+            font-size: 1rem;
             margin-left: 5px;
             margin-bottom: 0;
           }
 
           &__idshop {
             display: inline-block;
-            font-size: 1.15rem;
+            font-size: 1rem;
             margin-left: 10px;
             color: var(--clrwhites);
             margin-bottom: 0;
@@ -124,13 +159,22 @@
           &__verify {
             color: var(--clrblue);
             display: inline-block;
-            font-size: 1.15rem;
+            font-size: 1rem;
             margin-left: 5px;
             margin-bottom: 0;
+
+            @include breakpoint-down(last-small) {
+              margin-top: 0.5rem;
+            }
 
             img {
               width: 30px;
               margin-left: 10px;
+
+              @include breakpoint-down(last-small) {
+                margin-left: 0;
+                width: 25px;
+              }
             }
           }
         }
@@ -151,17 +195,89 @@
       background-color: var(--clrdarks6);
       padding: 20px;
 
+      @include breakpoint-down(medium) {
+        padding: 10px 15px;
+      }
+
+      .box__date {
+        text-align: left;
+
+        p {
+          color: var(--clrgrays);
+          margin-bottom: 1rem;
+
+          margin-top: 0.5rem;
+
+          @include breakpoint-down(medium) {
+            font-size: 0.9875rem;
+          }
+        }
+      }
+
+      .box__model {
+        margin-top: 1rem;
+
+        img {
+          width: 40px;
+
+          @include breakpoint-down(medium) {
+            width: 35px;
+          }
+        }
+
+        .txt {
+          &__model {
+            color: var(--clrblue);
+            display: inline-block;
+            font-size: 1rem;
+            margin-left: 5px;
+            margin-bottom: 0;
+          }
+
+          &__idshop {
+            display: inline-block;
+            font-size: 1rem;
+            margin-left: 10px;
+            color: var(--clrwhites);
+            margin-bottom: 0;
+          }
+
+          &__verify {
+            color: var(--clrblue);
+            display: inline-block;
+            font-size: 1rem;
+            margin-left: 5px;
+            margin-bottom: 0;
+
+            img {
+              width: 30px;
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+
       .box__image {
         img {
-          width: 100%;
+          @include breakpoint-down(last-small) {
+            width: 100%;
+          }
         }
       }
 
       .box__content {
+        @include breakpoint-down(medium) {
+          padding: 0;
+        }
+
         .title__product {
           font-size: 1.25rem;
           color: var(--clrwhites);
           margin-bottom: 10px;
+
+          @include breakpoint-down(medium) {
+            font-size: 1rem;
+          }
         }
 
         .number__product {
@@ -172,6 +288,10 @@
       .box__detailprice {
         display: flex;
         justify-content: space-between;
+
+        @include breakpoint-down(medium) {
+          display: initial;
+        }
 
         .box__price {
           p {
@@ -184,12 +304,22 @@
         .box__btn {
           margin-top: 1.2rem;
 
+          @include breakpoint-down(medium) {
+            margin-bottom: 1rem;
+            margin-top: 0;
+          }
+
           .btn__view {
             border-radius: 5px;
             border: 2px solid var(--clrmain);
             color: var(--clrmain);
             background-color: var(--clrblacks);
             @extend %transition-5;
+
+            @include breakpoint-down(medium) {
+              width: 100%;
+              padding: 8px;
+            }
 
             &:hover {
               @extend %transition-5;

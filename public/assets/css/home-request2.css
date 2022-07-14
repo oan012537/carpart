@@ -358,3 +358,297 @@ hr.new1 {
     border-radius: 0.375rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+
+
+
+
+
+/*-----------------------------------------
+    RESPONSIVE
+-------------------------------------------*/
+@media screen and (min-width:320px) and (max-width:374px) {
+
+
+
+}
+
+@media screen and (min-width:375px) and (max-width:413px) {
+
+
+
+}
+
+@media screen and (min-width:414px) and (max-width:424px) {
+
+
+}
+
+@media screen and (min-width:425px) and (max-width:767px) {
+
+
+
+
+}
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+
+    #sec-re-sec .card {
+        background-color: #3F3F3F;
+        height: 250%;
+    }
+
+    #sec-re-sec .h-text-re p {
+        font-size: 26px;
+        font-weight: 500;
+        color: white;
+        margin-left: 1.8rem;
+    }
+
+    #sec-re-sec .text-img-de-tt p {
+        font-size: 15px;
+        color: white;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    #sec-re-sec .text-col-h2 label {
+        font-size: 20px;
+        color: rgb(156, 154, 154);
+        margin-left: 1.8rem;
+    }
+
+    #sec-re-sec .card-in2 {
+        background-color: #333333;
+        height: 200px;
+        width: 92%;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 30px;
+        margin-left: 29px;
+        margin-top: -1rem;
+    }
+
+    #sec-re-sec .form-control {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        margin-left: 1.8rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 2.5;
+        color: white;
+        background-color: #333333;
+        background-clip: padding-box;
+        border: 1px solid white;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.375rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .card-in2 .drop-zone {
+        height: 135px;
+        width: 29%;
+        margin-left: 191px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-weight: 500;
+        font-size: 20px;
+        cursor: pointer;
+        color: #cccccc;
+        background-color: #ffffff0f;
+        /* border: 4px dashed #009578; */
+        border-radius: 10px;
+    }
+
+    .text-h-detail-text p {
+        font-size: 20px;
+        color: rgb(156, 154, 154);
+        margin-left: 1.8rem;
+        margin-top: -2.5rem;
+    }
+
+    #sec-re-sec .text-col-h p {
+        font-size: 23px;
+        color: white;
+        padding: 30px;
+    }
+
+    #sec-re-sec .card-in {
+        background-color: #333333;
+        height: 200px;
+        width: 92%;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 30px;
+        margin-top: -1rem;
+        margin-left: 1.9rem;
+    }
+
+    #sec-re-sec .t-num-text label {
+        font-size: 20px;
+        color: rgb(156, 154, 154);
+        margin-left: 1.8rem;
+    }
+
+    .drop-zone {
+        height: 135px;
+        width: 190%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-weight: 500;
+        font-size: 20px;
+        cursor: pointer;
+        color: #cccccc;
+        background-color: #ffffff0f;
+        /* border: 4px dashed #009578; */
+        border-radius: 10px;
+    }
+
+    .check {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-left: 30px;
+        margin-bottom: 12px;
+        margin-top: 15px;
+        cursor: pointer;
+        font-size: 17px;
+        color: white;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+
+
+
+
+
+
+
+}
+
+@media screen and (min-width:1024px) and (max-width:1279px) {
+    
+    #sec-re-sec .card {
+            background-color: #3F3F3F;
+            height: 1700px;
+        }
+
+    .drop-zone {
+            height: 135px;
+            width: 220%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 500;
+            font-size: 20px;
+            cursor: pointer;
+            color: #cccccc;
+            background-color: #ffffff0f;
+            /* border: 4px dashed #009578; */
+            border-radius: 10px;
+        }
+
+     .card-in2 .drop-zone {
+            height: 135px;
+            width: 35%;
+            margin-left: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 500;
+            font-size: 20px;
+            cursor: pointer;
+            color: #cccccc;
+            background-color: #ffffff0f;
+            /* border: 4px dashed #009578; */
+            border-radius: 10px;
+        }
+
+    .check {
+             display: block;
+             position: relative;
+             padding-left: 35px;
+             margin-bottom: 12px;
+             margin-top: 15px;
+             cursor: pointer;
+             font-size: 18px;
+             color: white;
+             -webkit-user-select: none;
+             -moz-user-select: none;
+             -ms-user-select: none;
+             user-select: none;
+    }
+
+
+
+
+
+
+}
+
+@media screen and (min-width:1280px) and (max-width:1359px) {
+    #sec-re-sec .card {
+            background-color: #3F3F3F;
+            height: 1634px;
+        }
+
+    .check {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            color: white;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+             user-select: none;
+        }
+       
+
+}
+
+@media screen and (min-width:1360px) and (max-width:1439px) {
+        #sec-re-sec .card {
+                background-color: #3F3F3F;
+                height: 1634px;
+            }
+        
+            .check {
+                display: block;
+                position: relative;
+                padding-left: 35px;
+                margin-bottom: 12px;
+                margin-top: 15px;
+                cursor: pointer;
+                font-size: 18px;
+                color: white;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+}
+
+@media screen and (min-width:1440px) and (max-width:1599px) {}
+
+@media screen and (min-width:1600px) and (max-width:1919px) {}
+
+@media screen and (min-width:1920px) and (max-width:2559px) {}
+
+@media screen and (min-width:2560px) {}

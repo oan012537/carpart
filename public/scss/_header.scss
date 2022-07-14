@@ -9,6 +9,13 @@
   top: -3px;
   @extend %transition-3;
 
+  @include breakpoint-down(medium) {
+    display: inline-block !important;
+    margin-bottom: 0.5rem;
+    margin-top: 0.3rem;
+    padding: 8px 2rem !important;
+  }
+
   .icon {
     background-image: url("../img/icon/icon-store.svg");
     background-repeat: no-repeat;
@@ -40,6 +47,13 @@
   position: relative;
   top: -3px;
   @extend %transition-3;
+
+  @include breakpoint-down(medium) {
+    display: inline-block !important;
+    margin-bottom: 0.5rem;
+    margin-top: 0.3rem;
+    padding: 8px 1.7rem !important;
+  }
 
   .icon2 {
     background-image: url("../img/icon/icon-maintain.svg");
@@ -73,18 +87,34 @@
   .box__group2 {
     display: flex;
 
+    @include breakpoint-down(medium) {
+      flex-direction: column;
+    }
+
     .box__search {
       width: 50%;
+
+      @include breakpoint-down(medium) {
+        width: 100%;
+      }
 
       .form-control {
         border-radius: 4px;
         box-shadow: none;
+
+        @include breakpoint-down(medium) {
+          height: 42px;
+        }
       }
 
       .btn__search {
         background-color: var(--clrmain);
         color: var(--clrdarks3);
         border: 1px solid var(--clrmain);
+
+        @include breakpoint-down(medium) {
+          height: 42px;
+        }
 
         &:hover {
           border: none;
@@ -95,11 +125,23 @@
 
     .box__resultsearch {
       width: 50%;
+
+      @include breakpoint-down(medium) {
+        width: 100%;
+      }
+
       ul {
         display: flex;
         justify-content: flex-end;
         margin-bottom: 0;
         margin-top: 0.2rem;
+
+        @include breakpoint-down(medium) {
+          justify-content: flex-start;
+          padding-left: 0 !important;
+          margin-top: 0.5rem;
+        }
+
         li {
           list-style: none;
           padding: 0 10px;

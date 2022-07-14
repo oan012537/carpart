@@ -603,3 +603,216 @@ display: block;
     padding-top: 0;
   }
 }
+
+
+
+
+
+
+
+/*-----------------------------------------
+    RESPONSIVE
+-------------------------------------------*/
+@media screen and (min-width:320px) and (max-width:374px) {}
+
+@media screen and (min-width:375px) and (max-width:413px) {}
+
+@media screen and (min-width:414px) and (max-width:424px) {}
+
+@media screen and (min-width:425px) and (max-width:767px) {}
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+  .product-title {
+      font-size: 30px;
+      text-transform: capitalize;
+      font-weight: 500;
+      position: relative;
+      color: #ffffff;
+      font-family: "Kanit", sans-serif;
+      margin: 1rem 0;
+    }
+  .pro-detail-pro {
+      font-size: 24px;
+      color: #ffffff;
+      font-family: "Kanit", sans-serif;
+    }
+    .pro-text-id {
+      font-size: 24px;
+      color: #ffffff;
+      font-family: "Kanit", sans-serif;
+    }
+  .img-lo-icon {
+      width: 4%;
+      margin-left: 15.5rem;
+      margin-top: -3rem;
+    }
+  .d-text-deatil-t p {
+      font-size: 24px;
+      font-weight: 400;
+      color: #ffffff;
+      font-family: "Kanit", sans-serif;
+      margin-left: 18.5rem;
+      margin-top: -2.2rem;  
+    }
+  .product-rating {
+      color: #fcb040;
+      margin-top: 10px;
+      font-size: 24px;
+    }
+  .text-persen-t {
+      font-size: 24px;
+      font-weight: 400;
+      margin-top: 10px;
+      color: #ffffff;
+      font-family: "Kanit", sans-serif;
+    }
+    .text-persen-t span {
+      font-size: 24px;
+      font-weight: 400;
+      color: #e8d95f;
+      font-family: "Kanit", sans-serif;
+    }
+  .last-price span {
+      color: white;
+      text-decoration: line-through;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  .last-price font {
+      color: white;
+      font-size: 20px;
+      font-weight: 300;
+      font-family: "Kanit", sans-serif;
+    }
+  .product-detail span {
+      font-size: 24px;
+      font-weight: 400;
+      font-family: "Kanit", sans-serif;
+      color: #e8d95f;
+    }
+  .product-detail p {
+      font-size: 24px;
+      font-weight: 400;
+      font-family: "Kanit", sans-serif;
+      color: white;
+    }
+  .text-t-into p {
+      font-size: 24px;
+      font-family: "Kanit", sans-serif;
+      margin-left: 4.5rem;
+      margin-top: -3.8rem;
+      font-weight: 300;
+      color: #fff;
+      text-decoration: underline; 
+    }
+  .social-links p {
+      color: white;
+      font-family: "Kanit", sans-serif;
+      font-size: 24px;
+      margin-top: -1rem;
+    }
+  .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: #000;
+      /* border: 1px solid #000; */
+      margin: -1rem 0.5rem;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.8rem;
+      transition: all 0.5s ease;
+    }
+  .social-links font {
+      color: white;
+      font-family: "Kanit", sans-serif;
+      font-size: 24px;
+      margin-top: -1rem;
+    }
+  .tabs label {
+      order: 1;
+      display: block;
+      padding: 1rem 2rem;
+      margin-right: 0.2rem;
+      cursor: pointer;
+      font-family: "Kanit", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      color: white;
+      transition: background ease 0.2s;
+    }
+  .tt-detail-tt p {
+      font-size: 20px;
+      color: white;
+      font-family: "Kanit", sans-serif;
+    }
+  .tt-detail-tt2 p {
+      font-size: 20px;
+      color: white;
+      font-family: "Kanit", sans-serif;
+      font-weight: 500;
+    }
+  .tt-detail-tt3 p {
+      font-size: 20px;
+      color: white;
+      font-family: "Kanit", sans-serif;
+      font-weight: 500;
+    }
+  .detail-text-tab p {
+      font-size: 24px;
+      color: white;
+      font-family: "Kanit", sans-serif;
+    }
+  .h-detail-text p {
+      font-size: 24px;
+      color: white;
+      font-family: "Kanit", sans-serif;
+      font-weight: 600;
+    }
+  .d-detail-text p {
+      font-size: 24px;
+      color: white;
+      font-family: "Kanit", sans-serif;
+      font-weight: 400;
+    }
+  .h-review-detail p {
+      font-size: 24px;
+      color: white;
+      font-family: "Kanit", sans-serif;
+      font-weight: 500;
+    }
+  .icon-rwview-detail {
+      color: #fcb040;
+      font-size: 24px;
+      margin-bottom: 1rem;
+    }
+  .review-b-but {
+      margin-top: 0;
+    }
+  .d-review-text p {
+      font-size: 20px;
+      color: white;
+      font-weight: 300;
+      font-family: "Kanit", sans-serif;
+    }
+  .w3-bar-item {
+      margin-bottom: 1rem;
+    }
+}
+
+@media screen and (min-width:1024px) and (max-width:1279px) {}
+
+@media screen and (min-width:1280px) and (max-width:1359px) {}
+
+@media screen and (min-width:1360px) and (max-width:1439px) {}
+
+@media screen and (min-width:1440px) and (max-width:1599px) {}
+
+@media screen and (min-width:1600px) and (max-width:1919px) {}
+
+@media screen and (min-width:1920px) and (max-width:2559px) {}
+
+@media screen and (min-width:2560px) {}
