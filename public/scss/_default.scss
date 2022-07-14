@@ -1,5 +1,9 @@
 .nav-link {
   color: var(--clrwhites);
+
+  @include breakpoint-down(medium) {
+    padding-left: 5px !important;
+  }
 }
 
 .bg-light {
@@ -19,6 +23,11 @@
         left: 0;
         content: "";
         z-index: -1;
+
+        @include breakpoint-down(medium) {
+          top: 0;
+          height: 100%;
+        }
       }
     }
   }
@@ -64,6 +73,10 @@ a {
     border-radius: 0;
     border: 1px solid var(--clrdarks5);
 
+    @include breakpoint-down(last-small) {
+      padding: 10px 15px;
+    }
+
     &:hover {
       background-color: var(--clrmain);
       border: 1px solid var(--clrmain);
@@ -84,5 +97,29 @@ a {
 
   .page-item {
     padding: 0 5px;
+  }
+}
+
+@media (max-width: 769px) {
+  .desktop-show {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1025px) {
+  .desktop1024-show {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .tablet-show {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .tablet1024-show {
+    display: none !important;
   }
 }

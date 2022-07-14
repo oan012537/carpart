@@ -121,6 +121,7 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::prefix('manageproduct')->group(function () {
             Route::get('/', [Backend\ProductController::class,'index'])->name('backend.product');
+            Route::get('datatables', [Backend\ProductController ::class,'datatables'])->name('backend.product.datatables');
             Route::get('edit/{id}', [Backend\ProductController::class,'edit'])->name('backend.product.edit');
             Route::post('update', [Backend\ProductController::class,'update'])->name('backend.product.update');
         });
@@ -183,11 +184,14 @@ Route::group(['middleware' => 'auth'], function(){
             
         });
 
-        Route::prefix('settingbanner')->group(function () {
+        Route::prefix('banner')->group(function () {
             Route::get('/', [Backend\BannerController::class,'index'])->name('backend.banner');
+            Route::get('datatables', [Backend\BannerController::class,'datatables'])->name('backend.banner.datatables');
+            Route::get('datatables/active', [Backend\BannerController::class,'datatablesactive'])->name('backend.banner.datatables.active');
+            Route::get('datatables/notactive', [Backend\BannerController::class,'datatablesnotactive'])->name('backend.banner.datatables.notactive');
             Route::get('add', [Backend\BannerController::class,'add'])->name('backend.banner.add');
-            Route::post('store', function(){})->name('backend.banner.store');
-            Route::get('edit', [Backend\BannerController::class,'edit'])->name('backend.banner.edit');
+            Route::post('store', [Backend\BannerController::class,'store'])->name('backend.banner.store');
+            Route::get('edit/{id}', [Backend\BannerController::class,'edit'])->name('backend.banner.edit');
             Route::post('update', [Backend\BannerController::class,'update'])->name('backend.banner.update');
             
         });

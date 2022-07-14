@@ -11,9 +11,38 @@
     width: 25%;
     text-align: left;
 
+    @include breakpoint-down(medium) {
+      left: 5%;
+      top: 30%;
+      width: 45%;
+      text-align: left;
+    }
+
     p {
       @extend %cuttext-4;
       line-height: 30px;
     }
+  }
+
+  .active::before {
+    @include breakpoint-down(medium) {
+      display: none !important;
+    }
+
+    @include breakpoint-up(medium) {
+      display: none !important;
+    }
+  }
+}
+
+.slide-desktop {
+  @include breakpoint-down(medium) {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .slide-tablet {
+    display: none !important;
   }
 }

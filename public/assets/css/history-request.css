@@ -12,3 +12,161 @@
     margin-left: -100px;
 }
 
+
+
+
+
+/*-----------------------------------------
+    RESPONSIVE
+-------------------------------------------*/
+@media screen and (min-width:320px) and (max-width:374px) {}
+
+@media screen and (min-width:375px) and (max-width:413px) {}
+
+@media screen and (min-width:414px) and (max-width:424px) {}
+
+@media screen and (min-width:425px) and (max-width:767px) {}
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+
+    #history-request .box__contentmain {
+            margin-left: 9px;
+        }
+
+    .box__navleft .nav_list {
+            height: 550px;
+            width: 100%;
+            font-size: 14px !important;
+            overflow-y: auto;
+            background-color: #3f3f3f;
+        }
+
+    #history-request .box__contentmain .nav-tabs {
+            border-bottom: none;
+            font-size: 14px !important;
+        }
+
+    #history-request .box__contentmain .txt__titletop {
+            color: var(--clrwhites);
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 20px !important;
+            margin-left: 1.5rem;
+            padding-top: 1rem;
+        }
+
+    #history-request .box__contentmain .txt__subtop {
+            color: var(--clrwhites);
+            font-size: 1rem !important;
+            margin-left: 1.5rem;
+            margin-bottom: 0;
+            font-weight: 300;
+        }
+
+    .box__iconmenu {
+            width: 30px !important;
+            height: 20px !important;
+            border-radius: 6px;
+            display: inline-block;
+            background-color: var(--clrreds);
+            color: var(--clrwhites);
+            margin-left: 1rem;
+            text-align: center;
+            font-size: 0.8rem !important;
+        }
+
+    #history-request .box__contentmain .box__tab .box__content .txt__title {
+            font-size: 0.9rem !important;
+            color: var(--clrwhites);
+            margin-bottom: 5px;
+        }
+
+    #history-request .box__contentmain .box__tab .box__content .txt__date {
+            color: var(--clrgrays);
+            margin-bottom: 0;
+            font-size: 14px !important;
+        }
+
+    #history-request .box__contentmain .box__tab .box__content .status-success {
+            background: rgba(111, 207, 151, 0.2);
+            border-radius: 50px;
+            padding: 4px 20px;
+            display: inline-block;
+            margin-top: 0.2rem;
+            margin-left: -4rem !important;
+            font-size: 14px !important;
+        }
+
+    #history-request .box__contentmain .box__tab .box__content .txt__name {
+            color: var(--clrwhites);
+            font-size: 13px !important;
+            margin-top: 1rem;
+        }
+
+    #history-request .btn {
+            border-radius: 4px;
+            padding: 6px 15px !important;
+            margin-top: 1rem;
+            margin-right: 5px;
+        }
+
+    #history-request .btn__viewall {
+            background-color: var(--clrmain);
+            color: var(--clrdarks2);
+            border: 2px solid var(--clrmain);
+            font-size: 13px !important;
+        }
+
+    #history-request .box__contentmain .box__tab .box__content .status-waiting {
+            background: rgba(242, 153, 74, 0.2);
+            border-radius: 50px;
+            padding: 4px 20px;
+            display: inline-block;
+            margin-top: 0.2rem;
+            margin-left: -4rem !important;
+            font-size: 14px !important;
+        }
+
+    #history-request .txt__problem {
+            text-align: right;
+            color: var(--clrwhites);
+            margin-bottom: 0;
+            margin-top: 1.5rem;
+            font-size: 13px !important;
+            margin-left: 1rem;
+        }
+
+    #history-request .box__contentmain .box__tab .box__content .status-close {
+            background: rgba(255, 123, 123, 0.2);
+            border-radius: 50px;
+            padding: 4px 20px;
+            display: inline-block;
+            margin-top: 0.2rem;
+            margin-left: -4rem !important;
+            font-size: 14px !important;
+        }
+
+
+
+
+
+
+
+
+
+}
+
+@media screen and (min-width:1024px) and (max-width:1279px) {}
+
+@media screen and (min-width:1280px) and (max-width:1359px) {}
+
+@media screen and (min-width:1360px) and (max-width:1439px) {}
+
+@media screen and (min-width:1440px) and (max-width:1599px) {}
+
+@media screen and (min-width:1600px) and (max-width:1919px) {}
+
+@media screen and (min-width:1920px) and (max-width:2559px) {}
+
+@media screen and (min-width:2560px) {}
+
