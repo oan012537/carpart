@@ -20,7 +20,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <label class="title__txt">ค้นหา</label>
-                                        <input type="text" class="form-control" placeholder="ระบุ">
+                                        <input type="text" class="form-control" placeholder="ระบุ" id="search">
                                     </div>
                                 </div>
                             </form>
@@ -261,7 +261,7 @@
 			ajax:{ 
 				url : "{{url('backend/banner/datatables')}}",
 				data: function (d) {
-					// d.search = $('#search').val();
+					d.search = $('#search').val();
 					// d.radiodate = $('input[name="radiodate"]:checked').val();
 					// d.date = $('#dates').val();
 				},
@@ -275,17 +275,6 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
-				
 				
 			}
 		});
@@ -306,7 +295,7 @@
 			ajax:{ 
 				url : "{{url('backend/banner/datatables/active')}}",
 				data: function (d) {
-					// d.search = $('#search').val();
+					d.search = $('#search').val();
 					// d.radiodate = $('input[name="radiodate"]:checked').val();
 					// d.date = $('#dates').val();
 				},
@@ -320,16 +309,6 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
 				
 				
 			}
@@ -346,7 +325,7 @@
 			ajax:{ 
 				url : "{{url('backend/banner/datatables/notactive')}}",
 				data: function (d) {
-					// d.search = $('#search').val();
+					d.search = $('#search').val();
 					// d.radiodate = $('input[name="radiodate"]:checked').val();
 					// d.date = $('#dates').val();
 				},
@@ -360,16 +339,6 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
 				
 				
 			}
@@ -377,9 +346,11 @@
 
 
         $("#search").keyup(function (e) { 
-            oTable.search( this.value ).draw();
-            oTableactive.search( this.value ).draw();
-            oTablenotactive.search( this.value ).draw();
+            console.log(this.value);
+            // oTable.search( this.value ).draw();
+            oTable.draw();
+            oTableactive.draw();
+            oTablenotactive.draw();
         });
 	});
 </script>

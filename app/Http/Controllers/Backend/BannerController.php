@@ -21,19 +21,16 @@ class BannerController extends Controller
     public function datatables(){
         
         $data = Banner::leftjoin('bannerimages','banners.id','bannerimages.banner_id')->select(DB::raw("banners.*,count(*) as countimage"));
-        // $search = request('search');
+        $search = request('search');
         // $radiodate = request('radiodate');
         // $date = request('date');
-        // if($search != ''){
-        //     $data->where(function ($query) use ($search){
-        //         $query->where('code','LIKE','%'.$search.'%')
-        //         ->orwhere('store_name ','LIKE','%'.$search.'%')
-        //         ->orwhere('supplir_name','LIKE','%'.$search.'%')
-        //         ->orwhere('card_id','LIKE','%'.$search.'%')
-        //         ->orwhere('comment','LIKE','%'.$search.'%')
-        //         ;
-        //     });
-        // }
+        if($search != ''){
+            $data->where(function ($query) use ($search){
+                $query->where('name','LIKE','%'.$search.'%')
+                ->orwhere('startdate','LIKE','%'.$search.'%')
+                ;
+            });
+        }
         // if($date!= ''){
         //     $dates = explode(',',$date);
         //     $sdate = $dates[0];
@@ -73,19 +70,16 @@ class BannerController extends Controller
     public function datatablesactive(){
         
         $data = Banner::leftjoin('bannerimages','banners.id','bannerimages.banner_id')->select(DB::raw("banners.*,count(*) as countimage"))->where('banners.is_active','1');
-        // $search = request('search');
+        $search = request('search');
         // $radiodate = request('radiodate');
         // $date = request('date');
-        // if($search != ''){
-        //     $data->where(function ($query) use ($search){
-        //         $query->where('code','LIKE','%'.$search.'%')
-        //         ->orwhere('store_name ','LIKE','%'.$search.'%')
-        //         ->orwhere('supplir_name','LIKE','%'.$search.'%')
-        //         ->orwhere('card_id','LIKE','%'.$search.'%')
-        //         ->orwhere('comment','LIKE','%'.$search.'%')
-        //         ;
-        //     });
-        // }
+        if($search != ''){
+            $data->where(function ($query) use ($search){
+                $query->where('name','LIKE','%'.$search.'%')
+                ->orwhere('startdate','LIKE','%'.$search.'%')
+                ;
+            });
+        }
         // if($date!= ''){
         //     $dates = explode(',',$date);
         //     $sdate = $dates[0];
@@ -121,6 +115,14 @@ class BannerController extends Controller
     public function datatablesnotactive(){
         
         $data = Banner::leftjoin('bannerimages','banners.id','bannerimages.banner_id')->select(DB::raw("banners.*,count(*) as countimage"))->where('banners.is_active','0');
+        $search = request('search');
+        if($search != ''){
+            $data->where(function ($query) use ($search){
+                $query->where('name','LIKE','%'.$search.'%')
+                ->orwhere('startdate','LIKE','%'.$search.'%')
+                ;
+            });
+        }
         $data->groupBy('id');
 		$sQuery	= Datatables::of($data)
         ->setRowClass(function ($data) {
@@ -154,7 +156,7 @@ class BannerController extends Controller
             // DB::transaction();
             $banner = new Banner;
             $banner->name = $request->name;
-            $banner->startdate = date('Y-m-d');
+            $banner->startdate= date('Y-m-d');
             $banner->sort = $request->sort;
             $banner->created_by = Auth::user()->name;
             $banner->updated_by = '';
