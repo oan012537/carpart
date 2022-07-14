@@ -227,7 +227,7 @@
     </div>
 </div>
 
-<!-- The Modal Create -->
+<!-- The Modal Edit -->
 <div id="user_address_edit" class="w3-modal">
     <div class="w3-modal-content">
         <div class="w3-container">

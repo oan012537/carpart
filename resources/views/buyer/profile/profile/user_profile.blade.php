@@ -9,9 +9,8 @@
         </div>
         <div class="col-lg-4">
             <div class="ac-detail-text-tt">
-                <a href="#">
-                    <p onclick="document.getElementById('id01').style.display='block'"
-                        class="w3-button w3-black"> <i class="fas fa-pen"
+                <a href="javascript:void(0);" onclick="model_buyerprofile_edit({{ $address_profiles->id }})">
+                    <p class="w3-button w3-black"> <i class="fas fa-pen"
                             style="font-size:18px"></i> &nbsp;
                         แก้ไข </p>
                 </a>

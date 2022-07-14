@@ -494,6 +494,7 @@
         </div>
     </section>
     <br><br><br>
+    
 
     @include('layouts.inc_footer')
     @include('buyer.layouts.inc_js')
