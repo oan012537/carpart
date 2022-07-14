@@ -56,7 +56,7 @@ Route::prefix('buyer')->group(function(){
         Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand']);
         Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
 
-        Route::get('myaccount', [Buyer\BuyerAccountController::class, 'index']);
+        Route::get('myaccount', [Buyer\BuyerAccountController::class, 'index']); //-OAT
     });
 
     //Ajax
@@ -72,12 +72,17 @@ Route::prefix('buyer')->group(function(){
     Route::get('GetSubsubCategory/{id}', [Buyer\SearchProductController::class, 'GetSubsubCategory']);
 
     // Route::post('GetsearchBox',[Buyer\SearchProductController::class, 'Getsearch']);
+
+    Route::post('buyerprofile/add', [Buyer\BuyerAccountController::class, 'buyerprofile_store']); //-OAT
+    Route::get('buyerprofile/edit/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_edit']); //-OAT
+    Route::post('buyerprofile/update', [Buyer\BuyerAccountController::class, 'buyerprofile_update']); //-OAT
+    Route::get('buyerprofile/delete/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_delete']); //-OAT
 });
 
 
 // ========== Product Detail ================
 
-Route::get('product/{productname}/{id}', [Buyer\ProductDetailController::class, 'index']);
+Route::get('product/{productname}/{id}', [Buyer\ProductDetailController::class, 'index']); //-OAT
 
 // ========== Product Detail ================
 
