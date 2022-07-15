@@ -179,11 +179,28 @@ class BuyerAccountController extends Controller
         }
 
         $buyer_profiles = $this->fetch_BuyerProfile($user_buyer_id);
-        $html_address = $this->htmlwrite($buyer_profiles);
-
+        if(!is_null($buyer_profiles)){
+            $html_address = $this->htmlwrite($buyer_profiles);
+        }else{
+            $html_address = '';
+        }
         $address_profiles = $buyer_profiles->where('is_profile', '1')->first();
-        $user_buyer = mUsers_buyer::where('id', $user_buyer_id)->first();
-        $html_address_profiles = $this->buyer_accounthtmlwrite($address_profiles, $user_buyer);
+        if(!is_null($address_profiles)){
+            $user_buyer = mUsers_buyer::where('id', $user_buyer_id)->first();
+            $html_address_profiles = $this->buyer_accounthtmlwrite($address_profiles, $user_buyer);
+        }else{
+            $html_address_profiles = '<div class="box__content">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <div class="head-address">
+                                                        <p>
+                                                            ข้อมูลส่วนตัว
+                                                        </p>
+                                                    </div>
+                                                </div> 
+                                            </div> 
+                                        </div>';
+        }
 
         return response()->json([
             'status' => 200,

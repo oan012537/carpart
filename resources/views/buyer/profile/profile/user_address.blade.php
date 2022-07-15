@@ -1,4 +1,5 @@
 <div id="box_content_address" >
+@if(!is_null($buyer_profiles))
 
 @foreach($buyer_profiles as $key => $buyerprofile)
     @php 
@@ -130,6 +131,8 @@
         </div>
     </div>
 @endforeach
+
+@endif
 
 </div>
 
