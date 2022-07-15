@@ -14,15 +14,21 @@
             success:function(response){
                 console.log(response);
                 if(response.status == 200){ 
-                    $('#text_account_first_name').text(response.data.first_name);
-                    $('#text_account_phone').text(response.data.phone);
-                    $('#text_account_address').text(response.data.address);
-                    $('#text_account_district').text(response.data.district.name_th);
-                    $('#text_account_amphure').text(response.data.amphure.name_th);
-                    $('#text_account_province').text(response.data.province.name_th);
-                    $('#text_account_postcode').text(response.data.postcode);
-                    $('#btn_address_profiles_edit').attr('onClick','model_buyerprofileaccount_edit('+response.data.id+')');
+                    // $('#text_account_first_name').text(response.data.first_name);
+                    // $('#text_account_phone').text(response.data.phone);
+                    // $('#text_account_address').text(response.data.address);
+                    // $('#text_account_district').text(response.data.district.name_th);
+                    // $('#text_account_amphure').text(response.data.amphure.name_th);
+                    // $('#text_account_province').text(response.data.province.name_th);
+                    // $('#text_account_postcode').text(response.data.postcode);
+                    // $('#btn_address_profiles_edit').attr('onClick','model_buyerprofileaccount_edit('+response.data.id+')');
                     $('#user_profileaccount_edit').hide();
+
+                    $("#box_content_profile_account").empty(); 
+                    $('#box_content_profile_account').append(response.htmltext_account); // แสดงหน้า account
+
+                    $("#box_content_address").empty(); 
+                    $('#box_content_address').append(response.htmltext); //- แสดงร้าน user address ใหม่
                 }
             },
             error: function(response){

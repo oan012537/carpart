@@ -14,8 +14,11 @@
             success:function(response){
                 console.log(response);
                 if(response.status == 200){ 
-                    $("#box_content_address").empty();
-                    $('#box_content_address').append(response.htmltext);
+                    $("#box_content_profile_account").empty(); 
+                    $('#box_content_profile_account').append(response.htmltext_account); // แสดงหน้า account
+
+                    $("#box_content_address").empty(); 
+                    $('#box_content_address').append(response.htmltext); //- แสดงร้าน user address ใหม่
                     $('#id06').hide();
                 }
             },
@@ -40,8 +43,12 @@
             success:function(response){
                 console.log(response);
                 if(response.status == 200){ 
-                    $("#box_content_address").empty();
-                    $('#box_content_address').append(response.htmltext);
+                    $("#box_content_profile_account").empty(); 
+                    $('#box_content_profile_account').append(response.htmltext_account); // แสดงหน้า account
+
+                    $("#box_content_address").empty(); 
+                    $('#box_content_address').append(response.htmltext); //- แสดงร้าน user address ใหม่
+
                     $('#user_address_edit').hide();
                 }
             },
@@ -62,8 +69,11 @@
             success:function(response){
                 console.log(response);
                 if(response.status == 200){ 
-                    $("#box_content_address").empty();
-                    $('#box_content_address').append(response.htmltext);
+                    $("#box_content_profile_account").empty(); 
+                    $('#box_content_profile_account').append(response.htmltext_account); // แสดงหน้า account
+
+                    $("#box_content_address").empty(); 
+                    $('#box_content_address').append(response.htmltext); //- แสดงร้าน user address ใหม่
                 }
             },
             error: function(response){

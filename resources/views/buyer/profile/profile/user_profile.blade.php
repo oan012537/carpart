@@ -1,180 +1,196 @@
-<div class="box__content">
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="head-address">
-                <p>
-                    ข้อมูลส่วนตัว
-                </p>
+<div id="box_content_profile_account">
+    @if(!is_null($address_profiles))
+    <div class="box__content">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="head-address">
+                    <p>
+                        ข้อมูลส่วนตัว
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="ac-detail-text-tt">
-                <a href="javascript:void(0);" id="btn_address_profiles_edit" onclick="model_buyerprofileaccount_edit({{ $address_profiles->id }})">
-                    <p class="w3-button w3-black"> <i class="fas fa-pen"
-                            style="font-size:18px"></i> &nbsp;
-                        แก้ไข </p>
-                </a>
+            <div class="col-lg-4">
+                <div class="ac-detail-text-tt">
+                    <a href="javascript:void(0);" id="btn_address_profiles_edit" onclick="model_buyerprofileaccount_edit({{ $address_profiles->id }})">
+                        <p class="w3-button w3-black"> <i class="fas fa-pen"
+                                style="font-size:18px"></i> &nbsp;
+                            แก้ไข </p>
+                    </a>
 
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="txt__title2">
-                <p>
-                    ชื่อโปรไฟล์
-                </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="txt__title2">
+                    <p>
+                        ชื่อโปรไฟล์
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="txt__detailtitle2">
+                    <p>
+                        {{ (is_null($user_buyer->profile_name) ? '-' : $user_buyer->profile_name) }}
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-9">
-            <div class="txt__detailtitle2">
-                <p>
-                    {{ (is_null($user_buyer->profile_name) ? '-' : $user_buyer->profile_name) }}
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="txt__title2">
-                <p>
-                    ชื่อผู้ติดต่อ
-                </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="txt__title2">
+                    <p>
+                        ชื่อผู้ติดต่อ
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="txt__detailtitle2">
+                    <p id="text_account_first_name">
+                        @php 
+                            $name_user = $address_profiles->first_name." ".$address_profiles->last_name;
+                        @endphp
+                        {{ ($name_user == "" || $name_user == null) ? '-' : $name_user }}
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-9">
-            <div class="txt__detailtitle2">
-                <p id="text_account_first_name">
-                    @php 
-                        $name_user = $address_profiles->first_name." ".$address_profiles->last_name;
-                    @endphp
-                    {{ ($name_user == "" || $name_user == null) ? '-' : $name_user }}
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="txt__title2">
-                <p>
-                    อีเมล
-                </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="txt__title2">
+                    <p>
+                        อีเมล
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="txt__detailtitle2">
+                    <p>
+                        {{ (is_null($user_buyer->email) ? '-' : $user_buyer->email) }}
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-9">
-            <div class="txt__detailtitle2">
-                <p>
-                    {{ (is_null($user_buyer->email) ? '-' : $user_buyer->email) }}
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="txt__title2">
-                <p>
-                    โทรศัพท์
-                </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="txt__title2">
+                    <p>
+                        โทรศัพท์
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="txt__detailtitle2">
+                    <p id="text_account_phone">
+                        {{ (is_null($address_profiles->phone) ? '-' : $address_profiles->phone) }}
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-9">
-            <div class="txt__detailtitle2">
-                <p id="text_account_phone">
-                    {{ (is_null($address_profiles->phone) ? '-' : $address_profiles->phone) }}
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="txt__title2">
-                <p>
-                    ที่อยู่
-                </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="txt__title2">
+                    <p>
+                        ที่อยู่
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="txt__detailtitle2">
+                    <p id="text_account_address">
+                        {{ (is_null($address_profiles->address) ? '-' : $address_profiles->address) }}
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-9">
-            <div class="txt__detailtitle2">
-                <p id="text_account_address">
-                    {{ (is_null($address_profiles->address) ? '-' : $address_profiles->address) }}
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="txt__title2">
-                <p>
-                    แขวง/ตำบล
-                </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="txt__title2">
+                    <p>
+                        แขวง/ตำบล
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="txt__detailtitle2">
+                    <p id="text_account_district">
+                        {{ (is_null($address_profiles->District) ? '-' : $address_profiles->District->name_th) }}
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-9">
-            <div class="txt__detailtitle2">
-                <p id="text_account_district">
-                    {{ (is_null($address_profiles->District) ? '-' : $address_profiles->District->name_th) }}
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="txt__title2">
-                <p>
-                    เขต/อำเภอ
-                </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="txt__title2">
+                    <p>
+                        เขต/อำเภอ
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="txt__detailtitle2">
+                    <p id="text_account_amphure">
+                        {{ (is_null($address_profiles->Amphure) ? '-' : $address_profiles->Amphure->name_th) }}
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-9">
-            <div class="txt__detailtitle2">
-                <p id="text_account_amphure">
-                    {{ (is_null($address_profiles->Amphure) ? '-' : $address_profiles->Amphure->name_th) }}
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="txt__title2">
-                <p>
-                    จังหวัด
-                </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="txt__title2">
+                    <p>
+                        จังหวัด
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="txt__detailtitle2">
+                    <p id="text_account_province">
+                        {{ (is_null($address_profiles->Province) ? '-' : $address_profiles->Province->name_th) }}
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-9">
-            <div class="txt__detailtitle2">
-                <p id="text_account_province">
-                    {{ (is_null($address_profiles->Province) ? '-' : $address_profiles->Province->name_th) }}
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="txt__title2">
-                <p>
-                    รหัสไปรษณีย์
-                </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="txt__title2">
+                    <p>
+                        รหัสไปรษณีย์
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-9">
-            <div class="txt__detailtitle2">
-                <p id="text_account_postcode">
-                    {{ (is_null($address_profiles->postcode) ? '-' : $address_profiles->postcode) }}
-                </p>
+            <div class="col-lg-9">
+                <div class="txt__detailtitle2">
+                    <p id="text_account_postcode">
+                        {{ (is_null($address_profiles->postcode) ? '-' : $address_profiles->postcode) }}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+    @else 
+    <div class="box__content">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="head-address">
+                    <p>
+                        ข้อมูลส่วนตัว
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+    @endif
+</div>
 
 
 
@@ -372,7 +388,7 @@
                             <label for="account_address" class="form-label"> ที่อยู่ <span> +
                                 </span></label>
                             <textarea class="form-control" id="account_address" name="account_address"
-                                rows="3" required>{{ $address_profiles->address }}</textarea>
+                                rows="3" required></textarea>
                         </div>
                     </div>
                     <br>

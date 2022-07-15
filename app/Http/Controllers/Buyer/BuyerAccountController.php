@@ -108,14 +108,18 @@ class BuyerAccountController extends Controller
         }
 
         $buyer_profiles = $this->fetch_BuyerProfile($user_buyer_id);
+        $html_address = $this->htmlwrite($buyer_profiles);
 
-        $html = $this->htmlwrite($buyer_profiles);
+        $address_profiles = $buyer_profiles->where('is_profile', '1')->first();
+        $user_buyer = mUsers_buyer::where('id', $user_buyer_id)->first();
+        $html_address_profiles = $this->buyer_accounthtmlwrite($address_profiles, $user_buyer);
 
         return response()->json([
             'status' => 200,
             'message' => 'บันทึกข้อมูลสำเร็จ',
             'data' => $buyer_profiles,
-            'htmltext' => $html,
+            'htmltext' => $html_address,
+            'htmltext_account' => $html_address_profiles,
         ]);
     }
 
@@ -143,14 +147,18 @@ class BuyerAccountController extends Controller
         }
 
         $buyer_profiles = $this->fetch_BuyerProfile($user_buyer_id);
+        $html_address = $this->htmlwrite($buyer_profiles);
 
-        $html = $this->htmlwrite($buyer_profiles);
+        $address_profiles = $buyer_profiles->where('is_profile', '1')->first();
+        $user_buyer = mUsers_buyer::where('id', $user_buyer_id)->first();
+        $html_address_profiles = $this->buyer_accounthtmlwrite($address_profiles, $user_buyer);
 
         return response()->json([
             'status' => 200,
             'message' => 'บันทึกข้อมูลสำเร็จ',
             'data' => $buyer_profiles,
-            'htmltext' => $html,
+            'htmltext' => $html_address,
+            'htmltext_account' => $html_address_profiles,
         ]);
     }
 
@@ -171,142 +179,148 @@ class BuyerAccountController extends Controller
         }
 
         $buyer_profiles = $this->fetch_BuyerProfile($user_buyer_id);
+        $html_address = $this->htmlwrite($buyer_profiles);
 
-        $html = $this->htmlwrite($buyer_profiles);
+        $address_profiles = $buyer_profiles->where('is_profile', '1')->first();
+        $user_buyer = mUsers_buyer::where('id', $user_buyer_id)->first();
+        $html_address_profiles = $this->buyer_accounthtmlwrite($address_profiles, $user_buyer);
 
         return response()->json([
             'status' => 200,
             'message' => 'บันทึกข้อมูลสำเร็จ',
             'data' => $buyer_profiles,
-            'htmltext' => $html,
+            'htmltext' => $html_address,
+            'htmltext_account' => $html_address_profiles,
         ]);
     }
 
     public function htmlwrite($buyer_profiles)
     {
         $html = "";
-        foreach($buyer_profiles as $key => $buyerprofile){
-                $profile_checked = "";
-                $delivery_checked = "";
+        if(!is_null($buyer_profiles)){
+            foreach($buyer_profiles as $key => $buyerprofile){
+                    $profile_checked = "";
+                    $delivery_checked = "";
 
-                if($buyerprofile->is_profile == 1){
-                    $profile_checked = "checked";
-                }
+                    if($buyerprofile->is_profile == 1){
+                        $profile_checked = "checked";
+                    }
 
-                if($buyerprofile->is_delivery == 1){
-                    $delivery_checked = "checked";
-                }
-                $name_user = $buyerprofile->first_name." ".$buyerprofile->last_name;                                   
-                $name_user = (($name_user == "" || $name_user == null) ? '-' : $name_user);
+                    if($buyerprofile->is_delivery == 1){
+                        $delivery_checked = "checked";
+                    }
+                    $name_user = $buyerprofile->first_name." ".$buyerprofile->last_name;                                   
+                    $name_user = (($name_user == "" || $name_user == null) ? '-' : $name_user);
 
-            $html .= '<div class="box__content">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <label class="b-bank2"> ตั้งเป็นที่อยู่โปรไฟล์
-                                    <input type="radio" name="profile_checked" '.$profile_checked.'>
-                                    <span class="checkmark2"></span>
-                                </label>
+                $html .= '<div class="box__content">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label class="b-bank2"> ตั้งเป็นที่อยู่โปรไฟล์
+                                        <input type="radio" name="profile_checked" '.$profile_checked.'>
+                                        <span class="checkmark2"></span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="b-bank3"> ตั้งเป็นที่อยู่จัดส่ง
+                                        <input type="radio" name="delivery_checked" '.$delivery_checked.'>
+                                        <span class="checkmark3"></span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="col-lg-6">
-                                <label class="b-bank3"> ตั้งเป็นที่อยู่จัดส่ง
-                                    <input type="radio" name="delivery_checked" '.$delivery_checked.'>
-                                    <span class="checkmark3"></span>
-                                </label>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="ac-detail-text-tt2">
+                                <a href="javascript:void(0)" onclick="model_buyerprofile_edit('.$buyerprofile->id.')">
+                                    <p 
+                                        class="w3-button w3-black"> <i class="fas fa-pen"
+                                            style="font-size:18px"></i> &nbsp;
+                                        แก้ไข </p>
+                                </a>
+                            </div>
+                            <div class="ttext-delate">
+                                <a href="javascript:void(0)" onclick="buyerprofile_delete('.$buyerprofile->id.')">
+                                    <p> ลบ </p>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="ac-detail-text-tt2">
-                            <a href="javascript:void(0)" onclick="model_buyerprofile_edit('.$buyerprofile->id.')">
-                                <p 
-                                    class="w3-button w3-black"> <i class="fas fa-pen"
-                                        style="font-size:18px"></i> &nbsp;
-                                    แก้ไข </p>
-                            </a>
-                        </div>
-                        <div class="ttext-delate">
-                            <a href="javascript:void(0)" onclick="buyerprofile_delete('.$buyerprofile->id.')">
-                                <p> ลบ </p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
-                <br>
-                <div class="row">
-                    <div class="col-lg-2">
-                        <div class="h-text-h">
-                            <p>
-                                ชื่อ-นามสกุล
-                            </p>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="h-text-h">
+                                <p>
+                                    ชื่อ-นามสกุล
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="detail-text-detail">
+                                <p>
+                                    '.$name_user.'
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-10">
-                        <div class="detail-text-detail">
-                            <p>
-                                '.$name_user.'
-                            </p>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="h-text-h">
+                                <p>
+                                    โทรศัพท์
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="detail-text-detail">
+                                <p>
+                                    '.(is_null($buyerprofile->phone) ? '-' : $buyerprofile->phone).'
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-2">
-                        <div class="h-text-h">
-                            <p>
-                                โทรศัพท์
-                            </p>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="h-text-h">
+                                <p>
+                                    อีเมล
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="detail-text-detail">
+                                <p>
+                                    '.(is_null($buyerprofile->userBuyer->email) ? '-' : $buyerprofile->userBuyer->email).'
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-10">
-                        <div class="detail-text-detail">
-                            <p>
-                                '.(is_null($buyerprofile->phone) ? '-' : $buyerprofile->phone).'
-                            </p>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="h-text-h">
+                                <p>
+                                    ที่อยู่
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="detail-text-detail">
+                                <p>
+                                    '.$buyerprofile->address.'
+                                    '.(is_null($buyerprofile->District) ? '-' : $buyerprofile->District->name_th).'
+                                    '.(is_null($buyerprofile->Amphure) ? '-' : $buyerprofile->Amphure->name_th).'
+                                    '.(is_null($buyerprofile->Province) ? '-' : $buyerprofile->Province->name_th).'
+                                    '.$buyerprofile->postcode.'
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-2">
-                        <div class="h-text-h">
-                            <p>
-                                อีเมล
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="detail-text-detail">
-                            <p>
-                                '.(is_null($buyerprofile->userBuyer->email) ? '-' : $buyerprofile->userBuyer->email).'
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-2">
-                        <div class="h-text-h">
-                            <p>
-                                ที่อยู่
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="detail-text-detail">
-                            <p>
-                                '.$buyerprofile->address.'
-                                '.(is_null($buyerprofile->District) ? '-' : $buyerprofile->District->name_th).'
-                                '.(is_null($buyerprofile->Amphure) ? '-' : $buyerprofile->Amphure->name_th).'
-                                '.(is_null($buyerprofile->Province) ? '-' : $buyerprofile->Province->name_th).'
-                                '.$buyerprofile->postcode.'
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>';
+                </div>';
+            }
         }
 
         return $html;
@@ -336,13 +350,202 @@ class BuyerAccountController extends Controller
         }
 
         $buyer_profiles = $this->fetch_BuyerProfile($user_buyer_id);
+        $html_address = $this->htmlwrite($buyer_profiles);
+
         $address_profiles = $buyer_profiles->where('is_profile', '1')->first();
+        $user_buyer = mUsers_buyer::where('id', $user_buyer_id)->first();
+        $html_address_profiles = $this->buyer_accounthtmlwrite($address_profiles, $user_buyer);
 
         return response()->json([
             'status' => 200,
             'message' => 'บันทึกข้อมูลสำเร็จ',
             'data' => $address_profiles,
+            'htmltext' => $html_address,
+            'htmltext_account' => $html_address_profiles,
         ]);
+    }
+
+    public function buyer_accounthtmlwrite($address_profiles ,$user_buyer)
+    {
+        $name_user = $address_profiles->first_name." ".$address_profiles->last_name;    
+        $name_user = ($name_user == "" || $name_user == null) ? '-' : $name_user ;                            
+        $html = "";
+        $html .= '<div class="box__content">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="head-address">
+                                <p>
+                                    ข้อมูลส่วนตัว
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ac-detail-text-tt">
+                                <a href="javascript:void(0);" id="btn_address_profiles_edit" onclick="model_buyerprofileaccount_edit('.$address_profiles->id.')">
+                                    <p class="w3-button w3-black"> <i class="fas fa-pen"
+                                            style="font-size:18px"></i> &nbsp;
+                                        แก้ไข </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2">
+                                <p>
+                                    ชื่อโปรไฟล์
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2">
+                                <p>
+                                    '.(is_null($user_buyer->profile_name) ? '-' : $user_buyer->profile_name).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2">
+                                <p>
+                                    ชื่อผู้ติดต่อ
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2">
+                                <p id="text_account_first_name">
+                                    '.$name_user.'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2">
+                                <p>
+                                    อีเมล
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2">
+                                <p>
+                                    '.(is_null($user_buyer->email) ? '-' : $user_buyer->email).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2">
+                                <p>
+                                    โทรศัพท์
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2">
+                                <p id="text_account_phone">
+                                    '.(is_null($address_profiles->phone) ? '-' : $address_profiles->phone).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2">
+                                <p>
+                                    ที่อยู่
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2">
+                                <p id="text_account_address">
+                                    '.(is_null($address_profiles->address) ? '-' : $address_profiles->address).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2">
+                                <p>
+                                    แขวง/ตำบล
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2">
+                                <p id="text_account_district">
+                                    '.(is_null($address_profiles->District) ? '-' : $address_profiles->District->name_th).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2">
+                                <p>
+                                    เขต/อำเภอ
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2">
+                                <p id="text_account_amphure">
+                                    '.(is_null($address_profiles->Amphure) ? '-' : $address_profiles->Amphure->name_th).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2">
+                                <p>
+                                    จังหวัด
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2">
+                                <p id="text_account_province">
+                                    '.(is_null($address_profiles->Province) ? '-' : $address_profiles->Province->name_th).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2">
+                                <p>
+                                    รหัสไปรษณีย์
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2">
+                                <p id="text_account_postcode">
+                                    '.(is_null($address_profiles->postcode) ? '-' : $address_profiles->postcode).'
+                                </p>
+                            </div>
+                        </div>
+                    </div> 
+
+                </div>';
+
+        return $html;
     }
 
     //== Tax Invoice 
