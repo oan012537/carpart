@@ -192,7 +192,7 @@
                 @php 
                     $tax_invoices_id = (is_null($buyer_tax_invoices) ? null : $buyer_tax_invoices->id);
                 @endphp
-                <a href="javascript:void(0);" onclick="model_taxinvoice_edit({{ $tax_invoices_id }})">
+                <a href="javascript:void(0);" id="btn_tax_invoices_edit" onclick="model_taxinvoice_edit({{ $tax_invoices_id }})">
                     <p 
                         class="w3-button w3-black"> <i class="fas fa-pen"
                             style="font-size:18px"></i> &nbsp;

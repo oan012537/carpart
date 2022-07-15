@@ -23,6 +23,7 @@
                     $('#text_tax_invoices_amphure').text(response.data.amphure.name_th);
                     $('#text_tax_invoices_province').text(response.data.province.name_th);
                     $('#text_tax_invoices_postcode').text(response.data.postcode);
+                    $('#btn_tax_invoices_edit').attr('onClick','model_taxinvoice_edit('+response.data.id+')');
                     $('#user_taxinvoice_edit').hide();
                 }
             },
