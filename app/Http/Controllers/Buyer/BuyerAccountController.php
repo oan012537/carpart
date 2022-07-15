@@ -638,4 +638,6 @@ class BuyerAccountController extends Controller
         ]);
     }
 
+    //== Change Password
+
 }

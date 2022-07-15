@@ -97,66 +97,7 @@
                 </div>
             </div>
 
-            <!-- The Modal -->
-            <div id="id03" class="w3-modal">
-                <div class="w3-modal-content">
-                    <div class="w3-container">
-                        <div class="text-t-haer-pakan">
-                            <p>
-                                ยืนยันรหัส OTP
-                            </p>
-                        </div>
-                        <div class="card-conotp w-100">
-                            <div class="h-text-otp">
-                                <p>
-                                    กรุณากรอกรหัส OTP ที่ส่งไปยังหมายเลข
-                                </p>
-                            </div>
-                            <div class="num-text-otp">
-                                <p>
-                                    012-345-6789
-                                </p>
-                            </div>
-                            <div class="w3-container w3-center">
-                                <div class="img-text-otp">
-                                    <img src="assets/img/account/b.png" class="img-fluid" alt="shoe image">
-                                    <img src="assets/img/account/b.png" class="img-fluid" alt="shoe image">
-                                    <img src="assets/img/account/b.png" class="img-fluid" alt="shoe image">
-                                    <img src="assets/img/account/b.png" class="img-fluid" alt="shoe image">
-                                    <img src="assets/img/account/b.png" class="img-fluid" alt="shoe image">
-                                    <img src="assets/img/account/b.png" class="img-fluid" alt="shoe image">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="vi-text-otp">
-                                <p>
-                                    หากไม่ได้รับรหัสผ่านใน 1 นาที
-                                </p>
-                            </div>
-                            <div class="re-text-otp">
-                                <p>
-                                    กรุณากด ส่งรหัส OTP อีกครั้ง <i class='fas fa-sync'></i>
-                                </p>
-                            </div>
-                        </div>
-                        <br>
-                        <div style="text-align:center;">
-                            <div class="b-but-concon">
-                                <button class="button button-close"
-                                    onclick="document.getElementById('id03').style.display='none'"
-                                    class="w3-button w3-display-topright"> กลับ </button>
-                                <button class="button button-up"
-                                    onclick="document.getElementById('id03').style.display='none'"
-                                    class="w3-button w3-display-topright"> ยืนยัน </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
+            
             <!-- The Modal -->
             <div id="id04" class="w3-modal">
                 <div class="w3-modal-content">
@@ -450,6 +391,7 @@
 </script>
 
 @include('buyer.profile.profile.inc_js_user_profileaccount') <!-- JS ของ file user_profile  -->
+@include('buyer.profile.profile.inc_js_user_password') <!-- JS ของ file user_password  -->
 @include('buyer.profile.profile.inc_js_user_address') <!-- JS ของ file user_address -->
 
 </body>
