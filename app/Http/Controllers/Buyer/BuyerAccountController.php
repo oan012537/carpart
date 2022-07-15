@@ -312,6 +312,39 @@ class BuyerAccountController extends Controller
         return $html;
     }
 
+    public function buyerprofile_account_update(Request $request)
+    {
+        DB::beginTransaction();
+        try {  
+            $user_buyer_id = Auth::guard('buyer')->user()->id;
+            BuyerProfile::where('id', $request->buyerprofileaccount_id)
+            ->update([
+                'users_buyer_id' => $user_buyer_id,
+                'first_name' => $request->account_first_name,
+                'phone' => $request->account_phone,
+                'address' => $request->account_address,
+                'province' => $request->account_province,
+                'amphure' => $request->account_amphure,
+                'district' => $request->account_district,
+                'postcode' => $request->account_postcode,
+                'updated_by' => $user_buyer_id,
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+
+        $buyer_profiles = $this->fetch_BuyerProfile($user_buyer_id);
+        $address_profiles = $buyer_profiles->where('is_profile', '1')->first();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'บันทึกข้อมูลสำเร็จ',
+            'data' => $address_profiles,
+        ]);
+    }
+
     //== Tax Invoice 
 
     public function buyerprofile_taxinvoice_edit($id)

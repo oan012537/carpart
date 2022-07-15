@@ -9,7 +9,7 @@
         </div>
         <div class="col-lg-4">
             <div class="ac-detail-text-tt">
-                <a href="javascript:void(0);" onclick="model_buyerprofileaccount_edit({{ $address_profiles->id }})">
+                <a href="javascript:void(0);" id="btn_address_profiles_edit" onclick="model_buyerprofileaccount_edit({{ $address_profiles->id }})">
                     <p class="w3-button w3-black"> <i class="fas fa-pen"
                             style="font-size:18px"></i> &nbsp;
                         แก้ไข </p>
@@ -46,7 +46,7 @@
         </div>
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
-                <p>
+                <p id="text_account_first_name">
                     @php 
                         $name_user = $address_profiles->first_name." ".$address_profiles->last_name;
                     @endphp
@@ -83,7 +83,7 @@
         </div>
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
-                <p>
+                <p id="text_account_phone">
                     {{ (is_null($address_profiles->phone) ? '-' : $address_profiles->phone) }}
                 </p>
             </div>
@@ -100,7 +100,7 @@
         </div>
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
-                <p>
+                <p id="text_account_address">
                     {{ (is_null($address_profiles->address) ? '-' : $address_profiles->address) }}
                 </p>
             </div>
@@ -117,7 +117,7 @@
         </div>
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
-                <p>
+                <p id="text_account_district">
                     {{ (is_null($address_profiles->District) ? '-' : $address_profiles->District->name_th) }}
                 </p>
             </div>
@@ -134,7 +134,7 @@
         </div>
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
-                <p>
+                <p id="text_account_amphure">
                     {{ (is_null($address_profiles->Amphure) ? '-' : $address_profiles->Amphure->name_th) }}
                 </p>
             </div>
@@ -151,7 +151,7 @@
         </div>
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
-                <p>
+                <p id="text_account_province">
                     {{ (is_null($address_profiles->Province) ? '-' : $address_profiles->Province->name_th) }}
                 </p>
             </div>
@@ -168,7 +168,7 @@
         </div>
         <div class="col-lg-9">
             <div class="txt__detailtitle2">
-                <p>
+                <p id="text_account_postcode">
                     {{ (is_null($address_profiles->postcode) ? '-' : $address_profiles->postcode) }}
                 </p>
             </div>

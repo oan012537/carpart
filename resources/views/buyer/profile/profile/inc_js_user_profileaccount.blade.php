@@ -1,7 +1,38 @@
 <script>
 
-    $("#form_edittaxinvoice").on("submit", function (e) 
-    {
+    $("#form_editprofileaccount").on("submit", function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        console.log(formData);
+        $.ajax({
+            type:'POST',
+            url: '{{ url("buyer/buyerprofile/account/update") }}',
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(response){
+                console.log(response);
+                if(response.status == 200){ 
+                    $('#text_account_first_name').text(response.data.first_name);
+                    $('#text_account_phone').text(response.data.phone);
+                    $('#text_account_address').text(response.data.address);
+                    $('#text_account_district').text(response.data.district.name_th);
+                    $('#text_account_amphure').text(response.data.amphure.name_th);
+                    $('#text_account_province').text(response.data.province.name_th);
+                    $('#text_account_postcode').text(response.data.postcode);
+                    $('#btn_address_profiles_edit').attr('onClick','model_buyerprofileaccount_edit('+response.data.id+')');
+                    $('#user_profileaccount_edit').hide();
+                }
+            },
+            error: function(response){
+                console.log("error");
+                console.log(response);
+            }
+        });
+    });
+
+    $("#form_edittaxinvoice").on("submit", function (e) {
         e.preventDefault();
         var formData = new FormData(this);
         console.log(formData);
@@ -38,6 +69,7 @@
     {
         $("#buyerprofileaccount_id").val(id);
         $.get("{{url('buyer/buyerprofile/edit')}}/" + id, function(result) {
+            // console.log(result);
             $("#account_first_name").val(result.data.first_name);
             $("#account_phone").val(result.data.phone);
             $("#account_address").val(result.data.address);
@@ -107,8 +139,7 @@
         $("#user_taxinvoice_edit").show();
     }
 
-    $(document).on("change","#tax_invoices_province", function(e)
-    {
+    $(document).on("change","#tax_invoices_province", function(e){
         e.preventDefault();
         let id = $(this).val();
         $.get("{{url('fetchamphures')}}/" + id, function(result) {
@@ -121,8 +152,7 @@
         });
     });
     
-    $(document).on("change","#tax_invoices_amphure", function(e)
-    {
+    $(document).on("change","#tax_invoices_amphure", function(e){
         e.preventDefault();
         let id = $(this).val();
         $.get("{{url('fetchdistricts')}}/" + id, function(result) {
@@ -134,8 +164,7 @@
         });
     });
 
-    $(document).on("change","#tax_invoices_district", function(e)
-    {
+    $(document).on("change","#tax_invoices_district", function(e){
         e.preventDefault();
         let id = $(this).val();
         $.get("{{url('fetchzipcode')}}/" + id, function(result) {

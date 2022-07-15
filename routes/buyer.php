@@ -63,6 +63,8 @@ Route::prefix('buyer')->group(function(){
         Route::get('buyerprofile/edit/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_edit']); //-OAT
         Route::post('buyerprofile/update', [Buyer\BuyerAccountController::class, 'buyerprofile_update']); //-OAT
         Route::get('buyerprofile/delete/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_delete']); //-OAT
+
+        Route::post('buyerprofile/account/update', [Buyer\BuyerAccountController::class, 'buyerprofile_account_update']); //-OAT
         // Taxinvoice
         Route::get('buyerprofile/taxinvoice/edit/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_taxinvoice_edit']); //-OAT
         Route::post('buyerprofile/taxinvoice/update', [Buyer\BuyerAccountController::class, 'buyerprofile_taxinvoice_update']); //-OAT
