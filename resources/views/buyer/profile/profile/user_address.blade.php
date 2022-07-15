@@ -182,6 +182,7 @@
                             <label for="province" class="form-label"> จังหวัด <span> + </span>
                             </label>
                             <select class="form-select" aria-label="Default select example" name="province" id="province" required>
+                                <option value=""> Choose </option>
                                 @foreach($provinces as $province)
                                     <option value="{{ $province->id }}"> {{ $province->name_th }} </option>
                                 @endforeach
@@ -302,7 +303,6 @@
                         onclick="document.getElementById('user_address_edit').style.display='none'"
                         class="w3-button w3-display-topright"> ยกเลิก </button>
                     <button type="submit"  class="button button-up"
-                        onclick="document.getElementById('id06').style.display='none'"
                         class="w3-button w3-display-topright"> อัพเดท </button>
                 </div>
             </div>

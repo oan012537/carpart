@@ -25,12 +25,7 @@ class BuyerAccountController extends Controller
 
         $data['address_profiles'] = $data['buyer_profiles']->where('is_profile', '1')->first();
 
-        $data['buyer_tax_invoices'] = BuyerTaxInvoice::where('users_buyer_id', $data['user_buyer']->id)
-            ->where('is_active','1')
-            ->orderBy('updated_at', 'desc')
-            ->orderBy('created_at', 'desc')
-            ->with('Province', 'Amphure', 'District')
-            ->first();
+        $data['buyer_tax_invoices'] = $this->fetch_BuyerTaxInvoice($data['user_buyer']->id);
         
         $data['buyer_banks'] = BuyerBank::where('users_buyer_id', $data['user_buyer']->id)
             ->orderBy('banks_active', 'desc')
@@ -55,6 +50,18 @@ class BuyerAccountController extends Controller
             ->get();
 
         return $buyer_profiles;
+    }
+
+    public function fetch_BuyerTaxInvoice($id)
+    {
+        $buyer_tax_invoices = BuyerTaxInvoice::where('users_buyer_id', $id)
+            ->where('is_active','1')
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->with('Province', 'Amphure', 'District')
+            ->first();
+
+        return $buyer_tax_invoices;
     }
 
     public function buyerprofile_edit($id)
@@ -304,4 +311,78 @@ class BuyerAccountController extends Controller
 
         return $html;
     }
+
+    //== Tax Invoice 
+
+    public function buyerprofile_taxinvoice_edit($id)
+    {
+        $buyer_taxinvoice = BuyerTaxInvoice::where('id', $id)
+            ->with('userBuyer')
+            ->first();
+
+        $province = Province::get();
+        $amphure = Amphure::where('province_id', $buyer_taxinvoice->province)->get();
+        $district = District::where('amphure_id', $buyer_taxinvoice->amphure)->get();
+
+        return response()->json([
+            'status' => 200,
+            'data' => $buyer_taxinvoice,
+            'province' => $province,
+            'amphure' => $amphure,
+            'district' => $district,
+        ]);
+    }
+
+    public function buyerprofile_taxinvoice_update(Request $request)
+    {
+        DB::beginTransaction();
+        try {  
+            $user_buyer_id = Auth::guard('buyer')->user()->id;
+
+            if($request->tax_invoices_id == ""){
+                BuyerTaxInvoice::create([
+                    'users_buyer_id' => $user_buyer_id,
+                    'name' => $request->tax_invoices_name,
+                    'texid' => $request->tax_invoices_texid,
+                    'phone' => $request->tax_invoices_phone,
+                    'address' => $request->tax_invoices_address,
+                    'province' => $request->tax_invoices_province,
+                    'amphure' => $request->tax_invoices_amphure,
+                    'district' => $request->tax_invoices_district,
+                    'postcode' => $request->tax_invoices_postcode,
+                    'created_by' => $user_buyer_id,
+                    'updated_by' => $user_buyer_id,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
+            }else{
+                BuyerTaxInvoice::where('id', $request->tax_invoices_id)
+                ->update([
+                    'users_buyer_id' => $user_buyer_id,
+                    'name' => $request->tax_invoices_name,
+                    'texid' => $request->tax_invoices_texid,
+                    'phone' => $request->tax_invoices_phone,
+                    'address' => $request->tax_invoices_address,
+                    'province' => $request->tax_invoices_province,
+                    'amphure' => $request->tax_invoices_amphure,
+                    'district' => $request->tax_invoices_district,
+                    'postcode' => $request->tax_invoices_postcode,
+                    'updated_by' => $user_buyer_id,
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
+            }
+            
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+
+        $buyer_tax_invoices = $this->fetch_BuyerTaxInvoice($user_buyer_id);
+        
+        return response()->json([
+            'status' => 200,
+            'data' => $buyer_tax_invoices,
+        ]);
+    }
+
 }

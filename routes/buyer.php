@@ -56,7 +56,18 @@ Route::prefix('buyer')->group(function(){
         Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand']);
         Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
 
+        //======= OAT My Account =======
         Route::get('myaccount', [Buyer\BuyerAccountController::class, 'index']); //-OAT
+        // Profile Address
+        Route::post('buyerprofile/add', [Buyer\BuyerAccountController::class, 'buyerprofile_store']); //-OAT
+        Route::get('buyerprofile/edit/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_edit']); //-OAT
+        Route::post('buyerprofile/update', [Buyer\BuyerAccountController::class, 'buyerprofile_update']); //-OAT
+        Route::get('buyerprofile/delete/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_delete']); //-OAT
+        // Taxinvoice
+        Route::get('buyerprofile/taxinvoice/edit/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_taxinvoice_edit']); //-OAT
+        Route::post('buyerprofile/taxinvoice/update', [Buyer\BuyerAccountController::class, 'buyerprofile_taxinvoice_update']); //-OAT
+        //======= OAT End My Account =======
+
     });
 
     //Ajax
@@ -73,10 +84,8 @@ Route::prefix('buyer')->group(function(){
 
     // Route::post('GetsearchBox',[Buyer\SearchProductController::class, 'Getsearch']);
 
-    Route::post('buyerprofile/add', [Buyer\BuyerAccountController::class, 'buyerprofile_store']); //-OAT
-    Route::get('buyerprofile/edit/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_edit']); //-OAT
-    Route::post('buyerprofile/update', [Buyer\BuyerAccountController::class, 'buyerprofile_update']); //-OAT
-    Route::get('buyerprofile/delete/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_delete']); //-OAT
+   
+
 });
 
 
