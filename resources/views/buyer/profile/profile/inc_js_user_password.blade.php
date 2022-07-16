@@ -19,6 +19,7 @@
                     console.log(response);
                     if(response.status == 200){ 
                         $('#modal_comfirmchangepassword').show();
+                        //-- ส่งต่อ OTP
                     }else{
                         alert(response.message);
                     }
