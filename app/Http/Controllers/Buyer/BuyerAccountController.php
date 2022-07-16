@@ -565,6 +565,7 @@ class BuyerAccountController extends Controller
         return $html;
     }
 
+    
     //== Tax Invoice 
 
     public function buyerprofile_taxinvoice_edit($id)
@@ -638,6 +639,26 @@ class BuyerAccountController extends Controller
         ]);
     }
 
+
     //== Change Password
 
+    public function buyerprofile_check_currentpassword(Request $request)
+    {
+        $user_buyer = mUsers_buyer::where('id', Auth::guard('buyer')->user()->id)->first();
+        $phone = $user_buyer->phone;
+        $password = $request->current_password;
+
+        if(Auth::guard('buyer')->attempt(['phone' => $phone, 'password' => $password]) ){
+            return response()->json([
+                'status' => 200,
+                'message' => 'ดำเนินการเปลี่ยน รหัสผ่านได้',
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'message' => 'รหัสผ่านไม่ถูกต้อง',
+            ]);
+        }
+        
+    }
 }

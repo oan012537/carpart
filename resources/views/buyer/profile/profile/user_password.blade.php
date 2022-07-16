@@ -23,7 +23,7 @@
         </div>
         <div class="col-lg-6">
             <div class="input-group2 mb-3">
-                <input type="password" class="form-control" placeholder="ระบุ" id="old_password" name="old_password"
+                <input type="password" class="form-control" placeholder="ระบุ" id="current_password" name="current_password"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2">
             </div>

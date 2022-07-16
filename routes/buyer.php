@@ -65,11 +65,15 @@ Route::prefix('buyer')->group(function(){
         Route::get('buyerprofile/delete/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_delete']); //-OAT
 
         Route::post('buyerprofile/account/update', [Buyer\BuyerAccountController::class, 'buyerprofile_account_update']); //-OAT
+        
         // Taxinvoice
         Route::get('buyerprofile/taxinvoice/edit/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_taxinvoice_edit']); //-OAT
         Route::post('buyerprofile/taxinvoice/update', [Buyer\BuyerAccountController::class, 'buyerprofile_taxinvoice_update']); //-OAT
+       
+        // Change Password
+        Route::post('buyerprofile/changepassword/check_currentpassword', [Buyer\BuyerAccountController::class, 'buyerprofile_check_currentpassword']); //-OAT
+       
         //======= OAT End My Account =======
-
     });
 
     //Ajax
