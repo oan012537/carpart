@@ -8,13 +8,14 @@ class Transportation extends Model
 {
     protected $fillable =[
         "product_id",
+        "transport_type_id",
         "weight",
         "unit",
-        "length",
         "width",
+        "length",
         "height",
         "uom",
-        "delivery_type", // need to check
+        "estimate_fee",
         "is_deliver",
         "estimated_days",
         "created_by",

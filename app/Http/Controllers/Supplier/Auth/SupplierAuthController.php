@@ -421,7 +421,7 @@ class SupplierAuthController extends Controller
     }
 
 
-    // store user, user-supplier, and store
+    // save user, user-supplier, and store
     public function store(Request $request)
     {
         $data = $request->all();

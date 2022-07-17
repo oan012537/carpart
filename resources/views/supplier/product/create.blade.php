@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-
+                        {{-- select product main categories --}}
                         <div class="box__contentdetail">
                             {{-- brand --}}
                             <div class="row box__scroll" id="fieldset1">
@@ -90,18 +90,12 @@
                                                 <fieldset attr-id="6">
                                                     <div class="row box__scroll" id="fieldset7">
                                                     </div>
-
                                                 </fieldset>
-                                                <!--  -->
                                             </fieldset>
-                                            <!--  -->
-
                                         </fieldset>
-                                        <!--  -->
                                     </fieldset>
-
-                                    <!--  -->
                         </div>
+                        {{-- select product main categories --}}
                     </div>
                 </form>
                 
@@ -122,6 +116,7 @@
                         <input type="hidden" name="sub_sub_category_id" >
                     </form>
 
+                    {{-- create product button --}}
                     <div class="box__wrapperbutton">
                         <a href="javascript:document.getElementById('frm-product-info').submit();" class="btn btn__producttwohand">
                             <img src="{{ asset('assets/img/icon/icon__mdicar.svg') }}" class="img-fluid" alt="second hand">
@@ -175,7 +170,7 @@
         next_fs.show();
         const attr__value = next_fs.attr('attr-id');
         
-        // alert(attr__value);
+    // alert(attr__value);
         if (attr__value == 1) {
             $('#frm-product-info input[name="brand_id"]').val(itemId);
             getSub(itemId, 'models');
