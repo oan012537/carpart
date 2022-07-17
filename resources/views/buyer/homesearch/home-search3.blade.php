@@ -1,39 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <base href="{{url("")}}">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CARPARTSNAVI </title>
-    <meta name="keywords" content="" />
-    <meta name=" description" content="" />
-    <meta name="robot" content="index, follow" />
-    <meta name="generator" content="brackets">
-    <meta name='copyright' content='orange technology solution co.,ltd.'>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link type="image/ico" rel="shortcut icon" href="{{asset('assets/img/favicon.ico')}}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- link modal -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!-- link modal -->
+@extends('buyer.layouts.template')
     <!-- link navbar -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- link navbar -->
-    <link href="assets/css/home-seach3.css" rel="stylesheet">
+    <link href="{{asset('assets/css/home-seach3.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet">
 
-    @include('buyer.layouts.inc_stylesheet')
-</head>
-
-<body>
-
-    @include('buyer.layouts.inc_headerlogin')
+@section('content')
 
 
     <section id="sec-home-seach">
@@ -62,25 +32,25 @@
             <div class="box-roon-box">
                 <div class="text-h-roon">
                     @php
-                        $brands_button = DB::table('brands')->where('id',session('search-brand'))->first();
-                        $models_button = DB::table('brands')->where('id',session('search-model'))->first();
+                        $brands_button = DB::table('brands')->where('id',session('session_search.brand'))->get()->first();
+                        $models_button = DB::table('models')->where('id',session('session_search.model'))->get()->first();
                     @endphp
                     <button class="button button5">
-                     <i class="fa fa-close"></i>  {{$brands_button->name_en}} </button>
+                    <a style="color:inherit;" href="{{url('buyer/home-search')}}"><i class="fa fa-close"></i></a>  {{$brands_button->name_en}} </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
                     <button class="button button5">
-                       <i class="fa fa-close"></i> {{$models_button->name_en}} </button>
+                    <a style="color:inherit;" href="{{url('buyer/home-search2?brand=').session('session_search.brand')}}"><i class="fa fa-close"></i></a>  {{$models_button->name_en}} </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
-                    <button class="button button6">
                     &nbsp;
-                    <i class="fa fa-close"></i> รุ่นย่อย </button>
+                    <button class="button button6">
+                       <i class="fa fa-close"></i> รุ่นย่อย </button>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="input-group box__search">
-                            <input type="text" class="form-control" id="search-brand" aria-describedby="button-addon2">
+                            <input type="text" class="form-control" id="search-box-model" aria-describedby="button-addon2">
                             <button class="btn btn__search" type="button" onclick="searchBrands()" id="button-addon2"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
@@ -124,9 +94,9 @@
                     <!-- model  -->
                     <div class="models-all">
                         <div class="row">
-                            @foreach($submodels as $subm)
+                            @foreach($submodels as $submodel)
                             <div class="col-sm-3">
-                                <a onclick="selectSubModel({{$subm->id}})">
+                                <a onclick="selectModel({{$submodel->id}})">
                                 <div class="row">
                                     <div class="col-lg-5">
                                         <!--<img src="assets/img/home-seach/r1.png" class="img-fluid" alt="shoe image">-->
@@ -134,7 +104,7 @@
                                     <div class="col-lg-7">
                                         <div class="text-detail-roon">
                                             <p>
-                                                {{$subm->name_en}}
+                                                {{$submodel->name_en}}
                                             </p>
                                         </div>
                                     </div>
@@ -144,12 +114,6 @@
                             @endforeach
                         </div>
                     </div>
-
-                    <div class="submodel-all row" style="display:none;">
-                        
-                    </div>
-
-
                 </div>
             </div>
         </div>
@@ -332,12 +296,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <?php for ($i = 1; $i <= 3; $i++) { ?>
-                                <div class="col-xl-4 col-lg-6 col-6">
+                                @foreach($products as $product)
+                                <div class="col-xl-4 col-lg- col-6">
                                     <a href="javascript:void(0)">
                                         <div class="box__itemssproductintro">
                                             <div class="box__image">
-                                                <img src="assets/img/home/product-intro<?php echo $i; ?>.png"
+                                                <img src="assets/img/home/product-intro2.png"
                                                     class="img-fluid" alt="">
 
                                                 <div class="box__status">
@@ -362,81 +326,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <?php } ?>
-                            </div>
-
-                            <br>
-                            <div class="row">
-                                <?php for ($i = 1; $i <= 3; $i++) { ?>
-                                <div class="col-xl-4 col-lg-6 col-6">
-                                    <a href="javascript:void(0)">
-                                        <div class="box__itemssproductintro">
-                                            <div class="box__image">
-                                                <img src="assets/img/home/product-intro<?php echo $i; ?>.png"
-                                                    class="img-fluid" alt="">
-
-                                                <div class="box__status">
-                                                    <p>Promotion</p>
-                                                </div>
-
-                                                <div class="box__grade">
-                                                    <p>Grade</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="box__content">
-                                                <h5 class="intro__title">กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA
-                                                    AE80 ,
-                                                    AE90 ,
-                                                    AE101
-                                                    16V
-                                                </h5>
-                                                <p class="intro__serial">รหัส: 90915-YZZE1 - TOYOTA </p>
-                                                <p class="intro__price">฿ <span>72.00</span> /ชิ้น</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <?php } ?>
-                            </div>
-
-                            <br>
-                            <div class="row">
-                                <?php for ($i = 1; $i <= 3; $i++) { ?>
-                                <div class="col-xl-4 col-lg-6 col-6">
-                                    <a href="javascript:void(0)">
-                                        <div class="box__itemssproductintro">
-                                            <div class="box__image">
-                                                <img src="assets/img/home/product-intro<?php echo $i; ?>.png"
-                                                    class="img-fluid" alt="">
-
-                                                <div class="box__status">
-                                                    <p>Promotion</p>
-                                                </div>
-
-                                                <div class="box__grade">
-                                                    <p>Grade</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="box__content">
-                                                <h5 class="intro__title">กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA
-                                                    AE80 ,
-                                                    AE90 ,
-                                                    AE101
-                                                    16V
-                                                </h5>
-                                                <p class="intro__serial">รหัส: 90915-YZZE1 - TOYOTA </p>
-                                                <p class="intro__price">฿ <span>72.00</span> /ชิ้น</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <?php } ?>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
 
             <br>
@@ -466,16 +360,19 @@
     </section>
 
     <br>
-    @include('buyer.layouts.inc_footer')
-    @include('buyer.layouts.inc_js')
+@endsection
+@section('script')
     <script>
-        $(document).on('keyup','#search-brand',function(){
-            name = $('#search-brand').val();
-            $('.brands-all').css('display','none');
+        test = <?php echo $_GET['brand']; ?>;
+        // alert(test);   
+        $(document).on('keyup','#search-box-model',function(){
+            name = $('#search-box-model').val();
+            $('.models-all').css('display','none');
+            $('.search-box-model').remove();
             if(name != null){
                 $.ajax({
                     method: "GET",
-                    url: "{!! url('/buyer/searchBrands/" + name + "') !!}",
+                    url: "buyer/SearchBox?brand="+{{session('session_search.brand')}}+"&model=" + name,
                     dataType: "json"
                 }).done(function(rec){
                     console.log(rec)
@@ -487,20 +384,20 @@
 
         function selectModel(id){
             // brand = id
-            $.ajax({
+
+            location.href = "buyer/home-search3?brand="+{{session('session_search.brand')}}+"&model="+id;
+            /*$.ajax({
                 method: "POST",
                 url: "{{url('buyer/GetsearchBox')}}",
                 data: {"_token":" {{ csrf_token() }} ",model:id},
                 dataType: "json"
             }).done(function(rec){
-                location.href = "{{url('buyer/home-search1')}}";
-                // location.reload();
-                // console.log(rec)
-                // $('.models-all').css('display','none');
-                // $('.submodel-all').css('display','block');
-                // $('.submodel-all').append(rec);
-            });
+                location.href = "buyer/home-search3?brand="+{{session('session_search.brand')}}+"&model="+id;
+            });*/
         }
+    </script>
+    <script>
+        
 
         function searchnavBrands(id){
             $('#brand-search').val(id);
@@ -658,7 +555,7 @@
 
 
     <!-- JS  modal edit -->
-    <script>
+    <!-- <script>
     var modal = document.getElementById("myModal");
     var btn = document.getElementById("myBtn");
     var span = document.getElementsByClassName("close")[0];
@@ -673,7 +570,7 @@
             modal.style.display = "none";
         }
     }
-    </script>
+    </script> -->
 
 
 
@@ -778,7 +675,4 @@
     }
     </script>
 
-
-</body>
-
-</html>
+@endsection

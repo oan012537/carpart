@@ -174,6 +174,11 @@ Route::get('changeprovinces/{id}', [Backend\CompanyController::class, 'provinces
 Route::get('changeamphures/{id}', [Backend\CompanyController::class, 'amphures']);
 Route::get('changedistricts/{id}', [Backend\CompanyController::class, 'districts']);
 
+// OAT เพราะไม่ต้องการแก้ไขของเดิม
+Route::get('fetchamphures/{id}', [Backend\CompanyController::class, 'fetchamphures']);
+Route::get('fetchdistricts/{id}', [Backend\CompanyController::class, 'fetchdistricts']);
+Route::get('fetchzipcode/{id}', [Backend\CompanyController::class, 'fetchzipcode']);
+
 
 Route::get('/clearcache', function () {
     $exitCode = Artisan::call('cache:clear');

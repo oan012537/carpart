@@ -7,13 +7,13 @@
             <form method="post" action="{{ route('supplier.login') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-xl-8 col-lg-12">
                         <div class="img-img-log">
                             <img src="{{asset('assets/img/login/ln1.png')}}" class="img-fluid" alt="">
                         </div>
                     </div>
-                    
-                    <div class="col-lg-4">
+
+                    <div class="col-xl-4 col-lg-12">
                         <div class="h-text-log">
                             <p>
                                 เข้าสู่ระบบ
@@ -25,9 +25,8 @@
                             </p>
                         </div>
                         <div class="input-group mb-3 box-border">
-    
-                            <input type="text" class="form-control" name="username" placeholder="01xx-xxx-xxxxx"
-                                aria-label="Username" aria-describedby="basic-addon1">
+
+                            <input type="text" class="form-control" name="username" placeholder="01xx-xxx-xxxxx" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                         <div class="tt-text-log2">
                             <p>
@@ -35,10 +34,9 @@
                             </p>
                         </div>
                         <div class="input-group mb-3 box-border">
-    
-                            <input type="password" name="password" class="form-control" id="password"
-                                placeholder="*************">
-    
+
+                            <input type="password" name="password" class="form-control" id="password" placeholder="*************">
+
                         </div>
                         <div class="t-pass-t">
                             <p>
@@ -62,7 +60,7 @@
                             </a>
                         </div>
                     </div>
-                    
+
                 </div>
             </form>
         </div>

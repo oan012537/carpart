@@ -1,8 +1,12 @@
 .box__profileaddbank {
   .groupedit1 {
     .title__box {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       color: var(--clrwhites);
+
+      @include breakpoint-down(medium) {
+        margin-top: 1rem;
+      }
 
       span {
         color: var(--clrreds);
@@ -59,7 +63,7 @@
     .tt-text-log p {
       font-style: normal;
       font-weight: 400;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 30px;
       color: #bdbdbd;
       margin-bottom: 10px;

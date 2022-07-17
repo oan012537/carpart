@@ -343,6 +343,10 @@ li {
 
 .content {
   padding: 1rem 2rem;
+
+  @include breakpoint-down(medium) {
+    padding: 1rem 1rem;
+  }
 }
 
 @for $i from 1 through 14 {

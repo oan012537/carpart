@@ -9,8 +9,6 @@
         <div class="box__navleft" id="nav-bar">
             <nav class="nav">
 
-
-
                 <div class="nav_list">
                     <li>
                         <a href="{{ url('buyer/myaccount') }}" class="nav_link activemenumain" data-page="account-buy">
