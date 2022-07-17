@@ -63,6 +63,8 @@ Route::prefix('buyer')->group(function(){
         Route::get('buyerprofile/edit/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_edit']); //-OAT
         Route::post('buyerprofile/update', [Buyer\BuyerProfileController::class, 'buyerprofile_update']); //-OAT
         Route::get('buyerprofile/delete/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_delete']); //-OAT
+        Route::get('buyerprofile/set_isprofile/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_set_isprofile']); //-OAT
+        Route::get('buyerprofile/set_isdelivery/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_set_isdelivery']); //-OAT
 
         Route::post('buyerprofile/account/update', [Buyer\BuyerProfileController::class, 'buyerprofile_account_update']); //-OAT
         

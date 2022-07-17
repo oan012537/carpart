@@ -59,6 +59,60 @@
         });
     });
 
+    $(document).on('click', '.setaddress_profile', function(e){
+        e.preventDefault();
+        var id = $(this).attr("rel");
+        console.log(id);
+        $.ajax({
+            type:'GET',
+            url: '{{ url("buyer/buyerprofile/set_isprofile") }}/'+id,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(response){
+                console.log(response);
+                if(response.status == 200){ 
+                    $("#box_content_profile_account").empty(); 
+                    $('#box_content_profile_account').append(response.htmltext_account); // แสดงหน้า account
+
+                    $("#box_content_address").empty(); 
+                    $('#box_content_address').append(response.htmltext); //- แสดงร้าน user address ใหม่
+                }
+            },
+            error: function(response){
+                console.log("error");
+                console.log(response);
+            }
+        });
+    });
+
+    $(document).on('click', '.setaddress_delivery', function(e){
+        e.preventDefault();
+        var id = $(this).attr("rel");
+        console.log(id);
+        $.ajax({
+            type:'GET',
+            url: '{{ url("buyer/buyerprofile/set_isdelivery") }}/'+id,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(response){
+                console.log(response);
+                if(response.status == 200){ 
+                    $("#box_content_profile_account").empty(); 
+                    $('#box_content_profile_account').append(response.htmltext_account); // แสดงหน้า account
+
+                    $("#box_content_address").empty(); 
+                    $('#box_content_address').append(response.htmltext); //- แสดงร้าน user address ใหม่
+                }
+            },
+            error: function(response){
+                console.log("error");
+                console.log(response);
+            }
+        });
+    });
+
     function buyerprofile_delete(id){
         $.ajax({
             type:'GET',

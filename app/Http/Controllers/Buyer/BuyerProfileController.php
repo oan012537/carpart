@@ -111,8 +111,22 @@ class BuyerProfileController extends Controller
         $html_address = $this->htmlwrite($buyer_profiles);
 
         $address_profiles = $buyer_profiles->where('is_profile', '1')->first();
-        $user_buyer = mUsers_buyer::where('id', $user_buyer_id)->first();
-        $html_address_profiles = $this->buyer_accounthtmlwrite($address_profiles, $user_buyer);
+        if(!is_null($address_profiles)){
+            $user_buyer = mUsers_buyer::where('id', $user_buyer_id)->first();
+            $html_address_profiles = $this->buyer_accounthtmlwrite($address_profiles, $user_buyer);
+        }else{
+            $html_address_profiles = '<div class="box__content">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <div class="head-address">
+                                                        <p>
+                                                            ข้อมูลส่วนตัว
+                                                        </p>
+                                                    </div>
+                                                </div> 
+                                            </div> 
+                                        </div>';
+        }
 
         return response()->json([
             'status' => 200,
@@ -211,6 +225,71 @@ class BuyerProfileController extends Controller
         ]);
     }
 
+    public function buyerprofile_set_isprofile($id)
+    {
+        $return_set = $this->setaddress_default('is_profile', $id);
+        return $return_set;
+    }
+
+    public function buyerprofile_set_isdelivery($id)
+    {
+        $return_set = $this->setaddress_default('is_delivery', $id);
+        return $return_set;
+    }
+
+    public function setaddress_default($column_name,$id)
+    {
+        DB::beginTransaction();
+        try {  
+            $user_buyer_id = Auth::guard('buyer')->user()->id;
+
+            BuyerProfile::where('users_buyer_id', $user_buyer_id)->update([$column_name => '0']);
+
+            BuyerProfile::where('id', $id)
+            ->update([
+                $column_name => '1',
+                'updated_by' => $user_buyer_id,
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+
+        $buyer_profiles = $this->fetch_BuyerProfile($user_buyer_id);
+        if(!is_null($buyer_profiles)){
+            $html_address = $this->htmlwrite($buyer_profiles);
+        }else{
+            $html_address = '';
+        }
+        $address_profiles = $buyer_profiles->where('is_profile', '1')->first();
+        if(!is_null($address_profiles)){
+            $user_buyer = mUsers_buyer::where('id', $user_buyer_id)->first();
+            $html_address_profiles = $this->buyer_accounthtmlwrite($address_profiles, $user_buyer);
+        }else{
+            $html_address_profiles = '<div class="box__content">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <div class="head-address">
+                                                        <p>
+                                                            ข้อมูลส่วนตัว
+                                                        </p>
+                                                    </div>
+                                                </div> 
+                                            </div> 
+                                        </div>';
+        }
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'บันทึกข้อมูลสำเร็จ',
+            'data' => $buyer_profiles,
+            'htmltext' => $html_address,
+            'htmltext_account' => $html_address_profiles,
+        ]);
+    }
+
     public function htmlwrite($buyer_profiles)
     {
         $html = "";
@@ -235,13 +314,13 @@ class BuyerProfileController extends Controller
                             <div class="row">
                                 <div class="col-lg-6">
                                     <label class="b-bank2"> ตั้งเป็นที่อยู่โปรไฟล์
-                                        <input type="radio" name="profile_checked" '.$profile_checked.'>
+                                        <input type="radio" name="profile_checked" class="setaddress_profile" rel="'.$buyerprofile->id.'" '.$profile_checked.'>
                                         <span class="checkmark2"></span>
                                     </label>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="b-bank3"> ตั้งเป็นที่อยู่จัดส่ง
-                                        <input type="radio" name="delivery_checked" '.$delivery_checked.'>
+                                        <input type="radio" name="delivery_checked" class="setaddress_delivery" rel="'.$buyerprofile->id.'" '.$delivery_checked.'>
                                         <span class="checkmark3"></span>
                                     </label>
                                 </div>

@@ -22,13 +22,13 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <label class="b-bank2"> ตั้งเป็นที่อยู่โปรไฟล์
-                            <input type="radio" name="profile_checked" {{ $profile_checked }}>
+                            <input type="radio" name="profile_checked" class="setaddress_profile" rel="{{ $buyerprofile->id }}"  {{ $profile_checked }}>
                             <span class="checkmark2"></span>
                         </label>
                     </div>
                     <div class="col-lg-6">
                         <label class="b-bank3"> ตั้งเป็นที่อยู่จัดส่ง
-                            <input type="radio" name="delivery_checked" {{ $delivery_checked }}>
+                            <input type="radio" name="delivery_checked" class="setaddress_delivery" rel="{{ $buyerprofile->id }}" {{ $delivery_checked }}>
                             <span class="checkmark3"></span>
                         </label>
                     </div>
