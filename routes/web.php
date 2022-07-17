@@ -51,12 +51,13 @@ Route::group(['prefix' => 'supplier'], function() {
     Route::get('get_address', [SupplierAuthController::class, 'getAddress'])->name('get_address');
 
     // impliment product controller
-    Route::get('dropzone', [ProductController::class, 'dropzone'])->middleware('supplier');
     Route::post('products/dropzone/store', [ProductController::class, 'dropzoneStore'])->name('dropzone.store')->middleware('supplier');
     Route::post('products/dropzone/remove', [ProductController::class, 'dropzoneRemove'])->name('dropzone.remove')->middleware('supplier');
 
     Route::get('products/create_product_info', [ProductController::class, 'createProductInfo'])->name('products.create_product_info')->middleware('supplier');
     Route::get('products/get_sub_items', [ProductController::class, 'getSubItems'])->middleware('supplier');
+    Route::get('products/copy-product/{id}', [ProductController::class, 'copyProduct'])->name('supplier.product.copyProduct')->middleware('supplier');
+    // Route::post('products/product-data', [ProductController::class, 'productData'])->name('supplier.products.productData')->middleware('supplier');
     Route::resource('products', ProductController::class)->middleware('supplier');
     
     // supplier profile
