@@ -1,6 +1,6 @@
 @extends('buyer.layouts.template')
     <!-- link navbar -->
-    <link href="{{asset('assets/css/home-seach3.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/home-seach4.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet">
 
 @section('content')
@@ -96,20 +96,23 @@
                         <div class="row">
                             @foreach($submodels as $submodel)
                             <div class="col-sm-3">
-                                <a onclick="selectSubModel({{$submodel->id}})">
                                 <div class="row">
-                                    <div class="col-lg-5">
-                                        <!--<img src="assets/img/home-seach/r1.png" class="img-fluid" alt="shoe image">-->
+                                    <div class="col-lg-3">
+                                        <div class="boc-c-check">
+                                            <label class="container2">
+                                                <input type="checkbox">
+                                                <span class="checkmark2"></span>
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-4">
                                         <div class="text-detail-roon">
                                             <p>
-                                                {{$submodel->name_en}}
+                                                2022
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                </a>
                             </div>
                             @endforeach
                         </div>
