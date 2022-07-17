@@ -251,6 +251,7 @@
            
 @include('buyer.profile.profile.inc_js_user_profileaccount') <!-- JS ของ file user_profile  -->
 @include('buyer.profile.profile.inc_js_user_password') <!-- JS ของ file user_password  -->
+@include('buyer.profile.profile.inc_js_user_bank') <!-- JS ของ file user_bank -->
 @include('buyer.profile.profile.inc_js_user_address') <!-- JS ของ file user_address -->
 
 </body>
