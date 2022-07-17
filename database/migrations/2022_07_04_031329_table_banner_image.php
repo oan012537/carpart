@@ -19,7 +19,7 @@ class TableBannerImage extends Migration
         Schema::create('banner_image', function (Blueprint $table) {
             $table->increments('id');
             $table->string('banner_id');
-            $table->integer('type')->unsigned()->comment('1=อัพโหลดเอง/2=link');
+            $table->string('type',1)->comment('1=อัพโหลดเอง/2=link');
             $table->text('image');
             $table->string('is_sort',1)->default('0')->comment('เรียงลำดับ');
             $table->string('is_active',1)->default('1');

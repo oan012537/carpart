@@ -507,6 +507,7 @@ hr.new1 {
 
 
 
+
 /*-----------------------------------------
     RESPONSIVE
 -------------------------------------------*/
@@ -664,25 +665,181 @@ hr.new1 {
 
     }
 
+    .pagination2 a {
+        color: white;
+        float: left;
+        padding: 8px 25px;
+        text-decoration: none;
+        font-size: 9px;
+    }
+
 
 
 }
 
 @media screen and (min-width:768px) and (max-width:1023px) {
 
+
+    #sec-roon-seach .text-h-roon p {
+        font-size: 24px;
+        color: white;
+    }
+
+    #sec-roon-seach .text-tt-roon span {
+        font-size: 20px;
+        color: white;
+    }
+
     #sec-home-seach .head-text-ban p {
         font-size: 45px;
         color: black;
-        margin-top: -143px;
-        margin-left: 45px;
+        margin-top: -135px;
+        margin-left: 25px;
+    }
+
+    .tt-seach-text p {
+        font-size: 24px;
+        color: white;
+        margin-left: 17px;
+    }
+
+    .tt-seach-text2 p {
+        color: white;
+        font-size: 24px;
+        margin-left: 107px;
+        margin-top: -33px;
+        text-decoration: underline;
+    }
+
+    #sec-roon-seach .text-detail-roon p {
+        font-size: 18px;
+        color: white;
+        margin-top: 0px;
+        margin-left: 2.9rem;
+    }
+
+    #sec-fi-seach .head-text-fi-seach p {
+        font-size: 24px;
+        color: white;
+    }
+
+    #sec-fi-seach .head-text-fi-seach span {
+        font-size: 20px;
+        color: white;
+    }
+
+    .sidenav span {
+        color: #E8D95F;
+        margin-left: 16px;
+        font-size: 25px;
+    }
+
+    .sidenav a,
+    .dropdown-btn {
+        padding: 9px 8px 12px 16px;
+        text-decoration: none;
+        font-size: 24px;
+        color: white;
+        display: block;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .check {
+        display: block;
+        position: relative;
+        padding-left: 60px;
+        margin-bottom: 12px;
+        margin-top: 15px;
+        cursor: pointer;
+        font-size: 24px;
+        color: white;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 26px;
+        width: 26px;
+        background-color: #eee;
+        border-radius: 50%;
+    }
+
+    .check .checkmark:after {
+        top: 7px;
+        left: 7px;
+        width: 13px;
+        height: 12px;
+        border-radius: 50%;
+        background: #373737;
     }
 
     #sec-home-seach .detail-text-ban p {
-        font-size: 13px;
+        font-size: 16px;
         color: black;
         margin-left: 24px;
         margin-top: -14px;
         margin-right: 1rem;
+    }
+
+    .fa-close:before,
+    .fa-multiply:before,
+    .fa-remove:before,
+    .fa-times:before,
+    .fa-xmark:before {
+        color: white;
+        margin-left: 81px;
+        font-size: 20px;
+    }
+
+    #sec-roon-seach {
+        padding: 0px;
+    }
+
+    #sec-fi-seach .button3 {
+        background-color: #4F4F4F;
+        color: white;
+        font-size: 20px;
+        border: 2px solid #4F4F4F;
+        padding: 10px 29px 10px 29px;
+        margin-right: 10px;
+    }
+
+    #sec-fi-seach .form-select {
+        display: block;
+        width: 21%;
+        margin-left: 274px;
+        margin-top: -57px;
+        padding: 0.9rem 3.25rem 0.9rem 0.75rem;
+        -moz-padding-start: calc(0.75rem - 3px);
+        font-size: 1.1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #ffffff;
+        background-color: #4a4a4a;
+        border: #4a4a4a;
+    }
+
+    .pagination {
+        float: right;
+        margin-top: -3.2rem;
+    }
+
+    .pagination a {
+        color: white;
+        font-size: 20px;
+        float: left;
+        padding: 9px 16px;
+        text-decoration: none;
     }
 
     .text-tt-roon {
@@ -692,9 +849,9 @@ hr.new1 {
     #sec-fi-seach .form-select {
         display: block;
         width: 21%;
-        margin-left: 249px;
-        margin-top: -53px;
-        padding: 0.8rem 3.25rem 0.8rem 0.75rem;
+        margin-left: 275px;
+        margin-top: -59px;
+        padding: 0.9rem 3.25rem 0.9rem 0.75rem;
         -moz-padding-start: calc(0.75rem - 3px);
         font-size: 1rem;
         font-weight: 400;
@@ -705,10 +862,37 @@ hr.new1 {
     }
 
     .tt-seach-text2 {
-        margin-left: 18.5rem;
-        margin-top: -2.3rem;
-
+        float: right;
+        margin-top: -2.7rem;
     }
+
+    .button2 {
+        background-color: #E8D95F;
+        color: black;
+        font-size: 24px;
+        border: 2px solid #E8D95F;
+        padding: 0.5rem 20.2rem 0.5rem 20.2rem;
+        margin-left: 10px;
+    }
+
+    .box-col-b .form-control {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 1.9;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.375rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
 
 
 }
@@ -729,13 +913,75 @@ hr.new1 {
         margin-right: 1rem;
     }
 
+    #sec-roon-seach .text-h-roon p {
+        font-size: 24px;
+        color: white;
+    }
+
     .tt-seach-text2 {
         margin-left: 18.5rem;
         margin-top: -2.3rem;
 
     }
 
+    #sec-roon-seach .text-tt-roon span {
+        font-size: 20px;
+        color: white;
+    }
 
+    #sec-roon-seach .text-detail-roon p {
+        font-size: 16px;
+        color: white;
+        margin-top: 16px;
+    }
+
+    #sec-fi-seach .head-text-fi-seach p {
+        font-size: 24px;
+        color: white;
+        margin-top: -1.5rem;
+    }
+
+    #sec-fi-seach .head-text-fi-seach span {
+        font-size: 24px;
+        color: white;
+    }
+
+    #sec-fi-seach .button3 {
+        background-color: #4F4F4F;
+        color: white;
+        font-size: 20px;
+        border: 2px solid #4F4F4F;
+        padding: 10px 29px 10px 29px;
+        margin-right: 10px;
+    }
+
+    #sec-fi-seach .form-select {
+        display: block;
+        width: 20%;
+        margin-left: 274px;
+        margin-top: -59px;
+        padding: 0.8rem 3.25rem 0.8rem 0.75rem;
+        -moz-padding-start: calc(0.75rem - 3px);
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #ffffff;
+        background-color: #4a4a4a;
+        border: #4a4a4a;
+    }
+
+    .pagination {
+        float: right;
+        margin-top: 0.2rem;
+    }
+
+    .pagination a {
+        color: white;
+        font-size: 20px;
+        float: left;
+        padding: 9px 16px;
+        text-decoration: none;
+    }
 
 }
 
@@ -756,6 +1002,3 @@ hr.new1 {
 @media screen and (min-width:1920px) and (max-width:2559px) {}
 
 @media screen and (min-width:2560px) {}
-
-
-

@@ -1,0 +1,237 @@
+#request .card5 {
+    background-color: #3F3F3F;
+    margin-top: 2rem;
+}
+
+#request .img-lo-icon {
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+#request .detail-text-t p {
+    font-size: 12px;
+    color: white;
+    font-weight: 300;
+    padding: 10px 20px;
+    padding-left: 20px;
+}
+
+#request .hh-text-h p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.5rem;
+}
+
+#request .img-lo-icon2 {
+    width: 34%;
+    margin-left: 6.8rem;
+    margin-top: -2.5rem;
+}
+
+#request .img-lo-icon3 {
+    width: 34%;
+    margin-left: 7.5rem;
+    margin-top: -2.8rem;
+}
+
+#request .date-detail-text-t p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 0.5rem;
+}
+
+#request .price-text-t p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    margin-top: 2rem;
+}
+
+.button2 {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    padding: 6px 32px;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    margin-top: 2.2rem;
+}
+
+.button2:hover {
+    background-color: #282828;
+    color: #E8D95F;
+    border: 2px solid #E8D95F;
+    padding: 6px 32px;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    margin-top: 2.2rem;
+}
+
+
+
+
+
+
+
+
+/*-----------------------------------------
+    RESPONSIVE
+-------------------------------------------*/
+@media screen and (min-width:320px) and (max-width:374px) {}
+
+@media screen and (min-width:375px) and (max-width:413px) {}
+
+@media screen and (min-width:414px) and (max-width:424px) {}
+
+@media screen and (min-width:425px) and (max-width:767px) {}
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+
+    #request .card5 {
+            background-color: #3F3F3F;
+            margin-top: 2rem;
+            padding-bottom: 1.5rem;
+        }
+
+    #request .box__title .text__title {
+            color: var(--clrwhites);
+            font-size: 24px !important;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+    #request .hh-text-h p {
+            font-size: 16px;
+            color: white;
+            font-weight: 300;
+            margin-top: -0.5rem;
+            padding-left: 1.5rem;
+        }
+
+    #request .img-lo-icon2 {
+            width: 34%;
+            margin-left: 8.5rem;
+            margin-top: -2.5rem;
+        }
+
+    #request .img-lo-icon3 {
+            width: 34%;
+            margin-left: 9.3rem;
+            margin-top: -2.8rem;
+        }
+
+    #request .date-detail-text-t p {
+            font-size: 14px;
+            color: white;
+            font-weight: 300;
+            margin-top: 0.5rem;
+            padding-left: 1.4rem;
+        }
+
+    #request .price-text-t p {
+            font-size: 16px;
+            color: white;
+            font-weight: 300;
+            margin-top: 0rem;
+            padding-left: 1.4rem;
+        }
+
+    .button2 {
+            background-color: #E8D95F;
+            color: black;
+            border: 2px solid #E8D95F;
+            font-size: 14px;
+            padding: 6px 32px;
+            border-radius: 4px;
+            margin-left: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+    .button2:hover {
+            background-color: #282828;
+            color: #E8D95F;
+            border: 2px solid #E8D95F;
+            font-size: 14px;
+            padding: 6px 32px;
+            border-radius: 4px;
+            margin-left: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+    #request .box__detailrequest .detail__date {
+            color: var(--clrwhites);
+            font-size: 1.15rem;
+            text-align: right;
+            font-weight: 400;
+            margin-top: -2.7rem;
+        }
+
+    #request .box__productother .box__product .box__heading .box__model .txt__verify {
+            color: var(--clrblue);
+            display: inline-block;
+            font-size: 1.15rem;
+            margin-left: -6px;
+            margin-top: 0.6rem;
+            margin-bottom: 0;
+        }
+
+    #request .box__productother .box__product .box__heading .box__model .txt__verify img {
+            width: 30px;
+            margin-left: -4px !important;
+            margin-right: 12px;
+        }
+
+    #request .box__productother .box__product .box__heading .box__date p {
+            color: var(--clrwhites);
+            margin-bottom: 0;
+            margin-top: 0.4rem !important;
+            margin-left: -5rem;
+        }
+
+    #request .box__productother .box__product .box__content .box__content .title__product {
+            font-size: 14px !important;
+            color: var(--clrwhites);
+            margin-top: -12px;
+            margin-bottom: 10px !important;
+        }
+
+    #request .box__productother .box__product .box__content .box__detailprice .box__price p {
+            margin-bottom: 0;
+            margin-top: 0.5rem !important;
+            color: var(--clrwhites);
+        }
+
+    #request .box__contentdetail .box__announce p {
+            font-weight: 300;
+            font-size: 16px !important;
+            color: var(--clrwhites);
+        }
+
+    #request .box__contentdetail .box__announce .btn__view {
+            color: var(--clrmain);
+            text-decoration: underline !important;
+            font-size: 16px !important;
+        }
+
+
+
+
+
+
+}
+
+@media screen and (min-width:1024px) and (max-width:1279px) {}
+
+@media screen and (min-width:1280px) and (max-width:1359px) {}
+
+@media screen and (min-width:1360px) and (max-width:1439px) {}
+
+@media screen and (min-width:1440px) and (max-width:1599px) {}
+
+@media screen and (min-width:1600px) and (max-width:1919px) {}
+
+@media screen and (min-width:1920px) and (max-width:2559px) {}
+
+@media screen and (min-width:2560px) {}

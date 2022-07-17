@@ -66,11 +66,24 @@
     padding: 15px;
     border-radius: 4px;
 
+    nav {
+      overflow: scroll;
+    }
+
+    @include breakpoint-down(small) {
+      width: 100%;
+      overflow-x: scroll;
+    }
+
     .nav-tabs {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       border-bottom: none;
+
+      @include breakpoint-down(small) {
+        width: 680px;
+      }
     }
 
     .tab-content > .active {
@@ -140,6 +153,11 @@
 
         .box__date {
           text-align: right;
+
+          @include breakpoint-down(small) {
+            text-align: left;
+            margin-top: 5px;
+          }
           p {
             color: var(--clrwhites);
             margin-bottom: 0;
@@ -153,18 +171,66 @@
 
         .box__image {
           margin-right: 15px;
+
+          @include breakpoint-down(small) {
+            margin-right: 0;
+          }
+
+          img {
+            @include breakpoint-down(small) {
+              width: 100%;
+              padding: 10px;
+            }
+          }
         }
 
         .box__contentimage {
+          @include breakpoint-down(small) {
+            padding: 10px;
+          }
           .txt {
             &__title {
               font-size: 1.15rem;
               color: var(--clrwhites);
+
+              @include breakpoint-down(small) {
+                font-size: 1rem;
+              }
             }
 
             &__numberproduct {
               color: var(--clrdarks4);
               font-size: 0.975rem;
+
+              @include breakpoint-down(small) {
+                margin-bottom: 0;
+              }
+            }
+          }
+
+          .wrapper__status {
+            @include breakpoint-down(small) {
+              margin-top: 5px;
+            }
+
+            .status-wait {
+              color: var(--clrblue);
+              margin-bottom: 0;
+            }
+
+            .status-sendsuccess {
+              color: var(--clrgreens);
+              margin-bottom: 0;
+            }
+
+            .status-close {
+              color: var(--clrreds2);
+              margin-bottom: 0;
+            }
+
+            .status-del {
+              color: var(--clrwhites);
+              margin-bottom: 0;
             }
           }
         }
@@ -184,8 +250,12 @@
           color: var(--clrmain);
           border: 1px solid var(--clrmain);
           padding: 7px 2rem;
-
           @extend %transition-3;
+
+          @include breakpoint-down(small) {
+            width: 100%;
+            margin-bottom: 1rem;
+          }
 
           &:hover {
             @extend %transition-3;
@@ -198,6 +268,10 @@
         .wrapper__viewdetail {
           display: flex;
           align-self: center;
+
+          @include breakpoint-down(small) {
+            display: initial;
+          }
 
           .box__text {
             margin-right: 10px;
@@ -219,6 +293,11 @@
 
               @extend %transition-3;
 
+              @include breakpoint-down(small) {
+                width: 100%;
+                margin-top: 1rem;
+              }
+
               &:hover {
                 @extend %transition-3;
                 background-color: transparent;
@@ -233,6 +312,10 @@
           display: flex;
           align-items: center;
           justify-content: flex-end;
+
+          @include breakpoint-down(small) {
+            display: initial;
+          }
 
           .status-wait {
             color: var(--clrblue);
@@ -256,14 +339,22 @@
 
           .box__btn {
             margin-left: 15px;
+
+            @include breakpoint-down(small) {
+              margin-left: 0;
+            }
+
             .btn__send {
               background-color: var(--clrmain);
               border-radius: 4px;
               color: var(--clrdarks2);
               border: 1px solid var(--clrmain);
               padding: 7px 2rem;
-
               @extend %transition-3;
+
+              @include breakpoint-down(small) {
+                width: 100%;
+              }
 
               &:hover {
                 @extend %transition-3;

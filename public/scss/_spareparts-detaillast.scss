@@ -4,6 +4,10 @@
     justify-content: flex-end;
     margin-top: 2rem;
 
+    @include breakpoint-down(medium) {
+      justify-content: flex-start;
+    }
+
     .txt {
       &__number {
         margin-right: 15px;
@@ -27,13 +31,13 @@
     .detail {
       &__request {
         color: var(--clrwhites);
-        font-size: 1.15rem;
+        font-size: 1rem;
         font-weight: 400;
       }
 
       &__date {
         color: var(--clrwhites);
-        font-size: 1.15rem;
+        font-size: 1rem;
         text-align: right;
         font-weight: 400;
       }
@@ -59,14 +63,14 @@
             &__model {
               color: var(--clrblue);
               display: inline-block;
-              font-size: 1.15rem;
+              font-size: 1rem;
               margin-left: 5px;
               margin-bottom: 0;
             }
 
             &__idshop {
               display: inline-block;
-              font-size: 1.15rem;
+              font-size: 1rem;
               margin-left: 10px;
               color: var(--clrwhites);
               margin-bottom: 0;
@@ -75,7 +79,7 @@
             &__verify {
               color: var(--clrblue);
               display: inline-block;
-              font-size: 1.15rem;
+              font-size: 1rem;
               margin-left: 5px;
               margin-bottom: 0;
 
@@ -142,6 +146,10 @@
     margin-top: 0.5rem;
     border-radius: 4px;
 
+    .mobile-content {
+      padding: 0 30px;
+    }
+
     .box__announce {
       border: 1px solid var(--clrmain);
       background-color: var(--clrdarks5);
@@ -150,7 +158,7 @@
 
       p {
         font-weight: 300;
-        font-size: 1.15rem;
+        font-size: 1rem;
         color: var(--clrwhites);
       }
 
@@ -165,16 +173,20 @@
 
       p {
         color: var(--clrwhites);
-        font-size: 1.15rem;
+        font-size: 1rem;
       }
     }
 
     .box__con {
       margin-top: 3rem;
 
+      @include breakpoint-down(medium) {
+        margin-top: 0;
+      }
+
       .txt__title {
         color: var(--clrgrays);
-        font-size: 1.15rem;
+        font-size: 1rem;
         margin-bottom: 1.5rem;
       }
 
@@ -187,6 +199,10 @@
     .box__txtvideo {
       margin-top: 3rem;
 
+      @include breakpoint-down(medium) {
+        margin-top: 0;
+      }
+
       p {
         color: var(--clrwhites);
       }
@@ -194,10 +210,19 @@
 
     .box__video {
       margin-top: 3rem;
+
+      @include breakpoint-down(medium) {
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
     }
 
     .box__txtcheck {
       margin-top: 3rem;
+
+      @include breakpoint-down(medium) {
+        margin-top: 0;
+      }
 
       p {
         color: var(--clrwhites);
@@ -208,11 +233,19 @@
       margin-top: 3rem;
       color: var(--clrwhites);
 
+      @include breakpoint-down(medium) {
+        margin-top: 0;
+      }
+
       .txt__blue {
         color: var(--clrblue);
 
         img {
           margin-right: 10px;
+
+          @include breakpoint-down(medium) {
+            width: 30px;
+          }
         }
       }
     }
@@ -221,6 +254,9 @@
       background-color: var(--clrdarks7);
       padding: 30px;
       margin-top: 1rem;
+      @include breakpoint-down(medium) {
+        margin-bottom: 1rem;
+      }
 
       img {
         width: 100%;
