@@ -112,14 +112,14 @@
                         ?>
                             <div class="box__itemsinfo">
                                 <div class="row">
-                                    <div class="col-xl-3 col-md-6 col-12">
+                                    <div class="col-xl-3 col-lg-12 col-md-6 col-12">
                                         <p class="title__txt"><?php echo $heading[$i]; ?></p>
                                     </div>
-                                    <div class="col-xl-9 col-md-6 col-12">
+                                    <div class="col-xl-9 col-lg-12 col-md-6 col-12">
                                         <p class="title__result"><?php echo $result[$i]; ?></p>
                                     </div>
 
-                                    <div class="col-xl-9 col-md-6 col-12">
+                                    <div class="col-xl-9 col-lg-12 col-md-6 col-12">
                                         <?php if ($i != 4) { ?>
                                             <hr>
                                         <?php } ?>

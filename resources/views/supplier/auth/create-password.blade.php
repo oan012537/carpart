@@ -141,14 +141,14 @@
         });
 
         $('input[name="toggle_password"]').on('click', function(){
-            var inputType = $('input[name="password"]').prop('type');
+            var inputType = $('input[name="password"]').attr('type');
             
             if (inputType === 'password') {
-                $('input[name="password"]').prop('type', 'text');
-                $('input[name="password_confirmation"]').prop('type', 'text');
+                $('input[name="password"]').attr('type', 'text');
+                $('input[name="password_confirmation"]').attr('type', 'text');
             } else {
-                $('input[name="password"]').prop('type', 'password');
-                $('input[name="password_confirmation"]').prop('type', 'password');
+                $('input[name="password"]').attr('type', 'password');
+                $('input[name="password_confirmation"]').attr('type', 'password');
             }
         });
 

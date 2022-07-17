@@ -152,6 +152,9 @@
 
 
 
+<form id="form_insertbank">
+    @csrf
+
 <!-- The Modal Insertbank -->
 <div id="modal_insertbank" class="w3-modal">
     <div class="w3-modal-content">
@@ -161,15 +164,14 @@
                     แก้ไขบัญชีสำหรับเงินคืน
                 </p>
             </div>
-            <form id="form_insertbank">
-            @csrf
+           
             <div class="card-con w-100">
                 <div class="text-t-deail-add-edit">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="inputEmail4" class="form-label"> หมายเลขบัญชี <span> + </span>
                             </label>
-                            <input type="email" class="form-control" id="inputEmail4">
+                            <input type="text" class="form-control" id="inputEmail4">
                         </div>
                         <div class="col-md-6">
                             <label for="inputPassword4" class="form-label"> ชื่อบัญชี <span> + </span>
@@ -223,15 +225,15 @@
             <br>
             <div style="text-align:center;">
                 <div class="b-but-concon">
-                    <button class="button button-close"
+                    <button class="button button-close" type="button"
                         onclick="document.getElementById('modal_insertbank').style.display='none'"
                         class="w3-button w3-display-topright"> ยกเลิก </button>
-                    <button class="button button-up"
+                    <button type="button" class="button button-up"
                         onclick="document.getElementById('modal_otp_insertbank').style.display='block'"
                         class="w3-button w3-black"> อัพเดท </button>
                 </div>
             </div>
-            </form>
+           
 
         </div>
     </div>
@@ -284,14 +286,15 @@
             <br>
             <div style="text-align:center;">
                 <div class="b-but-concon">
-                    <button class="button button-close"
+                    <button type="button" class="button button-close"
                         onclick="document.getElementById('modal_otp_insertbank').style.display='none'"
                         class="w3-button w3-display-topright"> กลับ </button>
-                    <button class="button button-up"
-                        onclick="document.getElementById('modal_otp_insertbank').style.display='none'"
+                    <button type="submit" class="button button-up" 
                         class="w3-button w3-display-topright"> ยืนยัน </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+</form>
