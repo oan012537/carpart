@@ -18,6 +18,7 @@
                 success:function(response){
                     console.log(response);
                     if(response.status == 200){ 
+                        $('#mobilenumber_password').text(response.mobilenumber);
                         $('#modal_comfirmchangepassword').show();
                         //-- ส่งต่อ OTP
                     }else{

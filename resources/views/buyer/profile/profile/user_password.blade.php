@@ -106,7 +106,7 @@
                     </p>
                 </div>
                 <div class="num-text-otp">
-                    <p>
+                    <p id="mobilenumber_password">
                         012-345-6789
                     </p>
                 </div>

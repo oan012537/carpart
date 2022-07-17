@@ -15,7 +15,7 @@ use App\Models\Buyer\BuyerTaxInvoice;
 use App\Models\Buyer\BuyerBank;
 
 
-class BuyerAccountController extends Controller
+class BuyerProfileController extends Controller
 {
     public function index()
     {
@@ -651,14 +651,20 @@ class BuyerAccountController extends Controller
         if(Auth::guard('buyer')->attempt(['phone' => $phone, 'password' => $password]) ){
             return response()->json([
                 'status' => 200,
+                'mobilenumber' => $phone,
                 'message' => 'ดำเนินการเปลี่ยน รหัสผ่านได้',
             ]);
         }else{
             return response()->json([
                 'status' => 404,
-                'message' => 'รหัสผ่านไม่ถูกต้อง',
+                'message' => 'รหัสผ่านปัจจุบันไม่ถูกต้อง',
             ]);
         }
         
     }
+
+
+    //== Profile Bank
+
+    
 }

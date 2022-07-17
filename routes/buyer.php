@@ -57,21 +57,21 @@ Route::prefix('buyer')->group(function(){
         Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
 
         //======= OAT My Account =======
-        Route::get('myaccount', [Buyer\BuyerAccountController::class, 'index']); //-OAT
+        Route::get('myaccount', [Buyer\BuyerProfileController::class, 'index']); //-OAT
         // Profile Address
-        Route::post('buyerprofile/add', [Buyer\BuyerAccountController::class, 'buyerprofile_store']); //-OAT
-        Route::get('buyerprofile/edit/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_edit']); //-OAT
-        Route::post('buyerprofile/update', [Buyer\BuyerAccountController::class, 'buyerprofile_update']); //-OAT
-        Route::get('buyerprofile/delete/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_delete']); //-OAT
+        Route::post('buyerprofile/add', [Buyer\BuyerProfileController::class, 'buyerprofile_store']); //-OAT
+        Route::get('buyerprofile/edit/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_edit']); //-OAT
+        Route::post('buyerprofile/update', [Buyer\BuyerProfileController::class, 'buyerprofile_update']); //-OAT
+        Route::get('buyerprofile/delete/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_delete']); //-OAT
 
-        Route::post('buyerprofile/account/update', [Buyer\BuyerAccountController::class, 'buyerprofile_account_update']); //-OAT
+        Route::post('buyerprofile/account/update', [Buyer\BuyerProfileController::class, 'buyerprofile_account_update']); //-OAT
         
         // Taxinvoice
-        Route::get('buyerprofile/taxinvoice/edit/{id}', [Buyer\BuyerAccountController::class, 'buyerprofile_taxinvoice_edit']); //-OAT
-        Route::post('buyerprofile/taxinvoice/update', [Buyer\BuyerAccountController::class, 'buyerprofile_taxinvoice_update']); //-OAT
+        Route::get('buyerprofile/taxinvoice/edit/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_taxinvoice_edit']); //-OAT
+        Route::post('buyerprofile/taxinvoice/update', [Buyer\BuyerProfileController::class, 'buyerprofile_taxinvoice_update']); //-OAT
        
         // Change Password
-        Route::post('buyerprofile/changepassword/check_currentpassword', [Buyer\BuyerAccountController::class, 'buyerprofile_check_currentpassword']); //-OAT
+        Route::post('buyerprofile/changepassword/check_currentpassword', [Buyer\BuyerProfileController::class, 'buyerprofile_check_currentpassword']); //-OAT
        
         //======= OAT End My Account =======
     });
