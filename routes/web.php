@@ -14,6 +14,7 @@ use App\Http\Controllers\ImportdataController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\cFunction;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\DataprovincesController;
 
 
 /*
