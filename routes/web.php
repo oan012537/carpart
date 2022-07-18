@@ -57,6 +57,7 @@ Route::group(['prefix' => 'supplier'], function() {
 
     Route::get('products/create_product_info', [ProductController::class, 'createProductInfo'])->name('products.create_product_info')->middleware('supplier');
     Route::get('products/get_sub_items', [ProductController::class, 'getSubItems'])->middleware('supplier');
+    Route::get('products/query_product_model', [ProductController::class, 'queryProductModel'])->middleware('supplier');
     Route::get('products/copy-product/{id}', [ProductController::class, 'copyProduct'])->name('supplier.product.copyProduct')->middleware('supplier');
     // Route::post('products/product-data', [ProductController::class, 'productData'])->name('supplier.products.productData')->middleware('supplier');
     Route::resource('products', ProductController::class)->middleware('supplier');
