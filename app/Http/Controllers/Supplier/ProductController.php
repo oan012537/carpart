@@ -229,25 +229,32 @@ class ProductController extends Controller
     public function createProductInfo(Request $request)
     {
         $data = $request->all();
-        
-        $product_name = null;
+
+        $product_name_en = null;
+        $product_name_th = null;
 
         $category_data = Category::select('name_th', 'name_en')->where('id', $data['category_id'])->first();
         if ($category_data) {
-            $category_name = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $category_data->name_en); 
-            $product_name =  $category_name;
+            $category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $category_data->name_en); 
+            $category_name_th = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $category_data->name_th); 
+            $product_name_en =  $category_name_en;
+            $product_name_th =  $category_name_th;
         }
 
         $sub_category_data = SubCategory::select('name_th', 'name_en')->where('id', $data['sub_category_id'])->first();
         if ($sub_category_data) {
             $sub_category_name = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_category_data->name_en); 
-            $product_name .=  ' '. $sub_category_name;
+            $sub_category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_category_data->name_th); 
+            $product_name_en .=  ' '. $sub_category_name_en;
+            $product_name_th .=  ' '. $sub_category_name_th;
         }        
 
         $sub_sub_category_data = SubSubCategory::select('name_th', 'name_en')->where('id', $data['sub_sub_category_id'])->first();
         if ($sub_sub_category_data) {
-            $sub_sub_category_name = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_sub_category_data->name_en); 
-            $product_name .= ' '. $sub_sub_category_name;
+            $sub_sub_category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_sub_category_data->name_en); 
+            $sub_sub_category_name = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_sub_category_data->name_th); 
+            $product_name_en .= ' '. $sub_sub_category_name_en;
+            $product_name_th .= ' '. $sub_sub_category_name_th;
         }
 
         $product_qualities = ['Excellent','Good','Fair','Poor','repairable'];
@@ -268,8 +275,8 @@ class ProductController extends Controller
             ]
         );
 
-        return view('supplier.product.second-product-info', 
-                compact('data', 'product_name', 'product_qualities',
+        return view('supplier.product.product-info', 
+                compact('data', 'product_name_en', 'product_name_th', 'product_qualities',
                         'day_month_year', 'units', 'uoms', 'transport_type_array'));
 
     }
@@ -306,6 +313,7 @@ class ProductController extends Controller
         $supplier_id = Auth::guard('supplier')->user()->id;
         $supplier_name = Auth::guard('supplier')->user()->name;
 
+        $data['trading_name'] = isset($data['trading_name'])? $data['trading_name']:$data['name_en'];
         $data['supplier_id'] = $supplier_id;
         $data['is_active'] = 1;
         $data['created_by'] = $supplier_name;
@@ -370,7 +378,6 @@ class ProductController extends Controller
         }
         
         $id = $product_data->id;
-        // \Session::flash('create_message', 'Product created successfully');
 
         return redirect()->route('products.edit', $id)->with('message', 'Product created successfully');
 
@@ -383,7 +390,8 @@ class ProductController extends Controller
         $brand_list_data = DB::table('brands')->where('is_active', true)->get();
         $product_image = DB::table('product_images')->where('product_id', $id)->pluck('image', 'line_item_no');
         $warranty = DB::table('warranties')->where('product_id', $id)->first();
-        $transport = DB::table('transportations')->where('product_id', $id)->get();
+        $transport = DB::table('transportations')->where('product_id', $id)->first();
+        $transport_type_ids = DB::table('transportations')->where('product_id', $id)->pluck('transport_type_id', 'id')->toArray();
 
         $product_qualities = ['Excellent','Good','Fair','Poor','repairable'];
         $day_month_year = ['Day', 'Month', 'Year'];
@@ -408,11 +416,11 @@ class ProductController extends Controller
             
         // }
 
-        return view('supplier.product.second-product-edit', 
+        return view('supplier.product.product-edit', 
                 compact('data', 'brand_list_data', 'product_image',
                     'warranty', 'transport', 'transport_type_array',
                     'product_qualities', 'day_month_year', 'units',
-                    'uoms'));
+                    'uoms', 'transport_type_ids'));
     }
 
 
@@ -472,7 +480,7 @@ class ProductController extends Controller
                 $warranty['duration'] = $data['duration'];
                 $warranty['year_month_day'] = $data['year_month_day'];
                 $warranty['updated_by'] = $data['updated_by'];
-                
+
                 $warranty_data = Warranty::where('product_id', $product_data->id);
                 if ($warranty_data) {
                     Warranty::where('product_id', $product_data->id)
@@ -485,11 +493,11 @@ class ProductController extends Controller
 
             // remove unuse transport company
             if ($transport_list_data) {
-                foreach ($transport_list_data as $x => $transport_data) {
-                    $old_transport_id[] = $transport_data->transport_type_id;
+                foreach ($transport_list_data as $x => $transport) {
+                    $old_transport_id[] = $transport->transport_type_id;
 
                     if ( !(in_array($old_transport_id[$x], $transport_type_id)) ){
-                        $transport_data->delete();
+                        $transport->delete();
                     }
                 }
             }
@@ -513,7 +521,7 @@ class ProductController extends Controller
                     if (in_array($transport_id, $old_transport_id)) {
                         Transportation::where([
                                                 ['product_id', $id],
-                                                ['id', $transport_id]
+                                                ['transport_type_id', $transport_id]
                                             ])->update($transport_data);
                     } else {
                         $transport_data['created_by'] = $data['updated_by'];
@@ -537,14 +545,14 @@ class ProductController extends Controller
 
             // create or update product image
             if ($product_image) {
-                foreach ($product_image as $i => $image) {
+                foreach ($product_image as $i => $image_name) {
 
                     $image_data['product_id'] =  $product_data->id;
                     $image_data['line_item_no'] = $i + 1;
                     $image_data['image'] = $product_image[$i];
                     $image_data['updated_by'] = $data['updated_by'];
 
-                    if (in_array($image, $old_image)) {
+                    if (in_array($image_name, $old_image)) {
                         ProductImage::where([
                                                 ['product_id', $id],
                                                 ['image', $product_image]
@@ -569,10 +577,11 @@ class ProductController extends Controller
         $copyType = $request->copyType;
 
         $data = DB::table('products')->where('id', $id)->first();
-        $brand_list_data = DB::table('brands')->where('is_active', true)->get();
+        $category_list_data = DB::table('categories')->where('is_active', true)->get();
         $product_image = DB::table('product_images')->where('product_id', $id)->pluck('image', 'line_item_no');
         $warranty = DB::table('warranties')->where('product_id', $id)->first();
-        $transport = DB::table('transportations')->where('product_id', $id)->get();
+        $transport = DB::table('transportations')->where('product_id', $id)->first();
+        $transport_type_ids = DB::table('transportations')->where('product_id', $id)->pluck('transport_type_id', 'id')->toArray();
 
         $product_qualities = ['Excellent','Good','Fair','Poor','repairable'];
         $day_month_year = ['Day', 'Month', 'Year'];
@@ -594,11 +603,11 @@ class ProductController extends Controller
 
         \Session::flash('message', 'Copy product successfully.');
 
-        return view('supplier.product.second-product-copy', 
-                compact('data', 'brand_list_data', 'product_image',
-                    'warranty', 'transport', 'transport_type_array',
-                    'product_qualities', 'day_month_year', 'units',
-                    'uoms'));
+        return view('supplier.product.product-copy', 
+            compact('data', 'category_list_data', 'product_image', 'warranty', 'transport', 
+                    'transport_type_array', 'product_qualities', 'day_month_year',
+                    'units', 'uoms', 'transport_type_ids', 'copyType'));
+
     }
 
 

@@ -11,13 +11,24 @@
 @endsection
 
 @section('content')
+    
 <input type="hidden" id="pageName" name="pageName" value="setting-product">
 <div class="content" id="setting-createproductresult">
+    @if(session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Success!</strong> {!! session()->get('message') !!}
+          </div>
+    @endif
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="box__titlepage">
-                    <h3>{{ trans('file.Add Second Hand') }}</h3>
+                    @if ($data->product_type == 'second')
+                        <h3>{{ trans('file.Add Second Hand') }}</h3>    
+                    @else
+                        <h3>{{ trans('file.Add New Product') }}</h3>
+                    @endif
                 </div>
             </div>
 
@@ -59,31 +70,30 @@
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="product_code">{{ trans('file.ID') }}</label>
-                                                                    <input type="text" id="product_code" class="form-control" name="product_code" placeholder="Auto Generate" readonly>
+                                                                    <input type="text" id="product_code" class="form-control" name="product_code" placeholder="Auto Generate" 
+                                                                        value="{{ old('product_code') }}" readonly>
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="name_th">{{ trans('file.Product Name') }} (TH) <span>*</span></label>
-                                                                    <input type="text" id="name_th" class="form-control" name="name_th" 
-                                                                            placeholder="{{ trans('file.Specify') }}" 
-                                                                            value="{{ old('name_th')? old('name_th'): $product_name }}">
-                                                                    @if($errors->has('name_th'))
-                                                                        <span class="dot__color">{{ $errors->first('name_th') }}</span>
-                                                                    @endif
+                                                                    <input type="text" id="name_th" class="form-control" name="name_th" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('name_th') }}" >
+                                                                        @if($errors->has('name_th'))
+                                                                            <span class="dot__color">{{ $errors->first('name_th') }}</span>
+                                                                        @endif
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="name_en">{{ trans('file.Product Name') }} (EN) <span>*</span></label>
-                                                                    <input type="text" id="name_en" class="form-control" name="name_en" 
-                                                                            placeholder="{{ trans('file.Specify') }}" 
-                                                                            value="{{ old('name_en')? old('name_en'): $product_name }}">
-                                                                    @if($errors->has('name_en'))
-                                                                        <span class="dot__color">{{ $errors->first('name_en') }}</span>
-                                                                    @endif
+                                                                    <input type="text" id="name_en" class="form-control" name="name_en" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('name_en') }}" >
+                                                                        @if($errors->has('name_en'))
+                                                                            <span class="dot__color">{{ $errors->first('name_en') }}</span>
+                                                                        @endif
                                                                 </div>
                                                             </div>
 
@@ -91,8 +101,8 @@
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="trading_name">{{ trans('file.Trading Name') }}</label>
-                                                                    <input type="text" id="trading_name" class="form-control" name="trading_name" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('trading_name') }}">
+                                                                    <input type="text" id="trading_name" class="form-control" name="trading_name" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('trading_name') }}">
                                                                     <span>{{ trans('file.Trading Name Message') }}</span>
                                                                 </div>
                                                             </div>
@@ -116,7 +126,19 @@
                                                                     
                                                                     <div class="box__drop">
                                                                         <div class="row" id="show-image">
-                                                                            
+
+                                                                            @if ($copyType == 'diff_category')
+                                                                                @foreach ($product_image as $key => $value)
+                                                                                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                                                                                        <input type="hidden" name="image[]" value="{{ $value }}">
+                                                                                        <a href="javascript:void(0)" data-image="{{ $value }}" class="btn__trash" >
+                                                                                            <img src="{{ asset('product/images/' . $value) }}" class="img-fluid" alt="{{ $data->name_en }}">
+                                                                                            <i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}
+                                                                                        </a>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            @endif
+
                                                                             <div class="col-xl-3 col-lg-4 col-md-6 col-12">
                                                                                 <div class="drop-zone">
                                                                                     <label class="drop-zone__prompt">
@@ -150,13 +172,13 @@
                                                                     <p class="txt__titlebox">{{ trans('file.Grade') }} <span>*</span></p>
                                                                     <div class="form-check-inline">
                                                                         <label class="form-check-label" for="radio1">
-                                                                            <input type="radio" class="form-check-input" id="radio1" name="grade" value="Genuine" checked>
+                                                                            <input type="radio" class="form-check-input" id="radio1" name="grade" value="Genuine"  @if ($data->grade == 'Genuine') checked @endif>
                                                                             {{ trans('file.Genuine') }}
                                                                         </label>
                                                                     </div>
                                                                     <div class="form-check-inline">
                                                                         <label class="form-check-label" for="radio2">
-                                                                            <input type="radio" class="form-check-input" id="radio2" name="grade" value="OEM" >
+                                                                            <input type="radio" class="form-check-input" id="radio2" name="grade" value="OEM" @if ($data->grade == 'OEM') checked @endif>
                                                                             {{ trans('file.OEM') }}
                                                                         </label>
                                                                     </div>
@@ -169,76 +191,89 @@
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="maker">{{ trans('file.Maker') }}</label>
-                                                                    <input type="text" id="maker" class="form-control" name="maker" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('maker') }}">
+                                                                    <input type="text" id="maker" class="form-control" name="maker" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('maker')? old('maker'): $data->maker }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="sku_code">{{ trans('file.SKU CODE') }}</label>
-                                                                    <input type="text" id="sku_code" class="form-control" name="sku_code" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('sku_code') }}">
+                                                                    <input type="text" id="sku_code" class="form-control" name="sku_code" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('sku_code')? old('sku_code'): $data->sku_code }}">
                                                                 </div>
                                                             </div>
-
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                                                                <div class="form-group">
-                                                                    <label for="">{{ trans('file.Product Quality') }} <span>*</span></label>
-                                                                    <select class="form-select" aria-label="Default select example" name="quality">
-                                                                        <option>{{ trans('file.Specify') }}</option>
-                                                                        @foreach ($product_qualities as $quality)
-                                                                            <option value="{{ $quality }}">{{ trans('file.'. $quality) }}</option>
-                                                                        @endforeach
-                                                                    </select>
+                                                            
+                                                            @if ($data->product_type == 'second')
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                                                                    <div class="form-group">
+                                                                        <label>{{ trans('file.Product Quality') }} <span>*</span></label>
+                                                                        <select class="form-select" aria-label="Default select example" name="quality">
+                                                                            <option value="">{{ trans('file.Specify') }}</option>
+                                                                            @foreach ($product_qualities as $quality)
+                                                                                @if ($copyType == 'same_category')
+                                                                                    <option value="{{ $quality }}">
+                                                                                        {{ trans('file.'. $quality) }}
+                                                                                    </option>
+                                                                                @else
+                                                                                    <option value="{{ $quality }}" @if ($quality == $data->quality) selected @endif>
+                                                                                        {{ trans('file.'. $quality) }}
+                                                                                    </option>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        </select>
+                                                                        @if($errors->has('quality'))
+                                                                            <span class="dot__color">{{ $errors->first('quality') }}</span>
+                                                                        @endif
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            @endif
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="shop_original_code">{{ trans('file.Shop Original Code') }}</label>
-                                                                    <input type="text" id="shop_original_code" class="form-control" name="shop_original_code" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('shop_original_code') }}">
+                                                                    <input type="text" id="shop_original_code" class="form-control" name="shop_original_code" placeholder="{{ trans('file.Specify') }}"
+                                                                        value="{{ old('shop_original_code')? old('shop_original_code'): $data->shop_original_code }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="vin_code">{{ trans('file.VIN Code') }}</label>
-                                                                    <input type="text" id="vin_code" class="form-control" name="vin_code" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('vin_code') }}">
+                                                                    <input type="text" id="vin_code" class="form-control" name="vin_code" placeholder="{{ trans('file.Specify') }}"
+                                                                        value="{{ old('vin_code')? old('vin_code'): $data->vin_code }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="full_model_code">{{ trans('file.Full Model Code') }}</label>
-                                                                    <input type="text" id="full_model_code" class="form-control" name="full_model_code" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('full_model_code') }}">
+                                                                    <input type="text" id="full_model_code" class="form-control" name="full_model_code" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('full_model_code')? old('full_model_code'): $data->full_model_code }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="engine_model_code">{{ trans('file.Engine Model Code') }}</label>
-                                                                    <input type="text" id="engine_model_code" class="form-control" name="engine_model_code" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('engine_model_code') }}">
+                                                                    <input type="text" id="engine_model_code" class="form-control" name="engine_model_code" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('engine_model_code')? old('engine_model_code'): $data->engine_model_code }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="color">{{ trans('file.Color') }}</label>
-                                                                    <input type="text" id="color" class="form-control" name="color" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('color') }}">
+                                                                    <input type="text" id="color" class="form-control" name="color" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('color')? old('color'): $data->color }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="trim">{{ trans('file.Trim') }}</label>
-                                                                    <input type="text" id="trim" class="form-control" name="trim" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('trim') }}">
+                                                                    <input type="text" id="trim" class="form-control" name="trim" placeholder="{{ trans('file.Specify') }}"
+                                                                        value="{{ old('trim')? old('trim'): $data->trim }}">
                                                                 </div>
                                                             </div>
 
@@ -272,13 +307,13 @@
                                                 <br>
                                                 <div class="form-check-inline">
                                                     <label class="form-check-label" for="Insured">
-                                                        <input type="radio" class="form-check-input" id="Insured" name="is_warranty" value="1" checked>
+                                                        <input type="radio" class="form-check-input" id="Insured" name="is_warranty" value="1" @if($data->is_warranty == 1) checked @endif>
                                                         {{ trans('file.Insured') }}
                                                     </label>
                                                 </div>
                                                 <div class="form-check-inline">
                                                     <label class="form-check-label" for="no-insurance">
-                                                        <input type="radio" class="form-check-input" id="no-insurance" name="is_warranty" value="0">
+                                                        <input type="radio" class="form-check-input" id="no-insurance" name="is_warranty" value="0" @if($data->is_warranty == 0) checked @endif>
                                                         {{ trans('file.No Insurance') }}
                                                     </label>
                                                 </div>
@@ -288,12 +323,15 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <input type="number" class="form-control" name="duration" 
-                                                                    placeholder="{{ trans('file.Specify') }}" value="{{ old('duration') }}" required>
+                                                            <input type="number" class="form-control" name="duration" placeholder="{{ trans('file.Specify') }}" 
+                                                                    value="{{ old('duration')? old('duration'): isset($warranty->duration)? $warranty->duration : '' }}">
                                                             <select class="btn btn__garuntee" aria-label="Default select example" name="year_month_day">
                                                                 @foreach ($day_month_year as $timeType)
-                                                                <option value="{{ $timeType }}">{{ trans('file.' . $timeType) }}</option>
-                                                            @endforeach
+                                                                    <option value="{{ $timeType }}" 
+                                                                        @if($timeType == (isset($warranty->year_month_day)? $warranty->year_month_day : '')) selected @endif>
+                                                                        {{ trans('file.' . $timeType) }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                         <span>{{ trans('file.Warranty Message1') }}</span>
@@ -313,7 +351,9 @@
 
                                                     <div class="col-12">
                                                         <div class="box__text">
-                                                            <textarea name="term_and_condition" placeholder="{{ trans('file.Specify') }}" class="form-control"></textarea>
+                                                            <textarea name="term_and_condition" placeholder="{{ trans('file.Specify') }}" class="form-control">
+                                                                {{   old('term_and_condition')? old('term_and_condition'): ltrim($data->term_and_condition, " ")   }}
+                                                            </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -354,10 +394,14 @@
 
                                                             <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                                                 <div class="input-group">
-                                                                    <input type="number" class="form-control" name="weight" value="{{ old('weight') }}">
+                                                                    <input type="number" class="form-control" name="weight" 
+                                                                            value="{{ old('weight')? old('weight'): (isset($transport->weight)? $transport->weight : 0) }}">
                                                                     <select class="btn btn__weight" name="unit">
                                                                         @foreach ($units as $unit)
-                                                                            <option value="{{ $unit }}">{{ $unit }}</option>
+                                                                            <option value="{{ $unit }}" 
+                                                                                @if($unit == (isset($transport->unit)? $transport->unit : '')) selected @endif>
+                                                                                {{ $unit }}
+                                                                            </option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
@@ -372,13 +416,22 @@
 
                                                             <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                                                 <div class="input-group">
-                                                                    <input type="number" class="form-control" name="width" placeholder="{{ trans('file.Width') }}" value="{{ old('width') }}">
-                                                                    <input type="number" class="form-control" name="length" placeholder="{{ trans('file.Length') }}" value="{{ old('length') }}">
-                                                                    <input type="number" class="form-control" name="height" placeholder="{{ trans('file.Height') }}" value="{{ old('height') }}">
+                                                                    <input type="number" class="form-control" name="width" placeholder="{{ trans('file.Width') }}" 
+                                                                            value="{{ old('width')? old('width'): (isset($transport->width)? $transport->width : '') }}">
+
+                                                                    <input type="number" class="form-control" name="length" placeholder="{{ trans('file.Length') }}" 
+                                                                            value="{{ old('length')? old('length'): (isset($transport->length)? $transport->length : '') }}">
+
+                                                                    <input type="number" class="form-control" name="height" placeholder="{{ trans('file.Height') }}" 
+                                                                            value="{{ old('height')? old('height'): (isset($transport->height)? $transport->height : '') }}">
+
                                                                     <span>{{ trans('file.UOM') }}</span>
                                                                     <select class="btn btn__unit" name="uom">
                                                                         @foreach ($uoms as $uom)
-                                                                            <option value="{{ $uom }}"> {{ $uom }}</option>
+                                                                            <option value="{{ $uom }}" 
+                                                                                @if($uom == (isset($transport->uom)? $transport->uom : '')) selected @endif>
+                                                                                {{ $uom }}
+                                                                            </option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
@@ -427,7 +480,6 @@
                                                                                         <div class="box__type">
                                                                                             <div class="row">
                                                                                                 @foreach ($transport_type_array as $transport_type)
-                                                                                                    <input type="hidden" name="transport_type_id" value="{{ $transport_type['id'] }}">
                                                                                                     <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                                                                                         <p class="txt__type">{{ trans('file.Shipping Type') }} <span class="label__success">{{ $transport_type['name'] }}</span></p>
                                                                                                     </div>
@@ -442,10 +494,11 @@
                                                                                                             <div class="form-check form-switch">
                                                                                                                 <input class="form-check-input" 
                                                                                                                     type="checkbox" 
-                                                                                                                    role="switch"  
+                                                                                                                    role="switch" 
                                                                                                                     id="flexSwitchCheckDefault"
                                                                                                                     name="transport_type_id[]"
                                                                                                                     value="{{ $transport_type['id'] }}"
+                                                                                                                    @if (in_array($transport_type['id'], $transport_type_ids)) checked @endif
                                                                                                                 >
                                                                                                             </div>
                                                                                                         </div>
@@ -473,14 +526,16 @@
                                                             <div class="col-xl-10 col-lg-10 col-md-10 col-12">
                                                                 <div class="wrapper__checkbox">
                                                                     <div class="form-check">
-                                                                        <input type="radio" class="form-check-input" id="ready-to-ship" name="is_deliver" value="1" checked>
+                                                                        <input type="radio" class="form-check-input" id="ready-to-ship" name="is_deliver" value="1" 
+                                                                                @if((isset($transport->is_deliver)? $transport->is_deliver:true) == true) checked @endif>
                                                                         <label class="form-check-label">
                                                                             {{ trans('file.Ready to Ship') }}
                                                                         </label>
                                                                     </div>
 
                                                                     <div class="form-check">
-                                                                        <input type="radio" class="form-check-input" id="longer-than-usual" name="is_deliver" value="0" >
+                                                                        <input type="radio" class="form-check-input" id="longer-than-usual" name="is_deliver" value="0" 
+                                                                                @if((isset($transport->is_deliver)? $transport->is_deliver:true) == false) checked @endif>
                                                                         <label class="form-check-label">
                                                                             {{ trans('file.Prepare to deliver longer than usual.') }}
                                                                         </label>
@@ -491,7 +546,10 @@
                                                                         <span class="label__setdate">{{ trans('file.Specify Day') }}</span>
                                                                         <select class="form-select" name="estimated_days" aria-label="Default select example">
                                                                             @for ($i = 1; $i <= 31; $i++)
-                                                                                <option value="{{ $i }}">{{ $i }}</option>
+                                                                                <option value="{{ $i }}"
+                                                                                        @if((isset($transport->estimated_days)? $transport->estimated_days : 0) == $i) selected @endif
+                                                                                >{{ $i }}
+                                                                                </option>
                                                                             @endfor
                                                                         </select>
                                                                     </div>
@@ -534,8 +592,8 @@
 
                                                         <div class="form-group">
                                                             <label for="product-price">{{ trans('file.Amount') }} <span>{{ trans('file.Including VAT') }}</span></label>
-                                                            <input type="number" id="product-price" class="form-control" name="price" 
-                                                                    placeholder="{{ trans('file.Specify') }}" value="{{ old('price') }}">
+                                                            <input type="number" id="product-price" class="form-control" name="price" placeholder="{{ trans('file.Specify') }}"
+                                                                value="{{ old('price')? old('price'): $data->price }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -546,13 +604,13 @@
                                                         <div class="wrapper__form">
                                                             <div class="form-group">
                                                                 <label for="commission">{{ trans('file.Commission') }} </label>
-                                                                <input type="text" class="form-control" name="commission" 
-                                                                    placeholder="{{ trans('file.Specify') }}" value="{{ old('commission') }}" readonly>
+                                                                <input type="text" class="form-control" name="commission" placeholder="{{ trans('file.Specify') }}" 
+                                                                    value="{{ old('commission')? old('commission'): $data->commission }}" readonly>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="revenue">{{ trans('file.Net Income') }}</label>
-                                                                <input type="text" class="form-control" name="revenue" 
-                                                                    placeholder="{{ trans('file.Specify') }}" value="{{ old('revenue') }}" readonly>
+                                                                <input type="text" class="form-control" name="revenue" placeholder="{{ trans('file.Specify') }}" 
+                                                                    value="{{ old('revenue')? old('revenue'): $data->revenue }}" readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -566,16 +624,23 @@
                         </div>
 
                         {{-- hidden input --}}
-                        <input type="hidden" name="product_type" value="second">
-                        <input type="hidden" name="brand_id" value="{{ $data['brand_id'] }}">
-                        <input type="hidden" name="model_id" value="{{ $data['model_id'] }}">
-                        <input type="hidden" name="sub_model_id" value="{{ $data['sub_model_id'] }}">
-                        <input type="hidden" name="issue_year_id" value="{{ $data['issue_year_id'] }}">
-                        <input type="hidden" name="category_id" value="{{ $data['category_id'] }}">
-                        <input type="hidden" name="sub_category_id" value="{{ $data['sub_category_id'] }}">
-                        <input type="hidden" name="sub_sub_category_id" value="{{ $data['sub_sub_category_id'] }}">
-                        <input type="hidden" name="salesman_code" value="{{ old('salesman_code') }}">
-
+                            <input type="hidden" name="product_type" value="{{ $data->product_type }}">
+                            <input type="hidden" name="salesman_code" value="{{ old('salesman_code')? old('salesman_code'): $data->salesman_code }}">
+                            <input type="hidden" name="brand_id" value="{{ old('brand_id')? old('brand_id'): $data->brand_id }}">
+                            <input type="hidden" name="model_id" value="{{ old('model_id')? old('model_id'): $data->model_id }}">
+                            <input type="hidden" name="sub_model_id" value="{{ old('sub_model_id')? old('sub_model_id'): $data->sub_model_id }}">
+                            <input type="hidden" name="issue_year_id" value="{{ old('issue_year_id')? old('issue_year_id'): $data->issue_year_id }}">
+                        @if ($copyType == 'same_category')
+                            <input type="hidden" name="category_id" value="{{ old('category_id')? old('category_id'): $data->category_id }}">
+                            <input type="hidden" name="sub_category_id" value="{{ old('sub_category_id')? old('sub_category_id'): $data->sub_category_id }}">
+                            <input type="hidden" name="sub_sub_category_id" value="{{ old('sub_sub_category_id')? old('sub_sub_category_id'): $data->sub_sub_category_id }}">
+                        @else
+                            <input type="hidden" name="category_id" value="{{ old('category_id')? old('category_id'): '' }}">
+                            <input type="hidden" name="sub_category_id" value="{{ old('sub_category_id')? old('sub_category_id'): '' }}">
+                            <input type="hidden" name="sub_sub_category_id" value="{{ old('sub_sub_category_id')? old('sub_sub_category_id'): '' }}">
+                            
+                        @endif
+                    
                     </form>
                     <hr />
                 @endfor
@@ -585,7 +650,7 @@
                     <div class="box__btn">
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="javascript:void(0)" class="btn btn-secondary d-block">{{ trans('file.Back') }}</a>
+                                <a href="javascript:void(0)" id="test" class="btn btn-secondary d-block">{{ trans('file.Back') }}</a>
                             </div>
                             <div class="col-md-6">
                                 <a href="javascript:document.getElementById('msform').submit();" class="btn btn-primary d-block">{{ trans('file.Submit') }}</a>
@@ -594,29 +659,7 @@
                     </div>
                 </div>
                 {{-- back and submit button --}}
-
-                {{-- copy product --}}
-                <div class="box__condition">
-                    <div class="box__title">
-                        <p class="txt__title">{{ trans('file.Copy Product Message1') }} <span>{{ trans('file.Copy Product Message2') }}</span></p>
-                    </div>
-
-                    <div class="box__wrapperbutton">
-                        <a href="setting-copyproduct.php" class="btn btn__copyproduct">
-                            <img src="{{ asset('assets/img/icon/icon__copyproduct.svg') }}" class="img-fluid" alt="icon__copyproduct.svg">
-                            <p>{{ trans('file.Copy Product') }}</p>
-                            <span>{{ trans('file.Product name, brand and model') }} </span>
-                            <span class="txt__red">{{ trans('file.same category but the quality is different') }}</span>
-                        </a>
-
-                        <a href="javascript:void(0)" class="btn btn__searchcat" data-bs-toggle="modal" data-bs-target="#modlapdcatdiffrence">
-                            <img src="{{ asset('assets/img/icon/icon__searchcat.svg') }}" class="img-fluid" alt="icon__searchcat.svg">
-                            <p>{{ trans('file.different product categories') }}</p>
-                            <span>{{ trans('file.same brand and model') }}</span>
-                        </a>
-                    </div>
-                </div>
-                {{-- copy product --}}
+               
             </div>
 
             <div class="col-lg-3">
@@ -670,11 +713,16 @@
                         </div>
                         <div class="form-group">
                             <label for="">{{ trans('file.Sell Status') }}</label>
-                            <div class="box__status status-sold">{{ trans('file.Sold') }}</div>
-                            {{-- <div class="box__status status-selling">{{ trans('file.Selling') }}</div>
-                            <div class="box__status status-cancle">{{ trans('file.Cancel') }}</div>
-                            <div class="box__status status-banned">{{ trans('file.Suspended') }}</div> --}}
-                        </div>
+                            @if ($data->status_code == 'sell')
+                                <div class="box__status status-selling">{{ trans('file.Selling') }}</div> 
+                            @elseif ($data->status_code == 'sold')
+                                <div class="box__status status-sold">{{ trans('file.Sold') }}</div>
+                            @elseif ($data->status_code == 'suspended')
+                                <div class="box__status status-banned">{{ trans('file.Suspended') }}</div>
+                            @elseif ($data->status_code == 'cancle')
+                                <div class="box__status status-cancle">{{ trans('file.Cancel') }}</div>
+                            @endif
+                         </div>
                     </form>
                 </div>
                 {{-- create log --}}
@@ -683,8 +731,9 @@
                 <div class="box__salecode">
                     <form>
                         <div class="form-group">
-                            <label for="salesman-code">{{ trans('file.SALE CODE') }}</label>
-                            <input id="salesman-code" type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" value="{{ old('salesman_code') }}">
+                            <label for="salesman_code">{{ trans('file.SALE CODE') }}</label>
+                            <input id="salesman-code" type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" 
+                                value="{{ old('salesman_code')? old('salesman_code'): $data->salesman_code }}">
                         </div>
                     </form>
                 </div>
@@ -696,244 +745,95 @@
 
 
 {{-- Modal for copy brand, model, category, etc.. --}}
-<div class="modal fade" id="modlapdcatdiffrence" tabindex="-1" aria-labelledby="modlapdcatdiffrenceLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="modlapdcatdiffrence" tabindex="-1" aria-labelledby="modlapdcatdiffrenceLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
 
             <div class="modal-body">
                 <form id="msform">
                     <div class="box__allstep">
                         <div class="box__step">
-                            <p class="txt__titlestep">เลือกแบรนด์</p>
+                            <p class="txt__titlestep">{{ trans('file.Choose Category')}}</p>
                             <div class="box__stepdetail">
-                                <a href="javascript:void(0)" class="btn__label step1 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__brands"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step2 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__series"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step3 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__subseries"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step4 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__years"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step5 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__cat"></span> </a>
+                                
+                                <a href="javascript:void(0)" class="btn__label step1 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__cat"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span></a>
+                                <a href="javascript:void(0)" class="btn__label step2 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__sub_cat"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span></a>
+                                <a href="javascript:void(0)" class="btn__label step3 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__sub_sub_cat"></span></a></a>
                             </div>
 
                             <div class="row">
                                 <div class="col-6">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="ระบุ" aria-describedby="button-addon2">
+                                        <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-describedby="button-addon2">
                                         <button class="btn btn btn__search" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <?php
-                                    foreach (range('A', 'Z') as $letter) {
-                                        echo "<a href='javascript:void(0)' class='letter__az'>$letter</a>";
-                                    }
-                                    ?>
+                                    @foreach (range('A', 'Z') as $letter)
+                                        <a href='javascript:void(0)' class='letter__az'>{{ $letter }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
 
-
+                        {{-- select product main categories --}}
                         <div class="box__contentdetail">
+                            {{-- Category --}}
                             <div class="row box__scroll" id="fieldset1">
-                                <?php
-                                $name = array(
-                                    '1' => 'Aston Martin',
-                                    '2' => 'Toyota',
-                                    '3' => 'Hyundai',
-                                    '4' => 'Nissan',
-                                    '5' => 'Isuzu',
-                                    '6' => 'Toyota',
-                                    '7' => 'Aston Martin',
-                                    '8' => 'Nissan',
-                                    '9' => 'Isuzu',
-                                    '10' => 'Hyundai',
-                                    '11' => 'Aston Martin',
-                                    '12' => 'Toyota',
-                                    '13' => 'Hyundai',
-                                    '14' => 'Nissan',
-                                    '15' => 'Isuzu',
-                                    '16' => 'Toyota',
-                                    '17' => 'Aston Martin',
-                                    '18' => 'Nissan',
-                                    '19' => 'Isuzu',
-                                    '20' => 'Hyundai',
-                                );
-                                for ($i = 1; $i <= 20; $i++) {
-                                ?>
+                                @foreach ($category_list_data as $category)
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-12 next">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="image-option" id="image-options<?php echo $i; ?>" value="option<?php echo $i; ?>">
-                                            <label class="form-check-label" for="image-options<?php echo $i; ?>">
-                                                <img src="assets/img/logobrands/img-logo<?php echo $i; ?>.png" class="img-fluid img-circleimg" alt="">
-                                                <?php echo $name[$i]; ?>
-                                            </label>
+                                            <input class="form-check-input" type="radio" name="category" id="image-options{{ $category->id }}" value="{{ $category->id }}">
+                                            <label class="form-check-label" for="image-options{{ $category->id }}">{{ $category->name_en . ' ('. $category->id }}</label>
+                                            <input type="hidden" class="item-name" value="{{ $category->name_en }}">
                                         </div>
                                     </div>
-                                <?php } ?>
+                                @endforeach
                             </div>
+
+                            {{-- sub category --}}
                             <fieldset attr-id="1">
                                 <div class="row box__scroll" id="fieldset2">
-                                    <?php $name = array(
-                                        '1' => 'Revo',
-                                        '2' => 'Alphard',
-                                        '3' => 'Avanza',
-                                        '4' => 'Camry',
-                                        '5' => 'Corlla',
-                                        '6' => 'Revo',
-                                        '7' => 'Alphard',
-                                        '8' => 'Avanza',
-                                        '9' => 'Camry',
-                                        '10' => 'Corlla',
-                                        '11' => 'Revo',
-                                        '12' => 'Alphard',
-                                        '13' => 'Avanza',
-                                        '14' => 'Camry',
-                                        '15' => 'Corlla',
-                                        '16' => 'Revo',
-                                        '17' => 'Alphard',
-                                        '18' => 'Avanza',
-                                        '19' => 'Camry',
-                                        '20' => 'Corlla',
-
-                                    );
-                                    for ($i = 1; $i <= 20; $i++) {
-                                    ?>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    <?php echo $name[$i]; ?>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
                                 </div>
-
-                                <!--  -->
+                                {{-- sub sub category --}}
                                 <fieldset attr-id="2">
                                     <div class="row box__scroll" id="fieldset3">
-                                        <?php $name = array(
-                                            '1' => '2.4 E',
-                                            '2' => '2.4 E Plus 4WD',
-                                            '3' => '2.4 J',
-                                            '4' => '2.4 E 4WD',
-                                            '5' => '2.4 Entry',
-                                            '6' => '2.4 E',
-                                            '7' => '2.4 E Plus 4WD',
-                                            '8' => '2.4 J',
-                                            '9' => '2.4 E 4WD',
-                                            '10' => '2.4 Entry',
-                                            '11' => '2.4 E',
-                                            '12' => '2.4 E Plus 4WD',
-                                            '13' => '2.4 J',
-                                            '14' => '2.4 E 4WD',
-                                            '15' => '2.4 Entry',
-                                            '16' => '2.4 E',
-                                            '17' => '2.4 E Plus 4WD',
-                                            '18' => '2.4 J',
-                                            '19' => '2.4 E 4WD',
-                                            '20' => '2.4 Entry',
-
-                                        );
-                                        for ($i = 1; $i <= 20; $i++) {
-                                        ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        <?php echo $name[$i]; ?>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
                                     </div>
-
-                                    <!--  -->
                                     <fieldset attr-id="3">
-                                        <div class="row box__scroll" id="fieldset4">
-                                            <?php $years = array(
-                                                '1' => '2022',
-                                                '2' => '2022',
-                                                '3' => '2022',
-                                                '4' => '2022',
-                                                '5' => '2022',
-                                                '6' => '2022 ',
-                                                '7' => '2022',
-                                                '8' => '2022',
-                                                '9' => '2022',
-                                                '10' => '2022',
-                                                '11' => '2022 ',
-                                                '12' => '2022',
-                                                '13' => '2022',
-                                                '14' => '2022',
-                                                '15' => '2022',
-                                            );
-                                            for ($i = 1; $i <= 15; $i++) {
-                                            ?>
-                                                <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                        <label class="form-check-label" for="flexCheckDefault">
-                                                            <?php echo $years[$i]; ?>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
-                                        </div>
-                                        <!--  -->
-                                        <fieldset attr-id="4">
-                                            <div class="row box__scroll" id="fieldset5">
-                                                <?php $content = array(
-                                                    '1' => 'ถังน้ำสำรอง',
-                                                    '2' => 'ชุดสายไฟ',
-                                                    '3' => 'กล่องฟิวส์',
-                                                    '4' => 'ถังน้ำมัน',
-                                                    '5' => 'ออยล์คูเลอร์',
-                                                    '6' => 'ออยล์คูเลอร์ ',
-                                                    '7' => 'ถังน้ำสำรอง',
-                                                    '8' => 'ชุดสายไฟ',
-                                                    '9' => 'กล่องฟิวส์',
-                                                    '10' => 'ถังน้ำมัน',
-                                                    '11' => 'ถังน้ำสำรอง ',
-                                                    '12' => 'ชุดสายไฟ',
-                                                    '13' => 'กล่องฟิวส์',
-                                                    '14' => 'ถังน้ำมัน',
-                                                    '15' => 'ออยล์คูเลอร์',
-                                                    '16' => 'ถังน้ำมัน',
-                                                    '17' => 'ถังน้ำสำรอง ',
-                                                    '18' => 'ชุดสายไฟ',
-                                                    '19' => 'กล่องฟิวส์',
-                                                    '20' => 'ถังน้ำมัน',
-                                                );
-                                                for ($i = 1; $i <= 15; $i++) {
-                                                ?>
-                                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 ">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                            <label class="form-check-label" for="flexCheckDefault">
-                                                                <?php echo $content[$i]; ?>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
-                                            </div>
-                                        </fieldset>
-                                        <!--  -->
-                                    </fieldset>
-                                    <!--  -->
-
                                 </fieldset>
-                                <!--  -->
                             </fieldset>
-                            <!--  -->
+                            <hr>
+                            <input type="hidden" name="mod_category_id" >
+                            <input type="hidden" name="mod_sub_category_id" >
+                            <input type="hidden" name="mod_sub_sub_category_id" >
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        {{-- <label class="text-white">Category:&nbsp;&nbsp;</label> --}}
+                                        <input type="text" class="form-control" name="category_name" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                         <input type="text" class="form-control" name="sub_category_name" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="sub_sub_category_name" readonly>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        {{-- select product main categories --}}
                     </div>
                 </form>
-                <!--  -->
 
                 <div class="box__btn">
                     <a href="javascript:void(0)" class="btn btn__back">{{ trans('file.Back') }}</a>
-                    <a href="javascript:void(0)" class="btn btn__save">{{ trans('file.Submit') }}</a>
+                    <a href="javascript:void(0)" id="btn-submit" class="btn btn__save">{{ trans('file.Submit') }}</a>
                 </div>
-                <!--  -->
             </div>
         </div>
     </div>
@@ -950,15 +850,44 @@
     var current_fs, next_fs, previous_fs;
     var left, opacity, scale;
     var animating;
+    var itemId;
+    var itemName;
+    var isWarranty = "{{ $data->is_warranty }}";
+    var isDeliver = "{{ isset($transport->is_deliver)? $transport->is_deliver : 1 }}";
+    var coptType = "{{ $copyType }}";
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    $(document).ready(function(){
+        // copy type
+        if (coptType == 'diff_category') {
+            $('#modlapdcatdiffrence').modal('show');
         }
+        // copy type
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        // auto close alert
+        setTimeout(() => {
+            $('.alert').alert('close');
+        }, 3000);
+        // auto close alert
+
+        // specify initilize option data
+            setDuration(isWarranty);
+            setEstimateDays(isDeliver);
+        // specify initilize option data
+
     });
 
-// control brand, model, category event
-    $(".next").click(function() {
+    // control brand, model, category event
+    $(document).on('click', '.next', function() {
+
+        itemId  = $(this).children().children().val();
+        itemName  = $(this).children().children('input.item-name').val();
+
         if (animating) return false;
         animating = true;
 
@@ -971,20 +900,25 @@
         const attr__value = next_fs.attr('attr-id');
         // alert(attr__value);
         if (attr__value == 1) {
+            $('input[name="mod_category_id"]').val(itemId);
+            $('input[name="category_name"]').val(itemName);
+            getSub(itemId, 'sub_categories');
+
             $('.txt__titlestep').addClass('d-none');
             $('.step1').removeClass('d-none');
-            $('.txt__brands').html('แบรนด์');
+            $('.txt__cat').html('{{ trans("file.Category") }}');
             $('.step2').removeClass('d-none');
-            $('.txt__series').html('รุ่น');
+            $('.txt__sub_cat').html('{{ trans("file.Sub Category") }}');
         } else if (attr__value == 2) {
+            $('input[name="mod_sub_category_id"]').val(itemId);
+            $('input[name="sub_category_name"]').val(itemName);
+            getSub(itemId, 'sub_sub_categories');
+
             $('.step3').removeClass('d-none');
-            $('.txt__subseries').html('รุ่นย่อย');
-        } else if (attr__value == 3) {
-            $('.step4').removeClass('d-none');
-            $('.txt__years').html('ปี');
-        } else if (attr__value == 4) {
-            $('.step5').removeClass('d-none');
-            $('.txt__cat').html('หมวดหมู่');
+            $('.txt__sub_sub_cat').html('{{ trans("file.Sub Sub Category") }}');
+        } else {
+            $('input[name="mod_sub_sub_category_id"]').val(itemId);
+            $('input[name="sub_sub_category_name"]').val(itemName);
         }
 
         current_fs.animate({
@@ -1065,7 +999,7 @@
         var form_data = new FormData();                  
         form_data.append('file', file_data);
         $.ajax({
-            url: 'dropzone/store',
+            url: '../dropzone/store',
             dataType: 'text',
             cache: false,
             contentType: false,
@@ -1091,7 +1025,7 @@
         var imageName = $(e.currentTarget).data('image');
 
         $.ajax({
-            url: 'dropzone/remove',
+            url: '../dropzone/remove',
             dataType: 'text',
             data: {
                 'imageName': imageName
@@ -1109,6 +1043,10 @@
     // control warranty option
     $('input[name="is_warranty"]').on('change', function() {
         var value = $(this).val();
+        setDuration(value);
+    });
+
+    function setDuration(value) {
         if (value == 0) {
             $('input[name="duration"]').prop('required', false);
             $('input[name="duration"]').prop('readonly', true);
@@ -1117,15 +1055,16 @@
             $('input[name="duration"]').prop('required', true);
             $('input[name="duration"]').prop('readonly', false);
         }
-    });
+    }
     // control warranty option
 
     // control transport status
-        $('select[name="estimated_days"]').prop('required', false);
-        $('select[name="estimated_days"]').prop('disabled', true);
-        $('select[name="estimated_days"]').val('');
     $('input[name="is_deliver"]').on('change', function() {
         var value = $(this).val();
+        setEstimateDays(value);
+    });
+
+    function setEstimateDays(value) {
         if (value == 1) {
             $('select[name="estimated_days"]').prop('required', false);
             $('select[name="estimated_days"]').prop('disabled', true);
@@ -1134,7 +1073,7 @@
             $('select[name="estimated_days"]').prop('required', true);
             $('select[name="estimated_days"]').prop('disabled', false);
         }
-    });
+    }
     // control transport status
 
     // calculate commission and revenue
@@ -1169,58 +1108,78 @@
     });
     // insert salesman code
 
-    // validation
-    function validate() {
+    // submit modal
+    $(document).on('click', '#btn-submit', function(){
+        $('input[name="category_id"]').val($('input[name="mod_category_id"]').val());
+        $('input[name="sub_category_id"]').val($('input[name="mod_sub_category_id"]').val());
+        $('input[name="sub_sub_category_id"]').val($('input[name="mod_sub_sub_category_id"]').val());
+        const categoryNameEn = $('input[name="category_name"]') .val();
+        const subCategoryNameEn = $('input[name="sub_category_name"]') .val();
+        const subSubCategoryNameEn = $('input[name="sub_sub_category_name"]') .val();
+        const productNameEn = categoryNameEn +' '+ subCategoryNameEn +' '+ subSubCategoryNameEn;
+        $('input[name="name_en"]').val(productNameEn);
+        $('input[name="name_th"]').val(productNameEn);
+        $('#modlapdcatdiffrence').modal('hide');
+    });
+    // submit modal
 
-        var name_th = $('input[name="name_th"]').val();
-        var name_th = $('input[name="name_en"]').val();
-        if (name_th == '')
-            $('#name-th-error').html('product name is require')
-           
-        if (name_en == '')
-            $('#name-th-error').html('product name is require')
 
-        // var product_code = $("input[name='code']").val();
-        // var barcode_symbology = $('select[name="barcode_symbology"]').val();
-        // var exp = /^\d+$/;
+    // helper function
+    function getSub(id, tableName) {
+            $.ajax({
+                type: 'GET',
+                url: '../get_sub_items',
+                data: {
+                    'id': id,
+                    'tableName': tableName
+                },
+                success: function(data){
+                    var htmltext;
+                   
+                    if (tableName === 'sub_categories') {
+                        if (data.length === 0) {
+                            alert('Sub Category not found');
+                        } else {
+                            data.forEach(subCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="'+ subCategory.name_en +'">'
+                                    +'</div></div>';
+                                $('#fieldset2').append(htmltext);
+                            });
+                        }       
+                    }  
+                    else if (tableName === 'sub_sub_categories') {
+                        if (data.length === 0) {
+                            alert('Sub Sub Category not found');
+                        } else {
+                            data.forEach(subSubCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="'+ subSubCategory.name_en +'">'
+                                    +'</div></div>';
+                                $('#fieldset3').append(htmltext);
+                            });
+                        }       
+                    }  
+                  
+                },
+                error: function(error) {
+                    console.log(error);
+                }
 
-        // if(!(product_code.match(exp)) && (barcode_symbology == 'UPCA' || barcode_symbology == 'UPCE' || barcode_symbology == 'EAN8' || barcode_symbology == 'EAN13') ) {
-        //     alert('Product code must be numeric.');
-        //     return false;
-        // }
-        // else if(product_code.match(exp)) {
-        //     if(barcode_symbology == 'UPCA' && product_code.length > 11){
-        //         alert('Product code length must be less than 12');
-        //         return false;
-        //     }
-        //     else if(barcode_symbology == 'EAN8' && product_code.length > 7){
-        //         alert('Product code length must be less than 8');
-        //         return false;
-        //     }
-        //     else if(barcode_symbology == 'EAN13' && product_code.length > 12){
-        //         alert('Product code length must be less than 13');
-        //         return false;
-        //     }
-        // }
+            })
+        }
 
-        // if( $("#type").val() == 'combo' ) {
-        //     var rownumber = $('table.order-list tbody tr:last').index();
-        //     if (rownumber < 0) {
-        //         alert("Please insert product to table!")
-        //         return false;
-        //     }
-        // }
-        // if($("#is-variant").is(":checked")) {
-        //     rowindex = $("table#variant-table tbody tr:last").index();
-        //     if (rowindex < 0) {
-        //         alert('This product has variant. Please insert variant to table');
-        //         return false;
-        //     }
-        // }
-        // $("input[name='price']").prop('disabled',false);
-        // return true;
-    }
-    // validation
+    // helper function
 
 
 </script>

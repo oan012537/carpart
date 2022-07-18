@@ -14,17 +14,21 @@
     
 <input type="hidden" id="pageName" name="pageName" value="setting-product">
 <div class="content" id="setting-createproductresult">
-    {{-- @if(session()->has('message')) --}}
+    @if(session()->has('message'))
         <div class="alert alert-success alert-dismissible fade show">
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             <strong>Success!</strong> {!! session()->get('message') !!}
           </div>
-    {{-- @endif --}}
+    @endif
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="box__titlepage">
-                    <h3>{{ trans('file.Add Second Hand') }}</h3>
+                    @if ($data->product_type == 'second')
+                        <h3>{{ trans('file.Add Second Hand') }}</h3>    
+                    @else
+                        <h3>{{ trans('file.Add New Product') }}</h3>
+                    @endif
                 </div>
             </div>
 
@@ -199,17 +203,22 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                                                                <div class="form-group">
-                                                                    <label>{{ trans('file.Product Quality') }} <span>*</span></label>
-                                                                    <select class="form-select" aria-label="Default select example" name="quality">
-                                                                        <option>{{ trans('file.Specify') }}</option>
-                                                                        @foreach ($product_qualities as $quality)
-                                                                            <option value="{{ $quality }}" @if ($quality == $data->quality) selected @endif>{{ trans('file.'. $quality) }}</option>
-                                                                        @endforeach
-                                                                    </select>
+                                                            @if ($data->product_type == 'second')
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                                                                    <div class="form-group">
+                                                                        <label>{{ trans('file.Product Quality') }} <span>*</span></label>
+                                                                        <select class="form-select" aria-label="Default select example" name="quality">
+                                                                            <option value="">{{ trans('file.Specify') }}</option>
+                                                                            @foreach ($product_qualities as $quality)
+                                                                                <option value="{{ $quality }}" @if ($quality == $data->quality) selected @endif>{{ trans('file.'. $quality) }}</option>
+                                                                            @endforeach
+                                                                            @if($errors->has('quality'))
+                                                                                <span class="dot__color">{{ $errors->first('quality') }}</span>
+                                                                            @endif
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            @endif
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
@@ -377,7 +386,7 @@
                                                             <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                                                 <div class="input-group">
                                                                     <input type="number" class="form-control" name="weight" 
-                                                                            value="{{ old('weight')? old('weight'): isset($transport->weight)? $transport->weight : 0 }}">
+                                                                            value="{{ old('weight')? old('weight'): (isset($transport->weight)? $transport->weight : 0) }}">
                                                                     <select class="btn btn__weight" name="unit">
                                                                         @foreach ($units as $unit)
                                                                             <option value="{{ $unit }}" 
@@ -399,13 +408,13 @@
                                                             <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                                                 <div class="input-group">
                                                                     <input type="number" class="form-control" name="width" placeholder="{{ trans('file.Width') }}" 
-                                                                            value="{{ old('width')? old('width'): isset($transport->width)? $transport->width : '' }}">
+                                                                            value="{{ old('width')? old('width'): (isset($transport->width)? $transport->width : '') }}">
 
                                                                     <input type="number" class="form-control" name="length" placeholder="{{ trans('file.Length') }}" 
-                                                                            value="{{ old('length')? old('length'): isset($transport->length)? $transport->length : '' }}">
+                                                                            value="{{ old('length')? old('length'): (isset($transport->length)? $transport->length : '') }}">
 
                                                                     <input type="number" class="form-control" name="height" placeholder="{{ trans('file.Height') }}" 
-                                                                            value="{{ old('height')? old('height'): isset($transport->height)? $transport->height : '' }}">
+                                                                            value="{{ old('height')? old('height'): (isset($transport->height)? $transport->height : '') }}">
 
                                                                     <span>{{ trans('file.UOM') }}</span>
                                                                     <select class="btn btn__unit" name="uom">
@@ -480,6 +489,7 @@
                                                                                                                     id="flexSwitchCheckDefault"
                                                                                                                     name="transport_type_id[]"
                                                                                                                     value="{{ $transport_type['id'] }}"
+                                                                                                                    @if (in_array($transport_type['id'], $transport_type_ids)) checked @endif
                                                                                                                 >
                                                                                                             </div>
                                                                                                         </div>
@@ -503,12 +513,12 @@
                                                             <div class="col-xl-2 col-lg-2 col-md-2 col-12">
                                                                 <p class="txt__label">{{ trans('file.Delivery Preparation') }}</p>
                                                             </div>
-
+                                                                
                                                             <div class="col-xl-10 col-lg-10 col-md-10 col-12">
                                                                 <div class="wrapper__checkbox">
                                                                     <div class="form-check">
                                                                         <input type="radio" class="form-check-input" id="ready-to-ship" name="is_deliver" value="1" 
-                                                                                @if((isset($transport->is_deliver)? $transport->is_deliver : '' != '0')) checked @endif>
+                                                                        @if((isset($transport->is_deliver)? $transport->is_deliver:true) == true) checked @endif>
                                                                         <label class="form-check-label">
                                                                             {{ trans('file.Ready to Ship') }}
                                                                         </label>
@@ -516,7 +526,7 @@
 
                                                                     <div class="form-check">
                                                                         <input type="radio" class="form-check-input" id="longer-than-usual" name="is_deliver" value="0" 
-                                                                            @if((isset($transport->is_deliver)? $transport->is_deliver : '' == '0')) checked @endif>
+                                                                            @if((isset($transport->is_deliver)? $transport->is_deliver:true) == false) checked @endif>
                                                                         <label class="form-check-label">
                                                                             {{ trans('file.Prepare to deliver longer than usual.') }}
                                                                         </label>
@@ -614,7 +624,6 @@
                         <input type="hidden" name="sub_category_id" value="{{ old('sub_category_id')? old('sub_category_id'): $data->sub_category_id }}">
                         <input type="hidden" name="sub_sub_category_id" value="{{ old('sub_sub_category_id')? old('sub_sub_category_id'): $data->sub_sub_category_id }}">
                         <input type="hidden" name="salesman_code" value="{{ old('salesman_code')? old('salesman_code'): $data->salesman_code }}">
-
                     
                     </form>
                     <hr />
@@ -657,7 +666,7 @@
                             <span class="txt__red">{{ trans('file.same category but the quality is different') }}</span>
                         </a>
                         {{-- copy by difference category --}}
-                        <a href="javascript:document.getElementById('frm-copy-diff-category').submit();" class="btn btn__searchcat" data-bs-toggle="modal" data-bs-target="#modlapdcatdiffrence">
+                        <a href="javascript:document.getElementById('frm-copy-diff-category').submit();" class="btn btn__searchcat" >
                             <img src="{{ asset('assets/img/icon/icon__searchcat.svg') }}" class="img-fluid" alt="icon__searchcat.svg">
                             <p>{{ trans('file.different product categories') }}</p>
                             <span>{{ trans('file.same brand and model') }}</span>
@@ -724,7 +733,7 @@
                                 <div class="box__status status-sold">{{ trans('file.Sold') }}</div>
                             @elseif ($data->status_code == 'suspended')
                                 <div class="box__status status-banned">{{ trans('file.Suspended') }}</div>
-                            @else
+                            @elseif ($data->status_code == 'cancle')
                                 <div class="box__status status-cancle">{{ trans('file.Cancel') }}</div>
                             @endif
                          </div>
@@ -749,251 +758,6 @@
 </div>
 
 
-{{-- Modal for copy brand, model, category, etc.. --}}
-<div class="modal fade" id="modlapdcatdiffrence" tabindex="-1" aria-labelledby="modlapdcatdiffrenceLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <div class="modal-body">
-                <form id="msform">
-                    <div class="box__allstep">
-                        <div class="box__step">
-                            <p class="txt__titlestep">เลือกแบรนด์</p>
-                            <div class="box__stepdetail">
-                                <a href="javascript:void(0)" class="btn__label step1 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__brands"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step2 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__series"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step3 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__subseries"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step4 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__years"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step5 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__cat"></span> </a>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="ระบุ" aria-describedby="button-addon2">
-                                        <button class="btn btn btn__search" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <?php
-                                    foreach (range('A', 'Z') as $letter) {
-                                        echo "<a href='javascript:void(0)' class='letter__az'>$letter</a>";
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="box__contentdetail">
-                            <div class="row box__scroll" id="fieldset1">
-                                <?php
-                                $name = array(
-                                    '1' => 'Aston Martin',
-                                    '2' => 'Toyota',
-                                    '3' => 'Hyundai',
-                                    '4' => 'Nissan',
-                                    '5' => 'Isuzu',
-                                    '6' => 'Toyota',
-                                    '7' => 'Aston Martin',
-                                    '8' => 'Nissan',
-                                    '9' => 'Isuzu',
-                                    '10' => 'Hyundai',
-                                    '11' => 'Aston Martin',
-                                    '12' => 'Toyota',
-                                    '13' => 'Hyundai',
-                                    '14' => 'Nissan',
-                                    '15' => 'Isuzu',
-                                    '16' => 'Toyota',
-                                    '17' => 'Aston Martin',
-                                    '18' => 'Nissan',
-                                    '19' => 'Isuzu',
-                                    '20' => 'Hyundai',
-                                );
-                                for ($i = 1; $i <= 20; $i++) {
-                                ?>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-12 next">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="image-option" id="image-options<?php echo $i; ?>" value="option<?php echo $i; ?>">
-                                            <label class="form-check-label" for="image-options<?php echo $i; ?>">
-                                                <img src="assets/img/logobrands/img-logo<?php echo $i; ?>.png" class="img-fluid img-circleimg" alt="">
-                                                <?php echo $name[$i]; ?>
-                                            </label>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                            <fieldset attr-id="1">
-                                <div class="row box__scroll" id="fieldset2">
-                                    <?php $name = array(
-                                        '1' => 'Revo',
-                                        '2' => 'Alphard',
-                                        '3' => 'Avanza',
-                                        '4' => 'Camry',
-                                        '5' => 'Corlla',
-                                        '6' => 'Revo',
-                                        '7' => 'Alphard',
-                                        '8' => 'Avanza',
-                                        '9' => 'Camry',
-                                        '10' => 'Corlla',
-                                        '11' => 'Revo',
-                                        '12' => 'Alphard',
-                                        '13' => 'Avanza',
-                                        '14' => 'Camry',
-                                        '15' => 'Corlla',
-                                        '16' => 'Revo',
-                                        '17' => 'Alphard',
-                                        '18' => 'Avanza',
-                                        '19' => 'Camry',
-                                        '20' => 'Corlla',
-
-                                    );
-                                    for ($i = 1; $i <= 20; $i++) {
-                                    ?>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    <?php echo $name[$i]; ?>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-
-                                <!--  -->
-                                <fieldset attr-id="2">
-                                    <div class="row box__scroll" id="fieldset3">
-                                        <?php $name = array(
-                                            '1' => '2.4 E',
-                                            '2' => '2.4 E Plus 4WD',
-                                            '3' => '2.4 J',
-                                            '4' => '2.4 E 4WD',
-                                            '5' => '2.4 Entry',
-                                            '6' => '2.4 E',
-                                            '7' => '2.4 E Plus 4WD',
-                                            '8' => '2.4 J',
-                                            '9' => '2.4 E 4WD',
-                                            '10' => '2.4 Entry',
-                                            '11' => '2.4 E',
-                                            '12' => '2.4 E Plus 4WD',
-                                            '13' => '2.4 J',
-                                            '14' => '2.4 E 4WD',
-                                            '15' => '2.4 Entry',
-                                            '16' => '2.4 E',
-                                            '17' => '2.4 E Plus 4WD',
-                                            '18' => '2.4 J',
-                                            '19' => '2.4 E 4WD',
-                                            '20' => '2.4 Entry',
-
-                                        );
-                                        for ($i = 1; $i <= 20; $i++) {
-                                        ?>
-                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        <?php echo $name[$i]; ?>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-
-                                    <!--  -->
-                                    <fieldset attr-id="3">
-                                        <div class="row box__scroll" id="fieldset4">
-                                            <?php $years = array(
-                                                '1' => '2022',
-                                                '2' => '2022',
-                                                '3' => '2022',
-                                                '4' => '2022',
-                                                '5' => '2022',
-                                                '6' => '2022 ',
-                                                '7' => '2022',
-                                                '8' => '2022',
-                                                '9' => '2022',
-                                                '10' => '2022',
-                                                '11' => '2022 ',
-                                                '12' => '2022',
-                                                '13' => '2022',
-                                                '14' => '2022',
-                                                '15' => '2022',
-                                            );
-                                            for ($i = 1; $i <= 15; $i++) {
-                                            ?>
-                                                <div class="col-xl-3 col-lg-4 col-md-4 col-12 next">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                        <label class="form-check-label" for="flexCheckDefault">
-                                                            <?php echo $years[$i]; ?>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
-                                        </div>
-                                        <!--  -->
-                                        <fieldset attr-id="4">
-                                            <div class="row box__scroll" id="fieldset5">
-                                                <?php $content = array(
-                                                    '1' => 'ถังน้ำสำรอง',
-                                                    '2' => 'ชุดสายไฟ',
-                                                    '3' => 'กล่องฟิวส์',
-                                                    '4' => 'ถังน้ำมัน',
-                                                    '5' => 'ออยล์คูเลอร์',
-                                                    '6' => 'ออยล์คูเลอร์ ',
-                                                    '7' => 'ถังน้ำสำรอง',
-                                                    '8' => 'ชุดสายไฟ',
-                                                    '9' => 'กล่องฟิวส์',
-                                                    '10' => 'ถังน้ำมัน',
-                                                    '11' => 'ถังน้ำสำรอง ',
-                                                    '12' => 'ชุดสายไฟ',
-                                                    '13' => 'กล่องฟิวส์',
-                                                    '14' => 'ถังน้ำมัน',
-                                                    '15' => 'ออยล์คูเลอร์',
-                                                    '16' => 'ถังน้ำมัน',
-                                                    '17' => 'ถังน้ำสำรอง ',
-                                                    '18' => 'ชุดสายไฟ',
-                                                    '19' => 'กล่องฟิวส์',
-                                                    '20' => 'ถังน้ำมัน',
-                                                );
-                                                for ($i = 1; $i <= 15; $i++) {
-                                                ?>
-                                                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 ">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                            <label class="form-check-label" for="flexCheckDefault">
-                                                                <?php echo $content[$i]; ?>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
-                                            </div>
-                                        </fieldset>
-                                        <!--  -->
-                                    </fieldset>
-                                    <!--  -->
-
-                                </fieldset>
-                                <!--  -->
-                            </fieldset>
-                            <!--  -->
-                        </div>
-                    </div>
-                </form>
-                <!--  -->
-
-                <div class="box__btn">
-                    <a href="javascript:void(0)" class="btn btn__back">{{ trans('file.Back') }}</a>
-                    <a href="javascript:void(0)" class="btn btn__save">{{ trans('file.Submit') }}</a>
-                </div>
-                <!--  -->
-            </div>
-        </div>
-    </div>
-</div>
-{{-- Modal for copy brand, model, category, etc.. --}}
-
 @endsection
 
 @section('script')
@@ -1001,122 +765,29 @@
 
 <script type="text/javascript">
     $(".nav_list #product #product-list-menu").addClass("active");
-    var current_fs, next_fs, previous_fs;
-    var left, opacity, scale;
-    var animating;
+    
     var isWarranty = "{{ $data->is_warranty }}";
     var isDeliver = "{{ isset($transport->is_deliver)? $transport->is_deliver : 1 }}";
+    $(document).ready(()=>{
 
-    $.ajaxSetup({
+        $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-    });
-    // auto close alert
-    setTimeout(() => {
-        $('.alert').alert('close');
-    }, 2000);
-    // auto close alert
-
-    // specify initilize option data
-        setDuration(isWarranty);
-        setEstimateDays(isDeliver);
-    // specify initilize option data
-
-// control brand, model, category event
-    $(".next").click(function() {
-        if (animating) return false;
-        animating = true;
-
-        current_fs = $(this).parent();
-        next_fs = $(this).parent().next();
-
-        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-        next_fs.show();
-        const attr__value = next_fs.attr('attr-id');
-        // alert(attr__value);
-        if (attr__value == 1) {
-            $('.txt__titlestep').addClass('d-none');
-            $('.step1').removeClass('d-none');
-            $('.txt__brands').html('แบรนด์');
-            $('.step2').removeClass('d-none');
-            $('.txt__series').html('รุ่น');
-        } else if (attr__value == 2) {
-            $('.step3').removeClass('d-none');
-            $('.txt__subseries').html('รุ่นย่อย');
-        } else if (attr__value == 3) {
-            $('.step4').removeClass('d-none');
-            $('.txt__years').html('ปี');
-        } else if (attr__value == 4) {
-            $('.step5').removeClass('d-none');
-            $('.txt__cat').html('หมวดหมู่');
-        }
-
-        current_fs.animate({
-            opacity: 0
-        }, {
-            step: function(now, mx) {
-                scale = 1 - (1 - now) * 0.2;
-                left = (now * 50) + "%";
-                opacity = 1 - now;
-                current_fs.css({
-                    'transform': 'scale(' + scale + ')',
-                    'position': 'absolute'
-                });
-                next_fs.css({
-                    'left': left,
-                    'opacity': opacity
-                });
-            },
-            duration: 800,
-            complete: function() {
-                current_fs.hide();
-                animating = false;
-            },
-            easing: 'easeInOutBack'
         });
+        // auto close alert
+        setTimeout(() => {
+            $('.alert').alert('close');
+        }, 3000);
+        // auto close alert
+
+        // specify initilize option data
+            setDuration(isWarranty);
+            setEstimateDays(isDeliver);
+        // specify initilize option data
+
     });
-
-    $(".previous").click(function() {
-        if (animating) return false;
-        animating = true;
-
-        current_fs = $(this).parent();
-        previous_fs = $(this).parent().prev();
-
-        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-        previous_fs.show();
-        current_fs.animate({
-            opacity: 0
-        }, {
-            step: function(now, mx) {
-                scale = 0.8 + (1 - now) * 0.2;
-                left = ((1 - now) * 50) + "%";
-                opacity = 1 - now;
-                current_fs.css({
-                    'left': left
-                });
-                previous_fs.css({
-                    'transform': 'scale(' + scale + ')',
-                    'opacity': opacity
-                });
-            },
-            duration: 800,
-            complete: function() {
-                current_fs.hide();
-                animating = false;
-            },
-            easing: 'easeInOutBack'
-        });
-    });
-
-    $(".submit").click(function() {
-        return false;
-    })
-// control brand, model, category event
-
+   
 
     // upload image
     $(document).on('change', '#upload-image', function(){
@@ -1240,84 +911,6 @@
     });
     // insert salesman code
 
-    $(document).on('click', '#submit-btnxx', function (e) {
-        $('#msform').submit();
-        // e.preventDefault();
-        // if ( $("#msform").valid() ) {
-            // $.ajax({
-            //     type:'POST',
-            //     url:'{{route('products.store')}}',
-            //     data: $("#msform").serialize(),
-            //     success: function(data){
-            //        console.log(data);
-            //         $('input[name="product_code"]').val(data.product_code);
-            //         $('input[name="product_type"]').val(data.id);
-            //         $('#created-at').html(data.created_at);
-            //         $('#created-by').html(data.created_by);
-
-            //         alert(data.message);
-            //         // location.href = '/products';
-            //     },
-            //     error: function(error) {
-            //        console.log(error);
-            //     },
-            // });
-        // }
-        
-    });
-
-    // validation
-    function validate() {
-
-        var name_th = $('input[name="name_th"]').val();
-        var name_th = $('input[name="name_en"]').val();
-        if (name_th == '')
-            $('#name-th-error').html('product name is require')
-           
-        if (name_en == '')
-            $('#name-th-error').html('product name is require')
-
-        // var product_code = $("input[name='code']").val();
-        // var barcode_symbology = $('select[name="barcode_symbology"]').val();
-        // var exp = /^\d+$/;
-
-        // if(!(product_code.match(exp)) && (barcode_symbology == 'UPCA' || barcode_symbology == 'UPCE' || barcode_symbology == 'EAN8' || barcode_symbology == 'EAN13') ) {
-        //     alert('Product code must be numeric.');
-        //     return false;
-        // }
-        // else if(product_code.match(exp)) {
-        //     if(barcode_symbology == 'UPCA' && product_code.length > 11){
-        //         alert('Product code length must be less than 12');
-        //         return false;
-        //     }
-        //     else if(barcode_symbology == 'EAN8' && product_code.length > 7){
-        //         alert('Product code length must be less than 8');
-        //         return false;
-        //     }
-        //     else if(barcode_symbology == 'EAN13' && product_code.length > 12){
-        //         alert('Product code length must be less than 13');
-        //         return false;
-        //     }
-        // }
-
-        // if( $("#type").val() == 'combo' ) {
-        //     var rownumber = $('table.order-list tbody tr:last').index();
-        //     if (rownumber < 0) {
-        //         alert("Please insert product to table!")
-        //         return false;
-        //     }
-        // }
-        // if($("#is-variant").is(":checked")) {
-        //     rowindex = $("table#variant-table tbody tr:last").index();
-        //     if (rowindex < 0) {
-        //         alert('This product has variant. Please insert variant to table');
-        //         return false;
-        //     }
-        // }
-        // $("input[name='price']").prop('disabled',false);
-        // return true;
-    }
-    // validation
 
 
 </script>
