@@ -79,11 +79,11 @@ class ProductController extends Controller
                 if(File::exists(public_path().'/product/images/'.$data->image)){
                     return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('product/images').'/'.$data->image.'" > <img src="'.asset('product/images').'/'.$data->image.'" class="img-product"> </a>';
                 }else{
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('images/ImageNotFound.png').'" class="img-product"> </a>';
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('product/images/ImageNotFound.png').'" class="img-product"> </a>';
                 }
                 
             }else{
-                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('images/ImageNotFound.png').'" class="img-product"> </a>';
+                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('product/images/ImageNotFound.png').'" class="img-product"> </a>';
             }
             
 		})
