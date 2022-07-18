@@ -9,9 +9,6 @@ use App\Models\Amphures;
 use App\Models\Geographies;
 use App\Models\Districts;
 use App\Models\Provinces;
-use App\Models\Amphure;  // OAT
-use App\Models\District; // OAT
-use App\Models\Province; // OAT
 use Response;
 
 class CompanyController extends Controller
@@ -34,13 +31,13 @@ class CompanyController extends Controller
 
     public function edit(){
         $company = Company::find(1);
-        $amphures = Amphures::where('province_id',$company->address_province)->get();
-        $districts = Districts::where('amphure_id',$company->address_amphure)->get();
-        $provinces = Provinces::all();
+        $amphures = Amphure::where('province_id',$company->address_province)->get();
+        $districts = District::where('amphure_id',$company->address_amphure)->get();
+        $provinces = Province::all();
 
-        $nameamphures = Amphures::find($company->address_amphure);
-        $namedistricts = Districts::find($company->address_district);
-        $nameprovinces = Provinces::find($company->address_province);
+        $nameamphures = Amphure::find($company->address_amphure);
+        $namedistricts = District::find($company->address_district);
+        $nameprovinces = Province::find($company->address_province);
         $nameamphures = $nameamphures->name_th;
         $namedistricts = $namedistricts->name_th;
         $nameprovinces = $nameprovinces->name_th;
@@ -73,39 +70,19 @@ class CompanyController extends Controller
     }
 
     public function provinces($id){
-        $data = Amphures::where('province_id',$id)->get();
-        // return view('backend.company.index',['data'=>$data]);
-        return Response::json($data);
-    }
-
-    public function amphures($id){
-        $data = Districts::where('amphure_id',$id)->get();
-        // return view('backend.company.index',['data'=>$data]);
-        return Response::json($data);
-
-    }
-
-    public function districts($id){
-        $data = Districts::find($id);
-        // return view('backend.company.index',['data'=>$data]);
-        return $data->zip_code;
-    }
-
-    //-- OAT เพิ่มไม่อยากแก้ไขของเดิม
-    public function fetchamphures($id){
         $data = Amphure::where('province_id',$id)->get();
         // return view('backend.company.index',['data'=>$data]);
         return Response::json($data);
     }
 
-    public function fetchdistricts($id){
+    public function amphures($id){
         $data = District::where('amphure_id',$id)->get();
         // return view('backend.company.index',['data'=>$data]);
         return Response::json($data);
 
     }
 
-    public function fetchzipcode($id){
+    public function districts($id){
         $data = District::find($id);
         // return view('backend.company.index',['data'=>$data]);
         return $data->zip_code;
