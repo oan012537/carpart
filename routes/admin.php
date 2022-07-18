@@ -321,6 +321,14 @@ Route::group(['middleware' => 'auth'], function(){
             
         });
 
+        Route::prefix('delivery')->group(function () {
+            Route::get('/', [Backend\DeliveryController::class,'index'])->name('backend.delivery');
+            Route::get('add', [Backend\DeliveryController::class,'index'])->name('backend.delivery.add');
+            Route::post('store', [Backend\DeliveryController::class,'store'])->name('backend.delivery.store');
+            Route::get('edit/{id}', [Backend\DeliveryController::class,'edit'])->name('backend.delivery.edit');
+            Route::post('update', [Backend\DeliveryController::class,'update'])->name('backend.delivery.update');
+        });
+
     });
     // Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');
 });

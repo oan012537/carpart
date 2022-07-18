@@ -1,5 +1,11 @@
 @extends('backend.layouts.templates')
 @section('content')
+<style>
+    .img-product{
+        width: 100%;
+        height: 30px;
+    }
+</style>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
 <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
 
@@ -567,7 +573,7 @@
 			},
 			columns: [
 				{ 'className': "text-center", data: 'checkboxs', name: 'checkboxs',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'product_code', name: 'product_code' },
+				{ 'className': "text-center", data: 'images', name: 'images',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'name_th', name: 'name_th',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'name_th', name: 'name_th'},
 				{ 'className': "text-center", data: 'categoryname', name: 'categoryname'},
