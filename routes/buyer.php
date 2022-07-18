@@ -57,6 +57,9 @@ Route::prefix('buyer')->group(function(){
         Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand']);
         Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
         Route::get('home-search4',[Buyer\SearchProductController::class, 'home_search_submodel']);
+        Route::get('home-search5',[Buyer\SearchProductController::class, 'home_search_year']);
+        Route::get('home-search6',[Buyer\SearchProductController::class, 'home_search_category']);
+        Route::get('home-search7',[Buyer\SearchProductController::class, 'home_search_subcategory']);
 
         //======= OAT My Account =======
         Route::get('myaccount', [Buyer\BuyerProfileController::class, 'index']); //-OAT

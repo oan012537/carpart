@@ -34,24 +34,32 @@
                     @php
                         $brands_button = DB::table('brands')->where('id',session('session_search.brand'))->get()->first();
                         $models_button = DB::table('models')->where('id',session('session_search.model'))->get()->first();
+                        $submodels_button = DB::table('sub_models')->where('id',session('session_search.submodel'))->get()->first();
                     @endphp
                     <button class="button button5">
                     <a style="color:inherit;" href="{{url('buyer/home-search')}}"><i class="fa fa-close"></i></a>  {{$brands_button->name_en}} </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
                     <button class="button button5">
-                    <a style="color:inherit;" href="{{url('buyer/home-search2?brand=').session('session_search.brand')}}"><i class="fa fa-close"></i></a>  {{$models_button->name_en}} </button>
+                    <a style="color:inherit;" href="{{url('buyer/home-search2?brand=').session('session_search.brand')}}"><i class="fa fa-close"></i></a>  
+                    {{$models_button->name_en}} </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
+                    <button class="button button5">
+                        <a style="color:inherit;" href="{{url('buyer/home-search3?brand=').session('session_search.brand').'&model='.session('session_search.model')}}"><i class="fa fa-close"></i></a> 
+                        {{$submodels_button->name_en}} 
+                    </button>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
                     <button class="button button6">
-                       <i class="fa fa-close"></i> รุ่นย่อย </button>
+                    &nbsp;
+                        <i class="fa fa-close"></i> ปี </button>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="input-group box__search">
-                            <input type="text" class="form-control" id="search-box-submodel" aria-describedby="button-addon2">
-                            <button class="btn btn__search" type="button" onclick="searchBrands()" id="button-addon2"><i
+                            <input type="text" class="form-control" id="search-box-years" aria-describedby="button-addon2">
+                            <button class="btn btn__search" type="button" id="button-addon2"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </div>
@@ -94,13 +102,13 @@
                     <!-- model  -->
                     <div class="submodel-all">
                         <div class="row">
-                            @foreach($submodels as $submodel)
+                            @foreach($years as $year)
                             <div class="col-sm-3">
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="boc-c-check">
                                             <label class="container2">
-                                                <input type="checkbox">
+                                                <input type="checkbox" value="{{$year->id}}">
                                                 <span class="checkmark2"></span>
                                             </label>
                                         </div>
@@ -108,7 +116,7 @@
                                     <div class="col-lg-4">
                                         <div class="text-detail-roon">
                                             <p>
-                                                2022
+                                                {{$year->from_year}}
                                             </p>
                                         </div>
                                     </div>
@@ -173,9 +181,9 @@
                             </div>
                         </div>
                         <hr class="new1">
-                        <span id="text-brands"> แบรนด์ </span>
+                        <span> แบรนด์ </span>
                         <input type="hidden" name="brand" id="brand-search">
-                        <button type="button" class="dropdown-btn">แบรนด์
+                        <button type="button" class="dropdown-btn" id="text-brands">แบรนด์
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-brand">
@@ -184,36 +192,36 @@
                             @endforeach
                         </div>
                         <hr class="new1">
-                        <span id="text-model"> รุ่น </span>
+                        <span> รุ่น </span>
                         <input type="hidden" name="model" id="model-search">
-                        <button type="button" class="dropdown-btn"> เลือก
+                        <button type="button" class="dropdown-btn" id="text-model"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-model">
                             <!-- <a href="#">Link 1</a> -->
                         </div>
                         <hr class="new1">
-                        <span id="text-submodel"> รุ่นย่อย </span>
+                        <span> รุ่นย่อย </span>
                         <input type="hidden" name="submodel" id="submodel-search">
-                        <button type="button" class="dropdown-btn"> เลือก
+                        <button type="button" class="dropdown-btn" id="text-submodel"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-submodel">
                             <!-- <a href="#">Link 1</a> -->
                         </div>
                         <hr class="new1">
-                        <span id="text-year"> ปีรถ </span>
+                        <span> ปีรถ </span>
                         <input type="hidden" name="year" id="year-search">
-                        <button type="button" class="dropdown-btn"> เบือก
+                        <button type="button" class="dropdown-btn" id="text-year"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-year">
                             <!-- <a href="#">Link 1</a> -->
                         </div>
                         <hr class="new1">
-                        <span id="text-category"> หมวดหมู่สินค้า </span>
+                        <span> หมวดหมู่สินค้า </span>
                         <input type="hidden" name="category" id="category-search">
-                        <button type="button" class="dropdown-btn"> เลือก
+                        <button type="button" class="dropdown-btn" id="text-category"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-category">
@@ -222,9 +230,9 @@
                             @endforeach
                         </div>
                         <hr class="new1">
-                        <span id="text-subcategory"> หมวดหมู่ย่อย 1 </span>
+                        <span> หมวดหมู่ย่อย 1 </span>
                         <input type="hidden" name="subcategory" id="subcategory-search">
-                        <button type="button" class="dropdown-btn"> เลือก
+                        <button type="button" class="dropdown-btn" id="text-subcategory"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-subcategory">
@@ -233,9 +241,9 @@
                             <a href="#">Link 3</a> -->
                         </div>
                         <hr class="new1">
-                        <span id="text-subsubcategory"> หมวดหมู่ย่อย 2 </span>
+                        <span> หมวดหมู่ย่อย 2 </span>
                         <input type="hidden" name="subsubcategory" id="subsubcategory-search">
-                        <button type="button" class="dropdown-btn"> เลือก
+                        <button type="button" class="dropdown-btn" id="text-subsubcategory"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container"  id="dropdown-subsubcategory">
@@ -368,14 +376,14 @@
     <script>
         test = <?php echo $_GET['brand']; ?>;
         // alert(test);   
-        $(document).on('keyup','#search-box-submodel',function(){
-            name = $('#search-box-submodel').val();
+        $(document).on('keyup','#search-box-years',function(){
+            name = $('#search-box-years').val();
             $('.submodel-all').css('display','none');
-            $('.search-box-submodel').remove();
+            $('.search-box-year').remove();
             if(name != null){
                 $.ajax({
                     method: "GET",
-                    url: "buyer/SearchBox?submodel=" + name,
+                    url: "buyer/SearchBox?year=" + name,
                     dataType: "json"
                 }).done(function(rec){
                     console.log(rec)
@@ -385,17 +393,21 @@
             }
         });
 
-        function selectSubModel(id){
+        //============ Get checkbox value ================
+        var checkbox = document.querySelector('input[type="checkbox"]');
+        checkbox.addEventListener('change', function(e){
+            // alert(this.check.value);
+            // alert($("input[type=checkbox]:checked").val());
+            id = $("input[type=checkbox]:checked").val();
+            location.href = "buyer/home-search5?brand="+{{session('session_search.brand')}}+
+            "&model="+{{session('session_search.model')}}+
+            "&submodel="+{{session('session_search.submodel')}}+"&year="+id;
+        });
+
+
+        /*function selectSubModel(id){
             location.href = "buyer/home-search4?brand="+{{session('session_search.brand')}}+"&model="+{{session('session_search.model')}}+"&submodel"+id;
-            /*$.ajax({
-                method: "POST",
-                url: "{{url('buyer/GetsearchBox')}}",
-                data: {"_token":" {{ csrf_token() }} ",model:id},
-                dataType: "json"
-            }).done(function(rec){
-                location.href = "buyer/home-search3?brand="+{{session('session_search.brand')}}+"&model="+id;
-            });*/
-        }
+        }*/
     </script>
     <script>
         

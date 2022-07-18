@@ -235,9 +235,9 @@
                             </div>
                         </div>
                         <hr class="new1">
-                        <span id="text-brands"> แบรนด์ </span>
+                        <span> แบรนด์ </span>
                         <input type="hidden" name="brand" id="brand-search">
-                        <button type="button" class="dropdown-btn">แบรนด์
+                        <button type="button" class="dropdown-btn" id="text-brands">แบรนด์
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-brand">
@@ -246,36 +246,36 @@
                             @endforeach
                         </div>
                         <hr class="new1">
-                        <span id="text-model"> รุ่น </span>
+                        <span> รุ่น </span>
                         <input type="hidden" name="model" id="model-search">
-                        <button type="button" class="dropdown-btn"> เลือก
+                        <button type="button" class="dropdown-btn" id="text-model"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-model">
                             <!-- <a href="#">Link 1</a> -->
                         </div>
                         <hr class="new1">
-                        <span id="text-submodel"> รุ่นย่อย </span>
+                        <span> รุ่นย่อย </span>
                         <input type="hidden" name="submodel" id="submodel-search">
-                        <button type="button" class="dropdown-btn"> เลือก
+                        <button type="button" class="dropdown-btn" id="text-submodel"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-submodel">
                             <!-- <a href="#">Link 1</a> -->
                         </div>
                         <hr class="new1">
-                        <span id="text-year"> ปีรถ </span>
+                        <span> ปีรถ </span>
                         <input type="hidden" name="year" id="year-search">
-                        <button type="button" class="dropdown-btn"> เบือก
+                        <button type="button" class="dropdown-btn" id="text-year"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-year">
                             <!-- <a href="#">Link 1</a> -->
                         </div>
                         <hr class="new1">
-                        <span id="text-category"> หมวดหมู่สินค้า </span>
+                        <span> หมวดหมู่สินค้า </span>
                         <input type="hidden" name="category" id="category-search">
-                        <button type="button" class="dropdown-btn"> เลือก
+                        <button type="button" class="dropdown-btn" id="text-category"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-category">
@@ -284,9 +284,9 @@
                             @endforeach
                         </div>
                         <hr class="new1">
-                        <span id="text-subcategory"> หมวดหมู่ย่อย 1 </span>
+                        <span> หมวดหมู่ย่อย 1 </span>
                         <input type="hidden" name="subcategory" id="subcategory-search">
-                        <button type="button" class="dropdown-btn"> เลือก
+                        <button type="button" class="dropdown-btn" id="text-subcategory"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-subcategory">
@@ -295,9 +295,9 @@
                             <a href="#">Link 3</a> -->
                         </div>
                         <hr class="new1">
-                        <span id="text-subsubcategory"> หมวดหมู่ย่อย 2 </span>
+                        <span> หมวดหมู่ย่อย 2 </span>
                         <input type="hidden" name="subsubcategory" id="subsubcategory-search">
-                        <button type="button" class="dropdown-btn"> เลือก
+                        <button type="button" class="dropdown-btn" id="text-subsubcategory"> เลือก
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container"  id="dropdown-subsubcategory">
