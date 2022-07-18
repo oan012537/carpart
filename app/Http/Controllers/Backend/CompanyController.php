@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Company;
-use App\Models\Amphures;
-use App\Models\Geographies;
-use App\Models\Districts;
-use App\Models\Provinces;
+use App\Models\Amphure;
+use App\Models\Geographie;
+use App\Models\District;
+use App\Models\Province;
 use Response;
 
 class CompanyController extends Controller
