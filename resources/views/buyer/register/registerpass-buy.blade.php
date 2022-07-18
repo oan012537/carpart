@@ -68,7 +68,7 @@
                                 ย้อนกลับ
                                 </a>
                                 &nbsp;
-                                <button type="button" id="showmodal" class="button button2"> ยืนยัน &nbsp; <i class='fas fa-angle-right'></i>
+                                <button type="submit" id="showmodal" class="button button2"> ยืนยัน &nbsp; <i class='fas fa-angle-right'></i>
                                 </button>
                                 <!-- The Modal -->
                                 <div id="myModal" class="modal">

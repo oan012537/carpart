@@ -7,27 +7,27 @@
 
         if(new_password.length > 7){
             if(new_password === confirm_password){
-            $.ajax({
-                type:'GET',
-                url: '{{ url("buyer/buyerprofile/changepassword/check_currentpassword") }}/' + current_password ,
-                cache:false,
-                contentType: false,
-                processData: false,
-                success:function(response){
-                    console.log(response);
-                    if(response.status == 200){ 
-                        $('#mobilenumber_password').text(response.mobilenumber);
-                        $('#modal_comfirmchangepassword').show();
-                        //-- ส่งต่อ OTP
-                    }else{
-                        alert(response.message);
+                $.ajax({
+                    type:'GET',
+                    url: '{{ url("buyer/buyerprofile/changepassword/check_currentpassword") }}/' + current_password ,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    success:function(response){
+                        console.log(response);
+                        if(response.status == 200){ 
+                            $('#mobilenumber_password').text(response.mobilenumber);
+                            $('#modal_comfirmchangepassword').show();
+                            //-- ส่งต่อ OTP
+                        }else{
+                            alert(response.message);
+                        }
+                    },
+                    error: function(response){
+                        console.log("error");
+                        console.log(response);
                     }
-                },
-                error: function(response){
-                    console.log("error");
-                    console.log(response);
-                }
-            });
+                });
             }else{
                 alert('Not match');
                 return false;
