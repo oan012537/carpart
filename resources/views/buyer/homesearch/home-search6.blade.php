@@ -1,6 +1,6 @@
 @extends('buyer.layouts.template')
     <!-- link navbar -->
-    <link href="{{asset('assets/css/home-seach3.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/home-seach5.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet">
 
 @section('content')
@@ -34,30 +34,51 @@
                     @php
                         $brands_button = DB::table('brands')->where('id',session('session_search.brand'))->get()->first();
                         $models_button = DB::table('models')->where('id',session('session_search.model'))->get()->first();
+                        $submodels_button = DB::table('sub_models')->where('id',session('session_search.submodel'))->get()->first();
+                        $years_button = DB::table('issue_years')->where('id',session('session_search.year'))->get()->first();
                     @endphp
                     <button class="button button5">
                     <a style="color:inherit;" href="{{url('buyer/home-search')}}"><i class="fa fa-close"></i></a>  {{$brands_button->name_en}} </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
                     <button class="button button5">
-                    <a style="color:inherit;" href="{{url('buyer/home-search2?brand=').session('session_search.brand')}}"><i class="fa fa-close"></i></a>  {{$models_button->name_en}} </button>
+                    <a style="color:inherit;" href="{{url('buyer/home-search2?brand=').session('session_search.brand')}}"><i class="fa fa-close"></i></a>  
+                    {{$models_button->name_en}} </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
+                    <button class="button button5">
+                        <a style="color:inherit;" href="{{url('buyer/home-search3?brand=').session('session_search.brand').'&model='.session('session_search.model')}}"><i class="fa fa-close"></i></a> 
+                        {{$submodels_button->name_en}} 
+                    </button>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
+                    &nbsp;
+                    <button class="button button5">
+                        <a style="color:inherit;" href="{{url('buyer/home-search3?brand=').session('session_search.brand').'&model='.session('session_search.model')}}"><i class="fa fa-close"></i></a> 
+                        {{$years_button->from_year}} 
+                    </button>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
+                    &nbsp;
+                    <button class="button button5">
+                        <a style="color:inherit;" onclick="javascript:window.history.back(-1);return false;"><i class="fa fa-close"></i></a> 
+                        หมวดหมู่
+                    </button>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
                     <button class="button button6">
-                       <i class="fa fa-close"></i> รุ่นย่อย </button>
+                    &nbsp;
+                        <i class="fa fa-close"></i> หมวดหมู่ย่อย1 </button>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="input-group box__search">
-                            <input type="text" class="form-control" id="search-box-submodel" aria-describedby="button-addon2">
-                            <button class="btn btn__search" type="button" onclick="searchBrands()" id="button-addon2"><i
+                            <input type="text" class="form-control" id="search-box-category" aria-describedby="button-addon2">
+                            <button class="btn btn__search" type="button" id="button-addon2"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </div>
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
-                        <!-- <div class="text-tt-roon">
+                        <div class="text-tt-roon">
                             <a onclick="filterBrands('A')"><span> A </span></a>
                             <a onclick="filterBrands('B')"><span> B </span></a>
                             <a onclick="filterBrands('C')"><span> C </span></a>
@@ -84,7 +105,7 @@
                             <a onclick="filterBrands('X')"><span> X </span></a>
                             <a onclick="filterBrands('Y')"><span> Y </span></a>
                             <a onclick="filterBrands('Z')"><span> Z </span></a>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
 
@@ -92,24 +113,27 @@
                 <div class="box-scoll-roon">
 
                     <!-- model  -->
-                    <div class="submodel-all">
+                    <div class="subcate-all">
                         <div class="row">
-                            @foreach($submodels as $submodel)
+                            @foreach($subcategory as $cate)
                             <div class="col-sm-3">
-                                <a onclick="selectSubModel({{$submodel->id}})">
                                 <div class="row">
-                                    <div class="col-lg-5">
-                                        <!--<img src="assets/img/home-seach/r1.png" class="img-fluid" alt="shoe image">-->
+                                    <div class="col-lg-3">
+                                        <div class="boc-c-check">
+                                            <label class="container2">
+                                                <input type="checkbox" value="{{$cate->id}}">
+                                                <span class="checkmark2"></span>
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-4">
                                         <div class="text-detail-roon">
                                             <p>
-                                                {{$submodel->name_en}}
+                                                {{$cate->name_en}}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                </a>
                             </div>
                             @endforeach
                         </div>
@@ -365,14 +389,14 @@
     <script>
         test = <?php echo $_GET['brand']; ?>;
         // alert(test);   
-        $(document).on('keyup','#search-box-submodel',function(){
-            name = $('#search-box-submodel').val();
-            $('.submodel-all').css('display','none');
-            $('.search-box-submodel').remove();
+        $(document).on('keyup','#search-box-category',function(){
+            name = $('#search-box-category').val();
+            $('.subcate-all').css('display','none');
+            $('.search-box-category').remove();
             if(name != null){
                 $.ajax({
                     method: "GET",
-                    url: "buyer/SearchBox?submodel=" + name,
+                    url: "buyer/SearchBox?subcategory=" + name,
                     dataType: "json"
                 }).done(function(rec){
                     console.log(rec)
@@ -382,17 +406,28 @@
             }
         });
 
-        function selectSubModel(id){
-            location.href = "buyer/home-search4?brand="+{{session('session_search.brand')}}+"&model="+{{session('session_search.model')}}+"&submodel="+id;
-            /*$.ajax({
-                method: "POST",
-                url: "{{url('buyer/GetsearchBox')}}",
-                data: {"_token":" {{ csrf_token() }} ",model:id},
-                dataType: "json"
-            }).done(function(rec){
-                location.href = "buyer/home-search3?brand="+{{session('session_search.brand')}}+"&model="+id;
-            });*/
+        function filterBrands(text){
+            //
         }
+
+        //============ Get checkbox value ================
+        var checkbox = document.querySelector('input[type="checkbox"]');
+        checkbox.addEventListener('change', function(e){
+            // alert(this.check.value);
+            // alert($("input[type=checkbox]:checked").val());
+            id = $("input[type=checkbox]:checked").val();
+            location.href = "buyer/home-search7?brand="+{{session('session_search.brand')}}+
+            "&model="+{{session('session_search.model')}}+
+            "&submodel="+{{session('session_search.submodel')}}+
+            "&year="+{{session('session_search.year')}}+
+            "&category="+{{session('session_search.category')}}+
+            "&subcategory="+id;
+        });
+
+
+        /*function selectSubModel(id){
+            location.href = "buyer/home-search4?brand="+{{session('session_search.brand')}}+"&model="+{{session('session_search.model')}}+"&submodel"+id;
+        }*/
     </script>
     <script>
         
