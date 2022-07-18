@@ -8,6 +8,7 @@ use App\Models\Product;
 use Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 class ProductController extends Controller
 {
@@ -25,7 +26,7 @@ class ProductController extends Controller
 
     public function datatables(){
         
-        $data = Product::leftjoin('brands','brands.id','products.brand_id')->leftjoin('models','models.id','products.model_id')->leftjoin('sub_models','sub_models.id','products.sub_model_id')->leftjoin('issue_years','issue_years.id','products.issue_year_id')->leftjoin('categories','categories.id','products.category_id')->leftjoin('sub_categories','sub_categories.id','products.sub_category_id')->leftjoin('sub_sub_categories','sub_sub_categories.id','products.sub_sub_category_id')->select(DB::raw("products.*,brands.name_th as brandname,models.name_th as modelname,sub_models.name_th as sub_modelname,issue_years.from_year as year,categories.name_th as categoryname,sub_categories.name_th as sub_categoryname,sub_sub_categories.name_th as sub_sub_categoryname"));
+        $data = Product::leftjoin('brands','brands.id','products.brand_id')->leftjoin('models','models.id','products.model_id')->leftjoin('sub_models','sub_models.id','products.sub_model_id')->leftjoin('issue_years','issue_years.id','products.issue_year_id')->leftjoin('categories','categories.id','products.category_id')->leftjoin('sub_categories','sub_categories.id','products.sub_category_id')->leftjoin('sub_sub_categories','sub_sub_categories.id','products.sub_sub_category_id')->leftjoin('product_images','product_images.id','products.id')->select(DB::raw("products.*,brands.name_th as brandname,models.name_th as modelname,sub_models.name_th as sub_modelname,issue_years.from_year as year,categories.name_th as categoryname,sub_categories.name_th as sub_categoryname,sub_sub_categories.name_th as sub_sub_categoryname,product_images.image"));
         // $search = request('search');
         // $radiodate = request('radiodate');
         // $date = request('date');
@@ -72,6 +73,19 @@ class ProductController extends Controller
             }else{
                 return '';
             }
+		})
+		->addColumn('images',function($data){
+            if($data->image){
+                if(File::exists(public_path().'/product/images/'.$data->image)){
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('product/images').'/'.$data->image.'" > <img src="'.asset('product/images').'/'.$data->image.'" class="img-product"> </a>';
+                }else{
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('images/ImageNotFound.png').'" class="img-product"> </a>';
+                }
+                
+            }else{
+                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('images/ImageNotFound.png').'" class="img-product"> </a>';
+            }
+            
 		})
         ->addColumn('checkboxs',function($data){
 			return '<input type="checkbox" class="form-check-input" id="productall'.$data->id.'" name="productall[]" value="'.$data->id.'">';
