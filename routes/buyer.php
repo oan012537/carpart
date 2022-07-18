@@ -78,7 +78,7 @@ Route::prefix('buyer')->group(function(){
         Route::post('buyerprofile/taxinvoice/update', [Buyer\BuyerProfileController::class, 'buyerprofile_taxinvoice_update']); //-OAT
        
         // Change Password
-        Route::post('buyerprofile/changepassword/check_currentpassword', [Buyer\BuyerProfileController::class, 'buyerprofile_check_currentpassword']); //-OAT
+        Route::get('buyerprofile/changepassword/check_currentpassword/{current_password}', [Buyer\BuyerProfileController::class, 'buyerprofile_check_currentpassword']); //-OAT
        
         //======= OAT End My Account =======
     });

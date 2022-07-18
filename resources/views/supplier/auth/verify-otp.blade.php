@@ -133,8 +133,7 @@
         $('#request-otp').on('click', function() {
             $.ajax({
                 type: 'GET',
-                url: '{{route('
-                supplier.register.requestOtp ')}}',
+                url: 'register/request-otp',
                 data: {
                     'phone': phone
                 },
