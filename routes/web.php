@@ -14,6 +14,7 @@ use App\Http\Controllers\ImportdataController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\cFunction;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\DataprovincesController;
 
 
 /*
@@ -170,14 +171,14 @@ Route::post('import/brandyear', [ImportdataController::class, 'importbrandyear']
 Route::get('google/login', [SocialController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('google/callback', [SocialController::class, 'handleCallback'])->name('google.callback');
 
-Route::get('changeprovinces/{id}', [Backend\CompanyController::class, 'provinces']);
-Route::get('changeamphures/{id}', [Backend\CompanyController::class, 'amphures']);
-Route::get('changedistricts/{id}', [Backend\CompanyController::class, 'districts']);
+Route::get('changeprovinces/{id}', [DataprovincesController::class, 'provinces']);
+Route::get('changeamphures/{id}', [DataprovincesController::class, 'amphures']);
+Route::get('changedistricts/{id}', [DataprovincesController::class, 'districts']);
 
 // OAT เพราะไม่ต้องการแก้ไขของเดิม
-Route::get('fetchamphures/{id}', [Backend\CompanyController::class, 'fetchamphures']);
-Route::get('fetchdistricts/{id}', [Backend\CompanyController::class, 'fetchdistricts']);
-Route::get('fetchzipcode/{id}', [Backend\CompanyController::class, 'fetchzipcode']);
+Route::get('fetchamphures/{id}', [DataprovincesController::class, 'fetchamphures']);
+Route::get('fetchdistricts/{id}', [DataprovincesController::class, 'fetchdistricts']);
+Route::get('fetchzipcode/{id}', [DataprovincesController::class, 'fetchzipcode']);
 
 
 Route::get('/clearcache', function () {

@@ -1,3 +1,5 @@
+<form id="form_changepassword">
+@csrf
 <div class="box__content">
     <div class="head-address">
         <p>
@@ -11,8 +13,7 @@
     </div>
 
     <br><br>
-    <form id="form_changepassword">
-    @csrf
+    
     <div class="row">
         <div class="col-lg-3">
             <div class="head-pass-detail">
@@ -78,7 +79,7 @@
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
             <div class="but-ca">
-                <button type="submit" class="button button2-3">
+                <button type="button" id="btn_updatepassword" class="button button2-3">
                     อัพเดท
                 </button>
             </div>
@@ -86,7 +87,7 @@
         <div class="col-lg-3"></div>
     </div>
 
-    </form>
+    
     <br><br>
 </div>
 
@@ -146,3 +147,5 @@
         </div>
     </div>
 </div>
+
+</form>

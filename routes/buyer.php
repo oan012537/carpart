@@ -51,10 +51,15 @@ Route::prefix('buyer')->group(function(){
 
 
     Route::group(['middleware' => ['buyer']], function () {
+        // ======== Homesearch ========== Tontal
         Route::get('home-search', [Buyer\SearchProductController::class, 'home_search'])->name('buyer.home-search');
         Route::post('search-product', [Buyer\SearchProductController::class, 'search_product']);
         Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand']);
         Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
+        Route::get('home-search4',[Buyer\SearchProductController::class, 'home_search_submodel']);
+        Route::get('home-search5',[Buyer\SearchProductController::class, 'home_search_year']);
+        Route::get('home-search6',[Buyer\SearchProductController::class, 'home_search_category']);
+        Route::get('home-search7',[Buyer\SearchProductController::class, 'home_search_subcategory']);
 
         //======= OAT My Account =======
         Route::get('myaccount', [Buyer\BuyerProfileController::class, 'index']); //-OAT
@@ -73,7 +78,7 @@ Route::prefix('buyer')->group(function(){
         Route::post('buyerprofile/taxinvoice/update', [Buyer\BuyerProfileController::class, 'buyerprofile_taxinvoice_update']); //-OAT
        
         // Change Password
-        Route::post('buyerprofile/changepassword/check_currentpassword', [Buyer\BuyerProfileController::class, 'buyerprofile_check_currentpassword']); //-OAT
+        Route::get('buyerprofile/changepassword/check_currentpassword/{current_password}', [Buyer\BuyerProfileController::class, 'buyerprofile_check_currentpassword']); //-OAT
        
         //======= OAT End My Account =======
     });
@@ -91,10 +96,10 @@ Route::prefix('buyer')->group(function(){
     Route::get('GetSubsubCategory/{id}', [Buyer\SearchProductController::class, 'GetSubsubCategory']);
 
     // Route::post('GetsearchBox',[Buyer\SearchProductController::class, 'Getsearch']);
-
-   
-
+    Route::get('fetch_amphur/{id}', [Buyer\BuyerController::class, 'GetsubCategory']);
 });
+
+
 
 
 // ========== Product Detail ================

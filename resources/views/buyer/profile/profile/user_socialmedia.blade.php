@@ -15,7 +15,7 @@
         <div class="col-lg-4">
             <div class="box-line">
                 <div class="img-icon-social">
-                    <img src="assets/img/account/line.png" class="img-fluid"
+                    <img src="{{ asset('assets/img/account/line.png') }}" class="img-fluid"
                         alt="shoe image">
                 </div>
 
@@ -39,7 +39,7 @@
         <div class="col-lg-4">
             <div class="box-face">
                 <div class="img-icon-social2">
-                    <img src="assets/img/account/face.png" class="img-fluid"
+                    <img src="{{ asset('assets/img/account/face.png') }}" class="img-fluid"
                         alt="shoe image">
                 </div>
                 <div class="text-so-tt-face">
@@ -62,7 +62,7 @@
         <div class="col-lg-4">
             <div class="box-google">
                 <div class="img-icon-social2">
-                    <img src="assets/img/account/google.png" class="img-fluid"
+                    <img src="{{ asset('assets/img/account/google.png') }}" class="img-fluid"
                         alt="shoe image">
                 </div>
                 <div class="text-so-tt-face">

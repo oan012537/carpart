@@ -30,15 +30,15 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-xl-6 col-md-12 col-12">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-describedby="button-addon2">
                                         <button class="btn btn btn__search" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-xl-6 col-md-12 col-12">
                                     @foreach (range('A', 'Z') as $letter)
-                                      <a href='javascript:void(0)' class='letter__az'>{{ $letter }}</a>
+                                    <a href='javascript:void(0)' class='letter__az'>{{ $letter }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -59,6 +59,7 @@
                                             </label>
                                         </div>
                                     </div>
+                                </div>
                                 @endforeach
                             </div>
 
@@ -98,7 +99,7 @@
                         {{-- select product main categories --}}
                     </div>
                 </form>
-                
+
 
                 {{-- select product type --}}
                 <div class="box__condition">
@@ -166,11 +167,11 @@
     var left, opacity, scale;
     var animating;
     var itemId;
-    
+
     $(document).on('click', '.next', function() {
 
-        itemId  = $(this).children().children().val();
-        
+        itemId = $(this).children().children().val();
+
         if (animating) return false;
         animating = true;
 
@@ -303,121 +304,122 @@
     })
 
     // helper function
-        function getSub(id, tableName) {
-            $.ajax({
-                type: 'GET',
-                url: 'get_sub_items',
-                data: {
-                    'id': id,
-                    'tableName': tableName
-                },
-                success: function(data){
-                    var htmltext;
+    function getSub(id, tableName) {
+        $.ajax({
+            type: 'GET',
+            url: 'get_sub_items',
+            data: {
+                'id': id,
+                'tableName': tableName
+            },
+            success: function(data) {
+                var htmltext;
 
-                    if (tableName === 'models') {
-                        if (data.length === 0) {
-                            alert('Model not found');
-                        } else {
-                            data.forEach(model => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ model.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + model.name_en + ' ('+ model.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset2').append(htmltext);
-                            });
-                        }       
-                    } 
-                    else if (tableName === 'sub_models') {
-                        if (data.length === 0) {
-                            alert('Sub Model not found');
-                        } else {
-                            data.forEach(subModel => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ subModel.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subModel.name_en + ' ('+ subModel.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset3').append(htmltext);
-                            });
-                        }
-                    }     
-                    else if (tableName === 'issue_years') {
-                        if (data.length === 0) {
-                            alert('Issue year not found');
-                        } else {
-                            data.forEach(issueYear => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ issueYear.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + issueYear.from_year + ' ('+ issueYear.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset4').append(htmltext);
-                            });
-                        }       
-                    }  
-                    else if (tableName === 'categories') {
-                        if (data.length === 0) {
-                            alert('Category not found');
-                        } else {
-                            data.forEach(category => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ category.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + category.name_en + ' ('+ category.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset5').append(htmltext);
-                            });
-                        }       
-                    }  
-                    else if (tableName === 'sub_categories') {
-                        if (data.length === 0) {
-                            alert('Sub Category not found');
-                        } else {
-                            data.forEach(subCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset6').append(htmltext);
-                            });
-                        }       
-                    }  
-                    else if (tableName === 'sub_sub_categories') {
-                        if (data.length === 0) {
-                            alert('Sub Sub Category not found');
-                        } else {
-                            data.forEach(subSubCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset7').append(htmltext);
-                            });
-                        }       
-                    }  
-                  
-                },
-                error: function(error) {
-                    console.log(error);
+                if (tableName === 'models') {
+                    if (data.length === 0) {
+                        alert('Model not found');
+                    } else {
+                        data.forEach(model => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + model.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                model.name_en + ' (' + model.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset2').append(htmltext);
+                        });
+                    }
+                } else if (tableName === 'sub_models') {
+                    if (data.length === 0) {
+                        alert('Sub Model not found');
+                    } else {
+                        data.forEach(subModel => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + subModel.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                subModel.name_en + ' (' + subModel.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset3').append(htmltext);
+                        });
+                    }
+                } else if (tableName === 'issue_years') {
+                    if (data.length === 0) {
+                        alert('Issue year not found');
+                    } else {
+                        data.forEach(issueYear => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + issueYear.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                issueYear.from_year + ' (' + issueYear.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset4').append(htmltext);
+                        });
+                    }
+                } else if (tableName === 'categories') {
+                    if (data.length === 0) {
+                        alert('Category not found');
+                    } else {
+                        data.forEach(category => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + category.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                category.name_en + ' (' + category.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset5').append(htmltext);
+                        });
+                    }
+                } else if (tableName === 'sub_categories') {
+                    if (data.length === 0) {
+                        alert('Sub Category not found');
+                    } else {
+                        data.forEach(subCategory => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + subCategory.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                subCategory.name_en + ' (' + subCategory.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset6').append(htmltext);
+                        });
+                    }
+                } else if (tableName === 'sub_sub_categories') {
+                    if (data.length === 0) {
+                        alert('Sub Sub Category not found');
+                    } else {
+                        data.forEach(subSubCategory => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + subSubCategory.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                subSubCategory.name_en + ' (' + subSubCategory.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset7').append(htmltext);
+                        });
+                    }
                 }
 
-            })
-        }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+
+        })
+    }
 
     // helper function
 </script>
