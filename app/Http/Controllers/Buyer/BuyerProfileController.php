@@ -744,6 +744,251 @@ class BuyerProfileController extends Controller
 
 
     //== Profile Bank
+    
+    public function buyerprofile_bank_request_otp()
+    {
+        $user_buyer = mUsers_buyer::where('id', Auth::guard('buyer')->user()->id)->first();
+        $phone = $user_buyer->phone;
+        return response()->json([
+            'status' => 200,
+            'mobilenumber' => $phone,
+            'message' => 'ดำเนินการเปลี่ยน รหัสผ่านได้',
+        ]);
+    }
 
+    public function buyerprofile_bank_store(Request $request)
+    {
+        DB::beginTransaction();
+        try {  
+
+            $user_buyer_id = Auth::guard('buyer')->user()->id;
+
+            $path = 'buyers/banks';
+            $image = '';
+
+            if ($request->file_banks_refimage != '') {
+                if (!empty($request->file('file_banks_refimage'))) {
+                    $img = $request->file('file_banks_refimage');
+                    $img_name = time() . '.' . $img->getClientOriginalExtension();
+                    $save_path = $img->move(public_path($path), $img_name);
+                    $image = $img_name;
+                }
+            }
+
+            BuyerBank::create([
+                'users_buyer_id' => $user_buyer_id,
+                'banks_accountnumber' => $request->banks_accountnumber, 
+                'banks_accountname' => $request->banks_accountname, 
+                'banks_name' => $request->banks_name, 
+                'banks_branch' => $request->banks_branch, 
+                'banks_type' => $request->banks_type, 
+                'banks_refimage' => $image, 
+                'created_by' => $user_buyer_id,
+                'updated_by' => $user_buyer_id,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+        
+        $buyer_banks = BuyerBank::where('users_buyer_id', $user_buyer_id)
+            ->orderBy('banks_active', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $htmltext_banks = $this->buyer_bankhtmlwrite($buyer_banks);
+
+        return response()->json([
+            'status' => 200,
+            'message' => "บันทึกเรียบร้อยแล้ว",
+            'htmltext_banks' => $htmltext_banks,
+        ]);
+
+    }
+
+    public function buyerprofile_bank_set_default($id)
+    {
+        DB::beginTransaction();
+        try {  
+            $user_buyer_id = Auth::guard('buyer')->user()->id;
+
+            BuyerBank::where('users_buyer_id', $user_buyer_id)->update(['banks_active' => '0']);
+
+            BuyerBank::where('id', $id)
+            ->update([
+                'banks_active' => '1',
+                'updated_by' => $user_buyer_id,
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+
+        $buyer_banks = BuyerBank::where('users_buyer_id', $user_buyer_id)
+            ->orderBy('banks_active', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $htmltext_banks = $this->buyer_bankhtmlwrite($buyer_banks);
+
+        //dd($buyer_banks, $htmltext_banks);
+
+        return response()->json([
+            'status' => 200,
+            'message' => "บันทึกเรียบร้อยแล้ว",
+            'htmltext_banks' => $htmltext_banks,
+        ]);
+    }
+
+    public function buyer_bankhtmlwrite($buyer_banks)
+    {
+        $html = "";
+        if(!is_null($buyer_banks)){
+            foreach($buyer_banks as $key => $bank){
+                
+                $bank_checked = "";
+                if($bank->banks_active == 1){
+                    $bank_checked = "checked";
+                }
+
+                $patch_image = asset('buyers/banks/'.$bank->banks_refimage);
+
+                $html .= '<div class="box__content">
+                    <div class="box-check-set">
+                        <label class="b-bank"> ตั้งเป็นบัญชีรับเงิน
+                            <input type="radio" name="bank_checked" class="bank_checked" rel="'.$bank->id.'" '.$bank_checked.'>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2-bank">
+                                <p>
+                                    หมายเลขบัญชี
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2-bank">
+                                <p>
+                                    '.(is_null($bank->banks_accountnumber) ? '-' : $bank->banks_accountnumber).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2-bank">
+                                <p>
+                                    ชื่อบัญชี
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2-bank">
+                                <p>
+                                    '.(is_null($bank->banks_accountname) ? '-' : $bank->banks_accountname).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2-bank">
+                                <p>
+                                    ธนาคาร
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2-bank">
+                                <p>
+                                    '.(is_null($bank->banks_name) ? '-' : $bank->banks_name).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2-bank">
+                                <p>
+                                    กรุงไทย
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2-bank">
+                                <p>
+                                    012345678
+                                </p>
+                            </div>
+                        </div>
+                    </div> -->
+        
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2-bank">
+                                <p>
+                                    สาขา
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2-bank">
+                                <p>
+                                    '.(is_null($bank->banks_branch) ? '-' : $bank->banks_branch).'
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2-bank">
+                                <p>
+                                    ประเภทบัญชี
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2-bank">
+                                <p>
+                                    '.(is_null($bank->banks_type) ? '-' : $bank->banks_type).'
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="txt__title2-bank">
+                                <p>
+                                    สำเนาหน้า Book Bank
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="txt__detailtitle2-bank">
+                                <img src="'.$patch_image.'" class="img-fluid" style="max-width:80px;"
+                                    alt="Book Bank">
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+
+            }
+        }
+
+        return $html;
+    }
     
 }
