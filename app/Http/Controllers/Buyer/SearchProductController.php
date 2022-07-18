@@ -284,6 +284,118 @@ class SearchProductController extends Controller
 
             return json_encode($html);
         }
+        if(!empty($request->submodel)){
+            $submodels = SubModel::where('brand_id',session('session_search.brand'))
+            ->where('model_id',session('session_search.model'))
+            ->where('name_en', 'like','%'. $request->submodel. '%')->get();
+            // dd($submodels);
+
+            $html = '<div class="search-box-submodel row">';
+            foreach($submodels as $subm){
+                $html .= '<div class="col-sm-3">
+                            <a onclick="selectSubModel('.$subm->id.')">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="text-detail-roon">
+                                        <p>
+                                            '.$subm->name_en.'
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>';
+            }
+            $html .= '</div>';
+
+            return json_encode($html);
+        }if(!empty($request->year)){
+            $years = IssueYear::where('sub_model_id',session('session_search.submodel'))
+            ->where('from_year', 'like','%'. $request->year. '%')->get();
+            // dd($submodels);
+
+            $html = '<div class="search-box-year row">';
+            foreach($years as $year){
+                $html .= '<div class="col-sm-3">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="boc-c-check">
+                                        <label class="container2">
+                                            <input type="checkbox" value="'.$year->id.'">
+                                            <span class="checkmark2"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="text-detail-roon">
+                                        <p>
+                                            '.$year->from_year.'
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+            }
+            $html .= '</div>';
+
+            return json_encode($html);
+        }if(!empty($request->category)){
+            $category = Category::where('name_en', 'like','%'. $request->category. '%') ->get();
+
+            $html = '<div class="search-box-category row">';
+            foreach($category as $cate){
+                $html .= '<div class="col-sm-3">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="boc-c-check">
+                                        <label class="container2">
+                                            <input type="checkbox" value="'.$cate->id.'">
+                                            <span class="checkmark2"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="text-detail-roon">
+                                        <p>
+                                            '.$cate->name_en.'
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+            }
+            $html .= '</div>';
+
+            return json_encode($html);
+        }if(!empty($request->subcategory)){
+            $category = SubCategory::where('name_en', 'like','%'. $request->subcategory. '%') ->get();
+
+            $html = '<div class="search-box-category row">';
+            foreach($category as $cate){
+                $html .= '<div class="col-sm-3">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="boc-c-check">
+                                        <label class="container2">
+                                            <input type="checkbox" value="'.$cate->id.'">
+                                            <span class="checkmark2"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="text-detail-roon">
+                                        <p>
+                                            '.$cate->name_en.'
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+            }
+            $html .= '</div>';
+        }
     }
 
     public function home_search_brand(Request $request){
@@ -317,6 +429,98 @@ class SearchProductController extends Controller
             'category' => Category::get(),
             'products' => $products,
             'submodels' => SubModel::where('model_id',$request->model)->get(),
+        ]);
+    }
+
+    public function home_search_submodel(Request $request){
+        $request->session()->put('session_search',[
+            'brand' => $request->brand,
+            'model' => $request->model,
+            'submodel' => $request->submodel,
+        ]);
+
+        $products = Product::orderby('updated_at','asc')
+        ->where('brand_id',$request->brand)
+        ->where('model_id',$request->model)
+        ->where('sub_model_id',$request->submodel)->limit(9)->get();
+
+        return view('buyer.homesearch.home-search4',[
+            'brands_select' => Brand::get(),
+            'category' => Category::get(),
+            'products' => $products,
+            'years' => IssueYear::where('sub_model_id',$request->submodel)->get(),
+        ]);
+    }
+
+    public function home_search_year(Request $request){
+        $request->session()->put('session_search',[
+            'brand' => $request->brand,
+            'model' => $request->model,
+            'submodel' => $request->submodel,
+            'year' => $request->year,
+        ]);
+
+        $products = Product::orderby('updated_at','asc')
+        ->where('brand_id',$request->brand)
+        ->where('model_id',$request->model)
+        ->where('sub_model_id',$request->submodel)
+        ->where('issue_year_id',$request->year)->limit(9)->get();
+
+        return view('buyer.homesearch.home-search5',[
+            'brands_select' => Brand::get(),
+            'category' => Category::get(),
+            'products' => $products,
+            // 'years' => IssueYear::where('sub_model_id',$request->submodel)->get(),
+        ]);
+    }
+
+    public function home_search_category(Request $request){
+        $request->session()->put('session_search',[
+            'brand' => $request->brand,
+            'model' => $request->model,
+            'submodel' => $request->submodel,
+            'year' => $request->year,
+            'category' => $request->category,
+        ]);
+
+        $products = Product::orderby('updated_at','asc')
+        ->where('brand_id',$request->brand)
+        ->where('model_id',$request->model)
+        ->where('sub_model_id',$request->submodel)
+        ->where('issue_year_id',$request->year)
+        ->where('category_id',$request->category)->limit(9)->get();
+
+        return view('buyer.homesearch.home-search6',[
+            'brands_select' => Brand::get(),
+            'category' => Category::get(),
+            'products' => $products,
+            'subcategory' => SubCategory::where('category_id',$request->category)->get(),
+        ]);
+    }
+
+    public function home_search_subcategory(Request $request){
+        $request->session()->put('session_search',[
+            'brand' => $request->brand,
+            'model' => $request->model,
+            'submodel' => $request->submodel,
+            'year' => $request->year,
+            'category' => $request->category,
+            'subcategory' => $request->subcategory,
+        ]);
+
+        $products = Product::orderby('updated_at','asc')
+        ->where('brand_id',$request->brand)
+        ->where('model_id',$request->model)
+        ->where('sub_model_id',$request->submodel)
+        ->where('issue_year_id',$request->year)
+        ->where('category_id',$request->category)
+        ->where('sub_category_id',$request->subcategory)->limit(9)->get();
+
+        return view('buyer.homesearch.home-search6',[
+            'brands_select' => Brand::get(),
+            'category' => Category::get(),
+            'products' => $products,
+            'subsubcategory' => SubSubCategory::where('sub_category_id',$request->subcategory)->get(),
         ]);
     }
 

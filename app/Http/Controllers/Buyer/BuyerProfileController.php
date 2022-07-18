@@ -721,11 +721,11 @@ class BuyerProfileController extends Controller
 
     //== Change Password
 
-    public function buyerprofile_check_currentpassword(Request $request)
+    public function buyerprofile_check_currentpassword($current_password)
     {
         $user_buyer = mUsers_buyer::where('id', Auth::guard('buyer')->user()->id)->first();
         $phone = $user_buyer->phone;
-        $password = $request->current_password;
+        $password = $current_password;
 
         if(Auth::guard('buyer')->attempt(['phone' => $phone, 'password' => $password]) ){
             return response()->json([

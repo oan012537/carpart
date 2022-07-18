@@ -30,15 +30,15 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-xl-6 col-md-12 col-12">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-describedby="button-addon2">
                                         <button class="btn btn btn__search" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-xl-6 col-md-12 col-12">
                                     @foreach (range('A', 'Z') as $letter)
-                                      <a href='javascript:void(0)' class='letter__az'>{{ $letter }}</a>
+                                    <a href='javascript:void(0)' class='letter__az'>{{ $letter }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -55,14 +55,15 @@
                                             <label class="form-check-label" for="image-options{{ $brand->id }}">
                                                 <img src="{{ asset('brand_logo').'/'. $brand->image }}" class="img-fluid img-circleimg" alt="{{ $brand->name_th }}">
                                                 {{-- concat id is for test --}}
-                                                {{ $brand->name_th . ' ('. $brand->id }}
+                                                {{ $brand->name_en . ' ('. $brand->id }}
                                             </label>
                                         </div>
                                     </div>
+                                </div>
                                 @endforeach
                             </div>
 
-                            {{-- model   --}}
+                            {{-- model --}}
                             <fieldset attr-id="1">
                                 <div class="row box__scroll" id="fieldset2">
                                 </div>
@@ -98,7 +99,7 @@
                         {{-- select product main categories --}}
                     </div>
                 </form>
-                
+
 
                 {{-- select product type --}}
                 <div class="box__condition">
@@ -106,7 +107,7 @@
                         <p class="txt__title"><i class="fa-solid fa-circle-exclamation"></i> {{ trans('file.Product Quality') }}</p>
                     </div>
 
-                    <form id="frm-product-info" action="{{ route('products.create_product_info') }}" method="get">
+                    <form id="frm-second-product-info" action="{{ route('products.create_product_info') }}" method="get">
                         <input type="hidden" name="brand_id" >
                         <input type="hidden" name="model_id" >
                         <input type="hidden" name="sub_model_id" >
@@ -114,17 +115,29 @@
                         <input type="hidden" name="category_id" >
                         <input type="hidden" name="sub_category_id" >
                         <input type="hidden" name="sub_sub_category_id" >
+                        <input type="hidden" name="product_type" value="second">
+                    </form>
+                    <form id="frm-new-product-info" action="{{ route('products.create_product_info') }}" method="get">
+                        <input type="hidden" name="brand_id" >
+                        <input type="hidden" name="model_id" >
+                        <input type="hidden" name="sub_model_id" >
+                        <input type="hidden" name="issue_year_id" >
+                        <input type="hidden" name="category_id" >
+                        <input type="hidden" name="sub_category_id" >
+                        <input type="hidden" name="sub_sub_category_id" >
+                        <input type="hidden" name="product_type" value="new">
                     </form>
 
                     {{-- create product button --}}
                     <div class="box__wrapperbutton">
-                        <a href="javascript:document.getElementById('frm-product-info').submit();" class="btn btn__producttwohand">
+                        {{-- create second hand product --}}
+                        <a href="javascript:document.getElementById('frm-second-product-info').submit();" class="btn btn__producttwohand">
                             <img src="{{ asset('assets/img/icon/icon__mdicar.svg') }}" class="img-fluid" alt="second hand">
                             <p>{{ trans('file.Second Hand') }}</p>
                             <span>{{ trans('file.The product has been used') }}</span>
                         </a>
-
-                        <a href="javascript:document.getElementById('frm-product-info').submit();" class="btn btn__productnew">
+                        {{-- create new product --}}
+                        <a href="javascript:document.getElementById('frm-new-product-info').submit();" class="btn btn__productnew">
                             <img src="{{ asset('assets/img/icon/icon__new.svg') }}" class="img-fluid" alt="new product">
                             <p>{{ trans('file.New Product') }}</p>
                             <span>{{ trans('file.First-hand products have not been used.') }}</span>
@@ -154,11 +167,11 @@
     var left, opacity, scale;
     var animating;
     var itemId;
-    
+
     $(document).on('click', '.next', function() {
 
-        itemId  = $(this).children().children().val();
-        
+        itemId = $(this).children().children().val();
+
         if (animating) return false;
         animating = true;
 
@@ -170,9 +183,10 @@
         next_fs.show();
         const attr__value = next_fs.attr('attr-id');
         
-    // alert(attr__value);
+        // alert(attr__value);
         if (attr__value == 1) {
-            $('#frm-product-info input[name="brand_id"]').val(itemId);
+            $('#frm-second-product-info input[name="brand_id"]').val(itemId);
+            $('#frm-new-product-info input[name="brand_id"]').val(itemId);
             getSub(itemId, 'models');
 
             $('.txt__titlestep').addClass('d-none');
@@ -182,42 +196,48 @@
             $('.txt__series').html('{{ trans("file.Model") }}');
             $('.title__headbox').html('{{ trans("file.Model") }}')
         } else if (attr__value == 2) {
-            $('#frm-product-info input[name="model_id"]').val(itemId);
+            $('#frm-second-product-info input[name="model_id"]').val(itemId);
+            $('#frm-new-product-info input[name="model_id"]').val(itemId);
             getSub(itemId, 'sub_models');
 
             $('.step3').removeClass('d-none');
             $('.txt__subseries').html('{{ trans("file.Sub Model") }}');
             $('.title__headbox').html('{{ trans("file.Sub Model") }}')
         } else if (attr__value == 3) {
-            $('#frm-product-info input[name="sub_model_id"]').val(itemId);
+            $('#frm-second-product-info input[name="sub_model_id"]').val(itemId);
+            $('#frm-new-product-info input[name="sub_model_id"]').val(itemId);
             getSub(itemId, 'issue_years');
 
             $('.step4').removeClass('d-none');
             $('.txt__years').html('{{ trans("file.Year") }}');
             $('.title__headbox').html('{{ trans("file.Year") }}')
         } else if (attr__value == 4) {
-            $('#frm-product-info input[name="issue_year_id"]').val(itemId);
+            $('#frm-second-product-info input[name="issue_year_id"]').val(itemId);
+            $('#frm-new-product-info input[name="issue_year_id"]').val(itemId);
             getSub(itemId, 'categories');
 
             $('.step5').removeClass('d-none');
             $('.txt__cat').html('{{ trans("file.Category") }}');
             $('.title__headbox').html('{{ trans("file.Category") }}')
         } else if (attr__value == 5) {
-            $('#frm-product-info input[name="category_id"]').val(itemId);
+            $('#frm-second-product-info input[name="category_id"]').val(itemId);
+            $('#frm-new-product-info input[name="category_id"]').val(itemId);
             getSub(itemId, 'sub_categories');
 
             $('.step6').removeClass('d-none');
             $('.txt__sub_cat').html('{{ trans("file.Sub Category") }}');
             $('.title__headbox').html('{{ trans("file.Sub Category") }}')
         } else if (attr__value == 6) {
-            $('#frm-product-info input[name="sub_category_id"]').val(itemId);
+            $('#frm-second-product-info input[name="sub_category_id"]').val(itemId);
+            $('#frm-new-product-info input[name="sub_category_id"]').val(itemId);
             getSub(itemId, 'sub_sub_categories');
 
             $('.step7').removeClass('d-none');
             $('.txt__sub_sub_cat').html('{{ trans("file.Sub Sub Category") }}');
             $('.title__headbox').html('{{ trans("file.Sub Sub Category") }}')
         } else {
-            $('#frm-product-info input[name="sub_sub_category_id"]').val(itemId);
+            $('#frm-second-product-info input[name="sub_sub_category_id"]').val(itemId);
+            $('#frm-new-product-info input[name="sub_sub_category_id"]').val(itemId);
         }
 
         current_fs.animate({
@@ -283,123 +303,123 @@
         return false;
     })
 
-
     // helper function
-        function getSub(id, tableName) {
-            $.ajax({
-                type: 'GET',
-                url: 'get_sub_items',
-                data: {
-                    'id': id,
-                    'tableName': tableName
-                },
-                success: function(data){
-                    var htmltext;
+    function getSub(id, tableName) {
+        $.ajax({
+            type: 'GET',
+            url: 'get_sub_items',
+            data: {
+                'id': id,
+                'tableName': tableName
+            },
+            success: function(data) {
+                var htmltext;
 
-                    if (tableName === 'models') {
-                        if (data.length === 0) {
-                            alert('Model not found');
-                        } else {
-                            data.forEach(model => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ model.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + model.name_en + ' ('+ model.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset2').append(htmltext);
-                            });
-                        }       
-                    } 
-                    else if (tableName === 'sub_models') {
-                        if (data.length === 0) {
-                            alert('Sub Model not found');
-                        } else {
-                            data.forEach(subModel => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ subModel.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subModel.name_en + ' ('+ subModel.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset3').append(htmltext);
-                            });
-                        }
-                    }     
-                    else if (tableName === 'issue_years') {
-                        if (data.length === 0) {
-                            alert('Issue year not found');
-                        } else {
-                            data.forEach(issueYear => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ issueYear.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + issueYear.from_year + ' ('+ issueYear.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset4').append(htmltext);
-                            });
-                        }       
-                    }  
-                    else if (tableName === 'categories') {
-                        if (data.length === 0) {
-                            alert('Category not found');
-                        } else {
-                            data.forEach(category => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ category.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + category.name_en + ' ('+ category.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset5').append(htmltext);
-                            });
-                        }       
-                    }  
-                    else if (tableName === 'sub_categories') {
-                        if (data.length === 0) {
-                            alert('Sub Category not found');
-                        } else {
-                            data.forEach(subCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset6').append(htmltext);
-                            });
-                        }       
-                    }  
-                    else if (tableName === 'sub_sub_categories') {
-                        if (data.length === 0) {
-                            alert('Sub Sub Category not found');
-                        } else {
-                            data.forEach(subSubCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
-                                        +'</label>'
-                                    +'</div></div>';
-                                $('#fieldset7').append(htmltext);
-                            });
-                        }       
-                    }  
-                  
-                },
-                error: function(error) {
-                    console.log(error);
+                if (tableName === 'models') {
+                    if (data.length === 0) {
+                        alert('Model not found');
+                    } else {
+                        data.forEach(model => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + model.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                model.name_en + ' (' + model.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset2').append(htmltext);
+                        });
+                    }
+                } else if (tableName === 'sub_models') {
+                    if (data.length === 0) {
+                        alert('Sub Model not found');
+                    } else {
+                        data.forEach(subModel => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + subModel.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                subModel.name_en + ' (' + subModel.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset3').append(htmltext);
+                        });
+                    }
+                } else if (tableName === 'issue_years') {
+                    if (data.length === 0) {
+                        alert('Issue year not found');
+                    } else {
+                        data.forEach(issueYear => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + issueYear.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                issueYear.from_year + ' (' + issueYear.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset4').append(htmltext);
+                        });
+                    }
+                } else if (tableName === 'categories') {
+                    if (data.length === 0) {
+                        alert('Category not found');
+                    } else {
+                        data.forEach(category => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + category.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                category.name_en + ' (' + category.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset5').append(htmltext);
+                        });
+                    }
+                } else if (tableName === 'sub_categories') {
+                    if (data.length === 0) {
+                        alert('Sub Category not found');
+                    } else {
+                        data.forEach(subCategory => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + subCategory.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                subCategory.name_en + ' (' + subCategory.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset6').append(htmltext);
+                        });
+                    }
+                } else if (tableName === 'sub_sub_categories') {
+                    if (data.length === 0) {
+                        alert('Sub Sub Category not found');
+                    } else {
+                        data.forEach(subSubCategory => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
+                                '<div class="form-check">' +
+                                '<input class="form-check-input" type="checkbox" value="' + subSubCategory.id + '" id="flexCheckDefault">' +
+                                '<label class="form-check-label" for="flexCheckDefault">' +
+                                subSubCategory.name_en + ' (' + subSubCategory.id // concat id is for test
+                                +
+                                '</label>' +
+                                '</div></div>';
+                            $('#fieldset7').append(htmltext);
+                        });
+                    }
                 }
 
-            })
-        }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+
+        })
+    }
 
     // helper function
 </script>
