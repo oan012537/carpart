@@ -207,10 +207,13 @@
                                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                     <div class="form-group">
                                                                         <label>{{ trans('file.Product Quality') }} <span>*</span></label>
-                                                                        <select class="form-select" aria-label="Default select example" name="quality">
+                                                                        <select id="quality" class="form-select" aria-label="Default select example" name="quality">
                                                                             <option>{{ trans('file.Specify') }}</option>
                                                                             @foreach ($product_qualities as $quality)
-                                                                                <option value="{{ $quality }}" @if ($quality == $data->quality) selected @endif>{{ trans('file.'. $quality) }}</option>
+                                                                                <option value="{{ $quality }}" 
+                                                                                {{-- @if ($quality == $data->quality) selected @endif --}}
+                                                                                    >{{ trans('file.'. $quality) }}
+                                                                                </option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -323,11 +326,11 @@
                                                         <div class="input-group">
                                                             <input type="number" class="form-control" name="duration" placeholder="{{ trans('file.Specify') }}" 
                                                                     value="{{ old('duration')? old('duration'): isset($warranty->duration)? $warranty->duration : '' }}">
-                                                            <select class="btn btn__garuntee" aria-label="Default select example" name="year_month_day">
+                                                            <select id="year_month_day" class="btn btn__garuntee" aria-label="Default select example" name="year_month_day">
                                                                 @foreach ($day_month_year as $timeType)
                                                                     <option value="{{ $timeType }}" 
-                                                                        @if($timeType == (isset($warranty->year_month_day)? $warranty->year_month_day : '')) selected @endif>
-                                                                        {{ trans('file.' . $timeType) }}
+                                                                        {{-- @if($timeType == (isset($warranty->year_month_day)? $warranty->year_month_day : '')) selected @endif --}}
+                                                                        >{{ trans('file.' . $timeType) }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -349,9 +352,7 @@
 
                                                     <div class="col-12">
                                                         <div class="box__text">
-                                                            <textarea name="term_and_condition" placeholder="{{ trans('file.Specify') }}" class="form-control">
-                                                                {{   old('term_and_condition')? old('term_and_condition'): ltrim($data->term_and_condition, " ")   }}
-                                                            </textarea>
+                                                            <textarea name="term_and_condition" placeholder="{{ trans('file.Specify') }}" class="form-control">{{ old('term_and_condition')? old('term_and_condition'): $data->term_and_condition }}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -394,11 +395,11 @@
                                                                 <div class="input-group">
                                                                     <input type="number" class="form-control" name="weight" 
                                                                             value="{{ old('weight')? old('weight'): isset($transport->weight)? $transport->weight : 0 }}">
-                                                                    <select class="btn btn__weight" name="unit">
+                                                                    <select id="unit" class="btn btn__weight" name="unit">
                                                                         @foreach ($units as $unit)
                                                                             <option value="{{ $unit }}" 
-                                                                                @if($unit == (isset($transport->unit)? $transport->unit : '')) selected @endif>
-                                                                                {{ $unit }}
+                                                                                {{-- @if($unit == (isset($transport->unit)? $transport->unit : '')) selected @endif --}}
+                                                                                >{{ $unit }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -424,11 +425,11 @@
                                                                             value="{{ old('height')? old('height'): isset($transport->height)? $transport->height : '' }}">
 
                                                                     <span>{{ trans('file.UOM') }}</span>
-                                                                    <select class="btn btn__unit" name="uom">
+                                                                    <select id="uom" class="btn btn__unit" name="uom">
                                                                         @foreach ($uoms as $uom)
                                                                             <option value="{{ $uom }}" 
-                                                                                @if($uom == (isset($transport->uom)? $transport->uom : '')) selected @endif>
-                                                                                {{ $uom }}
+                                                                                {{-- @if($uom == (isset($transport->uom)? $transport->uom : '')) selected @endif --}}
+                                                                                >{{ $uom }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -542,10 +543,10 @@
                                                                     {{-- specify days --}}
                                                                     <div class="form-group">
                                                                         <span class="label__setdate">{{ trans('file.Specify Day') }}</span>
-                                                                        <select class="form-select" name="estimated_days" aria-label="Default select example">
+                                                                        <select id="estimated_days" class="form-select" name="estimated_days" aria-label="Default select example">
                                                                             @for ($i = 1; $i <= 31; $i++)
                                                                                 <option value="{{ $i }}"
-                                                                                        @if((isset($transport->estimated_days)? $transport->estimated_days : 0) == $i) selected @endif
+                                                                                        {{-- @if((isset($transport->estimated_days)? $transport->estimated_days : 0) == $i) selected @endif --}}
                                                                                 >{{ $i }}
                                                                                 </option>
                                                                             @endfor
@@ -697,7 +698,7 @@
                                         data-bs-target="#stepcondition{{ $x }}"
                                         aria-expanded="false"
                                         aria-controls="stepcondition{{ $x }}">
-                                    <p class="txt__title"><i class="fa-solid fa-circle-exclamation"></i> {{ trans('file.Product Information') .' '. $x }}</p>
+                                    <p class="txt__title"><i class="fa-solid fa-circle-exclamation"></i> {{ trans('file.Product Information') }}</p>
                                 </button>
                             </h2>
                             {{-- collapsed --}}
@@ -793,131 +794,152 @@
             setDuration(isWarranty);
             setEstimateDays(isDeliver);
         // specify initilize option data
-    });
 
-    // upload image
-    $(document).on('change', '#upload-image', function(){
-        var event = $(this);
-        uploadImage(event);
-    });
-    
-    function uploadImage(event) {
-        var imageUrl = '';
-        var htmlText = '';
-        var file_data = event.prop('files')[0];   
-        var form_data = new FormData();                  
-        form_data.append('file', file_data);
-        $.ajax({
-            url: '../dropzone/store',
-            dataType: 'text',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post',
-            success: function(data){
-                imageUrl = "{{ asset('product/images') }}" + '/' + data;
-                htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
-                                +'<input type="hidden" name="image[]" value="'+ data +'">'
-                                +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
-                                +'<img src="'+ imageUrl +'" class="img-fluid" alt="product image">'
-                                +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
-                                +'</a></div>';
-                $('#show-image').prepend(htmlText);
-            }
-        });
-    }
-    // upload image
+        // initialize old option data
+        let oldQuality = "{{ old('quality') }}";
+        let quality = oldQuality ? oldQuality : "{{ $data->quality }}";
+        $('#quality option[value="' + quality + '"]').attr('selected', 'selected');
 
-    // remove image
-    $(document).on('click', '.btn__trash', function(e){
-        var imageName = $(e.currentTarget).data('image');
+        let oldYearMonthDay = "{{ old('year_month_day') }}";
+        let yearMonthDay = oldYearMonthDay ? oldYearMonthDay : "{{ (isset($warranty->year_month_day)? $warranty->year_month_day : '') }}";
+        $('#year_month_day option[value="' + yearMonthDay + '"]').attr('selected', 'selected');
 
-        $.ajax({
-            url: '../dropzone/remove',
-            dataType: 'text',
-            data: {
-                'imageName': imageName
-            },
-            type: 'post',
-            success: function(data) {
-                $(e.currentTarget).parent().remove();
-                e.preventDefault();
-            }
+        let oldUnit = "{{ old('unit') }}";
+        let unit = oldUnit ? oldUnit : "{{ (isset($transport->unit)? $transport->unit : '') }}";
+        $('#unit option[value="' + unit + '"]').attr('selected', 'selected');
+        
+        let olduom = "{{ old('uom') }}";
+        let uom = olduom ? olduom : "{{ (isset($transport->uom)? $transport->uom : '') }}";
+        $('#uom option[value="' + uom + '"]').attr('selected', 'selected');
+
+        let oldEstimatedDays = "{{ old('estimated_days') }}";
+        let estimatedDays = oldEstimatedDays ? oldEstimatedDays : "{{ (isset($transport->estimated_days)? $transport->estimated_days : 0) }}";
+        $('#estimated_days option[value="' + estimatedDays + '"]').attr('selected', 'selected');
+        // initialize old option data
+
+        // upload image
+        $(document).on('change', '#upload-image', function(){
+            var event = $(this);
+            uploadImage(event);
         });
         
-    });
-    // remove image
-
-   // control warranty option
-   $('input[name="is_warranty"]').on('change', function() {
-        var value = $(this).val();
-        setDuration(value);
-    });
-
-    function setDuration(value) {
-        if (value == 0) {
-            $('input[name="duration"]').prop('required', false);
-            $('input[name="duration"]').prop('readonly', true);
-            $('input[name="duration"]').val('');
-        } else {
-            $('input[name="duration"]').prop('required', true);
-            $('input[name="duration"]').prop('readonly', false);
+        function uploadImage(event) {
+            var imageUrl = '';
+            var htmlText = '';
+            var file_data = event.prop('files')[0];   
+            var form_data = new FormData();                  
+            form_data.append('file', file_data);
+            $.ajax({
+                url: '../dropzone/store',
+                dataType: 'text',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(data){
+                    imageUrl = "{{ asset('product/images') }}" + '/' + data;
+                    htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
+                                    +'<input type="hidden" name="image[]" value="'+ data +'">'
+                                    +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
+                                    +'<img src="'+ imageUrl +'" class="img-fluid" alt="product image">'
+                                    +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
+                                    +'</a></div>';
+                    $('#show-image').prepend(htmlText);
+                }
+            });
         }
-    }
+        // upload image
+
+        // remove image
+        $(document).on('click', '.btn__trash', function(e){
+            var imageName = $(e.currentTarget).data('image');
+
+            $.ajax({
+                url: '../dropzone/remove',
+                dataType: 'text',
+                data: {
+                    'imageName': imageName
+                },
+                type: 'post',
+                success: function(data) {
+                    $(e.currentTarget).parent().remove();
+                    e.preventDefault();
+                }
+            });
+            
+        });
+        // remove image
+
     // control warranty option
+    $('input[name="is_warranty"]').on('change', function() {
+            var value = $(this).val();
+            setDuration(value);
+        });
 
-
-    // control transport status
-    $('input[name="is_deliver"]').on('change', function() {
-        var value = $(this).val();
-        setEstimateDays(value);
-    });
-
-    function setEstimateDays(value) {
-        if (value == 1) {
-            $('select[name="estimated_days"]').prop('required', false);
-            $('select[name="estimated_days"]').prop('disabled', true);
-            $('select[name="estimated_days"]').val('');
-        } else {
-            $('select[name="estimated_days"]').prop('required', true);
-            $('select[name="estimated_days"]').prop('disabled', false);
+        function setDuration(value) {
+            if (value == 0) {
+                $('input[name="duration"]').prop('required', false);
+                $('input[name="duration"]').prop('readonly', true);
+                $('input[name="duration"]').val('');
+            } else {
+                $('input[name="duration"]').prop('required', true);
+                $('input[name="duration"]').prop('readonly', false);
+            }
         }
-    }
-    // control transport status
+        // control warranty option
 
-    // calculate commission and revenue
-    $('#product-price').on('input', function() {
-        const price = $(this).val();
-        const vatAmt = price - ( price * ( 100 / ( 100 + 7 )));
-        const basicAmt = price - vatAmt;
-        const commission = (price * 15) / 100;
-        const revenue = basicAmt - commission;
-        $('input[name="commission"]').val(commission.toFixed(2));
-        $('input[name="revenue"]').val(revenue.toFixed(2));
-    })
-    // calculate commission and revenue
 
-    // active progress bar
-        $('#warranty').on('click', function(){
-            $('#progress-warranty').addClass('activenav');
+        // control transport status
+        $('input[name="is_deliver"]').on('change', function() {
+            var value = $(this).val();
+            setEstimateDays(value);
         });
 
-        $('#transportion').on('click', function(){
-            $('#progress-transport').addClass('activenav');
-        });
+        function setEstimateDays(value) {
+            if (value == 1) {
+                $('select[name="estimated_days"]').prop('required', false);
+                $('select[name="estimated_days"]').prop('disabled', true);
+                $('select[name="estimated_days"]').val('');
+            } else {
+                $('select[name="estimated_days"]').prop('required', true);
+                $('select[name="estimated_days"]').prop('disabled', false);
+            }
+        }
+        // control transport status
 
-        $('#price').on('click', function(){
-            $('#progress-amount').addClass('activenav');
-        });
-    // active progress bar
+        // calculate commission and revenue
+        $('#product-price').on('input', function() {
+            const price = $(this).val();
+            const vatAmt = price - ( price * ( 100 / ( 100 + 7 )));
+            const basicAmt = price - vatAmt;
+            const commission = (price * 15) / 100;
+            const revenue = basicAmt - commission;
+            $('input[name="commission"]').val(commission.toFixed(2));
+            $('input[name="revenue"]').val(revenue.toFixed(2));
+        })
+        // calculate commission and revenue
 
-    // insert salesman code
-    $('#salesman-code').on('input', function() {
-        $('input[name="salesman_code"]').val($(this).val());
+        // active progress bar
+            $('#warranty').on('click', function(){
+                $('#progress-warranty').addClass('activenav');
+            });
+
+            $('#transportion').on('click', function(){
+                $('#progress-transport').addClass('activenav');
+            });
+
+            $('#price').on('click', function(){
+                $('#progress-amount').addClass('activenav');
+            });
+        // active progress bar
+
+        // insert salesman code
+        $('#salesman-code').on('input', function() {
+            $('input[name="salesman_code"]').val($(this).val());
+        });
+        // insert salesman code
     });
-    // insert salesman code
-
 
 </script>
 

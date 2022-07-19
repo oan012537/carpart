@@ -74,7 +74,7 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="store_name"  aria-describedby="basic-addon1" required>
+                                                  name="store_name" value="{{ old('store_name') }}" aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
@@ -83,7 +83,7 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                   name="personal_first_name" aria-describedby="basic-addon1" required>
+                                                   name="personal_first_name" value="{{ old('personal_first_name') }}" aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
@@ -92,7 +92,7 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="personal_last_name"  aria-describedby="basic-addon1" required>
+                                                  name="personal_last_name" value="{{ old('personal_last_name') }}" aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="personal_card_id"  aria-describedby="basic-addon1" required> 
+                                                  name="personal_card_id" value="{{ old('personal_card_id') }}" aria-describedby="basic-addon1" required> 
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
@@ -110,7 +110,7 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                   name="address" aria-describedby="basic-addon1" required>
+                                                   name="address" value="{{ old('address') }}" aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
@@ -118,7 +118,7 @@
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="province" required>
+                                                <select class="form-select province-id" aria-label="Default select example" name="province" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                     @foreach ($province_list_data as $province)
                                                         <option value="{{ $province->id }}">{{ $province->name_th }}</option>
@@ -131,7 +131,7 @@
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="amphure" required>
+                                                <select class="form-select amphure-id" aria-label="Default select example" name="amphure" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
@@ -141,7 +141,7 @@
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="district" required>
+                                                <select class="form-select district-id" aria-label="Default select example" name="district" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
@@ -151,7 +151,7 @@
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="postcode">
+                                                <select class="form-select postcode" aria-label="Default select example" name="postcode">
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
@@ -222,7 +222,7 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="company_name"  aria-describedby="basic-addon1" required>
+                                                  name="company_name" value="{{ old('company_name') }}" aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
@@ -231,7 +231,7 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="branch"  aria-describedby="basic-addon1" required>
+                                                  name="branch" value="{{ old('branch') }}" aria-describedby="basic-addon1" required>
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
@@ -240,7 +240,7 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                  name="vat_registration_number"  aria-describedby="basic-addon1" required>
+                                                  name="vat_registration_number" value="{{ old('vat_registration_number') }}"  aria-describedby="basic-addon1" required>
                                             </div>
                                             {{-- attach doc --}}
                                             <div class="tt-text-log">
@@ -298,7 +298,7 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                                 name="address"  aria-describedby="basic-addon1">
+                                                 name="address" value="{{ old('address') }}" aria-describedby="basic-addon1">
                                             </div>
                                             <div class="tt-text-log">
                                                 <p>
@@ -306,7 +306,7 @@
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="province" required>
+                                                <select class="form-select province-id" aria-label="Default select example" name="province" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                     @foreach ($province_list_data as $province)
                                                         <option value="{{ $province->id }}">{{ $province->name_th }}</option>
@@ -319,7 +319,7 @@
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="amphure" required>
+                                                <select class="form-select amphure-id" aria-label="Default select example" name="amphure" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
@@ -329,7 +329,7 @@
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="district" required>
+                                                <select class="form-select district-id" aria-label="Default select example" name="district" required>
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
@@ -339,7 +339,7 @@
                                                 </p>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select class="form-select" aria-label="Default select example" name="postcode">
+                                                <select class="form-select postcode" aria-label="Default select example" name="postcode">
                                                     <option value="">{{ trans('file.Specify') }}</option>
                                                 </select>
                                             </div>
@@ -368,279 +368,304 @@
 
 <script type="text/javascript">
 
-    var supplierType = '';
+    $(document).ready(function(){
 
-    $('[name=tabs]').each(function(i, d) {
-        var p = $(this).prop('checked');
-        if (p) {
-            $('.contenttab').eq(i)
-                .addClass('on');
-        }
-        supplierType = $('input[name=tabs]:checked').val();
-        
-    });
+        // re-initilize old value for option
+        let oldProvinceId = "{{ old('province') }}";
+        let provinceId = oldProvinceId ? oldProvinceId : '';
+        $('.province-id option[value="' + provinceId + '"]').attr('selected', 'selected');
 
-    $('[name=tabs]').on('change', function() {
-        var p = $(this).prop('checked');
-        var i = $('[name=tabs]').index(this);
-        $('.contenttab').removeClass('on');
-        $('.contenttab').eq(i).addClass('on');
-        supplierType = $('input[name=tabs]:checked').val();
+        let oldAmphureId = "{{ old('amphure') }}";
+        let amphureId = oldAmphureId ? oldAmphureId : '';
+        $('.amphure-id option[value="' + amphureId + '"]').attr('selected', 'selected');
 
-        $('select[name="province"]').prop('selectedIndex', 0);
-        $('select[name="amphure"]').html('<option value="">{{ trans("file.Specify") }}</option>');
-        $('select[name="district"]').html('<option value="">{{ trans("file.Specify") }}</option>');
-        $('select[name="postcode"]').html('<option value="">{{ trans("file.Specify") }}</option>');
+        let oldDistrictId = "{{ old('district') }}";
+        let districtId = oldDistrictId ? oldDistrictId : '';
+        $('.district-id option[value="' + districtId + '"]').attr('selected', 'selected');
 
-    });
+        let oldPostcode = "{{ old('postcode') }}";
+        let postcode = oldPostcode ? oldPostcode : '';
+        $('.postcode option[value="' + postcode + '"]').attr('selected', 'selected');
+        // re-initilize old value for option
+   
 
-    var current_fs, next_fs, previous_fs;
-    var left, opacity, scale;
-    var animating;
-    var specify = "{{ trans('file.Specify') }}";
+        var supplierType = '';
 
-    $(".next").click(function() {
-        if (animating) return false;
-        animating = true;
-
-        current_fs = $(this).parent();
-        next_fs = $(this).parent().next();
-
-        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-        next_fs.show();
-        current_fs.animate({
-            opacity: 0
-        }, {
-            step: function(now, mx) {
-                scale = 1 - (1 - now) * 0.2;
-                left = (now * 50) + "%";
-                opacity = 1 - now;
-                current_fs.css({
-                    'transform': 'scale(' + scale + ')',
-                    'position': 'absolute'
-                });
-                next_fs.css({
-                    'left': left,
-                    'opacity': opacity
-                });
-            },
-            duration: 800,
-            complete: function() {
-                current_fs.hide();
-                animating = false;
-            },
-            easing: 'easeInOutBack'
-        });
-    });
-
-    $(".previous").click(function() {
-        if (animating) return false;
-        animating = true;
-
-        current_fs = $(this).parent();
-        previous_fs = $(this).parent().prev();
-
-        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-        previous_fs.show();
-        current_fs.animate({
-            opacity: 0
-        }, {
-            step: function(now, mx) {
-                scale = 0.8 + (1 - now) * 0.2;
-                left = ((1 - now) * 50) + "%";
-                opacity = 1 - now;
-                current_fs.css({
-                    'left': left
-                });
-                previous_fs.css({
-                    'transform': 'scale(' + scale + ')',
-                    'opacity': opacity
-                });
-            },
-            duration: 800,
-            complete: function() {
-                current_fs.hide();
-                animating = false;
-            },
-            easing: 'easeInOutBack'
-        });
-    });
-
-    $(".submit").click(function() {
-        return false;
-    })
-
-
-    // select amphure by province id
-    $('select[name="province"]').on('change', function(){
-        let provinceId = ''
-        if (supplierType === 'personal') {
-            provinceId = $('#frm-personal select[name="province"]').val();
-        } else {
-            provinceId = $('#frm-company select[name="province"]').val();
-        }
-        getAddress(provinceId, 'amphure', supplierType);
-    })
-
-    // select district by amphure id
-    $('select[name="amphure"]').on('change', function(){
-        let amphureId = '';
-        if (supplierType === 'personal') {
-            amphureId = $('#frm-personal select[name="amphure"]').val();
-        } else {
-            amphureId = $('#frm-company select[name="amphure"]').val();
-        }
-        
-        getAddress(amphureId, 'district', supplierType);
-    })
-
-    // function get sub
-    function getAddress(id, type, supplierType) {
-        $.ajax({
-            type: 'get',
-            url: 'get_address',
-            content_type: 'json',
-            data: {
-                'id': id,
-                'type': type
-            },
-            success: function(data){
-                var index = 0;
-                var option = '';
-                if (type === 'amphure') {
-                    $('select[name="amphure"]').html('');
-                    data.forEach(amphure => {
-                        if (index === 0) {
-                            option = '<option value="">'+ specify +'</option><option value="'+ amphure.id + '">'+ amphure.name_th +'</option>';
-                        } else {
-                            option = '<option value="'+ amphure.id + '">'+ amphure.name_th +'</option>';
-                        }
-                        if (supplierType === 'personal') {
-                            $('#frm-personal select[name="amphure"]').append(option);
-                        } else {
-                            $('#frm-company select[name="amphure"]').append(option);
-                        }
-                        index++;
-                    });
-                } 
-                else if (type === 'district') {
-                    $('select[name="district"]').html('');
-                    $('select[name="postcode"]').html('');
-                    
-                    data.district_list.forEach(district => {
-                        if (index === 0) {
-                            option = '<option value="">'+ specify +'</option><option value="'+ district.id + '">'+ district.name_th +'</option>';
-                            
-                        } else {
-                            option = '<option value="'+ district.id + '">'+ district.name_th +'</option>';
-                        }
-                        if (supplierType === 'personal') {
-                            $('#frm-personal select[name="district"]').append(option);    
-                        } else {
-                            $('#frm-company select[name="district"]').append(option);
-                        }
-                        
-                        index++;
-                    });
-
-                    index = 0;
-                    option = '';
-                    data.zip_code_list.forEach(zip_code => {
-                        if (index === 0) {
-                            option = '<option value="">'+ specify +'</option><option value="'+ zip_code.zip_code + '">'+ zip_code.zip_code +'</option>';
-                        } else {
-                            option = '<option value="'+ zip_code.zip_code + '">'+ zip_code.zip_code +'</option>';
-                        }
-                        if (supplierType === 'personal') {
-                            $('#frm-personal select[name="postcode"]').append(option);
-                        } else {
-                            $('#frm-company select[name="postcode"]').append(option);
-                        }
-
-                        index++;
-                    });
-                }
-            },
-            error: function(error) {
-                console.log(error);
+        $('[name=tabs]').each(function(i, d) {
+            var p = $(this).prop('checked');
+            if (p) {
+                $('.contenttab').eq(i)
+                    .addClass('on');
             }
+            supplierType = $('input[name=tabs]:checked').val();
+            
+        });
+
+        $('[name=tabs]').on('change', function() {
+            var p = $(this).prop('checked');
+            var i = $('[name=tabs]').index(this);
+            $('.contenttab').removeClass('on');
+            $('.contenttab').eq(i).addClass('on');
+            supplierType = $('input[name=tabs]:checked').val();
+
+            $('select[name="province"]').prop('selectedIndex', 0);
+            $('select[name="amphure"]').html('<option value="">{{ trans("file.Specify") }}</option>');
+            $('select[name="district"]').html('<option value="">{{ trans("file.Specify") }}</option>');
+            $('select[name="postcode"]').html('<option value="">{{ trans("file.Specify") }}</option>');
+
+        });
+
+        var current_fs, next_fs, previous_fs;
+        var left, opacity, scale;
+        var animating;
+        var specify = "{{ trans('file.Specify') }}";
+
+
+
+        $(".next").click(function() {
+            if (animating) return false;
+            animating = true;
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            next_fs.show();
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function(now, mx) {
+                    scale = 1 - (1 - now) * 0.2;
+                    left = (now * 50) + "%";
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'transform': 'scale(' + scale + ')',
+                        'position': 'absolute'
+                    });
+                    next_fs.css({
+                        'left': left,
+                        'opacity': opacity
+                    });
+                },
+                duration: 800,
+                complete: function() {
+                    current_fs.hide();
+                    animating = false;
+                },
+                easing: 'easeInOutBack'
+            });
+        });
+
+        $(".previous").click(function() {
+            if (animating) return false;
+            animating = true;
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            previous_fs.show();
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function(now, mx) {
+                    scale = 0.8 + (1 - now) * 0.2;
+                    left = ((1 - now) * 50) + "%";
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'left': left
+                    });
+                    previous_fs.css({
+                        'transform': 'scale(' + scale + ')',
+                        'opacity': opacity
+                    });
+                },
+                duration: 800,
+                complete: function() {
+                    current_fs.hide();
+                    animating = false;
+                },
+                easing: 'easeInOutBack'
+            });
+        });
+
+        $(".submit").click(function() {
+            return false;
         })
-    }
 
-    // attach doc
-    $('#personal-card-id-image').on('change', function(){
-        let event = $(this);
-        let fieldName = 'personal_card_id_image';
-        uploadImage(event, fieldName);
-    });
 
-    $('#personal-house-registration').on('change', function(){
-        let event = $(this);
-        let fieldName = 'personal_house_registration';
-        uploadImage(event, fieldName);
-    });
-
-    $('#company-certificate').on('change', function(){
-        let event = $(this);
-        let fieldName = 'company_certificate';
-        uploadImage(event, fieldName);
-    });
-
-    $('#vat-registration-doc').on('change', function(){
-        let event = $(this);
-        let fieldName = 'vat_registration_doc';
-        uploadImage(event, fieldName);
-    });
-
-    function uploadImage(event, fieldName) {
-        var imageUrl = '';
-        var htmlText = '';
-        var file_data = event.prop('files')[0];   
-        var form_data = new FormData(); 
-        form_data.append('_token', '{{ csrf_token() }}');
-        form_data.append('file', file_data);
-        $.ajax({
-            url: 'register/upload-file',
-            dataType: 'text',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post',
-            success: function(data){
-                event.parent().addClass('d-none');
-                imageUrl = "{{ asset('suppliers/document') }}" + '/' + data;
-                htmlText = '<div>'
-                                +'<input type="hidden" name="'+ fieldName +'" value="'+ data +'">'
-                                +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
-                                +'<img src="'+ imageUrl +'" class="img-fluid" alt="Attachment" style="width:115px;height:106px;">'
-                                +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
-                                +'</a></div>';
-                event.parent().parent().append(htmlText);
+        // select amphure by province id
+        $('select[name="province"]').on('change', function(){
+            let provinceId = ''
+            if (supplierType === 'personal') {
+                provinceId = $('#frm-personal select[name="province"]').val();
+            } else {
+                provinceId = $('#frm-company select[name="province"]').val();
             }
-        });
-    }
+            getAddress(provinceId, 'amphure', supplierType);
+        })
 
-    // remove doc
-    $(document).on('click', '.btn__trash', function(e){
-        var imageName = $(e.currentTarget).data('image');
-
-        $.ajax({
-            url: 'register/remove-file',
-            dataType: 'text',
-            data: {
-                'imageName': imageName,
-                '_token': '{{ csrf_token() }}'
-            },
-            type: 'post',
-            success: function(data) {
-                $(e.currentTarget).parent().parent().children().removeClass('d-none');
-                $(e.currentTarget).parent().remove();
-                e.preventDefault();
+        // select district by amphure id
+        $('select[name="amphure"]').on('change', function(){
+            let amphureId = '';
+            if (supplierType === 'personal') {
+                amphureId = $('#frm-personal select[name="amphure"]').val();
+            } else {
+                amphureId = $('#frm-company select[name="amphure"]').val();
             }
+            
+            getAddress(amphureId, 'district', supplierType);
+        })
+
+        // function get sub
+        function getAddress(id, type, supplierType) {
+            $.ajax({
+                type: 'get',
+                url: 'get_address',
+                content_type: 'json',
+                data: {
+                    'id': id,
+                    'type': type
+                },
+                success: function(data){
+                    var index = 0;
+                    var option = '';
+                    if (type === 'amphure') {
+                        $('select[name="amphure"]').html('');
+                        data.forEach(amphure => {
+                            if (index === 0) {
+                                option = '<option value="">'+ specify +'</option><option value="'+ amphure.id + '">'+ amphure.name_th +'</option>';
+                            } else {
+                                option = '<option value="'+ amphure.id + '">'+ amphure.name_th +'</option>';
+                            }
+                            if (supplierType === 'personal') {
+                                $('#frm-personal select[name="amphure"]').append(option);
+                            } else {
+                                $('#frm-company select[name="amphure"]').append(option);
+                            }
+                            index++;
+                        });
+                    } 
+                    else if (type === 'district') {
+                        $('select[name="district"]').html('');
+                        $('select[name="postcode"]').html('');
+                        
+                        data.district_list.forEach(district => {
+                            if (index === 0) {
+                                option = '<option value="">'+ specify +'</option><option value="'+ district.id + '">'+ district.name_th +'</option>';
+                                
+                            } else {
+                                option = '<option value="'+ district.id + '">'+ district.name_th +'</option>';
+                            }
+                            if (supplierType === 'personal') {
+                                $('#frm-personal select[name="district"]').append(option);    
+                            } else {
+                                $('#frm-company select[name="district"]').append(option);
+                            }
+                            
+                            index++;
+                        });
+
+                        index = 0;
+                        option = '';
+                        data.zip_code_list.forEach(zip_code => {
+                            if (index === 0) {
+                                option = '<option value="">'+ specify +'</option><option value="'+ zip_code.zip_code + '">'+ zip_code.zip_code +'</option>';
+                            } else {
+                                option = '<option value="'+ zip_code.zip_code + '">'+ zip_code.zip_code +'</option>';
+                            }
+                            if (supplierType === 'personal') {
+                                $('#frm-personal select[name="postcode"]').append(option);
+                            } else {
+                                $('#frm-company select[name="postcode"]').append(option);
+                            }
+
+                            index++;
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+        }
+
+        // attach doc
+        $('#personal-card-id-image').on('change', function(){
+            let event = $(this);
+            let fieldName = 'personal_card_id_image';
+            uploadImage(event, fieldName);
         });
+
+        $('#personal-house-registration').on('change', function(){
+            let event = $(this);
+            let fieldName = 'personal_house_registration';
+            uploadImage(event, fieldName);
+        });
+
+        $('#company-certificate').on('change', function(){
+            let event = $(this);
+            let fieldName = 'company_certificate';
+            uploadImage(event, fieldName);
+        });
+
+        $('#vat-registration-doc').on('change', function(){
+            let event = $(this);
+            let fieldName = 'vat_registration_doc';
+            uploadImage(event, fieldName);
+        });
+
+        function uploadImage(event, fieldName) {
+            var imageUrl = '';
+            var htmlText = '';
+            var file_data = event.prop('files')[0];   
+            var form_data = new FormData(); 
+            form_data.append('_token', '{{ csrf_token() }}');
+            form_data.append('file', file_data);
+            $.ajax({
+                url: 'register/upload-file',
+                dataType: 'text',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(data){
+                    event.parent().addClass('d-none');
+                    imageUrl = "{{ asset('suppliers/document') }}" + '/' + data;
+                    htmlText = '<div>'
+                                    +'<input type="hidden" name="'+ fieldName +'" value="'+ data +'">'
+                                    +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
+                                    +'<img src="'+ imageUrl +'" class="img-fluid" alt="Attachment" style="width:115px;height:106px;">'
+                                    +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
+                                    +'</a></div>';
+                    event.parent().parent().append(htmlText);
+                }
+            });
+        }
+
+        // remove doc
+        $(document).on('click', '.btn__trash', function(e){
+            var imageName = $(e.currentTarget).data('image');
+
+            $.ajax({
+                url: 'register/remove-file',
+                dataType: 'text',
+                data: {
+                    'imageName': imageName,
+                    '_token': '{{ csrf_token() }}'
+                },
+                type: 'post',
+                success: function(data) {
+                    $(e.currentTarget).parent().parent().children().removeClass('d-none');
+                    $(e.currentTarget).parent().remove();
+                    e.preventDefault();
+                }
+            });
+        });
+
     });
 
 </script>

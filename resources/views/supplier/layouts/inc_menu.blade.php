@@ -105,7 +105,10 @@
                 </li>
                 {{-- inventory --}}
                 <li id="product">
-                    <a id="product-list-menu" href="{{ route('products.index') }}" class="nav_link">
+                    <form id="frm-product" action="{{ route('products.index') }}">
+                        <input type="hidden" name="status_code" value="all">
+                    </form>
+                    <a id="product-list-menu" href="javascript:document.getElementById('frm-product').submit();" class="nav_link">
                         <div class="icon__sidebar7"></div>
                         <span class="nav_name">{{ trans('file.Manage Product') }}</span>
                     </a>

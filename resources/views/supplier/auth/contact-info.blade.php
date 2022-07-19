@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="input-group">
                                     <input type="email" class="form-control" placeholder="sample@gmail.com"
-                                      name="email" aria-label="Username" aria-describedby="basic-addon1" required> 
+                                      name="email" value="{{ old('email') }}" aria-label="Username" aria-describedby="basic-addon1" required> 
                                 </div>
                                 <div class="tt-text-log mb-3">
                                     @if($errors->has('email'))
@@ -63,14 +63,14 @@
                                     </div>
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}"
-                                        name="contact_name" aria-label="Username" aria-describedby="basic-addon1" required>
+                                        name="contact_name" value="{{ old('contact_name') }}" aria-label="Username" aria-describedby="basic-addon1" required>
                                     </div>
                                     <div class="tt-text-log">
                                         <p>{{ trans('file.Surname') }} <span class="dot__color"> *</span></p>
                                     </div>
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}"
-                                        name="contact_last_name" aria-label="Username" aria-describedby="basic-addon1" required>
+                                        name="contact_last_name" value="{{ old('contact_last_name') }}" aria-label="Username" aria-describedby="basic-addon1" required>
                                     </div>
                                 @endif
                                 {{-- contact name for company --}}
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="0123456789" aria-label="Username"
-                                      name="phone" aria-describedby="basic-addon1">
+                                      name="phone" value="{{ old('phone') }}" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="tt-text-log mb-3">
                                     @if($errors->has('phone'))
@@ -93,14 +93,14 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Sample Name" aria-label="Username"
-                                      name="facebook_url" aria-describedby="basic-addon1" required>
+                                      name="facebook_url" value="{{ old('facebook_url') }}" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="tt-text-log">
                                     <p>{{ trans('file.GoogleMapsURL') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="www.sample.com"
-                                       name="google_map_url" aria-label="Username" aria-describedby="basic-addon1" required>
+                                       name="google_map_url" value="{{ old('google_map_url') }}" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
                                 {{-- option --}}
                                 <div class="form-check">
@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username"
-                                       name="store_address" aria-describedby="basic-addon1" required>
+                                       name="store_address" value="{{ old('store_address') }}" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="tt-text-log">
                                     <p>
@@ -124,7 +124,7 @@
                                     </p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="store_province" required>
+                                    <select id="province-id" class="form-select" aria-label="Default select example" name="store_province" required>
                                         <option value="">{{ trans('file.Specify') }}</option>
                                         @foreach ($province_list_data as $province)
                                             <option value="{{ $province->id }}">{{ $province->name_th }}</option>
@@ -135,7 +135,7 @@
                                     <p>{{ trans('file.Amphure') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="store_amphure" required>
+                                    <select id="amphure-id" class="form-select" aria-label="Default select example" name="store_amphure" required>
                                         <option value="">{{ trans('file.Specify') }}</option>
                                     </select>
                                 </div>
@@ -145,7 +145,7 @@
                                     </p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="store_district" required>
+                                    <select id="district-id" class="form-select" aria-label="Default select example" name="store_district" required>
                                         <option value="">{{ trans('file.Specify') }}</option>
                                     </select>
                                 </div>
@@ -156,7 +156,7 @@
                                     </p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="store_postcode" required>
+                                    <select id="postcode" class="form-select" aria-label="Default select example" name="store_postcode" required>
                                         <option value="">{{ trans('file.Specify') }}</option>
                                     </select>
                                 </div>
@@ -256,6 +256,24 @@
             let amphureId = $('select[name="store_amphure"]').val();
             getAddress(amphureId, 'district');
         })
+
+        // re-initilize old value for option
+        let oldProvinceId = "{{ old('store_province') }}";
+        let provinceId = oldProvinceId ? oldProvinceId : '';
+        $('#province-id option[value="' + provinceId + '"]').attr('selected', 'selected');
+
+        let oldAmphureId = "{{ old('store_amphure') }}";
+        let amphureId = oldAmphureId ? oldAmphureId : '';
+        $('#amphure-id option[value="' + amphureId + '"]').attr('selected', 'selected');
+
+        let oldDistrictId = "{{ old('store_district') }}";
+        let districtId = oldDistrictId ? oldDistrictId : '';
+        $('#district-id option[value="' + districtId + '"]').attr('selected', 'selected');
+
+        let oldPostcode = "{{ old('store_postcode') }}";
+        let postcode = oldPostcode ? oldPostcode : '';
+        $('#postcode option[value="' + postcode + '"]').attr('selected', 'selected');
+        // re-initilize old value for option
 
         function getAddress(id, type) {
             $.ajax({
