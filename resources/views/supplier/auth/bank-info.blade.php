@@ -48,20 +48,20 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="123-123456-1" aria-label="Username"
-                                       name="bank_account_no" aria-describedby="basic-addon1" required>
+                                       name="bank_account_no" value="{{ old('bank_account_no') }}" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="tt-text-log">
                                     <p>{{ trans('file.Bank Account Name') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="บริษัท เฮงเฮงอะไหล่ยนต์"
-                                      name="bank_account_name"  aria-label="Username" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}"
+                                      name="bank_account_name" value="{{ old('bank_account_name') }}" aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="tt-text-log">
                                     <p>{{ trans('file.Bank') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="bank_name" required>
+                                    <select id="bank-name" class="form-select" aria-label="Default select example" name="bank_name" required>
                                             <option value="">{{ trans('file.Specify') }}</option>
                                         @foreach ($bank_list_data as $bank)
                                             <option value="{{ $bank['name'] }}">{{ $bank['name'] }}</option>
@@ -72,18 +72,19 @@
                                     <p>{{ trans('file.Branch') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="bank_branch" required>
+                                    <input type="text" class="form-control" name="bank_branch" placeholder="{{ trans('file.Specify') }}" value="{{ old('bank_branch') }}" required>
+                                    {{-- <select class="form-select" aria-label="Default select example" name="bank_branch" required>
                                             <option value="">{{ trans('file.Specify') }}</option>
                                         @foreach ($bank_branch_data as $branch)
                                             <option value="{{ $branch['name'] }}">{{ $branch['name'] }}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
                                 </div>
                                 <div class="tt-text-log">
                                     <p>{{ trans('file.Account Type') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="bank_account_type" required>
+                                    <select id="bank-account-type" class="form-select" aria-label="Default select example" name="bank_account_type" required>
                                             <option value="">{{ trans('file.Specify') }}</option>
                                         @foreach ($bank_type_data as $type)
                                             <option value="{{ $type['name'] }}">{{ $type['name'] }}</option>
@@ -187,61 +188,73 @@
 
     <script type="text/javascript">
 
-        // attach doc
-        $('#upload-bank-book').on('change', function(){
-            let event = $(this);
-            uploadImage(event);
-        });
+        $(document).ready(function(){
 
-        function uploadImage(event) {
-            var imageUrl = '';
-            var htmlText = '';
-            var file_data = event.prop('files')[0];   
-            var form_data = new FormData(); 
-            form_data.append('_token', '{{ csrf_token() }}');
-            form_data.append('file', file_data);
-            $.ajax({
-                url: 'register/upload-file',
-                dataType: 'text',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(data){
-                    $('.drop-zone__prompt').addClass('d-none');
-                    imageUrl = "{{ asset('suppliers/document') }}" + '/' + data;
-                    htmlText = '<div>'
-                                    +'<input type="hidden" name="bank_book_image" value="'+ data +'">'
-                                    +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
-                                    +'<img src="'+ imageUrl +'" class="img-fluid" alt="product image">'
-                                    +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
-                                    +'</a></div>';
-                    $('.drop-zone').append(htmlText);
-                }
+            let oldBankName = "{{ old('bank_name') }}";
+            let bankName = oldBankName ? oldBankName : '';
+            $('#bank-name option[value="' + bankName + '"]').attr('selected', 'selected');
+
+            let oldBankAccountType = "{{ old('bank_account_type') }}";
+            let bankAccountType = oldBankAccountType ? oldBankAccountType : '';
+            $('#bank-account-type option[value="' + bankAccountType + '"]').attr('selected', 'selected');
+
+            // attach doc
+            $('#upload-bank-book').on('change', function(){
+                let event = $(this);
+                uploadImage(event);
             });
-        }
 
-        // remove doc
-        $(document).on('click', '.btn__trash', function(e){
-            var imageName = $(e.currentTarget).data('image');
+            function uploadImage(event) {
+                var imageUrl = '';
+                var htmlText = '';
+                var file_data = event.prop('files')[0];   
+                var form_data = new FormData(); 
+                form_data.append('_token', '{{ csrf_token() }}');
+                form_data.append('file', file_data);
+                $.ajax({
+                    url: 'register/upload-file',
+                    dataType: 'text',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    success: function(data){
+                        $('.drop-zone__prompt').addClass('d-none');
+                        imageUrl = "{{ asset('suppliers/document') }}" + '/' + data;
+                        htmlText = '<div>'
+                                        +'<input type="hidden" name="bank_book_image" value="'+ data +'">'
+                                        +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
+                                        +'<img src="'+ imageUrl +'" class="img-fluid" alt="product image">'
+                                        +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
+                                        +'</a></div>';
+                        $('.drop-zone').append(htmlText);
+                    }
+                });
+            }
 
-            $.ajax({
-                url: 'register/remove-file',
-                dataType: 'text',
-                data: {
-                    'imageName': imageName,
-                    '_token': '{{ csrf_token() }}'
-                },
-                type: 'post',
-                success: function(data) {
-                    $(e.currentTarget).parent().remove();
-                    $('.drop-zone__prompt').removeClass('d-none');
-                    e.preventDefault();
-                }
+            // remove doc
+            $(document).on('click', '.btn__trash', function(e){
+                var imageName = $(e.currentTarget).data('image');
+
+                $.ajax({
+                    url: 'register/remove-file',
+                    dataType: 'text',
+                    data: {
+                        'imageName': imageName,
+                        '_token': '{{ csrf_token() }}'
+                    },
+                    type: 'post',
+                    success: function(data) {
+                        $(e.currentTarget).parent().remove();
+                        $('.drop-zone__prompt').removeClass('d-none');
+                        e.preventDefault();
+                    }
+                });
+                
             });
-            
-        });
+
+        }); 
 
     </script>
     

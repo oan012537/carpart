@@ -1,23 +1,29 @@
-
 @extends('supplier.layouts.template')
 
 @section('style')
-    <style>
-        .dot__color {
-            color: rgb(224, 91, 91);
-            margin-left: 5px;
-        }
-    </style>
+<style>
+    .dot__color {
+        color: rgb(224, 91, 91);
+        margin-left: 5px;
+    }
+</style>
 @endsection
 
 @section('content')
+
 <input type="hidden" id="pageName" name="pageName" value="setting-product">
 <div class="content" id="setting-createproductresult">
+    @if(session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Success!</strong> {!! session()->get('message') !!}
+          </div>
+    @endif
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="box__titlepage">
-                    @if ($data['product_type'] == 'second')
+                    @if ($data->product_type == 'second')
                         <h3>{{ trans('file.Add Second Hand') }}</h3>    
                     @else
                         <h3>{{ trans('file.Add New Product') }}</h3>
@@ -26,10 +32,10 @@
             </div>
 
             <div class="col-lg-9">
-                @for ($o = 1; $o <= 1; $o++)
-
-                    <form id="msform" action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
-                        @csrf
+                
+                <form id="msform" action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @for ($o = 1; $o <= 2; $o++)
 
                         <div class="accordion" id="acctab{{ $o }}">
                             <div class="accordion-item"> 
@@ -62,32 +68,31 @@
                                                         <div class="row">
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
-                                                                    <label for="product_code">{{ trans('file.ID') }}</label>
-                                                                    <input type="text" id="product_code" class="form-control" name="product_code" placeholder="Auto Generate" readonly>
+                                                                    <label for="product_code{{ $o }}">{{ trans('file.ID') }}</label>
+                                                                    <input type="text" id="product_code{{ $o }}" class="form-control" name="product_code[]" placeholder="Auto Generate" 
+                                                                        value="{{ old('product_code') }}" readonly>
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
-                                                                    <label for="name_th">{{ trans('file.Product Name') }} (TH) <span>*</span></label>
-                                                                    <input type="text" id="name_th" class="form-control" name="name_th" 
-                                                                            placeholder="{{ trans('file.Specify') }}" 
-                                                                            value="{{ old('name_th')? old('name_th'): $product_name_th }}">
-                                                                    @if($errors->has('name_th'))
-                                                                        <span class="dot__color">{{ $errors->first('name_th') }}</span>
-                                                                    @endif
+                                                                    <label for="name_th{{ $o }}">{{ trans('file.Product Name') }} (TH) <span>*</span></label>
+                                                                    <input type="text" id="name_th{{ $o }}" class="form-control" name="name_th[]" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('name_th')? old('name_th'): $data->name_th }}" >
+                                                                        @if($errors->has('name_th'))
+                                                                            <span class="dot__color">{{ $errors->first('name_th') }}</span>
+                                                                        @endif
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="name_en">{{ trans('file.Product Name') }} (EN) <span>*</span></label>
-                                                                    <input type="text" id="name_en" class="form-control" name="name_en" 
-                                                                            placeholder="{{ trans('file.Specify') }}" 
-                                                                            value="{{ old('name_en')? old('name_en'): $product_name_en }}">
-                                                                    @if($errors->has('name_en'))
-                                                                        <span class="dot__color">{{ $errors->first('name_en') }}</span>
-                                                                    @endif
+                                                                    <input type="text" id="name_en" class="form-control" name="name_en" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('name_en')? old('name_en'): $data->name_en }}" >
+                                                                        @if($errors->has('name_en'))
+                                                                            <span class="dot__color">{{ $errors->first('name_en') }}</span>
+                                                                        @endif
                                                                 </div>
                                                             </div>
 
@@ -95,8 +100,8 @@
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="trading_name">{{ trans('file.Trading Name') }}</label>
-                                                                    <input type="text" id="trading_name" class="form-control" name="trading_name" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('trading_name') }}">
+                                                                    <input type="text" id="trading_name" class="form-control" name="trading_name" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('trading_name')? old('trading_name'): $data->trading_name }}">
                                                                     <span>{{ trans('file.Trading Name Message') }}</span>
                                                                 </div>
                                                             </div>
@@ -120,7 +125,7 @@
                                                                     
                                                                     <div class="box__drop">
                                                                         <div class="row" id="show-image">
-                                                                            
+
                                                                             <div class="col-xl-3 col-lg-4 col-md-6 col-12">
                                                                                 <div class="drop-zone">
                                                                                     <label class="drop-zone__prompt">
@@ -154,13 +159,13 @@
                                                                     <p class="txt__titlebox">{{ trans('file.Grade') }} <span>*</span></p>
                                                                     <div class="form-check-inline">
                                                                         <label class="form-check-label" for="radio1">
-                                                                            <input type="radio" class="form-check-input" id="radio1" name="grade" value="Genuine" checked>
+                                                                            <input type="radio" class="form-check-input" id="radio1" name="grade" value="Genuine"  @if ($data->grade == 'Genuine') checked @endif>
                                                                             {{ trans('file.Genuine') }}
                                                                         </label>
                                                                     </div>
                                                                     <div class="form-check-inline">
                                                                         <label class="form-check-label" for="radio2">
-                                                                            <input type="radio" class="form-check-input" id="radio2" name="grade" value="OEM" >
+                                                                            <input type="radio" class="form-check-input" id="radio2" name="grade" value="OEM" @if ($data->grade == 'OEM') checked @endif>
                                                                             {{ trans('file.OEM') }}
                                                                         </label>
                                                                     </div>
@@ -173,24 +178,24 @@
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="maker">{{ trans('file.Maker') }}</label>
-                                                                    <input type="text" id="maker" class="form-control" name="maker" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('maker') }}">
+                                                                    <input type="text" id="maker" class="form-control" name="maker" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('maker')? old('maker'): $data->maker }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="sku_code">{{ trans('file.SKU CODE') }}</label>
-                                                                    <input type="text" id="sku_code" class="form-control" name="sku_code" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('sku_code') }}">
+                                                                    <input type="text" id="sku_code" class="form-control" name="sku_code" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('sku_code')? old('sku_code'): $data->sku_code }}">
                                                                 </div>
                                                             </div>
 
-                                                            @if ($data['product_type'] == 'second')
+                                                            @if ($data->product_type == 'second')
                                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                     <div class="form-group">
-                                                                        <label for="quality">{{ trans('file.Product Quality') }} <span>*</span></label>
-                                                                        <select id="quality" class="form-select" aria-label="Default select example" name="quality">
+                                                                        <label>{{ trans('file.Product Quality') }} <span>*</span></label>
+                                                                        <select class="form-select" aria-label="Default select example" name="quality">
                                                                             <option>{{ trans('file.Specify') }}</option>
                                                                             @foreach ($product_qualities as $quality)
                                                                                 <option value="{{ $quality }}">{{ trans('file.'. $quality) }}</option>
@@ -203,57 +208,57 @@
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="shop_original_code">{{ trans('file.Shop Original Code') }}</label>
-                                                                    <input type="text" id="shop_original_code" class="form-control" name="shop_original_code" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('shop_original_code') }}">
+                                                                    <input type="text" id="shop_original_code" class="form-control" name="shop_original_code" placeholder="{{ trans('file.Specify') }}"
+                                                                        value="{{ old('shop_original_code')? old('shop_original_code'): $data->shop_original_code }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="vin_code">{{ trans('file.VIN Code') }}</label>
-                                                                    <input type="text" id="vin_code" class="form-control" name="vin_code" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('vin_code') }}">
+                                                                    <input type="text" id="vin_code" class="form-control" name="vin_code" placeholder="{{ trans('file.Specify') }}"
+                                                                        value="{{ old('vin_code')? old('vin_code'): $data->vin_code }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="full_model_code">{{ trans('file.Full Model Code') }}</label>
-                                                                    <input type="text" id="full_model_code" class="form-control" name="full_model_code" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('full_model_code') }}">
+                                                                    <input type="text" id="full_model_code" class="form-control" name="full_model_code" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('full_model_code')? old('full_model_code'): $data->full_model_code }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="engine_model_code">{{ trans('file.Engine Model Code') }}</label>
-                                                                    <input type="text" id="engine_model_code" class="form-control" name="engine_model_code" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('engine_model_code') }}">
+                                                                    <input type="text" id="engine_model_code" class="form-control" name="engine_model_code" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('engine_model_code')? old('engine_model_code'): $data->engine_model_code }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="color">{{ trans('file.Color') }}</label>
-                                                                    <input type="text" id="color" class="form-control" name="color" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('color') }}">
+                                                                    <input type="text" id="color" class="form-control" name="color" placeholder="{{ trans('file.Specify') }}" 
+                                                                        value="{{ old('color')? old('color'): $data->color }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label for="trim">{{ trans('file.Trim') }}</label>
-                                                                    <input type="text" id="trim" class="form-control" name="trim" 
-                                                                            placeholder="{{ trans('file.Specify') }}" value="{{ old('trim') }}">
+                                                                    <input type="text" id="trim" class="form-control" name="trim" placeholder="{{ trans('file.Specify') }}"
+                                                                        value="{{ old('trim')? old('trim'): $data->trim }}">
                                                                 </div>
                                                             </div>
 
-                                                            @if ($data['product_type'] == 'new')
+                                                            @if ($data->product_type == 'new')
                                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                     <div class="form-group">
                                                                         <label for="qty">{{ trans('file.Quantity') }}</label>
-                                                                        <input type="number" id="qty" class="form-control" name="qty" 
-                                                                                placeholder="{{ trans('file.Specify') }}" value="{{ old('qty') }}">
+                                                                        <input type="number" id="qty" class="form-control" name="qty" placeholder="{{ trans('file.Specify') }}"
+                                                                                value="{{ old('qty')? old('qty'): $data->qty }}">
                                                                     </div>
                                                                 </div>
                                                             @endif
@@ -288,13 +293,13 @@
                                                 <br>
                                                 <div class="form-check-inline">
                                                     <label class="form-check-label" for="Insured">
-                                                        <input type="radio" class="form-check-input" id="Insured" name="is_warranty" value="1" checked>
+                                                        <input type="radio" class="form-check-input" id="Insured" name="is_warranty" value="1" @if($data->is_warranty == 1) checked @endif>
                                                         {{ trans('file.Insured') }}
                                                     </label>
                                                 </div>
                                                 <div class="form-check-inline">
                                                     <label class="form-check-label" for="no-insurance">
-                                                        <input type="radio" class="form-check-input" id="no-insurance" name="is_warranty" value="0">
+                                                        <input type="radio" class="form-check-input" id="no-insurance" name="is_warranty" value="0" @if($data->is_warranty == 0) checked @endif>
                                                         {{ trans('file.No Insurance') }}
                                                     </label>
                                                 </div>
@@ -304,12 +309,15 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <input type="number" class="form-control" name="duration" 
-                                                                    placeholder="{{ trans('file.Specify') }}" value="{{ old('duration') }}" required>
-                                                            <select id="year_month_day" class="btn btn__garuntee" aria-label="Default select example" name="year_month_day">
+                                                            <input type="number" class="form-control" name="duration" placeholder="{{ trans('file.Specify') }}" 
+                                                                    value="{{ old('duration')? old('duration'): isset($warranty->duration)? $warranty->duration : '' }}">
+                                                            <select class="btn btn__garuntee" aria-label="Default select example" name="year_month_day">
                                                                 @foreach ($day_month_year as $timeType)
-                                                                <option value="{{ $timeType }}">{{ trans('file.' . $timeType) }}</option>
-                                                            @endforeach
+                                                                    <option value="{{ $timeType }}" 
+                                                                        @if($timeType == (isset($warranty->year_month_day)? $warranty->year_month_day : '')) selected @endif>
+                                                                        {{ trans('file.' . $timeType) }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                         <span>{{ trans('file.Warranty Message1') }}</span>
@@ -329,7 +337,7 @@
 
                                                     <div class="col-12">
                                                         <div class="box__text">
-                                                            <textarea name="term_and_condition" placeholder="{{ trans('file.Specify') }}" class="form-control">{{ old('term_and_condition') }}</textarea>
+                                                            <textarea name="term_and_condition" placeholder="{{ trans('file.Specify') }}" class="form-control">{{ old('term_and_condition')? old('term_and_condition'): $data->term_and_condition }}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -370,10 +378,14 @@
 
                                                             <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                                                 <div class="input-group">
-                                                                    <input type="number" class="form-control" name="weight" value="{{ old('weight') }}">
-                                                                    <select id="unit" class="btn btn__weight" name="unit">
+                                                                    <input type="number" class="form-control" name="weight" 
+                                                                            value="{{ old('weight')? old('weight'): isset($transport->weight)? $transport->weight : 0 }}">
+                                                                    <select class="btn btn__weight" name="unit">
                                                                         @foreach ($units as $unit)
-                                                                            <option value="{{ $unit }}">{{ $unit }}</option>
+                                                                            <option value="{{ $unit }}" 
+                                                                                @if($unit == (isset($transport->unit)? $transport->unit : '')) selected @endif>
+                                                                                {{ $unit }}
+                                                                            </option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
@@ -388,13 +400,22 @@
 
                                                             <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                                                 <div class="input-group">
-                                                                    <input type="number" class="form-control" name="width" placeholder="{{ trans('file.Width') }}" value="{{ old('width') }}">
-                                                                    <input type="number" class="form-control" name="length" placeholder="{{ trans('file.Length') }}" value="{{ old('length') }}">
-                                                                    <input type="number" class="form-control" name="height" placeholder="{{ trans('file.Height') }}" value="{{ old('height') }}">
+                                                                    <input type="number" class="form-control" name="width" placeholder="{{ trans('file.Width') }}" 
+                                                                            value="{{ old('width')? old('width'): isset($transport->width)? $transport->width : '' }}">
+
+                                                                    <input type="number" class="form-control" name="length" placeholder="{{ trans('file.Length') }}" 
+                                                                            value="{{ old('length')? old('length'): isset($transport->length)? $transport->length : '' }}">
+
+                                                                    <input type="number" class="form-control" name="height" placeholder="{{ trans('file.Height') }}" 
+                                                                            value="{{ old('height')? old('height'): isset($transport->height)? $transport->height : '' }}">
+
                                                                     <span>{{ trans('file.UOM') }}</span>
-                                                                    <select id="uom" class="btn btn__unit" name="uom">
+                                                                    <select class="btn btn__unit" name="uom">
                                                                         @foreach ($uoms as $uom)
-                                                                            <option value="{{ $uom }}"> {{ $uom }}</option>
+                                                                            <option value="{{ $uom }}" 
+                                                                                @if($uom == (isset($transport->uom)? $transport->uom : '')) selected @endif>
+                                                                                {{ $uom }}
+                                                                            </option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
@@ -457,10 +478,11 @@
                                                                                                             <div class="form-check form-switch">
                                                                                                                 <input class="form-check-input" 
                                                                                                                     type="checkbox" 
-                                                                                                                    role="switch"  
+                                                                                                                    role="switch" 
                                                                                                                     id="flexSwitchCheckDefault"
                                                                                                                     name="transport_type_id[]"
                                                                                                                     value="{{ $transport_type['id'] }}"
+                                                                                                                    @if (in_array($transport_type['id'], $transport_type_ids)) checked @endif
                                                                                                                 >
                                                                                                             </div>
                                                                                                         </div>
@@ -488,14 +510,16 @@
                                                             <div class="col-xl-10 col-lg-10 col-md-10 col-12">
                                                                 <div class="wrapper__checkbox">
                                                                     <div class="form-check">
-                                                                        <input type="radio" class="form-check-input" id="ready-to-ship" name="is_deliver" value="1" checked>
+                                                                        <input type="radio" class="form-check-input" id="ready-to-ship" name="is_deliver" value="1" 
+                                                                            @if((isset($transport->is_deliver)? $transport->is_deliver:true) == true) checked @endif>
                                                                         <label class="form-check-label">
                                                                             {{ trans('file.Ready to Ship') }}
                                                                         </label>
                                                                     </div>
 
                                                                     <div class="form-check">
-                                                                        <input type="radio" class="form-check-input" id="longer-than-usual" name="is_deliver" value="0" >
+                                                                        <input type="radio" class="form-check-input" id="longer-than-usual" name="is_deliver" value="0" 
+                                                                            @if((isset($transport->is_deliver)? $transport->is_deliver:true) == false) checked @endif>
                                                                         <label class="form-check-label">
                                                                             {{ trans('file.Prepare to deliver longer than usual.') }}
                                                                         </label>
@@ -504,9 +528,12 @@
                                                                     {{-- specify days --}}
                                                                     <div class="form-group">
                                                                         <span class="label__setdate">{{ trans('file.Specify Day') }}</span>
-                                                                        <select id="estimated_days" class="form-select" name="estimated_days" aria-label="Default select example">
+                                                                        <select class="form-select" name="estimated_days" aria-label="Default select example">
                                                                             @for ($i = 1; $i <= 31; $i++)
-                                                                                <option value="{{ $i }}">{{ $i }}</option>
+                                                                                <option value="{{ $i }}"
+                                                                                        @if((isset($transport->estimated_days)? $transport->estimated_days : 0) == $i) selected @endif
+                                                                                >{{ $i }}
+                                                                                </option>
                                                                             @endfor
                                                                         </select>
                                                                     </div>
@@ -549,8 +576,8 @@
 
                                                         <div class="form-group">
                                                             <label for="product-price">{{ trans('file.Amount') }} <span>{{ trans('file.Including VAT') }}</span></label>
-                                                            <input type="number" id="product-price" class="form-control" name="price" 
-                                                                    placeholder="{{ trans('file.Specify') }}" value="{{ old('price') }}">
+                                                            <input type="number" id="product-price" class="form-control" name="price" placeholder="{{ trans('file.Specify') }}"
+                                                                value="{{ old('price')? old('price'): $data->price }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -561,13 +588,13 @@
                                                         <div class="wrapper__form">
                                                             <div class="form-group">
                                                                 <label for="commission">{{ trans('file.Commission') }} </label>
-                                                                <input type="text" class="form-control" name="commission" 
-                                                                    placeholder="{{ trans('file.Specify') }}" value="{{ old('commission') }}" readonly>
+                                                                <input type="text" class="form-control" name="commission" placeholder="{{ trans('file.Specify') }}" 
+                                                                    value="{{ old('commission')? old('commission'): $data->commission }}" readonly>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="revenue">{{ trans('file.Net Income') }}</label>
-                                                                <input type="text" class="form-control" name="revenue" 
-                                                                    placeholder="{{ trans('file.Specify') }}" value="{{ old('revenue') }}" readonly>
+                                                                <input type="text" class="form-control" name="revenue" placeholder="{{ trans('file.Specify') }}" 
+                                                                    value="{{ old('revenue')? old('revenue'): $data->revenue }}" readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -581,22 +608,23 @@
                         </div>
 
                         {{-- hidden input --}}
-                        <input type="hidden" name="product_type" value="{{ $data['product_type'] }}">
-                        <input type="hidden" name="brand_id" value="{{ $data['brand_id'] }}">
-                        <input type="hidden" name="model_id" value="{{ $data['model_id'] }}">
-                        <input type="hidden" name="sub_model_id" value="{{ $data['sub_model_id'] }}">
-                        <input type="hidden" name="issue_year_id" value="{{ $data['issue_year_id'] }}">
-                        <input type="hidden" name="category_id" value="{{ $data['category_id'] }}">
-                        <input type="hidden" name="sub_category_id" value="{{ $data['sub_category_id'] }}">
-                        <input type="hidden" name="sub_sub_category_id" value="{{ $data['sub_sub_category_id'] }}">
-                        <input type="hidden" name="salesman_code" value="{{ old('salesman_code') }}">
+                        <input type="hidden" name="product_type" value="{{ $data->product_type }}">
+                        <input type="hidden" name="salesman_code" value="{{ old('salesman_code')? old('salesman_code'): $data->salesman_code }}">
+                        <input type="hidden" name="brand_id" value="{{ old('brand_id')? old('brand_id'): $data->brand_id }}">
+                        <input type="hidden" name="model_id" value="{{ old('model_id')? old('model_id'): $data->model_id }}">
+                        <input type="hidden" name="sub_model_id" value="{{ old('sub_model_id')? old('sub_model_id'): $data->sub_model_id }}">
+                        <input type="hidden" name="issue_year_id" value="{{ old('issue_year_id')? old('issue_year_id'): $data->issue_year_id }}">
+                        <input type="hidden" name="category_id" value="{{ old('category_id')? old('category_id'): $data->category_id }}">
+                        <input type="hidden" name="sub_category_id" value="{{ old('sub_category_id')? old('sub_category_id'): $data->sub_category_id }}">
+                        <input type="hidden" name="sub_sub_category_id" value="{{ old('sub_sub_category_id')? old('sub_sub_category_id'): $data->sub_sub_category_id }}">
 
-                    </form>
                     <hr />
-                @endfor
+                    @endfor
+                        
+                </form>
 
-                 {{-- back and submit button --}}
-                 <div class="col-lg-12">
+                {{-- back and submit button --}}
+                <div class="col-lg-12">
                     <div class="box__btn">
                         <div class="row">
                             <div class="col-md-6">
@@ -609,7 +637,38 @@
                     </div>
                 </div>
                 {{-- back and submit button --}}
-               
+
+                {{-- copy product --}}
+                <div class="box__condition">
+                    <div class="box__title">
+                        <p class="txt__title">{{ trans('file.Copy Product Message1') }} <span>{{ trans('file.Copy Product Message2') }}</span></p>
+                    </div>
+
+                    <form id="frm-copy-same-category" action="{{ route('supplier.product.copyProduct', $data->id) }}" method="get">
+                        <input type="hidden" name="copyType" value="same_category">
+                    </form>
+                    <form id="frm-copy-diff-category" action="{{ route('supplier.product.copyProduct', $data->id) }}" method="get">
+                        <input type="hidden" name="copyType" value="diff_category">
+                    </form>
+
+                    <div class="box__wrapperbutton">
+                        {{-- copy by same category --}}
+                        <a href="javascript:document.getElementById('frm-copy-same-category').submit();" id="copy-same-category" class="btn btn__copyproduct">
+                            <img src="{{ asset('assets/img/icon/icon__copyproduct.svg') }}" class="img-fluid" alt="icon__copyproduct.svg">
+                            <p>{{ trans('file.Copy Product') }}</p>
+                            <span>{{ trans('file.Product name, brand and model') }} </span>
+                            <span class="txt__red">{{ trans('file.same category but the quality is different') }}</span>
+                        </a>
+                        {{-- copy by difference category --}}
+                        <a href="javascript:document.getElementById('frm-copy-diff-category').submit();" class="btn btn__searchcat">
+                            <img src="{{ asset('assets/img/icon/icon__searchcat.svg') }}" class="img-fluid" alt="icon__searchcat.svg">
+                            <p>{{ trans('file.different product categories') }}</p>
+                            <span>{{ trans('file.same brand and model') }}</span>
+                        </a>
+                    </div>
+                </div>
+                {{-- copy product --}}
+
             </div>
 
             <div class="col-lg-3">
@@ -655,19 +714,24 @@
                     <form>
                         <div class="form-group">
                             <label for="">{{ trans('file.Created Date') }}</label>
-                            <p id="created-at" class="txt__detail"></p>
+                            <p id="created-at" class="txt__detail">{{ $data->created_at }}</p>
                         </div>
                         <div class="form-group">
                             <label for="">{{ trans('file.Created By') }}</label>
-                            <p id="created-by" class="txt__detail"></p>
+                            <p id="created-by" class="txt__detail">{{ $data->created_by }}</p>
                         </div>
                         <div class="form-group">
                             <label for="">{{ trans('file.Sell Status') }}</label>
-                            {{-- <div class="box__status status-sold">{{ trans('file.Sold') }}</div>
-                            <div class="box__status status-selling">{{ trans('file.Selling') }}</div>
-                            <div class="box__status status-cancle">{{ trans('file.Cancel') }}</div>
-                            <div class="box__status status-banned">{{ trans('file.Suspended') }}</div> --}}
-                        </div>
+                            @if ($data->status_code == 'sell')
+                                <div class="box__status status-selling">{{ trans('file.Selling') }}</div> 
+                            @elseif ($data->status_code == 'sold')
+                                <div class="box__status status-sold">{{ trans('file.Sold') }}</div>
+                            @elseif ($data->status_code == 'suspended')
+                                <div class="box__status status-banned">{{ trans('file.Suspended') }}</div>
+                            @elseif ($data->status_code == 'cancle')
+                                <div class="box__status status-cancle">{{ trans('file.Cancel') }}</div>
+                            @endif
+                         </div>
                     </form>
                 </div>
                 {{-- create log --}}
@@ -676,8 +740,9 @@
                 <div class="box__salecode">
                     <form>
                         <div class="form-group">
-                            <label for="salesman-code">{{ trans('file.SALE CODE') }}</label>
-                            <input id="salesman-code" type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" value="{{ old('salesman_code') }}">
+                            <label for="salesman_code">{{ trans('file.SALE CODE') }}</label>
+                            <input id="salesman-code" type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" 
+                                value="{{ old('salesman_code')? old('salesman_code'): $data->salesman_code }}">
                         </div>
                     </form>
                 </div>
@@ -696,152 +761,152 @@
 <script type="text/javascript">
     $(".nav_list #product #product-list-menu").addClass("active");
 
+    var isWarranty = "{{ $data->is_warranty }}";
+    var isDeliver = "{{ isset($transport->is_deliver)? $transport->is_deliver : 1 }}";
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
-    $(document).ready(function(){
+    $(document).ready(()=>{
 
-        let oldQuality = "{{ old('quality') }}";
-        let quality = oldQuality ? oldQuality : '';
-        $('#quality option[value="' + quality + '"]').attr('selected', 'selected');
+        // auto close alert
+        setTimeout(() => {
+            $('.alert').alert('close');
+        }, 3000);   
+        // auto close alert
 
-        let oldYearMonthDay = "{{ old('year_month_day') }}";
-        let yearMonthDay = oldYearMonthDay ? oldYearMonthDay : '';
-        $('#year_month_day option[value="' + yearMonthDay + '"]').attr('selected', 'selected');
+        // specify initilize option data
+            setDuration(isWarranty);
+            setEstimateDays(isDeliver);
+        // specify initilize option data
+    });
 
-        let oldUnit = "{{ old('unit') }}";
-        let unit = oldUnit ? oldUnit : '';
-        $('#unit option[value="' + unit + '"]').attr('selected', 'selected');
-        
-        let olduom = "{{ old('uom') }}";
-        let uom = olduom ? olduom : '';
-        $('#uom option[value="' + uom + '"]').attr('selected', 'selected');
-
-        let oldEstimatedDays = "{{ old('estimated_days') }}";
-        let estimatedDays = oldEstimatedDays ? oldEstimatedDays : '';
-        $('#estimated_days option[value="' + estimatedDays + '"]').attr('selected', 'selected');
-
-        // upload image
-        $(document).on('change', '#upload-image', function(){
-            var event = $(this);
-            uploadImage(event);
-        });
-        
-        function uploadImage(event) {
-            var imageUrl = '';
-            var htmlText = '';
-            var file_data = event.prop('files')[0];   
-            var form_data = new FormData();                  
-            form_data.append('file', file_data);
-            $.ajax({
-                url: 'dropzone/store',
-                dataType: 'text',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(data){
-                    imageUrl = "{{ asset('product/images') }}" + '/' + data;
-                    htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
-                                    +'<input type="hidden" name="image[]" value="'+ data +'">'
-                                    +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
-                                    +'<img src="'+ imageUrl +'" class="img-fluid" alt="product image">'
-                                    +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
-                                    +'</a></div>';
-                    $('#show-image').prepend(htmlText);
-                }
-            });
-        }
-        // upload image
-
-        // remove image
-        $(document).on('click', '.btn__trash', function(e){
-            var imageName = $(e.currentTarget).data('image');
-
-            $.ajax({
-                url: 'dropzone/remove',
-                dataType: 'text',
-                data: {
-                    'imageName': imageName
-                },
-                type: 'post',
-                success: function(data) {
-                    $(e.currentTarget).parent().remove();
-                    e.preventDefault();
-                }
-            });
-            
-        });
-        // remove image
-
-        // control warranty option
-        $('input[name="is_warranty"]').on('change', function() {
-            var value = $(this).val();
-            if (value == 0) {
-                $('input[name="duration"]').prop('required', false);
-                $('input[name="duration"]').prop('readonly', true);
-                $('input[name="duration"]').val('');
-            } else {
-                $('input[name="duration"]').prop('required', true);
-                $('input[name="duration"]').prop('readonly', false);
+    // upload image
+    $(document).on('change', '#upload-image', function(){
+        var event = $(this);
+        uploadImage(event);
+    });
+    
+    function uploadImage(event) {
+        var imageUrl = '';
+        var htmlText = '';
+        var file_data = event.prop('files')[0];   
+        var form_data = new FormData();                  
+        form_data.append('file', file_data);
+        $.ajax({
+            url: '../dropzone/store',
+            dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(data){
+                imageUrl = "{{ asset('product/images') }}" + '/' + data;
+                htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
+                                +'<input type="hidden" name="image[]" value="'+ data +'">'
+                                +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
+                                +'<img src="'+ imageUrl +'" class="img-fluid" alt="product image">'
+                                +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
+                                +'</a></div>';
+                $('#show-image').prepend(htmlText);
             }
         });
-        // control warranty option
+    }
+    // upload image
 
-        // control transport status
+    // remove image
+    $(document).on('click', '.btn__trash', function(e){
+        var imageName = $(e.currentTarget).data('image');
+
+        $.ajax({
+            url: '../dropzone/remove',
+            dataType: 'text',
+            data: {
+                'imageName': imageName
+            },
+            type: 'post',
+            success: function(data) {
+                $(e.currentTarget).parent().remove();
+                e.preventDefault();
+            }
+        });
+        
+    });
+    // remove image
+
+   // control warranty option
+   $('input[name="is_warranty"]').on('change', function() {
+        var value = $(this).val();
+        setDuration(value);
+    });
+
+    function setDuration(value) {
+        if (value == 0) {
+            $('input[name="duration"]').prop('required', false);
+            $('input[name="duration"]').prop('readonly', true);
+            $('input[name="duration"]').val('');
+        } else {
+            $('input[name="duration"]').prop('required', true);
+            $('input[name="duration"]').prop('readonly', false);
+        }
+    }
+    // control warranty option
+
+
+    // control transport status
+    $('input[name="is_deliver"]').on('change', function() {
+        var value = $(this).val();
+        setEstimateDays(value);
+    });
+
+    function setEstimateDays(value) {
+        if (value == 1) {
             $('select[name="estimated_days"]').prop('required', false);
             $('select[name="estimated_days"]').prop('disabled', true);
             $('select[name="estimated_days"]').val('');
-        $('input[name="is_deliver"]').on('change', function() {
-            var value = $(this).val();
-            if (value == 1) {
-                $('select[name="estimated_days"]').prop('required', false);
-                $('select[name="estimated_days"]').prop('disabled', true);
-                $('select[name="estimated_days"]').val('');
-            } else {
-                $('select[name="estimated_days"]').prop('required', true);
-                $('select[name="estimated_days"]').prop('disabled', false);
-            }
+        } else {
+            $('select[name="estimated_days"]').prop('required', true);
+            $('select[name="estimated_days"]').prop('disabled', false);
+        }
+    }
+    // control transport status
+
+    // calculate commission and revenue
+    $('#product-price').on('input', function() {
+        const price = $(this).val();
+        const vatAmt = price - ( price * ( 100 / ( 100 + 7 )));
+        const basicAmt = price - vatAmt;
+        const commission = (price * 15) / 100;
+        const revenue = basicAmt - commission;
+        $('input[name="commission"]').val(commission.toFixed(2));
+        $('input[name="revenue"]').val(revenue.toFixed(2));
+    })
+    // calculate commission and revenue
+
+    // active progress bar
+        $('#warranty').on('click', function(){
+            $('#progress-warranty').addClass('activenav');
         });
-        // control transport status
 
-        // calculate commission and revenue
-        $('#product-price').on('input', function() {
-            const price = $(this).val();
-            const vatAmt = price - ( price * ( 100 / ( 100 + 7 )));
-            const basicAmt = price - vatAmt;
-            const commission = (price * 15) / 100;
-            const revenue = basicAmt - commission;
-            $('input[name="commission"]').val(commission.toFixed(2));
-            $('input[name="revenue"]').val(revenue.toFixed(2));
-        })
-        // calculate commission and revenue
-
-        // active progress bar
-            $('#warranty').on('click', function(){
-                $('#progress-warranty').addClass('activenav');
-            });
-
-            $('#transportion').on('click', function(){
-                $('#progress-transport').addClass('activenav');
-            });
-
-            $('#price').on('click', function(){
-                $('#progress-amount').addClass('activenav');
-            });
-        // active progress bar
-
-        // insert salesman code
-        $('#salesman-code').on('input', function() {
-            $('input[name="salesman_code"]').val($(this).val());
+        $('#transportion').on('click', function(){
+            $('#progress-transport').addClass('activenav');
         });
-        // insert salesman code
 
+        $('#price').on('click', function(){
+            $('#progress-amount').addClass('activenav');
+        });
+    // active progress bar
+
+    // insert salesman code
+    $('#salesman-code').on('input', function() {
+        $('input[name="salesman_code"]').val($(this).val());
     });
+    // insert salesman code
+
 
 </script>
 
