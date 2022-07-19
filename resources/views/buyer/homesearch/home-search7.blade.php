@@ -1,6 +1,6 @@
 @extends('buyer.layouts.template')
     <!-- link navbar -->
-    <link href="{{asset('assets/css/home-seach5.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/home-seach7.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet">
 
 @section('content')
@@ -53,13 +53,25 @@
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
                     <button class="button button5">
-                        <a style="color:inherit;" href="{{url('buyer/home-search4?brand=').session('session_search.brand').'&model='.session('session_search.model').'&submodel='.session('session_search.submodel')}}"><i class="fa fa-close"></i></a> 
-                        {{$years_button->from_year}}
+                        <a style="color:inherit;" href="{{url('buyer/home-search3?brand=').session('session_search.brand').'&model='.session('session_search.model')}}"><i class="fa fa-close"></i></a> 
+                        {{$years_button->from_year}} 
+                    </button>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
+                    &nbsp;
+                    <button class="button button5">
+                        <a style="color:inherit;" onclick="javascript:window.history.back(-1);return false;"><i class="fa fa-close"></i></a> 
+                        หมวดหมู่
+                    </button>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
+                    &nbsp;
+                    <button class="button button5">
+                        <a style="color:inherit;" href="{{url('buyer/home-search3?brand=').session('session_search.brand').'&model='.session('session_search.model').'&submodel='.session('session_search.submodel').'&year='.session('session_search.year').'&category='.session('session_search.category')}}"><i class="fa fa-close"></i></a> 
+                        หมวดหมู่ย่อย 1
                     </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     <button class="button button6">
                     &nbsp;
-                        <i class="fa fa-close"></i> หมวดหมู่ </button>
+                        <i class="fa fa-close"></i> หมวดหมู่ย่อย 2 </button>
                 </div>
                 <br>
                 <div class="row">
@@ -107,9 +119,9 @@
                 <div class="box-scoll-roon">
 
                     <!-- model  -->
-                    <div class="submodel-all">
+                    <div class="subcate-all">
                         <div class="row">
-                            @foreach($category as $cate)
+                            @foreach($subcategory as $cate)
                             <div class="col-sm-3">
                                 <div class="row">
                                     <div class="col-lg-3">
@@ -154,7 +166,7 @@
                         ขายดี
                     </button>
                     <select class="form-select" aria-label="Default select example">
-                        <option> เรียงตาม </option>
+                        <option selected> เรียงตาม </option>
                         <option value="1"> ... </option>
                     </select>
                 </div>
@@ -385,12 +397,12 @@
         // alert(test);   
         $(document).on('keyup','#search-box-category',function(){
             name = $('#search-box-category').val();
-            $('.submodel-all').css('display','none');
+            $('.subcate-all').css('display','none');
             $('.search-box-category').remove();
             if(name != null){
                 $.ajax({
                     method: "GET",
-                    url: "buyer/SearchBox?category=" + name,
+                    url: "buyer/SearchBox?subcategory=" + name,
                     dataType: "json"
                 }).done(function(rec){
                     console.log(rec)
@@ -401,35 +413,28 @@
         });
 
         function filterBrands(text){
-            
+            //
         }
 
         //============ Get checkbox value ================
-        $('input[type="checkbox"]').change(function() {
-            // alert ("The element with id " + this.value + " changed.");
-            id = this.value;
-            location.href = "buyer/home-search6?brand="+{{session('session_search.brand')}}+
-            "&model="+{{session('session_search.model')}}+
-            "&submodel="+{{session('session_search.submodel')}}+
-            "&year="+{{session('session_search.year')}}+
-            "&category="+id;
-        });
-
-        /*var checkbox = document.querySelector('input[type="checkbox"]');
+        var checkbox = document.querySelector('input[type="checkbox"]');
         checkbox.addEventListener('change', function(e){
-            alert(this.check.value);
+            // alert(this.check.value);
             // alert($("input[type=checkbox]:checked").val());
             id = $("input[type=checkbox]:checked").val();
-            location.href = "buyer/home-search6?brand="+{{session('session_search.brand')}}+
+            location.href = "buyer/home-search7?brand="+{{session('session_search.brand')}}+
             "&model="+{{session('session_search.model')}}+
             "&submodel="+{{session('session_search.submodel')}}+
             "&year="+{{session('session_search.year')}}+
-            "&category="+id;
-        });*/
+            "&category="+{{session('session_search.category')}}+
+            "&subcategory="+id;
+        });
+
 
         /*function selectSubModel(id){
             location.href = "buyer/home-search4?brand="+{{session('session_search.brand')}}+"&model="+{{session('session_search.model')}}+"&submodel"+id;
         }*/
+        
     </script>
     <script>
         function searchnavBrands(id){
