@@ -53,25 +53,19 @@
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
                     <button class="button button5">
-                        <a style="color:inherit;" href="{{url('buyer/home-search4?brand=').session('session_search.brand').'&model='.session('session_search.model').'&submodel='.session('session_search.submodel')}}"><i class="fa fa-close"></i></a> 
+                        <a style="color:inherit;" href="{{url('buyer/home-search3?brand=').session('session_search.brand').'&model='.session('session_search.model')}}"><i class="fa fa-close"></i></a> 
                         {{$years_button->from_year}} 
                     </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
                     <button class="button button5">
-                        <a style="color:inherit;" href="{{url('buyer/home-search5?brand=').session('session_search.brand').'&model='.session('session_search.model').'&submodel='.session('session_search.submodel').'&year='.session('session_search.year')}}"><i class="fa fa-close"></i></a> 
+                        <a style="color:inherit;" onclick="javascript:window.history.back(-1);return false;"><i class="fa fa-close"></i></a> 
                         หมวดหมู่
-                    </button>
-                    <span><i class="fa-solid fa-chevron-right"></i></span>
-                    &nbsp;
-                    <button class="button button5">
-                        <a style="color:inherit;" href="{{url('buyer/home-search3?brand=').session('session_search.brand').'&model='.session('session_search.model').'&submodel='.session('session_search.submodel').'&year='.session('session_search.year').'&category='.session('session_search.category')}}"><i class="fa fa-close"></i></a> 
-                        หมวดหมู่ย่อย 1
                     </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     <button class="button button6">
                     &nbsp;
-                        <i class="fa fa-close"></i> หมวดหมู่ย่อย 2 </button>
+                        <i class="fa fa-close"></i> หมวดหมู่ย่อย1 </button>
                 </div>
                 <br>
                 <div class="row">
