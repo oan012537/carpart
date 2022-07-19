@@ -270,7 +270,7 @@ class BuyerController extends Controller
         if($request->password == $request->confirm_password){
 
             $data = new mUsers_buyer;
-            $data->code = 'B123456';
+            // $data->code = 'B123456';
             $data->type = Session::get('type');
             $data->profile_name = Session::get('profile_name');
             $data->first_name = Session::get('first_name');

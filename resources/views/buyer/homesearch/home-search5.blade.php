@@ -401,9 +401,18 @@
         });
 
         //============ Get checkbox value ================
-        var checkbox = document.querySelector('input[type="checkbox"]');
+        $('input[type="checkbox"]').change(function() {
+            // alert ("The element with id " + this.value + " changed.");
+            id = this.value;
+            location.href = "buyer/home-search6?brand="+{{session('session_search.brand')}}+
+            "&model="+{{session('session_search.model')}}+
+            "&submodel="+{{session('session_search.submodel')}}+
+            "&year="+{{session('session_search.year')}}+
+            "&category="+id;
+        });
+        /*var checkbox = document.querySelector('input[type="checkbox"]');
         checkbox.addEventListener('change', function(e){
-            // alert(this.check.value);
+            alert(this.check.value);
             // alert($("input[type=checkbox]:checked").val());
             id = $("input[type=checkbox]:checked").val();
             location.href = "buyer/home-search6?brand="+{{session('session_search.brand')}}+
@@ -411,7 +420,7 @@
             "&submodel="+{{session('session_search.submodel')}}+
             "&year="+{{session('session_search.year')}}+
             "&category="+id;
-        });
+        });*/
 
 
         /*function selectSubModel(id){
