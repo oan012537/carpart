@@ -322,7 +322,7 @@ class DeliveryController extends Controller
     }
 
     public function update(Request $request){
-        dd($request->all(),$request);
+        // dd($request->all(),$request);
         DB::beginTransaction();
         try {
             // $imgcover1 = '';

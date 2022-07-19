@@ -20,7 +20,7 @@
                                     data-bs-target="#data-product1"><span><i class="fas fa-info-circle"></i></span>
                                     ข้อมูลขนส่ง <p class="mb-0 mt-3">รายละเอียด</p></button>
                                 <div id="data-product1" class="collapse show mb-5">
-                                    <form class="form-box-input px-2">
+                                    {{-- <form class="form-box-input px-2"> --}}
                                         <div class="row">
                                             <div class="col-6">
                                                 <label class="title__txt">ID</label>
@@ -161,7 +161,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    {{-- </form> --}}
                                     <button type="button" class="btn-shot" data-bs-toggle="collapse"
                                         data-bs-target="#data-product1">ย่อ <i class="fas fa-angle-up"></i></button>
                                 </div>
@@ -172,7 +172,7 @@
                                     <button type="button" class="data-edit txt_box_card" data-bs-toggle="collapse"
                                         data-bs-target="#data-product2">การรับประกัน</button>
                                     <div id="data-product2" class="collapse show mb-5">
-                                        <form class="form-box-input px-2">
+                                        {{-- <form class="form-box-input px-2"> --}}
     
                                             <div class="row">
                                                 <div class="col-9">
@@ -194,11 +194,12 @@
                                                 </div>
                                                 <div class="box_rabu2 mb-5">
                                                     <div class="col-12 mt-2">
-                                                        <input type="text" class="" id="warrantyterms" placeholder="ระบุ" name="warrantyterms" style="display: none">
+                                                        {{-- <input type="text" class="" id="warrantyterms" placeholder="ระบุ" name="warrantyterms" > --}}
+                                                        <textarea id="warrantyterms" name="warrantyterms" rows="1" maxlength="100"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
+                                        {{-- </form> --}}
                                         <button type="button" class="btn-shot" data-bs-toggle="collapse"
                                             data-bs-target="#data-product2">ย่อ <i class="fas fa-angle-up"></i></button>
                                     </div>
