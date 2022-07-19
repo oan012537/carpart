@@ -79,29 +79,84 @@
                 </div>
 
                 @if ($errors->has('success'))
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div class="modal-body">
-                            <img src="assets/img/login/sf.png" class="img-fluid" alt="">
-                        </div>
-                        <div class="modal-footer">
-                            <div class="tt-text-con">
-                                <p>{{ trans('file.Successful registration') }}</p>
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <div class="modal-body">
+                                <img src="assets/img/login/sf.png" class="img-fluid" alt="">
                             </div>
-                            <br>
-                            <div class="but-bb">
-                                <button class="button button3"> {{ trans('file.Agree') }}</button>
+                            <div class="modal-footer">
+                                <div class="tt-text-con">
+                                    <p>{{ trans('file.Successful registration') }}</p>
+                                </div>
+                                <br>
+                                <div class="but-bb">
+                                    <button class="button button3"> {{ trans('file.Agree') }}</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endif
             </form>
         </div>
     </div>
 </section>
 
+<section id="modal-regis3">
+    @if(session()->has('message'))
+        <?php 
+            $display_class = 'd-block';
+        ?>
+    @else
+        <?php 
+            $display_class = '';
+        ?>
+    @endif
+    <!-- The Modal -->
+    <div class="modal {{ $display_class }}" id="modalAlert">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset('assets/img/login/sc.png') }}" class="img-fluid" alt=""
+                    style="margin-left: 28px;">
+                </div>
+                <div class="modal-footer">
+                    <div class="tt-text-con">
+                        <p>{{ trans('file.Waiting for approval from the staff') }}</p>
+                    </div>
+                    <div class="tt-text-con2">
+                        <p>
+                            {{ trans('file.approval info1') }}
+                            {{ trans('file.approval info2') }}
+                        </p>
+                    </div>
+                    <div class="tt-text-con3">
+                        <p>{{ trans('file.within 24 hours.') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+
+            $(document).on('click', '.btn-close', function(){
+                
+                $('#modalAlert').removeClass('d-block');
+            });
+
+        });
+
+    </script>
+    
 @endsection
