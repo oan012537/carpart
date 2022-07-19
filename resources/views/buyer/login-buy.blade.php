@@ -79,7 +79,9 @@
                             &nbsp;
                             <img src="assets/img/login/i2.png" class="img-fluid" alt="">
                             &nbsp;
+                            <a href="google/login">
                             <img src="assets/img/login/i3.png" class="img-fluid" alt="">
+                            </a>
                         </div>
                         <div class="text-or-t">
                             <p>

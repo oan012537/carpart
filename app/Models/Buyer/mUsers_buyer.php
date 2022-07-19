@@ -28,6 +28,8 @@ class mUsers_buyer extends Authenticatable
         'company_name',
         'vat_id',
         'phone',
+        'social_id',
+        'social_type',
         'created_at',
         'updated_at'
     ];

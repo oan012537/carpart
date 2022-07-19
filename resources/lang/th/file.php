@@ -111,7 +111,7 @@ return [
 	"Created Date" => "วันที่สร้าง",
 	"Created By" => "ผู้สร้าง",
 	"Sell Status" => "สถานะขาย",
-	"SALE CODE" => "รหัสขาย",
+	"SALE CODE" => "รหัสผู้ขาย",
 	"Width" => "กว้าง",
 	"Length" => "ยาว",
 	"Height" => "สูง",
