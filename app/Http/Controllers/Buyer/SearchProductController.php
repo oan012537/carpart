@@ -517,7 +517,7 @@ class SearchProductController extends Controller
         ->where('category_id',$request->category)
         ->where('sub_category_id',$request->subcategory)->limit(9)->get();
 
-        return view('buyer.homesearch.home-search6',[
+        return view('buyer.homesearch.home-search7',[
             'brands_select' => Brand::get(),
             'category' => Category::get(),
             'products' => $products,
