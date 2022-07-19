@@ -183,19 +183,19 @@
                                                         <div class="col-9">
                                                             <form method="POST" action="{{ route('backend.categorysubs.update') }}" id="formupdatesubs{{$value->id}}" enctype="multipart/form-data">
                                                                 @csrf
-                                                                <input type="hidden" name="categorysubid" value="{{$value->id}}">
+                                                                <input type="hidden" name="categorysubsid" value="{{$value->id}}">
                                                                 <div class="row">
                                                                     <div class="col-1">
                                                                         <label class="me-2">ไทย</label>
                                                                     </div>
                                                                     <div class="col-11">
-                                                                        <input type="text" class="form-control mb-2" id="" placeholder="อะไหล่" name="editcategorysubth" value="{{$value->name_th}}" required>
+                                                                        <input type="text" class="form-control mb-2" id="" placeholder="อะไหล่" name="editcategorysubsth" value="{{$value->name_th}}" required>
                                                                     </div>
                                                                     <div class="col-1">
                                                                         <label class="me-2">EN</label>
                                                                     </div>
                                                                     <div class="col-11">
-                                                                        <input type="text" class="form-control" id="" placeholder="Parts" name="editcategorysuben" value="{{$value->name_en}}" required>
+                                                                        <input type="text" class="form-control" id="" placeholder="Parts" name="editcategorysubssen" value="{{$value->name_en}}" required>
                                                                     </div>
                                                                 </div>
                                                             </form>

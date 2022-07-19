@@ -69,9 +69,9 @@
                         </div>
                         <br>
                         <div class='but-bb-log'>
-
+                            <a>
                                 <button type="submit" class="button button1"> เข้าสู่ระบบ </button>
-
+                            </a>
                         </div>
                         </form>
                         <div class="social-log">
@@ -79,7 +79,9 @@
                             &nbsp;
                             <img src="assets/img/login/i2.png" class="img-fluid" alt="">
                             &nbsp;
+                            <a href="google/login">
                             <img src="assets/img/login/i3.png" class="img-fluid" alt="">
+                            </a>
                         </div>
                         <div class="text-or-t">
                             <p>

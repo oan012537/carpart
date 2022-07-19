@@ -178,6 +178,7 @@ return [
         Milon\Barcode\BarcodeServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Midium\Ckeditor\ServiceProvider::class,
     ],
 
     /*
@@ -235,6 +236,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Datatables' => Yajra\DataTables\Facades\DataTables::class,
         'Keygen' => Keygen\Keygen::class,
+        
 
     ],
 

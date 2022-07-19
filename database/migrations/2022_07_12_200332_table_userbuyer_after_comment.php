@@ -16,6 +16,8 @@ class TableUserbuyerAfterComment extends Migration
         Schema::table('users_buyer', function (Blueprint $table) {
             $table->string('code',20)->nullable()->after('id');
             $table->string('is_active',1)->default('1')->after('remember_token')->comment('0=ระงับ/1=ใช้งาน');
+            $table->string('social_id')->nullable()->after('remember_token');
+            $table->string('social_type')->nullable()->after('social_id');
             $table->text('comment')->nullable()->after('is_active')->comment('หมายเหตุ');
         });
     }

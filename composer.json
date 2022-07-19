@@ -21,6 +21,7 @@
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.0",
         "maatwebsite/excel": "^3.1",
+        "midium/laravel-ckeditor": "dev-master",
         "milon/barcode": "^9.0",
         "pusher/pusher-php-server": "^7.0",
         "yajra/laravel-datatables": "^1.5",

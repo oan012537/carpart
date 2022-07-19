@@ -119,7 +119,7 @@
                         <li data-page="managebuyerlegal"><a href="{{route('backend.manage.buyer.legal')}}">นิติบุคคล</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav_link"> <i class='fas fa-truck'></i> <span class="nav_name">จัดการขนส่ง</span> </a></li>
+                <li><a href="{{route('backend.delivery')}}" class="nav_link" data-page="delivery"> <i class='fas fa-truck'></i> <span class="nav_name">จัดการขนส่ง</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class="fa-solid fa-star"></i> <span class="nav_name">จัดการรีวิว</span> </a></li>
                 <li><a href="#" class="nav_link"> <i class='far fa-comments'></i> <span class="nav_name">Chat</span> </a></li>
                 {{-- <li><a href="#" class="nav_link"> <i class="fa-solid fa-book-open"></i> <span class="nav_name">จัดการ PDPA</span> </a></li> --}}

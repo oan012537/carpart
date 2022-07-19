@@ -5842,8 +5842,30 @@ hr.new2 {
   width: 100%;
 }
 
+.box__approvel .title__num {
+  color: #BDBDBD;
+  float: right;
+}
 
+.box__approvel .txt_numtxt {
+  color: #BDBDBD;
+  float: right;
+}
 
-
-
-
+.box__approvel .box_rabu2 .form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem 5.0rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

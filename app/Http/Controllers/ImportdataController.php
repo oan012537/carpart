@@ -10,12 +10,12 @@ use Excel;
 use File;
 use Auth;
 use App\Models\Category;
-use App\Models\Categorysub;
-use App\Models\Categorysubs;
+use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use App\Models\Brand;
-use App\Models\Brandmodel;
-use App\Models\Brandmodels;
-use App\Models\Brandyear;
+use App\Models\ProductModel;
+use App\Models\SubModel;
+use App\Models\IssueYear;
 
 class ImportdataController extends Controller
 {
@@ -412,6 +412,7 @@ class ImportdataController extends Controller
             $brand[$items->code] = $items;
         }
         // dd($brand,$rows[0]);
+        $arraymodel = array();
         
         foreach ($rows[0] as $key => $value) {
             // dd($value);
@@ -424,7 +425,7 @@ class ImportdataController extends Controller
                     if(array_key_exists($value[0],$brand)){
                         $brandid = $brand[$value[0]]['id'];
                     }else{
-                        $insert = new brand;
+                        $insert = new Brand;
                         $insert->code = $value[0];
                         $insert->name_th = $value[1];
                         $insert->name_en = $value[1];
@@ -434,36 +435,47 @@ class ImportdataController extends Controller
                         $insert->save();
                         $brandid = $insert->id;
                     }
-                    $brandmodel = new Brandmodel;
-                    $brandmodel->brand_id = $brandid;
-                    $brandmodel->code = '';
-                    $brandmodel->name_th = $value[2];
-                    $brandmodel->name_en = $value[2];
-                    $brandmodel->image = '';
-                    $brandmodel->created_by = 'oan';
-                    $brandmodel->updated_by = '';
-                    $brandmodel->save();
+                    // dd((string)$value[2],$arraymodel,in_array($value[2],$arraymodel));
+                    // $value[2] = (string)$value[2];
+                    // dd($value[2],$value);
+                    $modals = strval($value[2]);
+                    if(!array_key_exists($modals,$arraymodel)){
+                        // dd($modals);
+                        $brandmodel = new ProductModel;
+                        $brandmodel->brand_id = $brandid;
+                        $brandmodel->code = '';
+                        $brandmodel->name_th = $value[2];
+                        $brandmodel->name_en = $value[2];
+                        $brandmodel->image = '';
+                        $brandmodel->created_by = 'oan';
+                        $brandmodel->updated_by = '';
+                        $brandmodel->save();
+                        $arraymodel[$value[2]] = $brandmodel->id;
+                    }
+                    if(array_key_exists($modals,$arraymodel)){
+                        $brandmodels = new SubModel;
+                        $brandmodels->brand_id = $brandid;
+                        $brandmodels->model_id = $arraymodel[$value[2]];
+                        $brandmodels->code = '';
+                        $brandmodels->name_th = $value[3];
+                        $brandmodels->name_en = $value[4];
+                        $brandmodels->image = '';
+                        $brandmodels->created_by = 'oan';
+                        $brandmodels->updated_by = '';
+                        $brandmodels->save();
+                        
+                        $brandyear = new IssueYear;
+                        $brandyear->sub_model_id = $brandmodel->id;
+                        // $brandyear->year_modelsid = $brandmodel->model_id;
+                        $brandyear->from_year = !empty($value[5])?$value[5]:'';
+                        $brandyear->to_year = !empty($value[6])?$value[6]:'';
+                        $brandyear->master_data = !empty($value[7])?$value[7]:'';
+                        $brandyear->created_by = '';
+                        $brandyear->updated_by = '';
+                        $brandyear->save();
+                    }
 
-                    $brandmodels = new Brandmodels;
-                    $brandmodels->brand_id = $brandid;
-                    $brandmodels->model_id = $brandmodel->id;
-                    $brandmodels->code = '';
-                    $brandmodels->name_th = $value[3];
-                    $brandmodels->name_en = $value[4];
-                    $brandmodels->image = '';
-                    $brandmodels->created_by = 'oan';
-                    $brandmodels->updated_by = '';
-                    $brandmodels->save();
                     
-                    $brandyear = new Brandyear;
-                    $brandyear->sub_model_id = $brandmodel->id;
-                    // $brandyear->year_modelsid = $brandmodel->model_id;
-                    $brandyear->from_year = !empty($value[5])?$value[5]:'';
-                    $brandyear->to_year = !empty($value[6])?$value[6]:'';
-                    $brandyear->master_data = !empty($value[7])?$value[7]:'';
-                    $brandyear->created_by = '';
-                    $brandyear->updated_by = '';
-                    $brandyear->save();
                     
                 }
             }

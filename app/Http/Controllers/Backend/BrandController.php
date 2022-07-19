@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Brand;
-use App\Models\Brandmodel;
-use App\Models\Brandmodels;
-use App\Models\Brandyear;
+use App\Models\ProductModel;
+use App\Models\SubModel;
+use App\Models\IssueYear;
 use Response;
 use Datatables;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +16,9 @@ class BrandController extends Controller
 {
     public function index(){
         $brand = Brand::all();
-        // $brandmodel = Brandmodel::all();
-        // $brandmodels = Brandmodels::all();
-        // $brandyear = Brandyear::all();
+        // $brandmodel = ProductModel::all();
+        // $brandmodels = SubModel::all();
+        // $brandyear = IssueYear::all();
         $databrandmodal = [];
         // foreach($brandmodel as $item){
         //     $databrandmodal[$item->model_brandid][] = $item;
@@ -41,16 +41,16 @@ class BrandController extends Controller
     public function update(Request $request){
         // dd($request->all());
         $brand = Brand::find($request->brandid);
-        $brand->brand_name_th = $request->editbrand;
+        $brand->name_th = $request->editbrand;
         // $brand->brand_name_en = $request->editnameen;
-        $brand->updated_for = Auth::user()->name;
+        $brand->updated_by = Auth::user()->name;
         $brand->save();
         return redirect()->round('backend.brand');
     }
 
     public function updatemodel(Request $request){
         // dd($request->all());
-        $brandsub = Brandmodel::find($request->modelid);
+        $brandsub = ProductModel::find($request->modelid);
         $brandsub->name_th = $request->editmodel;
         // $brandsub->model_name_en = $request->editbrandsubth;
         $brandsub->created_for = Auth::user()->name;
@@ -60,10 +60,10 @@ class BrandController extends Controller
 
     public function updatemodelsub(Request $request){
         // dd($request->all());
-        $brandsubs = Brandmodels::find($request->modelsubid);
+        $brandsubs = SubModel::find($request->modelsubid);
         $brandsubs->name_th = $request->editmodelsub;
         // $brandsubs->models_name_en = $request->editbrandsubth;
-        $brandsubs->updated_for = Auth::user()->name;
+        $brandsubs->updated_by = Auth::user()->name;
         $brandsubs->save();
         return redirect()->round('backend.brand');
 
@@ -71,17 +71,17 @@ class BrandController extends Controller
     
     public function updateyear(Request $request){
         // dd($request->all());
-        $brandsubs = Brandyear::find($request->yearid);
+        $brandsubs = IssueYear::find($request->yearid);
         $brandsubs->from_year = $request->edityear;
         // $brandsubs->year_year_to = $request->editbrandsubth;
-        $brandsubs->updated_for = Auth::user()->name;
+        $brandsubs->updated_by = Auth::user()->name;
         $brandsubs->save();
         return redirect()->round('backend.brand');
 
     }
 
     public function getbrandmodel(Request $request){
-        $data = Brandmodel::where('brand_id',$request->id)->get();
+        $data = ProductModel::where('brand_id',$request->id)->get();
         $result = [];
         foreach($data as $value){
             $result[] = '<li class="nav-item edit-items-product">
@@ -122,7 +122,7 @@ class BrandController extends Controller
     }
 
     public function getbrandmodelsub(Request $request){
-        $data = Brandmodels::where('model_id',$request->id)->get();
+        $data = SubModel::where('model_id',$request->id)->get();
         $result = [];
         foreach($data as $value){
             $result[] ='<li class="nav-item edit-items-product">
@@ -163,7 +163,7 @@ class BrandController extends Controller
     }
 
     public function getbrandmodelyear(Request $request){
-        $data = Brandyear::where('sub_model_id',$request->id)->get();
+        $data = IssueYear::where('sub_model_id',$request->id)->get();
         $result = [];
         foreach($data as $value){
             $result[] ='<li class="edit-items-product2">
