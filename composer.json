@@ -23,6 +23,7 @@
         "maatwebsite/excel": "^3.1",
         "milon/barcode": "^9.0",
         "pusher/pusher-php-server": "^7.0",
+        "socialiteproviders/line": "^4.1",
         "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "~9.0"
     },

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\cFunction;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\DataprovincesController;
+use App\Http\Controllers\Auth\LoginSocialController;
 
 
 /*
@@ -180,6 +181,9 @@ Route::get('fetchamphures/{id}', [DataprovincesController::class, 'fetchamphures
 Route::get('fetchdistricts/{id}', [DataprovincesController::class, 'fetchdistricts']);
 Route::get('fetchzipcode/{id}', [DataprovincesController::class, 'fetchzipcode']);
 
+// OAT --- Route for all providers login
+Route::get('login/{provider}',[LoginSocialController::class, 'redirectToProvider']);
+Route::get('login/{provider}/callback',[LoginSocialController::class, 'handleProviderCallback']);
 
 Route::get('/clearcache', function () {
     $exitCode = Artisan::call('cache:clear');

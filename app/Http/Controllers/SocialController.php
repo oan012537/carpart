@@ -22,7 +22,7 @@ class SocialController extends Controller
         try {
      
             $user = Socialite::driver('google')->user();
-            // dd($user);
+            dd($user);
             $finduser = User::where('social_id', $user->id)->first();
       
             if($finduser){
