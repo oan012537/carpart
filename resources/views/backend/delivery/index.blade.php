@@ -1,5 +1,12 @@
 @extends('backend.layouts.templates')
 @section('content')
+<link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+<style>
+    .img-delivery{
+        width: 100%;
+        height: 40px;
+    }
+</style>
 <input type="hidden" id="pageName" name="pageName" value="delivery">
 <input type="hidden" id="pageName2" name="pageName2" value="delivery">
 
@@ -31,7 +38,7 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control"
                                                     placeholder="ค้นหาชื่อผู้ขาย , เบอร์โทรศัพท์ , ชื่อขนส่ง"
-                                                    aria-describedby="button-search">
+                                                    aria-describedby="button-search" id="search">
                                                 <button class="btn btn__search" type="button" id="button-search">
                                                     <i class="fa-solid fa-magnifying-glass"></i></button>
                                             </div>
@@ -52,16 +59,16 @@
                                         <nav>
                                             <ul class="nav nav-tabs" role="tablist">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" data-bs-toggle="tab" href="#all">
+                                                    <a class="nav-link active" data-bs-toggle="tab" href="#all" data-table="oTable">
                                                         การจัดส่งที่รองรับโดย CPN
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-bs-toggle="tab" href="#sold">
+                                                    <a class="nav-link" data-bs-toggle="tab" href="#large" data-table="oTablelarge">
                                                         บริษัทขนส่งเอกชน (พัสดุชิ้นใหญ่) </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-bs-toggle="tab" href="#suspended">
+                                                    <a class="nav-link" data-bs-toggle="tab" href="#customseller" data-table=""oTablecustomseller>
                                                         ผู้ขายกำหนดเอง
                                                     </a>
                                                 </li>
@@ -75,12 +82,12 @@
                                         <div id="all" class="tab-pane active"><br>
 
                                             <div class="table-responsive form-box-input">
-                                                <table class="table table-bordered">
+                                                <table id="datatables" class="table table-bordered nowrap"  style="width:100%">
                                                     <thead>
                                                         <tr>
 
+                                                            <th>ภาพขนส่ง</th>
                                                             <th>ชื่อผู้ให้บริการขนส่ง</th>
-                                                            <th></th>
                                                             <th>ประเภทการจัดส่ง</th>
                                                             <th>ระยะเวลาในการจัดส่ง</th>
                                                             <th>ข้อจำกัดน้ำหนัก</th>
@@ -91,7 +98,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
+                                                        {{-- <tr>
 
                                                             <th> <img src="assets/img/tran/logof.png" class="img-bookbook"> </th>
                                                             <th>Flash Express</th>
@@ -110,89 +117,7 @@
                                                             <td><a class="btn btn-table-edit" href="manage-productEdit.php">
                                                                     <i class="fas fa-pencil-alt"></i></a>
                                                             </td>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logop.png" class="img-bookbook"> </th>
-                                                            <th>EMS - Thaipost</th>
-                                                            <th>EMS</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit" href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logologi.png" class="img-bookbook"> </th>
-                                                            <th>CJ Logistics</th>
-                                                            <th>ลงทะเบียน</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit" href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logoni.png" class="img-bookbook"> </th>
-                                                            <th>Ninjavan</th>
-                                                            <th>EMS</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit" href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logoscg.png" class="img-bookbook"> </th>
-                                                            <th>SCG Yamato Express</th>
-                                                            <th>แมสเซนเจอร์</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckChecked"
-                                                                        checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit" href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
+                                                        </tr> --}}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -200,17 +125,16 @@
                                         </div>
 
 
-                                        <div id="sold" class="tab-pane fade"><br>
+                                        <div id="large" class="tab-pane fade"><br>
 
 
 
                                             <div class="table-responsive form-box-input">
-                                                <table class="table table-bordered">
+                                                <table id="datatableslarge" class="table table-bordered display nowrap"  style="width:100%">
                                                     <thead>
                                                         <tr>
-
+                                                            <th>ภาพขนส่ง</th>
                                                             <th>ชื่อผู้ให้บริการขนส่ง</th>
-                                                            <th></th>
                                                             <th>ประเภทการจัดส่ง</th>
                                                             <th>ระยะเวลาในการจัดส่ง</th>
                                                             <th>ข้อจำกัดน้ำหนัก</th>
@@ -221,7 +145,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
+                                                        {{-- <tr>
 
                                                             <th> <img src="assets/img/tran/logof.png"
                                                                     class="img-bookbook"> </th>
@@ -244,126 +168,22 @@
                                                                     href="manage-productEdit.php">
                                                                     <i class="fas fa-pencil-alt"></i></a>
                                                             </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tbody>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logop.png"
-                                                                    class="img-bookbook"> </th>
-                                                            <th>EMS - Thaipost</th>
-                                                            <th>EMS</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckChecked"
-                                                                        checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit"
-                                                                    href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tbody>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logologi.png"
-                                                                    class="img-bookbook"> </th>
-                                                            <th>CJ Logistics</th>
-                                                            <th>ลงทะเบียน</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckChecked"
-                                                                        checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit"
-                                                                    href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tbody>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logoni.png"
-                                                                    class="img-bookbook"> </th>
-                                                            <th>Ninjavan</th>
-                                                            <th>EMS</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckChecked"
-                                                                        checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit"
-                                                                    href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tbody>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logoscg.png"
-                                                                    class="img-bookbook"> </th>
-                                                            <th>SCG Yamato Express</th>
-                                                            <th>แมสเซนเจอร์</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckChecked"
-                                                                        checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit"
-                                                                    href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
+                                                        </tr> --}}
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
 
 
-                                        <div id="suspended" class="tab-pane fade"><br>
+                                        <div id="customseller" class="tab-pane fade"><br>
 
                                             <div class="table-responsive form-box-input">
-                                                <table class="table table-bordered">
+                                                <table id="datatablescustomseller" class="table table-bordered display nowrap"  style="width:100%">
                                                     <thead>
                                                         <tr>
 
+                                                            <th>ภาพขนส่ง</th>
                                                             <th>ชื่อผู้ให้บริการขนส่ง</th>
-                                                            <th></th>
                                                             <th>ประเภทการจัดส่ง</th>
                                                             <th>ระยะเวลาในการจัดส่ง</th>
                                                             <th>ข้อจำกัดน้ำหนัก</th>
@@ -374,7 +194,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
+                                                        {{-- <tr>
 
                                                             <th> <img src="assets/img/tran/logof.png"
                                                                     class="img-bookbook"> </th>
@@ -397,112 +217,9 @@
                                                                     href="manage-productEdit.php">
                                                                     <i class="fas fa-pencil-alt"></i></a>
                                                             </td>
-                                                        </tr>
+                                                        </tr> --}}
                                                     </tbody>
-                                                    <tbody>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logop.png"
-                                                                    class="img-bookbook"> </th>
-                                                            <th>EMS - Thaipost</th>
-                                                            <th>EMS</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckChecked"
-                                                                        checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit"
-                                                                    href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tbody>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logologi.png"
-                                                                    class="img-bookbook"> </th>
-                                                            <th>CJ Logistics</th>
-                                                            <th>ลงทะเบียน</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckChecked"
-                                                                        checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit"
-                                                                    href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tbody>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logoni.png"
-                                                                    class="img-bookbook"> </th>
-                                                            <th>Ninjavan</th>
-                                                            <th>EMS</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckChecked"
-                                                                        checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit"
-                                                                    href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                    <tbody>
-                                                        <tr>
-
-                                                            <th> <img src="assets/img/tran/logoscg.png"
-                                                                    class="img-bookbook"> </th>
-                                                            <th>SCG Yamato Express</th>
-                                                            <th>แมสเซนเจอร์</th>
-                                                            <th>กทม x-x วัน/ตจว x-x </th>
-                                                            <th>xx กก. </th>
-                                                            <th>มี </th>
-                                                            <td class="text-center"><small class="status-success">
-                                                                    <i class="fa fa-check-circle"></i>
-                                                                    กำลังใช้งาน</small></td>
-                                                            <th>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckChecked"
-                                                                        checked>
-                                                                </div>
-                                                            </th>
-                                                            <td><a class="btn btn-table-edit"
-                                                                    href="manage-productEdit.php">
-                                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
+                                                    
                                                 </table>
                                             </div>
                                         </div>
@@ -529,6 +246,10 @@
 @stop
 
 @section('script')
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+{{-- <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> --}}
+<script src="{{asset('daterangepicker-master/daterangepicker.js')}}"></script>
 <script>
     var acc = document.getElementsByClassName("accordion");
     var i;
@@ -542,6 +263,131 @@
             } else {
                 panel.style.maxHeight = panel.scrollHeight + "px";
             }
+        });
+    }
+    var oTable;
+    var oTablelarge;
+    var oTablecustomseller;
+    $(document).ready(function(){
+        $('.nav-link').on('shown.bs.tab', function (e) {
+            console.log('tab');
+            $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+        });
+		oTable = $('#datatables').DataTable({
+			processing: true,
+			serverSide: true,
+			searching: false,
+			lengthChange: false,
+            responsive: true,
+            scrollX: true,
+			ajax:{ 
+				url : "{{url('backend/delivery/datatables')}}",
+				data: function (d) {
+					d.search = $('#search').val();
+				},
+			},
+			columns: [
+				{ 'className': "text-center", data: 'image', name: 'image',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'name', name: 'name'},
+				{ 'className': "text-center", data: 'type', name: 'type'},
+				{ 'className': "text-center", data: 'timeinbkk', name: 'timeinbkk',orderable: false},
+				{ 'className': "text-center", data: 'weight', name: 'weight'},
+				{ 'className': "text-center", data: 'warranty', name: 'warranty'},
+				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'switchstatus', name: 'switchstatus',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
+			],
+			order: [[1, 'asc']],
+			rowCallback: function(row,data,index ){
+				
+			}
+		});
+
+        oTablelarge = $('#datatableslarge').DataTable({
+			processing: true,
+			serverSide: true,
+			searching: false,
+			lengthChange: false,
+            responsive: true,
+            scrollX: true,
+			ajax:{ 
+				url : "{{url('backend/delivery/datatables/large')}}",
+				data: function (d) {
+					d.search = $('#search').val();
+				},
+			},
+			columns: [
+				{ 'className': "text-center", data: 'image', name: 'image',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'name', name: 'name'},
+				{ 'className': "text-center", data: 'type', name: 'type'},
+				{ 'className': "text-center", data: 'timeinbkk', name: 'timeinbkk',orderable: false},
+				{ 'className': "text-center", data: 'weight', name: 'weight'},
+				{ 'className': "text-center", data: 'warranty', name: 'warranty'},
+				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'switchstatus', name: 'switchstatus',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
+			],
+			order: [[1, 'asc']],
+			rowCallback: function(row,data,index ){
+				
+				
+			}
+		});
+
+        oTablecustomseller = $('#datatablescustomseller').DataTable({
+			processing: true,
+			serverSide: true,
+			searching: false,
+			lengthChange: false,
+            responsive: true,
+            scrollX: true,
+			ajax:{ 
+				url : "{{url('backend/delivery/datatables/customseller')}}",
+				data: function (d) {
+					d.search = $('#search').val();
+				},
+			},
+			columns: [
+				{ 'className': "text-center", data: 'image', name: 'image',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'name', name: 'name'},
+				{ 'className': "text-center", data: 'type', name: 'type'},
+				{ 'className': "text-center", data: 'timeinbkk', name: 'timeinbkk',orderable: false},
+				{ 'className': "text-center", data: 'weight', name: 'weight'},
+				{ 'className': "text-center", data: 'warranty', name: 'warranty'},
+				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'switchstatus', name: 'switchstatus',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
+			],
+			order: [[1, 'asc']],
+			rowCallback: function(row,data,index ){
+				
+				
+			}
+		});
+
+
+
+        $("#search").keyup(function (e) { 
+            oTable.draw();
+            oTablelarge.draw();
+            oTablecustomseller.draw();
+        });
+	});
+
+    function switchstatus(id) {
+        // console.log($(".active").data('table'));
+        var flexSwitch = $("#flexSwitchCheckChecked"+id).is(":checked");
+        // return  false;
+        if(flexSwitch){
+            flexSwitch = '1';
+        }else{
+            flexSwitch = '0';
+        }
+        $.get("{{route('backend.delivery.changestatus')}}", {'id':id,'status':flexSwitch},function (data, textStatus, jqXHR) {
+            // var checktable = $(".active").data('table');
+            oTable.draw( false );
+            oTablelarge.draw( false );
+            oTablecustomseller.draw( false );
         });
     }
 </script>

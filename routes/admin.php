@@ -323,10 +323,14 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::prefix('delivery')->group(function () {
             Route::get('/', [Backend\DeliveryController::class,'index'])->name('backend.delivery');
+            Route::get('datatables', [Backend\DeliveryController::class,'datatables'])->name('backend.delivery.datatables');
+            Route::get('datatables/large', [Backend\DeliveryController::class,'datatableslarge'])->name('backend.delivery.datatables.large');
+            Route::get('datatables/customseller', [Backend\DeliveryController::class,'datatablescustomseller'])->name('backend.delivery.datatables.customseller');
             Route::get('add', [Backend\DeliveryController::class,'add'])->name('backend.delivery.add');
             Route::post('store', [Backend\DeliveryController::class,'store'])->name('backend.delivery.store');
             Route::get('edit/{id}', [Backend\DeliveryController::class,'edit'])->name('backend.delivery.edit');
             Route::post('update', [Backend\DeliveryController::class,'update'])->name('backend.delivery.update');
+            Route::get('changestatus', [Backend\DeliveryController::class,'changestatus'])->name('backend.delivery.changestatus');
         });
 
     });
