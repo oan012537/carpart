@@ -236,6 +236,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Datatables' => Yajra\DataTables\Facades\DataTables::class,
         'Keygen' => Keygen\Keygen::class,
+        
 
     ],
 

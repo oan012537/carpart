@@ -499,6 +499,7 @@ class SearchProductController extends Controller
     }
 
     public function home_search_subcategory(Request $request){
+        // dd($request);
         $request->session()->put('session_search',[
             'brand' => $request->brand,
             'model' => $request->model,
