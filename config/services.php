@@ -37,9 +37,9 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => 'ClientID',
-        'client_secret' => 'Client Secret',
-        'redirect' => 'https://URL/login/facebook/callback', // ตั้งค่าใน Facebook Developer
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT_URI'), // ตั้งค่าใน Facebook Developer
     ],
 
     'line' => [

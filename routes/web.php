@@ -172,6 +172,10 @@ Route::post('import/brandyear', [ImportdataController::class, 'importbrandyear']
 Route::get('google/login', [SocialController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('google/callback', [SocialController::class, 'handleCallback'])->name('google.callback');
 
+// Login facebook
+Route::get('facebook/login', [FacebookController::class, 'redirectToFacebook'])->name('facebook.login');
+Route::get('facebook/callback', [FacebookController::class, 'handleCallback'])->name('facebook.callback');
+
 Route::get('changeprovinces/{id}', [DataprovincesController::class, 'provinces']);
 Route::get('changeamphures/{id}', [DataprovincesController::class, 'amphures']);
 Route::get('changedistricts/{id}', [DataprovincesController::class, 'districts']);
