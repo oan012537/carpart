@@ -173,8 +173,8 @@ Route::get('google/login', [SocialController::class, 'redirectToGoogle'])->name(
 Route::get('google/callback', [SocialController::class, 'handleCallback'])->name('google.callback');
 
 // Login facebook
-Route::get('facebook/login', [FacebookController::class, 'redirectToFacebook'])->name('facebook.login');
-Route::get('facebook/callback', [FacebookController::class, 'handleCallback'])->name('facebook.callback');
+Route::get('facebook/login', [FacebookController::class, 'facebook_redirect'])->name('facebook.login');
+Route::get('facebook/callback', [FacebookController::class, 'handleFacebookCallback'])->name('facebook.callback');
 
 Route::get('changeprovinces/{id}', [DataprovincesController::class, 'provinces']);
 Route::get('changeamphures/{id}', [DataprovincesController::class, 'amphures']);
