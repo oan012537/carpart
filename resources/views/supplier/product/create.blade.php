@@ -20,25 +20,71 @@
                         <div class="box__step">
                             <p class="txt__titlestep">{{ trans('file.Choose Brand')}}</p>
                             <div class="box__stepdetail">
-                                <a href="javascript:void(0)" class="btn__label step1 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__brands"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step2 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__series"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step3 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__subseries"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step4 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__years"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span> </a>
-                                <a href="javascript:void(0)" class="btn__label step5 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__cat"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span></a>
-                                <a href="javascript:void(0)" class="btn__label step6 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__sub_cat"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span></a>
-                                <a href="javascript:void(0)" class="btn__label step7 d-none"><i class="fa-solid fa-xmark"></i> <span class="txt__sub_sub_cat"></span> <span class="icon__symbol"><i class="fa-solid fa-chevron-right"></i></span></a></a>
+                                {{-- brand --}}
+                                <a href="javascript:void(0)" class="btn__label step1 d-none">
+                                    <i class="fa-solid fa-xmark"></i> 
+                                    <span class="txt__brands"></span>
+                                     <span class="icon__symbol">
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </span> 
+                                </a>
+                                {{-- model --}}
+                                <a href="javascript:void(0)" class="btn__label step2 d-none">
+                                    <i class="fa-solid fa-xmark"></i> 
+                                    <span class="txt__series"></span>
+                                    <span class="icon__symbol">
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </span> 
+                                </a>
+                                {{-- sub model --}}
+                                <a href="javascript:void(0)" class="btn__label step3 d-none">
+                                    <i class="fa-solid fa-xmark"></i> 
+                                    <span class="txt__subseries"></span> 
+                                    <span class="icon__symbol">
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </span> 
+                                </a>
+                                {{-- issue year --}}
+                                <a href="javascript:void(0)" class="btn__label step4 d-none">
+                                    <i class="fa-solid fa-xmark"></i> 
+                                    <span class="txt__years"></span> 
+                                    <span class="icon__symbol">
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </span> 
+                                </a>
+                                {{-- category --}}
+                                <a href="javascript:void(0)" class="btn__label step5 d-none">
+                                    <i class="fa-solid fa-xmark"></i> 
+                                    <span class="txt__cat"></span> 
+                                    <span class="icon__symbol">
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                                {{-- sub category --}}
+                                <a href="javascript:void(0)" class="btn__label step6 d-none">
+                                    <i class="fa-solid fa-xmark"></i> 
+                                    <span class="txt__sub_cat"></span> 
+                                    <span class="icon__symbol">
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                                {{-- sub sub category --}}
+                                <a href="javascript:void(0)" class="btn__label step7 d-none">
+                                    <i class="fa-solid fa-xmark"></i>
+                                     <span class="txt__sub_sub_cat"></span>
+                                </a>
                             </div>
 
                             <div class="row">
-                                <div class="col-xl-6 col-md-12 col-12">
+                                <div class="col-6">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-describedby="button-addon2">
+                                        <input type="text" id="search-value" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-describedby="button-addon2">
                                         <button class="btn btn btn__search" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-md-12 col-12">
+                                <div class="col-6">
                                     @foreach (range('A', 'Z') as $letter)
-                                    <a href='javascript:void(0)' class='letter__az'>{{ $letter }}</a>
+                                      <a href='javascript:void(0)' class='letter__az' data-id="{{ $letter }}">{{ $letter }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -55,15 +101,15 @@
                                             <label class="form-check-label" for="image-options{{ $brand->id }}">
                                                 <img src="{{ asset('brand_logo').'/'. $brand->image }}" class="img-fluid img-circleimg" alt="{{ $brand->name_th }}">
                                                 {{-- concat id is for test --}}
-                                                {{ $brand->name_en . ' ('. $brand->id }}
+                                                {{ $brand->name_th . ' ('. $brand->id }}
                                             </label>
+                                            <input type="hidden" class="item-name" value="{{ $brand->name_en }}">
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
 
-                            {{-- model --}}
+                            {{-- model   --}}
                             <fieldset attr-id="1">
                                 <div class="row box__scroll" id="fieldset2">
                                 </div>
@@ -99,7 +145,7 @@
                         {{-- select product main categories --}}
                     </div>
                 </form>
-
+                
 
                 {{-- select product type --}}
                 <div class="box__condition">
@@ -114,7 +160,7 @@
                         <input type="hidden" name="issue_year_id" >
                         <input type="hidden" name="category_id" >
                         <input type="hidden" name="sub_category_id" >
-                        <input type="hidden" name="sub_sub_category_id" >
+                        <input type="hidden" name="sub_sub_category_id" >   
                         <input type="hidden" name="product_type" value="second">
                     </form>
                     <form id="frm-new-product-info" action="{{ route('products.create_product_info') }}" method="get">
@@ -128,8 +174,8 @@
                         <input type="hidden" name="product_type" value="new">
                     </form>
 
-                    {{-- create product button --}}
-                    <div class="box__wrapperbutton">
+                     {{-- create product button --}}
+                     <div class="box__wrapperbutton">
                         {{-- create second hand product --}}
                         <a href="javascript:document.getElementById('frm-second-product-info').submit();" class="btn btn__producttwohand">
                             <img src="{{ asset('assets/img/icon/icon__mdicar.svg') }}" class="img-fluid" alt="second hand">
@@ -167,11 +213,15 @@
     var left, opacity, scale;
     var animating;
     var itemId;
-
+    var itemName;
+    var table_name = 'brands';
+    var parent_id;
+    
     $(document).on('click', '.next', function() {
 
-        itemId = $(this).children().children().val();
-
+        itemId  = $(this).children().children().val();
+        itemName  = $(this).children().children('input.item-name').val();
+        
         if (animating) return false;
         animating = true;
 
@@ -183,61 +233,61 @@
         next_fs.show();
         const attr__value = next_fs.attr('attr-id');
         
-        // alert(attr__value);
-        if (attr__value == 1) {
+    // alert(attr__value);
+    if (attr__value == 1) {
             $('#frm-second-product-info input[name="brand_id"]').val(itemId);
             $('#frm-new-product-info input[name="brand_id"]').val(itemId);
             getSub(itemId, 'models');
-
+            
             $('.txt__titlestep').addClass('d-none');
             $('.step1').removeClass('d-none');
-            $('.txt__brands').html('{{ trans("file.Brand") }}');
-            $('.step2').removeClass('d-none');
-            $('.txt__series').html('{{ trans("file.Model") }}');
+            $('.txt__brands').html(itemName);
             $('.title__headbox').html('{{ trans("file.Model") }}')
         } else if (attr__value == 2) {
             $('#frm-second-product-info input[name="model_id"]').val(itemId);
             $('#frm-new-product-info input[name="model_id"]').val(itemId);
             getSub(itemId, 'sub_models');
-
-            $('.step3').removeClass('d-none');
-            $('.txt__subseries').html('{{ trans("file.Sub Model") }}');
+         
+            $('.step2').removeClass('d-none');
+            $('.txt__series').html(itemName);
             $('.title__headbox').html('{{ trans("file.Sub Model") }}')
         } else if (attr__value == 3) {
             $('#frm-second-product-info input[name="sub_model_id"]').val(itemId);
             $('#frm-new-product-info input[name="sub_model_id"]').val(itemId);
             getSub(itemId, 'issue_years');
-
-            $('.step4').removeClass('d-none');
-            $('.txt__years').html('{{ trans("file.Year") }}');
+           
+            $('.step3').removeClass('d-none');
+            $('.txt__subseries').html(itemName);
             $('.title__headbox').html('{{ trans("file.Year") }}')
         } else if (attr__value == 4) {
             $('#frm-second-product-info input[name="issue_year_id"]').val(itemId);
             $('#frm-new-product-info input[name="issue_year_id"]').val(itemId);
             getSub(itemId, 'categories');
-
-            $('.step5').removeClass('d-none');
-            $('.txt__cat').html('{{ trans("file.Category") }}');
+          
+            $('.step4').removeClass('d-none');
+            $('.txt__years').html(itemName);
             $('.title__headbox').html('{{ trans("file.Category") }}')
         } else if (attr__value == 5) {
             $('#frm-second-product-info input[name="category_id"]').val(itemId);
             $('#frm-new-product-info input[name="category_id"]').val(itemId);
             getSub(itemId, 'sub_categories');
-
-            $('.step6').removeClass('d-none');
-            $('.txt__sub_cat').html('{{ trans("file.Sub Category") }}');
+          
+            $('.step5').removeClass('d-none');
+            $('.txt__cat').html(itemName);
             $('.title__headbox').html('{{ trans("file.Sub Category") }}')
         } else if (attr__value == 6) {
             $('#frm-second-product-info input[name="sub_category_id"]').val(itemId);
             $('#frm-new-product-info input[name="sub_category_id"]').val(itemId);
             getSub(itemId, 'sub_sub_categories');
-
-            $('.step7').removeClass('d-none');
-            $('.txt__sub_sub_cat').html('{{ trans("file.Sub Sub Category") }}');
+          
+            $('.step6').removeClass('d-none');
+            $('.txt__sub_cat').html(itemName);
             $('.title__headbox').html('{{ trans("file.Sub Sub Category") }}')
         } else {
             $('#frm-second-product-info input[name="sub_sub_category_id"]').val(itemId);
             $('#frm-new-product-info input[name="sub_sub_category_id"]').val(itemId);
+            $('.step7').removeClass('d-none');
+            $('.txt__sub_sub_cat').html(itemName);
         }
 
         current_fs.animate({
@@ -301,125 +351,274 @@
 
     $(".submit").click(function() {
         return false;
-    })
+    });
+
+    // query filter
+    $('#search-value').keyup(function() {        
+        let searchValue = $(this).val();
+        queryProductModel(searchValue, table_name, parent_id);        
+    });
+    $('.letter__az').on('click', function(){
+        let searchValue = $(this).data('id');
+        queryProductModel(searchValue, table_name, parent_id);   
+    });
+    // query filter
+
+    // $(document).on('click', '.btn__search', function() {        
+    //     searchValue = $('#search-value').val();
+    //     tableName = $('#search-value').data('id');      
+    //     queryProductModel(searchValue, tableName);
+    // });
+
 
     // helper function
-    function getSub(id, tableName) {
-        $.ajax({
-            type: 'GET',
-            url: 'get_sub_items',
-            data: {
-                'id': id,
-                'tableName': tableName
-            },
-            success: function(data) {
-                var htmltext;
+        function getSub(id, tableName) {
+            $.ajax({
+                type: 'GET',
+                url: 'get_sub_items',
+                data: {
+                    'id': id,
+                    'tableName': tableName
+                },
+                success: function(data){
+                    var htmltext;
 
-                if (tableName === 'models') {
-                    if (data.length === 0) {
-                        alert('Model not found');
-                    } else {
+                    if (tableName === 'models') {
+                        table_name = tableName;
+                        parent_id = id;
+                        if (data.length === 0) {
+                            alert('Model not found');
+                        } else {
+                            data.forEach(model => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ model.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + model.name_en + ' ('+ model.id // concat id is for test
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + model.name_en + '">'
+                                    +'</div></div>';
+                                $('#fieldset2').append(htmltext);
+                            });
+                        }       
+                    } 
+                    else if (tableName === 'sub_models') {
+                        table_name = tableName;
+                        parent_id = id;
+                        if (data.length === 0) {
+                            alert('Sub Model not found');
+                        } else {
+                            data.forEach(subModel => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subModel.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subModel.name_en + ' ('+ subModel.id // concat id is for test
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + subModel.name_en + '">'
+                                    +'</div></div>';
+                                $('#fieldset3').append(htmltext);
+                            });
+                        }
+                    }     
+                    else if (tableName === 'issue_years') {
+                        table_name = tableName;
+                        parent_id = id;
+                        if (data.length === 0) {
+                            alert('Issue year not found');
+                        } else {
+                            data.forEach(issueYear => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ issueYear.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + issueYear.from_year + ' ('+ issueYear.id // concat id is for test
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + issueYear.from_year + '">'
+                                    +'</div></div>';
+                                $('#fieldset4').append(htmltext);
+                            });
+                        }       
+                    }  
+                    else if (tableName === 'categories') {
+                        table_name = tableName;
+                        parent_id = id;
+                        if (data.length === 0) {
+                            alert('Category not found');
+                        } else {
+                            data.forEach(category => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ category.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + category.name_en + ' ('+ category.id // concat id is for test
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + category.name_en + '">'
+                                    +'</div></div>';
+                                $('#fieldset5').append(htmltext);
+                            });
+                        }       
+                    }  
+                    else if (tableName === 'sub_categories') {
+                        table_name = tableName;
+                        parent_id = id;
+                        if (data.length === 0) {
+                            alert('Sub Category not found');
+                        } else {
+                            data.forEach(subCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + subCategory.name_en + '">'
+                                    +'</div></div>';
+                                $('#fieldset6').append(htmltext);
+                            });
+                        }       
+                    }  
+                    else if (tableName === 'sub_sub_categories') {
+                        table_name = tableName;
+                        parent_id = id;
+                        if (data.length === 0) {
+                            alert('Sub Sub Category not found');
+                        } else {
+                            data.forEach(subSubCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + subSubCategory.name_en + '">'
+                                    +'</div></div>';
+                                $('#fieldset7').append(htmltext);
+                            });
+                        }       
+                    }  
+                  
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+
+            })
+        }
+
+        function queryProductModel(searchValue, table_name, parent_id) {
+            $.ajax({
+                type: 'GET',
+                url: 'query_product_model',
+                data: {
+                    'searchValue': searchValue,
+                    'table_name': table_name,
+                    'parent_id': parent_id
+                },
+                success: function(data) {
+                    var htmltext;
+
+                    if (table_name === 'brands') {
+                        $('#fieldset1').children().remove();
+                        data.forEach(brand => {
+                            let imageUrl = "{{ asset('brand_logo') }}" + '/' + brand.image;
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="radio" name="brand" id="image-options'+ brand.id +'" value="'+ brand.id +'">'
+                                        +'<label class="form-check-label" for="image-options'+ brand.id +'">'
+                                            +'<img src="'+ imageUrl +'" class="img-fluid img-circleimg" alt="'+ brand.name_en +'">'
+                                            + brand.name_th
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="'+ brand.name_en +'">'
+                                    +'</div>';
+                            $('#fieldset1').append(htmltext);
+                        });
+                    } else  if (table_name == 'models') {
+                        $('#fieldset2').children().remove();
                         data.forEach(model => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + model.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                model.name_en + ' (' + model.id // concat id is for test
-                                +
-                                '</label>' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                +'<div class="form-check">'
+                                    +'<input class="form-check-input" type="checkbox" value="'+ model.id +'" id="flexCheckDefault">'
+                                    +'<label class="form-check-label" for="flexCheckDefault">'
+                                    + model.name_en
+                                    +'</label>'
+                                    +'<input type="hidden" class="item-name" value="' + model.name_en + '">'
+                                +'</div></div>';
                             $('#fieldset2').append(htmltext);
                         });
-                    }
-                } else if (tableName === 'sub_models') {
-                    if (data.length === 0) {
-                        alert('Sub Model not found');
-                    } else {
+                    } else  if (table_name == 'sub_models') {
+                        $('#fieldset3').children().remove();
                         data.forEach(subModel => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + subModel.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                subModel.name_en + ' (' + subModel.id // concat id is for test
-                                +
-                                '</label>' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                +'<div class="form-check">'
+                                    +'<input class="form-check-input" type="checkbox" value="'+ subModel.id +'" id="flexCheckDefault">'
+                                    +'<label class="form-check-label" for="flexCheckDefault">'
+                                    + subModel.name_en
+                                    +'</label>'
+                                    +'<input type="hidden" class="item-name" value="' + subModel.name_en + '">'
+                                +'</div></div>';
                             $('#fieldset3').append(htmltext);
                         });
-                    }
-                } else if (tableName === 'issue_years') {
-                    if (data.length === 0) {
-                        alert('Issue year not found');
-                    } else {
+                    } else  if (table_name == 'issue_years') {
+                        $('#fieldset4').children().remove();
                         data.forEach(issueYear => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + issueYear.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                issueYear.from_year + ' (' + issueYear.id // concat id is for test
-                                +
-                                '</label>' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                +'<div class="form-check">'
+                                    +'<input class="form-check-input" type="checkbox" value="'+ issueYear.id +'" id="flexCheckDefault">'
+                                    +'<label class="form-check-label" for="flexCheckDefault">'
+                                    + issueYear.from_year
+                                    +'</label>'
+                                    +'<input type="hidden" class="item-name" value="' + issueYear.from_year + '">'
+                                +'</div></div>';
                             $('#fieldset4').append(htmltext);
                         });
-                    }
-                } else if (tableName === 'categories') {
-                    if (data.length === 0) {
-                        alert('Category not found');
-                    } else {
+                    } else  if (table_name == 'categories') {
+                        $('#fieldset5').children().remove();
                         data.forEach(category => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + category.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                category.name_en + ' (' + category.id // concat id is for test
-                                +
-                                '</label>' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                +'<div class="form-check">'
+                                    +'<input class="form-check-input" type="checkbox" value="'+ category.id +'" id="flexCheckDefault">'
+                                    +'<label class="form-check-label" for="flexCheckDefault">'
+                                    + category.name_en
+                                    +'</label>'
+                                    +'<input type="hidden" class="item-name" value="' + category.name_en + '">'
+                                +'</div></div>';
                             $('#fieldset5').append(htmltext);
                         });
-                    }
-                } else if (tableName === 'sub_categories') {
-                    if (data.length === 0) {
-                        alert('Sub Category not found');
-                    } else {
+                    } else  if (table_name == 'sub_categories') {
+                        $('#fieldset6').children().remove();
                         data.forEach(subCategory => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + subCategory.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                subCategory.name_en + ' (' + subCategory.id // concat id is for test
-                                +
-                                '</label>' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                +'<div class="form-check">'
+                                    +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
+                                    +'<label class="form-check-label" for="flexCheckDefault">'
+                                    + subCategory.name_en
+                                    +'</label>'
+                                    +'<input type="hidden" class="item-name" value="' + subCategory.name_en + '">'
+                                +'</div></div>';
                             $('#fieldset6').append(htmltext);
                         });
-                    }
-                } else if (tableName === 'sub_sub_categories') {
-                    if (data.length === 0) {
-                        alert('Sub Sub Category not found');
-                    } else {
+                    } else  if (table_name == 'sub_sub_categories') {
+                        $('#fieldset7').children().remove();
                         data.forEach(subSubCategory => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + subSubCategory.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                subSubCategory.name_en + ' (' + subSubCategory.id // concat id is for test
-                                +
-                                '</label>' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                +'<div class="form-check">'
+                                    +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
+                                    +'<label class="form-check-label" for="flexCheckDefault">'
+                                    + subSubCategory.name_en
+                                    +'</label>'
+                                    +'<input type="hidden" class="item-name" value="' + subCategory.name_en + '">'
+                                +'</div></div>';
                             $('#fieldset7').append(htmltext);
                         });
                     }
-                }
-
-            },
-            error: function(error) {
-                console.log(error);
-            }
-
-        })
-    }
+                    
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+            });
+        }
 
     // helper function
 </script>

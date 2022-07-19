@@ -225,6 +225,68 @@ class ProductController extends Controller
         
     }
 
+    public function queryProductModel(Request $request)
+    {
+        $table_name = $request->table_name;
+        $search_value = $request->searchValue;
+        $parent_id = $request->parent_id;
+
+        $result_list_data = null;
+
+        if ($table_name == 'brands') {
+            $result_list_data = Brand::where([
+                                        ['is_active', true],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])
+                                    ->OrWhere('name_th', 'LIKE', "%{$search_value}%")
+                                    ->orderBy('id')->get();
+        } else if ($table_name == 'models') {
+            $result_list_data = ProductModel::where([
+                                        ['is_active', true],
+                                        ['brand_id', $parent_id],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                    
+        } else if ($table_name == 'sub_models') {
+            $result_list_data = SubModel::where([
+                                        ['is_active', true],
+                                        ['model_id', $parent_id],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                    
+        } else if ($table_name == 'issue_years') {
+            $result_list_data = IssueYear::where([
+                                        ['is_active', true],
+                                        ['sub_model_id', $parent_id],
+                                        ['from_year', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                    
+        } else if ($table_name == 'categories') {
+            $result_list_data = Category::where([
+                                        ['is_active', true],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                    
+        } else if ($table_name == 'sub_categories') {
+            $result_list_data = SubCategory::where([
+                                        ['is_active', true],
+                                        ['category_id', $parent_id],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                     
+        } else if ($table_name == 'sub_sub_categories') {
+            $result_list_data = SubSubCategory::where([
+                                        ['is_active', true],
+                                        ['sub_category_id', $parent_id],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                     
+        }
+
+        return $result_list_data;
+
+    }
+
 
     public function createProductInfo(Request $request)
     {
@@ -233,18 +295,38 @@ class ProductController extends Controller
         $product_name_en = null;
         $product_name_th = null;
 
+        $brand_data = Brand::select('name_th', 'name_en')->where('id', $data['brand_id'])->first();
+        if ($brand_data) {
+            $brand_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $brand_data->name_en); 
+            $brand_name_th = $brand_data->name_th; 
+
+            $product_name_en =  $brand_name_en;
+            $product_name_th =  $brand_name_th;
+        }
+
+        $model_data = ProductModel::select('name_th', 'name_en')->where('id', $data['model_id'])->first();
+        if ($model_data) {
+            $model_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $model_data->name_en); 
+            $model_name_th = $model_data->name_th; 
+
+            $product_name_en .=  $model_name_en;
+            $product_name_th .=  $model_name_th;
+        }
+
         $category_data = Category::select('name_th', 'name_en')->where('id', $data['category_id'])->first();
         if ($category_data) {
             $category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $category_data->name_en); 
-            $category_name_th = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $category_data->name_th); 
-            $product_name_en =  $category_name_en;
-            $product_name_th =  $category_name_th;
+            $category_name_th = $category_data->name_th; 
+
+            $product_name_en .=  $category_name_en;
+            $product_name_th .=  $category_name_th;
         }
 
         $sub_category_data = SubCategory::select('name_th', 'name_en')->where('id', $data['sub_category_id'])->first();
         if ($sub_category_data) {
-            $sub_category_name = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_category_data->name_en); 
-            $sub_category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_category_data->name_th); 
+            $sub_category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_category_data->name_en); 
+            $sub_category_name_th = $sub_category_data->name_th;
+
             $product_name_en .=  ' '. $sub_category_name_en;
             $product_name_th .=  ' '. $sub_category_name_th;
         }        
@@ -252,7 +334,8 @@ class ProductController extends Controller
         $sub_sub_category_data = SubSubCategory::select('name_th', 'name_en')->where('id', $data['sub_sub_category_id'])->first();
         if ($sub_sub_category_data) {
             $sub_sub_category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_sub_category_data->name_en); 
-            $sub_sub_category_name = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_sub_category_data->name_th); 
+            $sub_sub_category_name_th = $sub_sub_category_data->name_th; 
+
             $product_name_en .= ' '. $sub_sub_category_name_en;
             $product_name_th .= ' '. $sub_sub_category_name_th;
         }
@@ -575,12 +658,9 @@ class ProductController extends Controller
     public function copyProduct(Request $request, $id)
     {
         $copyType = $request->copyType;
-
+        
         $data = DB::table('products')->where('id', $id)->first();
-        $category_list_data = DB::table('categories')->where('is_active', true)->get();
-        $product_image = DB::table('product_images')->where('product_id', $id)->pluck('image', 'line_item_no');
-        $warranty = DB::table('warranties')->where('product_id', $id)->first();
-        $transport = DB::table('transportations')->where('product_id', $id)->first();
+        $category_list_data = DB::table('categories')->where('is_active', true)->get();        
         $transport_type_ids = DB::table('transportations')->where('product_id', $id)->pluck('transport_type_id', 'id')->toArray();
 
         $product_qualities = ['Excellent','Good','Fair','Poor','repairable'];
@@ -603,10 +683,27 @@ class ProductController extends Controller
 
         \Session::flash('message', 'Copy product successfully.');
 
-        return view('supplier.product.product-copy', 
-            compact('data', 'category_list_data', 'product_image', 'warranty', 'transport', 
+        if ($copyType == 'same_category') {
+            
+            $product_image = DB::table('product_images')->where('product_id', $id)->pluck('image', 'line_item_no');
+            $warranty = DB::table('warranties')->where('product_id', $id)->first();
+            $transport = DB::table('transportations')->where('product_id', $id)->first();
+
+            return view('supplier.product.product-copy-same-category', 
+            compact('data', 'product_image', 'warranty', 'transport', 
                     'transport_type_array', 'product_qualities', 'day_month_year',
-                    'units', 'uoms', 'transport_type_ids', 'copyType'));
+                    'units', 'uoms', 'transport_type_ids'));
+
+        } else {
+            
+            $brand_name = DB::table('brands')->select('name_th', 'name_en')->where('id', $data->brand_id)->first();
+            $model_name = DB::table('models')->select('name_th', 'name_en')->where('id', $data->model_id)->first();
+
+            return view('supplier.product.product-copy-diff-category', 
+            compact('data', 'category_list_data', 'transport_type_array', 'product_qualities',
+                     'day_month_year',  'units', 'uoms', 'brand_name', 'model_name'));
+
+        }
 
     }
 
