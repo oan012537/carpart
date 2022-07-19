@@ -8,6 +8,7 @@ use Socialite;
 use Auth;
 use Exception;
 use App\Models\User;
+use App\Models\Buyer\mUsers_buyer;
 use Illuminate\Support\Facades\Hash;
 
 class SocialController extends Controller
@@ -22,8 +23,8 @@ class SocialController extends Controller
         try {
      
             $user = Socialite::driver('google')->user();
-            dd($user);
-            $finduser = User::where('social_id', $user->id)->first();
+            // dd($user);
+            $finduser = mUsers_buyer::where('social_id', $user->id)->first();
       
             if($finduser){
       
@@ -32,8 +33,16 @@ class SocialController extends Controller
                 return redirect('/home');
       
             }else{
-                $newUser = User::create([
-                    'name' => $user->name,
+                // $newUser = User::create([
+                //     'name' => $user->name,
+                //     'email' => $user->email,
+                //     'social_id'=> $user->id,
+                //     'social_type'=> 'google',
+                //     'password' => Hash::make('Ymd')
+                // ]);
+
+                $newUser = mUsers_buyer::create([
+                    'profile_name' => $user->name,
                     'email' => $user->email,
                     'social_id'=> $user->id,
                     'social_type'=> 'google',

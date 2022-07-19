@@ -25,19 +25,177 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $status_code = null;//$request->status_code;
+        $brand_id = $request->brand_id;
+        $category_id = $request->category_id;
+        $product_name = $request->product_name;
+        $status_code = $request->status_code;
+        
+        $total_all_record = 0;
+        $total_selling_record = 0;
+        $total_sold_record = 0;
+        $total_suspended_record = 0;
+        $total_cancle_record = 0;
 
-        $product_list_data = Product::with('brand', 'model', 'category', 'subCategory')
-                                     ->where('status_code', $status_code)
-                                     ->orderBy('id', 'desc')
-                                     ->get();
+        $supplier_id = Auth::guard('supplier')->user()->id;
+
+        $total_all_record = Product::where('supplier_id', $supplier_id)->count();
+        $total_selling_record = Product::where([
+                                            ['supplier_id', $supplier_id],
+                                            ['status_code', 'selling']
+                                        ])->count();
+        $total_sold_record = Product::where([
+                                            ['supplier_id', $supplier_id],
+                                            ['status_code', 'sold']
+                                        ])->count();
+        $total_suspended_record = Product::where([
+                                            ['supplier_id', $supplier_id],
+                                            ['status_code', 'suspended']
+                                        ])->count();
+        $total_cancle_record = Product::where([
+                                            ['supplier_id', $supplier_id],
+                                            ['status_code', 'cancle']
+                                        ])->count();
+
+        $product_list_data = null;
+
+        if ($status_code == 'all') {
+            // get brand list
+            $lims_brand_data = Product::select('brands.name_en', 'brands.name_th', 'brands.id')
+                                ->join('brands', 'products.brand_id', 'brands.id')
+                                ->where('supplier_id', $supplier_id)
+                                ->groupBy('brands.name_en', 'brands.name_th', 'brands.id')
+                                ->get()->toArray();
+
+            // get categories list
+            $lims_category_data = Product::select('categories.name_en', 'categories.name_th', 'categories.id')
+                                    ->join('categories', 'products.category_id', 'categories.id')
+                                    ->where('supplier_id', $supplier_id)
+                                    ->groupBy('categories.name_en', 'categories.name_th', 'categories.id')
+                                    ->get()->toArray();
+            
+            // search product by all status
+            if ($brand_id && !$category_id) {
+                $product_list_data = Product::with('brand', 'model', 'category', 'subCategory')
+                                            ->where([
+                                                ['supplier_id', $supplier_id],
+                                                ['brand_id', $brand_id],
+                                                ['name_en', 'LIKE', "%{$product_name}%"]
+                                            ])
+                                            ->orderBy('id', 'desc')
+                                            ->get();
+                                        
+            } else if (!$brand_id && $category_id) {
+                
+                $product_list_data = Product::with('brand', 'model', 'category', 'subCategory')
+                                            ->where([
+                                                ['supplier_id', $supplier_id],
+                                                ['category_id', $category_id],
+                                                ['name_en', 'LIKE', "%{$product_name}%"]
+                                            ])
+                                        ->orderBy('id', 'desc')
+                                        ->get();
+    
+            } else if ($brand_id && $category_id) {
+                
+                $product_list_data = Product::with('brand', 'model', 'category', 'subCategory')
+                                            ->where([
+                                                ['supplier_id', $supplier_id],
+                                                ['brand_id', $brand_id],
+                                                ['category_id', $category_id],
+                                                ['name_en', 'LIKE', "%{$product_name}%"]
+                                            ])
+                                            ->orderBy('id', 'desc')
+                                            ->get();
+    
+            } else {
+                $product_list_data = Product::with('brand', 'model', 'category', 'subCategory')
+                                        ->where([
+                                                ['supplier_id', $supplier_id],
+                                                ['name_en', 'LIKE', "%{$product_name}%"]
+                                            ])
+                                            ->orderBy('id', 'desc')
+                                            ->get();
+                
+            }
+
+        } else {
+            // get brand list by status code
+            $lims_brand_data = Product::select('brands.name_en', 'brands.name_th', 'brands.id')
+                                ->join('brands', 'products.brand_id', 'brands.id')
+                                ->where([
+                                    ['status_code', $status_code],
+                                    ['supplier_id', $supplier_id]
+                                ])
+                                ->groupBy('brands.name_en', 'brands.name_th', 'brands.id')
+                                ->get()->toArray();
+
+            // get categories list by status code
+            $lims_category_data = Product::select('categories.name_en', 'categories.name_th', 'categories.id')
+                                ->join('categories', 'products.category_id', 'categories.id')
+                                ->where([
+                                    ['status_code', $status_code],
+                                    ['supplier_id', $supplier_id]
+                                ])
+                                ->groupBy('categories.name_en', 'categories.name_th', 'categories.id')
+                                ->get()->toArray();
+
+            // search product by status code
+            if ($brand_id && !$category_id) {
+                $product_list_data = Product::with('brand', 'model', 'category', 'subCategory')
+                                            ->where([
+                                            ['status_code', $status_code],
+                                            ['supplier_id', $supplier_id],
+                                            ['brand_id', $brand_id],
+                                            ['name_en', 'LIKE', "%{$product_name}%"]
+                                        ])
+                                        ->orderBy('id', 'desc')
+                                        ->get();
+                                        
+            } else if (!$brand_id && $category_id) {
+                
+                $product_list_data = Product::with('brand', 'model', 'category', 'subCategory')
+                                            ->where([
+                                            ['status_code', $status_code],
+                                            ['supplier_id', $supplier_id],
+                                            ['category_id', $category_id],
+                                            ['name_en', 'LIKE', "%{$product_name}%"]
+                                        ])
+                                        ->orderBy('id', 'desc')
+                                        ->get();
+    
+            } else if ($brand_id && $category_id) {
+                
+                $product_list_data = Product::with('brand', 'model', 'category', 'subCategory')
+                                            ->where([
+                                            ['status_code', $status_code],
+                                            ['supplier_id', $supplier_id],
+                                            ['brand_id', $brand_id],
+                                            ['category_id', $category_id],
+                                            ['name_en', 'LIKE', "%{$product_name}%"]
+                                        ])
+                                        ->orderBy('id', 'desc')
+                                        ->get();
+    
+            } else {
+                
+                $product_list_data = Product::with('brand', 'model', 'category', 'subCategory')
+                                        ->where([
+                                        ['status_code', $status_code],
+                                        ['supplier_id', $supplier_id],
+                                        ['name_en', 'LIKE', "%{$product_name}%"]
+                                    ])
+                                    ->orderBy('id', 'desc')
+                                    ->get();
+                
+            }
+        }
 
         $product_list = array();
 
         if(!empty($product_list_data)) {
         
             foreach ($product_list_data as $key => $product) {
-
+                
                 $nestedData['key'] = $key;
                 $nestedData['id'] = $product->id;
                 $nestedData['product_code'] = $product->product_code;
@@ -54,9 +212,14 @@ class ProductController extends Controller
                 $nestedData['updated_by'] = $product->updated_by;
                 
                 $product_list[] = $nestedData;
-
             }
-            return view('supplier.product.index', compact('product_list'));
+
+            return view('supplier.product.index', 
+                    compact('product_list', 'lims_brand_data', 'lims_category_data',
+                            'brand_id', 'category_id', 'product_name', 'status_code',
+                            'total_all_record', 'total_selling_record', 'total_sold_record',
+                            'total_suspended_record', 'total_cancle_record'
+                        ));
         }
     }
 
@@ -225,6 +388,68 @@ class ProductController extends Controller
         
     }
 
+    public function queryProductModel(Request $request)
+    {
+        $table_name = $request->table_name;
+        $search_value = $request->searchValue;
+        $parent_id = $request->parent_id;
+
+        $result_list_data = null;
+
+        if ($table_name == 'brands') {
+            $result_list_data = Brand::where([
+                                        ['is_active', true],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])
+                                    ->OrWhere('name_th', 'LIKE', "%{$search_value}%")
+                                    ->orderBy('id')->get();
+        } else if ($table_name == 'models') {
+            $result_list_data = ProductModel::where([
+                                        ['is_active', true],
+                                        ['brand_id', $parent_id],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                    
+        } else if ($table_name == 'sub_models') {
+            $result_list_data = SubModel::where([
+                                        ['is_active', true],
+                                        ['model_id', $parent_id],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                    
+        } else if ($table_name == 'issue_years') {
+            $result_list_data = IssueYear::where([
+                                        ['is_active', true],
+                                        ['sub_model_id', $parent_id],
+                                        ['from_year', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                    
+        } else if ($table_name == 'categories') {
+            $result_list_data = Category::where([
+                                        ['is_active', true],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                    
+        } else if ($table_name == 'sub_categories') {
+            $result_list_data = SubCategory::where([
+                                        ['is_active', true],
+                                        ['category_id', $parent_id],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                     
+        } else if ($table_name == 'sub_sub_categories') {
+            $result_list_data = SubSubCategory::where([
+                                        ['is_active', true],
+                                        ['sub_category_id', $parent_id],
+                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                    ])->orderBy('id')->get();
+                                     
+        }
+
+        return $result_list_data;
+
+    }
+
 
     public function createProductInfo(Request $request)
     {
@@ -233,18 +458,38 @@ class ProductController extends Controller
         $product_name_en = null;
         $product_name_th = null;
 
+        $brand_data = Brand::select('name_th', 'name_en')->where('id', $data['brand_id'])->first();
+        if ($brand_data) {
+            $brand_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $brand_data->name_en); 
+            $brand_name_th = $brand_data->name_th; 
+
+            $product_name_en =  $brand_name_en;
+            $product_name_th =  $brand_name_th;
+        }
+
+        $model_data = ProductModel::select('name_th', 'name_en')->where('id', $data['model_id'])->first();
+        if ($model_data) {
+            $model_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $model_data->name_en); 
+            $model_name_th = $model_data->name_th; 
+
+            $product_name_en .=  $model_name_en;
+            $product_name_th .=  $model_name_th;
+        }
+
         $category_data = Category::select('name_th', 'name_en')->where('id', $data['category_id'])->first();
         if ($category_data) {
             $category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $category_data->name_en); 
-            $category_name_th = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $category_data->name_th); 
-            $product_name_en =  $category_name_en;
-            $product_name_th =  $category_name_th;
+            $category_name_th = $category_data->name_th; 
+
+            $product_name_en .=  $category_name_en;
+            $product_name_th .=  $category_name_th;
         }
 
         $sub_category_data = SubCategory::select('name_th', 'name_en')->where('id', $data['sub_category_id'])->first();
         if ($sub_category_data) {
-            $sub_category_name = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_category_data->name_en); 
-            $sub_category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_category_data->name_th); 
+            $sub_category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_category_data->name_en); 
+            $sub_category_name_th = $sub_category_data->name_th;
+
             $product_name_en .=  ' '. $sub_category_name_en;
             $product_name_th .=  ' '. $sub_category_name_th;
         }        
@@ -252,7 +497,8 @@ class ProductController extends Controller
         $sub_sub_category_data = SubSubCategory::select('name_th', 'name_en')->where('id', $data['sub_sub_category_id'])->first();
         if ($sub_sub_category_data) {
             $sub_sub_category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_sub_category_data->name_en); 
-            $sub_sub_category_name = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $sub_sub_category_data->name_th); 
+            $sub_sub_category_name_th = $sub_sub_category_data->name_th; 
+
             $product_name_en .= ' '. $sub_sub_category_name_en;
             $product_name_th .= ' '. $sub_sub_category_name_th;
         }
@@ -315,6 +561,7 @@ class ProductController extends Controller
 
         $data['trading_name'] = isset($data['trading_name'])? $data['trading_name']:$data['name_en'];
         $data['supplier_id'] = $supplier_id;
+        $data['status_code'] = 'selling';
         $data['is_active'] = 1;
         $data['created_by'] = $supplier_name;
         $data['updated_by'] = $supplier_name;
@@ -575,12 +822,9 @@ class ProductController extends Controller
     public function copyProduct(Request $request, $id)
     {
         $copyType = $request->copyType;
-
+        
         $data = DB::table('products')->where('id', $id)->first();
-        $category_list_data = DB::table('categories')->where('is_active', true)->get();
-        $product_image = DB::table('product_images')->where('product_id', $id)->pluck('image', 'line_item_no');
-        $warranty = DB::table('warranties')->where('product_id', $id)->first();
-        $transport = DB::table('transportations')->where('product_id', $id)->first();
+        $category_list_data = DB::table('categories')->where('is_active', true)->get();        
         $transport_type_ids = DB::table('transportations')->where('product_id', $id)->pluck('transport_type_id', 'id')->toArray();
 
         $product_qualities = ['Excellent','Good','Fair','Poor','repairable'];
@@ -603,10 +847,27 @@ class ProductController extends Controller
 
         \Session::flash('message', 'Copy product successfully.');
 
-        return view('supplier.product.product-copy', 
-            compact('data', 'category_list_data', 'product_image', 'warranty', 'transport', 
+        if ($copyType == 'same_category') {
+            
+            $product_image = DB::table('product_images')->where('product_id', $id)->pluck('image', 'line_item_no');
+            $warranty = DB::table('warranties')->where('product_id', $id)->first();
+            $transport = DB::table('transportations')->where('product_id', $id)->first();
+
+            return view('supplier.product.product-copy-same-category', 
+            compact('data', 'product_image', 'warranty', 'transport', 
                     'transport_type_array', 'product_qualities', 'day_month_year',
-                    'units', 'uoms', 'transport_type_ids', 'copyType'));
+                    'units', 'uoms', 'transport_type_ids'));
+
+        } else {
+            
+            $brand_name = DB::table('brands')->select('name_th', 'name_en')->where('id', $data->brand_id)->first();
+            $model_name = DB::table('models')->select('name_th', 'name_en')->where('id', $data->model_id)->first();
+
+            return view('supplier.product.product-copy-diff-category', 
+            compact('data', 'category_list_data', 'transport_type_array', 'product_qualities',
+                     'day_month_year',  'units', 'uoms', 'brand_name', 'model_name'));
+
+        }
 
     }
 

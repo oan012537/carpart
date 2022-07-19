@@ -18,41 +18,48 @@
 
             <div class="col-lg-6">
                 <div class="box__btnadd">
-                    <a href="{{ route('products.create') }}" class="btn btn__add"><i class="fa-solid fa-circle-plus"></i>{{ trans('file.Add Product')}} </a>
+                    <a href="{{ route('products.create') }}" class="btn btn__add"><i class="fa-solid fa-circle-plus"></i>{{ trans('file.Add Product')}}</a>
                 </div>
             </div>
-
-
             <div class="col-lg-12">
                 <div class="box__filter">
                     {{-- searching --}}
-                    <form>
+                    <form id="frm-search" action="{{ route('products.index') }}" method="get">
                         <div class="row">
+                            <input type="hidden" name="status_code" value="{{ $status_code }}">
                             <div class="col-xl-3 col-lg-6 col-md-12 col-12">
                                 <div class="form-group">
-                                    <label for="">{{ trans('file.Product Name')}}</label>
-                                    <input type="text" name="nameproduct" class="form-control" placeholder="ระบุ">
+                                    <label for="brand_id">{{ trans('file.Brand') }}</label>
+                                    <select id="brand_id" class="selectpicker form-select" aria-label="Default select example" name="brand_id">
+                                        <option value="">{{ trans('file.Select brand') }}</option>
+                                        @foreach ($lims_brand_data as $brand)
+                                            <option value="{{ $brand['id'] }}" @if($brand['id'] == $brand_id) selected @endif>{{ $brand['name_en'] }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-
                             <div class="col-xl-3 col-lg-6 col-md-12 col-12">
                                 <div class="form-group">
-                                    <label for="">{{ trans('file.Category')}}</label>
-                                    <input type="text" name="catagories" class="form-control" placeholder="ระบุ">
+                                    <label for="category_id">{{ trans('file.Category')}}</label>
+                                    <select id="category_id" class="form-select" aria-label="Default select example" name="category_id">
+                                        <option value="">{{ trans('file.Select category') }}</option>
+                                        @foreach ($lims_category_data as $category)
+                                            <option value="{{ $category['id'] }} @if($category['id'] == $category_id) selected @endif">{{ $category['name_en'] }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-
                             <div class="col-xl-3 col-lg-6 col-md-12 col-12">
                                 <div class="form-group">
-                                    <label for="">{{ trans('file.Brand')}}</label>
-                                    <input type="text" name="brands" class="form-control" placeholder="ระบุ">
+                                    <label for="product_name">{{ trans('file.Product Name')}}</label>
+                                    <input id="product_name" type="text" name="product_name" class="form-control"
+                                            placeholder="{{ trans('file.Specify') }}" value="{{ $product_name }}">
                                 </div>
                             </div>
-
                             <div class="col-xl-3 col-lg-6 col-md-12 col-12">
                                 <div class="bot__btn">
-                                    <button class="btn btn__search">{{ trans('file.Search')}}</button>
-                                    <button class="btn btn__reset">{{ trans('file.Reset')}}</button>
+                                    <button type="submit" class="btn btn__search">{{ trans('file.Search')}}</button>
+                                    <button type="button" class="btn btn__reset">{{ trans('file.Reset')}}</button>
                                 </div>
                             </div>
                         </div>
@@ -62,34 +69,68 @@
 
                 {{-- product status --}}
                 <div class="box__tab">
-                    <form id="frm-get-product" action="{{ route('products.index') }}" methd="get">
+                    <form id="frm-get-product" action="{{ route('products.index') }}" method="get">
                     </form>
                     <nav>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="total-tab" data-bs-toggle="tab" data-bs-target="#total" type="button" role="tab" aria-controls="total" aria-selected="true">{{ trans('file.All')}}
-                                    <span>2</span>
+                                <button class="nav-link @if($status_code == 'all') active @endif" 
+                                        id="total-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#total" 
+                                        type="button" role="tab" 
+                                        aria-controls="total" 
+                                        aria-selected="true">{{ trans('file.All')}}
+                                        <span>{{ $total_all_record }}</span>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="selling-tab" data-bs-toggle="tab" data-bs-target="#selling" type="button" role="tab" aria-controls="selling" aria-selected="false">{{ trans('file.Selling')}}
-                                    <span>2</span>
+                                <button class="nav-link @if($status_code == 'selling') active @endif"
+                                        id="selling-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#selling" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="selling" 
+                                        aria-selected="false">{{ trans('file.Selling')}}
+                                        <span>{{ $total_selling_record }}</span>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="sold-tab" data-bs-toggle="tab" data-bs-target="#sold" type="button" role="tab" aria-controls="sold" aria-selected="false">{{ trans('file.Sold')}}
-                                    <span>2</span>
+                                <button class="nav-link @if($status_code == 'sold') active @endif" 
+                                        id="sold-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#sold" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="sold" 
+                                        aria-selected="false">{{ trans('file.Sold')}}
+                                        <span>{{ $total_sold_record }}</span>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="banned-tab" data-bs-toggle="tab" data-bs-target="#banned" type="button" role="tab" aria-controls="banned" aria-selected="false">{{ trans('file.Suspended')}}
-                                    <span>2</span>
+                                <button class="nav-link @if($status_code == 'suspended') active @endif" 
+                                        id="banned-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#banned" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="banned" 
+                                        aria-selected="false">{{ trans('file.Suspended')}}
+                                        <span>{{ $total_suspended_record }}</span>
                                 </button>
                             </li>
 
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="cancle-tab" data-bs-toggle="tab" data-bs-target="#cancle" type="button" role="tab" aria-controls="cancle" aria-selected="false">{{ trans('file.Cancel')}}
-                                    <span>2</span>
+                                <button class="nav-link @if($status_code == 'cancle') active @endif" 
+                                        id="cancle-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#cancle" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="cancle" 
+                                        aria-selected="false">{{ trans('file.Cancel')}}
+                                        <span>{{ $total_cancle_record }}</span>
                                 </button>
                             </li>
                         </ul>
@@ -101,7 +142,8 @@
 
                         <div class="tab-pane fade show active" id="total" role="tabpanel" aria-labelledby="total-tab">
                             <div class="box__options">
-                                <div class="row">
+                                {{-- implement later --}}
+                                {{-- <div class="row">
                                     <div class="col-xl-8 col-lg-12 col-md-12 col-12">
                                         <div class="wrapper__btn">
                                             <button class="btn btn__import"><i class="fa-solid fa-download"></i> {{ trans('file.Import')}}</button>
@@ -109,7 +151,7 @@
                                             <button class="btn btn__print"><i class="fa-solid fa-print"></i> {{ trans('file.Print')}}</button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             {{-- table header --}}
 
@@ -136,13 +178,23 @@
                                         <tr>
                                             <td>{{ $key }}</td>
                                             <td>{{ $product['product_code'] }}</td>
-                                            <td>{{ $product['image'] }}</td>
+                                            <td><i class="fa-solid fa-image" style="width:50px;height:50px;"></i></td>
                                             <td>{{ $product['name_en'] }}</td>
                                             <td>{{ $product['category'] }}</td>
                                             <td>{{ $product['brand'] }}</td>
                                             <td>{{ $product['model'] }}</td>
                                             <td>{{ $product['price'] }}</td>
-                                            <td>{{ $product['status_code'] }}</td>
+                                            <td>
+                                                @if ($product['status_code'] == 'selling')
+                                                    <div class="box__status status-selling">{{ $product['status_code'] }}</div>
+                                                @elseif ($product['status_code'] == 'sold')
+                                                    <div class="box__status status-sold">{{ $product['status_code'] }}</div>
+                                                @elseif ($product['status_code'] == 'suspended')
+                                                    <div class="box__status status-banned">{{ $product['status_code'] }}</div>
+                                                @elseif ($product['status_code'] == 'cancle')
+                                                    <div class="box__status status-cancle">{{ $product['status_code'] }}</div>
+                                                @endif
+                                            </td>
                                             <td>{{ $product['updated_by'] }}</td>
                                             <td>
                                                 <div class="box__wrapperbutton">
@@ -161,7 +213,8 @@
                 </div>
 
                 {{-- event log --}}
-                <div class="box__history">
+                {{-- implement later --}}
+                {{-- <div class="box__history">
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
@@ -182,7 +235,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> --}}
                 {{-- event log --}}
             </div>
         </div>
@@ -278,6 +331,7 @@
             $('#frm-get-product').submit();
         });
 
+        // not use
         function getproductByStatus(status_code) {
             $.ajax({
                 type: 'get',
@@ -311,7 +365,6 @@
                     $('#product-list-table').append(newBody);
 
                     window.location.reload();
-
                 },
                 error: function(error) {
                     console.log(error);
@@ -320,6 +373,13 @@
         }
 
         // load data by product status
+
+        $('.btn__reset').on('click', function(){
+            $('select[name="brand_id"]').prop('selectedIndex', 0);
+            $('select[name="category_id"]').prop('selectedIndex', 0);
+            $('input[name="product_name"]').val('');
+            $('#frm-search').submit();
+        });
 
 
     });

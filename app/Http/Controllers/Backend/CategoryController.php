@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\Categorysub;
-use App\Models\Categorysubs;
+use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
     public function index(){
         $category = Category::all();
-        $categorysub = Categorysub::all();
-        $categorysubs = Categorysubs::all();
+        $categorysub = SubCategory::all();
+        $categorysubs = SubSubCategory::all();
         $datacategorysub = [];
         foreach($categorysub as $item){
             $datacategorysub[$item->category_id][] = $item;
@@ -32,31 +32,31 @@ class CategoryController extends Controller
     public function update(Request $request){
         // dd($request->all());
         $category = Category::find($request->categoryid);
-        $category->category_name_th = $request->editnameth;
-        $category->category_name_en = $request->editnameen;
-        $category->updated_for = Auth::user()->name;
+        $category->name_th = $request->editnameth;
+        $category->name_en = $request->editnameen;
+        $category->updated_by = Auth::user()->name;
         $category->save();
-        return redirect()->round('backend.category');
+        return redirect()->route('backend.category');
     }
 
     public function updatesub(Request $request){
         // dd($request->all());
-        $categorysub = Categorysub::find($request->categorysubid);
-        $categorysub->categorysub_name_th = $request->categorysubid;
-        $categorysub->categorysub_name_en = $request->editcategorysubth;
-        $categorysub->updated_for = Auth::user()->name;
+        $categorysub = SubCategory::find($request->categorysubid);
+        $categorysub->name_th = $request->editcategorysubth;
+        $categorysub->name_en = $request->editcategorysuben;
+        $categorysub->updated_by = Auth::user()->name;
         $categorysub->save();
-        return redirect()->round('backend.category');
+        return redirect()->route('backend.category');
     }
 
     public function updatesubs(Request $request){
         // dd($request->all());
-        $categorysubs = Categorysubs::find($request->categorysubid);
-        $categorysubs->categorysubs_name_th = $request->categorysubid;
-        $categorysubs->categorysubs_name_en = $request->editcategorysubth;
-        $categorysubs->updated_for = Auth::user()->name;
+        $categorysubs = SubSubCategory::find($request->categorysubsid);
+        $categorysubs->name_th = $request->editcategorysubsth;
+        $categorysubs->name_en = $request->editcategorysubssen;
+        $categorysubs->updated_by = Auth::user()->name;
         $categorysubs->save();
-        return redirect()->round('backend.category');
+        return redirect()->route('backend.category');
 
     }
 }

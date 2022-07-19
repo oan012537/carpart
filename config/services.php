@@ -29,6 +29,7 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    
     'google' => [
         'client_id'     => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
@@ -44,6 +45,18 @@ return [
         'client_id' => env('LINE_CLIENT_ID'),
         'client_secret' => env('LINE_CLIENT_SECRET'),
         'redirect' => env('LINE_REDIRECT_URI'),
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT_URI'), // ตั้งค่าใน Facebook Developer
+    ],
+
+    'line' => [
+        'client_id' => 'ClientID',
+        'client_secret' => 'Client Secret',
+        'redirect' => 'https://URL/login/line/callback', //ตั้งค่าใน LineDeveloper
     ],
 
 ];

@@ -53,8 +53,8 @@
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
                     <button class="button button5">
-                        <a style="color:inherit;" onclick="javascript:window.history.back(-1);return false;"><i class="fa fa-close"></i></a> 
-                        {{$years_button->from_year}} 
+                        <a style="color:inherit;" href="{{url('buyer/home-search4?brand=').session('session_search.brand').'&model='.session('session_search.model').'&submodel='.session('session_search.submodel')}}"><i class="fa fa-close"></i></a> 
+                        {{$years_button->from_year}}
                     </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     <button class="button button6">
@@ -154,7 +154,7 @@
                         ขายดี
                     </button>
                     <select class="form-select" aria-label="Default select example">
-                        <option selected> เรียงตาม </option>
+                        <option> เรียงตาม </option>
                         <option value="1"> ... </option>
                     </select>
                 </div>
@@ -400,12 +400,14 @@
             }
         });
 
+        function filterBrands(text){
+            
+        }
+
         //============ Get checkbox value ================
-        var checkbox = document.querySelector('input[type="checkbox"]');
-        checkbox.addEventListener('change', function(e){
-            // alert(this.check.value);
-            // alert($("input[type=checkbox]:checked").val());
-            id = $("input[type=checkbox]:checked").val();
+        $('input[type="checkbox"]').change(function() {
+            // alert ("The element with id " + this.value + " changed.");
+            id = this.value;
             location.href = "buyer/home-search6?brand="+{{session('session_search.brand')}}+
             "&model="+{{session('session_search.model')}}+
             "&submodel="+{{session('session_search.submodel')}}+
@@ -413,14 +415,23 @@
             "&category="+id;
         });
 
+        /*var checkbox = document.querySelector('input[type="checkbox"]');
+        checkbox.addEventListener('change', function(e){
+            alert(this.check.value);
+            // alert($("input[type=checkbox]:checked").val());
+            id = $("input[type=checkbox]:checked").val();
+            location.href = "buyer/home-search6?brand="+{{session('session_search.brand')}}+
+            "&model="+{{session('session_search.model')}}+
+            "&submodel="+{{session('session_search.submodel')}}+
+            "&year="+{{session('session_search.year')}}+
+            "&category="+id;
+        });*/
 
         /*function selectSubModel(id){
             location.href = "buyer/home-search4?brand="+{{session('session_search.brand')}}+"&model="+{{session('session_search.model')}}+"&submodel"+id;
         }*/
     </script>
     <script>
-        
-
         function searchnavBrands(id){
             $('#brand-search').val(id);
             $('.dropdown-model').remove();
