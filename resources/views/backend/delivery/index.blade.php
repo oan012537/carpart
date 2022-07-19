@@ -2,7 +2,7 @@
 @section('content')
 <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
 <style>
-    .img-delivery{
+    .img-delivery {
         width: 100%;
         height: 40px;
     }
@@ -13,14 +13,14 @@
 <div class="content">
 
     <div class="boxbox__approvel">
-        <div class="box__approvel">
+        <div class="box__approvel box__transport">
             <div class="container-fluid">
                 <div class="row">
 
-                    <div class="col-xl-6 col-md-12 col-12">
+                    <div class="col-xl-6 col-md-6 col-12">
                         <h2 class="txt__page">จัดการขนส่ง</h2>
                     </div>
-                    <div class="col-xl-6 col-md-12 col-12">
+                    <div class="col-xl-6 col-md-6 col-12">
                         <a href="{{route('backend.delivery.add')}}" class="btn btn_tran mt-4">
                             <i class="fa fa-plus-circle"></i>
                             เพิ่มการจัดส่ง</a>
@@ -32,13 +32,11 @@
                         <div class="col-12">
                             <form class="form-box-input px-2">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-12">
                                         <label class="title__txt">ค้นหา</label>
                                         <div class="box_b">
                                             <div class="input-group">
-                                                <input type="text" class="form-control"
-                                                    placeholder="ค้นหาชื่อผู้ขาย , เบอร์โทรศัพท์ , ชื่อขนส่ง"
-                                                    aria-describedby="button-search" id="search">
+                                                <input type="text" class="form-control" placeholder="ค้นหาชื่อผู้ขาย , เบอร์โทรศัพท์ , ชื่อขนส่ง" aria-describedby="button-search" id="search">
                                                 <button class="btn btn__search" type="button" id="button-search">
                                                     <i class="fa-solid fa-magnifying-glass"></i></button>
                                             </div>
@@ -68,7 +66,7 @@
                                                         บริษัทขนส่งเอกชน (พัสดุชิ้นใหญ่) </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-bs-toggle="tab" href="#customseller" data-table=""oTablecustomseller>
+                                                    <a class="nav-link" data-bs-toggle="tab" href="#customseller" data-table="" oTablecustomseller>
                                                         ผู้ขายกำหนดเอง
                                                     </a>
                                                 </li>
@@ -82,7 +80,7 @@
                                         <div id="all" class="tab-pane active"><br>
 
                                             <div class="table-responsive form-box-input">
-                                                <table id="datatables" class="table table-bordered nowrap"  style="width:100%">
+                                                <table id="datatables" class="table table-bordered nowrap" style="width:100%">
                                                     <thead>
                                                         <tr>
 
@@ -130,7 +128,7 @@
 
 
                                             <div class="table-responsive form-box-input">
-                                                <table id="datatableslarge" class="table table-bordered display nowrap"  style="width:100%">
+                                                <table id="datatableslarge" class="table table-bordered display nowrap" style="width:100%">
                                                     <thead>
                                                         <tr>
                                                             <th>ภาพขนส่ง</th>
@@ -178,7 +176,7 @@
                                         <div id="customseller" class="tab-pane fade"><br>
 
                                             <div class="table-responsive form-box-input">
-                                                <table id="datatablescustomseller" class="table table-bordered display nowrap"  style="width:100%">
+                                                <table id="datatablescustomseller" class="table table-bordered display nowrap" style="width:100%">
                                                     <thead>
                                                         <tr>
 
@@ -219,7 +217,7 @@
                                                             </td>
                                                         </tr> --}}
                                                     </tbody>
-                                                    
+
                                                 </table>
                                             </div>
                                         </div>
@@ -268,126 +266,270 @@
     var oTable;
     var oTablelarge;
     var oTablecustomseller;
-    $(document).ready(function(){
-        $('.nav-link').on('shown.bs.tab', function (e) {
+    $(document).ready(function() {
+        $('.nav-link').on('shown.bs.tab', function(e) {
             console.log('tab');
-            $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+            $.fn.dataTable.tables({
+                visible: true,
+                api: true
+            }).columns.adjust();
         });
-		oTable = $('#datatables').DataTable({
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
+        oTable = $('#datatables').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: false,
+            lengthChange: false,
             responsive: true,
             scrollX: true,
-			ajax:{ 
-				url : "{{url('backend/delivery/datatables')}}",
-				data: function (d) {
-					d.search = $('#search').val();
-				},
-			},
-			columns: [
-				{ 'className': "text-center", data: 'image', name: 'image',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'name', name: 'name'},
-				{ 'className': "text-center", data: 'type', name: 'type'},
-				{ 'className': "text-center", data: 'timeinbkk', name: 'timeinbkk',orderable: false},
-				{ 'className': "text-center", data: 'weight', name: 'weight'},
-				{ 'className': "text-center", data: 'warranty', name: 'warranty'},
-				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'switchstatus', name: 'switchstatus',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
-			],
-			order: [[1, 'asc']],
-			rowCallback: function(row,data,index ){
-				
-			}
-		});
+            ajax: {
+                url: "{{url('backend/delivery/datatables')}}",
+                data: function(d) {
+                    d.search = $('#search').val();
+                },
+            },
+            columns: [{
+                    'className': "text-center",
+                    data: 'image',
+                    name: 'image',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'type',
+                    name: 'type'
+                },
+                {
+                    'className': "text-center",
+                    data: 'timeinbkk',
+                    name: 'timeinbkk',
+                    orderable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'weight',
+                    name: 'weight'
+                },
+                {
+                    'className': "text-center",
+                    data: 'warranty',
+                    name: 'warranty'
+                },
+                {
+                    'className': "text-center",
+                    data: 'is_active',
+                    name: 'is_active',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'switchstatus',
+                    name: 'switchstatus',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnaction',
+                    name: 'btnaction',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            order: [
+                [1, 'asc']
+            ],
+            rowCallback: function(row, data, index) {
+
+            }
+        });
 
         oTablelarge = $('#datatableslarge').DataTable({
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            lengthChange: false,
             responsive: true,
             scrollX: true,
-			ajax:{ 
-				url : "{{url('backend/delivery/datatables/large')}}",
-				data: function (d) {
-					d.search = $('#search').val();
-				},
-			},
-			columns: [
-				{ 'className': "text-center", data: 'image', name: 'image',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'name', name: 'name'},
-				{ 'className': "text-center", data: 'type', name: 'type'},
-				{ 'className': "text-center", data: 'timeinbkk', name: 'timeinbkk',orderable: false},
-				{ 'className': "text-center", data: 'weight', name: 'weight'},
-				{ 'className': "text-center", data: 'warranty', name: 'warranty'},
-				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'switchstatus', name: 'switchstatus',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
-			],
-			order: [[1, 'asc']],
-			rowCallback: function(row,data,index ){
-				
-				
-			}
-		});
+            ajax: {
+                url: "{{url('backend/delivery/datatables/large')}}",
+                data: function(d) {
+                    d.search = $('#search').val();
+                },
+            },
+            columns: [{
+                    'className': "text-center",
+                    data: 'image',
+                    name: 'image',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'type',
+                    name: 'type'
+                },
+                {
+                    'className': "text-center",
+                    data: 'timeinbkk',
+                    name: 'timeinbkk',
+                    orderable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'weight',
+                    name: 'weight'
+                },
+                {
+                    'className': "text-center",
+                    data: 'warranty',
+                    name: 'warranty'
+                },
+                {
+                    'className': "text-center",
+                    data: 'is_active',
+                    name: 'is_active',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'switchstatus',
+                    name: 'switchstatus',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnaction',
+                    name: 'btnaction',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            order: [
+                [1, 'asc']
+            ],
+            rowCallback: function(row, data, index) {
+
+
+            }
+        });
 
         oTablecustomseller = $('#datatablescustomseller').DataTable({
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            lengthChange: false,
             responsive: true,
             scrollX: true,
-			ajax:{ 
-				url : "{{url('backend/delivery/datatables/customseller')}}",
-				data: function (d) {
-					d.search = $('#search').val();
-				},
-			},
-			columns: [
-				{ 'className': "text-center", data: 'image', name: 'image',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'name', name: 'name'},
-				{ 'className': "text-center", data: 'type', name: 'type'},
-				{ 'className': "text-center", data: 'timeinbkk', name: 'timeinbkk',orderable: false},
-				{ 'className': "text-center", data: 'weight', name: 'weight'},
-				{ 'className': "text-center", data: 'warranty', name: 'warranty'},
-				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'switchstatus', name: 'switchstatus',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
-			],
-			order: [[1, 'asc']],
-			rowCallback: function(row,data,index ){
-				
-				
-			}
-		});
+            ajax: {
+                url: "{{url('backend/delivery/datatables/customseller')}}",
+                data: function(d) {
+                    d.search = $('#search').val();
+                },
+            },
+            columns: [{
+                    'className': "text-center",
+                    data: 'image',
+                    name: 'image',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'type',
+                    name: 'type'
+                },
+                {
+                    'className': "text-center",
+                    data: 'timeinbkk',
+                    name: 'timeinbkk',
+                    orderable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'weight',
+                    name: 'weight'
+                },
+                {
+                    'className': "text-center",
+                    data: 'warranty',
+                    name: 'warranty'
+                },
+                {
+                    'className': "text-center",
+                    data: 'is_active',
+                    name: 'is_active',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'switchstatus',
+                    name: 'switchstatus',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnaction',
+                    name: 'btnaction',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            order: [
+                [1, 'asc']
+            ],
+            rowCallback: function(row, data, index) {
+
+
+            }
+        });
 
 
 
-        $("#search").keyup(function (e) { 
+        $("#search").keyup(function(e) {
             oTable.draw();
             oTablelarge.draw();
             oTablecustomseller.draw();
         });
-	});
+    });
 
     function switchstatus(id) {
         // console.log($(".active").data('table'));
-        var flexSwitch = $("#flexSwitchCheckChecked"+id).is(":checked");
+        var flexSwitch = $("#flexSwitchCheckChecked" + id).is(":checked");
         // return  false;
-        if(flexSwitch){
+        if (flexSwitch) {
             flexSwitch = '1';
-        }else{
+        } else {
             flexSwitch = '0';
         }
-        $.get("{{route('backend.delivery.changestatus')}}", {'id':id,'status':flexSwitch},function (data, textStatus, jqXHR) {
+        $.get("{{route('backend.delivery.changestatus')}}", {
+            'id': id,
+            'status': flexSwitch
+        }, function(data, textStatus, jqXHR) {
             // var checktable = $(".active").data('table');
-            oTable.draw( false );
-            oTablelarge.draw( false );
-            oTablecustomseller.draw( false );
+            oTable.draw(false);
+            oTablelarge.draw(false);
+            oTablecustomseller.draw(false);
         });
     }
 </script>
