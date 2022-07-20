@@ -13,13 +13,13 @@ class TableBannerAfterName extends Migration
      */
     public function up()
     {
-        Schema::table('banner', function($table) {
-            $table->dropColumn('enddate');
-            $table->integer('sort',3)->default(0)->after('is_active');
-        });
-        Schema::table('banner_image', function($table) {
-            $table->dropColumn('is_sort');
-        });
+        // Schema::table('banner', function($table) {
+        //     $table->dropColumn('enddate');
+        //     $table->integer('sort',3)->default(0)->after('is_active');
+        // });
+        // Schema::table('banner_image', function($table) {
+        //     $table->dropColumn('is_sort');
+        // });
     }
 
     /**
@@ -29,8 +29,8 @@ class TableBannerAfterName extends Migration
      */
     public function down()
     {
-        Schema::table('banner', function($table) {
-            $table->integer('sort',3)->default(0)->after('is_active');
-        });
+        // Schema::table('banner', function($table) {
+        //     $table->integer('sort',3)->default(0)->after('is_active');
+        // });
     }
 }

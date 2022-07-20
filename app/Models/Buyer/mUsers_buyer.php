@@ -68,4 +68,10 @@ class mUsers_buyer extends Authenticatable
         return $this->hasMany('App\Models\Buyer\BuyerBank', 'users_buyer_id');
     }
 
+    public function productBookmark()
+    {
+        return $this->hasMany('App\Models\Buyer\BuyerProductBookmark', 'users_buyer_id');
+    }
+
+
 }
