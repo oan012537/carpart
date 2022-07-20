@@ -190,6 +190,7 @@ Route::get('fetchzipcode/{id}', [DataprovincesController::class, 'fetchzipcode']
 Route::get('login/{provider}',[LoginSocialController::class, 'redirectToProvider']);
 Route::get('login/{provider}/callback',[LoginSocialController::class, 'handleProviderCallback']);
 
+
 Route::get('/clearcache', function () {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('optimize');
