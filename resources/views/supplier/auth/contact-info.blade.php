@@ -166,22 +166,22 @@
                                 <input type="hidden" name="personal_first_name" value="{{ $data['personal_first_name'] }}">
                                 <input type="hidden" name="personal_last_name" value="{{ $data['personal_last_name'] }}">
                                 <input type="hidden" name="personal_card_id" value="{{ $data['personal_card_id'] }}">
-                                <input type="hidden" name="personal_cardId_img_name" value="{{ $personal_cardId_img_name }}">
-                                <input type="hidden" name="personal_house_reg_name" value="{{ $personal_house_reg_name }}">
+                                <input type="hidden" name="personal_card_id_image" value="{{ $data['personal_card_id_image'] }}">
+                                <input type="hidden" name="personal_house_registration" value="{{ $data['personal_house_registration'] }}">
 
                                 <input type="hidden" name="supplier_type" value="{{ $data['supplier_type'] }}">
                                 <input type="hidden" name="address" value="{{ $data['address'] }}">
                                 <input type="hidden" name="province" value="{{ $data['province'] }}">
                                 <input type="hidden" name="amphure" value="{{ $data['amphure'] }}">
                                 <input type="hidden" name="district" value="{{ $data['district'] }}">
+                                <input type="hidden" name="postcode" value="{{ $data['postcode'] }}">
                                 
                                 {{-- company --}}
                                 <input type="hidden" name="company_name" value="{{ $data['company_name'] }}">
                                 <input type="hidden" name="branch" value="{{ $data['branch'] }}">
                                 <input type="hidden" name="vat_registration_number" value="{{ $data['vat_registration_number'] }}">
-                                <input type="hidden" name="postcode" value="{{ $data['postcode'] }}">
-                                <input type="hidden" name="company_cert_img_name" value="{{ $company_cert_img_name }}">
-                                <input type="hidden" name="vat_reg_doc_name" value="{{ $vat_reg_doc_name }}">
+                                <input type="hidden" name="company_certificate" value="{{ $data['company_certificate'] }}">
+                                <input type="hidden" name="vat_registration_doc" value="{{ $data['vat_registration_doc'] }}">
                                 <br>
                                 <div class='but-bb-log2'>
                                     <a href="{{ route('supplier.register.bankInfo') }}">
@@ -202,12 +202,30 @@
 @section('script')
     <script>
 
-    $(document).ready(()=> {
+    $(document).ready(function() {
 
         var specify = "{{ trans('file.Specify') }}";
         var isChkLocation = $('#store-location').prop('checked');
         var amphureName = "{{ $data['amphure_name'] }}";
         var districtName = "{{ $data['district_name'] }}";
+
+        // re-initilize old value for option
+        // let oldProvinceId = "{{ old('store_province') }}";
+        // let provinceId = oldProvinceId ? oldProvinceId : '';
+        // $('#province-id option[value="' + provinceId + '"]').attr('selected', 'selected');
+
+        // let oldAmphureId = "{{ old('store_amphure') }}";
+        // let amphureId = oldAmphureId ? oldAmphureId : '';
+        // $('#amphure-id option[value="' + amphureId + '"]').attr('selected', 'selected');
+
+        // let oldDistrictId = "{{ old('store_district') }}";
+        // let districtId = oldDistrictId ? oldDistrictId : '';
+        // $('#district-id option[value="' + districtId + '"]').attr('selected', 'selected');
+
+        // let oldPostcode = "{{ old('store_postcode') }}";
+        // let postcode = oldPostcode ? oldPostcode : '';
+        // $('#postcode option[value="' + postcode + '"]').attr('selected', 'selected');
+        // re-initilize old value for option
 
         // event control address
         $('#store-location').on('click', function(){
@@ -256,24 +274,6 @@
             let amphureId = $('select[name="store_amphure"]').val();
             getAddress(amphureId, 'district');
         })
-
-        // re-initilize old value for option
-        let oldProvinceId = "{{ old('store_province') }}";
-        let provinceId = oldProvinceId ? oldProvinceId : '';
-        $('#province-id option[value="' + provinceId + '"]').attr('selected', 'selected');
-
-        let oldAmphureId = "{{ old('store_amphure') }}";
-        let amphureId = oldAmphureId ? oldAmphureId : '';
-        $('#amphure-id option[value="' + amphureId + '"]').attr('selected', 'selected');
-
-        let oldDistrictId = "{{ old('store_district') }}";
-        let districtId = oldDistrictId ? oldDistrictId : '';
-        $('#district-id option[value="' + districtId + '"]').attr('selected', 'selected');
-
-        let oldPostcode = "{{ old('store_postcode') }}";
-        let postcode = oldPostcode ? oldPostcode : '';
-        $('#postcode option[value="' + postcode + '"]').attr('selected', 'selected');
-        // re-initilize old value for option
 
         function getAddress(id, type) {
             $.ajax({

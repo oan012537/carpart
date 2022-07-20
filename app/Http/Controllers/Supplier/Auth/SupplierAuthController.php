@@ -53,19 +53,6 @@ class SupplierAuthController extends Controller
         return redirect()->route('supplier.index')->with('message','Supplier Logout Successfully');
     }
 
-
-    // protected function credentials(Request $request){
-
-    //     if(is_numeric($request->get('email'))){
-    //         return ['phone'=>$request->get('email'),'password'=>$request->get('password')];
-    //     }
-    //     elseif (filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)) {
-    //         return ['email' => $request->get('email'), 'password'=>$request->get('password')];
-    //     }
-    //     return ['username' => $request->get('email'), 'password'=>$request->get('password')];
-    // }
-
-
     // load register page
     public function register()
     {
@@ -81,8 +68,6 @@ class SupplierAuthController extends Controller
     // verify OTP
     public function verifyOtp(Request $request)
     {
-        // dd($request->all());
-
         $validator = Validator::make($request->all(), [
             'phone' => ['required', 'max:10', 'min:10', 'unique:user_suppliers']
         ]);
@@ -94,38 +79,37 @@ class SupplierAuthController extends Controller
         $phone = $request->phone;
 
         // Support version greater than or equal 7.X.X 
-        // $curl = curl_init();
-        // curl_setopt_array($curl, array(
-        //     CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-send',
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_ENCODING => '',
-        //     CURLOPT_MAXREDIRS => 10,
-        //     CURLOPT_TIMEOUT => 0,
-        //     CURLOPT_FOLLOWLOCATION => true,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST => 'POST',
-        //     CURLOPT_HTTPHEADER => array(
-        //         "Content-Type: application/json",
-        //         "api_key:a8c6eba12ba2326f25fe706b94293fe0",
-        //         "secret_key:SCFmYT1IgPXJT4nr",
-        //     ),
-        //     CURLOPT_POSTFIELDS =>json_encode(array(
-        //     "project_key" => "9b9279e805",
-        //     "phone" => $phone
-        //     )),
-        // ));
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "project_key" => "9b9279e805",
+            "phone" => $phone
+            )),
+        ));
 
-        // $response = json_decode(curl_exec($curl));
-        // curl_close($curl);
-        // $code = $response->code;
+        $response = json_decode(curl_exec($curl));
+        curl_close($curl);
+        $code = $response->code;
 
-        // if ($code == '000') {
-        //     $token = $response->result->token;
-        // } else {
-        //     $detail = $response->detail;
-        // }
+        if ($code == '000') {
+            $token = $response->result->token;
+        } else {
+            $detail = $response->detail;
+        }
         
-        $token = 'test';
         return view('supplier.auth.verify-otp', compact('phone', 'token'));
     }
 
@@ -136,39 +120,37 @@ class SupplierAuthController extends Controller
         $phone = $request->phone;
 
         // Support version greater than or equal 7.X.X 
-        // $curl = curl_init();
-        // curl_setopt_array($curl, array(
-        //     CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-send',
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_ENCODING => '',
-        //     CURLOPT_MAXREDIRS => 10,
-        //     CURLOPT_TIMEOUT => 0,
-        //     CURLOPT_FOLLOWLOCATION => true,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST => 'POST',
-        //     CURLOPT_HTTPHEADER => array(
-        //         "Content-Type: application/json",
-        //         "api_key:a8c6eba12ba2326f25fe706b94293fe0",
-        //         "secret_key:SCFmYT1IgPXJT4nr",
-        //     ),
-        //     CURLOPT_POSTFIELDS =>json_encode(array(
-        //     "project_key" => "9b9279e805",
-        //     "phone" => $phone
-        //     )),
-        // ));
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "project_key" => "9b9279e805",
+            "phone" => $phone
+            )),
+        ));
 
-        // $response = json_decode(curl_exec($curl));
-        // curl_close($curl);
-        // $code = $response->code;
+        $response = json_decode(curl_exec($curl));
+        curl_close($curl);
+        $code = $response->code;
 
-        // if ($code == '000') {
-        //     $token = $response->result->token;
-        // } else {
-        //     $detail = $response->detail;
-        // }
+        if ($code == '000') {
+            $token = $response->result->token;
+        } else {
+            $detail = $response->detail;
+        }
         
-        $token = 'resend';
-
         return $token;
     }
 
@@ -196,30 +178,30 @@ class SupplierAuthController extends Controller
         }
 
         //Support version greater than or equal 7.X.X 
-        // $curl = curl_init();
-        // curl_setopt_array($curl, array(
-        //     CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_ENCODING => '',
-        //     CURLOPT_MAXREDIRS => 10,
-        //     CURLOPT_TIMEOUT => 0,
-        //     CURLOPT_FOLLOWLOCATION => true,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST => 'POST',
-        //     CURLOPT_HTTPHEADER => array(
-        //         "Content-Type: application/json",
-        //         "api_key:a8c6eba12ba2326f25fe706b94293fe0",
-        //         "secret_key:SCFmYT1IgPXJT4nr",
-        //     ),
-        //     CURLOPT_POSTFIELDS =>json_encode(array(
-        //     "token" => $token,
-        //     "otp_code" => $otp_code
-        //     )),
-        // ));
-        // $response = json_decode(curl_exec($curl));
-        // curl_close($curl);
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+                "secret_key:SCFmYT1IgPXJT4nr",
+            ),
+            CURLOPT_POSTFIELDS =>json_encode(array(
+            "token" => $token,
+            "otp_code" => $otp_code
+            )),
+        ));
+        $response = json_decode(curl_exec($curl));
+        curl_close($curl);
         
-        $code = '000'; //$response->code;
+        $code = $response->code;
 
         if ($code == '000') {
             return redirect()->route('supplier.register.supplierInfo');
@@ -271,57 +253,60 @@ class SupplierAuthController extends Controller
     // contact info
     public function contactInfo(Request $request)
     {
-        $data = $request->except('company_certificate', 'vat_registration_doc', 'personal_card_id_image', 'personal_house_registration');
+        $data = $request->all();
 
         $supplier_type = $data['supplier_type'];
+
+        if ($supplier_type == 'personal') {
+            $validator = Validator::make($data, [
+                'store_name' => 'required',
+                'personal_first_name' => 'required',
+                'personal_last_name' => 'required',
+                'personal_card_id' => 'required',
+              
+                'personal_card_id_image' => 'required',
+                'personal_house_registration' => 'required',
+              
+                'address' => 'required',
+                'province' => 'required',
+                'amphure' => 'required',
+                'district' => 'required',
+                'postcode' => 'required'
+            ]);
+        } else {
+            $validator = Validator::make($data, [
+                'company_name' => 'required',
+                'branch' => 'required',
+                'vat_registration_number' => 'required',
+                
+                'company_certificate' => 'required',
+                'vat_registration_doc' => 'required',
+                
+                'address' => 'required',
+                'province' => 'required',
+                'amphure' => 'required',
+                'district' => 'required',
+                'postcode' => 'required'
+            ]);
+        }
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
 
         if ($supplier_type == 'personal') {
             $data['company_name'] = null;
             $data['branch'] = null;
             $data['vat_registration_number'] = null;
-            $data['company_cert_img_name'] = null;
-            $data['vat_reg_doc_name'] = null;   
+            $data['company_certificate'] = null;
+            $data['vat_registration_doc'] = null;   
         } else {
             $data['store_name'] = null;
             $data['personal_first_name'] = null;
             $data['personal_last_name'] = null;
             $data['personal_card_id'] = null;
-            $data['personal_cardId_img_name'] = null;
-            $data['personal_house_reg_name'] = null;
-        }
-
-        $company_certificate = $request->file('company_certificate');
-        $vat_registration_doc = $request->file('vat_registration_doc');
-        $personal_card_id_image = $request->file('personal_card_id_image');
-        $personal_house_registration = $request->file('personal_house_registration');
-
-        $company_cert_img_name = null;
-        $vat_reg_doc_name = null;
-        $personal_cardId_img_name  = null;
-        $personal_house_reg_name = null;
-
-        if ($company_certificate) {
-            $imageName = time().'.'.$company_certificate->extension();
-            $company_certificate->move(public_path('document/company/certificate'), $imageName);
-            $company_cert_img_name = $imageName;
-        }
-
-        if ($vat_registration_doc) {
-            $imageName = time().'.'.$vat_registration_doc->extension();
-            $vat_registration_doc->move(public_path('document/company/vat-registration'), $imageName);
-            $vat_reg_doc_name = $imageName;
-        }
-
-        if ($personal_card_id_image) {
-            $imageName = time().'.'.$personal_card_id_image->extension();
-            $personal_card_id_image->move(public_path('document/personal/id-card'), $imageName);
-            $personal_cardId_img_name = $imageName;
-        }
-
-        if ($personal_house_registration) {
-            $imageName = time().'.'.$personal_house_registration->extension();
-            $personal_house_registration->move(public_path('document/personal/house-registration'), $imageName);
-            $personal_house_reg_name = $imageName;
+            $data['personal_card_id_image'] = null;
+            $data['personal_house_registration'] = null;
         }
 
         $amphureId = $data['amphure'];
@@ -334,7 +319,7 @@ class SupplierAuthController extends Controller
 
         $province_list_data = Province::select('id', 'name_th', 'name_en')->get();
 
-        return view('supplier.auth.contact-info', compact('data', 'company_cert_img_name', 'vat_reg_doc_name', 'personal_cardId_img_name', 'personal_house_reg_name', 'province_list_data'));
+        return view('supplier.auth.contact-info', compact('data', 'province_list_data'));
     }
 
     // bank info
@@ -348,7 +333,7 @@ class SupplierAuthController extends Controller
         ]);
 
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors())->withInput();
         }
 
         if ($data['supplier_type'] == 'personal') {
@@ -425,6 +410,19 @@ class SupplierAuthController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'bank_account_no' => 'required',
+            'bank_account_name' => 'required',
+            'bank_name' => 'required',
+            'bank_branch' => 'required',
+            'bank_account_type' => 'required',
+            'bank_book_image' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
 
         $supplier_type = $data['supplier_type'];
         $store_name = null;
