@@ -21,7 +21,7 @@
                                 <div class="col-3">
                                     <label class="title__txt">ค้นหา</label>
                                     <div class="input-group mb-1">
-                                        <input type="text" class="form-control" placeholder="ระบุ" name="search">
+                                        <input type="text" class="form-control" placeholder="ระบุ" name="search" id="search">
                                         <div class="btn-icon-search">
                                             <i class="fas fa-search"></i>
                                         </div>
@@ -30,15 +30,19 @@
 
                                 <div class="col-3">
                                     <label class="title__txt">ประเภทผู้ใช้งาน</label>
-                                    <select class="form-select">
-                                        <option>ทั้งหมด</option>
+                                    <select class="form-select" id="searchtype">
+                                        <option value="">ทั้งหมด</option>
+                                        <option value="buyer">ผู้ซื้อ</option>
+                                        <option value="supplier">ผู้ขาย</option>
                                     </select>
                                 </div>
 
                                 <div class="col-3">
                                     <label class="title__txt">ประเภทสมาชิก</label>
-                                    <select class="form-select">
-                                        <option>ทั้งหมด</option>
+                                    <select class="form-select" id="searchgrouptype">
+                                        <option value="">ทั้งหมด</option>
+                                        <option value="personal">บุคคลธรรมดา</option>
+                                        <option value="corporate">นิติบุคคล</option>
                                     </select>
                                 </div>
                             </div>
@@ -68,7 +72,7 @@
 
                                 <div class="col-12">
                                     <div class="table-responsive form-box-input">
-                                        <table class="table table-bordered" id="datatables">
+                                        <table class="table table-bordered display nowrap" style="width:100%" id="datatables">
                                             <thead>
                                                 <tr>
                                                     <th>หมายเลข PDPA</th>
@@ -215,7 +219,7 @@
                             <div id="expired" class="tab-pane fade"><br>
                                 <div class="col-12">
                                     <div class="table-responsive form-box-input">
-                                        <table class="table table-bordered" id="datatables_expired">
+                                        <table class="table table-bordered display nowrap" style="width:100%"  id="datatables_expired">
                                             <thead>
                                                 <tr>
                                                     <th>หมายเลข PDPA</th>
@@ -383,33 +387,36 @@
                             <form method="POST" action="{{ route('backend.pdpa.store') }}" id="formpdpa">
                                 @csrf
                                 <div class="row box__filter">
-                                    <div class="col-12 mb-3" id="formheaderpdpa">
-                                        <label class="title__txt">หัวข้อ PDPA</label>
-                                        <input type="text" class="form-control" id="headerpdpa" placeholder="ระบุ" name="headerpdpa" maxlength="120" required>
+                                    <div class="col-12 mb-3" id="formtitle">
+                                        <label class="title__txt" for="title">หัวข้อ PDPA</label>
+                                        <input type="text" class="form-control" id="title" placeholder="ระบุ" name="title" maxlength="120" required>
                                         <span class="text-red">พิมพ์ข้อความได้ไม่เกิน 120 ตัวอักษร (0/120)</span>
                                     </div>
                                     <div class="col-4 mb-3">
-                                        <label class="title__txt">ประเภทผู้ใช้งาน</label>
-                                        <select class="form-select" required required name="typeaccount" id="typeaccount">
-                                            <option value="">ทั้งหมด</option>
+                                        <label class="title__txt" for="type">ประเภทผู้ใช้งาน</label>
+                                        <select class="form-select" required required name="type" id="type">
+                                            <option value="buyer">ผู้ซื้อ</option>
+                                            <option value="supplier">ผู้ขาย</option>
                                         </select>
                                     </div>
 
                                     <div class="col-4 mb-3">
-                                        <label class="title__txt">ประเภทสมาชิก</label>
-                                        <select class="form-select" required name="typemember" id="typemember">
-                                            <option value="">ทั้งหมด</option>
+                                        <label class="title__txt" for="grouptypecpn">ประเภทสมาชิก</label>
+                                        <select class="form-select" required name="grouptypecpn" id="typemember">
+                                            {{-- <option value="">ทั้งหมด</option> --}}
+                                            <option value="personal">บุคคลธรรมดา</option>
+                                            <option value="corporate">นิติบุคคล</option>
                                         </select>
                                     </div>
 
                                     <div class="col-4 mb-3">
-                                        <label class="title__txt">กำหนดวันเผยแพร่</label>
-                                        <input type="date" class="form-control" id="date" name="date" required>
+                                        <label class="title__txt" for="datestart">กำหนดวันเผยแพร่</label>
+                                        <input type="date" class="form-control" id="datestart" name="datestart" required>
                                     </div>
 
                                     <div class="col-12 mb-3" id="formdetail">
                                         <label class="title__txt">เนื้อหา</label>
-                                        <textarea class="form-control" placeholder="ระบุ" rows="3" id="detail" name="detail" required maxlength="120"></textarea>
+                                        <textarea class="form-control" id="details" name="details" style="display: none !important;"></textarea>
                                         <span class="text-red">พิมพ์ข้อความได้ไม่เกิน 120 ตัวอักษร (0/120)</span>
                                     </div>
                                 
@@ -433,6 +440,26 @@
 @stop
 
 @section('script')
+<script src="{{asset('vendor/midium/laravel-ckeditor/ckeditor.js')}}"></script>
+<script>
+    var editor = CKEDITOR.replace( 'details', {
+        height: 500,
+        baseFloatZIndex: 10005,
+        removeButtons: 'PasteFromWord'
+    } );
+    editor.on( 'change', function( evt ) {
+        console.log( 'Total bytes: ' + evt.editor.getData().length );
+        var data = CKEDITOR.instances.detail.getData();
+        // console.log(data);
+        // $("#term").val(data);
+    });
+    editor.on("keydown", function(event) 
+    {
+        var data = CKEDITOR.instances.detail.getData();
+        // $("#term").val(data);
+    });
+    
+</script>
 <script>
     var acc = document.getElementsByClassName("accordion");
     var i;
@@ -456,7 +483,7 @@
 <script>
     $(document).ready(function(){
         $('.nav-link').on('shown.bs.tab', function (e) {
-            console.log('tab');
+            // console.log('tab');
             $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
         });
 		var oTable = $('#datatables').DataTable({
@@ -470,44 +497,28 @@
 				url : "{{url('backend/pdpa/datatables')}}",
 				data: function (d) {
 					d.search = $('#search').val();
-					// d.lastname = $('#lastname').val();
-					d.radiodate = $('input[name="radiodate"]:checked').val();
-					d.date = $('#date').val();
+					d.searchtype = $('#searchtype').val();
+					d.searchgrouptype = $('#searchgrouptype').val();
 				},
 			},
 			columns: [
+				{ 'className': "text-center", data: 'code', name: 'code' },
+				{ 'className': "text-center", data: 'title', name: 'title' },
 				{ 'className': "text-center", data: 'id', name: 'id' },
-				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'first_name', name: 'first_name' },
-				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
+				{ 'className': "text-center", data: 'type', name: 'type' },
+				{ 'className': "text-center", data: 'grouptypecpn', name: 'grouptypecpn' },
 				{ 'className': "text-center", data: 'created_at', name: 'created_at' },
-				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
-				{ 'className': "text-center", data: 'active', name: 'status',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'comment', name: 'comment' },
-				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'datestart', name: 'datestart' },
+				{ 'className': "text-center", data: 'verions', name: 'verions' },
+				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
-				
 				
 			},
             initComplete:function( settings, json){
-                // console.log(json);
-                $("#alerttotal").text(oTable.data().count());
-                if(oTable.data().count() > 0){
-                    $("#alerttotal").show();
-                }
+                
                 
             }
 		});
@@ -525,85 +536,53 @@
             responsive: true,
             scrollX: true,
 			ajax:{ 
-				url : "{{url('backend/pdpa/consentlist/datatables/expired')}}",
+				url : "{{url('backend/pdpa/datatables/expired')}}",
 				data: function (d) {
-					d.name = $('#name').val();
+					d.search = $('#search').val();
+					d.searchtype = $('#searchtype').val();
+					d.searchgrouptype = $('#searchgrouptype').val();
 				},
 			},
 			columns: [
+				{ 'className': "text-center", data: 'code', name: 'code' },
+				{ 'className': "text-center", data: 'title', name: 'title' },
 				{ 'className': "text-center", data: 'id', name: 'id' },
-				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'first_name', name: 'first_name' },
-				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
+				{ 'className': "text-center", data: 'type', name: 'type' },
+				{ 'className': "text-center", data: 'grouptypecpn', name: 'grouptypecpn' },
 				{ 'className': "text-center", data: 'created_at', name: 'created_at' },
-				{ 'className': "text-center", data: 'updated_at', name: 'updated_at' },
-				{ 'className': "text-center", data: 'active', name: 'status',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'comment', name: 'comment' },
-				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
+				{ 'className': "text-center", data: 'datestart', name: 'datestart' },
+				{ 'className': "text-center", data: 'verions', name: 'verions' },
+				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
 				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
 				
 				
 			},
             initComplete:function( settings, json){
-                console.log(json);
-                $("#alertwait").text(oTableexpired.data().count());
-                if(oTableexpired.data().count() > 0){
-                    $("#alertwait").show();
-                }
             }
 		});
 
 
         $("#search").keyup(function (e) { 
             oTable.draw();
-			e.preventDefault();
-            $("#alerttotal").text(oTable.data().count());
-            if(oTable.data().count() > 0){
-                $("#alerttotal").show();
-            }
-
             oTableexpired.draw();
 			e.preventDefault();
-            $("#alertwait").text(oTableexpired.data().count());
-            if(oTableexpired.data().count() > 0){
-                $("#alertwait").show();
-            }
+
         });
         
 		
 		$('#btnsearch').click(function(e){
 			oTable.draw();
-			e.preventDefault();
-            $("#alerttotal").text(oTable.data().count());
-            if(oTable.data().count() > 0){
-                $("#alerttotal").show();
-            }
-
             oTableexpired.draw();
 			e.preventDefault();
-            $("#alertwait").text(oTableexpired.data().count());
-            if(oTableexpired.data().count() > 0){
-                $("#alertwait").show();
-            }
 		});
 	});
-    $("#headerpdpa").keyup(function () {
+    $("#title").keyup(function () {
         var len = $(this).val().length ;
         console.log(len);
-        $("#formheaderpdpa .text-red").html('พิมพ์ข้อความได้ไม่เกิน 120 ตัวอักษร ('+len+'/120)')
+        $("#formtitle .text-red").html('พิมพ์ข้อความได้ไม่เกิน 120 ตัวอักษร ('+len+'/120)')
     });
 
     $("#detail").keyup(function () {
@@ -611,5 +590,19 @@
         console.log(len);
         $("#formdetail .text-red").html('พิมพ์ข้อความได้ไม่เกิน 120 ตัวอักษร ('+len+'/120)')
     });
+
+    function switchstatus(id){
+        var flexSwitch = $("#mySwitch"+id).is(":checked");
+        // return  false;
+        if(flexSwitch){
+            flexSwitch = '1';
+        }else{
+            flexSwitch = '0';
+        }
+        $.get("{{route('backend.pdpa.changestatus')}}", {'id':id,'status':flexSwitch},function (data, textStatus, jqXHR) {
+            oTable.draw( false );
+            oTableexpired.draw( false );
+        });
+    }
 </script>
 @stop

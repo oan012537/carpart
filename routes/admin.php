@@ -181,6 +181,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('consentlist/datatables', [Backend\PDPAController ::class,'datatablesconsent'])->name('backend.pdpa.consentlist.datatables');
             Route::get('consentlist/datatables/expired', [Backend\PDPAController ::class,'datatablesconsentexpired'])->name('backend.pdpa.consentlist.datatables.expired');
             Route::post('update', [Backend\PDPAController::class,'update'])->name('backend.pdpa.update');
+            Route::post('changestatus', [Backend\PDPAController::class,'changestatus'])->name('backend.pdpa.changestatus');
             
         });
 
