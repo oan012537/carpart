@@ -31,6 +31,14 @@ class LoginSocialController extends Controller
     {
         //GET USER 
         $user = mUsers_buyer::where('email', $data->email)->first();
+
+        if($user){
+            mUsers_buyer::where('id', $user->id)
+            ->update([
+                'social_id' => $data->id,
+                'social_type' => $data->provider,
+            ]);
+        }
         
         //Create if not exists
         if (!$user) {
@@ -43,6 +51,7 @@ class LoginSocialController extends Controller
             // $user->avatar = empty($data->avatar)?"":$data->avatar;
             $user->save();
         }
+        
         //LOGIN by object user
         Auth::login($user);
     }

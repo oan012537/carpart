@@ -424,14 +424,14 @@
                             <div class="col-lg-3">
                                 <div class="tt-detail-tt">
                                     <p>
-                                        ส่งจาก
+                                        <!-- ส่งจาก -->
                                     </p>
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="tt-detail-tt2">
                                     <p>
-                                        {{ (is_null($product->supplier) ? '-' : $product->supplier->Province->name_th) }}
+                                        {{-- (is_null($product->supplier) ? '-' : $product->supplier->Province->name_th) --}}
                                     </p>
                                 </div>
                             </div>
