@@ -53,14 +53,14 @@ class DeliveryController extends Controller
 		})
         ->editColumn('image',function($data){
             if($data->image){
-                // if(File::exists(asset('delivery/'.$data->image))){
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery').'/'.$data->image.'" > <img src="'.asset('delivery').'/'.$data->image.'" class="img-delivery"> </a>';
-                // }else{
-                //     return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'" > <img src="'.asset('images/ImageNotFound.png').'" class="img-delivery"> </a>';
-                // }
+                if(File::exists(public_path().'/delivery/'.$data->image)){
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery').'/'.$data->image.'" > <img src="'.asset('delivery').'/'.$data->image.'" class="img-delivery"> </a>';
+                }else{
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('images/ImageNotFound.png').'" > <img src="'.asset('delivery/ImageNotFound.png').'" class="img-delivery"> </a>';
+                }
                 
             }else{
-                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'" > <img src="'.asset('images/ImageNotFound.png').'" class="img-delivery"> </a>';
+                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('images/ImageNotFound.png').'" > <img src="'.public_path('images/ImageNotFound.png').'" class="img-delivery"> </a>';
             }
 		})
         ->editColumn('timeinbkk',function($data){
@@ -130,14 +130,14 @@ class DeliveryController extends Controller
 		})
         ->editColumn('image',function($data){
             if($data->image){
-                // if(File::exists(asset('delivery/'.$data->image))){
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery').'/'.$data->image.'" > <img src="'.asset('delivery').'/'.$data->image.'" class="img-product"> </a>';
-                // }else{
-                //     return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'" > <img src="'.asset('images/ImageNotFound.png').'" class="img-product"> </a>';
-                // }
+                if(File::exists(public_path().'/delivery/'.$data->image)){
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery').'/'.$data->image.'" > <img src="'.public_path('delivery').'/'.$data->image.'" class="img-product"> </a>';
+                }else{
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery/ImageNotFound.png').'" > <img src="'.public_path('delivery/ImageNotFound.png').'" class="img-product"> </a>';
+                }
                 
             }else{
-                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'" > <img src="'.asset('images/ImageNotFound.png').'" class="img-product"> </a>';
+                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery/ImageNotFound.png').'" > <img src="'.public_path('delivery/ImageNotFound.png').'" class="img-product"> </a>';
             }
 		})
         ->editColumn('timeinbkk',function($data){
@@ -207,14 +207,14 @@ class DeliveryController extends Controller
 		})
         ->editColumn('image',function($data){
             if($data->image){
-                // if(File::exists(asset('delivery/'.$data->image))){
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery').'/'.$data->image.'" > <img src="'.asset('delivery').'/'.$data->image.'" class="img-product"> </a>';
-                // }else{
-                //     return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'" > <img src="'.asset('images/ImageNotFound.png').'" class="img-product"> </a>';
-                // }
+                if(File::exists(public_path().'/delivery/'.$data->image)){
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery').'/'.$data->image.'" > <img src="'.public_path('delivery').'/'.$data->image.'" class="img-product"> </a>';
+                }else{
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery/ImageNotFound.png').'" > <img src="'.public_path('delivery/ImageNotFound.png').'" class="img-product"> </a>';
+                }
                 
             }else{
-                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('images/ImageNotFound.png').'" > <img src="'.asset('images/ImageNotFound.png').'" class="img-product"> </a>';
+                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery/ImageNotFound.png').'" > <img src="'.public_path('delivery/ImageNotFound.png').'" class="img-product"> </a>';
             }
 		})
         ->editColumn('timeinbkk',function($data){
@@ -264,17 +264,17 @@ class DeliveryController extends Controller
                 $extension 	= $files->getClientOriginalExtension();
                 $size		= $files->getSize();
                 $imgcover1 	= date('His').$filename;
-                $destinationPath = base_path("../delivery");
+                $destinationPath = public_path()."/delivery";
                 // dd($destinationPath);
-                if(!File::exists(base_path('../delivery'))){
-                    File::makeDirectory(base_path('../delivery'));
+                if(!File::exists(public_path().'/delivery')){
+                    File::makeDirectory(public_path().'/delivery');
                 }
                 if(File::exists($destinationPath)){
                     $files->move($destinationPath, $imgcover1);
                 }else{
-                    if(!File::exists(base_path('../delivery'))){
+                    if(!File::exists(public_path().'/delivery')){
 
-                        File::makeDirectory(base_path('../delivery'));
+                        File::makeDirectory(public_path().'/delivery');
                     }
                     
                     $files->move($destinationPath, $imgcover1);
@@ -333,22 +333,22 @@ class DeliveryController extends Controller
                 $extension 	= $files->getClientOriginalExtension();
                 $size		= $files->getSize();
                 $imgcover1 	= date('His').$filename;
-                $destinationPath = base_path("../delivery");
+                $destinationPath = public_path()."/delivery";
                 // dd($destinationPath);
-                if(!File::exists(base_path('../delivery'))){
-                    File::makeDirectory(base_path('../delivery'));
+                if(!File::exists(public_path().'/delivery')){
+                    File::makeDirectory(public_path().'/delivery');
                 }
                 if(File::exists($destinationPath)){
                     $files->move($destinationPath, $imgcover1);
                 }else{
-                    if(!File::exists(base_path('../delivery'))){
+                    if(!File::exists(public_path().'/delivery')){
 
-                        File::makeDirectory(base_path('../delivery'));
+                        File::makeDirectory(public_path().'/delivery');
                     }
                     
                     $files->move($destinationPath, $imgcover1);
+                    $imgcover1 = '/delivery'.'/'.$imgcover1;
                 }
-                // $imgcover1 = $imgcover1;
                 
             }
             $update = Deliverys::find($request->id);
@@ -372,7 +372,6 @@ class DeliveryController extends Controller
             $update->is_active = 1;
             $update->created_by = Auth::user()->name;
             $update->updated_by = '';
-            // dd($update);
             $update->save();
             DB::commit();
             return redirect()->route('backend.delivery');
