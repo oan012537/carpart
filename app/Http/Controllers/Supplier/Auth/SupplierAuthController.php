@@ -474,9 +474,9 @@ class SupplierAuthController extends Controller
             'created_by' => $user_name
         ]);
 
-        $user_id = $user->id;
+        // $user_id = $user->id;
         
-        return view('supplier.auth.create-password', compact('user_id'));
+        return redirect()->route('supplier.index')->with('message', 'Register supplier successfully.');
 
     }
 

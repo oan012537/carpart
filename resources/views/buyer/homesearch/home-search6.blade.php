@@ -1,6 +1,6 @@
 @extends('buyer.layouts.template')
     <!-- link navbar -->
-    <link href="{{asset('assets/css/home-seach5.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/home-seach6.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/home-request.css')}}" rel="stylesheet">
 
 @section('content')
@@ -428,10 +428,9 @@
         /*function selectSubModel(id){
             location.href = "buyer/home-search4?brand="+{{session('session_search.brand')}}+"&model="+{{session('session_search.model')}}+"&submodel"+id;
         }*/
+
     </script>
     <script>
-        
-
         function searchnavBrands(id){
             $('#brand-search').val(id);
             $('.dropdown-model').remove();

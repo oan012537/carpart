@@ -195,7 +195,7 @@
                                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                                     <div class="form-group">
                                                                         <label>{{ trans('file.Product Quality') }} <span>*</span></label>
-                                                                        <select class="form-select" aria-label="Default select example" name="quality">
+                                                                        <select id="quality" class="form-select" aria-label="Default select example" name="quality">
                                                                             <option>{{ trans('file.Specify') }}</option>
                                                                             @foreach ($product_qualities as $quality)
                                                                                 <option value="{{ $quality }}">{{ trans('file.'. $quality) }}</option>
@@ -311,7 +311,7 @@
                                                         <div class="input-group">
                                                             <input type="number" class="form-control" name="duration" placeholder="{{ trans('file.Specify') }}" 
                                                                     value="{{ old('duration')? old('duration'): isset($warranty->duration)? $warranty->duration : '' }}">
-                                                            <select class="btn btn__garuntee" aria-label="Default select example" name="year_month_day">
+                                                            <select id="year_month_day" class="btn btn__garuntee" aria-label="Default select example" name="year_month_day">
                                                                 @foreach ($day_month_year as $timeType)
                                                                     <option value="{{ $timeType }}">
                                                                         {{ trans('file.' . $timeType) }}
@@ -336,9 +336,7 @@
 
                                                     <div class="col-12">
                                                         <div class="box__text">
-                                                            <textarea name="term_and_condition" placeholder="{{ trans('file.Specify') }}" class="form-control">
-                                                                {{ old('term_and_condition') }}
-                                                            </textarea>
+                                                            <textarea name="term_and_condition" placeholder="{{ trans('file.Specify') }}" class="form-control">{{ old('term_and_condition') }}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -381,7 +379,7 @@
                                                                 <div class="input-group">
                                                                     <input type="number" class="form-control" name="weight" 
                                                                             value="{{ old('weight') }}">
-                                                                    <select class="btn btn__weight" name="unit">
+                                                                    <select id="unit" class="btn btn__weight" name="unit">
                                                                         @foreach ($units as $unit)
                                                                             <option value="{{ $unit }}">{{ $unit }}</option>
                                                                         @endforeach
@@ -408,7 +406,7 @@
                                                                             value="{{ old('height') }}">
 
                                                                     <span>{{ trans('file.UOM') }}</span>
-                                                                    <select class="btn btn__unit" name="uom">
+                                                                    <select id="uom" class="btn btn__unit" name="uom">
                                                                         @foreach ($uoms as $uom)
                                                                             <option value="{{ $uom }}">{{ $uom }}</option>
                                                                         @endforeach
@@ -520,7 +518,7 @@
                                                                     {{-- specify days --}}
                                                                     <div class="form-group">
                                                                         <span class="label__setdate">{{ trans('file.Specify Day') }}</span>
-                                                                        <select class="form-select" name="estimated_days" aria-label="Default select example">
+                                                                        <select id="estimated_days" class="form-select" name="estimated_days" aria-label="Default select example">
                                                                             @for ($i = 1; $i <= 31; $i++)
                                                                                 <option value="{{ $i }}">{{ $i }}</option>
                                                                             @endfor
@@ -858,67 +856,125 @@
             setDuration(isWarranty);
             setEstimateDays(isDeliver);
         // specify initilize option data
-    });
 
-    // control brand, model, category event
-    $(document).on('click', '.next', function() {
+        // initialize old option data
+        let oldQuality = "{{ old('quality') }}";
+        let quality = oldQuality ? oldQuality : "";
+        $('#quality option[value="' + quality + '"]').attr('selected', 'selected');
 
-        itemId  = $(this).children().children().val();
-        itemNameEn  = $(this).children().children('input.item-name-en').val();
-        itemNameTh  = $(this).children().children('input.item-name-th').val();
+        let oldYearMonthDay = "{{ old('year_month_day') }}";
+        let yearMonthDay = oldYearMonthDay ? oldYearMonthDay : "";
+        $('#year_month_day option[value="' + yearMonthDay + '"]').attr('selected', 'selected');
 
-        if (animating) return false;
-        animating = true;
+        let oldUnit = "{{ old('unit') }}";
+        let unit = oldUnit ? oldUnit : "";
+        $('#unit option[value="' + unit + '"]').attr('selected', 'selected');
+        
+        let olduom = "{{ old('uom') }}";
+        let uom = olduom ? olduom : "";
+        $('#uom option[value="' + uom + '"]').attr('selected', 'selected');
 
-        current_fs = $(this).parent();
-        next_fs = $(this).parent().next();
+        let oldEstimatedDays = "{{ old('estimated_days') }}";
+        let estimatedDays = oldEstimatedDays ? oldEstimatedDays : "";
+        $('#estimated_days option[value="' + estimatedDays + '"]').attr('selected', 'selected');
+        // initialize old option data
 
-        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+        // control brand, model, category event
+        $(document).on('click', '.next', function() {
 
-        next_fs.show();
-        const attr__value = next_fs.attr('attr-id');
-        // alert(attr__value);
-        if (attr__value == 1) {
-            $('input[name="mod_category_id"]').val(itemId);
-            $('input[name="category_name_en"]').val(itemNameEn);
-            $('input[name="category_name_th"]').val(itemNameTh);
-            getSub(itemId, 'sub_categories');
+            itemId  = $(this).children().children().val();
+            itemNameEn  = $(this).children().children('input.item-name-en').val();
+            itemNameTh  = $(this).children().children('input.item-name-th').val();
 
-            $('.txt__titlestep').addClass('d-none');
-            $('.step1').removeClass('d-none');
-            $('.txt__cat').html(itemNameEn);
-        } else if (attr__value == 2) {
-            $('input[name="mod_sub_category_id"]').val(itemId);
-            $('input[name="sub_category_name_en"]').val(itemNameEn);
-            $('input[name="sub_category_name_th"]').val(itemNameTh);
-            getSub(itemId, 'sub_sub_categories');
+            if (animating) return false;
+            animating = true;
 
-            $('.step2').removeClass('d-none');
-            $('.txt__sub_cat').html(itemNameEn);
-        } else {
-            $('input[name="mod_sub_sub_category_id"]').val(itemId);
-            $('input[name="sub_sub_category_name_en"]').val(itemNameEn);
-            $('input[name="sub_sub_category_name_th"]').val(itemNameTh);
-            $('.step3').removeClass('d-none');
-            $('.txt__sub_sub_cat').html(itemNameEn);
-        }
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
 
-        current_fs.animate({
-            opacity: 0
-        }, {
-            step: function(now, mx) {
-                scale = 1 - (1 - now) * 0.2;
-                left = (now * 50) + "%";
-                opacity = 1 - now;
-                current_fs.css({
-                    'transform': 'scale(' + scale + ')',
-                    'position': 'absolute'
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            next_fs.show();
+            const attr__value = next_fs.attr('attr-id');
+            // alert(attr__value);
+            if (attr__value == 1) {
+                $('input[name="mod_category_id"]').val(itemId);
+                $('input[name="category_name_en"]').val(itemNameEn);
+                $('input[name="category_name_th"]').val(itemNameTh);
+                getSub(itemId, 'sub_categories');
+
+                $('.txt__titlestep').addClass('d-none');
+                $('.step1').removeClass('d-none');
+                $('.txt__cat').html(itemNameEn);
+            } else if (attr__value == 2) {
+                $('input[name="mod_sub_category_id"]').val(itemId);
+                $('input[name="sub_category_name_en"]').val(itemNameEn);
+                $('input[name="sub_category_name_th"]').val(itemNameTh);
+                getSub(itemId, 'sub_sub_categories');
+
+                $('.step2').removeClass('d-none');
+                $('.txt__sub_cat').html(itemNameEn);
+            } else {
+                $('input[name="mod_sub_sub_category_id"]').val(itemId);
+                $('input[name="sub_sub_category_name_en"]').val(itemNameEn);
+                $('input[name="sub_sub_category_name_th"]').val(itemNameTh);
+                $('.step3').removeClass('d-none');
+                $('.txt__sub_sub_cat').html(itemNameEn);
+            }
+
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function(now, mx) {
+                    scale = 1 - (1 - now) * 0.2;
+                    left = (now * 50) + "%";
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'transform': 'scale(' + scale + ')',
+                        'position': 'absolute'
+                    });
+                    next_fs.css({
+                        'left': left,
+                        'opacity': opacity
+                    });
+                },
+                    duration: 800,
+                    complete: function() {
+                        current_fs.hide();
+                        animating = false;
+                    },
+                    easing: 'easeInOutBack'
                 });
-                next_fs.css({
-                    'left': left,
-                    'opacity': opacity
-                });
-            },
+            });
+
+
+            $(document).on('click', '.previous', function() {
+            if (animating) return false;
+            animating = true;
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            previous_fs.show();
+
+
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function(now, mx) {
+                    scale = 0.8 + (1 - now) * 0.2;
+                    left = ((1 - now) * 50) + "%";
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'left': left
+                    });
+                    previous_fs.css({
+                        'transform': 'scale(' + scale + ')',
+                        'opacity': opacity
+                    });
+                },
                 duration: 800,
                 complete: function() {
                     current_fs.hide();
@@ -926,332 +982,295 @@
                 },
                 easing: 'easeInOutBack'
             });
-        });
+            });
 
+            $(".submit").click(function() {
+            return false;
+        })
+        // control brand, model, category event
 
-        $(document).on('click', '.previous', function() {
-        if (animating) return false;
-        animating = true;
-
-        current_fs = $(this).parent();
-        previous_fs = $(this).parent().prev();
-
-        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-        previous_fs.show();
-
-
-        current_fs.animate({
-            opacity: 0
-        }, {
-            step: function(now, mx) {
-                scale = 0.8 + (1 - now) * 0.2;
-                left = ((1 - now) * 50) + "%";
-                opacity = 1 - now;
-                current_fs.css({
-                    'left': left
-                });
-                previous_fs.css({
-                    'transform': 'scale(' + scale + ')',
-                    'opacity': opacity
-                });
-            },
-            duration: 800,
-            complete: function() {
-                current_fs.hide();
-                animating = false;
-            },
-            easing: 'easeInOutBack'
-        });
-        });
-
-        $(".submit").click(function() {
-        return false;
-    })
-    // control brand, model, category event
-
-    // upload image
-    $(document).on('change', '#upload-image', function(){
-        var event = $(this);
-        uploadImage(event);
-    });
-    
-    function uploadImage(event) {
-        var imageUrl = '';
-        var htmlText = '';
-        var file_data = event.prop('files')[0];   
-        var form_data = new FormData();                  
-        form_data.append('file', file_data);
-        $.ajax({
-            url: '../dropzone/store',
-            dataType: 'text',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post',
-            success: function(data){
-                imageUrl = "{{ asset('product/images') }}" + '/' + data;
-                htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
-                                +'<input type="hidden" name="image[]" value="'+ data +'">'
-                                +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
-                                +'<img src="'+ imageUrl +'" class="img-fluid" alt="product image">'
-                                +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
-                                +'</a></div>';
-                $('#show-image').prepend(htmlText);
-            }
-        });
-    }
-    // upload image
-
-    // remove image
-    $(document).on('click', '.btn__trash', function(e){
-        var imageName = $(e.currentTarget).data('image');
-
-        $.ajax({
-            url: '../dropzone/remove',
-            dataType: 'text',
-            data: {
-                'imageName': imageName
-            },
-            type: 'post',
-            success: function(data) {
-                $(e.currentTarget).parent().remove();
-                e.preventDefault();
-            }
+        // upload image
+        $(document).on('change', '#upload-image', function(){
+            var event = $(this);
+            uploadImage(event);
         });
         
-    });
-    // remove image
-
-   // control warranty option
-   $('input[name="is_warranty"]').on('change', function() {
-        var value = $(this).val();
-        setDuration(value);
-    });
-
-    function setDuration(value) {
-        if (value == 0) {
-            $('input[name="duration"]').prop('required', false);
-            $('input[name="duration"]').prop('readonly', true);
-            $('input[name="duration"]').val('');
-        } else {
-            $('input[name="duration"]').prop('required', true);
-            $('input[name="duration"]').prop('readonly', false);
-        }
-    }
-    // control warranty option
-
-
-    // control transport status
-    $('input[name="is_deliver"]').on('change', function() {
-        var value = $(this).val();
-        setEstimateDays(value);
-    });
-
-    function setEstimateDays(value) {
-        if (value == 1) {
-            $('select[name="estimated_days"]').prop('required', false);
-            $('select[name="estimated_days"]').prop('disabled', true);
-            $('select[name="estimated_days"]').val('');
-        } else {
-            $('select[name="estimated_days"]').prop('required', true);
-            $('select[name="estimated_days"]').prop('disabled', false);
-        }
-    }
-    // control transport status
-
-    // calculate commission and revenue
-    $('#product-price').on('input', function() {
-        const price = $(this).val();
-        const vatAmt = price - ( price * ( 100 / ( 100 + 7 )));
-        const basicAmt = price - vatAmt;
-        const commission = (price * 15) / 100;
-        const revenue = basicAmt - commission;
-        $('input[name="commission"]').val(commission.toFixed(2));
-        $('input[name="revenue"]').val(revenue.toFixed(2));
-    })
-    // calculate commission and revenue
-
-    // active progress bar
-        $('#warranty').on('click', function(){
-            $('#progress-warranty').addClass('activenav');
-        });
-
-        $('#transportion').on('click', function(){
-            $('#progress-transport').addClass('activenav');
-        });
-
-        $('#price').on('click', function(){
-            $('#progress-amount').addClass('activenav');
-        });
-    // active progress bar
-
-    // insert salesman code
-    $('#salesman-code').on('input', function() {
-        $('input[name="salesman_code"]').val($(this).val());
-    });
-    // insert salesman code
-
-    // submit modal
-    $(document).on('click', '#btn-submit', function(){
-        $('input[name="category_id"]').val($('input[name="mod_category_id"]').val());
-        $('input[name="sub_category_id"]').val($('input[name="mod_sub_category_id"]').val());
-        $('input[name="sub_sub_category_id"]').val($('input[name="mod_sub_sub_category_id"]').val());
-        const categoryNameEn = $('input[name="category_name_en"]') .val();
-        const subCategoryNameEn = $('input[name="sub_category_name_en"]') .val();
-        const subSubCategoryNameEn = $('input[name="sub_sub_category_name_en"]') .val();
-
-        const categoryNameTh = $('input[name="category_name_th"]') .val();
-        const subCategoryNameTh = $('input[name="sub_category_name_th"]') .val();
-        const subSubCategoryNameTh = $('input[name="sub_sub_category_name_th"]') .val();
-
-        const productNameEn = brandNameEn +' '+ modelNameEn +' '+ categoryNameEn +' '+ subCategoryNameEn +' '+ subSubCategoryNameEn;
-        const productNameTh = brandNameTh +' '+ modelNameTh +' '+ categoryNameTh +' '+ subCategoryNameTh +' '+ subSubCategoryNameTh;
-        $('input[name="name_en"]').val(productNameEn);
-        $('input[name="name_th"]').val(productNameTh);
-        $('#modlapdcatdiffrence').modal('hide');
-    });
-    // submit modal
-
-
-    // query filter
-    $('#search-value').keyup(function() {        
-        let searchValue = $(this).val();
-        queryProductModel(searchValue, table_name, parent_id);        
-    });
-    $('.letter__az').on('click', function(){
-        let searchValue = $(this).data('id');
-        queryProductModel(searchValue, table_name, parent_id);   
-    });
-    // query filter
-
-    // helper function
-    function getSub(id, tableName) {
+        function uploadImage(event) {
+            var imageUrl = '';
+            var htmlText = '';
+            var file_data = event.prop('files')[0];   
+            var form_data = new FormData();                  
+            form_data.append('file', file_data);
             $.ajax({
-                type: 'GET',
-                url: '../get_sub_items',
-                data: {
-                    'id': id,
-                    'tableName': tableName
-                },
+                url: '../dropzone/store',
+                dataType: 'text',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
                 success: function(data){
-                    var htmltext;
-                   
-                    if (tableName === 'sub_categories') {
-                        table_name = tableName;
-                        parent_id = id;
-                        if (data.length === 0) {
-                            alert('Sub Category not found');
-                        } else {
-                            data.forEach(subCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
-                                        +'</label>'
-                                        +'<input type="hidden" class="item-name-en" value="'+ subCategory.name_en +'">'
-                                        +'<input type="hidden" class="item-name-th" value="'+ subCategory.name_th +'">'
-                                    +'</div></div>';
-                                $('#fieldset2').append(htmltext);
-                            });
-                        }       
-                    }  
-                    else if (tableName === 'sub_sub_categories') {
-                        table_name = tableName;
-                        parent_id = id;
-                        if (data.length === 0) {
-                            alert('Sub Sub Category not found');
-                        } else {
-                            data.forEach(subSubCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
-                                        +'</label>'
-                                        +'<input type="hidden" class="item-name-en" value="'+ subSubCategory.name_en +'">'
-                                        +'<input type="hidden" class="item-name-th" value="'+ subSubCategory.name_th +'">'
-                                    +'</div></div>';
-                                $('#fieldset3').append(htmltext);
-                            });
-                        }       
-                    }  
-                  
-                },
-                error: function(error) {
-                    console.log(error);
+                    imageUrl = "{{ asset('product/images') }}" + '/' + data;
+                    htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
+                                    +'<input type="hidden" name="image[]" value="'+ data +'">'
+                                    +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
+                                    +'<img src="'+ imageUrl +'" class="img-fluid" alt="product image">'
+                                    +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
+                                    +'</a></div>';
+                    $('#show-image').prepend(htmlText);
                 }
-
-            })
-        }
-
-
-        function queryProductModel(searchValue, table_name, parent_id) {
-            $.ajax({
-                type: 'GET',
-                url: '../query_product_model',
-                data: {
-                    'searchValue': searchValue,
-                    'table_name': table_name,
-                    'parent_id': parent_id
-                },
-                success: function(data) {
-                    var htmltext;
-                    
-                    if (table_name == 'categories') {
-                        $('#fieldset1').children().remove();
-                        data.forEach(category => {
-                            htmltext = '<div class="col-xl-4 col-lg-4 col-md-4 col-12 next">'
-                                        +'<div class="form-check">'
-                                            +'<input class="form-check-input" type="radio" name="category" id="image-options'+ category.id +'" value="'+ category.id +'">'
-                                            +'<label class="form-check-label" for="image-options'+ category.id +'">'+ category.name_en +'</label>'
-                                            +'<input type="hidden" class="item-name-en" value="' + category.name_en + '">'
-                                            +'<input type="hidden" class="item-name-th" value="' + category.name_en + '">'
-                                        +'</div>'
-                                    +'</div>';
-                            $('#fieldset1').append(htmltext);
-                        });
-                    } else  if (table_name == 'sub_categories') {
-                        $('#fieldset2').children().remove();
-                        data.forEach(subCategory => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
-                                        +'</label>'
-                                        +'<input type="hidden" class="item-name-en" value="'+ subCategory.name_en +'">'
-                                        +'<input type="hidden" class="item-name-th" value="'+ subCategory.name_th +'">'
-                                    +'</div></div>';
-                            $('#fieldset2').append(htmltext);
-                        });
-                    } else  if (table_name == 'sub_sub_categories') {
-                        $('#fieldset3').children().remove();
-                        data.forEach(subSubCategory => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
-                                        +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
-                                        +'</label>'
-                                        +'<input type="hidden" class="item-name-en" value="'+ subSubCategory.name_en +'">'
-                                        +'<input type="hidden" class="item-name-th" value="'+ subSubCategory.name_th +'">'
-                                    +'</div></div>';
-                            $('#fieldset3').append(htmltext);
-                        });
-                    }
-                    
-                },
-                error: function(error) {
-                    console.log(error);
-                },
             });
         }
+        // upload image
 
-    // helper function
+        // remove image
+        $(document).on('click', '.btn__trash', function(e){
+            var imageName = $(e.currentTarget).data('image');
 
+            $.ajax({
+                url: '../dropzone/remove',
+                dataType: 'text',
+                data: {
+                    'imageName': imageName
+                },
+                type: 'post',
+                success: function(data) {
+                    $(e.currentTarget).parent().remove();
+                    e.preventDefault();
+                }
+            });
+            
+        });
+        // remove image
+
+    // control warranty option
+    $('input[name="is_warranty"]').on('change', function() {
+            var value = $(this).val();
+            setDuration(value);
+        });
+
+        function setDuration(value) {
+            if (value == 0) {
+                $('input[name="duration"]').prop('required', false);
+                $('input[name="duration"]').prop('readonly', true);
+                $('input[name="duration"]').val('');
+            } else {
+                $('input[name="duration"]').prop('required', true);
+                $('input[name="duration"]').prop('readonly', false);
+            }
+        }
+        // control warranty option
+
+
+        // control transport status
+        $('input[name="is_deliver"]').on('change', function() {
+            var value = $(this).val();
+            setEstimateDays(value);
+        });
+
+        function setEstimateDays(value) {
+            if (value == 1) {
+                $('select[name="estimated_days"]').prop('required', false);
+                $('select[name="estimated_days"]').prop('disabled', true);
+                $('select[name="estimated_days"]').val('');
+            } else {
+                $('select[name="estimated_days"]').prop('required', true);
+                $('select[name="estimated_days"]').prop('disabled', false);
+            }
+        }
+        // control transport status
+
+        // calculate commission and revenue
+        $('#product-price').on('input', function() {
+            const price = $(this).val();
+            const vatAmt = price - ( price * ( 100 / ( 100 + 7 )));
+            const basicAmt = price - vatAmt;
+            const commission = (price * 15) / 100;
+            const revenue = basicAmt - commission;
+            $('input[name="commission"]').val(commission.toFixed(2));
+            $('input[name="revenue"]').val(revenue.toFixed(2));
+        })
+        // calculate commission and revenue
+
+        // active progress bar
+            $('#warranty').on('click', function(){
+                $('#progress-warranty').addClass('activenav');
+            });
+
+            $('#transportion').on('click', function(){
+                $('#progress-transport').addClass('activenav');
+            });
+
+            $('#price').on('click', function(){
+                $('#progress-amount').addClass('activenav');
+            });
+        // active progress bar
+
+        // insert salesman code
+        $('#salesman-code').on('input', function() {
+            $('input[name="salesman_code"]').val($(this).val());
+        });
+        // insert salesman code
+
+        // submit modal
+        $(document).on('click', '#btn-submit', function(){
+            $('input[name="category_id"]').val($('input[name="mod_category_id"]').val());
+            $('input[name="sub_category_id"]').val($('input[name="mod_sub_category_id"]').val());
+            $('input[name="sub_sub_category_id"]').val($('input[name="mod_sub_sub_category_id"]').val());
+            const categoryNameEn = $('input[name="category_name_en"]') .val();
+            const subCategoryNameEn = $('input[name="sub_category_name_en"]') .val();
+            const subSubCategoryNameEn = $('input[name="sub_sub_category_name_en"]') .val();
+
+            const categoryNameTh = $('input[name="category_name_th"]') .val();
+            const subCategoryNameTh = $('input[name="sub_category_name_th"]') .val();
+            const subSubCategoryNameTh = $('input[name="sub_sub_category_name_th"]') .val();
+
+            const productNameEn = brandNameEn +' '+ modelNameEn +' '+ categoryNameEn +' '+ subCategoryNameEn +' '+ subSubCategoryNameEn;
+            const productNameTh = brandNameTh +' '+ modelNameTh +' '+ categoryNameTh +' '+ subCategoryNameTh +' '+ subSubCategoryNameTh;
+            $('input[name="name_en"]').val(productNameEn);
+            $('input[name="name_th"]').val(productNameTh);
+            $('#modlapdcatdiffrence').modal('hide');
+        });
+        // submit modal
+
+
+        // query filter
+        $('#search-value').keyup(function() {        
+            let searchValue = $(this).val();
+            queryProductModel(searchValue, table_name, parent_id);        
+        });
+        $('.letter__az').on('click', function(){
+            let searchValue = $(this).data('id');
+            queryProductModel(searchValue, table_name, parent_id);   
+        });
+        // query filter
+
+        // helper function
+        function getSub(id, tableName) {
+                $.ajax({
+                    type: 'GET',
+                    url: '../get_sub_items',
+                    data: {
+                        'id': id,
+                        'tableName': tableName
+                    },
+                    success: function(data){
+                        var htmltext;
+                    
+                        if (tableName === 'sub_categories') {
+                            table_name = tableName;
+                            parent_id = id;
+                            if (data.length === 0) {
+                                alert('Sub Category not found');
+                            } else {
+                                data.forEach(subCategory => {
+                                    htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                        +'<div class="form-check">'
+                                            +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
+                                            +'<label class="form-check-label" for="flexCheckDefault">'
+                                            + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
+                                            +'</label>'
+                                            +'<input type="hidden" class="item-name-en" value="'+ subCategory.name_en +'">'
+                                            +'<input type="hidden" class="item-name-th" value="'+ subCategory.name_th +'">'
+                                        +'</div></div>';
+                                    $('#fieldset2').append(htmltext);
+                                });
+                            }       
+                        }  
+                        else if (tableName === 'sub_sub_categories') {
+                            table_name = tableName;
+                            parent_id = id;
+                            if (data.length === 0) {
+                                alert('Sub Sub Category not found');
+                            } else {
+                                data.forEach(subSubCategory => {
+                                    htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                        +'<div class="form-check">'
+                                            +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
+                                            +'<label class="form-check-label" for="flexCheckDefault">'
+                                            + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
+                                            +'</label>'
+                                            +'<input type="hidden" class="item-name-en" value="'+ subSubCategory.name_en +'">'
+                                            +'<input type="hidden" class="item-name-th" value="'+ subSubCategory.name_th +'">'
+                                        +'</div></div>';
+                                    $('#fieldset3').append(htmltext);
+                                });
+                            }       
+                        }  
+                    
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+
+                })
+            }
+
+
+            function queryProductModel(searchValue, table_name, parent_id) {
+                $.ajax({
+                    type: 'GET',
+                    url: '../query_product_model',
+                    data: {
+                        'searchValue': searchValue,
+                        'table_name': table_name,
+                        'parent_id': parent_id
+                    },
+                    success: function(data) {
+                        var htmltext;
+                        
+                        if (table_name == 'categories') {
+                            $('#fieldset1').children().remove();
+                            data.forEach(category => {
+                                htmltext = '<div class="col-xl-4 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input class="form-check-input" type="radio" name="category" id="image-options'+ category.id +'" value="'+ category.id +'">'
+                                                +'<label class="form-check-label" for="image-options'+ category.id +'">'+ category.name_en +'</label>'
+                                                +'<input type="hidden" class="item-name-en" value="' + category.name_en + '">'
+                                                +'<input type="hidden" class="item-name-th" value="' + category.name_en + '">'
+                                            +'</div>'
+                                        +'</div>';
+                                $('#fieldset1').append(htmltext);
+                            });
+                        } else  if (table_name == 'sub_categories') {
+                            $('#fieldset2').children().remove();
+                            data.forEach(subCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                        +'<div class="form-check">'
+                                            +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
+                                            +'<label class="form-check-label" for="flexCheckDefault">'
+                                            + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
+                                            +'</label>'
+                                            +'<input type="hidden" class="item-name-en" value="'+ subCategory.name_en +'">'
+                                            +'<input type="hidden" class="item-name-th" value="'+ subCategory.name_th +'">'
+                                        +'</div></div>';
+                                $('#fieldset2').append(htmltext);
+                            });
+                        } else  if (table_name == 'sub_sub_categories') {
+                            $('#fieldset3').children().remove();
+                            data.forEach(subSubCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                        +'<div class="form-check">'
+                                            +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
+                                            +'<label class="form-check-label" for="flexCheckDefault">'
+                                            + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
+                                            +'</label>'
+                                            +'<input type="hidden" class="item-name-en" value="'+ subSubCategory.name_en +'">'
+                                            +'<input type="hidden" class="item-name-th" value="'+ subSubCategory.name_th +'">'
+                                        +'</div></div>';
+                                $('#fieldset3').append(htmltext);
+                            });
+                        }
+                        
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    },
+                });
+            }
+
+        // helper function
+    });
 
 </script>
 

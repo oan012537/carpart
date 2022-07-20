@@ -70,75 +70,68 @@
                             
                     </form>
 
-                        {{-- <div id="modalAlert" class="modal">
-                            <div class="modal-content">
-                                <span class="close-confirm">&times;</span>
-                                <div class="modal-body">
-                                    <img src="{{ asset('assets/img/login/sc.png') }}" class="img-fluid" alt=""
-                                        style="margin-left: 28px;">
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="tt-text-con">
-                                        <p>{{ trans('file.Waiting for approval from the staff') }}</p>
-                                    </div>
-                                    <div class="tt-text-con2">
-                                        <p>
-                                            {{ trans('file.approval info1') }}
-                                            {{ trans('file.approval info2') }}
-                                        </p>
-                                    </div>
-                                    <div class="tt-text-con3">
-                                        <p>{{ trans('file.within 24 hours.') }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-
-                        <!-- The Modal -->
-                        <div id="mySucces" class="modal">
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <div class="modal-body">
-                                    <img src="{{ asset('assets/img/login/sf.png') }}" class="img-fluid" alt="">
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="tt-text-con">
-                                        <p>{{ trans('file.Successful registration') }}</p>
-                                    </div>
-                                    <br>
-                                    <div class="but-bb">
-                                        <button id="btn-agree" class="button button3"> {{ trans('file.Agree') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<section id="modal-regis3">
+    <!-- The Modal -->
+    <div class="modal" id="modalAlert">
+        <div class="modal-dialog    ">
+            <div class="modal-content">
+                
+                
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <img src="{{ asset('assets/img/login/sc.png') }}" class="img-fluid" alt=""
+                    style="margin-left: 28px;">
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <div class="tt-text-con">
+                        <p>{{ trans('file.Waiting for approval from the staff') }}</p>
+                    </div>
+                    <div class="tt-text-con2">
+                        <p>
+                            {{ trans('file.approval info1') }}
+                            {{ trans('file.approval info2') }}
+                        </p>
+                    </div>
+                    <div class="tt-text-con3">
+                        <p>{{ trans('file.within 24 hours.') }}</p>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</section>
+    
+    
+
+
 
 @endsection
 
 @section('script')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <script>
 
     $(document).ready(()=> {
 
-        $('#btn-confirm').on('click', function() {
-            $('#modalAlert').modal('show');
-        });
-
-        $(document).on('click', '#btn-agree', function() {
-            
-            $('#modalAlert').modal('hide');
-        });
+        
+        // $('#modalAlert').modal('show');
 
         $('input[name="toggle_password"]').on('click', function(){
             var inputType = $('input[name="password"]').attr('type');
@@ -156,22 +149,5 @@
     
 </script>
 
-{{-- <script>
-     var modal = document.getElementById("myModal");
-    var btn = document.getElementById("btn-confirm");
-    var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script> --}}
-    
 @endsection
 
