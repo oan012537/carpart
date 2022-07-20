@@ -453,7 +453,7 @@
 <script>
     var editor = CKEDITOR.replace( 'details', {
         height: 500,
-        baseFloatZIndex: 10005,
+        // baseFloatZIndex: 10005,
         removeButtons: 'PasteFromWord'
     } );
     editor.on( 'change', function( evt ) {
