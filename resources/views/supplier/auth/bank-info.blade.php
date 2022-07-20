@@ -105,15 +105,19 @@
                                             <p> {{ trans('file.Size does not exceed 5 Mb.') }} </p>
                                         </div>
                                     </label>
+
                                 </div>
+                                    @if($errors->has('bank_book_image'))
+                                        <span class="dot__color">{{ $errors->first('bank_book_image') }}</span>
+                                    @endif
 
                                 {{-- personal --}}
                                 <input type="hidden" name="store_name" value="{{ $data['store_name'] }}">
                                 <input type="hidden" name="personal_first_name" value="{{ $data['personal_first_name'] }}">
                                 <input type="hidden" name="personal_last_name" value="{{ $data['personal_last_name'] }}">
                                 <input type="hidden" name="personal_card_id" value="{{ $data['personal_card_id'] }}">
-                                <input type="hidden" name="personal_cardId_img_name" value="{{ $data['personal_cardId_img_name'] }}">
-                                <input type="hidden" name="personal_house_reg_name" value="{{ $data['personal_house_reg_name'] }}">
+                                <input type="hidden" name="personal_card_id_image" value="{{ $data['personal_card_id_image'] }}">
+                                <input type="hidden" name="personal_house_registration" value="{{ $data['personal_house_registration'] }}">
 
                                 <input type="hidden" name="supplier_type" value="{{ $data['supplier_type'] }}">
                                 <input type="hidden" name="address" value="{{ $data['address'] }}">
@@ -138,8 +142,8 @@
                                 <input type="hidden" name="branch" value="{{ $data['branch'] }}">
                                 <input type="hidden" name="vat_registration_number" value="{{ $data['vat_registration_number'] }}">
                                 <input type="hidden" name="postcode" value="{{ $data['postcode'] }}">
-                                <input type="hidden" name="company_cert_img_name" value="{{ $data['company_cert_img_name'] }}">
-                                <input type="hidden" name="vat_reg_doc_name" value="{{ $data['vat_reg_doc_name'] }}">
+                                <input type="hidden" name="company_certificate" value="{{ $data['company_certificate'] }}">
+                                <input type="hidden" name="vat_registration_doc" value="{{ $data['vat_registration_doc'] }}">
 
                             <br>
 

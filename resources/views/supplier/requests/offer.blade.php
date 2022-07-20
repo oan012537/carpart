@@ -145,10 +145,10 @@
                             <div class="box__itemsoffer">
                                 <div class="box__heading">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-12 col-sm-6">
                                             <p class="txt__heading"> เสนอสินค้าชิ้นที่ <?php echo $z; ?> <span>วันที่ลงข้อเสนอ dd/mm/yyyy hh:mm</span></p>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-12 col-sm-6">
                                             <div class="box__btn">
                                                 <a href="javascript:void(0)"><i class="fa-solid fa-trash-can"></i> ลบ</a>
                                             </div>
@@ -158,7 +158,7 @@
 
                                 <div class="box__contentimage">
                                     <div class="row">
-                                        <div class="col-10">
+                                        <div class="col-12 col-sm-10">
                                             <div class="wrapper__content">
                                                 <div class="box__image">
                                                     <img src="{{asset('assets/img/img-null.png')}}" class="img-fluid" alt="">
@@ -171,7 +171,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-2">
+                                        <div class="col-12 col-sm-2">
                                             <div class="box__price">
                                                 <p class="txt__text">ราคา</p>
                                                 <p class="txt__price">299 ฿</p>
@@ -191,10 +191,10 @@
                                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
                                                     <div class="row">
-                                                        <div class="col-2">
+                                                        <div class="col-12 col-sm-6 col-lg-2">
                                                             <p class="txt__title">รายละเอียดสินค้า</p>
                                                         </div>
-                                                        <div class="col-5">
+                                                        <div class="col-12 col-sm-12 col-lg-5">
                                                             <div class="box__content">
                                                                 <div class="row">
                                                                     <?php
@@ -239,7 +239,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-5">
+                                                        <div class="col-12 col-sm-12 col-lg-5">
                                                             <div class="box__content">
                                                                 <div class="row">
                                                                     <?php
@@ -345,10 +345,10 @@
 
                                 <div class="box__qrvideoscan">
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-12 col-sm-4">
                                             <p class="txt__tile">วิดิโอสินค้า</p>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-12 col-sm-8 col-lg-4">
                                             <div class="box__btn">
                                                 <button class="btn btn__scanqr"><i class="fa-solid fa-qrcode"></i> สแกน QR Code เพื่ออัปโหลดวีดีโอผ่านมือถือ</button>
                                             </div>
@@ -486,11 +486,11 @@
 
                             <div class="box__content">
                                 <div class="row">
-                                    <div class="col-2">
+                                    <div class="col-12 col-sm-2">
                                         <img src="{{asset('s/img/img-null.png')}}" class="img-fluid" alt="">
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-4">
                                         <h4 class="txt__products">กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA AE80 , AE90 , AE101 16V</h4>
                                         <p class="txt__sub">SKU 12345</p>
                                         <p class="txt__sub">แบรนด์.</p>
@@ -498,13 +498,13 @@
                                         <p class="txt__sub">หมวดหมู่ > หมวดหมู่ย่อย</p>
                                         <p class="txt__sub">ปี</p>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-12 col-sm-2">
                                         <p class="txt__detail">OEM</p>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-12 col-sm-2">
                                         <p class="txt__detail">มือสอง 90%</p>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-12 col-sm-2">
                                         <p class="txt__detail">299 ฿</p>
                                     </div>
                                 </div>
@@ -575,7 +575,7 @@
                                                     </div>
 
                                                     <div class="row">
-                                                        <div class="col-6">
+                                                        <div class="col-12 col-sm-6">
                                                             <div class="input-group mb-3">
                                                                 <input type="text" class="form-control" placeholder="ระบุ" aria-describedby="button-addon2">
                                                                 <button class="btn btn btn__search" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -1285,6 +1285,186 @@
 </div>
 
 <!-- End Modal -->
+
+<style>
+    @media screen and (min-width:320px) and (max-width:374px) {
+        #spareparts-sendoffer .box__detailnumberpart {
+            flex-wrap: wrap;
+        }
+
+        #spareparts-sendoffer .box__allcontent .box__detailspare,
+        #spareparts-sendoffer .box__allcontent .box__sendoffer {
+            padding: 10px;
+        }
+
+        #spareparts-sendoffer .box__allcontent .box__sendoffer .btn__search,
+        #spareparts-sendoffer .box__allcontent .box__sendoffer .btn__sendlist {
+            margin-right: 0;
+            margin-bottom: 1rem;
+            padding: 1rem 1rem;
+        }
+
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__contentimage .wrapper__content {
+            flex-wrap: wrap;
+            padding: 0;
+            justify-content: center;
+        }
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__contentimage .wrapper__content .box__content{
+            margin-top: 1rem;
+        }
+        .accordion-body{
+            overflow: scroll;
+        }
+
+        #spareparts-sendoffer .box__qrvideoscan .box__video{
+            margin-top: 0.5rem;
+            padding: 15px 0.5rem;
+        }
+
+        #spareparts-sendoffer .box__btnsave{
+            display: flex;
+        }
+        #spareparts-sendoffer .box__allcontent .box__detailspare .wrapper__image{
+            flex-wrap: wrap;
+        }
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__contentimage .wrapper__content .box__content .txt__title{
+            font-size: 1rem;
+        }
+        #modalsendlist .box__transportation .box__transport .box__type .txt__type .label__success{
+            display: block;
+        }
+        #modalsendlist .box__transportation .box__settransport .wrapper__checkbox .form-group .form-select{
+            width: 70%;
+        }
+    }
+
+    @media screen and (min-width:375px) and (max-width:424px) {
+        #spareparts-sendoffer .box__detailnumberpart {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        #spareparts-sendoffer .box__allcontent .box__detailspare,
+        #spareparts-sendoffer .box__allcontent .box__sendoffer {
+            padding: 10px;
+        }
+
+        #spareparts-sendoffer .box__allcontent .box__sendoffer .btn__search,
+        #spareparts-sendoffer .box__allcontent .box__sendoffer .btn__sendlist {
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__contentimage .wrapper__content {
+            flex-wrap: wrap;
+            padding: 0;
+            justify-content: center;
+        }
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__contentimage .wrapper__content .box__content{
+            margin-top: 1rem;
+        }
+        .accordion-body{
+            overflow: scroll;
+        }
+
+        #spareparts-sendoffer .box__qrvideoscan .box__video{
+            margin-top: 0.5rem;
+            padding: 15px 0.5rem;
+        }
+
+        #spareparts-sendoffer .box__btnsave{
+            display: flex;
+            justify-content: center;
+        }
+        #spareparts-sendoffer .box__allcontent .box__detailspare .wrapper__image{
+            flex-wrap: wrap;
+        }
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__contentimage .wrapper__content .box__content .txt__title{
+            font-size: 1rem;
+        }
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__heading .txt__heading span{
+            display: block;
+            margin-left: 0;
+        }
+        #modalsendlist .box__transportation .box__transport .box__type .txt__type .label__success{
+            display: block;
+        }
+        #modalsendlist .box__transportation .box__settransport .wrapper__checkbox .form-group .form-select{
+            width: 70%;
+        }
+    }
+
+    @media screen and (min-width:425px) and (max-width:767px) {
+        #spareparts-sendoffer .box__detailnumberpart {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        #spareparts-sendoffer .box__allcontent .box__detailspare,
+        #spareparts-sendoffer .box__allcontent .box__sendoffer {
+            padding: 10px;
+        }
+
+        #spareparts-sendoffer .box__allcontent .box__sendoffer .btn__search,
+        #spareparts-sendoffer .box__allcontent .box__sendoffer .btn__sendlist {
+            margin-bottom: 1rem;
+        }
+
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__contentimage .wrapper__content {
+            flex-wrap: wrap;
+            padding: 0;
+        }
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__contentimage .wrapper__content .box__content{
+            margin-top: 1rem;
+        }
+        .accordion-body{
+            overflow: scroll;
+        }
+
+        #spareparts-sendoffer .box__qrvideoscan .box__video{
+            margin-top: 0.5rem;
+            padding: 15px 0.5rem;
+        }
+
+        #spareparts-sendoffer .box__btnsave{
+            display: flex;
+            justify-content: center;
+        }
+        #spareparts-sendoffer .box__allcontent .box__detailspare .wrapper__image{
+            flex-wrap: wrap;
+        }
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__contentimage .wrapper__content .box__content .txt__title{
+            font-size: 1rem;
+        }
+
+        #spareparts-sendoffer .box__allcontent .box__offer .box__allitems .box__itemsoffer .box__heading .txt__heading span{
+            display: block;
+            margin-left: 0;
+        }
+        #modalsendlist .box__transportation .box__transport .box__type .txt__type .label__success{
+            display: block;
+        }
+        #modalsendlist .box__transportation .box__settransport .wrapper__checkbox .form-group .form-select{
+            width: 30%;
+        }
+    }
+
+    @media screen and (min-width:768px) and (max-width:1023px) {}
+
+    @media screen and (min-width:1024px) and (max-width:1279px) {}
+
+    @media screen and (min-width:1280px) and (max-width:1359px) {}
+
+    @media screen and (min-width:1360px) and (max-width:1439px) {}
+
+    @media screen and (min-width:1440px) and (max-width:1599px) {}
+
+    @media screen and (min-width:1600px) and (max-width:1919px) {}
+
+    @media screen and (min-width:1920px) and (max-width:2559px) {}
+
+    @media screen and (min-width:2560px) {}
+</style>
 @stop
 
 @section('script')
