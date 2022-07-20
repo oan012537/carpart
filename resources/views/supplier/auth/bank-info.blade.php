@@ -147,8 +147,6 @@
                                 <button type="submit" class="button button1" id="submit-btn"> {{ trans('file.Next') }} &nbsp; <i
                                         class='fas fa-angle-right'></i>
                                 </button>
-
-                                
                                 {{-- <div id="myModal" class="modal">
                                     <div class="modal-content">
                                         <span class="close">&times;</span>

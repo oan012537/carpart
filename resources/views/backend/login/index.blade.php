@@ -8,6 +8,7 @@
         -ms-flex-pack: center;
         justify-content: center;
     }
+
     #modalerror p {
         color: white;
         font-style: normal;
@@ -24,57 +25,59 @@
             <form method="POST" action="{{ route('backend.login') }}" onsubmit="return loginfn();" id="formlogin">
                 @csrf
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-xl-8 col-lg-12">
                         <div class="img-img-log">
                             <img src="{{asset('backends/assets/img/login/ln1.png')}}" class="img-fluid" alt="">
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="h-text-log">
-                            <p>
-                                เข้าสู่ระบบ
-                            </p>
-                        </div>
-                        <div class="tt-text-log">
-                            <p>
-                                อีเมล
-                            </p>
-                        </div>
-                        <div class="input-group mb-3 box-border">
-                            <span> <img src="{{asset('backends/assets/img/login/icon-in.svg')}}" class="img-fluid icon-signin" alt=""></span>
-                            <input type="text" class="form-control" name="email" placeholder="01xx-xxx-xxxxx" aria-label="Email" aria-describedby="basic-addon1" required autocomplete="off">
-                        </div>
-                        <div class="tt-text-log2">
-                            <p>
-                                รหัสผ่าน
-                            </p>
-                        </div>
-                        <div class="input-group mb-3 box-border">
-                            <img src="{{asset('backends/assets/img/login/icon-key.svg')}}" class="img-fluid icon-key" alt="">
-                            <input type="password" name="password" class="form-control" id="password" placeholder="*************" required autocomplete="off">
-                            <img src="{{asset('backends/assets/img/login/icon-eye.svg')}}" class="img-fluid icon-eye" alt="" onclick="eyePassword()">
-                        </div>
-                        <div class="t-pass-t">
-                            <p>
-                                ลืมรหัสผ่าน
-                            </p>
-                        </div>
-                        <br>
-                        <div class='but-bb-log'>
-                            <button  type="submit" class="button button1" id="submit">
-                                เข้าสู่ระบบ
-                            </button>
-                        </div>
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="box__pding">
+                            <div class="h-text-log">
+                                <p>
+                                    เข้าสู่ระบบ
+                                </p>
+                            </div>
+                            <div class="tt-text-log">
+                                <p>
+                                    อีเมล
+                                </p>
+                            </div>
+                            <div class="input-group mb-3 box-border">
+                                <span> <img src="{{asset('backends/assets/img/login/icon-in.svg')}}" class="img-fluid icon-signin" alt=""></span>
+                                <input type="text" class="form-control" name="email" placeholder="01xx-xxx-xxxxx" aria-label="Email" aria-describedby="basic-addon1" required autocomplete="off">
+                            </div>
+                            <div class="tt-text-log2">
+                                <p>
+                                    รหัสผ่าน
+                                </p>
+                            </div>
+                            <div class="input-group mb-3 box-border">
+                                <img src="{{asset('backends/assets/img/login/icon-key.svg')}}" class="img-fluid icon-key" alt="">
+                                <input type="password" name="password" class="form-control" id="password" placeholder="*************" required autocomplete="off">
+                                <img src="{{asset('backends/assets/img/login/icon-eye.svg')}}" class="img-fluid icon-eye" alt="" onclick="eyePassword()">
+                            </div>
+                            <div class="t-pass-t">
+                                <p>
+                                    ลืมรหัสผ่าน
+                                </p>
+                            </div>
+                            <br>
+                            <div class='but-bb-log'>
+                                <button type="submit" class="button button1" id="submit">
+                                    เข้าสู่ระบบ
+                                </button>
+                            </div>
 
-                        <div class="text-or-t">
-                            <p>
-                                CPN
-                            </p>
-                        </div>
-                        <div class='but-bb-log2'>
-                            <a href="{{ route('backend.register') }}" class="button button2">
-                                สมัครสมาชิก
-                            </a>
+                            <div class="text-or-t">
+                                <p>
+                                    CPN
+                                </p>
+                            </div>
+                            <div class='but-bb-log2'>
+                                <a href="{{ route('backend.register') }}" class="button button2">
+                                    สมัครสมาชิก
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,7 +103,7 @@
                 </div>
                 <br>
                 <div class="but-bb">
-                    <a href="#" id="loginsuccess"><button class="button button3" data-bs-dismiss="modal" type="button"> ตกลง</button></a>
+                    <a href="#" id="loginsuccess"><button class="button button3 btn__padding" data-bs-dismiss="modal" type="button"> ตกลง</button></a>
                 </div>
             </div>
         </div>
@@ -137,17 +140,17 @@
 <script>
     function loginfn() {
         console.log($("#formlogin").serialize());
-        $.post($("#formlogin").attr('action'),$("#formlogin").serialize(),function(data){
+        $.post($("#formlogin").attr('action'), $("#formlogin").serialize(), function(data) {
 
             console.log(data);
-            if(data.status){
+            if (data.status) {
                 $("#modalsuccess").modal('show');
                 // alert(data.msg)
                 // window.location=data.redirect_location;
-                $("#loginsuccess").attr('href',data.redirect_location)
-            }else{
+                $("#loginsuccess").attr('href', data.redirect_location)
+            } else {
                 $("#modalerror").modal('show');
-                
+
             }
 
         }).fail(function(response) {
@@ -156,7 +159,7 @@
             var erroJson = JSON.parse(response.responseText);
             for (var err in erroJson) {
                 for (var errstr of erroJson[err])
-                $("[name='" + err + "']").after("<div class='alert alert-danger'>" + errstr + "</div>");
+                    $("[name='" + err + "']").after("<div class='alert alert-danger'>" + errstr + "</div>");
             }
 
         });
