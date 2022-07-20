@@ -177,8 +177,9 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Midium\Ckeditor\ServiceProvider::class,
+        Midium\Ckeditor\ServiceProvider::class,      
     ],
 
     /*

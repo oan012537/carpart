@@ -32,7 +32,9 @@
                 <br>
             </div>
             <div class="but-but-soso">
-                <button class="button button3-3">ยกเลิกการเชื่อมต่อบัญชี</button>
+                <a href="{{ url('login/line') }}">
+                    <button class="button button3-3">ยกเลิกการเชื่อมต่อบัญชี</button>
+                </a>
             </div>
         </div>
 
@@ -56,7 +58,9 @@
                 </div>
             </div>
             <div class="but-but-soso">
-                <button class="button button4-3">เชื่อมต่อบัญชี</button>
+                <a href="{{ url('login/facebook') }}">
+                    <button class="button button4-3">เชื่อมต่อบัญชี</button>
+                </a>
             </div>
         </div>
         <div class="col-lg-4">
@@ -79,7 +83,9 @@
                 </div>
             </div>
             <div class="but-but-soso">
-                <button class="button button4-3">เชื่อมต่อบัญชี</button>
+                <a href="{{ url('login/google') }}">
+                    <button class="button button4-3">เชื่อมต่อบัญชี</button>
+                </a>
             </div>
         </div>
         </div>

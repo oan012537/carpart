@@ -35,17 +35,29 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect'      => env('GOOGLE_REDIRECT')
     ],
-
+    //-- OAT
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => env('FACEBOOK_REDIRECT_URI'), // ตั้งค่าใน Facebook Developer
+        'redirect' => env('FACEBOOK_REDIRECT_URI'),
+    ],
+    'line' => [
+        'client_id' => env('LINE_CLIENT_ID'),
+        'client_secret' => env('LINE_CLIENT_SECRET'),
+        'redirect' => env('LINE_REDIRECT_URI'),
     ],
 
-    'line' => [
-        'client_id' => 'ClientID',
-        'client_secret' => 'Client Secret',
-        'redirect' => 'https://URL/login/line/callback', //ตั้งค่าใน LineDeveloper
-    ],
+    //-- ขออนุญาต คอมเม้นต์ออกก่อน
+    // 'facebook' => [
+    //     'client_id' => env('FACEBOOK_CLIENT_ID'),
+    //     'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+    //     'redirect' => env('FACEBOOK_REDIRECT_URI'), // ตั้งค่าใน Facebook Developer
+    // ],
+
+    // 'line' => [
+    //     'client_id' => 'ClientID',
+    //     'client_secret' => 'Client Secret',
+    //     'redirect' => 'https://URL/login/line/callback', //ตั้งค่าใน LineDeveloper
+    // ],
 
 ];
