@@ -79,13 +79,9 @@
                             &nbsp;
                             <img src="assets/img/login/i2.png" class="img-fluid" alt="">
                             &nbsp;
-<<<<<<< HEAD
-                            <a href="{{ url('google/login') }}"><img src="assets/img/login/i3.png" class="img-fluid" alt=""></a>
-=======
                             <a href="google/login">
                             <img src="assets/img/login/i3.png" class="img-fluid" alt="">
                             </a>
->>>>>>> 80be2a76df94a0a828085a0a96b6b767eb49288d
                         </div>
                         <div class="text-or-t">
                             <p>
