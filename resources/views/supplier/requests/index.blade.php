@@ -93,7 +93,7 @@
                     <div class="box__contenttab">
                         <div class="box__heading">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-sm-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                         <label class="form-check-label" for="flexCheckDefault">
@@ -101,7 +101,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 col-sm-6">
                                     <div class="box__date">
                                         <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
                                     </div>
@@ -124,7 +124,7 @@
 
                         <div class="box__allfooter">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-sm-6">
                                     <?php if ($key == 2) { ?>
                                         <div class="wrapper__viewdetail">
                                             <div class="box__text">
@@ -140,7 +140,7 @@
                                     <?php } ?>
 
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 col-sm-6">
                                     <div class="wrapper__status">
                                         <?php if ($key == 1) { ?>
                                             <div class="box__status status-wait">สถานะ : รอตรวจสอบ</div>
@@ -162,11 +162,11 @@
                     @endforeach
                     <div class="box__allpagination">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <p class="txt__viewtxt">แสดงทั้งหมด 20 จาก 214 รายการ</p>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 {{ $dataall->links() }}
                                 <div class="pagination">
                                     <nav aria-label="Page navigation example">
@@ -193,7 +193,7 @@
                         <div class="box__contenttab">
                             <div class="box__heading">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
@@ -201,7 +201,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="box__date">
                                             <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
                                         </div>
@@ -224,7 +224,7 @@
 
                             <div class="box__allfooter">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <?php if ($i == 2) { ?>
                                             <div class="wrapper__viewdetail">
                                                 <div class="box__text">
@@ -240,7 +240,7 @@
                                         <?php } ?>
 
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="wrapper__status">
                                             <?php if ($i == 1) { ?>
                                                 <div class="box__status status-wait">สถานะ : รอตรวจสอบ</div>
@@ -263,11 +263,11 @@
 
                     <div class="box__allpagination">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <p class="txt__viewtxt">แสดงทั้งหมด 20 จาก 214 รายการ</p>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <div class="pagination">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
@@ -295,7 +295,7 @@
                         <div class="box__contenttab">
                             <div class="box__heading">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
@@ -303,7 +303,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="box__date">
                                             <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
                                         </div>
@@ -326,10 +326,10 @@
 
                             <div class="box__allfooter">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <button type="button" class="btn btn__del">ลบ</button>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="wrapper__status">
                                             <div class="box__status status-wait">สถานะ : รอตรวจสอบ</div>
                                             <div class="box__btn">
@@ -344,11 +344,11 @@
 
                     <div class="box__allpagination">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <p class="txt__viewtxt">แสดงทั้งหมด 20 จาก 214 รายการ</p>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <div class="pagination">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
@@ -375,7 +375,7 @@
                         <div class="box__contenttab">
                             <div class="box__heading">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
@@ -383,7 +383,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="box__date">
                                             <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
                                         </div>
@@ -406,7 +406,7 @@
 
                             <div class="box__allfooter">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="wrapper__viewdetail">
                                             <div class="box__text">
                                                 <p class="txt__text">ข้อเสนอทั้งหมด (20)</p>
@@ -417,7 +417,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="wrapper__status">
                                             <div class="box__status status-sendsuccess">สถานะ : ส่งคำขอแล้ว</div>
                                             <div class="box__btn">
@@ -432,11 +432,11 @@
 
                     <div class="box__allpagination">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <p class="txt__viewtxt">แสดงทั้งหมด 20 จาก 214 รายการ</p>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <div class="pagination">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
@@ -463,7 +463,7 @@
                         <div class="box__contenttab">
                             <div class="box__heading">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
@@ -471,7 +471,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="box__date">
                                             <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
                                         </div>
@@ -494,10 +494,10 @@
 
                             <div class="box__allfooter">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <button type="button" class="btn btn__del">ลบ</button>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="wrapper__status">
                                             <div class="box__status status-close">สถานะ : ปิดรับคำขอแล้ว</div>
                                         </div>
@@ -509,11 +509,11 @@
 
                     <div class="box__allpagination">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <p class="txt__viewtxt">แสดงทั้งหมด 20 จาก 214 รายการ</p>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <div class="pagination">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
@@ -540,7 +540,7 @@
                         <div class="box__contenttab">
                             <div class="box__heading">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
@@ -548,7 +548,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="box__date">
                                             <p>วันที่ลงประกาศ dd/mm/yyyy hh:mm</p>
                                         </div>
@@ -571,10 +571,10 @@
 
                             <div class="box__allfooter">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <button type="button" class="btn btn__del">ลบ</button>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-sm-6">
                                         <div class="wrapper__status">
                                             <div class="box__status status-del">สถานะ : ลบ</div>
                                         </div>
@@ -586,11 +586,11 @@
 
                     <div class="box__allpagination">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <p class="txt__viewtxt">แสดงทั้งหมด 20 จาก 214 รายการ</p>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <div class="pagination">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination">
@@ -616,6 +616,95 @@
         </div>
     </div>
 </div>
+<style>
+    @media screen and (min-width:375px) and (max-width:413px) {
+        #spareparts-card .box__allresult .box__btn .btn__remove {
+            padding: 7px 0.5rem;
+        }
+
+        #spareparts-card .box__alltab .box__contenttab .box__contentproduct {
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        #spareparts-card .box__alltab nav {
+            overflow: scroll;
+        }
+    }
+
+    @media screen and (min-width:414px) and (max-width:424px) {
+        #spareparts-card .box__allresult .box__btn .btn__remove {
+            padding: 7px 0.5rem;
+        }
+
+        #spareparts-card .box__alltab .box__contenttab .box__contentproduct {
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        #spareparts-card .box__alltab nav {
+            overflow: scroll;
+        }
+    }
+
+    @media screen and (min-width:425px) and (max-width:767px) {
+        #spareparts-card .box__allresult .box__btn .btn__remove {
+            padding: 7px 0.5rem;
+        }
+
+        #spareparts-card .box__alltab .box__contenttab .box__contentproduct {
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        #spareparts-card .box__alltab nav {
+            overflow: scroll;
+        }
+
+    }
+
+    @media screen and (min-width:768px) and (max-width:1023px) {
+        #spareparts-card .box__allresult .box__btn .btn__remove {
+            padding: 7px 0.5rem;
+        }
+
+        #spareparts-card .box__alltab .box__contenttab .box__contentproduct {
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        #spareparts-card .box__alltab nav {
+            overflow: scroll;
+        }
+
+        #spareparts-card .box__alltab .box__contenttab .box__allfooter .wrapper__status .status-sendsuccess {
+            margin-right: 10px;
+            margin-top: 0.5rem;
+        }
+
+        #spareparts-card .box__alltab .box__contenttab .box__allfooter .wrapper__status .box__btn {
+            margin-top: 1em;
+        }
+    }
+
+    @media screen and (min-width:1024px) and (max-width:1279px) {}
+
+    @media screen and (min-width:1280px) and (max-width:1359px) {}
+
+    @media screen and (min-width:1360px) and (max-width:1439px) {}
+
+    @media screen and (min-width:1440px) and (max-width:1599px) {}
+
+    @media screen and (min-width:1600px) and (max-width:1919px) {}
+
+    @media screen and (min-width:1920px) and (max-width:2559px) {}
+
+    @media screen and (min-width:2560px) {}
+</style>
 @stop
 
 @section('script')
