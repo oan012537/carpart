@@ -1,5 +1,14 @@
 @extends('backend.layouts.templates')
 @section('content')
+<style>
+    .status-danger{
+        background-color: #f2562a2b;
+        text-align: center;
+        padding: 0.375rem 1rem;
+        border-radius: 8px;
+        color: red;
+    }
+</style>
 <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
 {{-- <input type="hidden" id="pageName" name="pageName" value="pdpa"> --}}
 <input type="hidden" id="pagemenuName" name="pagemenuName" value="pdpa">
@@ -481,12 +490,14 @@
 {{-- <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> --}}
 <script src="{{asset('daterangepicker-master/daterangepicker.js')}}"></script>
 <script>
+    var oTable;
+    var oTableexpired;
     $(document).ready(function(){
         $('.nav-link').on('shown.bs.tab', function (e) {
             // console.log('tab');
             $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
         });
-		var oTable = $('#datatables').DataTable({
+		oTable = $('#datatables').DataTable({
 			processing: true,
 			serverSide: true,
 			searching: false,
@@ -528,7 +539,7 @@
 		// 	e.preventDefault();
 		// });
 
-        var oTableexpired = $('#datatables_expired').DataTable({
+        oTableexpired = $('#datatables_expired').DataTable({
 			processing: true,
 			serverSide: true,
 			searching: false,
