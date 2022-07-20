@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <p>
-                                {{ trans('file.Aceept/Reject') }}
+                                {{ trans('file.Accept/Reject') }}
                             </p>
                         </div>
                         <div class="t-text-s3">

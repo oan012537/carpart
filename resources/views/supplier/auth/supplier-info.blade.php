@@ -371,9 +371,21 @@
     $(document).ready(function(){
 
         // re-initilize old value for option
+        // let oldSupType = "{{ old('supplier_type') }}";
+        // let supType = oldSupType ? oldSupType : '';
+        
+        // if (supType == 'personal') {
+        //     $('#onetab').prop(checked, true);
+        //     $('#twotab').prop(checked, false);
+        // } else if (supType == 'corporate') {
+        //     $('#onetab').prop(checked, false);
+        //     $('#twotab').prop(checked, true);
+        // }
+
         let oldProvinceId = "{{ old('province') }}";
         let provinceId = oldProvinceId ? oldProvinceId : '';
         $('.province-id option[value="' + provinceId + '"]').attr('selected', 'selected');
+
 
         let oldAmphureId = "{{ old('amphure') }}";
         let amphureId = oldAmphureId ? oldAmphureId : '';
