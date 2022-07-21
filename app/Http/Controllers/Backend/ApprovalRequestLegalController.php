@@ -329,8 +329,13 @@ class ApprovalRequestLegalController extends Controller
         $supplier->comment = !empty($request->txt__note)?$request->txt__note:'';
         // dd($request->all(),$supplier);
         $supplier->save();
+        $user = UserSupplier::find($supplier->user_id);
         if($request->approved == ''){
-            $text = 'อนุมัติ'.'Click : https://carparts.oan.orangeworkshop.info/supplier/login';
+            $text = 'CPN
+            อนุมัติการสมัครสมาชิกของท่านเรียบร้อยแล้ว
+            โปรดใช้รหัสผ่านต่อไปนี้ในการเข้าสู่ระบบ
+            หมายเลขโทรศัพท์ : '.$user->phone.'
+            รหัสผ่าน : 12345678';
         }else if($request->request_approval == ''){
             $text = 'รออนุมัติ';
         }else if($request->un_approve == ''){
@@ -338,7 +343,6 @@ class ApprovalRequestLegalController extends Controller
         }else{
             $text = '';
         }
-        $user = UserSupplier::find($supplier->user_id);
         $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
 
@@ -355,8 +359,13 @@ class ApprovalRequestLegalController extends Controller
         $supplier->approve_by = Auth::user()->name;
         $supplier->comment = !empty($request->txt__note)?$request->txt__note:'';
         $supplier->save();
+        $user = UserSupplier::find($supplier->user_id);
         if($request->approved == ''){
-            $text = 'อนุมัติ'.'Click : https://carparts.oan.orangeworkshop.info/supplier/login';
+            $text = 'CPN
+            อนุมัติการสมัครสมาชิกของท่านเรียบร้อยแล้ว
+            โปรดใช้รหัสผ่านต่อไปนี้ในการเข้าสู่ระบบ
+            หมายเลขโทรศัพท์ : '.$user->phone.'
+            รหัสผ่าน : 12345678';
         }else if($request->request_approval == ''){
             $text = 'รออนุมัติ';
         }else if($request->un_approve == ''){
@@ -364,7 +373,6 @@ class ApprovalRequestLegalController extends Controller
         }else{
             $text = '';
         }
-        $user = UserSupplier::find($supplier->user_id);
         $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
 

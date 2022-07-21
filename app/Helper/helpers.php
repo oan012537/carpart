@@ -12,13 +12,13 @@ function smstext($text,$phone){
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_HTTPHEADER => array(
             "Content-Type: application/json",
-            "api_key:6e717052fc82316ded2a8c923804045f",
-            "secret_key:rD30QKyVoJxcDFTC",
+            "api_key:".env('SMSMKT_API_KEY'),
+            "secret_key:".env('SMSMKT_API_SECRET'),
         ),
         CURLOPT_POSTFIELDS =>json_encode(array(
         "message"=>$text,
         "phone"=>$phone,
-        "sender"=>"CAR-PARTS",
+        "sender"=>"CARPARTSNV",
         )),
     ));
     $response = curl_exec($curl);
