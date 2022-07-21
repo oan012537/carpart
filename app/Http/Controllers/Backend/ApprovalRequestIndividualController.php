@@ -29,8 +29,8 @@ class ApprovalRequestIndividualController extends Controller
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
                 ->orwhere('store_name','LIKE','%'.$search.'%')
-                ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere(DB::raw("concat(suppliers.personal_first_name,' ', suppliers.personal_last_name)"),'LIKE','%'.$search.'%')
+                ->orwhere('personal_card_id','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
@@ -154,8 +154,8 @@ class ApprovalRequestIndividualController extends Controller
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
                 ->orwhere('store_name','LIKE','%'.$search.'%')
-                ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere(DB::raw("concat(suppliers.personal_first_name,' ', suppliers.personal_last_name)"),'LIKE','%'.$search.'%')
+                ->orwhere('personal_card_id','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
@@ -224,8 +224,8 @@ class ApprovalRequestIndividualController extends Controller
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
                 ->orwhere('store_name','LIKE','%'.$search.'%')
-                ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere(DB::raw("concat(suppliers.personal_first_name,' ', suppliers.personal_last_name)"),'LIKE','%'.$search.'%')
+                ->orwhere('personal_card_id','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
@@ -294,8 +294,8 @@ class ApprovalRequestIndividualController extends Controller
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
                 ->orwhere('store_name','LIKE','%'.$search.'%')
-                ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere(DB::raw("concat(suppliers.personal_first_name,' ', suppliers.personal_last_name)"),'LIKE','%'.$search.'%')
+                ->orwhere('personal_card_id','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });

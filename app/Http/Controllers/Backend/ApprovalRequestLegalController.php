@@ -27,9 +27,9 @@ class ApprovalRequestLegalController extends Controller
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('company_name ','LIKE','%'.$search.'%')
+                ->orwhere('company_name','LIKE','%'.$search.'%')
                 // ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere('vat_registration_number','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
@@ -111,9 +111,9 @@ class ApprovalRequestLegalController extends Controller
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('company_name ','LIKE','%'.$search.'%')
+                ->orwhere('company_name','LIKE','%'.$search.'%')
                 // ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere('vat_registration_number','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
@@ -181,9 +181,9 @@ class ApprovalRequestLegalController extends Controller
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('company_name ','LIKE','%'.$search.'%')
+                ->orwhere('company_name','LIKE','%'.$search.'%')
                 // ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere('vat_registration_number','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
@@ -251,9 +251,9 @@ class ApprovalRequestLegalController extends Controller
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('company_name ','LIKE','%'.$search.'%')
+                ->orwhere('company_name','LIKE','%'.$search.'%')
                 // ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere('vat_registration_number','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
