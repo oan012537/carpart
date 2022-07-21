@@ -381,8 +381,8 @@ class ApprovalRequestIndividualController extends Controller
         }else{
             $text = '';
         }
-        // dd($supplier);
-        $sms = smstext($text,$supplier->phone);
+        $user = UserSupplier::find($supplier->user_id);
+        $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
 
         }
@@ -406,7 +406,8 @@ class ApprovalRequestIndividualController extends Controller
         }else{
             $text = '';
         }
-        $sms = smstext($text,$supplier->phone);
+        $user = UserSupplier::find($supplier->user_id);
+        $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
 
         }

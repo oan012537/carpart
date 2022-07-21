@@ -338,7 +338,8 @@ class ApprovalRequestLegalController extends Controller
         }else{
             $text = '';
         }
-        $sms = smstext($text,$supplier->phone);
+        $user = UserSupplier::find($supplier->user_id);
+        $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
 
         }
@@ -363,7 +364,8 @@ class ApprovalRequestLegalController extends Controller
         }else{
             $text = '';
         }
-        $sms = smstext($text,$supplier->phone);
+        $user = UserSupplier::find($supplier->user_id);
+        $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
 
         }

@@ -18,7 +18,7 @@ function smstext($text,$phone){
         CURLOPT_POSTFIELDS =>json_encode(array(
         "message"=>$text,
         "phone"=>$phone,
-        "sender"=>"CARPARTSNV",
+        "sender"=>"CAR-PARTS",
         )),
     ));
     $response = curl_exec($curl);
