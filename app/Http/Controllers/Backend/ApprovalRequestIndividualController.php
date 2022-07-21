@@ -28,7 +28,7 @@ class ApprovalRequestIndividualController extends Controller
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('store_name ','LIKE','%'.$search.'%')
+                ->orwhere('store_name','LIKE','%'.$search.'%')
                 ->orwhere('supplir_name','LIKE','%'.$search.'%')
                 ->orwhere('card_id','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
@@ -153,7 +153,7 @@ class ApprovalRequestIndividualController extends Controller
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('store_name ','LIKE','%'.$search.'%')
+                ->orwhere('store_name','LIKE','%'.$search.'%')
                 ->orwhere('supplir_name','LIKE','%'.$search.'%')
                 ->orwhere('card_id','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
@@ -223,7 +223,7 @@ class ApprovalRequestIndividualController extends Controller
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('store_name ','LIKE','%'.$search.'%')
+                ->orwhere('store_name','LIKE','%'.$search.'%')
                 ->orwhere('supplir_name','LIKE','%'.$search.'%')
                 ->orwhere('card_id','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
@@ -293,7 +293,7 @@ class ApprovalRequestIndividualController extends Controller
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('store_name ','LIKE','%'.$search.'%')
+                ->orwhere('store_name','LIKE','%'.$search.'%')
                 ->orwhere('supplir_name','LIKE','%'.$search.'%')
                 ->orwhere('card_id','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
