@@ -373,7 +373,7 @@ class ApprovalRequestIndividualController extends Controller
         $supplier->comment = !empty($request->txt__note)?$request->txt__note:'';
         $supplier->save();
         if($request->approved == ''){
-            $text = 'อนุมัติ';
+            $text = 'อนุมัติ'.'Click : https://carparts.oan.orangeworkshop.info/supplier/login';
         }else if($request->request_approval == ''){
             $text = 'รออนุมัติ';
         }else if($request->un_approve == ''){
@@ -398,7 +398,7 @@ class ApprovalRequestIndividualController extends Controller
         $supplier->comment = !empty($request->txt__note)?$request->txt__note:'';
         $supplier->save();
         if($request->approved == ''){
-            $text = 'อนุมัติ';
+            $text = 'อนุมัติ'.'Click : https://carparts.oan.orangeworkshop.info/supplier/login';
         }else if($request->request_approval == ''){
             $text = 'รออนุมัติ';
         }else if($request->un_approve == ''){
