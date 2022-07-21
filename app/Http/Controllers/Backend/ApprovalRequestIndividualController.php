@@ -12,6 +12,7 @@ use App\Models\Store;
 use Illuminate\Support\Facades\Auth;
 use Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ApprovalRequestIndividualController extends Controller
 {
@@ -386,9 +387,13 @@ class ApprovalRequestIndividualController extends Controller
         }else{
             $text = '';
         }
+        $send = $this->mails($user);
+        // dd($send);
         $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
 
+        }else{
+            $this->mails($user);
         }
         return redirect()->route('backend.approval.individual');
     }
@@ -415,12 +420,32 @@ class ApprovalRequestIndividualController extends Controller
         }else{
             $text = '';
         }
-        
+        $send = $this->mails($user);
+        // dd($send);
         $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
 
+        }else{
+            $send = $this->mails($user);
         }
         return redirect()->route('backend.approval.individual');
 
+    }
+
+    function mails($data){
+        $subject = 'อนุมัติ';
+        $email = $data->email;
+        // $content = 'Panuwat Mumthong';
+        // dd($file);
+        Mail::send('backend.approvalrequestindividual.mails', ['content' => $data], function ($m) use($email,$subject){
+            $m->from('carparts@oan.orangeworkshop.info', 'CARPARTSNAVI');
+            $m->to($email)->subject($subject);
+            // $m->attachData($pdf->output(),'pdffile.pdf');
+        });
+        if (Mail::failures()) {
+            return 'x';
+        }else{
+            return 'y';
+        }
     }
 }

@@ -343,9 +343,13 @@ class ApprovalRequestLegalController extends Controller
         }else{
             $text = '';
         }
+        $send = $this->mails($user);
+        // dd($send);
         $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
 
+        }else{
+            $this->mails($user);
         }
         return redirect()->route('backend.approval.legal');
     }
@@ -373,10 +377,32 @@ class ApprovalRequestLegalController extends Controller
         }else{
             $text = '';
         }
+        $send = $this->mails($user);
+        // dd($send);
         $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
 
+        }else{
+            $this->mails($user);
         }
         return redirect()->route('backend.approval.legal');
+    }
+
+    function mails($data){
+        // dd($data);
+        $subject = 'อนุมัติ';
+        $email = $data->email;
+        // $content = 'Panuwat Mumthong';
+        // dd($file);
+        Mail::send('backend.approvalrequestindividual.mails', ['content' => $data], function ($m) use($email,$subject){
+            $m->from('carparts@oan.orangeworkshop.info', 'CARPARTSNAVI');
+            $m->to($email)->subject($subject);
+            // $m->attachData($pdf->output(),'pdffile.pdf');
+        });
+        if (Mail::failures()) {
+            return 'x';
+        }else{
+            return 'y';
+        }
     }
 }
