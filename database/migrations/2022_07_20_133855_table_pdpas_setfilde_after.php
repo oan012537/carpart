@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TableBannerimageRename extends Migration
+class TablePdpasSetfildeAfter extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class TableBannerimageRename extends Migration
      */
     public function up()
     {
-        // Schema::rename('banner_image', 'bannerimages');
+        Schema::table('pdpas', function($table) {
+            $table->string('code',20)->unsigned()->change();
+        });
     }
 
     /**

@@ -132,10 +132,10 @@
                         </div>
 
                         <div class="purchase-info">
-                            <button type="button" class="btn"> <i class="fa fa-heart" style="font-size:18px"></i>
+                            <button type="button" class="btn btn_bookmark" rel="{{ $product->id }}"> <i class="fa fa-heart" style="font-size:18px"></i>
                             </button>
                             <div class="text-t-into">
-                                <p> สนใจสินค้าตัวนี้ </p>
+                                <p id="text_bookmark"> สนใจสินค้าตัวนี้ </p>
                             </div>
                         </div>
                         <div class="social-links">
@@ -424,14 +424,14 @@
                             <div class="col-lg-3">
                                 <div class="tt-detail-tt">
                                     <p>
-                                        ส่งจาก
+                                        <!-- ส่งจาก -->
                                     </p>
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="tt-detail-tt2">
                                     <p>
-                                        {{ (is_null($product->supplier) ? '-' : $product->supplier->Province->name_th) }}
+                                        {{-- (is_null($product->supplier) ? '-' : $product->supplier->Province->name_th) --}}
                                     </p>
                                 </div>
                             </div>
@@ -810,4 +810,34 @@
         document.getElementById(cityName).style.display = "block";
     }
     </script>
+
+    <!-- === OAT === -->
+<script>
+    $(document).on("click", ".btn_bookmark", function(e){
+        e.preventDefault();
+        var id = $(this).attr("rel");
+        console.log(id);
+        $.ajax({
+            type:'GET',
+            url: '{{ url("productbookmark") }}/'+id,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(response){
+                console.log(response);
+                if(response.status == 200){ 
+                    $("#text_bookmark").text('ยกเลิก สนใจสินค้าตัวนี้'); 
+                }else{
+                    alert('กรุณาเข้าระบบก่อน');
+                }
+                
+            },
+            error: function(response){
+                console.log("error");
+                console.log(response);
+            }
+        });
+    });
+</script>
+
 @stop

@@ -13,7 +13,7 @@ class TableBannerRename extends Migration
      */
     public function up()
     {
-        Schema::rename('banner', 'banners');
+        // Schema::rename('banner', 'banners');
     }
 
     /**

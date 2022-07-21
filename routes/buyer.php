@@ -110,6 +110,7 @@ Route::prefix('buyer')->group(function(){
 // ========== Product Detail ================
 
 Route::get('product/{productname}/{id}', [Buyer\ProductDetailController::class, 'index']); //-OAT
+Route::get('productbookmark/{id}', [Buyer\ProductDetailController::class, 'product_bookmark']); //-OAT Ajax
 
 // ========== Product Detail ================
 

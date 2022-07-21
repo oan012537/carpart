@@ -446,7 +446,7 @@
                                                                 <p class="txt__label">{{ trans('file.Transportation') }}</p>
                                                             </div>
                                                             <div class="col-xl-10 col-lg-10 col-md-10 col-12">
-                                                                @for ($i = 1; $i <= 3; $i++)
+                                                                @for ($i = 1; $i <= 1; $i++)
                                                                     <div class="accordion" id="accordionExample">
                                                                         <div class="accordion-item">
                                                                             <h2 class="accordion-header" id="headingOne">

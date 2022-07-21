@@ -653,7 +653,7 @@ class ProductController extends Controller
             ],
             [
                 'id' => 2,
-                'name' => 'Flash Express',
+                'name' => 'J&T Express',
                 'estimate_fee' => 40.00
             ]
         );
@@ -840,7 +840,7 @@ class ProductController extends Controller
             ],
             [
                 'id' => 2,
-                'name' => 'Flash Express',
+                'name' => 'J&T Express',
                 'estimate_fee' => 40.00
             ]
         );

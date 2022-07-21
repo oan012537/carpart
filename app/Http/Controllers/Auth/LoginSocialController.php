@@ -30,7 +30,20 @@ class LoginSocialController extends Controller
     protected function _registerOrLoginUser($data, $provider)
     {
         //GET USER 
-        $user = mUsers_buyer::where('email', $data->email)->first();
+        
+        // $user = mUsers_buyer::where('email', $data->email)->first();
+
+        $user = mUsers_buyer::where('social_id', $data->id)->first();
+
+        dd($user, $data);
+
+        if($user){
+            mUsers_buyer::where('id', $user->id)
+            ->update([
+                'social_id' => $data->id,
+                'social_type' => $provider,
+            ]);
+        }
         
         //Create if not exists
         if (!$user) {
@@ -38,11 +51,12 @@ class LoginSocialController extends Controller
             $user = new mUsers_buyer();
             $user->profile_name = $data->name;
             $user->social_id = $data->id;
-            $user->social_type = $data->provider;
+            $user->social_type = $provider;
             $user->email = empty($data->email)?"":$data->email;
             // $user->avatar = empty($data->avatar)?"":$data->avatar;
             $user->save();
         }
+        
         //LOGIN by object user
         Auth::login($user);
     }

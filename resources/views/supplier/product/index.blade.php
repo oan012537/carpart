@@ -254,6 +254,12 @@
 
     $(document).ready(function() {
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         // datatable
         var table = $('#product-list-table').DataTable({
             "order": [],
@@ -280,19 +286,14 @@
                     },
                     'checkboxes': {
                         'selectRow': true,
-                        'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes" style="width:20px;height:20px;"><label></label></div>'
+                        'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'
                     },
                     'targets': [0]
                 }
             ],
-            'select': {
-                style: 'multi',
-                selector: 'td:first-child'
-            },
-            'lengthMenu': [
-                [10, 25, 50, -1],
-                [10, 25, 50, "All"]
-            ]
+            'select': { style: 'multi',  selector: 'td:first-child'},
+            'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, "All"]],
+
         });
         // datatable
 
