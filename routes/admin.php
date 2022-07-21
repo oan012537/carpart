@@ -85,7 +85,7 @@ Route::group(['middleware' => 'auth'], function(){
 
                 Route::get('changestatus', [Backend\ApprovalRequestIndividualController::class,'changestatus']);
 
-                Route::post('approve', [Backend\ApprovalRequestLegalController::class,'approval'])->name('backend.approval.individual.approve');
+                Route::post('approve', [Backend\ApprovalRequestIndividualController::class,'approval'])->name('backend.approval.individual.approve');
 
                 Route::get('getdetails', [Backend\ApprovalRequestIndividualController::class,'getdetails'])->name('backend.approval.individual.getdetails');
             });

@@ -372,6 +372,20 @@ class ApprovalRequestIndividualController extends Controller
         $supplier->approve_by = Auth::user()->name;
         $supplier->comment = !empty($request->txt__note)?$request->txt__note:'';
         $supplier->save();
+        if($request->approved == ''){
+            $text = 'อนุมัติ';
+        }else if($request->request_approval == ''){
+            $text = 'รออนุมัติ';
+        }else if($request->un_approve == ''){
+            $text = 'ไม่อนุมัติ';
+        }else{
+            $text = '';
+        }
+        // dd($supplier);
+        $sms = smstext($text,$supplier->phone);
+        if($sms['code'] == '000'){
+
+        }
         return redirect()->route('backend.approval.individual');
     }
 
@@ -383,6 +397,20 @@ class ApprovalRequestIndividualController extends Controller
         $supplier->approve_by = Auth::user()->name;
         $supplier->comment = !empty($request->txt__note)?$request->txt__note:'';
         $supplier->save();
+        if($request->approved == ''){
+            $text = 'อนุมัติ';
+        }else if($request->request_approval == ''){
+            $text = 'รออนุมัติ';
+        }else if($request->un_approve == ''){
+            $text = 'ไม่อนุมัติ';
+        }else{
+            $text = '';
+        }
+        $sms = smstext($text,$supplier->phone);
+        if($sms['code'] == '000'){
+
+        }
         return redirect()->route('backend.approval.individual');
+
     }
 }
