@@ -30,6 +30,9 @@ class mUsers_buyer extends Authenticatable
         'phone',
         'social_id',
         'social_type',
+        'social_facebookid',
+        'social_googleid',
+        'social_lineid',
         'created_at',
         'updated_at'
     ];

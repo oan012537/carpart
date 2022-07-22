@@ -38,26 +38,23 @@ class LoginSocialController extends Controller
             case 'line' : $provider_type = 'social_lineid';
                 break;   
         }
-        // dd($data, $provider_type);
+
         $user_buyer_id = "";
         if(!is_null(Auth::guard('buyer')->user())){
             $user_buyer_id = Auth::guard('buyer')->user()->id;
             $user = mUsers_buyer::where('id', $user_buyer_id)->first();
-
-            if(is_null($user->$provider_type)){
-                mUsers_buyer::where('id', $user->id)
-                ->update([
-                    $provider_type => $data->id,
-                ]);
-            }else{ //-- ถ้ามีอยู่แล้วลบออก (ยกเลิก)
-                mUsers_buyer::where('id', $user->id)
-                ->update([
-                    $provider_type => null,
-                ]);
-            }
-            
         }
-  
+        
+        
+
+        if($user){
+            
+            mUsers_buyer::where('id', $user->id)
+            ->update([
+                $provider_type => $data->id,
+            ]);
+        }
+        
         //Create if not exists
         // if (!$user) {
         //     //CREATE NEW USER
@@ -71,6 +68,6 @@ class LoginSocialController extends Controller
         // }
         
         //LOGIN by object user
-        // Auth::login($user);
+        Auth::login($user);
     }
 }
