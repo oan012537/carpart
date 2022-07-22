@@ -9,6 +9,11 @@ use Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use File;
+use App\Models\ProductImage;
+use App\Models\Warranty;
+use App\Models\Brand;
+use App\Models\Transportation;
+use App\Models\Backend\Deliverys;
 
 class ProductController extends Controller
 {
@@ -110,5 +115,46 @@ class ProductController extends Controller
         // dd(Auth::guard('supplier')->user());
         // $supplier = users_supplier::find(Auth::guard('supplier')->user()->id);
         return view('backend.product.details');
+    }
+
+    public function view($id){
+        $data = Product::find($id);
+        $brand_list_data = Brand::where('is_active', true)->get();
+        $product_image = ProductImage::where('product_id', $id)->pluck('image', 'line_item_no');
+        $warranty = Warranty::where('product_id', $id)->first();
+        $transport = Transportation::where('product_id', $id)->first();
+        $transport_type_ids = Transportation::where('product_id', $id)->pluck('transport_type_id', 'id')->toArray();
+
+        $product_qualities = ['Excellent','Good','Fair','Poor','repairable'];
+        $day_month_year = ['Day', 'Month', 'Year'];
+        $units = ['KG', 'G'];
+        $uoms = ['CM', 'M', 'MM'];
+
+        $deliverys = Deliverys::where('is_active', 1)->get();
+
+
+        $transport_type_array = array(
+            [
+                'id' => 1,
+                'name' => 'Laramove Thailand',
+                'estimate_fee' => 29.00
+            ],
+            [
+                'id' => 2,
+                'name' => 'J&T Express',
+                'estimate_fee' => 40.00
+            ]
+        );
+
+        // foreach ($product_image as $key => $value) {
+        //     $img = \File::get(url('product/images/' . $value));
+            
+        // }
+
+        return view('backend.product.view', 
+                compact('data', 'brand_list_data', 'product_image',
+                    'warranty', 'transport', 'transport_type_array',
+                    'product_qualities', 'day_month_year', 'units',
+                    'uoms', 'transport_type_ids','deliverys'));
     }
 }

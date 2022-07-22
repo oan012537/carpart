@@ -70,7 +70,7 @@
                 <li>
                     <a href="javascript:void(0)" class="nav_link" data-page="approval" id="approval">
                         <i class="fa-solid fa-list"></i>
-                        <div class="nav_name">คำขออนุมัติ <div class="box__iconmenu"> <span class="circle">12</span></div>
+                        <div class="nav_name">คำขออนุมัติ <div class="box__iconmenu" id="showcountapprove"> <span class="circle"></span></div>
                             <div class="icondropdown">
                                 <i class="fa-solid fa-chevron-down"></i>
                             </div>

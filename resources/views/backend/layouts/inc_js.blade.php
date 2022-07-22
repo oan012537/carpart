@@ -73,4 +73,11 @@
         }
     });
     $("input[type='number']").attr('inputmode','numeric');
+    $.get("{{route('backend.approve.wait')}}", {},
+        function (data, textStatus, jqXHR) {
+            if(parseInt(data)>0){
+                $("#showcountapprove span").html(data)
+            }
+        },
+    );
 </script>

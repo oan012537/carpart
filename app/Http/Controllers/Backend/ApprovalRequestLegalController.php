@@ -11,6 +11,7 @@ use App\Models\Supplier;
 use Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ApprovalRequestLegalController extends Controller
 {
@@ -20,7 +21,7 @@ class ApprovalRequestLegalController extends Controller
 
     public function datatables(){
 
-        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('supplier_type','corporate')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('supplier_type','corporate')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
@@ -104,7 +105,7 @@ class ApprovalRequestLegalController extends Controller
 
     public function datatables_wait(){
 
-		$data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','request_approval')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+		$data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','request_approval')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
@@ -174,7 +175,7 @@ class ApprovalRequestLegalController extends Controller
 
     public function datatables_approval(){
 
-        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','approved')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','approved')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
@@ -244,7 +245,7 @@ class ApprovalRequestLegalController extends Controller
 
 	public function datatables_disapproved(){
 
-        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','un_approve')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','un_approve')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
