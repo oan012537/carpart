@@ -47,6 +47,7 @@
 
                             @csrf
                             <input type="hidden" name="token" value="{{ $token }}">
+                            <input type="hidden" name="login_phone" value="{{ $phone }}">
 
                             <input type="text" id="digit-1" class="form-control text-center bg-dark text-white" name="otp_digit[]" data-next="digit-2" style="width:60px;height:50px;font-size:25px;" />
                             <input type="text" id="digit-2" class="form-control text-center bg-dark text-white" name="otp_digit[]" data-next="digit-3" data-previous="digit-1" style="width:60px;height:50px;font-size:25px;" />
@@ -58,6 +59,10 @@
                             <div class="tt-text-log mb-3">
                                 @if($errors->has('otp_digit.*'))
                                 <span class="dot__color">{{ $errors->first('otp_digit.*') }}</span>
+                                @endif
+
+                                @if($errors->has('not_varify'))
+                                <span class="dot__color">{{ $errors->first('not_varify') }}</span>
                                 @endif
                             </div>
                             {{-- Please confirm OTP again. --}}

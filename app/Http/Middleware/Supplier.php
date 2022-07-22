@@ -18,7 +18,7 @@ class Supplier
     public function handle(Request $request, Closure $next)
     {
         if(!Auth::guard('supplier')->check()){
-            return redirect()->route('supplier.index')->with('error','Plz Login First');
+            return redirect()->route('supplier.index')->with('error','Please Login First');
         }
 
         return $next($request);

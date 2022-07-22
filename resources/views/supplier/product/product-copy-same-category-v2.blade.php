@@ -22,6 +22,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                @if($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        {!! implode('<br>', $errors->all(':message')) !!}
+                    </div>
+                @endif
+            </div>
+            <div class="col-lg-12">
                 <div class="box__titlepage">
                     @if ($data->product_type == 'second')
                         <h3>{{ trans('file.Add Second Hand') }}</h3>    
@@ -196,7 +204,7 @@
                                                                     <div class="form-group">
                                                                         <label>{{ trans('file.Product Quality') }} <span>*</span></label>
                                                                         <select class="form-select" aria-label="Default select example" name="quality">
-                                                                            <option>{{ trans('file.Specify') }}</option>
+                                                                            <option value="">{{ trans('file.Specify') }}</option>
                                                                             @foreach ($product_qualities as $quality)
                                                                                 <option value="{{ $quality }}">{{ trans('file.'. $quality) }}</option>
                                                                             @endforeach
@@ -578,6 +586,9 @@
                                                             <label for="product-price">{{ trans('file.Amount') }} <span>{{ trans('file.Including VAT') }}</span></label>
                                                             <input type="number" id="product-price" class="form-control" name="price" placeholder="{{ trans('file.Specify') }}"
                                                                 value="{{ old('price')? old('price'): $data->price }}">
+                                                            @if($errors->has('price'))
+                                                                <span class="dot__color">{{ $errors->first('price') }}</span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -722,7 +733,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">{{ trans('file.Sell Status') }}</label>
-                            @if ($data->status_code == 'sell')
+                            @if ($data->status_code == 'selling')
                                 <div class="box__status status-selling">{{ trans('file.Selling') }}</div> 
                             @elseif ($data->status_code == 'sold')
                                 <div class="box__status status-sold">{{ trans('file.Sold') }}</div>
@@ -805,7 +816,7 @@
             data: form_data,
             type: 'post',
             success: function(data){
-                imageUrl = "{{ asset('product/images') }}" + '/' + data;
+                imageUrl = "{{ asset('products/images') }}" + '/' + data;
                 htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
                                 +'<input type="hidden" name="image[]" value="'+ data +'">'
                                 +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'

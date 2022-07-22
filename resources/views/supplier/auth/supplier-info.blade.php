@@ -66,6 +66,8 @@
                                     <form id="frm-personal" action="{{ route('supplier.register.contactInfo') }}" method="get" enctype="multipart/form-data">
                                         
                                         <input type="hidden" name="supplier_type" value="personal">
+                                        <input type="hidden" name="login_phone" value="{{ $login_phone }}">
+                                        
                                         <div class="box-b-detail">
                                             <div class="tt-text-log">
                                                 <p>
@@ -214,6 +216,8 @@
                                     <form id="frm-company" action="{{ route('supplier.register.contactInfo') }}" method="get" enctype="multipart/form-data">
                                         
                                         <input type="hidden" name="supplier_type" value="corporate">
+                                        <input type="hidden" name="login_phone" value="{{ $login_phone }}">
+
                                         <div class="box-b-detail">
                                             <div class="tt-text-log">
                                                 <p>

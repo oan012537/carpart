@@ -127,6 +127,7 @@
 
                                 <input type="hidden" name="email" value="{{ $data['email'] }}">
                                 <input type="hidden" name="phone" value="{{ $data['phone'] }}">
+                                <input type="hidden" name="login_phone" value="{{ $data['login_phone'] }}">
                                 <input type="hidden" name="facebook_url" value="{{ $data['facebook_url'] }}">
                                 <input type="hidden" name="google_map_url" value="{{ $data['google_map_url'] }}">
                                 <input type="hidden" name="store_address" value="{{ $data['store_address'] }}">
