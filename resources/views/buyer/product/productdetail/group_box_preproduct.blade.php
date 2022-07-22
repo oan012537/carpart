@@ -55,7 +55,20 @@
     <div class="row" data-sectionname="brand-home">
         <div class="col-12 carousel-brandhomepage"
             data-slick='{"slidesToShow":4, "slidesToScroll": 1,  "rows":1, "autoplay": true, "arrows": true, "dots": false, "autoplaySpeed": 3000}'>
-            <?php for ($i = 1; $i <= 5; $i++) { ?>
+            @foreach($product_bookmark as $key => $productbookmark)
+                @php 
+                    $link_product_name = $productbookmark->product->name_th;
+                    $link_id = $productbookmark->product->id;
+                    $link_price = $productbookmark->product->price;
+                @endphp
+                @include('buyer.product.box_preproduct')
+            @endforeach
+        </div>
+    </div>
+    <!-- <div class="row" data-sectionname="brand-home">
+        <div class="col-12 carousel-brandhomepage"
+            data-slick='{"slidesToShow":4, "slidesToScroll": 1,  "rows":1, "autoplay": true, "arrows": true, "dots": false, "autoplaySpeed": 3000}'>
+            <?php // for ($i = 1; $i <= 5; $i++) { ?>
             <div class="col-xl-3 col-lg-6 col-6">
                 <a href="javascript:void(0)">
                     <div class="box__itemssproductintro">
@@ -85,7 +98,7 @@
                     </div>
                 </a>
             </div>
-            <?php } ?>
+            <?php // } ?>
         </div>
-    </div>
+    </div> -->
 </div>

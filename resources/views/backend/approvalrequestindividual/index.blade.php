@@ -44,13 +44,13 @@
 
                                 <div class="box__radio">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault1" value="1">
+                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault1" value="1" checked>
                                         <label class="form-check-label" for="flexRadioDefault1">
                                             วันที่สมัคร
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault2" checked value="2">
+                                        <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault2" value="2">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             วันที่อนุมัติ
                                         </label>

@@ -54,13 +54,13 @@ class DeliveryController extends Controller
         ->editColumn('image',function($data){
             if($data->image){
                 if(File::exists(public_path().'/delivery/'.$data->image)){
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery').'/'.$data->image.'" > <img src="'.asset('delivery').'/'.$data->image.'" class="img-delivery"> </a>';
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery').'/'.$data->image.'" > <img src="'.asset('delivery').'/'.$data->image.'" class="img-delivery"> </a>';
                 }else{
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('delivery/ImageNotFound.png').'" class="img-delivery"> </a>';
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('images/ImageNotFound.png').'" > <img src="'.asset('delivery/ImageNotFound.png').'" class="img-delivery"> </a>';
                 }
                 
             }else{
-                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('delivery/ImageNotFound.png').'" class="img-delivery"> </a>';
+                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('images/ImageNotFound.png').'" > <img src="'.public_path('images/ImageNotFound.png').'" class="img-delivery"> </a>';
             }
 		})
         ->editColumn('timeinbkk',function($data){
@@ -131,13 +131,13 @@ class DeliveryController extends Controller
         ->editColumn('image',function($data){
             if($data->image){
                 if(File::exists(public_path().'/delivery/'.$data->image)){
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery').'/'.$data->image.'" > <img src="'.asset('delivery').'/'.$data->image.'" class="img-product"> </a>';
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery').'/'.$data->image.'" > <img src="'.public_path('delivery').'/'.$data->image.'" class="img-product"> </a>';
                 }else{
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('delivery/ImageNotFound.png').'" class="img-product"> </a>';
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery/ImageNotFound.png').'" > <img src="'.public_path('delivery/ImageNotFound.png').'" class="img-product"> </a>';
                 }
                 
             }else{
-                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('delivery/ImageNotFound.png').'" class="img-product"> </a>';
+                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery/ImageNotFound.png').'" > <img src="'.public_path('delivery/ImageNotFound.png').'" class="img-product"> </a>';
             }
 		})
         ->editColumn('timeinbkk',function($data){
@@ -208,13 +208,13 @@ class DeliveryController extends Controller
         ->editColumn('image',function($data){
             if($data->image){
                 if(File::exists(public_path().'/delivery/'.$data->image)){
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery').'/'.$data->image.'" > <img src="'.asset('delivery').'/'.$data->image.'" class="img-product"> </a>';
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery').'/'.$data->image.'" > <img src="'.public_path('delivery').'/'.$data->image.'" class="img-product"> </a>';
                 }else{
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('delivery/ImageNotFound.png').'" class="img-product"> </a>';
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery/ImageNotFound.png').'" > <img src="'.public_path('delivery/ImageNotFound.png').'" class="img-product"> </a>';
                 }
                 
             }else{
-                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('delivery/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('delivery/ImageNotFound.png').'" class="img-product"> </a>';
+                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.public_path('delivery/ImageNotFound.png').'" > <img src="'.public_path('delivery/ImageNotFound.png').'" class="img-product"> </a>';
             }
 		})
         ->editColumn('timeinbkk',function($data){

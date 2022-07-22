@@ -6,20 +6,22 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="box__hot">
+
+                <!-- // ** ตัดออก 2022-07-20 ** //
+                    <div class="box__hot">
                     <h3>หมวดหมู่ยอดนิยม</h3>
 
                     <div class="row" data-sectionname="hot-homepageslide">
                         <div class="col-12 carousel-hothomepage" data-slick='{"slidesToShow":4, "slidesToScroll": 1,  "rows":1, "autoplay": true, "arrows": true, "dots": false, "autoplaySpeed": 3000}'>
-                            <?php for ($i = 0; $i <= 10; $i++) { ?>
+                            <?php // for ($i = 0; $i <= 10; $i++) { ?>
                                 <div class="box__itemshot">
                                     <img src="assets/img/home/hotitems.png" class="img-fluid" alt="">
                                     <p class="name__hot">หมวดหมู่</p>
                                 </div>
-                            <?php } ?>
+                            <?php //} ?>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!--  -->
                 <div class="box__brands">
@@ -40,7 +42,8 @@
                 <!--  -->
 
                 <!-- Promotion -->
-                <div class="box__promotion">
+                <!-- // ** ตัดออก 2022-07-20 ** //
+                    <div class="box__promotion">
                     <div class="row">
                         <div class="col-6">
                             <h3>โปรโมชั่น</h3>
@@ -54,18 +57,18 @@
 
                     <div class="rev_slider">
 
-                        <?php for ($i = 1; $i <= 5; $i++) { ?>
+                        <?php // for ($i = 1; $i <= 5; $i++) { ?>
                             <div class="rev_slide">
                                 <img src="assets/img/home/promotion-image.png" class="img-fluid" alt="">
                             </div>
-                        <?php } ?>
+                        <?php // } ?>
 
                     </div>
-                </div>
+                </div> -->
                 <!-- End Promotion -->
 
-                <!--  -->
-                <div class="box__coupon">
+                <!--  // ** ตัดออก 2022-07-20 ** //
+                    <div class="box__coupon">
                     <div class="row">
                         <div class="col-6">
                             <h3>คูปองส่วนลด</h3>
@@ -80,7 +83,7 @@
 
                     <div class="box__allcoupon">
                         <div class="row">
-                            <?php for ($i = 1; $i <= 3; $i++) { ?>
+                            <?php // for ($i = 1; $i <= 3; $i++) { ?>
                                 <div class="col-xl-4 col-lg-6 col-md-12 col-12">
                                     <div class="box__itemscoupon">
                                         <p class="coupon__title">ส่วนลด 10%</p>
@@ -91,10 +94,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            <?php } ?>
+                            <?php // } ?>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!--  -->
 
                 <!-- Product Intro -->

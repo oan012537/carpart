@@ -23,6 +23,9 @@ Route::post('backend/register', [Backend\BackendController::class,'store'])->nam
 Route::group(['middleware' => 'auth'], function(){
     Route::prefix('backend')->group(function () {
         Route::get('logout', [Backend\BackendController::class, 'logout'])->name('backend.logout');
+        
+        Route::get('count/approvewait', [Backend\CountdataController::class, 'approvewait'])->name('backend.approve.wait');
+
         Route::get('setlang/{lang}', function ($lang) {
             Session::put('lang', $lang);
             $update = User::find(Auth::guard('web')->user()->id);
@@ -85,7 +88,7 @@ Route::group(['middleware' => 'auth'], function(){
 
                 Route::get('changestatus', [Backend\ApprovalRequestIndividualController::class,'changestatus']);
 
-                Route::post('approve', [Backend\ApprovalRequestLegalController::class,'approval'])->name('backend.approval.individual.approve');
+                Route::post('approve', [Backend\ApprovalRequestIndividualController::class,'approval'])->name('backend.approval.individual.approve');
 
                 Route::get('getdetails', [Backend\ApprovalRequestIndividualController::class,'getdetails'])->name('backend.approval.individual.getdetails');
             });
@@ -124,6 +127,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('datatables', [Backend\ProductController ::class,'datatables'])->name('backend.product.datatables');
             Route::get('edit/{id}', [Backend\ProductController::class,'edit'])->name('backend.product.edit');
             Route::post('update', [Backend\ProductController::class,'update'])->name('backend.product.update');
+            Route::get('view/{id}', [Backend\ProductController::class,'view'])->name('backend.product.view');
         });
 
         Route::prefix('settingcategory')->group(function () {

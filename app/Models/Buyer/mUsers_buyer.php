@@ -30,6 +30,9 @@ class mUsers_buyer extends Authenticatable
         'phone',
         'social_id',
         'social_type',
+        'social_facebookid',
+        'social_googleid',
+        'social_lineid',
         'created_at',
         'updated_at'
     ];
@@ -67,5 +70,11 @@ class mUsers_buyer extends Authenticatable
     {
         return $this->hasMany('App\Models\Buyer\BuyerBank', 'users_buyer_id');
     }
+
+    public function productBookmark()
+    {
+        return $this->hasMany('App\Models\Buyer\BuyerProductBookmark', 'users_buyer_id');
+    }
+
 
 }

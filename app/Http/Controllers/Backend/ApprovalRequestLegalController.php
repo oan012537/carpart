@@ -11,6 +11,7 @@ use App\Models\Supplier;
 use Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ApprovalRequestLegalController extends Controller
 {
@@ -20,16 +21,16 @@ class ApprovalRequestLegalController extends Controller
 
     public function datatables(){
 
-        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('supplier_type','corporate')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('supplier_type','corporate')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('company_name ','LIKE','%'.$search.'%')
+                ->orwhere('company_name','LIKE','%'.$search.'%')
                 // ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere('vat_registration_number','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
@@ -104,16 +105,16 @@ class ApprovalRequestLegalController extends Controller
 
     public function datatables_wait(){
 
-		$data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','request_approval')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+		$data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','request_approval')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('company_name ','LIKE','%'.$search.'%')
+                ->orwhere('company_name','LIKE','%'.$search.'%')
                 // ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere('vat_registration_number','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
@@ -174,16 +175,16 @@ class ApprovalRequestLegalController extends Controller
 
     public function datatables_approval(){
 
-        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','approved')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','approved')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('company_name ','LIKE','%'.$search.'%')
+                ->orwhere('company_name','LIKE','%'.$search.'%')
                 // ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere('vat_registration_number','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
@@ -244,16 +245,16 @@ class ApprovalRequestLegalController extends Controller
 
 	public function datatables_disapproved(){
 
-        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','un_approve')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.status_code','un_approve')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
         if($search != ''){
             $data->where(function ($query) use ($search){
                 $query->where('code','LIKE','%'.$search.'%')
-                ->orwhere('company_name ','LIKE','%'.$search.'%')
+                ->orwhere('company_name','LIKE','%'.$search.'%')
                 // ->orwhere('supplir_name','LIKE','%'.$search.'%')
-                ->orwhere('card_id','LIKE','%'.$search.'%')
+                ->orwhere('vat_registration_number','LIKE','%'.$search.'%')
                 ->orwhere('comment','LIKE','%'.$search.'%')
                 ;
             });
@@ -329,6 +330,28 @@ class ApprovalRequestLegalController extends Controller
         $supplier->comment = !empty($request->txt__note)?$request->txt__note:'';
         // dd($request->all(),$supplier);
         $supplier->save();
+        $user = UserSupplier::find($supplier->user_id);
+        if($request->approved == ''){
+            $text = 'CPN
+            อนุมัติการสมัครสมาชิกของท่านเรียบร้อยแล้ว
+            โปรดใช้รหัสผ่านต่อไปนี้ในการเข้าสู่ระบบ
+            หมายเลขโทรศัพท์ : '.$user->phone.'
+            รหัสผ่าน : 12345678';
+        }else if($request->request_approval == ''){
+            $text = 'รออนุมัติ';
+        }else if($request->un_approve == ''){
+            $text = 'ไม่อนุมัติ';
+        }else{
+            $text = '';
+        }
+        $send = $this->mails($user);
+        // dd($send);
+        // $sms = smstext($text,$user->phone);
+        // if($sms['code'] == '000'){
+
+        // }else{
+        //     $this->mails($user);
+        // }
         return redirect()->route('backend.approval.legal');
     }
 
@@ -341,6 +364,46 @@ class ApprovalRequestLegalController extends Controller
         $supplier->approve_by = Auth::user()->name;
         $supplier->comment = !empty($request->txt__note)?$request->txt__note:'';
         $supplier->save();
+        $user = UserSupplier::find($supplier->user_id);
+        if($request->approved == ''){
+            $text = 'CPN
+            อนุมัติการสมัครสมาชิกของท่านเรียบร้อยแล้ว
+            โปรดใช้รหัสผ่านต่อไปนี้ในการเข้าสู่ระบบ
+            หมายเลขโทรศัพท์ : '.$user->phone.'
+            รหัสผ่าน : 12345678';
+        }else if($request->request_approval == ''){
+            $text = 'รออนุมัติ';
+        }else if($request->un_approve == ''){
+            $text = 'ไม่อนุมัติ';
+        }else{
+            $text = '';
+        }
+        $send = $this->mails($user);
+        // dd($send);
+        $sms = smstext($text,$user->phone);
+        // if($sms['code'] == '000'){
+
+        // }else{
+        //     $this->mails($user);
+        // }
         return redirect()->route('backend.approval.legal');
+    }
+
+    function mails($data){
+        // dd($data);
+        $subject = 'อนุมัติ';
+        $email = $data->email;
+        // $content = 'Panuwat Mumthong';
+        // dd($file);
+        Mail::send('backend.approvalrequestindividual.mails', ['content' => $data], function ($m) use($email,$subject){
+            $m->from('carparts@oan.orangeworkshop.info', 'CARPARTSNAVI');
+            $m->to($email)->subject($subject);
+            // $m->attachData($pdf->output(),'pdffile.pdf');
+        });
+        if (Mail::failures()) {
+            return 'x';
+        }else{
+            return 'y';
+        }
     }
 }

@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Buyer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Buyer\ProductReview;
+use App\Models\Buyer\BuyerProductBookmark;
 
 class ProductDetailController extends Controller
 {
@@ -32,6 +33,16 @@ class ProductDetailController extends Controller
             ->where('products.id', '!=' , $id)
             ->orderby('products.updated_at', 'desc')
             ->with('brand', 'model', 'category', 'subCategory', 'subSubCategory', 'subModel')
+            ->paginate(8);
+
+        // -- สินค้าที่สนใจ
+        $data['product_bookmark_check'] = BuyerProductBookmark::where('users_buyer_id', Auth::guard('buyer')->user()->id)
+            ->where('product_id', $data['product']->id)
+            ->first();
+        $data['product_bookmark'] = BuyerProductBookmark::where('users_buyer_id', Auth::guard('buyer')->user()->id)
+            ->whereNotIn('product_id',[$data['product']->id])
+            ->with('product')
+            ->orderby('updated_at','desc')
             ->paginate(8);
 
         // -- อะไหล่อื่นๆจากรถรุ่นเดียวกัน (แทบ 3)
@@ -88,67 +99,48 @@ class ProductDetailController extends Controller
             $review_score_average = 0;
         }
         $data['review_score_average'] = $review_score_average;
-        
-        // $review_score_average = number_format($review_score_average,1);
-        // list($num, $frac) = explode('.', $review_score_average);
-        // $fracPre = substr($frac, 0, 1);
-        // if($fracPre > 5){
-        //     $fracPre = 5;
-        // }else{
-        //     $fracPre = 0;
-        // } 
-        // $data['review_score_average'] = ($num.".".$fracPre) * 1;
-        // dd($review_score_average, $data['review_score_average']);
-
-        // === Array ====
-        // $data['review_score_1_count'] = 0;
-        // $data['review_score_1'] = array();
-        // $data['review_score_2_count'] = 0;
-        // $data['review_score_2'] = array();
-        // $data['review_score_3_count'] = 0;
-        // $data['review_score_3'] = array();
-        // $data['review_score_4_count'] = 0;
-        // $data['review_score_4'] = array();
-        // $data['review_score_5_count'] = 0;
-        // $data['review_score_5'] = array();
-
-        // foreach($data['review_score_all'] as $key => $review){ 
-        //     $review_array = [
-        //         'id' => $review->id,
-        //         'product_id' => $review->product_id,
-        //         'review_detail' => $review->review_detail,
-        //         'review_score' => $review->review_score,
-        //         'is_active' => $review->is_active,
-        //         'created_by' => $review->created_by,
-        //         'updated_by' => $review->updated_by,
-        //         'created_at' => $review->created_at,
-        //         'updated_at' => $review->updated_at,
-        //     ];
-        //     switch($review->review_score){
-        //         case 1 :    $data['review_score_1_count']++;
-        //                     $data['review_score_1'][] = $review_array;
-        //                     $review_array = "";
-        //             break;        
-        //         case 2 :    $data['review_score_2_count']++;
-        //                     $data['review_score_2'][] = $review_array;
-        //                     $review_array = "";
-        //             break;
-        //         case 3 :    $data['review_score_3_count']++;
-        //                     $data['review_score_3'][] = $review_array;
-        //                     $review_array = "";
-        //             break;  
-        //         case 4 :    $data['review_score_4_count']++;
-        //                     $data['review_score_4'][] = $review_array;
-        //                     $review_array = "";
-        //             break;  
-        //         case 5 :    $data['review_score_5_count']++;
-        //                     $data['review_score_5'][] = $review_array;
-        //                     $review_array = "";
-        //             break;  
-        //     }
-        // }
-        // === End Array ====
-
+         
         return view('buyer.product.productdetail.index', $data);
+    }
+
+    public function product_bookmark($id)
+    {
+        DB::beginTransaction();
+        try {   
+            $user_buyer_id = "";      
+            if(!is_null(Auth::guard('buyer')->user())){
+                $user_buyer_id = Auth::guard('buyer')->user()->id;
+                $bookmark = BuyerProductBookmark::where('users_buyer_id', $user_buyer_id)
+                    ->where('product_id', $id)
+                    ->first();
+                    
+                if(is_null($bookmark)){
+                    BuyerProductBookmark::create([
+                        'users_buyer_id' => $user_buyer_id ,
+                        'product_id' => $id,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ]);
+                    $message = "ยกเลิก สนใจสินค้าตัวนี้";
+                }else{
+                    DB::table('buyer_product_bookmarks')->where('id', $bookmark->id)->delete();
+                    $message = "สนใจสินค้าตัวนี้";
+                }
+                $status = 200;
+                // $message = "Save Complate";
+            }else{
+                $status = 404;
+                $message = "please login";
+            }
+
+            DB::commit();
+            return response()->json([
+                'status' => $status,
+                'message' => $message,
+            ]);
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+        
     }
 }

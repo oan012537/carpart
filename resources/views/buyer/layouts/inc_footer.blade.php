@@ -8,9 +8,9 @@
                 <li><a href="javascript:void(0)">คำถามที่พบบ่อย</a></li>
             </div>
             <div class="col-xl-3 col-lg-6 col-6">
-                <li><a href="javascript:void(0)">สินค้าทั้งหมด</a></li>
+                <li><a href="javascript:void(0)">ค้นหาสินค้า</a></li>
                 <li><a href="javascript:void(0)">โปรโมชั่น</a></li>
-                <li><a href="javascript:void(0)">คูปองส่วนลดทั้งหมด</a></li>
+                <li><a href="javascript:void(0)">บทความ</a></li>
             </div>
             <div class="col-xl-3 col-lg-6 col-6">
                 <li>บริษัท คาร์ท พาร์ทส์ นาวิ จำกัด</li>
