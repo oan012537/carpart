@@ -32,9 +32,13 @@
                 <br>
             </div>
             <div class="but-but-soso">
-                <a href="{{ url('login/line') }}">
-                    <button class="button button3-3">ยกเลิกการเชื่อมต่อบัญชี</button>
-                </a>
+                @if(!is_null($user_buyer->social_lineid))
+                    <button class="button button3-3" id="btnsocial_disconnect_line" rel="line">ยกเลิกการเชื่อมต่อบัญชี</button>
+                @else
+                    <a href="{{ url('login/line') }}">
+                        <button class="button button3-3" id="btnsocial_connect_line" rel="line">เชื่อมต่อบัญชี</button>
+                    </a>
+                @endif
             </div>
         </div>
 
@@ -58,9 +62,13 @@
                 </div>
             </div>
             <div class="but-but-soso">
-                <a href="{{ url('login/facebook') }}">
-                    <button class="button button4-3">เชื่อมต่อบัญชี</button>
-                </a>
+                @if(!is_null($user_buyer->social_facebookid))
+                    <button class="button button3-3" id="btnsocial_disconnect_facebook" rel="facebook">ยกเลิกการเชื่อมต่อบัญชี</button>
+                @else
+                    <a href="{{ url('login/facebook') }}">
+                        <button class="button button4-3" id="btnsocial_connect_facebook" rel="facebook">เชื่อมต่อบัญชี</button>
+                    </a>
+                @endif
             </div>
         </div>
         <div class="col-lg-4">
@@ -83,9 +91,14 @@
                 </div>
             </div>
             <div class="but-but-soso">
-                <a href="{{ url('login/google') }}">
-                    <button class="button button4-3">เชื่อมต่อบัญชี</button>
-                </a>
+                @if(!is_null($user_buyer->social_googleid))
+                    <button class="button button3-3" id="btnsocial_disconnect_google" rel="google">ยกเลิกการเชื่อมต่อบัญชี</button>
+                @else
+                    {{-- <!-- <a href="{{ url('login/google') }}"> --> --}}
+                    <a href="{{ url('google/login') }}">
+                        <button class="button button4-3" id="btnsocial_connect_google" rel="google">เชื่อมต่อบัญชี</button>
+                    </a>
+                @endif
             </div>
         </div>
         </div>

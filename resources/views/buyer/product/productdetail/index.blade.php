@@ -135,7 +135,14 @@
                             <button type="button" class="btn btn_bookmark" rel="{{ $product->id }}"> <i class="fa fa-heart" style="font-size:18px"></i>
                             </button>
                             <div class="text-t-into">
-                                <p id="text_bookmark"> สนใจสินค้าตัวนี้ </p>
+                                @php 
+                                    if(!is_null($product_bookmark_check)){
+                                        $text_text_bookmark = "ยกเลิก สนใจสินค้าตัวนี้";
+                                    }else{
+                                        $text_text_bookmark = "สนใจสินค้าตัวนี้";
+                                    }
+                                @endphp
+                                <p id="text_bookmark"> {{ $text_text_bookmark }} </p>
                             </div>
                         </div>
                         <div class="social-links">
@@ -826,11 +833,10 @@
             success:function(response){
                 console.log(response);
                 if(response.status == 200){ 
-                    $("#text_bookmark").text('ยกเลิก สนใจสินค้าตัวนี้'); 
+                    $("#text_bookmark").text(response.message); 
                 }else{
                     alert('กรุณาเข้าระบบก่อน');
                 }
-                
             },
             error: function(response){
                 console.log("error");

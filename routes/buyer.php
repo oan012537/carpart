@@ -80,6 +80,9 @@ Route::prefix('buyer')->group(function(){
         // Change Password
         Route::get('buyerprofile/changepassword/check_currentpassword/{current_password}', [Buyer\BuyerProfileController::class, 'buyerprofile_check_currentpassword']); //-OAT
        
+        //== SocialMedia
+        Route::get('buyerprofile/socialmedia/disconnect/{type}', [Buyer\BuyerProfileController::class, 'buyerprofile_socialmedia_disconnect']); //-OAT
+
         // Insert Bank
         Route::get('buyerprofile/bank/request_otp', [Buyer\BuyerProfileController::class, 'buyerprofile_bank_request_otp']); //-OAT
         Route::post('buyerprofile/bank/create', [Buyer\BuyerProfileController::class, 'buyerprofile_bank_store']); //-OAT

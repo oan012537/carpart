@@ -742,6 +742,33 @@ class BuyerProfileController extends Controller
         
     }
 
+    //== SocialMedia
+
+    public function buyerprofile_socialmedia_disconnect($provider)
+    {
+        switch($provider){
+            case 'facebook' : $provider_type = 'social_facebookid';
+                break;
+            case 'google' : $provider_type = 'social_googleid';
+                break;
+            case 'line' : $provider_type = 'social_lineid';
+                break;   
+        }
+        
+        mUsers_buyer::where('id', Auth::guard('buyer')->user()->id)
+            ->update([
+                'social_lineid' => null,
+            ]);
+
+        return response()->json([
+            'status' => 200,
+            'provider' => $provider,
+            'message' => 'ตัดการเชื่อมต่อ',
+        ]);
+    }
+
+
+
 
     //== Profile Bank
     

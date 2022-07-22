@@ -35,6 +35,16 @@ class ProductDetailController extends Controller
             ->with('brand', 'model', 'category', 'subCategory', 'subSubCategory', 'subModel')
             ->paginate(8);
 
+        // -- สินค้าที่สนใจ
+        $data['product_bookmark_check'] = BuyerProductBookmark::where('users_buyer_id', Auth::guard('buyer')->user()->id)
+            ->where('product_id', $data['product']->id)
+            ->first();
+        $data['product_bookmark'] = BuyerProductBookmark::where('users_buyer_id', Auth::guard('buyer')->user()->id)
+            ->whereNotIn('product_id',[$data['product']->id])
+            ->with('product')
+            ->orderby('updated_at','desc')
+            ->paginate(8);
+
         // -- อะไหล่อื่นๆจากรถรุ่นเดียวกัน (แทบ 3)
         $data['products_subModel'] = Product::where('products.sub_model_id', $data['product']->subModel->id)
             ->where('products.id', '!=' , $id)
@@ -111,11 +121,13 @@ class ProductDetailController extends Controller
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s')
                     ]);
+                    $message = "ยกเลิก สนใจสินค้าตัวนี้";
                 }else{
                     DB::table('buyer_product_bookmarks')->where('id', $bookmark->id)->delete();
+                    $message = "สนใจสินค้าตัวนี้";
                 }
                 $status = 200;
-                $message = "Save Complate";
+                // $message = "Save Complate";
             }else{
                 $status = 404;
                 $message = "please login";
