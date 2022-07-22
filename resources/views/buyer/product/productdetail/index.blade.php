@@ -1,6 +1,16 @@
 @extends('buyer.layouts.template')
 
-<link href="{{ asset('assets/css/product-detail.css') }}" rel="stylesheet">
+@section('matavendor')
+    <meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Your Website Title" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+
+    <link href="{{ asset('assets/css/product-detail.css') }}" rel="stylesheet">
+@stop
+
+
 
 @section('content')
     <section id="sec-product-de1">
@@ -148,9 +158,18 @@
                         <div class="social-links">
                             <p>แชร์ : </p>
                             &nbsp;
-                            <a href="#">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
+
+                            <!-- <a href="#"> -->
+                            <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small">
+                                <a target="_blank" 
+                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
+                                class="fb-xfbml-parse-ignore"><i class="fab fa-facebook-f"></i></a>
+                            </div>
+                            <div id="fb-root"></div>
+                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v14.0&appId=1091726091425499&autoLogAppEvents=1" nonce="ey3cQnYt"></script>
+                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+                            <!-- </a> -->
+
                             <a href="#">
                                 <i class="fa-brands fa-line"></i>
                             </a>
