@@ -345,12 +345,12 @@ class ApprovalRequestLegalController extends Controller
         }
         $send = $this->mails($user);
         // dd($send);
-        $sms = smstext($text,$user->phone);
-        if($sms['code'] == '000'){
+        // $sms = smstext($text,$user->phone);
+        // if($sms['code'] == '000'){
 
-        }else{
-            $this->mails($user);
-        }
+        // }else{
+        //     $this->mails($user);
+        // }
         return redirect()->route('backend.approval.legal');
     }
 
@@ -380,11 +380,11 @@ class ApprovalRequestLegalController extends Controller
         $send = $this->mails($user);
         // dd($send);
         $sms = smstext($text,$user->phone);
-        if($sms['code'] == '000'){
+        // if($sms['code'] == '000'){
 
-        }else{
-            $this->mails($user);
-        }
+        // }else{
+        //     $this->mails($user);
+        // }
         return redirect()->route('backend.approval.legal');
     }
 

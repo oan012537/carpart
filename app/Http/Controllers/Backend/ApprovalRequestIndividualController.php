@@ -389,12 +389,12 @@ class ApprovalRequestIndividualController extends Controller
         }
         $send = $this->mails($user);
         // dd($send);
-        $sms = smstext($text,$user->phone);
-        if($sms['code'] == '000'){
+        // $sms = smstext($text,$user->phone);
+        // if($sms['code'] == '000'){
 
-        }else{
-            $this->mails($user);
-        }
+        // }else{
+        //     $this->mails($user);
+        // }
         return redirect()->route('backend.approval.individual');
     }
 
@@ -422,12 +422,12 @@ class ApprovalRequestIndividualController extends Controller
         }
         $send = $this->mails($user);
         // dd($send);
-        $sms = smstext($text,$user->phone);
-        if($sms['code'] == '000'){
+        // $sms = smstext($text,$user->phone);
+        // if($sms['code'] == '000'){
 
-        }else{
-            $send = $this->mails($user);
-        }
+        // }else{
+        //     $send = $this->mails($user);
+        // }
         return redirect()->route('backend.approval.individual');
 
     }
