@@ -229,7 +229,7 @@
 
 #sec-confirm .card4 {
     background-color: #3F3F3F;
-    height: 130px;
+    height: 139px;
 }
 
 #sec-confirm .card4 .card-title {
@@ -704,6 +704,66 @@
     border-radius: 6px;
 }
 
+#sec-confirm .card-tadail7 {
+    background-color: #555454;
+    height: 195px;
+    border-radius: 6px;
+}
+
+#sec-confirm .card-tadail7 .text-t-detail p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.4rem;
+    margin-left: 0.8rem;
+}
+
+#sec-confirm .card-tadail7 .text-t-detail {
+    margin-top: -3.5rem;
+}
+
+#sec-confirm .card-tadail7 .box_txtaddress {
+    margin-left: -1.4rem;
+    margin-top: -3.4rem;
+}
+
+#sec-confirm .card-tadail7 .txt_confirm_address1 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.4rem;
+}
+
+#sec-confirm .card-tadail7 .txt_confirm_address2 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.4rem;
+}
+
+#sec-confirm .card-tadail7 .txt_confirm_address3 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.4rem;
+}
+
+#sec-confirm .card-tadail7 .txt_confirm_address4 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.4rem;
+}
+
+.text-edit7 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-right: 27px;
+    margin-top: 21px;
+}
+
 .card7 .card-title7 {
     font-size: 14px;
     color: white;
@@ -773,7 +833,7 @@
     /* Green */
     border: none;
     color: white;
-    padding: 15px 283px 15px 278px;
+    /*padding: 15px 283px 15px 278px;*/
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -785,6 +845,347 @@
     transition-duration: 0.4s;
 }
 
-.b-but-addplus .button-inadd:hover {
-    box-shadow: 0 12px 16px 0 rgba(38, 37, 37, 0.428), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+
+
+
+
+
+
+/*-----------------------------------------
+    RESPONSIVE
+-------------------------------------------*/
+@media screen and (min-width:320px) and (max-width:374px) {}
+
+@media screen and (min-width:375px) and (max-width:413px) {}
+
+@media screen and (min-width:414px) and (max-width:424px) {}
+
+@media screen and (min-width:425px) and (max-width:767px) {}
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+
+#sec-confirm .h-text-confirm p {
+        font-size: 22px;
+        font-weight: 500;
+        color: white;
+    }
+
+    #sec-confirm .d-text-confirm p {
+        font-size: 16px;
+        color: white;
+        font-weight: 300;
+    }
+
+    .button6 {
+        background-color: #282828;
+        color: #E8D95F;
+        border: 2px solid #E8D95F;
+        float: right;
+        margin-top: -93px;
+    }
+
+    .button6:hover {
+        background-color: #E8D95F;
+        color: #282828;
+        float: right;
+        border: 2px solid #E8D95F;
+        margin-top: -93px;
+    }
+
+#sec-confirm .card-title {
+    font-size: 18px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1rem;
 }
+
+#sec-confirm .form-check {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    padding-left: 44px;
+    margin-top: 1rem;
+}
+
+.div1 {
+    width: 280px;
+    height: 200px;
+    padding: 20px;
+    border: 0px solid #9c9a9a;
+}
+
+.drop-zone {
+    max-width: 156px;
+    height: 158px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    background-color: #ffffff0f;
+    /* border: 4px dashed #009578; */
+    border-radius: 10px;
+    margin-left: 45px; 
+}
+
+#sec-confirm .tt-text-log p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    float: right;
+    margin-right: -7rem;
+    margin-top: -11rem;
+    line-height: 35px;
+    display: flex;
+    color: white;
+}
+
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 18rem;
+    margin-top: -8rem;
+    align-items: stretch;
+    width: 100%;
+}
+
+#sec-confirm .h-text-h2 p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    padding: 20px;
+    margin-left: 0px;
+    margin-top: -3rem;
+}
+
+#sec-confirm .img-lo-icon {
+    padding-left: 20px;
+    margin-top: -1rem;
+}
+
+#sec-confirm .detail-text-t p {
+    font-size: 12px;
+    color: white;
+    font-weight: 300;
+    padding: 10px 20px;
+    padding-left: 20px;
+    margin-top: 0.3rem;
+}
+
+#sec-confirm .hh-text-h p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-left: 13rem;
+    margin-top: -5.4rem;
+}
+
+#sec-confirm .img-lo-icon2 {
+    width: 23%;
+    margin-left: 19.7rem;
+    margin-top: -41px;
+}
+
+#sec-confirm .date-detail-text-t p {
+    font-size: 12px;
+    color: white;
+    font-weight: 300;
+    padding-top: 10px;
+    margin-left: 13rem;
+}
+
+#sec-confirm .price-text-t p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    float: right;
+    margin-right: 1.5rem;
+    margin-top: -6rem;
+}
+
+.button2 {
+    background-color: #E8D95F;
+    color: black;
+    border: 2px solid #E8D95F;
+    font-size: 14px;
+    float: right;
+    margin-right: 1.2rem;
+    margin-top: -3.8rem;
+    padding: 5px 14px;
+}
+
+.button2:hover {
+    background-color: #282828;
+    color: #E8D95F;
+}
+
+#sec-confirm .img-lo-icon3 {
+    width: 23%;
+    margin-left: 20.4rem;
+    margin-top: -41px;
+}
+
+.button4 {
+    background-color: #282828;
+    color: #e8d95f;
+    border: 2px solid #e8d95f;
+    font-size: 14px;
+    float: right;
+    margin-right: 1.2rem;
+    margin-top: -3.8rem;
+    padding: 5px 14px;
+}
+
+.button4:hover {
+    background-color: #e8d95f;
+    color: #3F3F3F;
+    border: 2px solid #e8d95f;
+}
+
+#sec-confirm .date-detail-text-t2 p {
+    font-size: 12px;
+    color: white;
+    font-weight: 300;
+    margin-top: -10px;
+    margin-left: 13rem;
+}
+
+#sec-confirm .modal-content {
+    background-color: #3F3F3F;
+    margin: auto;
+    width: 65%;
+    margin-top: 100px;
+    margin-right: 16.6rem;
+}
+
+.card7 .txt_confirm_address1 p {
+    font-size: 14px;
+    color: white;
+    font-weight: 300;
+    margin-top: -4.7rem;
+    margin-left: 7rem;
+}
+
+.txt_box2_txt {
+    margin-top: -11.5rem;
+    margin-left: 7.7rem;
+}
+
+.b-but-addplus .button {
+    background-color: #555454;
+    border: none;
+    color: white;
+    padding: 12px 286px 12px 289px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px 19px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#sec-confirm .card-tadail7 .box_txtaddress {
+    margin-left: 8.4rem;
+    margin-top: -11.8rem;
+}
+
+
+
+}
+
+@media screen and (min-width:1024px) and (max-width:1279px) {
+
+#sec-confirm .modal-content {
+        background-color: #3F3F3F;
+        margin: auto;
+        width: 66%;
+        margin-top: 70px;
+        margin-right: 13.5rem;
+    }
+
+#sec-confirm .t-body-text p {
+    font-size: 19px;
+    text-align: center;
+    color: white;
+}
+
+#sec-confirm .card-tadail7 .text-t-detail p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.2rem;
+    margin-left: 0.8rem;
+}
+
+#sec-confirm .card-tadail7 .txt_confirm_address1 p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.2rem;
+}
+
+#sec-confirm .card-tadail7 .txt_confirm_address2 p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.2rem;
+}
+
+#sec-confirm .card-tadail7 .txt_confirm_address3 p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.2rem;
+}
+
+#sec-confirm .card-tadail7 .txt_confirm_address4 p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    margin-top: 1.2rem;
+}
+
+.b-but-addplus .button {
+    background-color: #555454;
+    border: none;
+    color: white;
+    padding: 17px 308px 15px 294px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+
+}
+
+@media screen and (min-width:1280px) and (max-width:1359px) {}
+
+@media screen and (min-width:1360px) and (max-width:1439px) {}
+
+@media screen and (min-width:1440px) and (max-width:1599px) {}
+
+@media screen and (min-width:1600px) and (max-width:1919px) {}
+
+@media screen and (min-width:1920px) and (max-width:2559px) {}
+
+@media screen and (min-width:2560px) {}
+
+
+
+
+
+

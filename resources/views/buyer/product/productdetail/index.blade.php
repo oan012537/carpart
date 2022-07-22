@@ -92,8 +92,19 @@
                                 <img src="{{ asset('assets/img/prodetail/lo1.png') }}" class="img-fluid" alt="shoe image">
                             </div>
                             <div class="d-text-deatil-t">
+                                <!-- corporate , personal -->
+                                @php 
+                                    $supplier_type_th = "";
+                                    switch($product->supplier->supplier_type){
+                                        case "corporate" : $supplier_type_th = "นิติบุคคล";
+                                            break;
+                                        case "personal" : $supplier_type_th = "บุคคลธรรมดา";
+                                            break;   
+                                    }
+                                @endphp
                                 <p>
-                                    นิติบุคคล
+                                    {{ $supplier_type_th }}
+                                    <!-- นิติบุคคล -->
                                 </p>
                             </div>
                         </div>
@@ -136,7 +147,9 @@
                             <p> <span> สภาพสินค้า : </span> &nbsp;&nbsp; {{ (is_null($product->grade) ? '-' : $product->grade) }}</p>
                         </div>
                         <div class='but-bb-log'>
-                            <button class="button button1"> สั่งซื้อสินค้า </button>
+                            <a href="{{ url('buyer/confirminventory', $product->id) }}">
+                                <button class="button button1"> สั่งซื้อสินค้า </button>
+                            </a>
                             <button class="button button2"> <i class='far fa-comment-dots' style='font-size:20px'></i>
                                 แชท </button>
                         </div>

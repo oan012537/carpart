@@ -169,66 +169,6 @@
     height: 100%;
 }
 
-/* Modal Content */
-#modal-regis3 .modal-content {  
-    background-color: #fefefe;
-    margin: auto;
-    /* padding: 20px;
-    border: 1px solid #888;*/
-    /* width: 35%; */
-}
-
-/* The Close Button */
-#sec-regis5 .close {
-    color: #c1c1c1f2;
-    float: right;
-    font-size: 48px;
-    font-weight: bold;
-    margin-left: 497px;
-    margin-top: 4px;
-}
-
-#modal-regis3 .close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#modal-regis3 .tt-text-con p {
-    color: white;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 36px;
-    text-align: center;
-}
-
-#modal-regis3 .tt-text-con2 p {
-    color: rgb(195, 195, 195);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 36px;
-    text-align: center;
-    margin-top: -20px;
-}
-
-#modal-regis3 .tt-text-con3 p {
-    color: #FF7B7B;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 36px;
-    text-align: center;
-}
-
-#modal-regis3 .modal-footer {
-    background-color: #282828;
-    padding: 25px;
-    justify-content: center;
-}
-
 
 
 
