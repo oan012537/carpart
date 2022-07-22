@@ -159,7 +159,7 @@
                             </button>
                             <div class="text-t-into">
                                 @php 
-                                    if(!is_null($product_bookmark_check)){
+                                    if(isset($product_bookmark_check) && !is_null($product_bookmark_check)){
                                         $text_text_bookmark = "ยกเลิก สนใจสินค้าตัวนี้";
                                     }else{
                                         $text_text_bookmark = "สนใจสินค้าตัวนี้";
