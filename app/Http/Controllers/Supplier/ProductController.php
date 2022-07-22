@@ -20,6 +20,7 @@ use Auth;
 use Carbon\Carbon;
 use Validator;
 use DB;
+use Session;
 
 class ProductController extends Controller
 {
@@ -325,7 +326,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        $brand_list_data = Brand::where('is_active', true)->get();
+        $brand_list_data = Brand::where('is_active', true)
+                            ->orderBy('sequence_no')
+                            ->get();
 
         return view('supplier.product.create', compact('brand_list_data'));
                                                     
@@ -402,7 +405,7 @@ class ProductController extends Controller
                                         ['name_en', 'LIKE', "%{$search_value}%"]
                                     ])
                                     ->OrWhere('name_th', 'LIKE', "%{$search_value}%")
-                                    ->orderBy('id')->get();
+                                    ->orderBy('sequence_no')->get();
         } else if ($table_name == 'models') {
             $result_list_data = ProductModel::where([
                                         ['is_active', true],
@@ -527,7 +530,7 @@ class ProductController extends Controller
 
     }
 
-
+    // store data
     public function store(Request $request)
     {
         $data = $request->all();
@@ -543,18 +546,49 @@ class ProductController extends Controller
                 'name_en' => ['required', 'max:191'],
                 'image' => 'required',
                 'quality' => 'required',
+                'price' => 'required',
+                'brand_id' => 'required',                
+                'category_id' => 'required',
             ]);
         } else {
             $validator = Validator::make($data, [
                 'name_th' => ['required', 'max:191'],
                 'name_en' => ['required', 'max:191'],
-                'image' => 'required'                
+                'image' => 'required',
+                'price' => 'required',
+                'brand_id' => 'required',                
+                'category_id' => 'required',                
             ]);
         }
 
         if($validator->fails()){
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
+
+        $isWarranty = $data['is_warranty'];
+
+        if ($isWarranty) {
+            $validator = Validator::make($data, [
+                'duration' => 'required',                
+            ]);
+        }
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
+        $isDeliver = $data['is_deliver'];
+
+        if (!$isDeliver) {
+            $validator = Validator::make($data, [
+                'estimated_days' => 'required',                
+            ]);
+        }
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+        // validation 
 
         $supplier_id = Auth::guard('supplier')->user()->id;
         $supplier_name = Auth::guard('supplier')->user()->name;
@@ -565,9 +599,8 @@ class ProductController extends Controller
         $data['is_active'] = 1;
         $data['created_by'] = $supplier_name;
         $data['updated_by'] = $supplier_name;
-        $isWarranty = $data['is_warranty'];
         $product_image = $data['image'];
-        $transport_type_id = $data['transport_type_id'];
+        $transport_type_id = isset($data['transport_type_id'])? $data['transport_type_id']:null;
 
         $product_code = Keygen::numeric(6)->generate();
 
@@ -591,24 +624,26 @@ class ProductController extends Controller
         }
 
         // create or update transport coompany
+            $transport_data['product_id'] =  $product_data->id;
+            $transport_data['weight'] = $data['weight'];
+            $transport_data['unit'] = $data['unit'];
+            $transport_data['width'] = $data['width'];
+            $transport_data['length'] = $data['length'];
+            $transport_data['height'] = $data['height'];
+            $transport_data['uom'] = $data['uom'];
+            $transport_data['is_deliver'] = $data['is_deliver'];
+            $transport_data['estimated_days'] = isset($data['estimated_days']) ? $data['estimated_days'] : null;
+            $transport_data['created_by'] = $data['created_by'];
+            $transport_data['updated_by'] = $data['updated_by'];
+
         if ($transport_type_id) {
             foreach ($transport_type_id as $j => $transport_id) {
 
-                $transport_data['product_id'] =  $product_data->id;
                 $transport_data['transport_type_id'] = $transport_type_id[$j];
-                $transport_data['weight'] = $data['weight'];
-                $transport_data['unit'] = $data['unit'];
-                $transport_data['width'] = $data['width'];
-                $transport_data['length'] = $data['length'];
-                $transport_data['height'] = $data['height'];
-                $transport_data['uom'] = $data['uom'];
-                $transport_data['is_deliver'] = $data['is_deliver'];
-                $transport_data['estimated_days'] = isset($data['estimated_days']) ? $data['estimated_days'] : null;
-                $transport_data['created_by'] = $data['created_by'];
-                $transport_data['updated_by'] = $data['updated_by'];
-
                 Transportation::create($transport_data);
             }
+        } else {
+            Transportation::create($transport_data);
         }
 
         
@@ -634,7 +669,11 @@ class ProductController extends Controller
     public function edit($id)
     {
         $data = DB::table('products')->where('id', $id)->first();
-        $brand_list_data = DB::table('brands')->where('is_active', true)->get();
+        
+        $brand_list_data = DB::table('brands')->where('is_active', true)
+                                            ->orderBy('sequence_no')
+                                            ->get();
+        
         $product_image = DB::table('product_images')->where('product_id', $id)->pluck('image', 'line_item_no');
         $warranty = DB::table('warranties')->where('product_id', $id)->first();
         $transport = DB::table('transportations')->where('product_id', $id)->first();
@@ -686,12 +725,14 @@ class ProductController extends Controller
                 'name_en' => ['required', 'max:191'],
                 'image' => 'required',
                 'quality' => 'required',
+                'price' => 'required',
             ]);
         } else {
             $validator = Validator::make($data, [
                 'name_th' => ['required', 'max:191'],
                 'name_en' => ['required', 'max:191'],
-                'image' => 'required'                
+                'image' => 'required',
+                'price' => 'required',               
             ]);
         }
 
@@ -699,12 +740,36 @@ class ProductController extends Controller
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
 
+        $isWarranty = $data['is_warranty'];
+
+        if ($isWarranty) {
+            $validator = Validator::make($data, [
+                'duration' => 'required',                
+            ]);
+        }
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
+        $isDeliver = $data['is_deliver'];
+
+        if (!$isDeliver) {
+            $validator = Validator::make($data, [
+                'estimated_days' => 'required',                
+            ]);
+        }
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+        // validation 
+
         $supplier_name = Auth::guard('supplier')->user()->name;
 
         $data['updated_by'] = $supplier_name;
-        $isWarranty = $data['is_warranty'];
         $product_image = $data['image'];
-        $transport_type_id = $data['transport_type_id'];
+        $transport_type_id = isset($data['transport_type_id'])? $data['transport_type_id']:null;
 
         $warranty = [];
         $transport_data = [];
@@ -718,7 +783,10 @@ class ProductController extends Controller
         if ($product_data) {
 
             $product_image_data = ProductImage::where('product_id', $id)->get();
-            $transport_list_data = Transportation::where('product_id', $id)->get();
+            $transport_list_data = Transportation::where([
+                                                        ['product_id', $id],
+                                                        ['transport_type_id', '<>', 0]
+                                                    ])->get();
 
             // create or update warranty
             if ($isWarranty == 1){
@@ -750,20 +818,21 @@ class ProductController extends Controller
             }
 
             // create or update transport coompany
+                $transport_data['product_id'] =  $product_data->id;
+                $transport_data['weight'] = $data['weight'];
+                $transport_data['unit'] = $data['unit'];
+                $transport_data['width'] = $data['width'];
+                $transport_data['length'] = $data['length'];
+                $transport_data['height'] = $data['height'];
+                $transport_data['uom'] = $data['uom'];
+                $transport_data['is_deliver'] = $data['is_deliver'];
+                $transport_data['estimated_days'] = isset($data['estimated_days']) ? $data['estimated_days'] : null;
+                $transport_data['updated_by'] = $data['updated_by'];
+
             if ($transport_type_id) {
                 foreach ($transport_type_id as $j => $transport_id) {
 
-                    $transport_data['product_id'] =  $product_data->id;
                     $transport_data['transport_type_id'] = $transport_type_id[$j];
-                    $transport_data['weight'] = $data['weight'];
-                    $transport_data['unit'] = $data['unit'];
-                    $transport_data['width'] = $data['width'];
-                    $transport_data['length'] = $data['length'];
-                    $transport_data['height'] = $data['height'];
-                    $transport_data['uom'] = $data['uom'];
-                    $transport_data['is_deliver'] = $data['is_deliver'];
-                    $transport_data['estimated_days'] = isset($data['estimated_days']) ? $data['estimated_days'] : null;
-                    $transport_data['updated_by'] = $data['updated_by'];
 
                     if (in_array($transport_id, $old_transport_id)) {
                         Transportation::where([
@@ -775,6 +844,11 @@ class ProductController extends Controller
                         Transportation::create($transport_data);
                     }
                 }
+            } else {
+                Transportation::where([
+                                        ['product_id', $id],
+                                        ['transport_type_id', 0]
+                                    ])->update($transport_data);
             }
 
 
@@ -814,7 +888,9 @@ class ProductController extends Controller
             $product_data->update($data);
         }
 
-        return redirect()->route('products.index')->with('message', 'Update product successfully');
+        Session::flash('message', 'Update product successfully');
+
+        return redirect()->route('products.index', ['status_code' => 'all']);
         
     }
 
@@ -882,7 +958,7 @@ class ProductController extends Controller
         $image = $request->file('file');
     
         $imageName = time().'.'.$image->extension();
-        $image->move(public_path('product/images'), $imageName);
+        $image->move(public_path('products/images'), $imageName);
     
         return $imageName;
     }
@@ -893,10 +969,10 @@ class ProductController extends Controller
         $product_image = ProductImage::where('image', $imageName)->first();
         if ($product_image) {
             $product_image->delete();
-            unlink('product/images/'. $imageName);
+            unlink('products/images/'. $imageName);
         } else {
             if ($imageName) {
-                unlink('product/images/'. $imageName);
+                unlink('products/images/'. $imageName);
             }
         }
 

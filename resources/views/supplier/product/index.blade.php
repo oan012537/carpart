@@ -8,6 +8,12 @@
 @section('content')
 <input type="hidden" id="pageName" name="pageName" value="setting-product">
 <div class="content" id="setting-product">
+    @if(session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Success!</strong> {!! session()->get('message') !!}
+        </div>
+    @endif
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
@@ -250,7 +256,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
-    $(".nav_list #product #product-list-menu").addClass("active");
+    $(".nav_list #product #product-list-menu").addClass("activemenumain");
 
     $(document).ready(function() {
 
@@ -259,6 +265,12 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        // auto close alert
+         setTimeout(() => {
+            $('.alert').alert('close');
+        }, 3000);   
+        // auto close alert
 
         // datatable
         var table = $('#product-list-table').DataTable({

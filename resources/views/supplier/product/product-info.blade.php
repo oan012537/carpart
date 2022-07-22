@@ -16,6 +16,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                @if($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        {!! implode('<br>', $errors->all(':message')) !!}
+                    </div>
+                @endif
+            </div>
+            <div class="col-lg-12">
                 <div class="box__titlepage">
                     @if ($data['product_type'] == 'second')
                         <h3>{{ trans('file.Add Second Hand') }}</h3>    
@@ -191,7 +199,7 @@
                                                                     <div class="form-group">
                                                                         <label for="quality">{{ trans('file.Product Quality') }} <span>*</span></label>
                                                                         <select id="quality" class="form-select" aria-label="Default select example" name="quality">
-                                                                            <option>{{ trans('file.Specify') }}</option>
+                                                                            <option value="">{{ trans('file.Specify') }}</option>
                                                                             @foreach ($product_qualities as $quality)
                                                                                 <option value="{{ $quality }}">{{ trans('file.'. $quality) }}</option>
                                                                             @endforeach
@@ -312,6 +320,9 @@
                                                             @endforeach
                                                             </select>
                                                         </div>
+                                                        @if($errors->has('duration'))
+                                                            <span class="dot__color">{{ $errors->first('duration') }}</span><br>    
+                                                        @endif
                                                         <span>{{ trans('file.Warranty Message1') }}</span>
                                                     </div>
                                                 </div>
@@ -505,10 +516,14 @@
                                                                     <div class="form-group">
                                                                         <span class="label__setdate">{{ trans('file.Specify Day') }}</span>
                                                                         <select id="estimated_days" class="form-select" name="estimated_days" aria-label="Default select example">
+                                                                            <option value=""></option>
                                                                             @for ($i = 1; $i <= 31; $i++)
                                                                                 <option value="{{ $i }}">{{ $i }}</option>
                                                                             @endfor
                                                                         </select>
+                                                                        @if($errors->has('estimated_days'))
+                                                                            <span class="dot__color">{{ $errors->first('estimated_days') }}</span>
+                                                                        @endif
                                                                     </div>
 
                                                                     <span class="txt__red">{{ trans('file.Specify Day Message') }}</span>
@@ -550,7 +565,11 @@
                                                         <div class="form-group">
                                                             <label for="product-price">{{ trans('file.Amount') }} <span>{{ trans('file.Including VAT') }}</span></label>
                                                             <input type="number" id="product-price" class="form-control" name="price" 
-                                                                    placeholder="{{ trans('file.Specify') }}" value="{{ old('price') }}">
+                                                                    placeholder="{{ trans('file.Specify') }}" value="{{ old('price') }}" required>
+
+                                                                @if($errors->has('price'))
+                                                                    <span class="dot__color">{{ $errors->first('price') }}</span>
+                                                                @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -694,7 +713,9 @@
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
 <script type="text/javascript">
-    $(".nav_list #product #product-list-menu").addClass("active");
+    $(".nav_list #product #product-list-menu").addClass("activemenumain");
+
+    var total_image = 0;
 
     $.ajaxSetup({
         headers: {
@@ -726,8 +747,13 @@
 
         // upload image
         $(document).on('change', '#upload-image', function(){
+           
+            total_image = $('#show-image').children().length;
             var event = $(this);
-            uploadImage(event);
+            
+            if (total_image <= 5) {
+                uploadImage(event);
+            }
         });
         
         function uploadImage(event) {
@@ -745,7 +771,7 @@
                 data: form_data,
                 type: 'post',
                 success: function(data){
-                    imageUrl = "{{ asset('product/images') }}" + '/' + data;
+                    imageUrl = "{{ asset('products/images') }}" + '/' + data;
                     htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
                                     +'<input type="hidden" name="image[]" value="'+ data +'">'
                                     +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'

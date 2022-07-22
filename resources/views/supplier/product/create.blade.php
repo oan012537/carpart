@@ -99,9 +99,8 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="brand" id="image-options{{ $brand->id }}" value="{{ $brand->id }}">
                                             <label class="form-check-label" for="image-options{{ $brand->id }}">
-                                                <img src="{{ asset('brand_logo').'/'. $brand->image }}" class="img-fluid img-circleimg" alt="{{ $brand->name_th }}">
-                                                {{-- concat id is for test --}}
-                                                {{ $brand->name_th . ' ('. $brand->id }}
+                                                <img src="{{ asset($brand->image) }}" class="img-fluid img-circleimg" alt="{{ $brand->name_th }}">
+                                                {{ $brand->name_en }}
                                             </label>
                                             <input type="hidden" class="item-name" value="{{ $brand->name_en }}">
                                         </div>
@@ -193,7 +192,7 @@
                 {{-- select product type --}}
 
                 <div class="box__btn">
-                    <a href="javascript:void(0)" class="btn btn__back">{{ trans('file.Back') }}</a>
+                    <a href="javascript:void(0)" class="btn btn__back previous">{{ trans('file.Back') }}</a>
                     <a href="javascript:void(0)" class="btn btn__next">{{ trans('file.Next') }}</a>
                 </div>
 
@@ -208,7 +207,7 @@
 @section('script')
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <script>
-    $(".nav_list #product #product-list-menu").addClass("active");
+    $(".nav_list #product #product-list-menu").addClass("activemenumain");
     var current_fs, next_fs, previous_fs;
     var left, opacity, scale;
     var animating;
@@ -216,28 +215,29 @@
     var itemName;
     var table_name = 'brands';
     var parent_id;
+    var current;
+    var previous;
     
     $(document).on('click', '.next', function() {
 
         itemId  = $(this).children().children().val();
         itemName  = $(this).children().children('input.item-name').val();
         
-        if (animating) return false;
-        animating = true;
-
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
-
-        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
+        
+        current_fs.hide();
         next_fs.show();
+
         const attr__value = next_fs.attr('attr-id');
         
-    // alert(attr__value);
-    if (attr__value == 1) {
+        // alert(attr__value);
+        if (attr__value == 1) {
             $('#frm-second-product-info input[name="brand_id"]').val(itemId);
             $('#frm-new-product-info input[name="brand_id"]').val(itemId);
             getSub(itemId, 'models');
+            previous = 1;
+            current = 2;
             
             $('.txt__titlestep').addClass('d-none');
             $('.step1').removeClass('d-none');
@@ -247,6 +247,8 @@
             $('#frm-second-product-info input[name="model_id"]').val(itemId);
             $('#frm-new-product-info input[name="model_id"]').val(itemId);
             getSub(itemId, 'sub_models');
+            previous = 2;
+            current = 3;
          
             $('.step2').removeClass('d-none');
             $('.txt__series').html(itemName);
@@ -255,6 +257,8 @@
             $('#frm-second-product-info input[name="sub_model_id"]').val(itemId);
             $('#frm-new-product-info input[name="sub_model_id"]').val(itemId);
             getSub(itemId, 'issue_years');
+            previous = 3;
+            current = 4;
            
             $('.step3').removeClass('d-none');
             $('.txt__subseries').html(itemName);
@@ -263,6 +267,8 @@
             $('#frm-second-product-info input[name="issue_year_id"]').val(itemId);
             $('#frm-new-product-info input[name="issue_year_id"]').val(itemId);
             getSub(itemId, 'categories');
+            previous = 4;
+            current = 5;
           
             $('.step4').removeClass('d-none');
             $('.txt__years').html(itemName);
@@ -271,6 +277,8 @@
             $('#frm-second-product-info input[name="category_id"]').val(itemId);
             $('#frm-new-product-info input[name="category_id"]').val(itemId);
             getSub(itemId, 'sub_categories');
+            previous = 5;
+            current = 6;
           
             $('.step5').removeClass('d-none');
             $('.txt__cat').html(itemName);
@@ -279,6 +287,8 @@
             $('#frm-second-product-info input[name="sub_category_id"]').val(itemId);
             $('#frm-new-product-info input[name="sub_category_id"]').val(itemId);
             getSub(itemId, 'sub_sub_categories');
+            previous = 6;
+            current = 7;
           
             $('.step6').removeClass('d-none');
             $('.txt__sub_cat').html(itemName);
@@ -288,74 +298,33 @@
             $('#frm-new-product-info input[name="sub_sub_category_id"]').val(itemId);
             $('.step7').removeClass('d-none');
             $('.txt__sub_sub_cat').html(itemName);
+            previous = 7;
+            current = 8;
         }
-
-        current_fs.animate({
-            opacity: 0
-        }, {
-            step: function(now, mx) {
-                scale = 1 - (1 - now) * 0.2;
-                left = (now * 50) + "%";
-                opacity = 1 - now;
-                current_fs.css({
-                    'transform': 'scale(' + scale + ')',
-                    'position': 'absolute'
-                });
-                next_fs.css({
-                    'left': left,
-                    'opacity': opacity
-                });
-            },
-            duration: 800,
-            complete: function() {
-                current_fs.hide();
-                animating = false;
-            },
-            easing: 'easeInOutBack'
-        });
+        
     });
 
-    $(".previous").click(function() {
-        if (animating) return false;
-        animating = true;
+    $(".btn__back").click(function() {
 
-        current_fs = $(this).parent();
-        previous_fs = $(this).parent().prev();
+        current_fs = $('#fieldset'+current).parent();
+        previous_fs = $('#fieldset'+previous);
 
-        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+        current -= 1;
+        previous -= 1; 
 
+        $('.step'+current).addClass('d-none');
+        $('.step'+previous).removeClass('d-none');
+
+        current_fs.hide();
         previous_fs.show();
-        current_fs.animate({
-            opacity: 0
-        }, {
-            step: function(now, mx) {
-                scale = 0.8 + (1 - now) * 0.2;
-                left = ((1 - now) * 50) + "%";
-                opacity = 1 - now;
-                current_fs.css({
-                    'left': left
-                });
-                previous_fs.css({
-                    'transform': 'scale(' + scale + ')',
-                    'opacity': opacity
-                });
-            },
-            duration: 800,
-            complete: function() {
-                current_fs.hide();
-                animating = false;
-            },
-            easing: 'easeInOutBack'
-        });
-    });
-
-    $(".submit").click(function() {
-        return false;
+        // current_fs.children().children().remove();
+       
     });
 
     // query filter
-    $('#search-value').keyup(function() {        
+    $('#search-value').keyup(function() {    
         let searchValue = $(this).val();
+        // alert(parent_id);
         queryProductModel(searchValue, table_name, parent_id);        
     });
     $('.letter__az').on('click', function(){
@@ -386,15 +355,22 @@
                     if (tableName === 'models') {
                         table_name = tableName;
                         parent_id = id;
+                        $('#fieldset2').children().remove();
+
                         if (data.length === 0) {
-                            alert('Model not found');
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset2').append(htmltext);
                         } else {
                             data.forEach(model => {
                                 htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
                                     +'<div class="form-check">'
                                         +'<input class="form-check-input" type="checkbox" value="'+ model.id +'" id="flexCheckDefault">'
                                         +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + model.name_en + ' ('+ model.id // concat id is for test
+                                        + model.name_en
                                         +'</label>'
                                         +'<input type="hidden" class="item-name" value="' + model.name_en + '">'
                                     +'</div></div>';
@@ -405,15 +381,22 @@
                     else if (tableName === 'sub_models') {
                         table_name = tableName;
                         parent_id = id;
+                        $('#fieldset3').children().remove();
+
                         if (data.length === 0) {
-                            alert('Sub Model not found');
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset3').append(htmltext);
                         } else {
                             data.forEach(subModel => {
                                 htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
                                     +'<div class="form-check">'
                                         +'<input class="form-check-input" type="checkbox" value="'+ subModel.id +'" id="flexCheckDefault">'
                                         +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subModel.name_en + ' ('+ subModel.id // concat id is for test
+                                        + subModel.name_en
                                         +'</label>'
                                         +'<input type="hidden" class="item-name" value="' + subModel.name_en + '">'
                                     +'</div></div>';
@@ -424,15 +407,22 @@
                     else if (tableName === 'issue_years') {
                         table_name = tableName;
                         parent_id = id;
+                        $('#fieldset4').children().remove();
+
                         if (data.length === 0) {
-                            alert('Issue year not found');
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset4').append(htmltext);
                         } else {
                             data.forEach(issueYear => {
                                 htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
                                     +'<div class="form-check">'
                                         +'<input class="form-check-input" type="checkbox" value="'+ issueYear.id +'" id="flexCheckDefault">'
                                         +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + issueYear.from_year + ' ('+ issueYear.id // concat id is for test
+                                        + issueYear.from_year
                                         +'</label>'
                                         +'<input type="hidden" class="item-name" value="' + issueYear.from_year + '">'
                                     +'</div></div>';
@@ -443,15 +433,22 @@
                     else if (tableName === 'categories') {
                         table_name = tableName;
                         parent_id = id;
+                        $('#fieldset5').children().remove();
+
                         if (data.length === 0) {
-                            alert('Category not found');
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset5').append(htmltext);
                         } else {
                             data.forEach(category => {
                                 htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
                                     +'<div class="form-check">'
                                         +'<input class="form-check-input" type="checkbox" value="'+ category.id +'" id="flexCheckDefault">'
                                         +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + category.name_en + ' ('+ category.id // concat id is for test
+                                        + category.name_en
                                         +'</label>'
                                         +'<input type="hidden" class="item-name" value="' + category.name_en + '">'
                                     +'</div></div>';
@@ -462,15 +459,22 @@
                     else if (tableName === 'sub_categories') {
                         table_name = tableName;
                         parent_id = id;
+                        $('#fieldset6').children().remove();
+
                         if (data.length === 0) {
-                            alert('Sub Category not found');
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset6').append(htmltext);
                         } else {
                             data.forEach(subCategory => {
                                 htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
                                     +'<div class="form-check">'
                                         +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
                                         +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
+                                        + subCategory.name_en
                                         +'</label>'
                                         +'<input type="hidden" class="item-name" value="' + subCategory.name_en + '">'
                                     +'</div></div>';
@@ -481,15 +485,22 @@
                     else if (tableName === 'sub_sub_categories') {
                         table_name = tableName;
                         parent_id = id;
+                        $('#fieldset7').children().remove();
+
                         if (data.length === 0) {
-                            alert('Sub Sub Category not found');
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset7').append(htmltext);
                         } else {
                             data.forEach(subSubCategory => {
                                 htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
                                     +'<div class="form-check">'
                                         +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
                                         +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
+                                        + subSubCategory.name_en
                                         +'</label>'
                                         +'<input type="hidden" class="item-name" value="' + subSubCategory.name_en + '">'
                                     +'</div></div>';
@@ -520,97 +531,161 @@
 
                     if (table_name === 'brands') {
                         $('#fieldset1').children().remove();
-                        data.forEach(brand => {
-                            let imageUrl = "{{ asset('brand_logo') }}" + '/' + brand.image;
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    +'<div class="form-check">'
-                                        +'<input class="form-check-input" type="radio" name="brand" id="image-options'+ brand.id +'" value="'+ brand.id +'">'
-                                        +'<label class="form-check-label" for="image-options'+ brand.id +'">'
-                                            +'<img src="'+ imageUrl +'" class="img-fluid img-circleimg" alt="'+ brand.name_en +'">'
-                                            + brand.name_th
-                                        +'</label>'
-                                        +'<input type="hidden" class="item-name" value="'+ brand.name_en +'">'
-                                    +'</div>';
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
                             $('#fieldset1').append(htmltext);
-                        });
+                        } else {
+                            data.forEach(brand => {
+                                let imageUrl = "{{  asset('brand_logo') }}" + '/' + brand.image.replace('brand_logo', '');
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                        +'<div class="form-check">'
+                                            +'<input class="form-check-input" type="radio" name="brand" id="image-options'+ brand.id +'" value="'+ brand.id +'">'
+                                            +'<label class="form-check-label" for="image-options'+ brand.id +'">'
+                                                +'<img src="'+ imageUrl +'" class="img-fluid img-circleimg" alt="'+ brand.name_en +'">'
+                                                + brand.name_th
+                                            +'</label>'
+                                            +'<input type="hidden" class="item-name" value="'+ brand.name_en +'">'
+                                        +'</div>';
+                                $('#fieldset1').append(htmltext);
+                            });
+                        }
+                        
                     } else  if (table_name == 'models') {
                         $('#fieldset2').children().remove();
-                        data.forEach(model => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                +'<div class="form-check">'
-                                    +'<input class="form-check-input" type="checkbox" value="'+ model.id +'" id="flexCheckDefault">'
-                                    +'<label class="form-check-label" for="flexCheckDefault">'
-                                    + model.name_en
-                                    +'</label>'
-                                    +'<input type="hidden" class="item-name" value="' + model.name_en + '">'
-                                +'</div></div>';
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
                             $('#fieldset2').append(htmltext);
-                        });
+                        } else {
+                            data.forEach(model => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ model.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + model.name_en
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + model.name_en + '">'
+                                    +'</div></div>';
+                                $('#fieldset2').append(htmltext);
+                            });
+                        }
                     } else  if (table_name == 'sub_models') {
                         $('#fieldset3').children().remove();
-                        data.forEach(subModel => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                +'<div class="form-check">'
-                                    +'<input class="form-check-input" type="checkbox" value="'+ subModel.id +'" id="flexCheckDefault">'
-                                    +'<label class="form-check-label" for="flexCheckDefault">'
-                                    + subModel.name_en
-                                    +'</label>'
-                                    +'<input type="hidden" class="item-name" value="' + subModel.name_en + '">'
-                                +'</div></div>';
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
                             $('#fieldset3').append(htmltext);
-                        });
+                        } else {
+                            data.forEach(subModel => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subModel.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subModel.name_en
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + subModel.name_en + '">'
+                                    +'</div></div>';
+                                $('#fieldset3').append(htmltext);
+                            });
+                        }
                     } else  if (table_name == 'issue_years') {
                         $('#fieldset4').children().remove();
-                        data.forEach(issueYear => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                +'<div class="form-check">'
-                                    +'<input class="form-check-input" type="checkbox" value="'+ issueYear.id +'" id="flexCheckDefault">'
-                                    +'<label class="form-check-label" for="flexCheckDefault">'
-                                    + issueYear.from_year
-                                    +'</label>'
-                                    +'<input type="hidden" class="item-name" value="' + issueYear.from_year + '">'
-                                +'</div></div>';
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
                             $('#fieldset4').append(htmltext);
-                        });
+                        } else {
+                            data.forEach(issueYear => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ issueYear.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + issueYear.from_year
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + issueYear.from_year + '">'
+                                    +'</div></div>';
+                                $('#fieldset4').append(htmltext);
+                            });
+                        }
                     } else  if (table_name == 'categories') {
                         $('#fieldset5').children().remove();
-                        data.forEach(category => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                +'<div class="form-check">'
-                                    +'<input class="form-check-input" type="checkbox" value="'+ category.id +'" id="flexCheckDefault">'
-                                    +'<label class="form-check-label" for="flexCheckDefault">'
-                                    + category.name_en
-                                    +'</label>'
-                                    +'<input type="hidden" class="item-name" value="' + category.name_en + '">'
-                                +'</div></div>';
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
                             $('#fieldset5').append(htmltext);
-                        });
+                        } else {
+                            data.forEach(category => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ category.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + category.name_en
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + category.name_en + '">'
+                                    +'</div></div>';
+                                $('#fieldset5').append(htmltext);
+                            });
+                        }
                     } else  if (table_name == 'sub_categories') {
                         $('#fieldset6').children().remove();
-                        data.forEach(subCategory => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                +'<div class="form-check">'
-                                    +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
-                                    +'<label class="form-check-label" for="flexCheckDefault">'
-                                    + subCategory.name_en
-                                    +'</label>'
-                                    +'<input type="hidden" class="item-name" value="' + subCategory.name_en + '">'
-                                +'</div></div>';
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
                             $('#fieldset6').append(htmltext);
-                        });
+                        } else {
+                            data.forEach(subCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subCategory.name_en
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + subCategory.name_en + '">'
+                                    +'</div></div>';
+                                $('#fieldset6').append(htmltext);
+                            });
+                        }
                     } else  if (table_name == 'sub_sub_categories') {
                         $('#fieldset7').children().remove();
-                        data.forEach(subSubCategory => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                +'<div class="form-check">'
-                                    +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
-                                    +'<label class="form-check-label" for="flexCheckDefault">'
-                                    + subSubCategory.name_en
-                                    +'</label>'
-                                    +'<input type="hidden" class="item-name" value="' + subCategory.name_en + '">'
-                                +'</div></div>';
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
                             $('#fieldset7').append(htmltext);
-                        });
+                        } else {
+                            data.forEach(subSubCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subSubCategory.name_en
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="' + subCategory.name_en + '">'
+                                    +'</div></div>';
+                                $('#fieldset7').append(htmltext);
+                            });
+                        }
                     }
                     
                 },

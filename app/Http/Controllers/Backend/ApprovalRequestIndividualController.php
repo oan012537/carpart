@@ -22,7 +22,7 @@ class ApprovalRequestIndividualController extends Controller
 
     public function datatables(){
         
-        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','personal')->select(DB::raw("store_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','personal')->select(DB::raw("store_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
@@ -147,7 +147,7 @@ class ApprovalRequestIndividualController extends Controller
 
     public function datatables_wait(){
 
-        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','personal')->where('suppliers.status_code','request_approval')->select(DB::raw("store_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','personal')->where('suppliers.status_code','request_approval')->select(DB::raw("store_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
@@ -217,7 +217,7 @@ class ApprovalRequestIndividualController extends Controller
 
     public function datatables_approval(){
 
-        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','personal')->where('suppliers.status_code','approved')->select(DB::raw("store_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','personal')->where('suppliers.status_code','approved')->select(DB::raw("store_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
@@ -287,7 +287,7 @@ class ApprovalRequestIndividualController extends Controller
 
 	public function datatables_disapproved(){
 
-        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','personal')->where('suppliers.status_code','un_approve')->select(DB::raw("store_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','personal')->where('suppliers.status_code','un_approve')->select(DB::raw("store_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at"));
         $search = request('search');
         $radiodate = request('radiodate');
         $date = request('date');
@@ -356,8 +356,8 @@ class ApprovalRequestIndividualController extends Controller
 	}
 
     public function getdetails(Request $request){
-        $result = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','user_suppliers.id','stores.supplier_id')->where('user_suppliers.id',$request->id)->first();
-        $getaddress = Store::where('supplier_id',$request->id)->first();
+        $result = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('user_suppliers.id',$request->id)->first();
+        $getaddress = Store::where('supplier_id',$result->supplier_id)->first();
         $result->addressfull = $result->address.' ตำบล/แขวง '.$getaddress->District->name_th.' อำเภอ/เขต '.$getaddress->Amphure->name_th.' จังหวัด '.$getaddress->Province->name_th.' '.$getaddress->District->zip_code;
         
         $getaddress = Supplier::where('user_id',$request->id)->first();
@@ -389,12 +389,12 @@ class ApprovalRequestIndividualController extends Controller
         }
         $send = $this->mails($user);
         // dd($send);
-        $sms = smstext($text,$user->phone);
-        if($sms['code'] == '000'){
+        // $sms = smstext($text,$user->phone);
+        // if($sms['code'] == '000'){
 
-        }else{
-            $this->mails($user);
-        }
+        // }else{
+        //     $this->mails($user);
+        // }
         return redirect()->route('backend.approval.individual');
     }
 
@@ -422,12 +422,12 @@ class ApprovalRequestIndividualController extends Controller
         }
         $send = $this->mails($user);
         // dd($send);
-        $sms = smstext($text,$user->phone);
-        if($sms['code'] == '000'){
+        // $sms = smstext($text,$user->phone);
+        // if($sms['code'] == '000'){
 
-        }else{
-            $send = $this->mails($user);
-        }
+        // }else{
+        //     $send = $this->mails($user);
+        // }
         return redirect()->route('backend.approval.individual');
 
     }

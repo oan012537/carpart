@@ -32,15 +32,27 @@ class SupplierAuthController extends Controller
     // login
     public function login(Request $request)
     {
+
+        // $user = UserSupplier::where('email', $request->login)
+        //                     ->orWhere('phone', $request->login)
+        //                     ->first();
+        // dd(Hash::check($request->password, $user->password));
+
+        // if ($user || Hash::check($request->password, $user->password)) {
+        //     dd($user->password);
+        //     return back()->with('error','Invaild Email Or Password');
+        // } 
+          
+        // return redirect()->route('supplier.profile')->with('message','Supplier Login Successfully');
+        
+
         $check = $request->all();
 
-        if(Auth::guard('supplier')->attempt(['email' => $check['email'], 'password' => $check['password']  ])) {
-
-            return redirect()->route('supplier.profile')->with('message','Supplier Login Successfully');
+        if(Auth::guard('supplier')->attempt(['phone' => $check['phone'], 'password' => $check['password']  ])) {
+            // return redirect()->route('supplier.profile')->with('message','Supplier Login Successfully');
+            return redirect()->route('products.index', ['status_code' => 'all']);
         }else{
-
-            return back()->with('error','Invaild Email Or Password');
-            
+            return back()->with('error','Invaild Phone Or Password');
         }
         
     }
@@ -79,36 +91,38 @@ class SupplierAuthController extends Controller
         $phone = $request->phone;
 
         // Support version greater than or equal 7.X.X 
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-send',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_HTTPHEADER => array(
-                "Content-Type: application/json",
-                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
-                "secret_key:SCFmYT1IgPXJT4nr",
-            ),
-            CURLOPT_POSTFIELDS =>json_encode(array(
-            "project_key" => "9b9279e805",
-            "phone" => $phone
-            )),
-        ));
+        // $curl = curl_init();
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-send',
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        //     CURLOPT_HTTPHEADER => array(
+        //         "Content-Type: application/json",
+        //         "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+        //         "secret_key:SCFmYT1IgPXJT4nr",
+        //     ),
+        //     CURLOPT_POSTFIELDS =>json_encode(array(
+        //     "project_key" => "9b9279e805",
+        //     "phone" => $phone
+        //     )),
+        // ));
 
-        $response = json_decode(curl_exec($curl));
-        curl_close($curl);
-        $code = $response->code;
+        // $response = json_decode(curl_exec($curl));
+        // curl_close($curl);
+        // $code = $response->code;
 
-        if ($code == '000') {
-            $token = $response->result->token;
-        } else {
-            $detail = $response->detail;
-        }
+        // if ($code == '000') {
+        //     $token = $response->result->token;
+        // } else {
+        //     $detail = $response->detail;
+        // }
+
+        $token = '12345678';
         
         return view('supplier.auth.verify-otp', compact('phone', 'token'));
     }
@@ -165,6 +179,7 @@ class SupplierAuthController extends Controller
             return redirect()->back()->withErrors($validator->errors());
         }
 
+        $login_phone = $request->login_phone;
         $token = $request->token;
         $otp_code_array = $request->otp_digit;
 
@@ -178,44 +193,50 @@ class SupplierAuthController extends Controller
         }
 
         //Support version greater than or equal 7.X.X 
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_HTTPHEADER => array(
-                "Content-Type: application/json",
-                "api_key:a8c6eba12ba2326f25fe706b94293fe0",
-                "secret_key:SCFmYT1IgPXJT4nr",
-            ),
-            CURLOPT_POSTFIELDS =>json_encode(array(
-            "token" => $token,
-            "otp_code" => $otp_code
-            )),
-        ));
-        $response = json_decode(curl_exec($curl));
-        curl_close($curl);
+        // $curl = curl_init();
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => 'https://portal-otp.smsmkt.com/api/otp-validate',
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => '',
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        //     CURLOPT_HTTPHEADER => array(
+        //         "Content-Type: application/json",
+        //         "api_key:a8c6eba12ba2326f25fe706b94293fe0",
+        //         "secret_key:SCFmYT1IgPXJT4nr",
+        //     ),
+        //     CURLOPT_POSTFIELDS =>json_encode(array(
+        //     "token" => $token,
+        //     "otp_code" => $otp_code
+        //     )),
+        // ));
+        // $response = json_decode(curl_exec($curl));
+        // curl_close($curl);
         
-        $code = $response->code;
+        $code = '000'; //$response->code;
 
         if ($code == '000') {
-            return redirect()->route('supplier.register.supplierInfo');
+            return redirect()->route('supplier.register.supplierInfo')->with($login_phone);
         } else {
+            $detail = $response->detail;
+
+            Session::flash('not_varify', $detail);
+            
             return redirect()->back();
         }
     }
 
     // supplier info
-    public function supplierInfo()
+    public function supplierInfo(Request $request)
     {
+        $login_phone = $request->login_phone;
+
         $province_list_data = Province::select('id', 'name_th', 'name_en')->get();
 
-        return view('supplier.auth.supplier-info', compact('province_list_data'));
+        return view('supplier.auth.supplier-info', compact('province_list_data', 'login_phone'));
     }
 
 
@@ -329,7 +350,7 @@ class SupplierAuthController extends Controller
 
         $validator = Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:191', 'unique:user_suppliers'],
-            'phone' => ['required', 'max:10', 'min:10', 'unique:user_suppliers']
+            'phone' => ['required', 'max:10', 'min:10', 'unique:suppliers']
         ]);
 
         if($validator->fails()){
@@ -443,7 +464,7 @@ class SupplierAuthController extends Controller
             'name' => $user_name,
             'email' => $data['email'],
             'password' => Hash::make('12345678'),
-            'phone' => $data['phone'],
+            'phone' => $data['login_phone'],
             'role_id' => 1,
             'is_active' => 0
         ]);
@@ -472,9 +493,8 @@ class SupplierAuthController extends Controller
             'created_by' => $user_name
         ]);
 
-        // $user_id = $user->id;
-        
-        return redirect()->route('supplier.index')->with('message', 'Register supplier successfully.');
+
+        return redirect()->route('supplier.index')->with('register', 'Register supplier successfully.');
 
     }
 
