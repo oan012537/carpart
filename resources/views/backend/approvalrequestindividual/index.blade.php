@@ -359,7 +359,7 @@
     </div>
 </div>
 <style>
-    /*-----------------------------------------
+/*-----------------------------------------
     RESPONSIVE
 -------------------------------------------*/
     @media (max-width:426px) {
@@ -402,17 +402,6 @@
         }
     }
 
-    @media screen and (min-width:1280px) and (max-width:1359px) {}
-
-    @media screen and (min-width:1360px) and (max-width:1439px) {}
-
-    @media screen and (min-width:1440px) and (max-width:1599px) {}
-
-    @media screen and (min-width:1600px) and (max-width:1919px) {}
-
-    @media screen and (min-width:1920px) and (max-width:2559px) {}
-
-    @media screen and (min-width:2560px) {}
 </style>
 @stop
 
