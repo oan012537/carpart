@@ -42,8 +42,8 @@
                     </div>
                     <br>
 
-                    <div class="box-bb-num">
-                        <form id="frm-confirm" method="POST" class="form-inline digit-group" action="{{ route('supplier.register.confirmOtp') }}" data-group-name="digits" data-autosubmit="false" autocomplete="off">
+                    <div class="box-bb-num ">
+                        <form id="frm-confirm" method="POST" class="form-inline digit-group flex-center" action="{{ route('supplier.register.confirmOtp') }}" data-group-name="digits" data-autosubmit="false" autocomplete="off">
 
                             @csrf
                             <input type="hidden" name="token" value="{{ $token }}">
@@ -83,13 +83,13 @@
                         </p>
                     </div>
                     <br>
-                    <div class='but-bb-log'>
+                    <div class='but-bb-log pdleftlogin pdrightlogin mb-3'>
                         <a href="{{ route('supplier.register.smsConfirm') }}">
                             <button class="button button1"> {{ trans('file.Back') }}
                             </button>
                         </a>
                         &nbsp;
-                        <button id="btn-submit" class="button button2"> {{ trans('file.Next') }} &nbsp; <i class='fas fa-angle-right'></i></button>
+                        <button id="btn-submit" class="button button2 w-100"> {{ trans('file.Next') }} &nbsp; <i class='fas fa-angle-right'></i></button>
                     </div>
                 </div>
             </div>
