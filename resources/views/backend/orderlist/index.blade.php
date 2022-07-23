@@ -110,9 +110,9 @@
                                     <div class="card form-box-input dataall">
                                         <div class="card-header">
                                             <div class="d-md-flex">
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">หมายเลขคำสั่งซื้อ : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ร้านค้า : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ผู้ซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">หมายเลขคำสั่งซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ร้านค้า : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ผู้ซื้อ : W123467845123</p>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -192,9 +192,9 @@
                                     <div class="card form-box-input dataunpaid">
                                         <div class="card-header">
                                             <div class="d-md-flex">
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">หมายเลขคำสั่งซื้อ : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ร้านค้า : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ผู้ซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">หมายเลขคำสั่งซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ร้านค้า : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ผู้ซื้อ : W123467845123</p>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -274,9 +274,9 @@
                                     <div class="card form-box-input datadelivered">
                                         <div class="card-header">
                                             <div class="d-md-flex">
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">หมายเลขคำสั่งซื้อ : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ร้านค้า : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ผู้ซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">หมายเลขคำสั่งซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ร้านค้า : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ผู้ซื้อ : W123467845123</p>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -356,9 +356,9 @@
                                     <div class="card form-box-input datashipping">
                                         <div class="card-header">
                                             <div class="d-md-flex">
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">หมายเลขคำสั่งซื้อ : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ร้านค้า : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ผู้ซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">หมายเลขคำสั่งซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ร้านค้า : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ผู้ซื้อ : W123467845123</p>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -439,9 +439,9 @@
                                     <div class="card form-box-input datareceived">
                                         <div class="card-header">
                                             <div class="d-md-flex">
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">หมายเลขคำสั่งซื้อ : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ร้านค้า : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ผู้ซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">หมายเลขคำสั่งซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ร้านค้า : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ผู้ซื้อ : W123467845123</p>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -522,9 +522,9 @@
                                     <div class="card form-box-input datacancel">
                                         <div class="card-header">
                                             <div class="d-md-flex">
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">หมายเลขคำสั่งซื้อ : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ร้านค้า : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ผู้ซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">หมายเลขคำสั่งซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ร้านค้า : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ผู้ซื้อ : W123467845123</p>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -604,9 +604,9 @@
                                     <div class="card form-box-input datareview">
                                         <div class="card-header">
                                             <div class="d-md-flex">
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">หมายเลขคำสั่งซื้อ : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ร้านค้า : W123467845123</p>
-                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-1">ID ผู้ซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">หมายเลขคำสั่งซื้อ : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ร้านค้า : W123467845123</p>
+                                                <p class="mb-lg-0 mb-1 ms-lg-5 ms-3">ID ผู้ซื้อ : W123467845123</p>
                                             </div>
                                         </div>
                                         <div class="card-body">
