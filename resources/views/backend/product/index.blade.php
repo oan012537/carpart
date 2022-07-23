@@ -12,8 +12,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
 <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
 
-<input type="hidden" id="pageName" name="pageName" value="manage-product">
-<input type="hidden" id="pagemenuName" name="pagemenuName" value="manageproduct">
+<input type="hidden" id="pageName" name="pageName" value="manageproduct">
+<input type="hidden" id="pageName2" name="pageName2" value="manageproduct">
 
 <div class="content">
     <div class="box__approvel">

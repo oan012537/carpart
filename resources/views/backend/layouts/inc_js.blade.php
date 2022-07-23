@@ -76,7 +76,8 @@
     $.get("{{route('backend.approve.wait')}}", {},
         function (data, textStatus, jqXHR) {
             if(parseInt(data)>0){
-                $("#showcountapprove span").html(data)
+                $("#showcountapprove span").html(data);
+                $("#showcountapprove").css('display','inline-block');
             }
         },
     );
