@@ -762,6 +762,7 @@
         .box__approvel .txt__page {
             font-size: 24px;
             margin-bottom: 1rem;
+            margin-top: 4rem;
         }
 
         .box__approvel .box__filter {
