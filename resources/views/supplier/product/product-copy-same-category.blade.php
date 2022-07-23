@@ -320,6 +320,9 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
+                                                        @if($errors->has('duration'))
+                                                            <span class="dot__color">{{ $errors->first('duration') }}</span><br>    
+                                                        @endif
                                                         <span>{{ trans('file.Warranty Message1') }}</span>
                                                     </div>
                                                 </div>
@@ -529,6 +532,7 @@
                                                                     <div class="form-group">
                                                                         <span class="label__setdate">{{ trans('file.Specify Day') }}</span>
                                                                         <select id="estimated_days" class="form-select" name="estimated_days" aria-label="Default select example">
+                                                                            <option value=""></option>
                                                                             @for ($i = 1; $i <= 31; $i++)
                                                                                 <option value="{{ $i }}"
                                                                                         {{-- @if((isset($transport->estimated_days)? $transport->estimated_days : 0) == $i) selected @endif --}}
@@ -536,6 +540,9 @@
                                                                                 </option>
                                                                             @endfor
                                                                         </select>
+                                                                        @if($errors->has('estimated_days'))
+                                                                            <span class="dot__color">{{ $errors->first('estimated_days') }}</span>
+                                                                        @endif
                                                                     </div>
 
                                                                     <span class="txt__red">{{ trans('file.Specify Day Message') }}</span>
@@ -578,6 +585,9 @@
                                                             <label for="product-price">{{ trans('file.Amount') }} <span>{{ trans('file.Including VAT') }}</span></label>
                                                             <input type="number" id="product-price" class="form-control" name="price" placeholder="{{ trans('file.Specify') }}"
                                                                 value="{{ old('price')? old('price'): $data->price }}">
+                                                            @if($errors->has('price'))
+                                                                <span class="dot__color">{{ $errors->first('price') }}</span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -589,12 +599,12 @@
                                                             <div class="form-group">
                                                                 <label for="commission">{{ trans('file.Commission') }} </label>
                                                                 <input type="text" class="form-control" name="commission" placeholder="{{ trans('file.Specify') }}" 
-                                                                    value="{{ old('commission')? old('commission'): $data->commission }}" readonly>
+                                                                        value="@if (old('commission') > 0) {{ old('commission') }} @else {{ $data->commission }} @endif" readonly>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="revenue">{{ trans('file.Net Income') }}</label>
                                                                 <input type="text" class="form-control" name="revenue" placeholder="{{ trans('file.Specify') }}" 
-                                                                    value="{{ old('revenue')? old('revenue'): $data->revenue }}" readonly>
+                                                                        value="@if (old('revenue') > 0) {{ old('revenue') }} @else {{ $data->revenue }} @endif" readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -690,7 +700,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">{{ trans('file.Sell Status') }}</label>
-                            @if ($data->status_code == 'sell')
+                            @if ($data->status_code == 'selling')
                                 <div class="box__status status-selling">{{ trans('file.Selling') }}</div> 
                             @elseif ($data->status_code == 'sold')
                                 <div class="box__status status-sold">{{ trans('file.Sold') }}</div>
@@ -727,7 +737,7 @@
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
 <script type="text/javascript">
-    $(".nav_list #product #product-list-menu").addClass("active");
+    $(".nav_list #product #product-list-menu").addClass("activemenumain");
 
     var isWarranty = "{{ $data->is_warranty }}";
     var isDeliver = "{{ isset($transport->is_deliver)? $transport->is_deliver : 1 }}";
@@ -795,7 +805,7 @@
                 data: form_data,
                 type: 'post',
                 success: function(data){
-                    imageUrl = "{{ asset('product/images') }}" + '/' + data;
+                    imageUrl = "{{ asset('products/images') }}" + '/' + data;
                     htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
                                     +'<input type="hidden" name="image[]" value="'+ data +'">'
                                     +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'

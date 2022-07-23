@@ -14,12 +14,15 @@
     <meta name='copyright' content='orange technology solution co.,ltd.'>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    @yield('matavendor')
+
     <link type="image/ico" rel="shortcut icon" href="assets/img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- link modal -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- link modal -->
+    
 
     @include('buyer.layouts.inc_stylesheet')
 

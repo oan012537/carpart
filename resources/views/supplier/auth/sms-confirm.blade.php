@@ -46,6 +46,10 @@
                                 @if($errors->has('phone'))
                                 <span class="dot__color">{{ $errors->first('phone') }}</span>
                                 @endif
+
+                                @if(session()->has('not_varify'))
+                                <span class="dot__color">{{ session()->get('not_varify') }}</span>
+                                @endif
                             </div>
 
                             <br>

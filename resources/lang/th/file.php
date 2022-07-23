@@ -196,6 +196,7 @@ return [
 	"Shipping Type" => "ประเภทการจัดส่ง",
 	"Select brand" => "เลือกยี่ห้อ...",
 	"Select category" => "เลือกหมวดหมู่...",
+	"Not Found" => "ค้นหาไม่พบ",
 
 
 ];

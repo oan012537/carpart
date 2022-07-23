@@ -175,6 +175,7 @@
                                 <input type="hidden" name="amphure" value="{{ $data['amphure'] }}">
                                 <input type="hidden" name="district" value="{{ $data['district'] }}">
                                 <input type="hidden" name="postcode" value="{{ $data['postcode'] }}">
+                                <input type="hidden" name="login_phone" value="{{ $data['login_phone'] }}">
                                 
                                 {{-- company --}}
                                 <input type="hidden" name="company_name" value="{{ $data['company_name'] }}">

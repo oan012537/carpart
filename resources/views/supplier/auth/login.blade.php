@@ -34,7 +34,14 @@
                                 <p>{{ trans('file.Mobile number / email') }}</p>
                             </div>
                             <div class="input-group box-border">
-                                <input type="text" class="form-control{{ $errors->has('name') || $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="01xx-xxx-xxxxx" aria-label="Username" aria-describedby="basic-addon1" required autofocus value="{{old('email')}}">
+                                <input type="text" 
+                                        class="form-control" 
+                                        name="phone" 
+                                        placeholder="01xx-xxx-xxxxx" 
+                                        aria-label="Username" 
+                                        aria-describedby="basic-addon1" 
+                                        required autofocus 
+                                        value="{{old('phone')}}">
                             </div>
                             <div class="tt-text-log mb-3">
                                 @if(session()->has('error'))
@@ -46,7 +53,12 @@
                                 <p>{{ trans('file.Password') }}</p>
                             </div>
                             <div class="input-group box-border">
-                                <input type="password" name="password" class="form-control" id="password" placeholder="*************" required>
+                                <input type="password" 
+                                        name="password" 
+                                        class="form-control" 
+                                        id="password" 
+                                        placeholder="*************" 
+                                        required>
                             </div>
                             <div class="tt-text-log mb-3">
                                 @if(session()->has('error'))
@@ -105,7 +117,7 @@
 </section>
 
 <section id="modal-regis3">
-    @if(session()->has('message'))
+    @if(session()->has('register'))
         <?php 
             $display_class = 'd-block';
         ?>

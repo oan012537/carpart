@@ -89,6 +89,12 @@ Route::prefix('buyer')->group(function(){
         Route::get('buyerprofile/bank/setdefault/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_bank_set_default']); //-OAT
         
         //======= OAT End My Account =======
+
+        //======= OAT Comfirm Inventory ===========
+
+        Route::get('confirminventory/{id}', [Buyer\ComfirmInventoryController::class, 'confirminventory']); //-OAT
+
+        //======= OAT End Comfirm Inventory =======
     });
 
     //Ajax
