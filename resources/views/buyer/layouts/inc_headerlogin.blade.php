@@ -15,9 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('frontend.promotion')}}">โปรโมชั่น</a>
                 </li>
-                {{-- <li class="nav-item">
+                <!-- {{-- <li class="nav-item">
                     <a class="nav-link" href="#">คูปองส่วนลดทั้งหมด</a>
-                </li> --}}
+                </li> --}} -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('frontend.articles')}}">บทความ</a>
                 </li>
@@ -59,11 +59,11 @@
                 <!--  -->
 
                 @if (Auth::guard('buyer')->user())
-                    <li class="nav-item">
-                        <a class="nav-link btn__yellow" href="{{url('buyer/logout-buy')}}">
-                            <span>logout</span>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link btn__yellow" href="{{url('buyer/logout-buy')}}">
+                        <span>logout</span>
+                    </a>
+                </li>
                 @else
 
                 @endif

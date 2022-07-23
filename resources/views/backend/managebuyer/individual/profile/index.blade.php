@@ -36,7 +36,7 @@
 
                     <div class="row">
                         @include('backend.managebuyer.individual.inc_nav')
-                        <div class="col-md-9">
+                        <div class="col-lg-md-9 mt-4">
 
                             <div class="box__table p-4">
                                 <ul class="nav nav-tabs" role="tablist">

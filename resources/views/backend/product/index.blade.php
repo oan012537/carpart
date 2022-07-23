@@ -25,33 +25,33 @@
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-lg-12">
                     <div class="box__filter">
                         <form class="form-box-input px-2">
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <label class="title__txt">ชื่อสินค้า/SKU</label>
                                     <input type="text" class="form-control" id="productname" name="productname" placeholder="ระบุ">
                                 </div>
 
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <label class="title__txt">หมวดหมู่หลัก (ประเภท)</label>
                                     <input type="text" class="form-control" id="category" name="category" placeholder="Auto complete search">
                                 </div>
 
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <label for="" class="title__txt">แบรนด์</label>
                                     <input type="text" class="form-control" id="brand" name="brand" placeholder="Auto complete search">
                                 </div>
 
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <div class="">
                                         <button type="button" class="btn btn-search"  id="">ค้นหา</button>
                                         <button type="reset" class="btn btn-reset ms-2"id="">รีเซต</button>
                                     </div>
                                 </div>
 
-                                <div class="col-3 mt-3">
+                                <div class="col-lg-3 mt-3">
                                     <label class="title__txt">ยอดขาย</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control number" id="minsell" name="minsell" placeholder="ระบุ">
@@ -60,12 +60,12 @@
                                     </div>
                                 </div>
 
-                                <div class="col-3 mt-3">
+                                <div class="col-lg-3 mt-3">
                                     <label class="title__txt">ผู้ขาย</label>
                                     <input type="text" class="form-control" id="seller" name="seller" placeholder="ระบุ">
                                 </div>
 
-                                <div class="col-6 mt-3">
+                                <div class="col-lg-6 mt-3">
                                     <label class="title__txt">คุณภาพสินค้า</label>
                                     <div class="d-flex mt-2">
                                         <div class="form-check ms-5">

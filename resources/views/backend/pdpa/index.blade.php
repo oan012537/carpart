@@ -27,7 +27,7 @@
                     <div class="box__filter">
                         <form class="form-box-input px-2">
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <label class="title__txt">ค้นหา</label>
                                     <div class="input-group mb-1">
                                         <input type="text" class="form-control" placeholder="ระบุ" name="search" id="search">
@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <label class="title__txt">ประเภทผู้ใช้งาน</label>
                                     <select class="form-select" id="searchtype">
                                         <option value="">ทั้งหมด</option>
@@ -46,7 +46,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <label class="title__txt">ประเภทสมาชิก</label>
                                     <select class="form-select" id="searchgrouptype">
                                         <option value="">ทั้งหมด</option>

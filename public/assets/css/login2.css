@@ -4,18 +4,15 @@
 }
 
 #sec-login1 .box-b-login {
-    background-color: #3F3F3F;
-    box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    background-color: #3f3f3f;
+    box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 5px;
     margin: 20px;
 }
 
 #sec-login1 .text-log-back {
-    background-color: #3F3F3F;
-}
-
-#sec-login1 .img-img-log {
-    padding-right: 15px;
+    background-color: #3f3f3f;
 }
 
 .fa-angle-right:before {
@@ -52,11 +49,11 @@
     line-height: 30px;
     /* identical to box height */
     display: flex;
-    color: #BDBDBD;
+    color: #bdbdbd;
 }
 
-#sec-login1 .input-group>.form-control,
-.input-group>.form-select {
+#sec-login1 .input-group > .form-control,
+.input-group > .form-select {
     position: relative;
     flex: 1 1 auto;
     width: 1%;
@@ -79,7 +76,7 @@
 }
 
 .button {
-    background-color: #E8D95F;
+    background-color: #e8d95f;
     border: none;
     color: #282828;
     padding: 16px 32px;
@@ -95,13 +92,12 @@
 }
 
 .button1 {
-    background-color: #E8D95F;
+    background-color: #e8d95f;
     color: black;
-    border: 2px solid #E8D95F;
+    border: 2px solid #e8d95f;
 }
 
 .button1:hover {
     background-color: #282828;
-    color: #E8D95F;
+    color: #e8d95f;
 }
-

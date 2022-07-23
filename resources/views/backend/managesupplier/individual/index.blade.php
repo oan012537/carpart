@@ -9,11 +9,11 @@
     <div class="box__approvel">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-12">
                     <h2 class="txt__page">จัดการผู้ขาย : บุคคลธรรมดา</h2>
                 </div>
 
-                <div class="col-12">
+                <div class="col--lg-12">
                     <div class="box__filter2">
                         <form class="form-box-input px-2">
                             <div class="row">

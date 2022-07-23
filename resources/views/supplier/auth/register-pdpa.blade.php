@@ -151,7 +151,7 @@
                     </div>
                     <br>
                     <div class='but-bb-log'>
-                        <div class="pdrightlogin">
+                        <div class="pdrightlogin pdleftlogin">
                             <a href="{{ route('supplier.register.smsConfirm') }}">
                                 <button class="button button1"> {{ trans('file.Accept the terms & conditions') }} &nbsp; <i class='fas fa-angle-right'></i> </button>
                             </a>

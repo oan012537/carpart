@@ -18,7 +18,7 @@
                     <h2 class="txt__page">รายการสั่งซื้อ</h2>
                 </div>
 
-                <div class="col-12">
+                <div class="col-lg-12">
                     <div class="box__filter">
                         <form class="px-2">
                             <div class="row">
