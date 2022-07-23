@@ -45,7 +45,7 @@
 
                                     <div class="box__radio">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault1" checked value="1">
+                                            <input class="form-check-input" type="radio" name="radiodate" id="flexRadioDefault1" value="1" checked>
                                             <label class="form-check-label" for="flexRadioDefault1">
                                                 วันที่สมัคร
                                             </label>
@@ -61,7 +61,8 @@
                                     <div class="box__search">
                                         <label for="">ช่วงวัน-เวลา</label>
                                         <div class="input-group ">
-                                            <input type="text" class="form-control" placeholder="" aria-describedby="button-yes" name="date" id="date" readonly>
+                                            <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="button-yes"  name="date" id="date" readonly>
+                                            <input type="hidden"   name="dates" id="dates" readonly value="{{date("Y-m-d")}},{{date("Y-m-d")}}">
                                         </div>
                                     </div>
 
@@ -429,14 +430,14 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
+				// $('td:eq(0)', row).html(index+1);
+				// var status = '';
+				// // if(data['product_status'] > 0){ //อันเก่า
+				// if(data['status'] == 1){
+				// 	// var status = '<span class="label bg-success-400">ใช้งาน</span>';
+				// }else if(data['status'] == 0){
+				// 	var status = '<span class="label bg-warning-400">ยกเลิก</span>';
+				// }
 				
 				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
 				
@@ -515,16 +516,6 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
 				
 				
 			},
@@ -567,16 +558,7 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
+                
 				
 				
 			},
@@ -618,16 +600,7 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
+                
 				
 				
 			},
@@ -702,13 +675,15 @@
         });
     }
     $('input[name="date"]').daterangepicker({
-        "startDate": moment().subtract(1, 'months'),
+        // "startDate": moment().subtract(1, 'months'),
+        "startDate": moment(),
         "endDate": moment(),
         locale: {
             format: 'DD/MM/Y'
         }
     }, function(start, end, label) {
         console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+        $("#dates").val(start.format('YYYY-MM-DD')+','+end.format('YYYY-MM-DD'));
     });
 
     function approval(id) {

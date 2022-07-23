@@ -314,7 +314,7 @@ class ApprovalRequestLegalController extends Controller
 	}
 
     public function getdetails(Request $request){
-        $result = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->where('user_suppliers.id',$request->id)->first();
+        $result = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->where('user_suppliers.id',$request->id)->select('*','user_suppliers.id as id')->first();
         $getaddress = Supplier::where('user_id',$request->id)->first();
         $result->addressfull = $result->address.' ตำบล/แขวง '.$getaddress->District->name_th.' อำเภอ/เขต '.$getaddress->Amphure->name_th.' จังหวัด '.$getaddress->Province->name_th.' '.$getaddress->District->zip_code;
         return Response::json($result);
@@ -322,8 +322,8 @@ class ApprovalRequestLegalController extends Controller
 
     public function update(Request $request){
         // dd($request->all());
-        // $supplier = Supplier::where('user_id',$request->supplierid)->first();
-        $supplier = Supplier::find($request->supplierid);
+        $supplier = Supplier::where('user_id',$request->supplierid)->first();
+        // $supplier = Supplier::find($request->supplierid);
         $supplier->status_code = $request->approvestatus;
         $supplier->approve_at = date('Y-m-d H:i:s');
         $supplier->approve_by = Auth::user()->name;
@@ -332,6 +332,26 @@ class ApprovalRequestLegalController extends Controller
         $supplier->save();
         $user = UserSupplier::find($supplier->user_id);
         if($request->approved == ''){
+            if($supplier->code == ''){
+                $lastcode = Supplier::where('suppliers.supplier_type','corporate')->where('code','!=','')->latest()->first();
+                $code = 1;
+                if(!empty($lastcode)){
+                    if($lastcode->code != ''){
+                        $code = str_replace('CPNC','',$lastcode->code)+1;
+                    }
+                }
+                $code = 'CPNC'.str_pad($code,6,'0',STR_PAD_LEFT );
+                $checked = Supplier::where('suppliers.supplier_type','corporate')->where('code','!=',$code)->count();
+                if($checked > 0){
+                    DB::transaction(function () use ($code,$supplier) {
+                    
+                        $supplier = Supplier::lockForUpdate()->find($supplier->id);
+                        $supplier->code = $code;
+                        $supplier->save();
+                    });
+                }
+                
+            }
             $text = 'CPN
             อนุมัติการสมัครสมาชิกของท่านเรียบร้อยแล้ว
             โปรดใช้รหัสผ่านต่อไปนี้ในการเข้าสู่ระบบ
@@ -366,6 +386,26 @@ class ApprovalRequestLegalController extends Controller
         $supplier->save();
         $user = UserSupplier::find($supplier->user_id);
         if($request->approved == ''){
+            if($supplier->code == ''){
+                $lastcode = Supplier::where('suppliers.supplier_type','corporate')->where('code','!=','')->latest()->first();
+                $code = 1;
+                if(!empty($lastcode)){
+                    if($lastcode->code != ''){
+                        $code = str_replace('CPNC','',$lastcode->code)+1;
+                    }
+                }
+                $code = 'CPNC'.str_pad($code,6,'0',STR_PAD_LEFT );
+                $checked = Supplier::where('suppliers.supplier_type','corporate')->where('code','!=',$code)->count();
+                if($checked > 0){
+                    DB::transaction(function () use ($code,$supplier) {
+                    
+                        $supplier = Supplier::lockForUpdate()->find($supplier->id);
+                        $supplier->code = $code;
+                        $supplier->save();
+                    });
+                }
+                
+            }
             $text = 'CPN
             อนุมัติการสมัครสมาชิกของท่านเรียบร้อยแล้ว
             โปรดใช้รหัสผ่านต่อไปนี้ในการเข้าสู่ระบบ

@@ -15,6 +15,12 @@
             color: var(--clrwhites) !important;
         }
     }
+    #modalviewdetailapp .modal-footer .btn__yes {
+        background-color: var(--clrmain);
+        border-radius: 4px;
+        border: 1px solid var(--clrmain);
+        padding: 7px 2rem;
+    }
 </style>
 <input type="hidden" id="pagemenuName" name="pagemenuName" value="approval">
 <input type="hidden" id="pagemenuName2" name="pagemenuName2" value="approval-individual">
@@ -393,14 +399,14 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
+				// $('td:eq(0)', row).html(index+1);
+				// var status = '';
+				// // if(data['product_status'] > 0){ //อันเก่า
+				// if(data['status'] == 1){
+				// 	// var status = '<span class="label bg-success-400">ใช้งาน</span>';
+				// }else if(data['status'] == 0){
+				// 	var status = '<span class="label bg-warning-400">ยกเลิก</span>';
+				// }
 				
 				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
 				
@@ -487,16 +493,6 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
 				
 				
 			},
@@ -545,17 +541,6 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
-				
 				
 			},
             initComplete:function( settings, json){
@@ -602,16 +587,6 @@
 			],
 			order: [[0, 'asc']],
 			rowCallback: function(row,data,index ){
-				$('td:eq(0)', row).html(index+1);
-				var status = '';
-				// if(data['product_status'] > 0){ //อันเก่า
-				if(data['status'] == 1){
-					// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				}else if(data['status'] == 0){
-					var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				}
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
 				
 				
 			},
