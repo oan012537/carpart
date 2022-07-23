@@ -278,7 +278,7 @@ class DeliveryController extends Controller
                     }
                     
                     $files->move($destinationPath, $imgcover1);
-                    $imgcover1 = '/delivery'.'/'.$imgcover1;
+                    // $imgcover1 = '/delivery'.'/'.$imgcover1;
                 }
                 
             }
@@ -347,7 +347,7 @@ class DeliveryController extends Controller
                     }
                     
                     $files->move($destinationPath, $imgcover1);
-                    $imgcover1 = '/delivery'.'/'.$imgcover1;
+                    // $imgcover1 = '/delivery'.'/'.$imgcover1;
                 }
                 
             }
