@@ -10,11 +10,11 @@
         <div class="box__approvel">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-lg-12">
                         <h2 class="txt__page">จัดการผู้ขาย : นิติบุคคล</h2>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-lg-12">
                         <div class="box__head">
                             <form>
 
@@ -37,7 +37,7 @@
 
                     <div class="row">
                         @include('backend.managesupplier.legal.inc_nav')
-                        <div class="col-md-9">
+                        <div class="col-lg-md-9 mt-4">
 
                             <div class="box__table p-4">
                                 <ul class="nav nav-tabs" role="tablist">

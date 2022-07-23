@@ -38,13 +38,13 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">เงื่อนไขของระดับ</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> ยอดขายรวม</option>
                                 </select>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 mt-4">
                                 <label class="title__txt">รายละเอียด</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
@@ -61,7 +61,7 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">ระยะเวลาในการประเมิน</label>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control border-end-0 w-50" placeholder="3"
@@ -71,7 +71,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">ค่าคอมมิชชั่น</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
@@ -79,13 +79,13 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">บทลงโทษกรณียกเลิกออเดอร์</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> กขค</option>
                                 </select>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 mt-4">
                                 <label class="title__txt">ปรับตามมูลค่าออเดอร์</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
@@ -94,7 +94,7 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
@@ -107,7 +107,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
@@ -149,13 +149,13 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">เงื่อนไขของระดับ</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> ยอดขายรวม</option>
                                 </select>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 mt-4">
                                 <label class="title__txt">รายละเอียด</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
@@ -172,7 +172,7 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">ระยะเวลาในการประเมิน</label>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control border-end-0 w-50" placeholder="3"
@@ -182,7 +182,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">ค่าคอมมิชชั่น</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
@@ -190,13 +190,13 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">บทลงโทษกรณียกเลิกออเดอร์</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> กขค</option>
                                 </select>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 mt-4">
                                 <label class="title__txt">ปรับตามมูลค่าออเดอร์</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
@@ -205,7 +205,7 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
@@ -218,7 +218,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
@@ -260,13 +260,13 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">เงื่อนไขของระดับ</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> ยอดขายรวม</option>
                                 </select>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 mt-4">
                                 <label class="title__txt">รายละเอียด</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
@@ -283,7 +283,7 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">ระยะเวลาในการประเมิน</label>
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control border-end-0 w-50" placeholder="3"
@@ -293,7 +293,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">ค่าคอมมิชชั่น</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
@@ -301,13 +301,13 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">บทลงโทษกรณียกเลิกออเดอร์</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> กขค</option>
                                 </select>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 mt-4">
                                 <label class="title__txt">ปรับตามมูลค่าออเดอร์</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
@@ -316,7 +316,7 @@
 
                         <br>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
@@ -329,7 +329,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">

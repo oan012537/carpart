@@ -18,31 +18,31 @@
                     <h2 class="txt__page">รายการสั่งซื้อ</h2>
                 </div>
 
-                <div class="col-12">
+                <div class="col-lg-12">
                     <div class="box__filter">
                         <form class="px-2">
                             <div class="row">
-                                <div class="col-2">
+                                <div class="col-lg-2">
                                     <label class="title__txt">หมายเลขคำสั่งซื้อ</label>
                                     <input type="text" class="form-control" placeholder="ระบุ">
                                 </div>
-                                <div class="col-2">
+                                <div class="col-lg-2">
                                     <label class="title__txt">ร้านค้า/ผู้ซื้อ</label>
                                     <input type="text" class="form-control" placeholder="ระบุ">
                                 </div>
-                                <div class="col-2">
+                                <div class="col-lg-2">
                                     <label class="title__txt">หมวดหมู่สินค้า</label>
                                     <input type="text" class="form-control" placeholder="ระบุ">
                                 </div>
 
-                                <div class="col-2">
+                                <div class="col-lg-2">
                                     <label class="title__txt">สถานะ</label>
                                     <select class="form-select">
                                         <option>ระบุ....</option>
                                     </select>
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-lg-4">
                                     <label for="" class="title__txt">ช่วงวัน-เวลา</label>
                                     <div class="input-group ">
                                         <input type="date" class="form-control" placeholder="Recipient's username" aria-describedby="button-yes">
