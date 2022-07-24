@@ -1,7 +1,13 @@
 @extends('backend.layouts.templates')
 @section('content')
-<input type="hidden" id="pageName" name="pageName" value="managesupplier">
-<input type="hidden" id="pageName2" name="pageName2" value="managesupplierindividual">
+<style type="text/css">
+    .img-bookbook{
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<input type="hidden" id="pagemenuName" name="pagemenuName" value="managesupplier">
+<input type="hidden" id="pagemenuName2" name="pagemenuName2" value="managesupplierindividual">
 <input type="hidden" id="navpageName" name="navpageName" value="profile">
 <div class="content">
 
