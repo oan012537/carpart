@@ -80,7 +80,7 @@
                     <nav>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link @if($status_code == 'all') active @endif" 
+                                <button class="nav-link @if($status_code == 'all' && $total_all_record > 0) active @endif" 
                                         id="total-tab" 
                                         data-bs-toggle="tab" 
                                         data-bs-target="#total" 

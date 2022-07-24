@@ -1159,86 +1159,105 @@
         });
         $('.letter__az').on('click', function(){
             let searchValue = $(this).data('id');
+            $('#search-value').val(searchValue);
             queryProductModel(searchValue, table_name, parent_id);   
         });
         // query filter
 
         // helper function
         function getSub(id, tableName) {
-                $.ajax({
-                    type: 'GET',
-                    url: '../get_sub_items',
-                    data: {
-                        'id': id,
-                        'tableName': tableName
-                    },
-                    success: function(data){
-                        var htmltext;
+            $.ajax({
+                type: 'GET',
+                url: '../get_sub_items',
+                data: {
+                    'id': id,
+                    'tableName': tableName
+                },
+                success: function(data){
+                    var htmltext;
+                
+                    if (tableName === 'sub_categories') {
+                        table_name = tableName;
+                        parent_id = id;
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;color:white;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset2').append(htmltext);
+                        } else {
+                            data.forEach(subCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subCategory.name_en
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name-en" value="'+ subCategory.name_en +'">'
+                                        +'<input type="hidden" class="item-name-th" value="'+ subCategory.name_th +'">'
+                                    +'</div></div>';
+                                $('#fieldset2').append(htmltext);
+                            });
+                        }       
+                    }  
+                    else if (tableName === 'sub_sub_categories') {
+                        table_name = tableName;
+                        parent_id = id;
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;color:white;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset3').append(htmltext);
+                        } else {
+                            data.forEach(subSubCategory => {
+                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subSubCategory.name_en
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name-en" value="'+ subSubCategory.name_en +'">'
+                                        +'<input type="hidden" class="item-name-th" value="'+ subSubCategory.name_th +'">'
+                                    +'</div></div>';
+                                $('#fieldset3').append(htmltext);
+                            });
+                        }       
+                    }  
+                
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+
+            })
+        }
+
+
+        function queryProductModel(searchValue, table_name, parent_id) {
+            $.ajax({
+                type: 'GET',
+                url: '../query_product_model',
+                data: {
+                    'searchValue': searchValue,
+                    'table_name': table_name,
+                    'parent_id': parent_id
+                },
+                success: function(data) {
+                    var htmltext;
                     
-                        if (tableName === 'sub_categories') {
-                            table_name = tableName;
-                            parent_id = id;
-                            if (data.length === 0) {
-                                alert('Sub Category not found');
-                            } else {
-                                data.forEach(subCategory => {
-                                    htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                        +'<div class="form-check">'
-                                            +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
-                                            +'<label class="form-check-label" for="flexCheckDefault">'
-                                            + subCategory.name_en + ' ('+ subCategory.id // concat id is for test
-                                            +'</label>'
-                                            +'<input type="hidden" class="item-name-en" value="'+ subCategory.name_en +'">'
-                                            +'<input type="hidden" class="item-name-th" value="'+ subCategory.name_th +'">'
-                                        +'</div></div>';
-                                    $('#fieldset2').append(htmltext);
-                                });
-                            }       
-                        }  
-                        else if (tableName === 'sub_sub_categories') {
-                            table_name = tableName;
-                            parent_id = id;
-                            if (data.length === 0) {
-                                alert('Sub Sub Category not found');
-                            } else {
-                                data.forEach(subSubCategory => {
-                                    htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                        +'<div class="form-check">'
-                                            +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
-                                            +'<label class="form-check-label" for="flexCheckDefault">'
-                                            + subSubCategory.name_en + ' ('+ subSubCategory.id // concat id is for test
-                                            +'</label>'
-                                            +'<input type="hidden" class="item-name-en" value="'+ subSubCategory.name_en +'">'
-                                            +'<input type="hidden" class="item-name-th" value="'+ subSubCategory.name_th +'">'
-                                        +'</div></div>';
-                                    $('#fieldset3').append(htmltext);
-                                });
-                            }       
-                        }  
-                    
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-
-                })
-            }
-
-
-            function queryProductModel(searchValue, table_name, parent_id) {
-                $.ajax({
-                    type: 'GET',
-                    url: '../query_product_model',
-                    data: {
-                        'searchValue': searchValue,
-                        'table_name': table_name,
-                        'parent_id': parent_id
-                    },
-                    success: function(data) {
-                        var htmltext;
-                        
-                        if (table_name == 'categories') {
-                            $('#fieldset1').children().remove();
+                    if (table_name == 'categories') {
+                        $('#fieldset1').children().remove();
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;color:white;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset1').append(htmltext);
+                        } else {
                             data.forEach(category => {
                                 htmltext = '<div class="col-xl-4 col-lg-4 col-md-4 col-12 next">'
                                             +'<div class="form-check">'
@@ -1250,8 +1269,17 @@
                                         +'</div>';
                                 $('#fieldset1').append(htmltext);
                             });
-                        } else  if (table_name == 'sub_categories') {
-                            $('#fieldset2').children().remove();
+                        }
+                    } else  if (table_name == 'sub_categories') {
+                        $('#fieldset2').children().remove();
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;color:white;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset2').append(htmltext);
+                        } else {
                             data.forEach(subCategory => {
                                 htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
                                         +'<div class="form-check">'
@@ -1264,8 +1292,17 @@
                                         +'</div></div>';
                                 $('#fieldset2').append(htmltext);
                             });
-                        } else  if (table_name == 'sub_sub_categories') {
-                            $('#fieldset3').children().remove();
+                        }
+                    } else  if (table_name == 'sub_sub_categories') {
+                        $('#fieldset3').children().remove();
+                        if (data.length === 0) {
+                            htmltext = '<div style="text-align: center;color:white;">'
+                                        +'<br><br>'
+                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                        +'</div>';
+                            $('#fieldset3').append(htmltext);
+                        } else {
                             data.forEach(subSubCategory => {
                                 htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
                                         +'<div class="form-check">'
@@ -1279,13 +1316,14 @@
                                 $('#fieldset3').append(htmltext);
                             });
                         }
-                        
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    },
-                });
-            }
+                    }
+                    
+                },
+                error: function(error) {
+                    console.log(error);
+                },
+            });
+        }
 
         // helper function
     });
