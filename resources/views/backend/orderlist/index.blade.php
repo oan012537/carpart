@@ -671,7 +671,6 @@
 -------------------------------------------*/
     .btn.btn__delete {
         width: 100%;
-        margin-top: 0;
     }
     .btn.btn__delete:hover {
         width: 100%;
@@ -788,7 +787,6 @@
         .btn.btn__delete {
             width: 100%;
             padding: 0.375rem 0;
-            margin-top: 0 !important;
         }
 
         .form-box-input .btn-search {
