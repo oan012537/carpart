@@ -2,8 +2,8 @@
 @section('content')
 <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
 
-<input type="hidden" id="pageName" name="pageName" value="managesupplier">
-<input type="hidden" id="pageName2" name="pageName2" value="managesupplierlegal">
+<input type="hidden" id="pagemenuName" name="pagemenuName" value="managesupplier">
+<input type="hidden" id="pagemenuName2" name="pagemenuName2" value="managesupplierlegal">
 <input type="hidden" id="navpageName" name="navpageName" value="profile">
 <div class="content">
 

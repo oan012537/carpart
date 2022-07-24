@@ -91,7 +91,7 @@ Route::prefix('buyer')->group(function(){
         //== ** End Profile 
 
         //== ** Comfirm Inventory
-        Route::get('myaccount/confirminventory', [Buyer\Myaccount\MyComfirmInventoryController::class, 'index']); //-OAT
+        Route::get('myaccount/confirminventory', [Buyer\Myaccount\MyConfirmInventoryController::class, 'index']); //-OAT
 
         //== ** End Comfirm Inventory
 
@@ -99,8 +99,8 @@ Route::prefix('buyer')->group(function(){
     //======= OAT End My Account =======
 
         //======= OAT Comfirm Inventory ===========
-        Route::get('confirminventory/{id}', [Buyer\ComfirmInventoryController::class, 'confirminventory']); //-OAT
-        Route::post('confirminventory', [Buyer\ComfirmInventoryController::class, 'confirminventory_store']); //-OAT
+        Route::get('confirminventory/{id}', [Buyer\ConfirmInventoryController::class, 'confirminventory']); //-OAT
+        Route::post('confirminventory', [Buyer\ConfirmInventoryController::class, 'confirminventory_store']); //-OAT
         //======= OAT End Comfirm Inventory =======
     });
 

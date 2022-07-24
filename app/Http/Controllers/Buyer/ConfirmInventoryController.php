@@ -12,7 +12,7 @@ use App\Models\Buyer\BuyerProfile;
 use App\Models\Buyer\BuyerTaxInvoice;
 use App\Models\Buyer\OrderRequestConfirminventory;
 
-class ComfirmInventoryController extends Controller
+class ConfirmInventoryController extends Controller
 {
     public function confirminventory($id)
     {
@@ -35,7 +35,7 @@ class ComfirmInventoryController extends Controller
             ->with('Province', 'Amphure', 'District')
             ->first();
 
-        return view('buyer.comfirminventory.index', $data);
+        return view('buyer.confirminventory.index', $data);
     }
 
     public function confirminventory_store(Request $request)
