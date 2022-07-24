@@ -3,6 +3,8 @@
 <input type="hidden" id="pageName" name="pageName" value="request-form">
 <input type="hidden" id="pagemenuName" name="pagemenuName" value="requestspares">
 
+
+
 <div class="content">
     <div class="box__approvel">
         <div class="container-fluid">
@@ -10,7 +12,7 @@
                 <div class="col-lg-12">
                     <div class="d-flex justify-content-between align-items-center">
                         <h2 class="txt__page">ใบคำขอหาอะไหล่</h2>
-                        <div class="txt__detail_num">
+                        <div class="txt__detail_num mt-4">
                             <p>หมายเลขคำขอหาอะไหล่ : <span>KT000000</span></p>
                             <p>วันที่ลงประกาศ : <span>15/12/2564</span></p>
                         </div>

@@ -4,6 +4,9 @@
 <input type="hidden" id="pageName2" name="pageName2" value="managesupplierlegal">
 <input type="hidden" id="navpageName" name="navpageName" value="profile">
 
+
+
+
 <div class="content">
 
     <div class="boxbox__approvel">
@@ -20,7 +23,7 @@
 
                                 <div class="text_name_t">
                                     <p>
-                                       {{$supplier->company_name}}
+                                        {{$supplier->company_name}}
                                     </p>
                                 </div>
                                 <div class="text_id_t">
@@ -69,7 +72,7 @@
 
                                         </div>
 
-                                        
+
                                         <div class="row">
                                             <div class="col-3">
                                                 <div class="txt_name_t">
@@ -200,7 +203,8 @@
                                                     </p>
                                                 </div>
                                                 <div class="img-proname">
-                                                    <img src="{{asset('backends/assets/img/mana/chack1.png')}}" class="img-nameimg">
+                                                    <img src="{{asset('backends/assets/img/mana/chack1.png')}}"
+                                                        class="img-nameimg">
                                                 </div>
                                                 <div class="txt_namedetail_t2">
                                                     <p>
@@ -255,7 +259,9 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        ดูรูปภาพ <a data-fancybox class="btn__viewimage fancybox" href="{{asset('suppliers/document')}}/{{$supplier->company_certificate}}"><i class="fa-solid fa-image"></i></a>
+                                                        ดูรูปภาพ <a data-fancybox class="btn__viewimage fancybox"
+                                                            href="{{asset('suppliers/document')}}/{{$supplier->company_certificate}}"><i
+                                                                class="fa-solid fa-image"></i></a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -272,7 +278,9 @@
                                             <div class="col-9">
                                                 <div class="txt_namedetail_t">
                                                     <p>
-                                                        ดูรูปภาพ <a data-fancybox class="btn__viewimage fancybox" href="{{asset('suppliers/document')}}/{{$supplier->vat_registration_doc}}"><i class="fa-solid fa-image"></i></a>
+                                                        ดูรูปภาพ <a data-fancybox class="btn__viewimage fancybox"
+                                                            href="{{asset('suppliers/document')}}/{{$supplier->vat_registration_doc}}"><i
+                                                                class="fa-solid fa-image"></i></a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -337,8 +345,8 @@
                                     <div id="sold" class="tab-pane fade"><br>
 
                                         @foreach ($banks as $bank)
-                                            
-                                        
+
+
                                         <div class="txt-pen-edit">
                                             <a href="#">
                                                 <p> <i class="fas fa-pencil-alt"></i> แก้ไข </p>
@@ -446,8 +454,12 @@
                                             </div>
                                             <div class="col-9">
                                                 <div class="img-bookbank">
-                                                    {{-- <img src="{{asset('backends/assets/img/mana')}}/{{{{$bank->bank_book_image}}}}" class="img-bookbook"> --}}
-                                                    <a class="btn btn__pdf fancybox" data-fancybox href="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}" > <img src="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}" class="img-bookbook"> </a>
+                                                    {{-- <img src="{{asset('backends/assets/img/mana')}}/{{{{$bank->bank_book_image}}}}"
+                                                    class="img-bookbook"> --}}
+                                                    <a class="btn btn__pdf fancybox" data-fancybox
+                                                        href="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}">
+                                                        <img src="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}"
+                                                            class="img-bookbook"> </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -482,7 +494,8 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="txt-pen-edit2">
-                                                        <a href="{{url('backend/manage/supplier/legal/profile/address/edit/1')}}">
+                                                        <a
+                                                            href="{{url('backend/manage/supplier/legal/profile/address/edit/1')}}">
                                                             <p> แก้ไข </p>
                                                         </a>
                                                     </div>
@@ -589,7 +602,8 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="txt-pen-edit2">
-                                                        <a href="{{url('backend/manage/supplier/legal/profile/address/edit/1')}}">
+                                                        <a
+                                                            href="{{url('backend/manage/supplier/legal/profile/address/edit/1')}}">
                                                             <p> แก้ไข </p>
                                                         </a>
                                                     </div>
@@ -695,7 +709,8 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="txt-pen-edit2">
-                                                        <a href="{{url('backend/manage/supplier/legal/profile/address/edit/1')}}">
+                                                        <a
+                                                            href="{{url('backend/manage/supplier/legal/profile/address/edit/1')}}">
                                                             <p> แก้ไข </p>
                                                         </a>
                                                     </div>
@@ -779,7 +794,8 @@
 
                                         <div class="box_buttonadd">
                                             <div class="b-but-addplus2">
-                                                <button href="manage-selleraddressedit2.php" class="button button-inadd">
+                                                <button href="manage-selleraddressedit2.php"
+                                                    class="button button-inadd">
                                                     <i class="fa fa-plus-circle"></i>
                                                     เพิ่มที่อยู่
                                                 </button>
@@ -812,4 +828,4 @@
 @section('script')
 <script>
 </script>
-@stop   
+@stop
