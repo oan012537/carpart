@@ -15,10 +15,6 @@
     background-color: #3f3f3f;
 }
 
-#sec-regis4 .img-img-log {
-    padding-right: 15px;
-}
-
 #sec-regis4 .h-text-log p {
     color: white;
     font-style: normal;
@@ -62,24 +58,21 @@
     font-size: 14px;
     color: #e8d95f;
     font-weight: 300;
-    margin-left: 77px;
-    margin-top: 10px;
+    padding: 3px;
 }
 
 #sec-regis4 .tt-text-send2 p {
     font-size: 14px;
     color: white;
     font-weight: 300;
-    margin-top: -37px;
-    margin-left: 167px;
+    padding: 3px;
 }
 
 #sec-regis4 .tt-text-send3 p {
     font-size: 14px;
     color: white;
     font-weight: 300;
-    margin-top: -37px;
-    margin-left: 253px;
+    padding: 3px;
 }
 
 #sec-regis4 .text-t-log p {
@@ -88,10 +81,9 @@
     font-size: 12px;
     line-height: 30px;
     display: flex;
-    color: #FF7B7B;
-    margin-top: -26px;
+    color: #ff7b7b;
+    padding: 3px;
 }
-
 
 .drop-zone {
     max-width: 156px;
@@ -113,7 +105,7 @@
 
 .drop-zone p {
     font-size: 13px;
-    font-family: 'Prompt', sans-serif;
+    font-family: "Prompt", sans-serif;
     color: white;
     margin-top: 5px;
 }
@@ -142,10 +134,12 @@
 .box-b-detail {
     overflow-y: scroll;
     height: 300px;
+    overflow-x: hidden;
+    padding: 0 15px 0 0;
 }
 
-#sec-regis4 .input-group>.form-control,
-.input-group>.form-select {
+#sec-regis4 .input-group > .form-control,
+.input-group > .form-select {
     position: relative;
     flex: 1 1 auto;
     width: 1%;
@@ -165,7 +159,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    width: 91%;
+    width: 100%;
 }
 
 .button {
@@ -181,7 +175,8 @@
     transition-duration: 0.4s;
     border-radius: 4px;
     cursor: pointer;
-    padding: 10px 147px 10px 157px;
+    padding: 0.5rem !important;
+    width: 100% !important;
 }
 
 .button1 {
@@ -227,6 +222,8 @@
 .box-b-detail {
     overflow-y: scroll;
     height: 300px;
+    overflow-x: hidden;
+    padding: 0 15px 0 0;
 }
 
 /* width */

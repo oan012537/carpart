@@ -3,8 +3,8 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
-<input type="hidden" id="pageName" name="pageName" value="manage-product">
-<input type="hidden" id="pagemenuName" name="pagemenuName" value="manageproduct">
+<input type="hidden" id="pageName" name="pageName" value="manageproduct">
+<input type="hidden" id="pageName2" name="pageName2" value="manageproduct">
 
 <div class="content">
     <div class="box__approvel">
@@ -232,7 +232,7 @@
                                         <div class="card form-box-input setting-transport">
                                             <diV class="card-header">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>
+                                                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked disabled>
                                                     <label class="form-check-label" for="check1">การจัดส่งที่รองรับโดยCPN</label>
                                                 </div>
                                             </diV>
@@ -244,7 +244,7 @@
                                                         <p>ประเภทการจัดส่ง <span class="sent-conf">การจัดส่งที่รองรับโดย CPN</span></p>
                                                     </div>
                                                     <div class="col-2">
-                                                        <span>฿ 29.00</span>
+                                                        {{-- <span>฿ 29.00</span> --}}
                                                     </div>
                                                     <div class="col-2">
                                                         <div class="form-check form-switch">
@@ -253,13 +253,14 @@
                                                     </div>
                                                 </div>
                                                 @endif
+                                                @endforeach
                                             </diV>
 
                                         </div>
                                         <div class="card form-box-input setting-transport">
                                             <diV class="card-header">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something">
+                                                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" disabled>
                                                     <label class="form-check-label" for="check1">บริษัทขนส่งเอกชน(พัสดุชิ้นใหญ่)</label>
                                                 </div>
                                             </diV>
@@ -271,7 +272,7 @@
                                                         <p>ประเภทการจัดส่ง <span class="sent-conf">การจัดส่งที่รองรับโดย CPN</span></p>
                                                     </div>
                                                     <div class="col-2">
-                                                        <span>฿ 29.00</span>
+                                                        {{-- <span>฿ 29.00</span> --}}
                                                     </div>
                                                     <div class="col-2">
                                                         <div class="form-check form-switch">
@@ -280,13 +281,14 @@
                                                     </div>
                                                 </div>
                                                 @endif
+                                                @endforeach
                                             </diV>
 
                                         </div>
                                         <div class="card form-box-input setting-transport">
                                             <diV class="card-header">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something">
+                                                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" disabled>
                                                     <label class="form-check-label" for="check1">แสดง ชื่อขนส่งที่ Supplier setting ไว้</label>
                                                 </div>
                                             </diV>
@@ -309,7 +311,11 @@
                                                 <div class="d-flex mt-2 ms-2">
                                                     <label class="title__txt me-3">ระบุวัน</label>
                                                     <select class="form-select w-50">
-                                                        <option>1</option>
+                                                        @for ($i = 1; $i <= 31; $i++)
+                                                            <option value="{{ $i }}" @if((isset($transport->estimated_days)? $transport->estimated_days : 0) == $i) selected @endif
+                                                            >{{ $i }}
+                                                            </option>
+                                                        @endfor
                                                     </select>
                                                 </div>
                                             </div>
@@ -332,18 +338,18 @@
                                     <div class="col-5">
                                         <div class="col-8">
                                             <label class="title__txt">ราคา <span class="text-red">(รวม VAT)</span></label>
-                                            <input type="text" class="form-control" id="" placeholder="100.00">
+                                            <input type="text" class="form-control" id="" value="{{ old('price')? old('price'): $data->price }}" disabled>
                                         </div>
                                     </div>
                                     <div class="col-7">
                                         <div class="row">
                                             <div class="col-4">
                                                 <label class="title__txt">คอมมิชชั่น </label>
-                                                <input type="text" class="form-control" id="" placeholder="100.00">
+                                                <input type="text" class="form-control" id="" value="{{ old('commission')? old('commission'): $data->commission }}" disabled>
                                             </div>
                                             <div class="col-6">
                                                 <label class="title__txt">รายรับสุทธิ </label>
-                                                <input type="text" class="form-control" id="" placeholder="100.00">
+                                                <input type="text" class="form-control" id="" value="{{ old('revenue')? old('revenue'): $data->revenue }}" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -354,10 +360,9 @@
                             <hr>
                         </div>
                     </div>
-
-                    <br><br><br><br><br>
+                    <br>
                     <div class="text-center">
-                        <button class="btn btn__app px-5">กลับ</button>
+                        <a href="{{route('backend.product')}}" class="btn btn__app px-5">กลับ</a>
                     </div>
                 </div>
                 <div class="col-2">
@@ -393,24 +398,34 @@
                         <div class="box__filter">
                             <div class="form-box-input">
                                 <p class="title__txt">วันที่สร้าง</p>
-                                <p>01/12/2564</p>
+                                <p>{{ $data->created_at }}</p>
                                 <p class="title__txt">ผู้สร้าง</p>
-                                <p>Thanatcha Singsomboon</p>
+                                <p>{{ $data->created_by }}</p>
                                 <p class="title__txt">สถานะขาย</p>
-                                <small class="status-process">เปิดใช้งาน</small>
+                                @if ($data->status_code == 'sell')
+                                <div class="box__status status-selling">{{ trans('file.Selling') }}</div> 
+                                @elseif ($data->status_code == 'sold')
+                                    <div class="box__status status-sold">{{ trans('file.Sold') }}</div>
+                                @elseif ($data->status_code == 'suspended')
+                                    <div class="box__status status-banned">{{ trans('file.Suspended') }}</div>
+                                @elseif ($data->status_code == 'cancle')
+                                    <div class="box__status status-cancle">{{ trans('file.Cancel') }}</div>
+                                @else
+                                    <small class="status-process">เปิดใช้งาน</small>
+                                @endif
                             </div>
                         </div>
                     </div>
 
-                    <div class="box__accordian__edit mt-3">
+                    {{-- <div class="box__accordian__edit mt-3">
                         <div class="box__filter">
                             <div class="form-box-input">
                                 <label class="title__txt">Promotion CODE</label>
                                 <input type="text" class="form-control" id="" placeholder="ระบุ">
                             </div>
                         </div>
-                    </div>
-                    <div class="form-box-input mt-3">
+                    </div> --}}
+                    {{-- <div class="form-box-input mt-3">
                         <button class="btn btn__app btn__noapproval w-100 text-light" data-bs-toggle="modal" data-bs-target="#confirm"><i class="fas fa-times-circle"></i> ระงับการขาย</button>
                         <!-- The Modal -->
                         <div class="modal fade" id="confirm">
@@ -451,7 +466,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

@@ -146,11 +146,6 @@ class ProductController extends Controller
             ]
         );
 
-        // foreach ($product_image as $key => $value) {
-        //     $img = \File::get(url('product/images/' . $value));
-            
-        // }
-
         return view('backend.product.view', 
                 compact('data', 'brand_list_data', 'product_image',
                     'warranty', 'transport', 'transport_type_array',

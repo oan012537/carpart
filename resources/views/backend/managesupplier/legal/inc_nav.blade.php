@@ -1,4 +1,24 @@
-<div class="col-md-3">
+<style>
+    .ap-no {
+        background: rgba(255, 123, 123, 0.2);
+        border-radius: 8px;
+        padding: 4px 20px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        color: #ff7b7b;
+    }
+    .ap-wait {
+        background: rgba(242, 153, 74, 0.2);
+        border-radius: 8px;
+        padding: 4px 20px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        color: #f2994a;
+    }
+</style>
+<div class="col-lg-md-3">
     <div class="box__profilemenu">
 
         <div class="box__nav">
@@ -58,8 +78,8 @@
 
         <div class="txt_sw_txt">
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitch{{$user->id}}" @if($user->is_active == '1') checked @endif onclick="switchsfn('{{$user->id}}')">
-                <label class="form-check-label" for="flexSwitch{{$user->id}}" id="showstatus"> @if($user->is_active == '1') เปิดการใช้งาน @else ระงับการใช้งาน @endif </label>
+                <input class="form-check-input" type="checkbox" id="flexSwitch{{$supplier->id}}" @if($supplier->is_active == '1') checked @endif onclick="switchsfn('{{$supplier->id}}')">
+                <label class="form-check-label" for="flexSwitch{{$supplier->id}}" id="showstatus"> @if($supplier->is_active == '1') เปิดการใช้งาน @else ระงับการใช้งาน @endif </label>
             </div>
         </div>
 
@@ -83,8 +103,13 @@
 
             </div>
             <div class="col-8">
-                <small class="status-successout"> <i class="fa fa-check-circle"></i> อนุมัติ
-                </small>
+                @if($supplier->status_code == 'approved')
+                    <small class="status-successout"> <i class="fa fa-check-circle"></i> อนุมัติ</small>
+                @elseif($supplier->status_code == 'request_approval')
+                    <small class="status-successout  ap-wait"> รออนุมัติ</small>
+                @elseif($supplier->status_code == 'un_approve')
+                    <small class="status-successout  ap-no"> <i class="fa fa-times-circle"></i> ไม่อนุมัติ</small>
+                @endif
             </div>
         </div>
         <div class="row">

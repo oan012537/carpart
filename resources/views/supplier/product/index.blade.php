@@ -9,10 +9,10 @@
 <input type="hidden" id="pageName" name="pageName" value="setting-product">
 <div class="content" id="setting-product">
     @if(session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade show">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <strong>Success!</strong> {!! session()->get('message') !!}
-        </div>
+    <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Success!</strong> {!! session()->get('message') !!}
+    </div>
     @endif
     <div class="container-fluid">
         <div class="row">
@@ -39,7 +39,7 @@
                                     <select id="brand_id" class="selectpicker form-select" aria-label="Default select example" name="brand_id">
                                         <option value="">{{ trans('file.Select brand') }}</option>
                                         @foreach ($lims_brand_data as $brand)
-                                            <option value="{{ $brand['id'] }}" @if($brand['id'] == $brand_id) selected @endif>{{ $brand['name_en'] }}</option>
+                                        <option value="{{ $brand['id'] }}" @if($brand['id']==$brand_id) selected @endif>{{ $brand['name_en'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -50,7 +50,7 @@
                                     <select id="category_id" class="form-select" aria-label="Default select example" name="category_id">
                                         <option value="">{{ trans('file.Select category') }}</option>
                                         @foreach ($lims_category_data as $category)
-                                            <option value="{{ $category['id'] }} @if($category['id'] == $category_id) selected @endif">{{ $category['name_en'] }}</option>
+                                        <option value="{{ $category['id'] }} @if($category['id'] == $category_id) selected @endif">{{ $category['name_en'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -58,8 +58,7 @@
                             <div class="col-xl-3 col-lg-6 col-md-12 col-12">
                                 <div class="form-group">
                                     <label for="product_name">{{ trans('file.Product Name')}}</label>
-                                    <input id="product_name" type="text" name="product_name" class="form-control"
-                                            placeholder="{{ trans('file.Specify') }}" value="{{ $product_name }}">
+                                    <input id="product_name" type="text" name="product_name" class="form-control" placeholder="{{ trans('file.Specify') }}" value="{{ $product_name }}">
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-6 col-md-12 col-12">
@@ -91,52 +90,24 @@
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link @if($status_code == 'selling') active @endif"
-                                        id="selling-tab" 
-                                        data-bs-toggle="tab" 
-                                        data-bs-target="#selling" 
-                                        type="button" 
-                                        role="tab" 
-                                        aria-controls="selling" 
-                                        aria-selected="false">{{ trans('file.Selling')}}
-                                        <span>{{ $total_selling_record }}</span>
+                                <button class="nav-link @if($status_code == 'selling') active @endif" id="selling-tab" data-bs-toggle="tab" data-bs-target="#selling" type="button" role="tab" aria-controls="selling" aria-selected="false">{{ trans('file.Selling')}}
+                                    <span>{{ $total_selling_record }}</span>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link @if($status_code == 'sold') active @endif" 
-                                        id="sold-tab" 
-                                        data-bs-toggle="tab" 
-                                        data-bs-target="#sold" 
-                                        type="button" 
-                                        role="tab" 
-                                        aria-controls="sold" 
-                                        aria-selected="false">{{ trans('file.Sold')}}
-                                        <span>{{ $total_sold_record }}</span>
+                                <button class="nav-link @if($status_code == 'sold') active @endif" id="sold-tab" data-bs-toggle="tab" data-bs-target="#sold" type="button" role="tab" aria-controls="sold" aria-selected="false">{{ trans('file.Sold')}}
+                                    <span>{{ $total_sold_record }}</span>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link @if($status_code == 'suspended') active @endif" 
-                                        id="banned-tab" 
-                                        data-bs-toggle="tab" 
-                                        data-bs-target="#banned" 
-                                        type="button" 
-                                        role="tab" 
-                                        aria-controls="banned" 
-                                        aria-selected="false">{{ trans('file.Suspended')}}
-                                        <span>{{ $total_suspended_record }}</span>
+                                <button class="nav-link @if($status_code == 'suspended') active @endif" id="banned-tab" data-bs-toggle="tab" data-bs-target="#banned" type="button" role="tab" aria-controls="banned" aria-selected="false">{{ trans('file.Suspended')}}
+                                    <span>{{ $total_suspended_record }}</span>
                                 </button>
                             </li>
 
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link @if($status_code == 'cancle') active @endif" 
-                                        id="cancle-tab" 
-                                        data-bs-toggle="tab" 
-                                        data-bs-target="#cancle" 
-                                        type="button" 
-                                        role="tab" 
-                                        aria-controls="cancle" 
-                                        aria-selected="false">{{ trans('file.Cancel')}}
-                                        <span>{{ $total_cancle_record }}</span>
+                                <button class="nav-link @if($status_code == 'cancle') active @endif" id="cancle-tab" data-bs-toggle="tab" data-bs-target="#cancle" type="button" role="tab" aria-controls="cancle" aria-selected="false">{{ trans('file.Cancel')}}
+                                    <span>{{ $total_cancle_record }}</span>
                                 </button>
                             </li>
                         </ul>
@@ -153,74 +124,74 @@
                                     <div class="col-xl-8 col-lg-12 col-md-12 col-12">
                                         <div class="wrapper__btn">
                                             <button class="btn btn__import"><i class="fa-solid fa-download"></i> {{ trans('file.Import')}}</button>
-                                            <button class="btn btn__export"><i class="fa-solid fa-upload"></i> {{ trans('file.Export')}}</button>
-                                            <button class="btn btn__print"><i class="fa-solid fa-print"></i> {{ trans('file.Print')}}</button>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                            </div>
-                            {{-- table header --}}
-
-                            {{-- datatable --}}
-                            <div class="table-responsive">
-                                <table id="product-list-table" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th class="not-exported"></th>
-                                            <th>{{ trans('file.Product Code')}}</th>
-                                            <th>{{ trans('file.Image')}}</th>
-                                            <th>{{ trans('file.Item Name')}}</th>
-                                            <th>{{ trans('file.Category / Sub Category')}}</th>
-                                            <th>{{ trans('file.Brand')}}</th>
-                                            <th>{{ trans('file.Model')}}</th>
-                                            <th>{{ trans('file.Price')}}</th>
-                                            <th>{{ trans('file.Status')}}</th>
-                                            <th>{{ trans('file.Updated By')}}</th>
-                                            <th>{{ trans('file.Action') }}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($product_list as $key => $product)
-                                        <tr>
-                                            <td>{{ $key }}</td>
-                                            <td>{{ $product['product_code'] }}</td>
-                                            <td><i class="fa-solid fa-image" style="width:50px;height:50px;"></i></td>
-                                            <td>{{ $product['name_en'] }}</td>
-                                            <td>{{ $product['category'] }}</td>
-                                            <td>{{ $product['brand'] }}</td>
-                                            <td>{{ $product['model'] }}</td>
-                                            <td>{{ $product['price'] }}</td>
-                                            <td>
-                                                @if ($product['status_code'] == 'selling')
-                                                    <div class="box__status status-selling">{{ $product['status_code'] }}</div>
-                                                @elseif ($product['status_code'] == 'sold')
-                                                    <div class="box__status status-sold">{{ $product['status_code'] }}</div>
-                                                @elseif ($product['status_code'] == 'suspended')
-                                                    <div class="box__status status-banned">{{ $product['status_code'] }}</div>
-                                                @elseif ($product['status_code'] == 'cancle')
-                                                    <div class="box__status status-cancle">{{ $product['status_code'] }}</div>
-                                                @endif
-                                            </td>
-                                            <td>{{ $product['updated_by'] }}</td>
-                                            <td>
-                                                <div class="box__wrapperbutton">
-                                                    <a href="{{ route('products.edit', $product['id']) }}" class="btn btn__edit">
-                                                        <i class="fa-solid fa-pencil"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                <button class="btn btn__export"><i class="fa-solid fa-upload"></i> {{ trans('file.Export')}}</button>
+                                <button class="btn btn__print"><i class="fa-solid fa-print"></i> {{ trans('file.Print')}}</button>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
+                {{-- table header --}}
 
-                {{-- event log --}}
-                {{-- implement later --}}
-                {{-- <div class="box__history">
+                {{-- datatable --}}
+                <div class="table-responsive">
+                    <table id="product-list-table" class="table table-striped w-100">
+                        <thead>
+                            <tr>
+                                <th class="not-exported"></th>
+                                <th>{{ trans('file.Product Code')}}</th>
+                                <th>{{ trans('file.Image')}}</th>
+                                <th>{{ trans('file.Item Name')}}</th>
+                                <th>{{ trans('file.Category / Sub Category')}}</th>
+                                <th>{{ trans('file.Brand')}}</th>
+                                <th>{{ trans('file.Model')}}</th>
+                                <th>{{ trans('file.Price')}}</th>
+                                <th>{{ trans('file.Status')}}</th>
+                                <th>{{ trans('file.Updated By')}}</th>
+                                <th>{{ trans('file.Action') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($product_list as $key => $product)
+                            <tr>
+                                <td>{{ $key }}</td>
+                                <td>{{ $product['product_code'] }}</td>
+                                <td><i class="fa-solid fa-image" style="width:50px;height:50px;"></i></td>
+                                <td>{{ $product['name_en'] }}</td>
+                                <td>{{ $product['category'] }}</td>
+                                <td>{{ $product['brand'] }}</td>
+                                <td>{{ $product['model'] }}</td>
+                                <td>{{ $product['price'] }}</td>
+                                <td>
+                                    @if ($product['status_code'] == 'selling')
+                                    <div class="box__status status-selling">{{ $product['status_code'] }}</div>
+                                    @elseif ($product['status_code'] == 'sold')
+                                    <div class="box__status status-sold">{{ $product['status_code'] }}</div>
+                                    @elseif ($product['status_code'] == 'suspended')
+                                    <div class="box__status status-banned">{{ $product['status_code'] }}</div>
+                                    @elseif ($product['status_code'] == 'cancle')
+                                    <div class="box__status status-cancle">{{ $product['status_code'] }}</div>
+                                    @endif
+                                </td>
+                                <td>{{ $product['updated_by'] }}</td>
+                                <td>
+                                    <div class="box__wrapperbutton">
+                                        <a href="{{ route('products.edit', $product['id']) }}" class="btn btn__edit">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- event log --}}
+    {{-- implement later --}}
+    {{-- <div class="box__history">
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
@@ -242,11 +213,11 @@
 
                     </div>
                 </div> --}}
-                {{-- event log --}}
-            </div>
-        </div>
+    {{-- event log --}}
+</div>
+</div>
 
-    </div>
+</div>
 </div>
 @endsection
 
@@ -267,14 +238,17 @@
         });
 
         // auto close alert
-         setTimeout(() => {
+        setTimeout(() => {
             $('.alert').alert('close');
-        }, 3000);   
+        }, 3000);
         // auto close alert
 
         // datatable
         var table = $('#product-list-table').DataTable({
             "order": [],
+            "responsive": true,
+            "autoWidth": true,
+
             'language': {
                 'lengthMenu': '{{ trans("file.Show") }} _MENU_ {{trans("file.records per page")}}',
                 "info": '<small>{{trans("file.Showing")}} _START_ - _END_ (_TOTAL_)</small>',
@@ -303,8 +277,14 @@
                     'targets': [0]
                 }
             ],
-            'select': { style: 'multi',  selector: 'td:first-child'},
-            'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            'select': {
+                style: 'multi',
+                selector: 'td:first-child'
+            },
+            'lengthMenu': [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
 
         });
         // datatable
@@ -387,7 +367,7 @@
 
         // load data by product status
 
-        $('.btn__reset').on('click', function(){
+        $('.btn__reset').on('click', function() {
             $('select[name="brand_id"]').prop('selectedIndex', 0);
             $('select[name="category_id"]').prop('selectedIndex', 0);
             $('input[name="product_name"]').val('');

@@ -36,14 +36,16 @@ class ProductDetailController extends Controller
             ->paginate(8);
 
         // -- สินค้าที่สนใจ
-        $data['product_bookmark_check'] = BuyerProductBookmark::where('users_buyer_id', Auth::guard('buyer')->user()->id)
-            ->where('product_id', $data['product']->id)
-            ->first();
-        $data['product_bookmark'] = BuyerProductBookmark::where('users_buyer_id', Auth::guard('buyer')->user()->id)
-            ->whereNotIn('product_id',[$data['product']->id])
-            ->with('product')
-            ->orderby('updated_at','desc')
-            ->paginate(8);
+        if(isset(Auth::guard('buyer')->user()->id)){
+            $data['product_bookmark_check'] = BuyerProductBookmark::where('users_buyer_id', Auth::guard('buyer')->user()->id)
+                ->where('product_id', $data['product']->id)
+                ->first();
+            $data['product_bookmark'] = BuyerProductBookmark::where('users_buyer_id', Auth::guard('buyer')->user()->id)
+                ->whereNotIn('product_id',[$data['product']->id])
+                ->with('product')
+                ->orderby('updated_at','desc')
+                ->paginate(8);
+        }
 
         // -- อะไหล่อื่นๆจากรถรุ่นเดียวกัน (แทบ 3)
         $data['products_subModel'] = Product::where('products.sub_model_id', $data['product']->subModel->id)

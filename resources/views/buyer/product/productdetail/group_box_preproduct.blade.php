@@ -44,6 +44,7 @@
     </div>
 </div>
 
+@if(isset($product_bookmark))
 <div class="box__productintro">
     <div class="row">
         <div class="col-6">
@@ -102,3 +103,4 @@
         </div>
     </div> -->
 </div>
+@endif
