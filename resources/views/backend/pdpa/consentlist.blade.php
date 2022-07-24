@@ -20,7 +20,7 @@
                     <div class="box__filter">
                         <form class="form-box-input px-2">
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <label class="title__txt">ค้นหา</label>
                                     <div class="input-group mb-1">
                                         <input type="text" class="form-control" placeholder="ระบุ" name="search">
@@ -30,14 +30,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <label class="title__txt">ประเภทผู้ใช้งาน</label>
                                     <select class="form-select">
                                         <option>ทั้งหมด</option>
                                     </select>
                                 </div>
 
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <label class="title__txt">ประเภทสมาชิก</label>
                                     <select class="form-select">
                                         <option>ทั้งหมด</option>

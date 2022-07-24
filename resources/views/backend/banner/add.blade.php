@@ -20,7 +20,7 @@
         <div class="box__approvel">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-lg-12">
                         <h2 class="txt__page">สร้างแบนเนอร์</h2>
                     </div>
                     <form id="formbanner" method="post" enctype="multipart/form-data" action="{{route('backend.banner.store')}}">
@@ -29,17 +29,17 @@
                             <div class="col-12">
                                 {{-- <form class="form-box-input px-2"> --}}
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-lg-4 mt-3">
                                             <label class="title__txt">ชื่อแบนเนอร์</label>
                                             <input type="text" class="form-control" placeholder="ระบุ" name="name" id="name" required>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-lg-4 mt-3">
                                             <label class="title__txt">ช่วงวันที่เผยแพร่</label>
                                             <div class="input-group ">
                                                 <input type="date" class="form-control" placeholder="Recipient's username" aria-describedby="button-yes" required>
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-lg-4 mt-3">
                                             <label class="title__txt">ลำดับที่แสดง</label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control number" value="" name="sort" id="sort" required>

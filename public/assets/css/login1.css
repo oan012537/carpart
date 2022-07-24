@@ -4,18 +4,15 @@
 }
 
 #sec-login1 .box-b-login {
-    background-color: #3F3F3F;
-    box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    background-color: #3f3f3f;
+    box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 5px;
     margin: 20px;
 }
 
 #sec-login1 .text-log-back {
-    background-color: #3F3F3F;
-}
-
-#sec-login1 .img-img-log {
-    padding-right: 15px;
+    background-color: #3f3f3f;
 }
 
 #sec-login1 .h-text-log p {
@@ -36,7 +33,7 @@
     line-height: 30px;
     /* identical to box height */
     display: flex;
-    color: #BDBDBD;
+    color: #bdbdbd;
 }
 
 #sec-login1 .tt-text-log2 p {
@@ -46,7 +43,7 @@
     line-height: 30px;
     /* identical to box height */
     display: flex;
-    color: #BDBDBD;
+    color: #bdbdbd;
 }
 
 #sec-login1 .text-or-t {
@@ -59,11 +56,11 @@
     line-height: 24px;
     /* identical to box height */
     /* gold */
-    color: #E8D95F;
+    color: #e8d95f;
 }
 
-#sec-login1 .input-group>.form-control,
-.input-group>.form-select {
+#sec-login1 .input-group > .form-control,
+.input-group > .form-select {
     position: relative;
     flex: 1 1 auto;
     width: 1%;
@@ -96,34 +93,32 @@
 }
 
 .button1 {
-    border: 0.15em solid #E8D95F;
-    background-color: #E8D95F;
+    border: 0.15em solid #e8d95f;
+    background-color: #e8d95f;
     color: #282828;
     padding: 0.5em 9.2em;
     margin: 0.1em;
 }
 
 .button1:hover {
-    border: 0.15em solid #E8D95F;
+    border: 0.15em solid #e8d95f;
     background-color: #282828;
-    color: #E8D95F;
+    color: #e8d95f;
 }
 
-
 .button2 {
-    border: 0.15em solid #E8D95F;
+    border: 0.15em solid #e8d95f;
     background-color: #282828;
-    color: #E8D95F;
+    color: #e8d95f;
     padding: 0.5em 8.6em;
     margin: 0.1em;
 }
 
 .button2:hover {
-    border: 0.15em solid #E8D95F;
-    background-color: #E8D95F;
+    border: 0.15em solid #e8d95f;
+    background-color: #e8d95f;
     color: #282828;
 }
-
 
 #sec-login1 .social-log {
     margin-top: 15px;
@@ -137,7 +132,7 @@
     line-height: 120.5%;
     /* identical to box height, or 22px */
     text-align: center;
-    color: #BDBDBD;
+    color: #bdbdbd;
     margin-top: 20px;
 }
 
@@ -169,57 +164,50 @@
     height: 100%;
 }
 
-
 /*-----------------------------------------
     RESPONSIVE
 -------------------------------------------*/
-@media screen and (min-width:320px) and (max-width:374px) {
-
+@media screen and (min-width: 320px) and (max-width: 374px) {
 }
 
-@media screen and (min-width:375px) and (max-width:413px) {
-
+@media screen and (min-width: 375px) and (max-width: 413px) {
 }
 
-@media screen and (min-width:414px) and (max-width:424px) {
-
+@media screen and (min-width: 414px) and (max-width: 424px) {
 }
 
-@media screen and (min-width:425px) and (max-width:767px) {
-
+@media screen and (min-width: 425px) and (max-width: 767px) {
 }
 
-@media screen and (min-width:768px) and (max-width:1023px) {
-
+@media screen and (min-width: 768px) and (max-width: 1023px) {
     #sec-login1 {
-            padding: 50px 10px 50px 10px;
-            background-color: #282828;
-        }
+        padding: 15px;
+    }
 
-    #sec-login1 .img-img-log {
-            padding: 0px;
-        }
-        #sec-login1 .input-group {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: stretch;
-            width: 91%;
-        }     
+    /*   #sec-login1 .img-img-log {
+        padding: 0px;
+    }
+    #sec-login1 .input-group {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        width: 91%;
+    }
 
-     #sec-login1 .tt-text-log p {
+    #sec-login1 .tt-text-log p {
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
         line-height: 30px;
         display: flex;
         margin: 0.5em 2em 0.5em 2em;
-        color: #BDBDBD;
+        color: #bdbdbd;
     }
 
-    #sec-login1 .input-group>.form-control,
-    .input-group>.form-select {
-         position: relative;
+    #sec-login1 .input-group > .form-control,
+    .input-group > .form-select {
+        position: relative;
         flex: 1 1 auto;
         width: 1%;
         min-width: 0;
@@ -230,60 +218,52 @@
         border-bottom: 2px solid #828282;
         background-color: #333333;
         color: white;
-        border-radius: 4px;     
+        border-radius: 4px;
     }
 
-        #sec-login1 .tt-text-log2 p {
-            font-style: normal;
-            font-weight: 400;
-            font-size: 20px;
-            line-height: 30px;
-            display: flex;
-            margin: 0.5em 2em 0.5em 2em;
-            color: #BDBDBD;
-        }
+    #sec-login1 .tt-text-log2 p {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        display: flex;
+        margin: 0.5em 2em 0.5em 2em;
+        color: #bdbdbd;
+    }
 
     #sec-login1 .t-pass-t {
         font-weight: 400;
         font-size: 16px;
         line-height: 24px;
         margin: 0.5em 2em 0.5em 2.5em;
-        color: #E8D95F;
+        color: #e8d95f;
+    } */
+
+    /* .button1 {
+            display: none;
+        } */
+
+    /* .button2 {
+        margin-left: 1rem;
+    } */
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    /* #sec-login1 .img-img-log {
+        padding: 0px;
     }
 
     .button1 {
-            display: none;
-        }
-    
-     .button2 {
-            margin-left: 1rem;
-        }
+        display: block;
+        padding: 0.5rem 5.6rem 0.5rem 5.6rem;
+        margin-left: 1rem;
+    }
 
+    .button2 {
+        margin-left: 1rem;
+    } */
 
-
-
-}
-
-@media screen and (min-width:1024px) and (max-width:1279px) {
-
-    #sec-login1 .img-img-log {
-            padding: 0px;
-        }
-
-
-
-                .button1 {
-                    display: block;
-                    padding: 0.5rem 5.6rem 0.5rem 5.6rem;
-                    margin-left: 1rem;
-                }
-        
-                .button2 {
-                    margin-left: 1rem;
-                }
-
-
-       /* .button1 {
+    /* .button1 {
             display: block;
             padding: 0.5rem 5.6rem 0.5rem 5.6rem;
         }
@@ -292,68 +272,58 @@
             display: block;
             padding: 0.5rem 4.8rem 0.5rem 4.7rem;
         }*/
-
-     #sec-login1 .input-group {
+    /*
+    #sec-login1 .input-group {
         position: relative;
         display: flex;
         flex-wrap: wrap;
         align-items: stretch;
         width: 91%;
+    } */
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1359px) {
+    /* #sec-login1 .img-img-log {
+        padding: 0px;
     }
 
+    .button1 {
+        display: block;
+        padding: 0.5em 7.5em 0.5em 7.5em;
+    }
 
+    .button2 {
+        display: block;
+        padding: 0.5em 7.5em 0.5em 7.5em;
+    } */
 }
 
-@media screen and (min-width:1280px) and (max-width:1359px) {
+@media screen and (min-width: 1360px) and (max-width: 1439px) {
+    /* #sec-login1 .img-img-log {
+        padding: 0px;
+    }
 
-        #sec-login1 .img-img-log {
-                padding: 0px;
-            }
-
-        .button1 {
-            display: block;
-            padding: 0.5em 7.5em 0.5em 7.5em;
-        }
-
-        .button2 {
-            display: block;
-            padding: 0.5em 7.5em 0.5em 7.5em;
-        }
-
+    .button1 {
+        display: block;
+        padding: 0.5em 7.6em 0.5em 7.5em;
+    }
+    .button2 {
+        display: block;
+        padding: 0.5em 7em 0.5em 7em;
+    } */
 }
 
-@media screen and (min-width:1360px) and (max-width:1439px) {
-        #sec-login1 .img-img-log {
-                padding: 0px;
-            }
-
-                .button1 {
-                    display: block;
-                    padding: 0.5em 7.6em 0.5em 7.5em;
-                }
-                .button2 {
-                    display: block;
-                    padding: 0.5em 7em 0.5em 7em;
-                }
-
+@media screen and (min-width: 1440px) and (max-width: 1599px) {
+    /* #sec-login1 .img-img-log {
+        padding: 0px;
+    } */
 }
 
-@media screen and (min-width:1440px) and (max-width:1599px) {
-
-        #sec-login1 .img-img-log {
-                padding: 0px;
-            }
-
-
-
-
+@media screen and (min-width: 1600px) and (max-width: 1919px) {
 }
 
-@media screen and (min-width:1600px) and (max-width:1919px) {
-
+@media screen and (min-width: 1920px) and (max-width: 2559px) {
 }
 
-@media screen and (min-width:1920px) and (max-width:2559px) {}
-
-@media screen and (min-width:2560px) {}
-
+@media screen and (min-width: 2560px) {
+}

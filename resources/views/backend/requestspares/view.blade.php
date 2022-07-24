@@ -3,21 +3,23 @@
 <input type="hidden" id="pageName" name="pageName" value="request-form">
 <input type="hidden" id="pagemenuName" name="pagemenuName" value="requestspares">
 
+
+
 <div class="content">
     <div class="box__approvel">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-12">
                     <div class="d-flex justify-content-between align-items-center">
                         <h2 class="txt__page">ใบคำขอหาอะไหล่</h2>
-                        <div class="txt__detail_num">
+                        <div class="txt__detail_num mt-4">
                             <p>หมายเลขคำขอหาอะไหล่ : <span>KT000000</span></p>
                             <p>วันที่ลงประกาศ : <span>15/12/2564</span></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-lg-12">
                     <div class="box__filter">
                         <div class="d-flex justify-content-between px-2">
                             <div>
@@ -31,54 +33,54 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-lg-12">
                     <div class="box__table">
                         <div class="txt-detail-reques mb-5 px-2">
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">ชื่อสินค้า</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <p class="txt-tt-redetail">ยาง B Quick</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">หมวดหมู่</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <p class="txt-tt-redetail">ยางรถยนต์ > หมวดหมู่</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">แบรนด์</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <p class="txt-tt-redetail">Hyundai</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">รุ่น</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <p class="txt-tt-redetail">H-1</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">ปี</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <p class="txt-tt-redetail">2021</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">ภาพอะไหล่สินค้า (เพิ่มเติม)</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <div class="txt-tt-redetail">
                                         <img src="{{asset('backends/assets/img/request-form/Frame 24513.png')}}" class="img-request me-3">
                                         <img src="{{asset('backends/assets/img/request-form/Frame 24513.png')}}" class="img-request me-3">
@@ -89,44 +91,44 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">หมายเลขประจำรถยนต์ Caution No.</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <p class="txt-tt-redetail">1324567890123</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">VIN Code</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <p class="txt-tt-redetail">1324567890123</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">รูปภาพหมายเลขประจำรถยนต์</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <div class="txt-tt-redetail">
                                         <img src="{{asset('backends/assets/img/request-form/Frame 24513.png')}}" class="img-request me-3">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">ต้องการวีดีโอเพิ่มเติมหรือไม่</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <p class="txt-tt-redetail">ต้องการ</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <p class="txt-h-redetail">ต้องการใบกำกับภาษี/ใบเสร็จรับเงินหรือไม่</p>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-lg-9">
                                     <p class="txt-tt-redetail">ต้องการ</p>
                                 </div>
                             </div>
@@ -134,7 +136,7 @@
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-lg-12">
                     <div class="txt__detail_num ">
                         <span>7 ข้อเสนอ</span>
                     </div>
