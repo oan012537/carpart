@@ -424,7 +424,8 @@
 
     @media screen and (min-width:768px) and (max-width:1023px) {
         .box__approvel .txt__page {
-            font-size: 20px;
+            font-size: 24px;
+            margin-top: 4rem;
         }
     }
 

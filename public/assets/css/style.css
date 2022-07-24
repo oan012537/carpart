@@ -15915,4 +15915,14 @@ li {
         margin-top: 0.5rem;
     }
 }
+
+.form-control {
+    font-size: 0.975rem !important;
+    font-weight: 400;
+}
+
+.form-control::placeholder {
+    font-size: 0.975rem !important;
+}
+
 /*# sourceMappingURL=style.css.map */
