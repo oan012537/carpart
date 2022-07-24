@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Buyer\mUsers_buyer;
 use App\Models\Buyer\BuyerProfile;
 use App\Models\Buyer\BuyerTaxInvoice;
@@ -29,6 +30,8 @@ class MyConfirmInventoryController extends Controller
             'confirminventories_approved' => $confirminventories_approved,
             'confirminventories_canceled' => $confirminventories_canceled,
         ];
+
+        // dd($confirminventories_all);
 
         return view('buyer.profile.confirminventory.index', $data);
     }
