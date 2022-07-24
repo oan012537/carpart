@@ -9,21 +9,21 @@
                 <div class="col-12">
                     <h2 class="txt__page">รายละเอียด</h2>
                 </div>
-                <div class="col-9">
+                <div class="col-12 col-md-9">
                     <div class="txt__detail_num d-flex justify-content-between mb-3">
                         <div><span>หมายเลขคำสั่งซื้อ : C123456789</span></div>
                         <div><span>วันที่สั่งซื้อ : 15/12/2564 18.00 น.</span></div>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-12 col-md-9">
                     <div class="box__accordian__edit mb-3">
                         <div class="box__filter p-4">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-md-6 mb-3 mb-md-0">
                                     <h5>ผู้ขาย</h5>
                                     <span>Shop ID: 3453453453454</span><span class="ms-4">ร้านอะไหล่</span>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 col-md-6">
                                     <h5>ผู้ซื้อ</h5>
                                     <span>Customer ID: 3453453453454</span><span class="ms-4">นายก.ไก่</span>
                                 </div>
@@ -33,13 +33,13 @@
 
                     <div class="box__accordian__edit mb-3">
                         <div class="box__filter p-4">
-                            <div class="d-flex justify-content-between align-items-end">
+                            <div class="d-md-flex justify-content-between align-items-end">
                                 <div>
                                     <h5>ได้รับสินค้าแล้ว</h5>
                                     <span>ผู้ซื้อได้ยืนยันการรับสินค้าแล้ว</span>
                                 </div>
                                 <div class=" form-box-input">
-                                    <button class="btn btn-search mt-0" data-bs-toggle="modal" data-bs-target="#seeRecieved"><i class="fas fa-eye"></i> ดูใบเสร็จการส่งสินค้า</button>
+                                    <button class="btn btn-search mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#seeRecieved"><i class="fas fa-eye"></i> ดูใบเสร็จการส่งสินค้า</button>
                                 </div>
                             </div>
 
@@ -66,21 +66,21 @@
                         <div class="box__filter p-4">
                             <div class=" form-box-input">
                                 <div class="row">
-                                    <div class="col-9">
+                                    <div class="col-12 col-lg-9">
                                         <h5 class="mb-4">การจัดส่ง</h5>
-                                        <div class="d-flex">
+                                        <div class="d-md-flex">
                                             <div>
                                                 <button class="btn-flash mb-1"><img src="assets/img/request-form/flash.png"></button><br>
                                                 <a href="#" title="เงื่อนไขการรับประกัน" data-bs-toggle="popover" data-bs-placement="bottom" data-content="Content" class="text-white"><i class="fas fa-info-circle"></i> เงื่อนไขการรับประกัน</a>
                                             </div>
-                                            <div class="ms-4">
+                                            <div class="ms-md-4 ms-0">
                                                 <p class="mb-0 fs-18">Flash Express <span class="sent-conf fs-14">การจัดส่งที่รองรับโดย CPN</span></p>
                                                 <span>(ระยะเวลาจัดส่งโดยประมาณ 2-3 วัน)</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-3">
-                                        <h6 class="mb-4">ราคาประมาณขนส่ง</h6>
+                                    <div class="col-12 col-lg-3 mt-3 mt-lg-0">
+                                        <h6 class="mb-lg-4 mb-1">ราคาประมาณขนส่ง</h6>
                                         <span>฿ 29.00</span>
                                     </div>
                                 </div>
@@ -354,56 +354,56 @@
                     <div class="box__accordian__edit mb-3">
                         <div class="box__filter pb-0">
                             <div class="row">
-                                <div class="col-9"></div>
-                                <div class="col-3">
+                                <div class="col-4 col-lg-9"></div>
+                                <div class="col-8 col-lg-3">
                                     <sapn>ราคาสินค้า</sapn>
                                     <span class="float-end">฿ 199.00</span>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-9"></div>
-                                <div class="col-3">
+                                <div class="col-4 col-lg-9"></div>
+                                <div class="col-8 col-lg-3">
                                     <sapn>ค่าการจัดส่ง</sapn>
                                     <span class="float-end">฿ 26.00</span>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-9"></div>
-                                <div class="col-3">
+                                <div class="col-4 col-lg-9"></div>
+                                <div class="col-8 col-lg-3">
                                     <sapn>ยอดรวม</sapn>
                                     <span class="float-end">฿ 225.00</span>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-9"></div>
-                                <div class="col-3">
+                                <div class="col-4 col-lg-9"></div>
+                                <div class="col-8 col-lg-3">
                                     <sapn>คูปองส่วนลด</sapn>
                                     <span class="float-end">- ฿ 20.00</span>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-9"></div>
-                                <div class="col-3">
+                                <div class="col-4 col-lg-9"></div>
+                                <div class="col-8 col-lg-3">
                                     <sapn>การจัดส่ง</sapn>
                                     <span class="float-end">Kerry</span>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-9"></div>
-                                <div class="col-3">
+                                <div class="col-4 col-lg-9"></div>
+                                <div class="col-8 col-lg-3">
                                     <sapn>ชำระเงิน</sapn>
                                     <span class="float-end">QR Code</span>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-9"></div>
-                                <div class="col-3">
+                                <div class="col-4 col-lg-9"></div>
+                                <div class="col-8 col-lg-3">
                                     <sapn>ยอดชำระสุทธิ:</sapn>
                                     <h4 class="btn-shot">฿ 225.00</h4>
                                 </div>
@@ -431,7 +431,7 @@
                         <button class="btn btn__app px-5">กลับ</button>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-12 col-md-3">
                     <div class="box__accordian__edit mb-3">
                         <div class="box__filter">
                             <div class="img-product">
@@ -589,6 +589,119 @@
         </div>
     </div>
 </div>
+
+
+<style>
+    /*-----------------------------------------
+    RESPONSIVE
+-------------------------------------------*/
+
+    .btn.btn__delete {
+        width: 100%;
+    }
+    .btn.btn__delete:hover {
+        width: 100%;
+    }
+
+    @media (max-width:426px) {
+        .content {
+            padding: 1rem 0;
+        }
+
+        .box__approvel .txt__page {
+            margin-bottom: 1rem;
+        }
+
+        .box__approvel .box__filter {
+            padding: 0.5rem 0.5rem 1rem 0.5rem;
+        }
+
+        .img-test,
+        .img-test img {
+            width: 100%;
+        }
+
+        .btn.btn__delete {
+            width: 50%;
+        }
+
+    }
+
+    @media screen and (min-width:427px) and (max-width:767px) {
+        .content {
+            padding: 1rem 0;
+        }
+
+        .box__approvel .txt__page {
+            margin-bottom: 1rem;
+        }
+
+        .box__approvel .box__filter {
+            padding: 0.5rem 0.5rem 1rem 0.5rem;
+        }
+
+        .img-test,
+        .img-test img {
+            width: 100%;
+        }
+
+        .btn.btn__delete {
+            width: 50%;
+        }
+    }
+
+    @media screen and (min-width:768px) and (max-width:1023px) {
+
+        .content {
+            padding: 1rem 0;
+        }
+
+        .box__approvel .txt__page {
+            margin-bottom: 1rem;
+            margin-top: 4rem;
+        }
+
+        .box__approvel .box__filter {
+            padding: 0.5rem 0.5rem 1rem 0.5rem;
+        }
+
+        .img-test,
+        .img-test img {
+            width: 100%;
+        }
+
+        .btn.btn__delete {
+            width: 100%;
+        }
+
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li span:before {
+            left: 70px;
+            top: -13px;
+            height: 33px;
+        }
+
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li .Step1,
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li .Step2,
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li .Step3,
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li .Step4,
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li .Step5 {
+            height: 75px;
+        }
+
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li span{
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+        }
+        
+    }
+
+    @media screen and (min-width:1024px) and (max-width:1279px) {
+        .btn.btn__delete {
+            width: 100%;
+        }
+    }
+</style>
 @stop
 
 @section('script')
