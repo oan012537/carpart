@@ -8060,7 +8060,7 @@ li {
     .box__contentdetail
     .form-check
     .form-check-input[type="radio"] {
-    display: inline-block;
+    display: none;
 }
 
 #modalsendlist .box__itemslist .box__contentdetail .form-check img {
@@ -10674,7 +10674,7 @@ li {
     .box__contentdetail
     .form-check
     .form-check-input[type="radio"] {
-    display: inline-block;
+    display: none;
 }
 
 #setting-createproduct .box__contentdetail .form-check img {
@@ -15330,7 +15330,7 @@ li {
     .box__contentdetail
     .form-check
     .form-check-input[type="radio"] {
-    display: inline-block;
+    display: none;
 }
 
 #modaladdnoti .box__itemslist .box__contentdetail .form-check img {
