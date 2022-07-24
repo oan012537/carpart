@@ -669,13 +669,19 @@
     /*-----------------------------------------
     RESPONSIVE
 -------------------------------------------*/
+    .btn.btn__delete {
+        width: 100%;
+    }
+    .btn.btn__delete:hover {
+        width: 100%;
+    }
+
     @media (max-width:426px) {
         .content {
             padding: 1rem 0;
         }
 
         .box__approvel .txt__page {
-            font-size: 16px;
             margin-bottom: 1rem;
         }
 
@@ -708,7 +714,8 @@
         .form-box-input .btn-search {
             padding: 0.375rem 1rem;
         }
-        .status{
+
+        .status {
             font-size: 14px;
         }
     }
@@ -719,7 +726,6 @@
         }
 
         .box__approvel .txt__page {
-            font-size: 20px;
             margin-bottom: 1rem;
             margin-top: 4rem;
         }
@@ -749,7 +755,8 @@
         .form-box-input .btn-search {
             padding: 0.375rem 1rem;
         }
-        .status{
+
+        .status {
             font-size: 14px;
         }
     }
@@ -760,7 +767,6 @@
         }
 
         .box__approvel .txt__page {
-            font-size: 24px;
             margin-bottom: 1rem;
             margin-top: 4rem;
         }
@@ -787,7 +793,8 @@
             padding: 0.375rem 0.5rem;
             font-size: 14px;
         }
-        .status{
+
+        .status {
             font-size: 14px;
         }
 
@@ -805,6 +812,7 @@
         .content {
             padding: 1rem 0.5rem;
         }
+
         .btn.btn__delete {
             width: 100%;
             padding: 0.375rem 0;
