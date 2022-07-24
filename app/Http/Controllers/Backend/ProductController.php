@@ -14,6 +14,7 @@ use App\Models\Warranty;
 use App\Models\Brand;
 use App\Models\Transportation;
 use App\Models\Backend\Deliverys;
+use App\Models\Supplier;
 
 class ProductController extends Controller
 {
@@ -81,14 +82,14 @@ class ProductController extends Controller
 		})
 		->addColumn('images',function($data){
             if($data->image){
-                if(File::exists(public_path().'/product/images/'.$data->image)){
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('product/images').'/'.$data->image.'" > <img src="'.asset('product/images').'/'.$data->image.'" class="img-product"> </a>';
+                if(File::exists(public_path().'/products/images/'.$data->image)){
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('products/images').'/'.$data->image.'" > <img src="'.asset('products/images').'/'.$data->image.'" class="img-product"> </a>';
                 }else{
-                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('product/images/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('product/images/ImageNotFound.png').'" class="img-product"> </a>';
+                    return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('product/images/ImageNotFound.png').'" > <img src="'.asset('product/images/ImageNotFound.png').'" class="img-product"> </a>';
                 }
                 
             }else{
-                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('product/images/ImageNotFound.png').'/'.$data->image.'" > <img src="'.asset('product/images/ImageNotFound.png').'" class="img-product"> </a>';
+                return '<a class="btn btn__pdf fancybox" data-fancybox href="'.asset('product/images/ImageNotFound.png').'" > <img src="'.asset('product/images/ImageNotFound.png').'" class="img-product"> </a>';
             }
             
 		})
@@ -131,6 +132,7 @@ class ProductController extends Controller
         $uoms = ['CM', 'M', 'MM'];
 
         $deliverys = Deliverys::where('is_active', 1)->get();
+        $supplier = Supplier::find($data->supplier_id);
 
 
         $transport_type_array = array(
@@ -150,6 +152,6 @@ class ProductController extends Controller
                 compact('data', 'brand_list_data', 'product_image',
                     'warranty', 'transport', 'transport_type_array',
                     'product_qualities', 'day_month_year', 'units',
-                    'uoms', 'transport_type_ids','deliverys'));
+                    'uoms', 'transport_type_ids','deliverys','supplier'));
     }
 }

@@ -53,7 +53,9 @@
                                                     @if(!empty($product_image))
                                                     @foreach($product_image as $images)
                                                     <div class="img-product">
-                                                        <img src="{{ asset('product/images/' . $images) }}" class="img-fluid" alt="{{ $data->name_en }}">
+                                                        <a class="btn btn__pdf fancybox" data-fancybox href="{{ asset('product/images/' . $images) }}" >
+                                                            <img src="{{ asset('product/images/' . $images) }}" class="img-fluid" alt="{{ $data->name_en }}">
+                                                        </a>
                                                     </div>
                                                     @endforeach
                                                     @else
@@ -416,7 +418,14 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="box__accordian__edit mt-3">
+                        <div class="box__filter">
+                            <div class="form-box-input">
+                                <label class="title__txt">รหัสผู้ขาย</label>
+                                <input type="text" class="form-control" id="" placeholder="ระบุ" value="{{$supplier->code}}" disabled>
+                            </div>
+                        </div>
+                    </div>
                     {{-- <div class="box__accordian__edit mt-3">
                         <div class="box__filter">
                             <div class="form-box-input">
