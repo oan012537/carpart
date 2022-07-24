@@ -1,4 +1,4 @@
-<div class="col-md-3">
+<div class="col-lg-md-3">
     <div class="box__profilemenu">
 
         <div class="box__nav">

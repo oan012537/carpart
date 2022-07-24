@@ -640,7 +640,7 @@
                                 <a href="javascript:void(0)" class="btn btn-secondary d-block">{{ trans('file.Back') }}</a>
                             </div>
                             <div class="col-md-6">
-                                <a href="javascript:document.getElementById('msform').submit();" class="btn btn-primary d-block">{{ trans('file.Submit') }}</a>
+                                <a href="javascript:document.getElementById('msform').submit();" class="btn btn-primary mb-3 d-block">{{ trans('file.Submit') }}</a>
                             </div>
                         </div>
                     </div>

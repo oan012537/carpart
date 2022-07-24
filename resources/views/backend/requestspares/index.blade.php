@@ -3,6 +3,8 @@
 <input type="hidden" id="pageName" name="pageName" value="request-form">
 <input type="hidden" id="pagemenuName" name="pagemenuName" value="requestspares">
 
+
+
 <div class="content">
     <div class="box__approvel">
         <div class="container-fluid">
@@ -11,25 +13,25 @@
                     <h2 class="txt__page">ใบคำขอหาอะไหล่</h2>
                 </div>
 
-                <div class="col-12">
+                <div class="col-lg-12">
                     <div class="box__filter">
                         <form class="px-2">
                             <div class="row">
-                                <div class="col-2">
+                                <div class="col-lg-2">
                                     <label class="title__txt">ค้นหาตามแบรนด์</label>
                                     <select class="form-select">
                                         <option>ระบุ....</option>
                                     </select>
                                 </div>
 
-                                <div class="col-2">
+                                <div class="col-lg-2">
                                     <label class="title__txt">ค้นหาตามประเภทอะไหล่</label>
                                     <select class="form-select">
                                         <option>ระบุ....</option>
                                     </select>
                                 </div>
 
-                                <div class="col-2">
+                                <div class="col-lg-2">
                                     <label for="" class="title__txt">ช่วงวัน-เวลา</label>
                                     <div class="input-group ">
                                         <input type="date" class="form-control" placeholder="Recipient's username" aria-describedby="button-yes">

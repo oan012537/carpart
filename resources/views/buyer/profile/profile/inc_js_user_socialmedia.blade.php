@@ -5,8 +5,8 @@
         var provider = $(this).attr("rel");
         console.log(provider);
         buyerprofile_socialmedia_disconnect(provider);
-        $("#btnsocial_disconnect_line").hide();
         $("#btnsocial_connect_line").show();
+        $("#btnsocial_disconnect_line").hide();
     });
 
 

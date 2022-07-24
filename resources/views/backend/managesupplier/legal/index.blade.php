@@ -10,7 +10,7 @@
     <div class="box__approvel">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-12">
                     <h2 class="txt__page">จัดการผู้ขาย : นิติบุคคล</h2>
                 </div>
 
@@ -18,7 +18,7 @@
                     <div class="box__filter2">
                         <form class="form-box-input px-2">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-lg-4">
                                     <label class="title__txt">ค้นหา</label>
                                     <input type="text" class="form-control" placeholder="ค้นหา"
                                         aria-describedby="button-search">
@@ -26,7 +26,7 @@
 
                                 </div>
 
-                                <div class="col-3">
+                                <div class="col-lg-3">
                                     <label class="title__txt">สถานะ</label>
                                     <select class="form-select" aria-label="Default select example">
                                         <option selected=""> ระบุ</option>

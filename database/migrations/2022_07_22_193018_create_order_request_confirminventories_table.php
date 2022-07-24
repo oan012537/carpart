@@ -30,10 +30,11 @@ class CreateOrderRequestConfirminventoriesTable extends Migration
             $table->integer('buyer_tax_invoice_id')->nullable()->comment('รหัสที่อยู่ใบกำกับภาษี buyer');
             $table->string('taxid')->nullable()->comment('เลขประจำตัวผู้เสียภาษี');
             $table->text('taxinvoice_address')->nullable()->comment('ที่อยู่สำหรับออกใบกำกับภาษี');
-            $table->enum('status',['pending','approved','canceled'])->default('pending')->comment('สถานะ');
+            $table->enum('status',['pending','approved','canceled'])->default('pending')->comment('สถานะ (pending, approved, canceled)');
             $table->dateTime('pending_date', $precision = 0)->nullable()->comment('วันที่ขอ');
             $table->dateTime('approved_date', $precision = 0)->nullable()->comment('วันที่อนุมัติ');
             $table->dateTime('canceled_date', $precision = 0)->nullable()->comment('วันที่ยกเลิก');
+            $table->string('canceled_by')->nullable()->comment('รหัสผู้ยกเลิก');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

@@ -61,39 +61,46 @@ Route::prefix('buyer')->group(function(){
         Route::get('home-search6',[Buyer\SearchProductController::class, 'home_search_category']);
         Route::get('home-search7',[Buyer\SearchProductController::class, 'home_search_subcategory']);
 
-        //======= OAT My Account =======
-        Route::get('myaccount', [Buyer\BuyerProfileController::class, 'index']); //-OAT
-        // Profile Address
-        Route::post('buyerprofile/add', [Buyer\BuyerProfileController::class, 'buyerprofile_store']); //-OAT
-        Route::get('buyerprofile/edit/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_edit']); //-OAT
-        Route::post('buyerprofile/update', [Buyer\BuyerProfileController::class, 'buyerprofile_update']); //-OAT
-        Route::get('buyerprofile/delete/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_delete']); //-OAT
-        Route::get('buyerprofile/set_isprofile/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_set_isprofile']); //-OAT
-        Route::get('buyerprofile/set_isdelivery/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_set_isdelivery']); //-OAT
+    //======= OAT My Account =======
 
-        Route::post('buyerprofile/account/update', [Buyer\BuyerProfileController::class, 'buyerprofile_account_update']); //-OAT
+        //== ** Profile 
+        Route::get('myaccount', [Buyer\Myaccount\BuyerProfileController::class, 'index'])->name('buyer.account'); //-OAT
+        // Profile Address
+        Route::post('buyerprofile/add', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_store']); //-OAT
+        Route::get('buyerprofile/edit/{id}', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_edit']); //-OAT
+        Route::post('buyerprofile/update', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_update']); //-OAT
+        Route::get('buyerprofile/delete/{id}', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_delete']); //-OAT
+        Route::get('buyerprofile/set_isprofile/{id}', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_set_isprofile']); //-OAT
+        Route::get('buyerprofile/set_isdelivery/{id}', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_set_isdelivery']); //-OAT
+        Route::post('buyerprofile/account/update', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_account_update']); //-OAT
         
         // Taxinvoice
-        Route::get('buyerprofile/taxinvoice/edit/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_taxinvoice_edit']); //-OAT
-        Route::post('buyerprofile/taxinvoice/update', [Buyer\BuyerProfileController::class, 'buyerprofile_taxinvoice_update']); //-OAT
+        Route::get('buyerprofile/taxinvoice/edit/{id}', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_taxinvoice_edit']); //-OAT
+        Route::post('buyerprofile/taxinvoice/update', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_taxinvoice_update']); //-OAT
        
         // Change Password
-        Route::get('buyerprofile/changepassword/check_currentpassword/{current_password}', [Buyer\BuyerProfileController::class, 'buyerprofile_check_currentpassword']); //-OAT
+        Route::get('buyerprofile/changepassword/check_currentpassword/{current_password}', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_check_currentpassword']); //-OAT
        
         //== SocialMedia
-        Route::get('buyerprofile/socialmedia/disconnect/{type}', [Buyer\BuyerProfileController::class, 'buyerprofile_socialmedia_disconnect']); //-OAT
+        Route::get('buyerprofile/socialmedia/disconnect/{type}', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_socialmedia_disconnect']); //-OAT
 
         // Insert Bank
-        Route::get('buyerprofile/bank/request_otp', [Buyer\BuyerProfileController::class, 'buyerprofile_bank_request_otp']); //-OAT
-        Route::post('buyerprofile/bank/create', [Buyer\BuyerProfileController::class, 'buyerprofile_bank_store']); //-OAT
-        Route::get('buyerprofile/bank/setdefault/{id}', [Buyer\BuyerProfileController::class, 'buyerprofile_bank_set_default']); //-OAT
-        
-        //======= OAT End My Account =======
+        Route::get('buyerprofile/bank/request_otp', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_bank_request_otp']); //-OAT
+        Route::post('buyerprofile/bank/create', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_bank_store']); //-OAT
+        Route::get('buyerprofile/bank/setdefault/{id}', [Buyer\Myaccount\BuyerProfileController::class, 'buyerprofile_bank_set_default']); //-OAT
+        //== ** End Profile 
+
+        //== ** Comfirm Inventory
+        Route::get('myaccount/confirminventory', [Buyer\Myaccount\MyConfirmInventoryController::class, 'index']); //-OAT
+
+        //== ** End Comfirm Inventory
+
+
+    //======= OAT End My Account =======
 
         //======= OAT Comfirm Inventory ===========
-
-        Route::get('confirminventory/{id}', [Buyer\ComfirmInventoryController::class, 'confirminventory']); //-OAT
-
+        Route::get('confirminventory/{id}', [Buyer\ConfirmInventoryController::class, 'confirminventory']); //-OAT
+        Route::post('confirminventory', [Buyer\ConfirmInventoryController::class, 'confirminventory_store']); //-OAT
         //======= OAT End Comfirm Inventory =======
     });
 

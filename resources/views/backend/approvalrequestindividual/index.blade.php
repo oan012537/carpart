@@ -9,12 +9,14 @@
         border: 1px solid var(--clrdarks5) !important;
         padding: 7px 2rem;
         @extend %transition-3;
+
         &:hover {
             @extend %transition-3;
             background-color: transparent !important;
             color: var(--clrwhites) !important;
         }
     }
+
     #modalviewdetailapp .modal-footer .btn__yes {
         background-color: var(--clrmain);
         border-radius: 4px;
@@ -66,8 +68,8 @@
                                 <div class="box__search">
                                     <label for="">ช่วงวัน-เวลา</label>
                                     <div class="input-group ">
-                                        <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="button-yes"  name="date" id="date" readonly>
-                                        <input type="hidden"   name="dates" id="dates" readonly value="{{date("Y-m-d")}},{{date("Y-m-d")}}">
+                                        <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="button-yes" name="date" id="date" readonly>
+                                        <input type="hidden" name="dates" id="dates" readonly value="{{date("Y-m-d")}},{{date("Y-m-d")}}">
                                     </div>
                                 </div>
 
@@ -356,7 +358,52 @@
         </div>
     </div>
 </div>
+<style>
+/*-----------------------------------------
+    RESPONSIVE
+-------------------------------------------*/
+    @media (max-width:426px) {
+        .content {
+            padding: 1rem 0;
+        }
 
+        .box__approvel .txt__page{
+            font-size: 14px;
+            margin-bottom: 1rem;
+        }
+        .box__approvel .box__filter{
+            padding: 0.5rem 0.5rem 1rem 0.5rem;
+        }
+    }
+    @media screen and (min-width:427px) and (max-width:767px) {
+        .content {
+            padding: 1rem 0;
+        }
+
+        .box__approvel .txt__page{
+            font-size: 14px;
+            margin-bottom: 1rem;
+            margin-top: 4rem;
+        }
+        .box__approvel .box__filter{
+            padding: 0.5rem 0.5rem 1rem 0.5rem;
+        }
+    }
+
+    @media screen and (min-width:768px) and (max-width:1023px) {
+        .box__approvel .txt__page{
+            font-size: 24px;
+            margin-top: 4rem;
+        }
+    }
+
+    @media screen and (min-width:1024px) and (max-width:1279px) {
+        .box__approvel .box__filter .wrapper__form .box__radio .form-check .form-check-label{
+            font-size: 14px;
+        }
+    }
+
+</style>
 @stop
 
 @section('script')
@@ -365,284 +412,485 @@
 {{-- <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> --}}
 <script src="{{asset('daterangepicker-master/daterangepicker.js')}}"></script>
 <script>
-    $(document).ready(function(){
-        $('.nav-link').on('shown.bs.tab', function (e) {
+    $(document).ready(function() {
+        $('.nav-link').on('shown.bs.tab', function(e) {
             console.log('tab');
-            $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+            $.fn.dataTable.tables({
+                visible: true,
+                api: true
+            }).columns.adjust();
         });
-		var oTable = $('#datatables').DataTable({
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
+        var oTable = $('#datatables').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: false,
+            lengthChange: false,
             responsive: true,
             scrollX: true,
-			ajax:{ 
-				url : "{{url('backend/approvalrequest/individual/datatables')}}",
-				data: function (d) {
-					d.search = $('#search').val();
-					d.radiodate = $('input[name="radiodate"]:checked').val();
-					d.date = $('#dates').val();
-				},
-			},
-			columns: [
-				{ 'className': "text-center", data: 'code', name: 'code' },
-				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'supplir_name', name: 'supplir_name' },
-				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at',searchable: false },
-				{ 'className': "text-center", data: 'approve_at', name: 'suppliers.approve_at',searchable: false },
-				{ 'className': "text-center", data: 'status_code', name: 'suppliers.status_code',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'comment', name: 'comment' },
-				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
-			],
-			order: [[0, 'asc']],
-			rowCallback: function(row,data,index ){
-				// $('td:eq(0)', row).html(index+1);
-				// var status = '';
-				// // if(data['product_status'] > 0){ //อันเก่า
-				// if(data['status'] == 1){
-				// 	// var status = '<span class="label bg-success-400">ใช้งาน</span>';
-				// }else if(data['status'] == 0){
-				// 	var status = '<span class="label bg-warning-400">ยกเลิก</span>';
-				// }
-				
-				// $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
-				
-				
-			},
-            initComplete:function( settings, json){
+            ajax: {
+                url: "{{url('backend/approvalrequest/individual/datatables')}}",
+                data: function(d) {
+                    d.search = $('#search').val();
+                    d.radiodate = $('input[name="radiodate"]:checked').val();
+                    d.date = $('#dates').val();
+                },
+            },
+            columns: [{
+                    'className': "text-center",
+                    data: 'code',
+                    name: 'code'
+                },
+                {
+                    'className': "text-center",
+                    data: 'store_name',
+                    name: 'store_name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'supplir_name',
+                    name: 'supplir_name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'card_id',
+                    name: 'card_id'
+                },
+                {
+                    'className': "text-center",
+                    data: 'created_at',
+                    name: 'created_at',
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'approve_at',
+                    name: 'suppliers.approve_at',
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'status_code',
+                    name: 'suppliers.status_code',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'comment',
+                    name: 'comment'
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnview',
+                    name: 'btnview',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnaction',
+                    name: 'btnaction',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            order: [
+                [0, 'asc']
+            ],
+            rowCallback: function(row, data, index) {
+                // $('td:eq(0)', row).html(index+1);
+                // var status = '';
+                // // if(data['product_status'] > 0){ //อันเก่า
+                // if(data['status'] == 1){
+                // 	// var status = '<span class="label bg-success-400">ใช้งาน</span>';
+                // }else if(data['status'] == 0){
+                // 	var status = '<span class="label bg-warning-400">ยกเลิก</span>';
+                // }
+
+                // $('td:eq(5)', row).html( '<i class="icon-mailbox" data-popup="tooltip" title="Mail" onclick="mail('+data['export_id']+');"></i> <i class="icon-magazine" data-popup="tooltip" title="Bill" onclick="openbill('+data['export_id']+');"></i> <a href="{{url("export-update")}}/'+data['export_id']+'"><i class="icon-pencil7" data-popup="tooltip" title="Update"></i></a> <i class="icon-trash" onclick="del('+data['export_id']+');" data-popup="tooltip" title="Delete"></i>' );
+
+
+            },
+            initComplete: function(settings, json) {
                 // console.log(json);
                 $("#alerttotal").text(oTable.data().count());
-                if(oTable.data().count() > 0){
+                if (oTable.data().count() > 0) {
                     $("#alerttotal").show();
                 }
-                
+
             },
-            "drawCallback": function( settings ) {
+            "drawCallback": function(settings) {
                 $("#alerttotal").text(oTable.data().count());
-                if(oTable.data().count() > 0){
+                if (oTable.data().count() > 0) {
                     $("#alerttotal").show();
                 }
             }
-		});
-		
-		$('#btnsearch').click(function(e){
-			oTable.draw();
-			// e.preventDefault();
+        });
+
+        $('#btnsearch').click(function(e) {
+            oTable.draw();
+            // e.preventDefault();
             $("#alerttotal").text(oTable.data().count());
-            if(oTable.data().count() > 0){
+            if (oTable.data().count() > 0) {
                 $("#alerttotal").show();
             }
 
             oTablewait.draw();
-			// e.preventDefault();
+            // e.preventDefault();
             $("#alertwait").text(oTablewait.data().count());
-            if(oTablewait.data().count() > 0){
+            if (oTablewait.data().count() > 0) {
                 $("#alertwait").show();
             }
 
             oTableapproval.draw();
-			// e.preventDefault();
+            // e.preventDefault();
             $("#alertapproval").text(oTableapproval.data().count());
-            if(oTableapproval.data().count() > 0){
+            if (oTableapproval.data().count() > 0) {
                 $("#alertapproval").show();
             }
 
             oTabledisapproved.draw();
-			// e.preventDefault();
+            // e.preventDefault();
             $("#alertdisapproved").text(oTabledisapproved.data().count());
-            if(oTabledisapproved.data().count() > 0){
+            if (oTabledisapproved.data().count() > 0) {
                 $("#alertdisapproved").show();
             }
             e.preventDefault();
-		});
-        
-		// $("#noorder").keyup(function(e){
-		// 	oTable.draw();
-		// 	e.preventDefault();
-		// });
+        });
+
+        // $("#noorder").keyup(function(e){
+        // 	oTable.draw();
+        // 	e.preventDefault();
+        // });
 
         var oTablewait = $('#datatables_wait').DataTable({
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            lengthChange: false,
             responsive: true,
             scrollX: true,
-			ajax:{ 
-				url : "{{url('backend/approvalrequest/individual/datatables/wait')}}",
-				data: function (d) {
-					d.search = $('#search').val();
-					d.radiodate = $('input[name="radiodate"]:checked').val();
-					d.date = $('#dates').val();
-				},
-			},
-			columns: [
-				{ 'className': "text-center", data: 'code', name: 'code' },
-				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'supplir_name', name: 'supplir_name' },
-				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at',searchable: false },
-				{ 'className': "text-center", data: 'approve_at', name: 'suppliers.approve_at',searchable: false },
-				{ 'className': "text-center", data: 'status_code', name: 'suppliers.status_code',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'comment', name: 'comment' },
-				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
-			],
-			order: [[0, 'asc']],
-			rowCallback: function(row,data,index ){
-				
-				
-			},
-            initComplete:function( settings, json){
+            ajax: {
+                url: "{{url('backend/approvalrequest/individual/datatables/wait')}}",
+                data: function(d) {
+                    d.search = $('#search').val();
+                    d.radiodate = $('input[name="radiodate"]:checked').val();
+                    d.date = $('#dates').val();
+                },
+            },
+            columns: [{
+                    'className': "text-center",
+                    data: 'code',
+                    name: 'code'
+                },
+                {
+                    'className': "text-center",
+                    data: 'store_name',
+                    name: 'store_name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'supplir_name',
+                    name: 'supplir_name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'card_id',
+                    name: 'card_id'
+                },
+                {
+                    'className': "text-center",
+                    data: 'created_at',
+                    name: 'created_at',
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'approve_at',
+                    name: 'suppliers.approve_at',
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'status_code',
+                    name: 'suppliers.status_code',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'comment',
+                    name: 'comment'
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnview',
+                    name: 'btnview',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnaction',
+                    name: 'btnaction',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            order: [
+                [0, 'asc']
+            ],
+            rowCallback: function(row, data, index) {
+
+
+            },
+            initComplete: function(settings, json) {
                 console.log(json);
                 $("#alertwait").text(oTablewait.data().count());
-                if(oTablewait.data().count() > 0){
+                if (oTablewait.data().count() > 0) {
                     $("#alertwait").show();
                 }
             },
-            "drawCallback": function( settings ) {
+            "drawCallback": function(settings) {
                 $("#alertwait").text(oTablewait.data().count());
-                if(oTablewait.data().count() > 0){
+                if (oTablewait.data().count() > 0) {
                     $("#alertwait").show();
                 }
             }
-		});
+        });
 
 
         var oTableapproval = $('#datatables_approval').DataTable({
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            lengthChange: false,
             responsive: true,
             scrollX: true,
-			ajax:{ 
-				url : "{{url('backend/approvalrequest/individual/datatables/approval')}}",
-				data: function (d) {
-					d.search = $('#search').val();
-					d.radiodate = $('input[name="radiodate"]:checked').val();
-					d.date = $('#dates').val();
-				},
-			},
-			columns: [
-				{ 'className': "text-center", data: 'code', name: 'code' },
-				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'supplir_name', name: 'supplir_name' },
-				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at',searchable: false },
-				{ 'className': "text-center", data: 'approve_at', name: 'suppliers.approve_at',searchable: false },
-				{ 'className': "text-center", data: 'status_code', name: 'suppliers.status_code',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'comment', name: 'comment' },
-				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
-			],
-			order: [[0, 'asc']],
-			rowCallback: function(row,data,index ){
-				
-			},
-            initComplete:function( settings, json){
+            ajax: {
+                url: "{{url('backend/approvalrequest/individual/datatables/approval')}}",
+                data: function(d) {
+                    d.search = $('#search').val();
+                    d.radiodate = $('input[name="radiodate"]:checked').val();
+                    d.date = $('#dates').val();
+                },
+            },
+            columns: [{
+                    'className': "text-center",
+                    data: 'code',
+                    name: 'code'
+                },
+                {
+                    'className': "text-center",
+                    data: 'store_name',
+                    name: 'store_name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'supplir_name',
+                    name: 'supplir_name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'card_id',
+                    name: 'card_id'
+                },
+                {
+                    'className': "text-center",
+                    data: 'created_at',
+                    name: 'created_at',
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'approve_at',
+                    name: 'suppliers.approve_at',
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'status_code',
+                    name: 'suppliers.status_code',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'comment',
+                    name: 'comment'
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnview',
+                    name: 'btnview',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnaction',
+                    name: 'btnaction',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            order: [
+                [0, 'asc']
+            ],
+            rowCallback: function(row, data, index) {
+
+            },
+            initComplete: function(settings, json) {
                 console.log(json);
                 $("#alertapproval").text(oTableapproval.data().count());
-                if(oTableapproval.data().count() > 0){
+                if (oTableapproval.data().count() > 0) {
                     $("#alertapproval").show();
                 }
             },
-            "drawCallback": function( settings ) {
+            "drawCallback": function(settings) {
                 $("#alertapproval").text(oTableapproval.data().count());
-                if(oTableapproval.data().count() > 0){
+                if (oTableapproval.data().count() > 0) {
                     $("#alertapproval").show();
                 }
             }
-		});
+        });
 
         var oTabledisapproved = $('#datatables_disapproved').DataTable({
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            lengthChange: false,
             responsive: true,
             scrollX: true,
-			ajax:{ 
-				url : "{{url('backend/approvalrequest/individual/datatables/disapproved')}}",
-				data: function (d) {
-					d.search = $('#search').val();
-					d.radiodate = $('input[name="radiodate"]:checked').val();
-					d.date = $('#dates').val();
-				},
-			},
-			columns: [
-				{ 'className': "text-center", data: 'code', name: 'code' },
-				{ 'className': "text-center", data: 'store_name', name: 'store_name' },
-				{ 'className': "text-center", data: 'supplir_name', name: 'supplir_name' },
-				{ 'className': "text-center", data: 'card_id', name: 'card_id' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at',searchable: false },
-				{ 'className': "text-center", data: 'approve_at', name: 'suppliers.approve_at',searchable: false },
-				{ 'className': "text-center", data: 'status_code', name: 'suppliers.status_code',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'comment', name: 'comment' },
-				{ 'className': "text-center", data: 'btnview', name: 'btnview',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
-			],
-			order: [[0, 'asc']],
-			rowCallback: function(row,data,index ){
-				
-				
-			},
-            initComplete:function( settings, json){
+            ajax: {
+                url: "{{url('backend/approvalrequest/individual/datatables/disapproved')}}",
+                data: function(d) {
+                    d.search = $('#search').val();
+                    d.radiodate = $('input[name="radiodate"]:checked').val();
+                    d.date = $('#dates').val();
+                },
+            },
+            columns: [{
+                    'className': "text-center",
+                    data: 'code',
+                    name: 'code'
+                },
+                {
+                    'className': "text-center",
+                    data: 'store_name',
+                    name: 'store_name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'supplir_name',
+                    name: 'supplir_name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'card_id',
+                    name: 'card_id'
+                },
+                {
+                    'className': "text-center",
+                    data: 'created_at',
+                    name: 'created_at',
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'approve_at',
+                    name: 'suppliers.approve_at',
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'status_code',
+                    name: 'suppliers.status_code',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'comment',
+                    name: 'comment'
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnview',
+                    name: 'btnview',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnaction',
+                    name: 'btnaction',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            order: [
+                [0, 'asc']
+            ],
+            rowCallback: function(row, data, index) {
+
+
+            },
+            initComplete: function(settings, json) {
                 console.log(json);
                 $("#alertdisapproved").text(oTabledisapproved.data().count());
-                if(oTabledisapproved.data().count() > 0){
+                if (oTabledisapproved.data().count() > 0) {
                     $("#alertdisapproved").show();
                 }
             },
-            "drawCallback": function( settings ) {
+            "drawCallback": function(settings) {
                 $("#alertdisapproved").text(oTabledisapproved.data().count());
-                if(oTabledisapproved.data().count() > 0){
+                if (oTabledisapproved.data().count() > 0) {
                     $("#alertdisapproved").show();
                 }
             }
-		});
+        });
 
-        $("#search").keyup(function (e) { 
+        $("#search").keyup(function(e) {
             oTable.draw();
-			e.preventDefault();
+            e.preventDefault();
             $("#alerttotal").text(oTable.data().count());
-            if(oTable.data().count() > 0){
+            if (oTable.data().count() > 0) {
                 $("#alerttotal").show();
             }
 
             oTablewait.draw();
-			e.preventDefault();
+            e.preventDefault();
             $("#alertwait").text(oTablewait.data().count());
-            if(oTablewait.data().count() > 0){
+            if (oTablewait.data().count() > 0) {
                 $("#alertwait").show();
             }
 
             oTableapproval.draw();
-			e.preventDefault();
+            e.preventDefault();
             $("#alertapproval").text(oTableapproval.data().count());
-            if(oTableapproval.data().count() > 0){
+            if (oTableapproval.data().count() > 0) {
                 $("#alertapproval").show();
             }
 
             oTabledisapproved.draw();
-			e.preventDefault();
+            e.preventDefault();
             $("#alertdisapproved").text(oTabledisapproved.data().count());
-            if(oTabledisapproved.data().count() > 0){
+            if (oTabledisapproved.data().count() > 0) {
                 $("#alertdisapproved").show();
             }
 
         });
-	});
+    });
 
     function viewdetail(id) {
-        $.get('{{route("backend.approval.individual.getdetails")}}',{'id':id},function (result) {
-            
+        $.get('{{route("backend.approval.individual.getdetails")}}', {
+            'id': id
+        }, function(result) {
+
             $('#modalviewdetailapp .box__codenumber #showcodemember').html(result.code); //อนุมัตเมื่อ
             $('#modalviewdetailapp #supplierid').val(result.id); //ID
-            var images = "{{asset('suppliers/document')}}/"+result.personal_card_id_image;
+            var images = "{{asset('suppliers/document')}}/" + result.personal_card_id_image;
             $('#modalviewdetailapp .itemsdetail #shop').html(result.store_name); //ชื่อร้าน
             $('#modalviewdetailapp .itemsdetail #name').html(result.personal_first_name); //ชื่อ
             $('#modalviewdetailapp .itemsdetail #surname').html(result.personal_last_name); //นามสกุล
@@ -651,20 +899,20 @@
             $('#modalviewdetailapp .itemsdetail #idcard').html(result.personal_card_id); //เลขบัตรประชาชน
             $('#modalviewdetailapp .itemsdetail #addresstoidcard').html(result.addressidcard); //ที่อยู่ตามบัตรประชาชน
             $('#modalviewdetailapp .itemsdetail #addressshop').html(result.addressfull); //ที่อยู่ร้าน
-            $('#modalviewdetailapp .itemsdetail #copyidcard').html('ดูรูปภาพ <a data-fancybox class="btn__viewimage fancybox" href="'+images+'"><i class="fa-solid fa-image"></i></a>'); //สำเนาบัตรประชาชน
+            $('#modalviewdetailapp .itemsdetail #copyidcard').html('ดูรูปภาพ <a data-fancybox class="btn__viewimage fancybox" href="' + images + '"><i class="fa-solid fa-image"></i></a>'); //สำเนาบัตรประชาชน
             $('#modalviewdetailapp .itemsdetail #pageurl').html(result.facebook_url); //Page Url/Facebook Url
             $('#modalviewdetailapp .itemsdetail #gps').html(result.google_map_url); //Google Map
             $('#modalviewdetailapp #approvestatus').val(result.status_code); //สถานะ
             $('#modalviewdetailapp #txt__note').val(result.comment); //หมายเหตุ
-            if(result.status_code == 'approved'){
+            if (result.status_code == 'approved') {
                 $('.wrapper__approvaldate .box__date span').html(result.approve_at); //อนุมัตเมื่อ
                 $('.wrapper__approvaldate .box__userapproval span').html(result.approve_by); //ผู้อนุมัติ
-            }else{
+            } else {
                 $('.wrapper__approvaldate').hide();
             }
             // $("#approvestatus").val(result.status_code);
             $('#modalviewdetailapp').modal('show');
-            
+
         });
     }
     $('input[name="date"]').daterangepicker({
@@ -676,20 +924,20 @@
         }
     }, function(start, end, label) {
         console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-        $("#dates").val(start.format('YYYY-MM-DD')+','+end.format('YYYY-MM-DD'));
+        $("#dates").val(start.format('YYYY-MM-DD') + ',' + end.format('YYYY-MM-DD'));
     });
 
     function approval(id) {
-        var id = $(".suppliers"+id).data('id');
-        var status = $(".suppliers"+id).data('status');
-        var comments = $(".suppliers"+id).data('comment');
+        var id = $(".suppliers" + id).data('id');
+        var status = $(".suppliers" + id).data('status');
+        var comments = $(".suppliers" + id).data('comment');
         $("#modalapproval #supplierid").val(id);
         $("#modalapproval #approvestatus").val(status);
         $("#modalapproval #txt__note").val(comments);
         var text = $("#modalapproval #approvestatus option:selected").text();
-        $("#modalapproval .txt__result").html('ผลการพิจารณา :<span>'+text+'</span>');
-        
-        
+        $("#modalapproval .txt__result").html('ผลการพิจารณา :<span>' + text + '</span>');
+
+
         $('#modalapproval').modal('show');
     }
     $('.fancybox').fancybox({

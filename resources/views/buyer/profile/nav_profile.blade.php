@@ -28,7 +28,7 @@
                     </li>
 
                     <li>
-                        <a href="order-list.php" class="nav_link" data-page="order-list">
+                        <a href="{{ url('buyer/myaccount/confirminventory') }}" class="nav_link" data-page="order-list">
                             <i class='far fa-file'></i>
                             <span class="nav_name">รายการรอยืนยันจากผู้ขาย</span>
 
