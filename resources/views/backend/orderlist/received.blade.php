@@ -585,7 +585,9 @@
     .btn.btn__delete {
         width: 100%;
     }
-
+    .btn.btn__delete:hover {
+        width: 100%;
+    }
     @media (max-width:426px) {
         .content {
             padding: 1rem 0;
