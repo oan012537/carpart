@@ -359,10 +359,12 @@ class ProductController extends Controller
         else if ($tableName == 'issue_years') {
             $issue_year_list_data = IssueYear::where([
                                             ['sub_model_id', $id],
-                                            ['is_active', true]
+                                            ['is_active', true],
                                         ])
+                                        ->whereNotNull('from_year')
                                         ->get();
-            return $issue_year_list_data;
+            return $issue_year_list_data;                        
+            
         } 
         else if ($tableName == 'categories') {
             $category_list_data = Category::where([
@@ -387,7 +389,6 @@ class ProductController extends Controller
                                         ->get();
             return $sub_sub_category_list_data;
         }
-
         
     }
 
@@ -402,49 +403,48 @@ class ProductController extends Controller
         if ($table_name == 'brands') {
             $result_list_data = Brand::where([
                                         ['is_active', true],
-                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                        ['name_en', 'LIKE', "{$search_value}%"]
                                     ])
-                                    ->OrWhere('name_th', 'LIKE', "%{$search_value}%")
                                     ->orderBy('sequence_no')->get();
         } else if ($table_name == 'models') {
             $result_list_data = ProductModel::where([
                                         ['is_active', true],
                                         ['brand_id', $parent_id],
-                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                        ['name_en', 'LIKE', "{$search_value}%"]
                                     ])->orderBy('id')->get();
                                     
         } else if ($table_name == 'sub_models') {
             $result_list_data = SubModel::where([
                                         ['is_active', true],
                                         ['model_id', $parent_id],
-                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                        ['name_en', 'LIKE', "{$search_value}%"]
                                     ])->orderBy('id')->get();
                                     
         } else if ($table_name == 'issue_years') {
             $result_list_data = IssueYear::where([
                                         ['is_active', true],
                                         ['sub_model_id', $parent_id],
-                                        ['from_year', 'LIKE', "%{$search_value}%"]
+                                        ['from_year', 'LIKE', "{$search_value}%"]
                                     ])->orderBy('id')->get();
                                     
         } else if ($table_name == 'categories') {
             $result_list_data = Category::where([
                                         ['is_active', true],
-                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                        ['name_en', 'LIKE', "{$search_value}%"]
                                     ])->orderBy('id')->get();
                                     
         } else if ($table_name == 'sub_categories') {
             $result_list_data = SubCategory::where([
                                         ['is_active', true],
                                         ['category_id', $parent_id],
-                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                        ['name_en', 'LIKE', "{$search_value}%"]
                                     ])->orderBy('id')->get();
                                      
         } else if ($table_name == 'sub_sub_categories') {
             $result_list_data = SubSubCategory::where([
                                         ['is_active', true],
                                         ['sub_category_id', $parent_id],
-                                        ['name_en', 'LIKE', "%{$search_value}%"]
+                                        ['name_en', 'LIKE', "{$search_value}%"]
                                     ])->orderBy('id')->get();
                                      
         }
@@ -475,8 +475,8 @@ class ProductController extends Controller
             $model_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $model_data->name_en); 
             $model_name_th = $model_data->name_th; 
 
-            $product_name_en .=  $model_name_en;
-            $product_name_th .=  $model_name_th;
+            $product_name_en .= ' '. $model_name_en;
+            $product_name_th .= ' '. $model_name_th;
         }
 
         $category_data = Category::select('name_th', 'name_en')->where('id', $data['category_id'])->first();
@@ -484,8 +484,8 @@ class ProductController extends Controller
             $category_name_en = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $category_data->name_en); 
             $category_name_th = $category_data->name_th; 
 
-            $product_name_en .=  $category_name_en;
-            $product_name_th .=  $category_name_th;
+            $product_name_en .= ' '. $category_name_en;
+            $product_name_th .= ' '. $category_name_th;
         }
 
         $sub_category_data = SubCategory::select('name_th', 'name_en')->where('id', $data['sub_category_id'])->first();

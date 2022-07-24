@@ -130,7 +130,7 @@
             <div class="col-8">
                 <div class="txt_date-txt">
                     <p>
-                        14/12/2565 18.00
+                        {{$supplier->approve_at}}
                     </p>
                 </div>
             </div>

@@ -1,7 +1,13 @@
 @extends('backend.layouts.templates')
 @section('content')
-<input type="hidden" id="pageName" name="pageName" value="managesupplier">
-<input type="hidden" id="pageName2" name="pageName2" value="managesupplierlegal">
+<style type="text/css">
+    .img-bookbook{
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<input type="hidden" id="pagemenuName" name="pagemenuName" value="managesupplier">
+<input type="hidden" id="pagemenuName2" name="pagemenuName2" value="managesupplierlegal">
 <input type="hidden" id="navpageName" name="navpageName" value="profile">
 
 
@@ -458,17 +464,11 @@
                                             </div>
                                             <div class="col-xl-9 col-12">
                                                 <div class="img-bookbank">
-<<<<<<< HEAD
                                                     {{-- <img src="{{asset('backends/assets/img/mana')}}/{{{{$bank->bank_book_image}}}}"
                                                     class="img-bookbook"> --}}
-                                                    <a class="btn btn__pdf fancybox" data-fancybox
-                                                        href="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}">
-                                                        <img src="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}"
-                                                            class="img-bookbook"> </a>
-=======
-                                                    {{-- <img src="{{asset('backends/assets/img/mana')}}/{{{{$bank->bank_book_image}}}}" class="img-bookbook"> --}}
-                                                    <a class="btn btn__pdf fancybox" data-fancybox href="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}"> <img src="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}" class="img-bookbook"> </a>
->>>>>>> b22adaa3709bad5bcada2940250455e56bdab6eb
+                                                    <a class="btn btn__pdf fancybox" data-fancybox href="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}">
+                                                        <img src="{{asset('suppliers/document')}}/{{$bank->bank_book_image}}" class="img-bookbook"> 
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
