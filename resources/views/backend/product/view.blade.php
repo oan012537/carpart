@@ -422,7 +422,7 @@
                         <div class="box__filter">
                             <div class="form-box-input">
                                 <label class="title__txt">รหัสผู้ขาย</label>
-                                <input type="text" class="form-control" id="" placeholder="ระบุ" value="{{$supplier->code}}" disabled>
+                                <input type="text" class="form-control" id="" placeholder="" value="@if(!empty($supplier)){{$supplier->code}}@endif" disabled>
                             </div>
                         </div>
                     </div>
