@@ -11,8 +11,28 @@
                     <h2 class="txt__page">ตั้งค่าคอมมิชชั่น</h2>
                 </div>
 
-                <div class="col-10">
+                <div class="col-xl-2 col-12 tablet-show2">
+                    <div class="box__accordian__edit">
+                        <div class="box__filter">
 
+                            <div id="data-product9" class="collapse show">
+                                <ul id="progressbar">
+                                    <li class="active">
+                                        <p class="progress-icon"></p> ระดับผู้ขาย 1
+                                    </li>
+                                    <li>
+                                        <p class="progress-icon"></p> ระดับผู้ขาย 2
+                                    </li>
+                                    <li>
+                                        <p class="progress-icon"></p> ระดับผู้ขาย 3
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-10 col-lg-12">
                     <div class="card-cardheard">
                         <div class="row">
                             <div class="col-6">
@@ -28,7 +48,7 @@
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
                             <div class="col-12">
                                 <label class="title__txt">ชื่อระดับ/State Name</label>
@@ -36,22 +56,21 @@
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">เงื่อนไขของระดับ</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> ยอดขายรวม</option>
                                 </select>
                             </div>
-                            <div class="col-lg-6 mt-4">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">รายละเอียด</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
                                         <option>ไม่เกิน</option>
                                     </select>
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10,000"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10,000" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>บาท</option>
                                     </select>
@@ -59,62 +78,59 @@
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">ระยะเวลาในการประเมิน</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="3"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="3" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>เดือน</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">ค่าคอมมิชชั่น</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">บทลงโทษกรณียกเลิกออเดอร์</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> กขค</option>
                                 </select>
                             </div>
-                            <div class="col-lg-6 mt-4">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">ปรับตามมูลค่าออเดอร์</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
                         </div>
 
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
                                         <option>ขั้นต่ำ</option>
                                     </select>
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>บาท</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
                                         <option>ไม่เกิน</option>
                                     </select>
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>บาท</option>
                                     </select>
@@ -123,7 +139,7 @@
                         </div>
                     </div>
 
-                    <br>
+
                     <div class="card-cardheard">
                         <div class="row">
                             <div class="col-6">
@@ -139,7 +155,7 @@
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
                             <div class="col-12">
                                 <label class="title__txt">ชื่อระดับ/State Name</label>
@@ -147,22 +163,21 @@
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">เงื่อนไขของระดับ</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> ยอดขายรวม</option>
                                 </select>
                             </div>
-                            <div class="col-lg-6 mt-4">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">รายละเอียด</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
                                         <option>ไม่เกิน</option>
                                     </select>
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10,000"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10,000" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>บาท</option>
                                     </select>
@@ -170,62 +185,59 @@
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">ระยะเวลาในการประเมิน</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="3"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="3" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>เดือน</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">ค่าคอมมิชชั่น</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">บทลงโทษกรณียกเลิกออเดอร์</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> กขค</option>
                                 </select>
                             </div>
-                            <div class="col-lg-6 mt-4">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">ปรับตามมูลค่าออเดอร์</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
                         </div>
 
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
                                         <option>ขั้นต่ำ</option>
                                     </select>
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>บาท</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
                                         <option>ไม่เกิน</option>
                                     </select>
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>บาท</option>
                                     </select>
@@ -234,7 +246,7 @@
                         </div>
                     </div>
 
-                    <br>
+
                     <div class="card-cardheard">
                         <div class="row">
                             <div class="col-6">
@@ -250,7 +262,7 @@
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
                             <div class="col-12">
                                 <label class="title__txt">ชื่อระดับ/State Name</label>
@@ -258,22 +270,21 @@
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">เงื่อนไขของระดับ</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> ยอดขายรวม</option>
                                 </select>
                             </div>
-                            <div class="col-lg-6 mt-4">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">รายละเอียด</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
                                         <option>ไม่เกิน</option>
                                     </select>
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10,000"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10,000" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>บาท</option>
                                     </select>
@@ -281,62 +292,59 @@
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">ระยะเวลาในการประเมิน</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="3"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="3" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>เดือน</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">ค่าคอมมิชชั่น</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
                         </div>
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">บทลงโทษกรณียกเลิกออเดอร์</label>
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected=""> กขค</option>
                                 </select>
                             </div>
-                            <div class="col-lg-6 mt-4">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">ปรับตามมูลค่าออเดอร์</label>
                                 <input type="text" class="form-control" id="" placeholder="15%">
                             </div>
                         </div>
 
 
-                        <br>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
                                         <option>ขั้นต่ำ</option>
                                     </select>
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>บาท</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <label class="title__txt">เงื่อนไขเพิ่มเติม</label>
                                 <div class="input-group mb-3">
                                     <select class="border-start-0 form-select text-center">
                                         <option>ไม่เกิน</option>
                                     </select>
-                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10"
-                                        name="">
+                                    <input type="text" class="form-control border-end-0 w-50" placeholder="10" name="">
                                     <select class="border-start-0 form-select text-center">
                                         <option>บาท</option>
                                     </select>
@@ -346,13 +354,13 @@
                     </div>
 
 
-                    <br><br><br><br><br>
+                    <br><br><br>
                     <div class="text-center">
                         <button class="btn btn__app px-5">กลับ</button>
                         <button class="btn btn__app btn__waitapproval px-5">ยืนยัน</button>
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-xl-2 col-12 tablet-hidden mt-3">
                     <div class="box__accordian__edit">
                         <div class="box__filter">
 
