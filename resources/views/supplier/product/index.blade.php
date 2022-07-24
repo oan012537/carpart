@@ -79,8 +79,14 @@
                     <nav>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link @if($status_code == 'all') active @endif" id="total-tab" data-bs-toggle="tab" data-bs-target="#total" type="button" role="tab" aria-controls="total" aria-selected="true">{{ trans('file.All')}}
-                                    <span>{{ $total_all_record }}</span>
+                                <button class="nav-link @if($status_code == 'all' && $total_all_record > 0) active @endif" 
+                                        id="total-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#total" 
+                                        type="button" role="tab" 
+                                        aria-controls="total" 
+                                        aria-selected="true">{{ trans('file.All')}}
+                                        <span>{{ $total_all_record }}</span>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
