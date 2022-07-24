@@ -491,6 +491,7 @@
         .btn.btn__delete {
             width: 50%;
         }
+
     }
 
     @media screen and (min-width:427px) and (max-width:767px) {
@@ -540,9 +541,27 @@
             width: 100%;
         }
 
+        
         .box__accordian__edit .box__filter #hirtory-order #progressbar li span:before {
-            left: 45px;
+            left: 70px;
+            top: -13px;
+            height: 33px;
         }
+
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li .Step1,
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li .Step2,
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li .Step3,
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li .Step4,
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li .Step5 {
+            height: 75px;
+        }
+
+        .box__accordian__edit .box__filter #hirtory-order #progressbar li span{
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+        }
+        
     }
 
     @media screen and (min-width:1024px) and (max-width:1279px) {
