@@ -1,7 +1,7 @@
 @extends('backend.layouts.templates')
 @section('content')
 <style>
-    .status-danger{
+    .status-danger {
         background-color: #f2562a2b;
         text-align: center;
         padding: 0.375rem 1rem;
@@ -27,7 +27,7 @@
                     <div class="box__filter">
                         <form class="form-box-input px-2">
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-md-4 col-lg-3">
                                     <label class="title__txt">ค้นหา</label>
                                     <div class="input-group mb-1">
                                         <input type="text" class="form-control" placeholder="ระบุ" name="search" id="search">
@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3">
+                                <div class="col-md-4 col-lg-3">
                                     <label class="title__txt">ประเภทผู้ใช้งาน</label>
                                     <select class="form-select" id="searchtype">
                                         <option value="">ทั้งหมด</option>
@@ -46,7 +46,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-lg-3">
+                                <div class="col-md-4 col-lg-3">
                                     <label class="title__txt">ประเภทสมาชิก</label>
                                     <select class="form-select" id="searchgrouptype">
                                         <option value="">ทั้งหมด</option>
@@ -62,7 +62,7 @@
 
                 <div class="col-12">
                     <div class="box__table p-4">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-md-flex justify-content-between">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-bs-toggle="tab" href="#using">กำลังใช้งาน</a>
@@ -72,7 +72,7 @@
                                 </li>
                             </ul>
                             <div class="form-box-input">
-                                <button class="btn btn-search mt-0" type="button" id="" data-bs-toggle="modal" data-bs-target="#addpdpa"><i class="fas fa-plus-circle"></i> เพิ่ม PDPA</button>
+                                <button class="btn btn-search mt-3 mt-md-0" type="button" id="" data-bs-toggle="modal" data-bs-target="#addpdpa"><i class="fas fa-plus-circle"></i> เพิ่ม PDPA</button>
                             </div>
                         </div>
                         <!-- Tab panes -->
@@ -228,7 +228,7 @@
                             <div id="expired" class="tab-pane fade"><br>
                                 <div class="col-12">
                                     <div class="table-responsive form-box-input">
-                                        <table class="table table-bordered display nowrap" style="width:100%"  id="datatables_expired">
+                                        <table class="table table-bordered display nowrap" style="width:100%" id="datatables_expired">
                                             <thead>
                                                 <tr>
                                                     <th>หมายเลข PDPA</th>
@@ -428,7 +428,7 @@
                                         <textarea class="form-control" id="details" name="details" style="display: none !important;"></textarea>
                                         <span class="text-red">พิมพ์ข้อความได้ไม่เกิน 120 ตัวอักษร (0/120)</span>
                                     </div>
-                                
+
                                 </div>
                             </form>
                         </div>
@@ -446,28 +446,35 @@
         </div>
     </div>
 </div>
+<style>
+    .box__approvel .box__table .nav {
+        overflow: hidden;
+    }
+
+    .box__approvel .box__table .nav-tabs {
+        width: auto;
+    }
+</style>
 @stop
 
 @section('script')
 <script src="{{asset('vendor/midium/laravel-ckeditor/ckeditor.js')}}"></script>
 <script>
-    var editor = CKEDITOR.replace( 'details', {
+    var editor = CKEDITOR.replace('details', {
         height: 500,
         // baseFloatZIndex: 10005,
         removeButtons: 'PasteFromWord'
-    } );
-    editor.on( 'change', function( evt ) {
-        console.log( 'Total bytes: ' + evt.editor.getData().length );
+    });
+    editor.on('change', function(evt) {
+        console.log('Total bytes: ' + evt.editor.getData().length);
         var data = CKEDITOR.instances.detail.getData();
         // console.log(data);
         // $("#term").val(data);
     });
-    editor.on("keydown", function(event) 
-    {
+    editor.on("keydown", function(event) {
         var data = CKEDITOR.instances.detail.getData();
         // $("#term").val(data);
     });
-    
 </script>
 <script>
     var acc = document.getElementsByClassName("accordion");
@@ -492,127 +499,222 @@
 <script>
     var oTable;
     var oTableexpired;
-    $(document).ready(function(){
-        $('.nav-link').on('shown.bs.tab', function (e) {
+    $(document).ready(function() {
+        $('.nav-link').on('shown.bs.tab', function(e) {
             // console.log('tab');
-            $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+            $.fn.dataTable.tables({
+                visible: true,
+                api: true
+            }).columns.adjust();
         });
-		oTable = $('#datatables').DataTable({
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
+        oTable = $('#datatables').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: false,
+            lengthChange: false,
             responsive: true,
             scrollX: true,
-			ajax:{ 
-				url : "{{url('backend/pdpa/datatables')}}",
-				data: function (d) {
-					d.search = $('#search').val();
-					d.searchtype = $('#searchtype').val();
-					d.searchgrouptype = $('#searchgrouptype').val();
-				},
-			},
-			columns: [
-				{ 'className': "text-center", data: 'code', name: 'code' },
-				{ 'className': "text-center", data: 'title', name: 'title' },
-				{ 'className': "text-center", data: 'id', name: 'id' },
-				{ 'className': "text-center", data: 'type', name: 'type' },
-				{ 'className': "text-center", data: 'grouptypecpn', name: 'grouptypecpn' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at' },
-				{ 'className': "text-center", data: 'datestart', name: 'datestart' },
-				{ 'className': "text-center", data: 'verions', name: 'verions' },
-				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
-			],
-			order: [[0, 'asc']],
-			rowCallback: function(row,data,index ){
-				
-			},
-            initComplete:function( settings, json){
-                
-                
+            ajax: {
+                url: "{{url('backend/pdpa/datatables')}}",
+                data: function(d) {
+                    d.search = $('#search').val();
+                    d.searchtype = $('#searchtype').val();
+                    d.searchgrouptype = $('#searchgrouptype').val();
+                },
+            },
+            columns: [{
+                    'className': "text-center",
+                    data: 'code',
+                    name: 'code'
+                },
+                {
+                    'className': "text-center",
+                    data: 'title',
+                    name: 'title'
+                },
+                {
+                    'className': "text-center",
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    'className': "text-center",
+                    data: 'type',
+                    name: 'type'
+                },
+                {
+                    'className': "text-center",
+                    data: 'grouptypecpn',
+                    name: 'grouptypecpn'
+                },
+                {
+                    'className': "text-center",
+                    data: 'created_at',
+                    name: 'created_at'
+                },
+                {
+                    'className': "text-center",
+                    data: 'datestart',
+                    name: 'datestart'
+                },
+                {
+                    'className': "text-center",
+                    data: 'verions',
+                    name: 'verions'
+                },
+                {
+                    'className': "text-center",
+                    data: 'is_active',
+                    name: 'is_active',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnaction',
+                    name: 'btnaction',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            order: [
+                [0, 'asc']
+            ],
+            rowCallback: function(row, data, index) {
+
+            },
+            initComplete: function(settings, json) {
+
+
             }
-		});
-        
-		// $("#noorder").keyup(function(e){
-		// 	oTable.draw();
-		// 	e.preventDefault();
-		// });
+        });
+
+        // $("#noorder").keyup(function(e){
+        // 	oTable.draw();
+        // 	e.preventDefault();
+        // });
 
         oTableexpired = $('#datatables_expired').DataTable({
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            lengthChange: false,
             responsive: true,
             scrollX: true,
-			ajax:{ 
-				url : "{{url('backend/pdpa/datatables/expired')}}",
-				data: function (d) {
-					d.search = $('#search').val();
-					d.searchtype = $('#searchtype').val();
-					d.searchgrouptype = $('#searchgrouptype').val();
-				},
-			},
-			columns: [
-				{ 'className': "text-center", data: 'code', name: 'code' },
-				{ 'className': "text-center", data: 'title', name: 'title' },
-				{ 'className': "text-center", data: 'id', name: 'id' },
-				{ 'className': "text-center", data: 'type', name: 'type' },
-				{ 'className': "text-center", data: 'grouptypecpn', name: 'grouptypecpn' },
-				{ 'className': "text-center", data: 'created_at', name: 'created_at' },
-				{ 'className': "text-center", data: 'datestart', name: 'datestart' },
-				{ 'className': "text-center", data: 'verions', name: 'verions' },
-				{ 'className': "text-center", data: 'is_active', name: 'is_active',orderable: false,searchable: false },
-				{ 'className': "text-center", data: 'btnaction', name: 'btnaction',orderable: false,searchable: false },
-			],
-			order: [[0, 'asc']],
-			rowCallback: function(row,data,index ){
-				
-				
-			},
-            initComplete:function( settings, json){
-            }
-		});
+            ajax: {
+                url: "{{url('backend/pdpa/datatables/expired')}}",
+                data: function(d) {
+                    d.search = $('#search').val();
+                    d.searchtype = $('#searchtype').val();
+                    d.searchgrouptype = $('#searchgrouptype').val();
+                },
+            },
+            columns: [{
+                    'className': "text-center",
+                    data: 'code',
+                    name: 'code'
+                },
+                {
+                    'className': "text-center",
+                    data: 'title',
+                    name: 'title'
+                },
+                {
+                    'className': "text-center",
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    'className': "text-center",
+                    data: 'type',
+                    name: 'type'
+                },
+                {
+                    'className': "text-center",
+                    data: 'grouptypecpn',
+                    name: 'grouptypecpn'
+                },
+                {
+                    'className': "text-center",
+                    data: 'created_at',
+                    name: 'created_at'
+                },
+                {
+                    'className': "text-center",
+                    data: 'datestart',
+                    name: 'datestart'
+                },
+                {
+                    'className': "text-center",
+                    data: 'verions',
+                    name: 'verions'
+                },
+                {
+                    'className': "text-center",
+                    data: 'is_active',
+                    name: 'is_active',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnaction',
+                    name: 'btnaction',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            order: [
+                [0, 'asc']
+            ],
+            rowCallback: function(row, data, index) {
 
 
-        $("#search").keyup(function (e) { 
+            },
+            initComplete: function(settings, json) {}
+        });
+
+
+        $("#search").keyup(function(e) {
             oTable.draw();
             oTableexpired.draw();
-			e.preventDefault();
+            e.preventDefault();
 
         });
-        
-		
-		$('#btnsearch').click(function(e){
-			oTable.draw();
+
+
+        $('#btnsearch').click(function(e) {
+            oTable.draw();
             oTableexpired.draw();
-			e.preventDefault();
-		});
-	});
-    $("#title").keyup(function () {
-        var len = $(this).val().length ;
+            e.preventDefault();
+        });
+    });
+    $("#title").keyup(function() {
+        var len = $(this).val().length;
         console.log(len);
-        $("#formtitle .text-red").html('พิมพ์ข้อความได้ไม่เกิน 120 ตัวอักษร ('+len+'/120)')
+        $("#formtitle .text-red").html('พิมพ์ข้อความได้ไม่เกิน 120 ตัวอักษร (' + len + '/120)')
     });
 
-    $("#detail").keyup(function () {
-        var len = $(this).val().length ;
+    $("#detail").keyup(function() {
+        var len = $(this).val().length;
         console.log(len);
-        $("#formdetail .text-red").html('พิมพ์ข้อความได้ไม่เกิน 120 ตัวอักษร ('+len+'/120)')
+        $("#formdetail .text-red").html('พิมพ์ข้อความได้ไม่เกิน 120 ตัวอักษร (' + len + '/120)')
     });
 
-    function switchstatus(id){
-        var flexSwitch = $("#mySwitch"+id).is(":checked");
+    function switchstatus(id) {
+        var flexSwitch = $("#mySwitch" + id).is(":checked");
         // return  false;
-        if(flexSwitch){
+        if (flexSwitch) {
             flexSwitch = '1';
-        }else{
+        } else {
             flexSwitch = '0';
         }
-        $.get("{{route('backend.pdpa.changestatus')}}", {'id':id,'status':flexSwitch},function (data, textStatus, jqXHR) {
-            oTable.draw( false );
-            oTableexpired.draw( false );
+        $.get("{{route('backend.pdpa.changestatus')}}", {
+            'id': id,
+            'status': flexSwitch
+        }, function(data, textStatus, jqXHR) {
+            oTable.draw(false);
+            oTableexpired.draw(false);
         });
     }
 </script>

@@ -8,7 +8,7 @@
             </p>
             <p class="txt__date">วันที่สั่งซื้อ 
                 <!-- 15/12/2564 -->
-                {{ date('d/m/Y', strtotime($confirm_approved->approved_date."+543 years")) }}
+                {{ date('d/m/Y', strtotime($confirm_approved->pending_date."+543 years")) }}
             </p>
         </div>
         <div class="col-4">
@@ -35,13 +35,24 @@
     <hr class="underline">
     <div class="row">
         <div class="col-2">
+            @php 
+                $product_image = DB::table('product_images')
+                    ->where('product_id',$confirm_approved->product_id)
+                    ->orderBy('line_item_no', 'asc')
+                    ->first();
+
+                $image_name = "assets/img/createrequest/imagenull-2.png";
+                if(!is_null($product_image)){
+                    $image_name = "assets/img/prodetail/".$product_image->image ;     
+                }       
+            @endphp
             <div class="box__image">
-                <img src="assets/img/createrequest/imagenull-2.png"
-                    class="img-fluid" alt="">
+                <img src="{{ asset($image_name) }}"
+                    class="img-fluid" alt="{{ $confirm_approved->product_name }}">
             </div>
         </div>
         <div class="col-10">
-            <p class="txt__name">{{ $confirm_approved ->product_name }}</p>
+            <p class="txt__name">{{ $confirm_approved->product_name }}</p>
             <div class="txt_txt_detail">
                 <div class="row">
                     <div class="col-lg-8">

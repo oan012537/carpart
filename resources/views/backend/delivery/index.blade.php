@@ -17,11 +17,11 @@
             <div class="container-fluid">
                 <div class="row">
 
-                    <div class="col-xl-6 col-md-6 col-12">
+                    <div class="col-xl-6 col-md-12 col-12">
                         <h2 class="txt__page">จัดการขนส่ง</h2>
                     </div>
-                    <div class="col-xl-6 col-md-6 col-12">
-                        <a href="{{route('backend.delivery.add')}}" class="btn btn_tran mt-4">
+                    <div class="col-xl-6 col-md-12 col-12">
+                        <a href="{{route('backend.delivery.add')}}" class="btn btn_tran mt-lg-4 mb-3 mt-md-0">
                             <i class="fa fa-plus-circle"></i>
                             เพิ่มการจัดส่ง</a>
                     </div>
