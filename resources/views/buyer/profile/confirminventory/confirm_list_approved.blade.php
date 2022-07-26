@@ -86,7 +86,7 @@
     <div class="row">
         <div class="col-6">
             <div class="box__btn">
-                <a href="confirm.php">
+                <a href="{{ url('buyer/myaccount/confirminventory/confirmapproved/show', $confirm_approved->id) }}">
                     <button class="btn btn__viewall">
                         ดูข้อมูลรายละเอียด
                     </button>

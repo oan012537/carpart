@@ -35,4 +35,15 @@ class MyConfirmInventoryController extends Controller
 
         return view('buyer.profile.confirminventory.index', $data);
     }
+
+    public function confirmapproved_show($id)
+    {
+        $data['confirminventory'] = OrderRequestConfirminventory::find($id);
+        $data['product'] = Product::where('id',$data['confirminventory']->product_id)
+            ->with('brand', 'model', 'category', 'subCategory', 'subSubCategory', 
+            'warranty', 'productReviews', 'productImages', 'transportation', 'supplier')
+            ->first();
+
+        return view('buyer.profile.confirminventory.confirm_approved', $data);
+    }
 }

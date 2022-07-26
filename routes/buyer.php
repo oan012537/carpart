@@ -92,11 +92,12 @@ Route::prefix('buyer')->group(function(){
 
         //== ** Comfirm Inventory
         Route::get('myaccount/confirminventory', [Buyer\Myaccount\MyConfirmInventoryController::class, 'index']); //-OAT
+        Route::get('myaccount/confirminventory/confirmapproved/show/{id}', [Buyer\Myaccount\MyConfirmInventoryController::class, 'confirmapproved_show']); //-OAT
 
         //== ** End Comfirm Inventory
 
 
-    //======= OAT End My Account =======
+    //======= OAT End My Account ======= 
 
         //======= OAT Comfirm Inventory ===========
         Route::get('confirminventory/{id}', [Buyer\ConfirmInventoryController::class, 'confirminventory']); //-OAT
