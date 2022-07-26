@@ -45,6 +45,7 @@ class ApprovalRequestLegalController extends Controller
                 $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
             }
         }
+        $data->groupby('user_suppliers.id');
 		$sQuery	= Datatables::of($data)
         ->setRowClass(function ($data) {
             return 'suppliers'.$data->id;
@@ -129,6 +130,7 @@ class ApprovalRequestLegalController extends Controller
                 $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
             }
         }
+        $data->groupby('user_suppliers.id');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y H:i',strtotime($data->updated_at));
@@ -199,6 +201,7 @@ class ApprovalRequestLegalController extends Controller
                 $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
             }
         }
+        $data->groupby('user_suppliers.id');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y H:i',strtotime($data->updated_at));
@@ -269,6 +272,7 @@ class ApprovalRequestLegalController extends Controller
                 $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
             }
         }
+        $data->groupby('user_suppliers.id');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y H:i',strtotime($data->updated_at));
