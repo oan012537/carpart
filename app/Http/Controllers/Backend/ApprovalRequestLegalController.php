@@ -365,7 +365,7 @@ class ApprovalRequestLegalController extends Controller
         }else if($request->request_approval == ''){
             $text = 'รออนุมัติ';
         }else if($request->un_approve == ''){
-            $text = 'ไม่อนุมัติ';
+            $text = 'ไม่อนุมัติการสมัครสมาชิก กรุณาติดต่อ โทร.02-136-52-55 หรือ 061-423-9585';
         }else{
             $text = '';
         }
@@ -420,7 +420,7 @@ class ApprovalRequestLegalController extends Controller
         }else if($request->request_approval == ''){
             $text = 'รออนุมัติ';
         }else if($request->un_approve == ''){
-            $text = 'ไม่อนุมัติ';
+            $text = 'ไม่อนุมัติการสมัครสมาชิก กรุณาติดต่อ โทร.02-136-52-55 หรือ 061-423-9585';
         }else{
             $text = '';
         }
