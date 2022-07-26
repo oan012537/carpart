@@ -41,7 +41,7 @@ Route::prefix('buyer')->group(function(){
     Route::post('registerpass-buy-post', [Buyer\BuyerController::class, 'registerpass_buyer_post'])->name('step3');
     Route::get('register/password', [Buyer\BuyerController::class, 'createpassword']);
 
-    Route::get('requestspares', [Buyer\RequestSparesController::class, 'index'])->name('buyer.requestspares');
+    // Route::get('requestspares', [Buyer\RequestSparesController::class, 'index'])->name('buyer.requestspares');
     Route::get('requestspares/add', [Buyer\RequestSparesController::class, 'add'])->name('buyer.requestspares.add');
     Route::post('requestspares/add', function(){})->name('buyer.requestspares.store');
 

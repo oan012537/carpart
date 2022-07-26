@@ -353,6 +353,7 @@
                     </form>
 
                 </div>
+                @if(count($products) > 0)
                 <div class="col-lg-9">
                     <div class="main">
                         <div class="box__productintro">
@@ -361,12 +362,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <?php for ($i = 1; $i <= 3; $i++) { ?>
+                                @foreach($products as $product)
                                 <div class="col-xl-4 col-lg-6 col-6">
                                     <a href="javascript:void(0)">
                                         <div class="box__itemssproductintro">
                                             <div class="box__image">
-                                                <img src="assets/img/home/product-intro<?php echo $i; ?>.png"
+                                                <img src="assets/img/home/product-intro1.png"
                                                     class="img-fluid" alt="">
 
                                                 <div class="box__status">
@@ -374,98 +375,57 @@
                                                 </div>
 
                                                 <div class="box__grade">
-                                                    <p>Grade</p>
+                                                    <p>{{$product->grade}}</p>
                                                 </div>
                                             </div>
 
                                             <div class="box__content">
-                                                <h5 class="intro__title">กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA AE80
-                                                    ,
-                                                    AE90 ,
-                                                    AE101
-                                                    16V
+                                                <h5 class="intro__title">{{$product->name_en}}
                                                 </h5>
-                                                <p class="intro__serial">รหัส: 90915-YZZE1 - TOYOTA </p>
-                                                <p class="intro__price">฿ <span>72.00</span> /ชิ้น</p>
+                                                <p class="intro__serial">รหัส: {{$product->product_code}} </p>
+                                                <p class="intro__price">฿ <span>{{number_format($product->price)}}</span> /ชิ้น</p>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
-                                <?php } ?>
-                            </div>
-
-                            <br>
-                            <div class="row">
-                                <?php for ($i = 1; $i <= 3; $i++) { ?>
-                                <div class="col-xl-4 col-lg-6 col-6">
-                                    <a href="javascript:void(0)">
-                                        <div class="box__itemssproductintro">
-                                            <div class="box__image">
-                                                <img src="assets/img/home/product-intro<?php echo $i; ?>.png"
-                                                    class="img-fluid" alt="">
-
-                                                <div class="box__status">
-                                                    <p>Promotion</p>
-                                                </div>
-
-                                                <div class="box__grade">
-                                                    <p>Grade</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="box__content">
-                                                <h5 class="intro__title">กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA
-                                                    AE80 ,
-                                                    AE90 ,
-                                                    AE101
-                                                    16V
-                                                </h5>
-                                                <p class="intro__serial">รหัส: 90915-YZZE1 - TOYOTA </p>
-                                                <p class="intro__price">฿ <span>72.00</span> /ชิ้น</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <?php } ?>
-                            </div>
-
-                            <br>
-                            <div class="row">
-                                <?php for ($i = 1; $i <= 3; $i++) { ?>
-                                <div class="col-xl-4 col-lg-6 col-6">
-                                    <a href="javascript:void(0)">
-                                        <div class="box__itemssproductintro">
-                                            <div class="box__image">
-                                                <img src="assets/img/home/product-intro<?php echo $i; ?>.png"
-                                                    class="img-fluid" alt="">
-
-                                                <div class="box__status">
-                                                    <p>Promotion</p>
-                                                </div>
-
-                                                <div class="box__grade">
-                                                    <p>Grade</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="box__content">
-                                                <h5 class="intro__title">กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA
-                                                    AE80 ,
-                                                    AE90 ,
-                                                    AE101
-                                                    16V
-                                                </h5>
-                                                <p class="intro__serial">รหัส: 90915-YZZE1 - TOYOTA </p>
-                                                <p class="intro__price">฿ <span>72.00</span> /ชิ้น</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <?php } ?>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
+                @else
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-4">
+                            <div class="img-logo-request">
+                                <img src="{{asset('assets/img/home-seach/logo-h.png')}}" class="img-fluid" alt="shoe image">
+                            </div>
+                            <br>
+                            <div class="hexd-text-t-seach">
+                                <p>
+                                    ไม่พบผลการค้นหา
+                                </p>
+                            </div>
+                            <div class="detail-text-t-seach">
+                                <p>
+                                    สร้างใบคำขอหาอะไหล่ให้ผู้ขายของเรา
+                                </p>
+                            </div>
+                            <br>
+                            <div class="w3-container w3-center">
+                                <div class="but-ca">
+                                    <a href="{{route('buyer.requestspares.add')}}">
+                                        <button class="button button2-2"> สร้างใบคำขอ
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"> </div>
+                    </div>
+                </div>
+                @endif
             </div>
 
             <br>

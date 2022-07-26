@@ -34,6 +34,7 @@ class SearchProductController extends Controller
         return view('buyer.homesearch.home-search',[
             'brands_select' => Brand::get(),
             'category' => Category::get(),
+            'products' => Product::orderby('updated_at','asc')->paginate(9),
         ]);
     }
 
@@ -255,7 +256,8 @@ class SearchProductController extends Controller
                 'model' => $request->model,
                 'submodel' => $request->submodel,
                 'year' => $request->year,
-                'category' => $request->category
+                'category' => $request->category,
+                'subcategory' => $request->subcategory,
                 ]);
         }
         /*else{
@@ -436,8 +438,8 @@ class SearchProductController extends Controller
             'brand' => $request->brand,
         ]);
 
-        $products = Product::orderby('updated_at','asc')->where('brand_id',$request->brand)->limit(9)->get();
-        dd($products);
+        $products = Product::orderby('updated_at','asc')->where('brand_id',$request->brand)->paginate(9);
+        // dd($products);
         
         return view('buyer.homesearch.home-search2',[
             'brands_select' => Brand::get(),
@@ -455,7 +457,7 @@ class SearchProductController extends Controller
 
         $products = Product::orderby('updated_at','asc')
         ->where('brand_id',$request->brand)
-        ->where('model_id',$request->model)->limit(9)->get();
+        ->where('model_id',$request->model)->paginate(9);
         
         return view('buyer.homesearch.home-search3',[
             'brands_select' => Brand::get(),
@@ -476,7 +478,7 @@ class SearchProductController extends Controller
         $products = Product::orderby('updated_at','asc')
         ->where('brand_id',$request->brand)
         ->where('model_id',$request->model)
-        ->where('sub_model_id',$request->submodel)->limit(9)->get();
+        ->where('sub_model_id',$request->submodel)->paginate(9);
 
         return view('buyer.homesearch.home-search4',[
             'brands_select' => Brand::get(),
@@ -500,7 +502,7 @@ class SearchProductController extends Controller
         ->where('brand_id',$request->brand)
         ->where('model_id',$request->model)
         ->where('sub_model_id',$request->submodel)
-        ->where('issue_year_id',$request->year)->limit(9)->get();
+        ->where('issue_year_id',$request->year)->paginate(9);
 
         return view('buyer.homesearch.home-search5',[
             'brands_select' => Brand::get(),
@@ -527,7 +529,7 @@ class SearchProductController extends Controller
         ->where('model_id',$request->model)
         ->where('sub_model_id',$request->submodel)
         ->where('issue_year_id',$request->year)
-        ->where('category_id',$request->category)->limit(9)->get();
+        ->where('category_id',$request->category)->paginate(9);
 
         return view('buyer.homesearch.home-search6',[
             'brands_select' => Brand::get(),
@@ -549,6 +551,7 @@ class SearchProductController extends Controller
             'year' => $request->year,
             'category' => $request->category,
             'subcategory' => $request->subcategory,
+            'subsubcategory' => $request->subsubcategory,
         ]);
 
         $products = Product::orderby('updated_at','asc')
@@ -557,7 +560,13 @@ class SearchProductController extends Controller
         ->where('sub_model_id',$request->submodel)
         ->where('issue_year_id',$request->year)
         ->where('category_id',$request->category)
-        ->where('sub_category_id',$request->subcategory)->limit(9)->get();
+        ->where('sub_category_id',$request->subcategory)
+        ->when($request, function($query) use ($request){
+            if($request->subsubcategory != ''){
+                $query->where('sub_sub_category_id',$request->subsubcategory);
+            }
+        })
+        ->where('sub_category_id',$request->subcategory)->paginate(9);
 
         return view('buyer.homesearch.home-search7',[
             'brands_select' => Brand::get(),
