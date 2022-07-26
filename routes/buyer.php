@@ -54,12 +54,12 @@ Route::prefix('buyer')->group(function(){
         // ======== Homesearch ========== Tontal
         Route::get('home-search', [Buyer\SearchProductController::class, 'home_search'])->name('buyer.home-search');
         Route::post('search-product', [Buyer\SearchProductController::class, 'search_product']);
-        Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand']);
-        Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model']);
-        Route::get('home-search4',[Buyer\SearchProductController::class, 'home_search_submodel']);
-        Route::get('home-search5',[Buyer\SearchProductController::class, 'home_search_year']);
-        Route::get('home-search6',[Buyer\SearchProductController::class, 'home_search_category']);
-        Route::get('home-search7',[Buyer\SearchProductController::class, 'home_search_subcategory']);
+        Route::get('home-search2',[Buyer\SearchProductController::class, 'home_search_brand'])->name('buyer.home-search2');
+        Route::get('home-search3',[Buyer\SearchProductController::class, 'home_search_model'])->name('buyer.home-search3');
+        Route::get('home-search4',[Buyer\SearchProductController::class, 'home_search_submodel'])->name('buyer.home-search4');
+        Route::get('home-search5',[Buyer\SearchProductController::class, 'home_search_year'])->name('buyer.home-search5');
+        Route::get('home-search6',[Buyer\SearchProductController::class, 'home_search_category'])->name('buyer.home-search6');
+        Route::get('home-search7',[Buyer\SearchProductController::class, 'home_search_subcategory'])->name('buyer.home-search7');
 
     //======= OAT My Account =======
 
@@ -92,11 +92,12 @@ Route::prefix('buyer')->group(function(){
 
         //== ** Comfirm Inventory
         Route::get('myaccount/confirminventory', [Buyer\Myaccount\MyConfirmInventoryController::class, 'index']); //-OAT
+        Route::get('myaccount/confirminventory/confirmapproved/show/{id}', [Buyer\Myaccount\MyConfirmInventoryController::class, 'confirmapproved_show']); //-OAT
 
         //== ** End Comfirm Inventory
 
 
-    //======= OAT End My Account =======
+    //======= OAT End My Account ======= 
 
         //======= OAT Comfirm Inventory ===========
         Route::get('confirminventory/{id}', [Buyer\ConfirmInventoryController::class, 'confirminventory']); //-OAT
@@ -104,7 +105,7 @@ Route::prefix('buyer')->group(function(){
         //======= OAT End Comfirm Inventory =======
     });
 
-    //Ajax
+    //======================= Ajax ==========================
     Route::get('filterBrands/{id}', [Buyer\SearchProductController::class, 'filterBrands']);
     Route::get('searchBrands/{id}', [Buyer\SearchProductController::class, 'searchBrands']);
     

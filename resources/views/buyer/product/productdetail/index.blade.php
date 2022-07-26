@@ -324,7 +324,7 @@
                                 <div class="tt-detail-tt2">
                                     <p>
                                         <!-- 16 ชิ้น -->
-                                        {{ (is_null($product->maker) ? '-' : $product->maker) }} ชิ้น
+                                        {{ (is_null($product->maker) ? '-' : $product->maker) }}
                                     </p>
                                 </div>
                             </div>
@@ -340,7 +340,7 @@
                                 <div class="tt-detail-tt4">
                                     <p>
                                         <!-- 16 ชิ้น -->
-                                        {{ (is_null($product->engine_model_code) ? '-' : $product->engine_model_code) }} ชิ้น
+                                        {{ (is_null($product->engine_model_code) ? '-' : $product->engine_model_code) }}
                                     </p>
                                 </div>
                             </div>

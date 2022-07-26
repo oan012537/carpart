@@ -165,13 +165,13 @@
                             <div class="col-lg-6">
                                 <div class="tt-seach-text2">
                                     <i class="fa fa-close"></i>
-                                    <a href="" style="padding:0;"><p> ล้าง </p></a>
+                                    <a href="{{url('buyer/home-search')}}" style="padding:0;"><p> ล้าง </p></a>
                                 </div>
                             </div>
                         </div>
                         <hr class="new1">
                         <span> แบรนด์ </span>
-                        <input type="hidden" name="brand" id="brand-search">
+                        <input type="hidden" name="brand" id="brand-search" value="{{session('session_search.brand')}}">
                         <button type="button" class="dropdown-btn" id="text-brands">แบรนด์
                             <i class="fa fa-caret-down"></i>
                         </button>
@@ -182,12 +182,15 @@
                         </div>
                         <hr class="new1">
                         <span> รุ่น </span>
-                        <input type="hidden" name="model" id="model-search">
-                        <button type="button" class="dropdown-btn" id="text-model"> เลือก
+                        <input type="hidden" name="model" id="model-search" value="{{session('session_search.model')}}">
+                        <button type="button" class="dropdown-btn" id="text-model"> {{$models_button->name_en}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-model">
                             <!-- <a href="#">Link 1</a> -->
+                            @foreach($models as $model_nav)
+                                <a class="dropdown-model" onclick="searchnavModels({{$model_nav->id}})">{{$model_nav->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> รุ่นย่อย </span>
@@ -197,6 +200,9 @@
                         </button>
                         <div class="dropdown-container" id="dropdown-submodel">
                             <!-- <a href="#">Link 1</a> -->
+                            @foreach($submodels as $smodel)
+                                <a class="dropdown-submodel" onclick="searchnavsubModels({{$smodel->id}})">{{$smodel->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> ปีรถ </span>

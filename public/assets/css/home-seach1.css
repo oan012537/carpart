@@ -366,9 +366,14 @@ hr.new1 {
     text-align: center;
 }
 
-.box_imgroonimg .img-fluid {
-    margin-top: 16px;
-    margin-bottom: 16px;
+.box_imgroonimg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box_imgroonimg img{
+    width: 80%;
 }
 
 .box-col-b {
