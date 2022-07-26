@@ -230,7 +230,7 @@
                             <div class="col-lg-6">
                                 <div class="tt-seach-text2">
                                     <i class="fa fa-close"></i>
-                                    <a href="" style="padding:0;"><p> ล้าง </p></a>
+                                    <a href="{{url('buyer/home-search')}}" style="padding:0;"><p> ล้าง </p></a>
                                 </div>
                             </div>
                         </div>

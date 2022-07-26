@@ -53,13 +53,13 @@
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
                     <button class="button button5">
-                        <a style="color:inherit;" href="{{url('buyer/home-search3?brand=').session('session_search.brand').'&model='.session('session_search.model')}}"><i class="fa fa-close"></i></a> 
+                        <a style="color:inherit;" href="{{url('buyer/home-search4?brand=').session('session_search.brand').'&model='.session('session_search.model').'&submodel='.session('session_search.submodel')}}"><i class="fa fa-close"></i></a> 
                         {{$years_button->from_year}} 
                     </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                     &nbsp;
                     <button class="button button5">
-                        <a style="color:inherit;" onclick="javascript:window.history.back(-1);return false;"><i class="fa fa-close"></i></a> 
+                        <a style="color:inherit;" href="{{url('buyer/home-search4?brand=').session('session_search.brand').'&model='.session('session_search.model').'&submodel='.session('session_search.submodel').'&year='.session('session_search.year')}}"><i class="fa fa-close"></i></a> 
                         หมวดหมู่
                     </button>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
@@ -189,13 +189,13 @@
                             <div class="col-lg-6">
                                 <div class="tt-seach-text2">
                                     <i class="fa fa-close"></i>
-                                    <a href="" style="padding:0;"><p> ล้าง </p></a>
+                                    <a href="{{url('buyer/home-search')}}" style="padding:0;"><p> ล้าง </p></a>
                                 </div>
                             </div>
                         </div>
                         <hr class="new1">
                         <span> แบรนด์ </span>
-                        <input type="hidden" name="brand" id="brand-search">
+                        <input type="hidden" name="brand" id="brand-search" value="{{session('session_search.brand')}}">
                         <button type="button" class="dropdown-btn" id="text-brands">แบรนด์
                             <i class="fa fa-caret-down"></i>
                         </button>
@@ -206,35 +206,45 @@
                         </div>
                         <hr class="new1">
                         <span> รุ่น </span>
-                        <input type="hidden" name="model" id="model-search">
-                        <button type="button" class="dropdown-btn" id="text-model"> เลือก
+                        <input type="hidden" name="model" id="model-search" value="{{session('session_search.model')}}">
+                        <button type="button" class="dropdown-btn" id="text-model"> {{$models_button->name_en}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-model">
                             <!-- <a href="#">Link 1</a> -->
+                            @foreach($models as $model_nav)
+                                <a class="dropdown-model" onclick="searchnavModels({{$model_nav->id}})">{{$model_nav->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> รุ่นย่อย </span>
-                        <input type="hidden" name="submodel" id="submodel-search">
-                        <button type="button" class="dropdown-btn" id="text-submodel"> เลือก
+                        <input type="hidden" name="submodel" id="submodel-search" value="{{session('session_search.submodel')}}">
+                        <button type="button" class="dropdown-btn" id="text-submodel"> {{$submodels_button->name_th}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-submodel">
                             <!-- <a href="#">Link 1</a> -->
+                            @foreach($submodels as $smodel)
+                                <a class="dropdown-submodel" onclick="searchnavsubModels({{$smodel->id}})">{{$smodel->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> ปีรถ </span>
-                        <input type="hidden" name="year" id="year-search">
-                        <button type="button" class="dropdown-btn" id="text-year"> เลือก
+                        <input type="hidden" name="year" id="year-search" value="{{session('session_search.year')}}">
+                        <button type="button" class="dropdown-btn" id="text-year"> {{$years_button->from_year}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-year">
                             <!-- <a href="#">Link 1</a> -->
+                            @foreach($years as $y)
+                                <a class="dropdown-year" onclick="searchnavYear({{$y->id}})">{{$y->from_year}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> หมวดหมู่สินค้า </span>
-                        <input type="hidden" name="category" id="category-search">
-                        <button type="button" class="dropdown-btn" id="text-category"> เลือก
+                        <input type="hidden" name="category" id="category-search" value="{{session('session_search.category')}}">
+                        @php $category_button = DB::table('categories')->where('id',session('session_search.category'))->first(); @endphp
+                        <button type="button" class="dropdown-btn" id="text-category"> {{$category_button->name_en}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-category">
@@ -249,9 +259,9 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-subcategory">
-                            <!-- <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a> -->
+                            @foreach($subcategory as $subc)
+                            <a class="dropdown-subcategory" id="subcategory{{$subc->id}}" onclick="searchnavSubcate({{$subc->id}})">{{$subc->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> หมวดหมู่ย่อย 2 </span>
