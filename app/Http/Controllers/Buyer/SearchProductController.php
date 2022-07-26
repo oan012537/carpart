@@ -437,6 +437,7 @@ class SearchProductController extends Controller
         ]);
 
         $products = Product::orderby('updated_at','asc')->where('brand_id',$request->brand)->limit(9)->get();
+        dd($products);
         
         return view('buyer.homesearch.home-search2',[
             'brands_select' => Brand::get(),
@@ -560,8 +561,12 @@ class SearchProductController extends Controller
 
         return view('buyer.homesearch.home-search7',[
             'brands_select' => Brand::get(),
+            'models' => ProductModel::where('brand_id',$request->brand)->get(),
+            'submodels' => SubModel::where('model_id',$request->model)->get(),
+            'years' => IssueYear::where('sub_model_id',$request->submodel)->get(),
             'category' => Category::get(),
             'products' => $products,
+            'subcategory' => SubCategory::where('category_id',$request->category)->get(),
             'subsubcategory' => SubSubCategory::where('sub_category_id',$request->subcategory)->get(),
         ]);
     }
