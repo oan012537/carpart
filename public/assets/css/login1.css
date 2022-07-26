@@ -1,167 +1,167 @@
 #sec-login1 {
-    padding: 100px;
-    background-color: #282828;
+  padding: 100px;
+  background-color: #282828;
 }
 
 #sec-login1 .box-b-login {
-    background-color: #3f3f3f;
-    box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px,
-        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    border-radius: 5px;
-    margin: 20px;
+  background-color: #3f3f3f;
+  box-shadow: rgba(84, 85, 86, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 5px;
+  margin: 20px;
 }
 
 #sec-login1 .text-log-back {
-    background-color: #3f3f3f;
+  background-color: #3f3f3f;
 }
 
 #sec-login1 .h-text-log p {
-    color: white;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 36px;
-    /* identical to box height */
-    text-align: center;
-    margin-top: 30px;
+  color: white;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height */
+  text-align: center;
+  margin-top: 30px;
 }
 
 #sec-login1 .tt-text-log p {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-    /* identical to box height */
-    display: flex;
-    color: #bdbdbd;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+  display: flex;
+  color: #bdbdbd;
 }
 
 #sec-login1 .tt-text-log2 p {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-    /* identical to box height */
-    display: flex;
-    color: #bdbdbd;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+  display: flex;
+  color: #bdbdbd;
 }
 
 #sec-login1 .text-or-t {
-    margin-left: -33px;
+  margin-left: -33px;
 }
 
 #sec-login1 .t-pass-t {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    /* identical to box height */
-    /* gold */
-    color: #e8d95f;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height */
+  /* gold */
+  color: #e8d95f;
 }
 
 #sec-login1 .input-group > .form-control,
 .input-group > .form-select {
-    position: relative;
-    flex: 1 1 auto;
-    width: 1%;
-    min-width: 0;
-    border-top: 2px solid #828282;
-    border-left: 2px solid #828282;
-    border-right: 2px solid #828282;
-    border-bottom: 2px solid #828282;
-    background-color: #333333;
-    color: white;
-    border-radius: 4px;
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  border-top: 2px solid #828282;
+  border-left: 2px solid #828282;
+  border-right: 2px solid #828282;
+  border-bottom: 2px solid #828282;
+  background-color: #333333;
+  color: white;
+  border-radius: 4px;
 }
 
 #sec-login1 .input-group {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    width: 91%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 91%;
 }
 
 .button {
-    display: inline-block;
-    border-radius: 4px;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-weight: 400;
-    text-align: center;
-    position: relative;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: center;
+  position: relative;
 }
 
 .button1 {
-    border: 0.15em solid #e8d95f;
-    background-color: #e8d95f;
-    color: #282828;
-    padding: 0.5em 9.2em;
-    margin: 0.1em;
+  border: 0.15em solid #e8d95f;
+  background-color: #e8d95f;
+  color: #282828;
+  padding: 0.5em 9.2em;
+  margin: 0.1em;
 }
 
 .button1:hover {
-    border: 0.15em solid #e8d95f;
-    background-color: #282828;
-    color: #e8d95f;
+  border: 0.15em solid #e8d95f;
+  background-color: #282828;
+  color: #e8d95f;
 }
 
 .button2 {
-    border: 0.15em solid #e8d95f;
-    background-color: #282828;
-    color: #e8d95f;
-    padding: 0.5em 8.6em;
-    margin: 0.1em;
+  border: 0.15em solid #e8d95f;
+  background-color: #282828;
+  color: #e8d95f;
+  padding: 0.5em 1.6em;
+  margin: 0.1em;
 }
 
 .button2:hover {
-    border: 0.15em solid #e8d95f;
-    background-color: #e8d95f;
-    color: #282828;
+  border: 0.15em solid #e8d95f;
+  background-color: #e8d95f;
+  color: #282828;
 }
 
 #sec-login1 .social-log {
-    margin-top: 15px;
-    margin-left: 101px;
+  margin-top: 15px;
+  margin-left: 101px;
 }
 
 #sec-login1 .text-or-t p {
-    font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 120.5%;
-    /* identical to box height, or 22px */
-    text-align: center;
-    color: #bdbdbd;
-    margin-top: 20px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 120.5%;
+  /* identical to box height, or 22px */
+  text-align: center;
+  color: #bdbdbd;
+  margin-top: 20px;
 }
 
 #sec-login1 .text-or-t p {
-    font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 120.5%;
-    text-align: center;
-    color: #bdbdbd;
-    margin-top: 20px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 120.5%;
+  text-align: center;
+  color: #bdbdbd;
+  margin-top: 20px;
 }
 
 #sec-register .box__border .icon1 {
-    background-image: url("../img/login/icon-survey.svg");
-    width: 100%;
-    height: 100%;
+  background-image: url("../img/login/icon-survey.svg");
+  width: 100%;
+  height: 100%;
 }
 
 #sec-register .box__border .icon2 {
-    background-image: url("../img/login/icon-call.svg");
-    width: 100%;
-    height: 100%;
+  background-image: url("../img/login/icon-call.svg");
+  width: 100%;
+  height: 100%;
 }
 
 #sec-register .box__border .icon3 {
-    background-image: url("../img/login/icon-price.svg");
-    width: 100%;
-    height: 100%;
+  background-image: url("../img/login/icon-price.svg");
+  width: 100%;
+  height: 100%;
 }
 
 /*-----------------------------------------
@@ -180,11 +180,11 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    #sec-login1 {
-        padding: 15px;
-    }
+  #sec-login1 {
+    padding: 15px;
+  }
 
-    /*   #sec-login1 .img-img-log {
+  /*   #sec-login1 .img-img-log {
         padding: 0px;
     }
     #sec-login1 .input-group {
@@ -239,17 +239,17 @@
         color: #e8d95f;
     } */
 
-    /* .button1 {
+  /* .button1 {
             display: none;
         } */
 
-    /* .button2 {
+  /* .button2 {
         margin-left: 1rem;
     } */
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1279px) {
-    /* #sec-login1 .img-img-log {
+  /* #sec-login1 .img-img-log {
         padding: 0px;
     }
 
@@ -263,7 +263,7 @@
         margin-left: 1rem;
     } */
 
-    /* .button1 {
+  /* .button1 {
             display: block;
             padding: 0.5rem 5.6rem 0.5rem 5.6rem;
         }
@@ -272,7 +272,7 @@
             display: block;
             padding: 0.5rem 4.8rem 0.5rem 4.7rem;
         }*/
-    /*
+  /*
     #sec-login1 .input-group {
         position: relative;
         display: flex;
@@ -283,7 +283,7 @@
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1359px) {
-    /* #sec-login1 .img-img-log {
+  /* #sec-login1 .img-img-log {
         padding: 0px;
     }
 
@@ -299,7 +299,7 @@
 }
 
 @media screen and (min-width: 1360px) and (max-width: 1439px) {
-    /* #sec-login1 .img-img-log {
+  /* #sec-login1 .img-img-log {
         padding: 0px;
     }
 
@@ -314,7 +314,7 @@
 }
 
 @media screen and (min-width: 1440px) and (max-width: 1599px) {
-    /* #sec-login1 .img-img-log {
+  /* #sec-login1 .img-img-log {
         padding: 0px;
     } */
 }

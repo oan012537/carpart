@@ -65,14 +65,14 @@
     font-size: 14px;
     color: white;
     font-weight: 300;
-    padding: 3px;
+    padding: 5px;
 }
 
 #sec-regis4 .tt-text-send3 p {
     font-size: 14px;
     color: white;
     font-weight: 300;
-    padding: 3px;
+    padding: 5px;
 }
 
 #sec-regis4 .text-t-log p {
@@ -82,7 +82,7 @@
     line-height: 30px;
     display: flex;
     color: #ff7b7b;
-    padding: 3px;
+    padding: 5px;
 }
 
 .drop-zone {
