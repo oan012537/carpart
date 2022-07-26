@@ -12,6 +12,7 @@ use Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class ApprovalRequestLegalController extends Controller
 {
@@ -360,7 +361,7 @@ class ApprovalRequestLegalController extends Controller
             อนุมัติการสมัครสมาชิกของท่านเรียบร้อยแล้ว
             โปรดใช้รหัสผ่านต่อไปนี้ในการเข้าสู่ระบบ
             หมายเลขโทรศัพท์ : '.$user->phone.'
-            รหัสผ่าน : 12345678';
+            รหัสผ่าน : '.$user->password;
         }else if($request->request_approval == ''){
             $text = 'รออนุมัติ';
         }else if($request->un_approve == ''){
@@ -372,7 +373,8 @@ class ApprovalRequestLegalController extends Controller
         // dd($send);
         $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
-
+            $user->password = Hash::make($user->password);
+            $user->save();
         }else{
             $this->mails($user);
         }
@@ -414,7 +416,7 @@ class ApprovalRequestLegalController extends Controller
             อนุมัติการสมัครสมาชิกของท่านเรียบร้อยแล้ว
             โปรดใช้รหัสผ่านต่อไปนี้ในการเข้าสู่ระบบ
             หมายเลขโทรศัพท์ : '.$user->phone.'
-            รหัสผ่าน : 12345678';
+            รหัสผ่าน : '.$user->password;
         }else if($request->request_approval == ''){
             $text = 'รออนุมัติ';
         }else if($request->un_approve == ''){
@@ -426,7 +428,8 @@ class ApprovalRequestLegalController extends Controller
         // dd($send);
         $sms = smstext($text,$user->phone);
         if($sms['code'] == '000'){
-
+            $user->password = Hash::make($user->password);
+            $user->save();
         }else{
             $this->mails($user);
         }
