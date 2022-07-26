@@ -11,7 +11,7 @@
 
                 <div class="nav_list">
                     <li>
-                        <a href="{{ url('buyer/myaccount') }}" class="nav_link activemenumain" data-page="account-buy">
+                        <a href="{{ url('buyer/myaccount') }}" class="nav_link {{ (request()->is('buyer/myaccount')) ? 'activemenumain' : '' }}" data-page="account-buy">
                             <i class='fas fa-user-cog'></i>
                             <span class="nav_name">บัญชีของฉัน </span>
                             </span>
@@ -28,7 +28,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('buyer/myaccount/confirminventory') }}" class="nav_link" data-page="order-list">
+                        <a href="{{ url('buyer/myaccount/confirminventory') }}" class="nav_link {{ (request()->is('buyer/myaccount/confirminventory')) ? 'activemenumain' : '' }}" data-page="order-list">
                             <i class='far fa-file'></i>
                             <span class="nav_name">รายการรอยืนยันจากผู้ขาย</span>
 
