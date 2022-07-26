@@ -15948,4 +15948,7 @@ li {
     font-size: 0.975rem !important;
 }
 
+.btn__trash {
+    color: var(--clrwhites);
+}
 /*# sourceMappingURL=style.css.map */

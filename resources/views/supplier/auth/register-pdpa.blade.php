@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-xl-4 col-lg-12">
                     <div class="b-box-big">
-                        <button onclick="myFunction('Demo1')" class="w3-btn w3-block w3-black w3-left-align">
+                        <button onclick="switchpdpa('Demo1')" class="w3-btn w3-block w3-black w3-left-align">
                             <div class="t-text-s">
                                 <p>
                                     {{ trans('file.Strictly Necessary Cookies') }} &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
@@ -33,7 +33,7 @@
                                 <hr class="new1">
                             </div>
                         </button>
-                        <div id="Demo1" class="w3-container w3-hide">
+                        <div id="Demo1" class="w3-container w3-show">
                             <div class="ko-text-t">
                                 <p>
                                     {{ trans('file.Terms / Conditions') }}
@@ -89,7 +89,7 @@
                             </div>
                             <hr class="new3">
                         </div>
-                        <button onclick="myFunction('Demo2')" class="w3-btn w3-block w3-black w3-left-align">
+                        <button onclick="switchpdpa('Demo2')" class="w3-btn w3-block w3-black w3-left-align">
                             <div class="t-text-s4">
                                 <p>
                                     {{ trans('file.Analytics Cookies') }} &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
@@ -102,7 +102,7 @@
                                 <hr class="new4">
                             </div>
                         </button>
-                        <div id="Demo2" class="w3-container w3-hide">
+                        <div id="Demo2" class="w3-container w3-show">
                             <div class="ko-text-t">
                                 <p>
                                     {{ trans('file.Terms / Conditions') }}
@@ -167,12 +167,16 @@
 
 @section('script')
 <script>
-    function myFunction(id) {
+    function switchpdpa(id) {
         var x = document.getElementById(id);
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
+        if (x.className.indexOf("w3-hide") == -1) {
+            x.className += " w3-hide";
+            x.classList.remove('w3-show');
+            // alert('ok')
         } else {
-            x.className = x.className.replace(" w3-show", "");
+            x.className = x.className.replace(" w3-hide", "");
+            // alert('nok')
+
         }
     }
 </script>

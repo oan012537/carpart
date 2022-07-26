@@ -262,3 +262,11 @@
     color: rgb(224, 91, 91);
     margin-left: 5px;
 }
+
+.drop-zone img {
+    width: 50% !important;
+}
+
+.btn__trash {
+    color: #fff;
+}
