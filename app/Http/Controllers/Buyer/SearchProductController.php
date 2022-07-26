@@ -220,13 +220,45 @@ class SearchProductController extends Controller
 
     
     public function search_product(Request $request){
-        if(!empty($request->test)){
-            //
-            return view('buyer.homesearch.home-search',[
-                'brands_select' => Brand::get(),
-                'category' => Category::get(),
-            ]);
-        }else{
+        // dd($request);
+        if($request->brand != '' && $request->model == '' && $request->submodel == '' && $request->year == '' && $request->category == '' && $request->subcategory == '' && $request->subsubcategory == '' ){
+            return redirect()->route('buyer.home-search2',['brand'=>$request->brand]);
+        }else if($request->brand != '' && $request->model != '' && $request->submodel == '' && $request->year == '' && $request->category == '' && $request->subcategory == '' && $request->subsubcategory == ''){
+            return redirect()->route('buyer.home-search3',[
+                'brand' => $request->brand,
+                'model' => $request->model
+                ]);
+        }else if($request->brand != '' && $request->model != '' && $request->submodel != '' && $request->year == '' && $request->category == '' && $request->subcategory == '' && $request->subsubcategory == ''){
+            return redirect()->route('buyer.home-search4',[
+                'brand' => $request->brand,
+                'model' => $request->model,
+                'submodel' => $request->submodel
+                ]);
+        }else if($request->brand != '' && $request->model != '' && $request->submodel != '' && $request->year != '' && $request->category == '' && $request->subcategory == '' && $request->subsubcategory == ''){
+            return redirect()->route('buyer.home-search5',[
+                'brand' => $request->brand,
+                'model' => $request->model,
+                'submodel' => $request->submodel,
+                'year' => $request->year
+                ]);
+        }else if($request->brand != '' && $request->model != '' && $request->submodel != '' && $request->year != '' && $request->category != '' && $request->subcategory == '' && $request->subsubcategory == ''){
+            return redirect()->route('buyer.home-search6',[
+                'brand' => $request->brand,
+                'model' => $request->model,
+                'submodel' => $request->submodel,
+                'year' => $request->year,
+                'category' => $request->category
+                ]);
+        }else if($request->brand != '' && $request->model != '' && $request->submodel != '' && $request->year != '' && $request->category != '' && $request->subcategory != '' && $request->subsubcategory == ''){
+            return redirect()->route('buyer.home-search7',[
+                'brand' => $request->brand,
+                'model' => $request->model,
+                'submodel' => $request->submodel,
+                'year' => $request->year,
+                'category' => $request->category
+                ]);
+        }
+        /*else{
             $request->session()->put('session_search',[
                 'brand' => $request->brand,
                 'model' => $request->model,
@@ -243,7 +275,7 @@ class SearchProductController extends Controller
             // dd(session('search_fail'));
 
             return redirect()->route('buyer.requestspares');
-        }
+        }*/
     }
 
     /*public function Getsearch(Request $request){
@@ -426,6 +458,7 @@ class SearchProductController extends Controller
         
         return view('buyer.homesearch.home-search3',[
             'brands_select' => Brand::get(),
+            'models' => ProductModel::where('brand_id',$request->brand)->get(),
             'category' => Category::get(),
             'products' => $products,
             'submodels' => SubModel::where('model_id',$request->model)->get(),
@@ -446,6 +479,8 @@ class SearchProductController extends Controller
 
         return view('buyer.homesearch.home-search4',[
             'brands_select' => Brand::get(),
+            'models' => ProductModel::where('brand_id',$request->brand)->get(),
+            'submodels' => SubModel::where('model_id',$request->model)->get(),
             'category' => Category::get(),
             'products' => $products,
             'years' => IssueYear::where('sub_model_id',$request->submodel)->get(),
@@ -468,6 +503,9 @@ class SearchProductController extends Controller
 
         return view('buyer.homesearch.home-search5',[
             'brands_select' => Brand::get(),
+            'models' => ProductModel::where('brand_id',$request->brand)->get(),
+            'submodels' => SubModel::where('model_id',$request->model)->get(),
+            'years' => IssueYear::where('sub_model_id',$request->submodel)->get(),
             'category' => Category::get(),
             'products' => $products,
             // 'years' => IssueYear::where('sub_model_id',$request->submodel)->get(),
@@ -492,6 +530,9 @@ class SearchProductController extends Controller
 
         return view('buyer.homesearch.home-search6',[
             'brands_select' => Brand::get(),
+            'models' => ProductModel::where('brand_id',$request->brand)->get(),
+            'submodels' => SubModel::where('model_id',$request->model)->get(),
+            'years' => IssueYear::where('sub_model_id',$request->submodel)->get(),
             'category' => Category::get(),
             'products' => $products,
             'subcategory' => SubCategory::where('category_id',$request->category)->get(),
