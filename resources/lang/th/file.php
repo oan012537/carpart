@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
 	"Search" => "ค้นหา",
 	"records per page" => "แถวต่อหน้า",
@@ -119,6 +119,7 @@ return [
 	"Length" => "ยาว",
 	"Height" => "สูง",
 	"Sign In" => "เข้าสู่ระบบ",
+	"Logout" => "ออกจากระบบ",
 	"Mobile number / email" => "เบอร์มือถือ / อีเมล",
 	"Password" => "รหัสผ่าน",
 	"Forgot Password" => "ลืมรหัสผ่าน",
@@ -166,7 +167,7 @@ return [
 	"Company Name" => "ชื่อบริษัท",
 	"Branch" => "สาขา",
 	"VAT Registration Number" => "หมายเลขประจำตัวผู้เสียภาษี",
-	"Company certificate not older than 6 months" => "หนังสือรับรองบริษัท อายุไม่เกิน6เดือน",
+	"Company certificate not older than 6 months" => "หนังสือรับรองบริษัท ",
 	"Copy of VAT Registration Certificate" => "สำเนา ภ.พ.20",
 	"Press to preview the document." => "กดดูเพื่อแสดงตัวอย่างเอกสาร",
 	"Address (according to the certificate)" => "ที่อยู่ (ตามหนังสือรับรอง)",
@@ -175,10 +176,10 @@ return [
 	"Phone Number" => "เบอร์โทรศัพท์",
 	"Page URL/Facebook Page" => "Page URL/Facebook Page",
 	"GoogleMapsURL" => "GoogleMapsURL",
-	"Store address as on the ID card" => "ที่อยู่ร้านค้าตามที่อยู่บนบัตรประชาชน",
+	"Store address as on the ID card" => "ที่อยู่ร้านค้า",
 	"Store address" => "ที่อยู่ร้าน",
 	"Bank Account Number" => "หมายเลขบัญชี",
-	"Bank Account Name" => "ชื่อบัญชี",
+	"Bank Account Name" => "ชื่อเจ้าของบัญชี",
 	"Bank" => "ธนาคาร",
 	"Account Type" => "ปรเภทบิญชี",
 	"Copy of book bank" => "สำเนาหน้า Book bank",
@@ -200,6 +201,3 @@ return [
 
 
 ];
-
-
-?>
