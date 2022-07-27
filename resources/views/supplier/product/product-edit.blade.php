@@ -784,7 +784,58 @@
     </div>
 </div>
 
+<style>
+    
+/*-----------------------------------------
+    RESPONSIVE
+-------------------------------------------*/
 
+@media (max-width:426px) {
+    #setting-createproductresult .box__itemslist .box__allstep{
+        margin-top: 0;
+    }
+    #setting-createproductresult .box__itemslist .box__contentdetail{
+        margin-top: 0;
+    }
+    #setting-createproductresult .box__itemslist .box__contentdetail .box__forminput, #setting-createproductresult .box__itemslist .box__contentdetail .box__input2{
+        margin-top: 0;
+    }
+    #setting-createproductresult .accordion-body nav ul li a::before{
+        height: 90%;
+    }
+}
+
+@media screen and (min-width:427px) and (max-width:767px) {
+    #setting-createproductresult .box__itemslist .box__allstep{
+        margin-top: 0;
+    }
+    #setting-createproductresult .box__itemslist .box__contentdetail{
+        margin-top: 0;
+    }
+    #setting-createproductresult .box__itemslist .box__contentdetail .box__forminput, #setting-createproductresult .box__itemslist .box__contentdetail .box__input2{
+        margin-top: 0;
+    }
+    #setting-createproductresult .accordion-body nav ul li a::before{
+        height: 90%;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+    #setting-createproductresult .box__itemslist .box__allstep{
+        margin-top: 0;
+    }
+    #setting-createproductresult .box__itemslist .box__contentdetail{
+        margin-top: 0;
+    }
+    #setting-createproductresult .box__itemslist .box__contentdetail .box__forminput, #setting-createproductresult .box__itemslist .box__contentdetail .box__input2{
+        margin-top: 0;
+    }
+    #setting-createproductresult .accordion-body nav ul li a::before{
+        height: 90%;
+    }
+}
+
+</style>
 @endsection
 
 @section('script')
