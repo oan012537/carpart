@@ -149,6 +149,11 @@
         $.get("{{route('backend.manage.supplier.individual.changestatus')}}", {'id':id,'status':flexSwitch},function (data, textStatus, jqXHR) {
             if(flexSwitch == '0'){
                 $("#showstatus").html('ระงับการใช้งาน')
+                if(data == 'Y'){
+                    toastralert('success','ส่งsmsแจ้งเตือนเรียบร้อย');
+                }else if(data == 'X'){
+                    toastralert('error','เกิดข้อผิดพลาดในการส่งsms');
+                }
             }else{
                 $("#showstatus").html('เปิดการใช้งาน')
             }

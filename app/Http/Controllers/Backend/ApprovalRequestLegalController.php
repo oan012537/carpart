@@ -318,6 +318,74 @@ class ApprovalRequestLegalController extends Controller
 		return $sQuery->escapeColumns([])->make(true);
 	}
 
+    public function datatables_notactive(){
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','corporate')->where('suppliers.is_active','0')->select(DB::raw("company_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at,suppliers.is_active as is_active"));
+        $search = request('search');
+        $radiodate = request('radiodate');
+        $date = request('date');
+        if($search != ''){
+            $data->where(function ($query) use ($search){
+                $query->where('code','LIKE','%'.$search.'%')
+                ->orwhere('company_name','LIKE','%'.$search.'%')
+                // ->orwhere('supplir_name','LIKE','%'.$search.'%')
+                ->orwhere('vat_registration_number','LIKE','%'.$search.'%')
+                ->orwhere('comment','LIKE','%'.$search.'%')
+                ;
+            });
+        }
+        if($date!= ''){
+            $dates = explode(',',$date);
+            $sdate = $dates[0];
+            $edate = $dates[1];
+            if($radiodate == '1'){
+                $data->whereBetween('user_suppliers.created_at',[$sdate.' 00:00',$edate.' 23:59']);
+            }else{
+                $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
+            }
+        }
+        $data->groupby('user_suppliers.id');
+		$sQuery	= Datatables::of($data)
+		->editColumn('updated_at',function($data){
+			return date('d/m/Y H:i',strtotime($data->updated_at));
+		})
+        ->editColumn('created_at',function($data){
+			return date('d/m/Y H:i',strtotime($data->created_at));
+		})
+		->editColumn('is_active',function($data){
+            if($data->is_active == '1'){
+                return '<div class="approvel ap-success"><p>เปิดการใช้งาน</p></div>';
+            }else if($data->is_active == '0'){
+                return '<div class="approvel ap-no"><p>ระงับการใช้งาน</p></div>';
+            }else{
+                return '';
+            }
+		})
+		->addColumn('btnview',function($data){
+			return '<a href="javascript:void(0)" class="btn btn__viewdetail"   onclick="viewdetail('.$data->id.')">ดูรายละเอียด</a>';
+		})
+		->addColumn('btnaction',function($data){
+            $btn__approval = '';
+            $btn__waitapproval = '';
+            $btn__noapproval = '';
+			if($data->status_code == 'approved'){
+                $btn__approval = 'btn__approval';
+                return '<div class="box__btn"><button class="btn btn__app btn__approval">อนุมัติ</button></div>';
+            }else if($data->status_code == 'request_approval'){
+                $btn__waitapproval = 'btn__waitapproval';
+                return '<div class="box__btn"><button class="btn btn__app btn__waitapproval">รออนุมัติ</button></div>';
+            }else if($data->status_code == 'un_approve'){
+                $btn__noapproval = 'btn__noapproval';
+                return '<div class="box__btn"><button class="btn btn__app btn__noapproval">ไม่อนุมัติ</button></div>';
+            }
+			// return '<div class="box__btn">
+            //         <button class="btn btn__app '.$btn__approval.'" data-bs-toggle="modal" data-bs-target="#modalapproval">อนุมัติ</button>
+            //         <button class="btn btn__app '.$btn__waitapproval.'">รออนุมัติ</button>
+            //         <button class="btn btn__app '.$btn__noapproval.'">ไม่อนุมัติ</button>
+            //         </div>';
+		});
+		return $sQuery->escapeColumns([])->make(true);
+	}
+
     public function getdetails(Request $request){
         $result = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->where('user_suppliers.id',$request->id)->select('*','user_suppliers.id as id')->first();
         $getaddress = Supplier::where('user_id',$request->id)->first();

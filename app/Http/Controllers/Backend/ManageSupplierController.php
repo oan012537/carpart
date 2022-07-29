@@ -41,6 +41,7 @@ class ManageSupplierController extends Controller
                 $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
             }
         }
+        $data->groupby('user_suppliers.id');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y H:i',strtotime($data->updated_at));
@@ -157,6 +158,7 @@ class ManageSupplierController extends Controller
                 $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
             }
         }
+        $data->groupby('user_suppliers.id');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y H:i',strtotime($data->updated_at));
@@ -252,5 +254,16 @@ class ManageSupplierController extends Controller
         $update = Supplier::find($request->id);
         $update->is_active = $request->status;
         $update->save();
+        if($request->status == "0"){
+            $user = UserSupplier::find($update->user_id);
+            $sms = smstext('บัญชีร้านค้าของท่าน ถูกระงับการใช้งาน กรุณาติดต่อ โทร.02-136-5255 หรือ 061-423-9585',$user->phone);
+            if($sms['code'] == '000'){
+                return "Y";
+            }else{
+                return "X";
+            }
+        }
+        return '';
+        
     }
 }

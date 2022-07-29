@@ -202,6 +202,11 @@
                 flexSwitch = '0';
             }
             $.get("{{route('backend.manage.supplier.individual.changestatus')}}", {'id':id,'status':flexSwitch},function (data, textStatus, jqXHR) {
+                if(data == 'Y'){
+                    toastralert('success','ส่งsmsแจ้งเตือนเรียบร้อย');
+                }else if(data == 'X'){
+                    toastralert('error','เกิดข้อผิดพลาดในการส่งsms');
+                }
                 oTable.draw( false );
             });
         }

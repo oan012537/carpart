@@ -78,6 +78,8 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('datatables/wait', [Backend\ApprovalRequestIndividualController::class,'datatables_wait'])->name('backend.approval.individual.datatables.wait');
                 Route::get('datatables/approval', [Backend\ApprovalRequestIndividualController::class,'datatables_approval'])->name('backend.approval.individual.datatables.approval');
                 Route::get('datatables/disapproved', [Backend\ApprovalRequestIndividualController::class,'datatables_disapproved'])->name('backend.approval.individual.datatables.disapproved');
+                Route::get('datatables/notactive', [Backend\ApprovalRequestIndividualController::class,'datatables_notactive'])->name('backend.approval.individual.datatables.notactive');
+
                 
                 Route::get('add', [Backend\ApprovalRequestIndividualController::class,'add'])->name('backend.approval.individual.add');
                 Route::post('store', [Backend\ApprovalRequestIndividualController::class,'store'])->name('backend.approval.individual.store');
@@ -100,6 +102,8 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::get('datatables/wait', [Backend\ApprovalRequestLegalController::class,'datatables_wait'])->name('backend.approval.legal.datatables');
                 Route::get('datatables/approval', [Backend\ApprovalRequestLegalController::class,'datatables_approval'])->name('backend.approval.legal.datatables');
                 Route::get('datatables/disapproved', [Backend\ApprovalRequestLegalController::class,'datatables_disapproved'])->name('backend.approval.legal.datatables.disapproved');
+                Route::get('datatables/notactive', [Backend\ApprovalRequestLegalController::class,'datatables_notactive'])->name('backend.approval.legal.datatables.notactive');
+
                 
                 Route::post('store', [Backend\ApprovalRequestLegalController::class,'store'])->name('backend.approval.legal.store');
                 Route::get('edit/{id}', [Backend\ApprovalRequestLegalController::class,'edit'])->name('backend.approval.legal.edit');
