@@ -259,25 +259,18 @@ class SearchProductController extends Controller
                 'category' => $request->category,
                 'subcategory' => $request->subcategory,
                 ]);
-        }
-        /*else{
-            $request->session()->put('session_search',[
+        }else if($request->brand != '' && $request->model != '' && $request->submodel != '' && $request->year != '' && $request->category != '' && $request->subcategory != '' && $request->subsubcategory != ''){
+            return redirect()->route('buyer.home-search7',[
                 'brand' => $request->brand,
                 'model' => $request->model,
                 'submodel' => $request->submodel,
                 'year' => $request->year,
                 'category' => $request->category,
                 'subcategory' => $request->subcategory,
-                'subsubcategory' => $request->subsubcategory,
-                'condition' => $request->condition,
-                'minprice' => $request->minprice,
-                'maxprice' => $request->maxprice
-            ]);
-
-            // dd(session('search_fail'));
-
-            return redirect()->route('buyer.requestspares');
-        }*/
+                'subsubcategory' => $request->subcategory,
+                ]);
+        }
+    
     }
 
     /*public function Getsearch(Request $request){

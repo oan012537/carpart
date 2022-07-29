@@ -42,8 +42,6 @@ Route::prefix('buyer')->group(function(){
     Route::get('register/password', [Buyer\BuyerController::class, 'createpassword']);
 
     // Route::get('requestspares', [Buyer\RequestSparesController::class, 'index'])->name('buyer.requestspares');
-    Route::get('requestspares/add', [Buyer\RequestSparesController::class, 'add'])->name('buyer.requestspares.add');
-    Route::post('requestspares/add', function(){})->name('buyer.requestspares.store');
 
     Route::get('requestspares/view', [Buyer\RequestSparesController::class, 'view'])->name('buyer.requestspares.view');
     Route::get('requestspares/details', [Buyer\RequestSparesController::class, 'details'])->name('buyer.requestspares.details');
@@ -60,6 +58,9 @@ Route::prefix('buyer')->group(function(){
         Route::get('home-search5',[Buyer\SearchProductController::class, 'home_search_year'])->name('buyer.home-search5');
         Route::get('home-search6',[Buyer\SearchProductController::class, 'home_search_category'])->name('buyer.home-search6');
         Route::get('home-search7',[Buyer\SearchProductController::class, 'home_search_subcategory'])->name('buyer.home-search7');
+
+        Route::get('requestspares/add', [Buyer\RequestSparesController::class, 'add'])->name('buyer.requestspares.add');
+        Route::post('requestspares/add', function(){})->name('buyer.requestspares.store');
 
     //======= OAT My Account =======
 
