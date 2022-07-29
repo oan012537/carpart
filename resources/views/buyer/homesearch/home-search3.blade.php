@@ -165,14 +165,14 @@
                             <div class="col-lg-6">
                                 <div class="tt-seach-text2">
                                     <i class="fa fa-close"></i>
-                                    <a href="" style="padding:0;"><p> ล้าง </p></a>
+                                    <a href="{{url('buyer/home-search')}}" style="padding:0;"><p> ล้าง </p></a>
                                 </div>
                             </div>
                         </div>
                         <hr class="new1">
                         <span> แบรนด์ </span>
-                        <input type="hidden" name="brand" id="brand-search">
-                        <button type="button" class="dropdown-btn" id="text-brands">แบรนด์
+                        <input type="hidden" name="brand" id="brand-search" value="{{session('session_search.brand')}}">
+                        <button type="button" class="dropdown-btn" id="text-brands">{{$brands_button->name_en}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-brand">
@@ -182,12 +182,15 @@
                         </div>
                         <hr class="new1">
                         <span> รุ่น </span>
-                        <input type="hidden" name="model" id="model-search">
-                        <button type="button" class="dropdown-btn" id="text-model"> เลือก
+                        <input type="hidden" name="model" id="model-search" value="{{session('session_search.model')}}">
+                        <button type="button" class="dropdown-btn" id="text-model"> {{$models_button->name_en}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-model">
                             <!-- <a href="#">Link 1</a> -->
+                            @foreach($models as $model_nav)
+                                <a class="dropdown-model" onclick="searchnavModels({{$model_nav->id}})">{{$model_nav->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> รุ่นย่อย </span>
@@ -197,6 +200,9 @@
                         </button>
                         <div class="dropdown-container" id="dropdown-submodel">
                             <!-- <a href="#">Link 1</a> -->
+                            @foreach($submodels as $smodel)
+                                <a class="dropdown-submodel" onclick="searchnavsubModels({{$smodel->id}})">{{$smodel->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> ปีรถ </span>
@@ -288,6 +294,7 @@
                     </form>
 
                 </div>
+                @if(count($products) > 0)
                 <div class="col-lg-9">
                     <div class="main">
                         <div class="box__productintro">
@@ -297,11 +304,11 @@
                             </div>
                             <div class="row">
                                 @foreach($products as $product)
-                                <div class="col-xl-4 col-lg- col-6">
+                                <div class="col-xl-4 col-lg-6 col-6">
                                     <a href="javascript:void(0)">
                                         <div class="box__itemssproductintro">
                                             <div class="box__image">
-                                                <img src="assets/img/home/product-intro2.png"
+                                                <img src="assets/img/home/product-intro1.png"
                                                     class="img-fluid" alt="">
 
                                                 <div class="box__status">
@@ -309,19 +316,15 @@
                                                 </div>
 
                                                 <div class="box__grade">
-                                                    <p>Grade</p>
+                                                    <p>{{$product->grade}}</p>
                                                 </div>
                                             </div>
 
                                             <div class="box__content">
-                                                <h5 class="intro__title">กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA AE80
-                                                    ,
-                                                    AE90 ,
-                                                    AE101
-                                                    16V
+                                                <h5 class="intro__title">{{$product->name_en}}
                                                 </h5>
-                                                <p class="intro__serial">รหัส: 90915-YZZE1 - TOYOTA </p>
-                                                <p class="intro__price">฿ <span>72.00</span> /ชิ้น</p>
+                                                <p class="intro__serial">รหัส: {{$product->product_code}} </p>
+                                                <p class="intro__price">฿ <span>{{number_format($product->price)}}</span> /ชิ้น</p>
                                             </div>
                                         </div>
                                     </a>
@@ -330,7 +333,40 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
+                @else
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-4">
+                            <div class="img-logo-request">
+                                <img src="{{asset('assets/img/home-seach/logo-h.png')}}" class="img-fluid" alt="shoe image">
+                            </div>
+                            <br>
+                            <div class="hexd-text-t-seach">
+                                <p>
+                                    ไม่พบผลการค้นหา
+                                </p>
+                            </div>
+                            <div class="detail-text-t-seach">
+                                <p>
+                                    สร้างใบคำขอหาอะไหล่ให้ผู้ขายของเรา
+                                </p>
+                            </div>
+                            <br>
+                            <div class="w3-container w3-center">
+                                <div class="but-ca">
+                                    <a href="{{route('buyer.requestspares.add')}}">
+                                        <button class="button button2-2"> สร้างใบคำขอ
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"> </div>
+                    </div>
+                </div>
+                @endif
             </div>
 
             <br>

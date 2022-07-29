@@ -16,7 +16,7 @@
                     <div class="box__filter">
                         <form class="form-box-input px-2">
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-md-6 col-lg-3">
                                     <label class="title__txt">ค้นหา</label>
                                     <div class="input-group mb-1">
                                         <input type="text" class="form-control" placeholder="ระบุ..." name="search">
@@ -26,7 +26,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2">
+                                <div class="col-md-6 col-lg-2">
                                     <label class="title__txt">สถานะ</label>
                                     <select class="setting-manufac form-select" name="status">
                                         <option value="">ทั้งหมด</option>

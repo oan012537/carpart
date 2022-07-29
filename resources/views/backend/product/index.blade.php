@@ -144,8 +144,8 @@
                                                     <th width="50px">
                                                         <input type="checkbox" class="form-check-input" id="checkall" name="checkall" value="1">
                                                     </th>
-                                                    <th>รหัสสินค้าในร้าน</th>
                                                     <th>รูปภาพ</th>
+                                                    <th>รหัสสินค้าในร้าน</th>
                                                     <th>ชื่อรายการ</th>
                                                     <th>หมวดสินค้า /หมวดย่อย
                                                         <button class="btn btn-sort active"><i class="fas fa-filter"></i> แสดงบางรายการ</button>
@@ -656,9 +656,9 @@
                     searchable: false
                 },
             ],
-            order: [
-                [1, 'asc']
-            ],
+            // order: [
+            //     [1, 'asc']
+            // ],
             rowCallback: function(row, data, index) {
 
             }

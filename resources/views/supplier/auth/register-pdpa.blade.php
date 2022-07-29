@@ -104,6 +104,7 @@
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="functional_cookies" value="1" checked>
                                     </div>
+                                    <hr class="new4">
                                 </div>
                                 <hr class="new5">
                             </div>
@@ -138,12 +139,18 @@
 
 @section('script')
 <script>
-    function myFunction(id) {
+    function switchpdpa(id) {
         var x = document.getElementById(id);
         if (x.className.indexOf("w3-show") == -1) {
             x.className += " w3-show";
+            // alert('ok')
         } else {
-            x.className = x.className.replace(" w3-show", "");
+            x.className = x.className.replace(" w3-hide", "");
+            x.classList.remove('w3-show');
+            x.classList.add('w3-hide');
+
+            // alert('nok')
+
         }
     }
 </script>

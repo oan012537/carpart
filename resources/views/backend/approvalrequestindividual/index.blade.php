@@ -90,6 +90,7 @@
                                 <button class="nav-link" id="wait-tab" data-bs-toggle="tab" data-bs-target="#wait" type="button" role="tab" aria-controls="wait" aria-selected="false">รออนุมัติ <span class="circle" id="alertwait" style="display: none;"> </span></button>
                                 <button class="nav-link" id="approval-tab" data-bs-toggle="tab" data-bs-target="#approvals" type="button" role="tab" aria-controls="approvals" aria-selected="false">อนุมัติแล้ว <span class="circle" id="alertapproval" style="display: none;"> </span></button>
                                 <button class="nav-link" id="approval-tab" data-bs-toggle="tab" data-bs-target="#disapproved" type="button" role="tab" aria-controls="disapproved" aria-selected="false">ไม่อนุมัติ <span class="circle" id="alertdisapproved" style="display: none;"> </span></button>
+                                <button class="nav-link" id="notactive-tab" data-bs-toggle="tab" data-bs-target="#notactive" type="button" role="tab" aria-controls="notactive" aria-selected="false">ระงับการใช้งาน <span class="circle" id="alertnotactive" style="display: none;"> </span></button>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
@@ -169,6 +170,31 @@
                             <div class="tab-pane fade" id="disapproved" role="tabpanel" aria-labelledby="disapproved-tab">
                                 <div class="table-responsive">
                                     <table id="datatables_disapproved" class="table table-striped display nowrap" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <td>รหัสสมาชิก</td>
+                                                <td>ชื่อร้าน</td>
+                                                <td>ชื่อผู้ขาย</td>
+                                                <td>เลขบัตรประชาชน</td>
+                                                <td>วันที่สมัคร</td>
+                                                <td>วันที่อนุมัติ</td>
+                                                <td>สถานะรายการ</td>
+                                                <td>หมายเหตุ</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="notactive" role="tabpanel" aria-labelledby="notactive-tab">
+                                <div class="table-responsive">
+                                    <table id="datatables_notactive" class="table table-striped display nowrap" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <td>รหัสสมาชิก</td>
@@ -555,6 +581,13 @@
             if (oTabledisapproved.data().count() > 0) {
                 $("#alertdisapproved").show();
             }
+
+            oTablenotactive.draw();
+            // e.preventDefault();
+            $("#alertnotactive").text(oTablenotactive.data().count());
+            if (oTablenotactive.data().count() > 0) {
+                $("#alertnotactive").show();
+            }
             e.preventDefault();
         });
 
@@ -851,6 +884,102 @@
             }
         });
 
+        var oTablenotactive = $('#datatables_notactive').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: false,
+            lengthChange: false,
+            responsive: true,
+            scrollX: true,
+            ajax: {
+                url: "{{url('backend/approvalrequest/individual/datatables/notactive')}}",
+                data: function(d) {
+                    d.search = $('#search').val();
+                    d.radiodate = $('input[name="radiodate"]:checked').val();
+                    d.date = $('#dates').val();
+                },
+            },
+            columns: [{
+                    'className': "text-center",
+                    data: 'code',
+                    name: 'code'
+                },
+                {
+                    'className': "text-center",
+                    data: 'store_name',
+                    name: 'store_name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'supplir_name',
+                    name: 'supplir_name'
+                },
+                {
+                    'className': "text-center",
+                    data: 'card_id',
+                    name: 'card_id'
+                },
+                {
+                    'className': "text-center",
+                    data: 'created_at',
+                    name: 'created_at',
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'approve_at',
+                    name: 'suppliers.approve_at',
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'is_active',
+                    name: 'suppliers.is_active',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'comment',
+                    name: 'comment'
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnview',
+                    name: 'btnview',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    'className': "text-center",
+                    data: 'btnaction',
+                    name: 'btnaction',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            order: [
+                [0, 'asc']
+            ],
+            rowCallback: function(row, data, index) {
+
+
+            },
+            initComplete: function(settings, json) {
+                console.log(json);
+                $("#alertnotactive").text(oTablenotactive.data().count());
+                if (oTablenotactive.data().count() > 0) {
+                    $("#alertnotactive").show();
+                }
+            },
+            "drawCallback": function(settings) {
+                $("#alertnotactive").text(oTablenotactive.data().count());
+                if (oTablenotactive.data().count() > 0) {
+                    $("#alertnotactive").show();
+                }
+            }
+        });
+
         $("#search").keyup(function(e) {
             oTable.draw();
             e.preventDefault();
@@ -878,6 +1007,13 @@
             $("#alertdisapproved").text(oTabledisapproved.data().count());
             if (oTabledisapproved.data().count() > 0) {
                 $("#alertdisapproved").show();
+            }
+
+            oTablenotactive.draw();
+            e.preventDefault();
+            $("#alertnotactive").text(oTablenotactive.data().count());
+            if (oTablenotactive.data().count() > 0) {
+                $("#alertnotactive").show();
             }
 
         });

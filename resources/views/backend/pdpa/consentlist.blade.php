@@ -20,7 +20,7 @@
                     <div class="box__filter">
                         <form class="form-box-input px-2">
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-md-4 col-lg-3">
                                     <label class="title__txt">ค้นหา</label>
                                     <div class="input-group mb-1">
                                         <input type="text" class="form-control" placeholder="ระบุ" name="search">
@@ -30,14 +30,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3">
+                                <div class="col-md-4 col-lg-3">
                                     <label class="title__txt">ประเภทผู้ใช้งาน</label>
                                     <select class="form-select">
                                         <option>ทั้งหมด</option>
                                     </select>
                                 </div>
 
-                                <div class="col-lg-3">
+                                <div class="col-md-4 col-lg-3">
                                     <label class="title__txt">ประเภทสมาชิก</label>
                                     <select class="form-select">
                                         <option>ทั้งหมด</option>
@@ -51,7 +51,7 @@
 
                 <div class="col-12">
                     <div class="box__table p-4">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-md-flex justify-content-between">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-bs-toggle="tab" href="#using">กำลังใช้งาน</a>
@@ -61,7 +61,7 @@
                                 </li>
                             </ul>
                             <div class="form-box-input">
-                                <button class="btn btn-search mt-0" type="button" id="" data-bs-toggle="modal" data-bs-target="#addpdpa"><i class="fas fa-plus-circle"></i> เพิ่ม PDPA</button>
+                                <button class="btn btn-search  mt-3 mt-md-0" type="button" id="" data-bs-toggle="modal" data-bs-target="#addpdpa"><i class="fas fa-plus-circle"></i> เพิ่ม PDPA</button>
                             </div>
                         </div>
                         <!-- Tab panes -->
@@ -418,6 +418,16 @@
         </div>
     </div>
 </div>
+
+<style>
+    .box__approvel .box__table .nav {
+        overflow: hidden;
+    }
+
+    .box__approvel .box__table .nav-tabs {
+        width: auto;
+    }
+</style>
 @stop
 
 @section('script')

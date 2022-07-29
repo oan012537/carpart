@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class ApprovalRequestIndividualController extends Controller
 {
@@ -46,6 +47,7 @@ class ApprovalRequestIndividualController extends Controller
                 $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
             }
         }
+        $data->groupby('user_suppliers.id');
 		$sQuery	= Datatables::of($data)
 		// ->filter(function ($query) use ($dataserch){
 		// 	$explodesearch = explode(',',$dataserch);
@@ -171,6 +173,7 @@ class ApprovalRequestIndividualController extends Controller
                 $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
             }
         }
+        $data->groupby('user_suppliers.id');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y H:i',strtotime($data->updated_at));
@@ -241,6 +244,7 @@ class ApprovalRequestIndividualController extends Controller
                 $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
             }
         }
+        $data->groupby('user_suppliers.id');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y H:i',strtotime($data->updated_at));
@@ -311,6 +315,7 @@ class ApprovalRequestIndividualController extends Controller
                 $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
             }
         }
+        $data->groupby('user_suppliers.id');
 		$sQuery	= Datatables::of($data)
 		->editColumn('updated_at',function($data){
 			return date('d/m/Y H:i',strtotime($data->updated_at));
@@ -325,6 +330,75 @@ class ApprovalRequestIndividualController extends Controller
                 return '<div class="approvel ap-wait"><p>รออนุมัติ</p></div>';
             }else if($data->status_code == 'un_approve'){
                 return '<div class="approvel ap-no"><p>ไม่อนุมัติ</p></div>';
+            }else{
+                return '';
+            }
+		})
+		->addColumn('btnview',function($data){
+			return '<a href="javascript:void(0)" class="btn btn__viewdetail"   onclick="viewdetail('.$data->id.')">ดูรายละเอียด</a>';
+		})
+		->addColumn('btnaction',function($data){
+            $btn__approval = '';
+            $btn__waitapproval = '';
+            $btn__noapproval = '';
+			if($data->status_code == 'approved'){
+                $btn__approval = 'btn__approval';
+                return '<div class="box__btn"><button class="btn btn__app btn__approval">อนุมัติ</button></div>';
+            }else if($data->status_code == 'request_approval'){
+                $btn__waitapproval = 'btn__waitapproval';
+                return '<div class="box__btn"><button class="btn btn__app btn__waitapproval">รออนุมัติ</button></div>';
+            }else if($data->status_code == 'un_approve'){
+                $btn__noapproval = 'btn__noapproval';
+                return '<div class="box__btn"><button class="btn btn__app btn__noapproval">ไม่อนุมัติ</button></div>';
+            }
+			// return '<div class="box__btn">
+            //         <button class="btn btn__app '.$btn__approval.'" data-bs-toggle="modal" data-bs-target="#modalapproval">อนุมัติ</button>
+            //         <button class="btn btn__app '.$btn__waitapproval.'">รออนุมัติ</button>
+            //         <button class="btn btn__app '.$btn__noapproval.'">ไม่อนุมัติ</button>
+            //         </div>';
+		});
+		return $sQuery->escapeColumns([])->make(true);
+	}
+
+    public function datatables_notactive(){
+
+        $data = UserSupplier::leftjoin('suppliers','user_suppliers.id','suppliers.user_id')->leftjoin('stores','suppliers.id','stores.supplier_id')->where('suppliers.supplier_type','personal')->where('suppliers.is_active','0')->select(DB::raw("store_name,if(suppliers.supplier_type = 'personal', concat(suppliers.personal_first_name,' ', suppliers.personal_last_name), suppliers.company_name) as supplir_name,if(suppliers.supplier_type = 'personal', suppliers.personal_card_id, suppliers.vat_registration_number) as card_id,comment,code,user_suppliers.updated_at,status_code,user_suppliers.id,user_suppliers.created_at,approve_at,suppliers.is_active as is_active"));
+        $search = request('search');
+        $radiodate = request('radiodate');
+        $date = request('date');
+        if($search != ''){
+            $data->where(function ($query) use ($search){
+                $query->where('code','LIKE','%'.$search.'%')
+                ->orwhere('store_name','LIKE','%'.$search.'%')
+                ->orwhere(DB::raw("concat(suppliers.personal_first_name,' ', suppliers.personal_last_name)"),'LIKE','%'.$search.'%')
+                ->orwhere('personal_card_id','LIKE','%'.$search.'%')
+                ->orwhere('comment','LIKE','%'.$search.'%')
+                ;
+            });
+        }
+        if($date!= ''){
+            $dates = explode(',',$date);
+            $sdate = $dates[0];
+            $edate = $dates[1];
+            if($radiodate == '1'){
+                $data->whereBetween('user_suppliers.created_at',[$sdate.' 00:00',$edate.' 23:59']);
+            }else{
+                $data->whereBetween('suppliers.approve_at',[$sdate.' 00:00',$edate.' 23:59']);
+            }
+        }
+        $data->groupby('user_suppliers.id');
+		$sQuery	= Datatables::of($data)
+		->editColumn('updated_at',function($data){
+			return date('d/m/Y H:i',strtotime($data->updated_at));
+		})
+        ->editColumn('created_at',function($data){
+			return date('d/m/Y H:i',strtotime($data->created_at));
+		})
+		->editColumn('is_active',function($data){
+            if($data->is_active == '1'){
+                return '<div class="approvel ap-success"><p>เปิดการใช้งาน</p></div>';
+            }else if($data->is_active == '0'){
+                return '<div class="approvel ap-no"><p>ระงับการใช้งาน</p></div>';
             }else{
                 return '';
             }
@@ -399,22 +473,23 @@ class ApprovalRequestIndividualController extends Controller
             อนุมัติการสมัครสมาชิกของท่านเรียบร้อยแล้ว
             โปรดใช้รหัสผ่านต่อไปนี้ในการเข้าสู่ระบบ
             หมายเลขโทรศัพท์ : '.$user->phone.'
-            รหัสผ่าน : 12345678';
+            รหัสผ่าน : '.$user->password;
         }else if($request->request_approval == ''){
             $text = 'รออนุมัติ';
         }else if($request->un_approve == ''){
-            $text = 'ไม่อนุมัติ';
+            $text = 'ไม่อนุมัติการสมัครสมาชิก กรุณาติดต่อ โทร.02-136-52-55 หรือ 061-423-9585';
         }else{
             $text = '';
         }
-        $send = $this->mails($user);
+        // $send = $this->mails($user);
         // dd($send);
-        // $sms = smstext($text,$user->phone);
-        // if($sms['code'] == '000'){
-
-        // }else{
-        //     $this->mails($user);
-        // }
+        $sms = smstext($text,$user->phone);
+        if($sms['code'] == '000'){
+            $user->password = Hash::make($user->password);
+            $user->save();
+        }else{
+            $this->mails($user);
+        }
         return redirect()->route('backend.approval.individual');
     }
 
@@ -452,22 +527,23 @@ class ApprovalRequestIndividualController extends Controller
             อนุมัติการสมัครสมาชิกของท่านเรียบร้อยแล้ว
             โปรดใช้รหัสผ่านต่อไปนี้ในการเข้าสู่ระบบ
             หมายเลขโทรศัพท์ : '.$user->phone.'
-            รหัสผ่าน : 12345678';
+            รหัสผ่าน : '.$user->password;
         }else if($request->request_approval == ''){
             $text = 'รออนุมัติ';
         }else if($request->un_approve == ''){
-            $text = 'ไม่อนุมัติ';
+            $text = 'ไม่อนุมัติการสมัครสมาชิก กรุณาติดต่อ โทร.02-136-52-55 หรือ 061-423-9585';
         }else{
             $text = '';
         }
-        $send = $this->mails($user);
+        // $send = $this->mails($user);
         // dd($send);
-        // $sms = smstext($text,$user->phone);
-        // if($sms['code'] == '000'){
-
-        // }else{
-        //     $send = $this->mails($user);
-        // }
+        $sms = smstext($text,$user->phone);
+        if($sms['code'] == '000'){
+            $user->password = Hash::make($user->password);
+            $user->save();
+        }else{
+            $send = $this->mails($user);
+        }
         return redirect()->route('backend.approval.individual');
 
     }

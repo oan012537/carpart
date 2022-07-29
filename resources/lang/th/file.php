@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
 	"Search" => "ค้นหา",
 	"records per page" => "แถวต่อหน้า",
@@ -57,7 +57,8 @@ return [
 	"Attach Image Message" => "สูงสุดไม่เกิน 5 ภาพขนาดไม่เกิน 5 Mb.",
 	"Grade" => "เกรด",
 	"Genuine" => "แท้/Genuine",
-	"OEM" => "OEM",
+	// "OEM" => "OEM",
+	"OEM" => "เทียบ/Non-Genuine",
 	"Maker" => "ผู้ผลิตชิ้นส่วน/Maker",
 	"SKU CODE" => "Genuine PARTS NO./SKU CODE",
 	"Excellent" => "ดีมาก/Excellent (80~100%)",
@@ -83,7 +84,7 @@ return [
 	"Warranty Message3" => "เช่น รอย,การเกิดสนิม,การแตกหัก,ชิ้นส่วนประกอบไม่ครบ,อะไหล่บิ้วต์ หรือ ข้อมูลอื่นๆ",
 	"Transport Information" => "ข้อมูลสำหรับการขนส่ง",
 	"Weight" => "น้ำหนักสินค้า",
-	"Product Size" => "ขนาดของสินค้า",
+	"Product Size" => "ขนาดกล่องสินค้า",
 	"UOM" => "หน่วย",
 	"Transportation" => "การขนส่ง",
 	"Shipments supported by CPN" => "การจัดส่งที่รองรับโดยCPN",
@@ -96,7 +97,9 @@ return [
 	"Specify Day Message" => "**กำหนดระยะเวลาตรวจสอบสินค้าระหว่างการจัดส่ง ภายใน 3 วัน หลังจากวันที่ได้รับสินค้า**",
 	"Price" => "ราคา",
 	"Amount" => "ราคา",
-	"Including VAT" => "(รวม VAT)",
+	// "Including VAT" => "(รวม VAT)",
+	"Including VAT" => "",
+	"Shipping fee is not included" => "*ราคาสินค้าทั้งหมด(ไม่รวมค่าจัดส่ง)",
 	"Amount Message" => "ประมาณการรายรับสุทธิของสินค้าชิ้นนี้",
 	"Commission" => "คอมมิชชั่น",
 	"Net Income" => "รายรับสุทธิ",
@@ -167,7 +170,7 @@ return [
 	"Company Name" => "ชื่อบริษัท",
 	"Branch" => "สาขา",
 	"VAT Registration Number" => "หมายเลขประจำตัวผู้เสียภาษี",
-	"Company certificate not older than 6 months" => "หนังสือรับรองบริษัท อายุไม่เกิน6เดือน",
+	"Company certificate not older than 6 months" => "หนังสือรับรองบริษัท ",
 	"Copy of VAT Registration Certificate" => "สำเนา ภ.พ.20",
 	"Press to preview the document." => "กดดูเพื่อแสดงตัวอย่างเอกสาร",
 	"Address (according to the certificate)" => "ที่อยู่ (ตามหนังสือรับรอง)",
@@ -176,10 +179,10 @@ return [
 	"Phone Number" => "เบอร์โทรศัพท์",
 	"Page URL/Facebook Page" => "Page URL/Facebook Page",
 	"GoogleMapsURL" => "GoogleMapsURL",
-	"Store address as on the ID card" => "ที่อยู่ร้านค้าตามที่อยู่บนบัตรประชาชน",
+	"Store address as on the ID card" => "ที่อยู่ร้านค้า",
 	"Store address" => "ที่อยู่ร้าน",
 	"Bank Account Number" => "หมายเลขบัญชี",
-	"Bank Account Name" => "ชื่อบัญชี",
+	"Bank Account Name" => "ชื่อเจ้าของบัญชี",
 	"Bank" => "ธนาคาร",
 	"Account Type" => "ปรเภทบิญชี",
 	"Copy of book bank" => "สำเนาหน้า Book bank",
@@ -201,6 +204,3 @@ return [
 
 
 ];
-
-
-?>

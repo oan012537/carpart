@@ -127,7 +127,7 @@
                                     <div class="col-lg-3">
                                         <div class="boc-c-check">
                                             <label class="container2">
-                                                <input type="checkbox" value="{{$cate->id}}">
+                                                <input type="checkbox" value="{{$cate->id}}" @if(session('session_search.subsubcategory') == $cate->id) checked @endif >
                                                 <span class="checkmark2"></span>
                                             </label>
                                         </div>
@@ -201,8 +201,8 @@
                         </div>
                         <hr class="new1">
                         <span> แบรนด์ </span>
-                        <input type="hidden" name="brand" id="brand-search">
-                        <button type="button" class="dropdown-btn" id="text-brands">แบรนด์
+                        <input type="hidden" name="brand" id="brand-search" value="{{session('session_search.brand')}}">
+                        <button type="button" class="dropdown-btn" id="text-brands">{{$brands_button->name_en}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-brand">
@@ -212,35 +212,45 @@
                         </div>
                         <hr class="new1">
                         <span> รุ่น </span>
-                        <input type="hidden" name="model" id="model-search">
-                        <button type="button" class="dropdown-btn" id="text-model"> เลือก
+                        <input type="hidden" name="model" id="model-search" value="{{session('session_search.model')}}">
+                        <button type="button" class="dropdown-btn" id="text-model"> {{$models_button->name_en}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-model">
                             <!-- <a href="#">Link 1</a> -->
+                            @foreach($models as $model_nav)
+                                <a class="dropdown-model" onclick="searchnavModels({{$model_nav->id}})">{{$model_nav->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> รุ่นย่อย </span>
-                        <input type="hidden" name="submodel" id="submodel-search">
-                        <button type="button" class="dropdown-btn" id="text-submodel"> เลือก
+                        <input type="hidden" name="submodel" id="submodel-search" value="{{session('session_search.submodel')}}">
+                        <button type="button" class="dropdown-btn" id="text-submodel"> {{$submodels_button->name_th}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-submodel">
                             <!-- <a href="#">Link 1</a> -->
+                            @foreach($submodels as $smodel)
+                                <a class="dropdown-submodel" onclick="searchnavsubModels({{$smodel->id}})">{{$smodel->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> ปีรถ </span>
-                        <input type="hidden" name="year" id="year-search">
-                        <button type="button" class="dropdown-btn" id="text-year"> เลือก
+                        <input type="hidden" name="year" id="year-search" value="{{session('session_search.year')}}">
+                        <button type="button" class="dropdown-btn" id="text-year"> {{$years_button->from_year}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-year">
                             <!-- <a href="#">Link 1</a> -->
+                            @foreach($years as $y)
+                                <a class="dropdown-year" onclick="searchnavYear({{$y->id}})">{{$y->from_year}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> หมวดหมู่สินค้า </span>
-                        <input type="hidden" name="category" id="category-search">
-                        <button type="button" class="dropdown-btn" id="text-category"> เลือก
+                        <input type="hidden" name="category" id="category-search" value="{{session('session_search.category')}}">
+                        @php $category_button = DB::table('categories')->where('id',session('session_search.category'))->first(); @endphp
+                        <button type="button" class="dropdown-btn" id="text-category"> {{$category_button->name_en}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-category">
@@ -250,14 +260,15 @@
                         </div>
                         <hr class="new1">
                         <span> หมวดหมู่ย่อย 1 </span>
-                        <input type="hidden" name="subcategory" id="subcategory-search">
-                        <button type="button" class="dropdown-btn" id="text-subcategory"> เลือก
+                        <input type="hidden" name="subcategory" id="subcategory-search" value="{{session('session_search.subcategory')}}">
+                        @php $sub_category_button = DB::table('sub_categories')->where('id',session('session_search.subcategory'))->first(); @endphp
+                        <button type="button" class="dropdown-btn" id="text-subcategory"> {{$sub_category_button->name_en}}
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container" id="dropdown-subcategory">
-                            <!-- <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a> -->
+                            @foreach($subcategory as $subc)
+                            <a class="dropdown-subcategory" id="subcategory{{$subc->id}}" onclick="searchnavSubcate({{$subc->id}})">{{$subc->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> หมวดหมู่ย่อย 2 </span>
@@ -266,9 +277,9 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-container"  id="dropdown-subsubcategory">
-                            <!-- <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a> -->
+                            @foreach($subsubcategory as $subsubc)
+                            <a class="dropdown-subsubcategory" id="subsubcategory{{$subsubc->id}}" onclick="searchnavSub_subcate({{$subsubc->id}})">{{$subsubc->name_en}}</a>
+                            @endforeach
                         </div>
                         <hr class="new1">
                         <span> สภาพสินค้า </span>
@@ -318,6 +329,7 @@
                     </form>
 
                 </div>
+                @if(count($products) > 0)
                 <div class="col-lg-9">
                     <div class="main">
                         <div class="box__productintro">
@@ -327,11 +339,11 @@
                             </div>
                             <div class="row">
                                 @foreach($products as $product)
-                                <div class="col-xl-4 col-lg- col-6">
+                                <div class="col-xl-4 col-lg-6 col-6">
                                     <a href="javascript:void(0)">
                                         <div class="box__itemssproductintro">
                                             <div class="box__image">
-                                                <img src="assets/img/home/product-intro2.png"
+                                                <img src="assets/img/home/product-intro1.png"
                                                     class="img-fluid" alt="">
 
                                                 <div class="box__status">
@@ -339,19 +351,15 @@
                                                 </div>
 
                                                 <div class="box__grade">
-                                                    <p>Grade</p>
+                                                    <p>{{$product->grade}}</p>
                                                 </div>
                                             </div>
 
                                             <div class="box__content">
-                                                <h5 class="intro__title">กรองน้ำมันเครื่อง VIOS YARIS ALTIS AVANZA AE80
-                                                    ,
-                                                    AE90 ,
-                                                    AE101
-                                                    16V
+                                                <h5 class="intro__title">{{$product->name_en}}
                                                 </h5>
-                                                <p class="intro__serial">รหัส: 90915-YZZE1 - TOYOTA </p>
-                                                <p class="intro__price">฿ <span>72.00</span> /ชิ้น</p>
+                                                <p class="intro__serial">รหัส: {{$product->product_code}} </p>
+                                                <p class="intro__price">฿ <span>{{number_format($product->price)}}</span> /ชิ้น</p>
                                             </div>
                                         </div>
                                     </a>
@@ -360,7 +368,40 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
+                @else
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-4">
+                            <div class="img-logo-request">
+                                <img src="{{asset('assets/img/home-seach/logo-h.png')}}" class="img-fluid" alt="shoe image">
+                            </div>
+                            <br>
+                            <div class="hexd-text-t-seach">
+                                <p>
+                                    ไม่พบผลการค้นหา
+                                </p>
+                            </div>
+                            <div class="detail-text-t-seach">
+                                <p>
+                                    สร้างใบคำขอหาอะไหล่ให้ผู้ขายของเรา
+                                </p>
+                            </div>
+                            <br>
+                            <div class="w3-container w3-center">
+                                <div class="but-ca">
+                                    <a href="{{route('buyer.requestspares.add')}}">
+                                        <button class="button button2-2"> สร้างใบคำขอ
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"> </div>
+                    </div>
+                </div>
+                @endif
             </div>
 
             <br>
@@ -417,19 +458,17 @@
         }
 
         //============ Get checkbox value ================
-        var checkbox = document.querySelector('input[type="checkbox"]');
-        checkbox.addEventListener('change', function(e){
-            // alert(this.check.value);
-            // alert($("input[type=checkbox]:checked").val());
-            id = $("input[type=checkbox]:checked").val();
+        $('input[type="checkbox"]').change(function() {
+            // alert ("The element with id " + this.value + " changed.");
+            id = this.value;
             location.href = "buyer/home-search7?brand="+{{session('session_search.brand')}}+
             "&model="+{{session('session_search.model')}}+
             "&submodel="+{{session('session_search.submodel')}}+
             "&year="+{{session('session_search.year')}}+
             "&category="+{{session('session_search.category')}}+
-            "&subcategory="+id;
+            "&subcategory="+{{session('session_search.subcategory')}}+
+            "&subsubcategory="+id;
         });
-
 
         /*function selectSubModel(id){
             location.href = "buyer/home-search4?brand="+{{session('session_search.brand')}}+"&model="+{{session('session_search.model')}}+"&submodel"+id;

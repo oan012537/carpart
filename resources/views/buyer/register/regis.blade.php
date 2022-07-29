@@ -22,43 +22,120 @@
     <link href="assets/css/regis.css" rel="stylesheet">
 
     @include('buyer.layouts.inc_stylesheet')
+    <style>
+        @media (max-width:426px) {
+            #sec-login1 .box-b-login{
+                margin: 20px 0;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
-    <form method="POST" action=""  enctype="multipart/form-data">
-    @csrf
-    <section id="sec-login1">
-        <div class="container">
-            <div class="box-b-login">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="img-img-log">
-                            <img src="assets/img/login/ln1.png" class="img-fluid" alt="">
+    <form method="POST" action="" enctype="multipart/form-data">
+        @csrf
+        <section id="sec-login1">
+            <div class="container">
+                <div class="box-b-login">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="img-img-log">
+                                <img src="assets/img/login/ln1.png" class="img-fluid" alt="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="b-box-big">
-                            <a onclick="myFunction('Demo1')" class="w3-btn w3-block w3-black w3-left-align">
-                                <div class="t-text-s">
+                        <div class="col-lg-4">
+                            <div class="b-box-big">
+                                <a onclick="myFunction('Demo1')" class="w3-btn w3-block w3-black w3-left-align">
+                                    <div class="t-text-s">
+                                        <p>
+                                            Strictly Necessary Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
+                                        </p>
+                                        <div class="s-switch">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" name="necessary_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
+                                            </div>
+                                        </div>
+                                        <hr class="new1">
+                                    </div>
+                                </a>
+                                <div id="Demo1" class="w3-container w3-hide">
+                                    <div class="ko-text-t">
+                                        <p>
+                                            ข้อตกลง / เงื่อนไข
+                                        </p>
+                                    </div>
+                                    <div class="b-text-t-b">
+                                        <div class="d-detail">
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                                Lorem
+                                                Ipsum
+                                                has been the industry's standard dummy text ever since the 1500s, when an
+                                                unknown
+                                                printer took a galley of type and scrambled it to make a type specimen book.
+                                                It
+                                                has
+                                                survived not only five centuries, but also the leap into electronic
+                                                typesetting,
+                                                remaining essentially unchanged. </p>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                                Lorem
+                                                Ipsum
+                                                has been the industry's standard dummy text ever since the 1500s, when an
+                                                unknown
+                                                printer took a galley of type and scrambled it to make a type specimen book.
+                                                It
+                                                has
+                                                survived not only five centuries, but also the leap into electronic
+                                                typesetting,
+                                                remaining essentially unchanged. </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="t-text-s2">
+                                    <div class="s-switch2">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" name="acept_reject" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        Aceept/Reject
+                                    </p>
+                                </div>
+                                <div class="t-text-s3">
                                     <p>
                                         Strictly Necessary Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
                                     </p>
-                                    <div class="s-switch">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" name="necessary_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
-                                        </div>
+                                    <div class="s-switch3">
+                                        <p>
+                                            Always accept
+                                        </p>
                                     </div>
-                                    <hr class="new1">
+                                    <hr class="new3">
                                 </div>
-                            </a>
-                            <div id="Demo1" class="w3-container w3-hide">
-                                <div class="ko-text-t">
-                                    <p>
-                                        ข้อตกลง / เงื่อนไข
-                                    </p>
-                                </div>
-                                <div class="b-text-t-b">
-                                    <div class="d-detail">
+                                <a onclick="myFunction('Demo2')" class="w3-btn w3-block w3-black w3-left-align">
+                                    <div class="t-text-s4">
+                                        <p>
+                                            Analytics Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
+                                        </p>
+                                        <div class="s-switch4">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" name="analytic_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
+                                            </div>
+                                        </div>
+                                        <hr class="new4">
+                                    </div>
+                                </a>
+                                <div id="Demo2" class="w3-container w3-hide">
+                                    <div class="ko-text-t">
+                                        <p>
+                                            ข้อตกลง / เงื่อนไข
+                                        </p>
+                                    </div>
+
+                                    <div class="d-detail2">
                                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                             Lorem
                                             Ipsum
@@ -70,128 +147,59 @@
                                             survived not only five centuries, but also the leap into electronic
                                             typesetting,
                                             remaining essentially unchanged. </p>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem
-                                            Ipsum
-                                            has been the industry's standard dummy text ever since the 1500s, when an
-                                            unknown
-                                            printer took a galley of type and scrambled it to make a type specimen book.
-                                            It
-                                            has
-                                            survived not only five centuries, but also the leap into electronic
-                                            typesetting,
-                                            remaining essentially unchanged. </p>
                                     </div>
+
                                 </div>
-                            </div>
 
 
-                            <div class="t-text-s2">
-                                <div class="s-switch2">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" name="acept_reject" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
-                                    </div>
-                                </div>
-                                <p>
-                                    Aceept/Reject
-                                </p>
-                            </div>
-                            <div class="t-text-s3">
-                                <p>
-                                    Strictly Necessary Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
-                                </p>
-                                <div class="s-switch3">
+                                <div class="t-text-s5">
                                     <p>
-                                        Always accept
+                                        Functional Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
                                     </p>
-                                </div>
-                                <hr class="new3">
-                            </div>
-                            <a onclick="myFunction('Demo2')" class="w3-btn w3-block w3-black w3-left-align">
-                                <div class="t-text-s4">
-                                    <p>
-                                        Analytics Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
-                                    </p>
-                                    <div class="s-switch4">
+                                    <div class="s-switch5">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" name="analytic_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
+                                            <input class="form-check-input" name="function_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
                                         </div>
                                     </div>
-                                    <hr class="new4">
+                                    <hr class="new5">
                                 </div>
-                            </a>
-                            <div id="Demo2" class="w3-container w3-hide">
-                                <div class="ko-text-t">
+                                <div class="t-text-s6">
                                     <p>
-                                        ข้อตกลง / เงื่อนไข
+                                        Targeting Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
                                     </p>
-                                </div>
-
-                                <div class="d-detail2">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                        Lorem
-                                        Ipsum
-                                        has been the industry's standard dummy text ever since the 1500s, when an
-                                        unknown
-                                        printer took a galley of type and scrambled it to make a type specimen book.
-                                        It
-                                        has
-                                        survived not only five centuries, but also the leap into electronic
-                                        typesetting,
-                                        remaining essentially unchanged. </p>
-                                </div>
-
-                            </div>
-
-
-                            <div class="t-text-s5">
-                                <p>
-                                    Functional Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
-                                </p>
-                                <div class="s-switch5">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" name="function_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
+                                    <div class="s-switch5">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" name="targeting_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
+                                        </div>
                                     </div>
+                                    <hr class="new5">
                                 </div>
-                                <hr class="new5">
                             </div>
-                            <div class="t-text-s6">
-                                <p>
-                                    Targeting Cookies &nbsp;&nbsp; <i class='fas fa-angle-down'></i>
-                                </p>
-                                <div class="s-switch5">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" name="targeting_cookies" type="checkbox" id="flexSwitchCheckChecked" required="" checked>
-                                    </div>
-                                </div>
-                                <hr class="new5">
-                            </div>
-                        </div>
-                        <br>
-                        <div class='but-bb-log'>
-                            <!-- <a href="{{url('buyer/regis-buy')}}"> -->
+                            <br>
+                            <div class='but-bb-log me-lg-3'>
+                                <!-- <a href="{{url('buyer/regis-buy')}}"> -->
                                 <button type="submit" class="button button1"> ยอมรับข้อตกลง & เงื่อนไข &nbsp; <i class='fas fa-angle-right'></i> </button>
-                            <!-- </a> -->
+                                <!-- </a> -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </form>
 
     @include('buyer.layouts.inc_footer')
 
 
     <script>
-    function myFunction(id) {
-        var x = document.getElementById(id);
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
+        function myFunction(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
         }
-    }
     </script>
 
 

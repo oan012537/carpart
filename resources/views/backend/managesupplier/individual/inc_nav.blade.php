@@ -130,7 +130,7 @@
             <div class="col-8">
                 <div class="txt_date-txt">
                     <p>
-                        14/12/2565 18.00
+                        {{$supplier->approve_at}}
                     </p>
                 </div>
             </div>
@@ -154,7 +154,12 @@
         }
         $.get("{{route('backend.manage.supplier.individual.changestatus')}}", {'id':id,'status':flexSwitch},function (data, textStatus, jqXHR) {
             if(flexSwitch == '0'){
-                $("#showstatus").html('ระงับการใช้งาน')
+                if(data == 'Y'){
+                    toastralert('success','ส่งsmsแจ้งเตือนเรียบร้อย');
+                }else if(data == 'X'){
+                    toastralert('error','เกิดข้อผิดพลาดในการส่งsms');
+                }
+                $("#showstatus").html('ระงับการใช้งาน');
             }else{
                 $("#showstatus").html('เปิดการใช้งาน')
             }

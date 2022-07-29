@@ -38,7 +38,7 @@
 
 
                                 <div class="box__table p-4 row">
-                                    <div class="col-xl-6 col-md-12 col-12">
+                                    <div class="col-xl-6 col-md-12 col-12" style="overflow-x: auto;">
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-bs-toggle="tab" href="#all">
@@ -57,14 +57,14 @@
                                     </div>
 
                                     <div class="col-xl-6 col-md-12 col-12">
-                                        <a href="{{route('backend.banner.add')}}" class="btn btn__viewdetail me-3">
+                                        <a href="{{route('backend.banner.add')}}" class="btn btn__viewdetail me-3 mt-3">
                                             <i class="fa fa-plus-circle"></i>
                                             สร้างแบนเนอร์</a>
                                     </div>
 
                                     <!-- Tab panes -->
                                     <div class="tab-content">
-                                        <div id="all" class="tab-pane active"><br>
+                                        <div id="all" class="tab-pane active">
 
                                             <div class="table-responsive form-box-input">
                                                 <table id="datatables" class="table table-striped display nowrap" style="width:100%">
