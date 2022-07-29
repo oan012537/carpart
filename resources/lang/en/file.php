@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
 	"Search" => "Search",
 	"records per page" => "records per page",
@@ -57,7 +57,8 @@ return [
 	"Attach Image Message" => "Maximum 5 images, size not over 5 Mb.",
 	"Grade" => "Grade",
 	"Genuine" => "แท้/Genuine",
-	"OEM" => "OEM",
+	// "OEM" => "OEM",
+	"OEM" => "เทียบ/Non-Genuine",
 	"Maker" => "ผู้ผลิตชิ้นส่วน/Maker",
 	"SKU CODE" => "Genuine PARTS NO./SKU CODE",
 	"Excellent" => "ดีมาก/Excellent (80~100%)",
@@ -96,7 +97,9 @@ return [
 	"Specify Day Message" => "**Determine the period for inspection of products during delivery within 3 days after receiving the product.**",
 	"Price" => "Price",
 	"Amount" => "Amount",
-	"Including VAT" => "Including VAT",
+	// "Including VAT" => "INCLUDE VAT",
+	"Including VAT" => "",
+	"Shipping fee is not included" => "*ราคาสินค้าทั้งหมด(ไม่รวมค่าจัดส่ง)",
 	"Amount Message" => "Estimated net income for this item.",
 	"Commission" => "Commission",
 	"Net Income" => "Net Income",
@@ -119,6 +122,7 @@ return [
 	"Length" => "Length",
 	"Height" => "Height",
 	"Sign In" => "Sign In",
+	"Logout" => "Logout",
 	"Mobile number / email" => "Mobile number / email",
 	"Password" => "Password",
 	"Forgot Password" => "Forgot Password",
@@ -199,6 +203,3 @@ return [
 	"Not Found" => "Not Found...",
 
 ];
-
-
-?>
