@@ -79,8 +79,15 @@
                                     <p>{{ trans('file.Phone Number') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="0123456789" aria-label="Username"
-                                      name="phone" value="{{ old('phone') }}" aria-describedby="basic-addon1">
+                                    <input type="text" 
+                                        class="form-control" 
+                                        placeholder="{{ trans('file.Specify') }}" 
+                                        aria-label="Username"
+                                        name="phone" 
+                                        value="{{ old('phone') }}" 
+                                        aria-describedby="basic-addon1"
+                                        maxlength="13"
+                                    >
                                 </div>
                                 <div class="tt-text-log mb-3">
                                     @if($errors->has('phone'))
@@ -201,6 +208,14 @@
 @endsection
 
 @section('script')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js" 
+            integrity="sha512-d4KkQohk+HswGs6A1d6Gak6Bb9rMWtxjOa0IiY49Q3TeFd5xAzjWXDCBW9RS7m86FQ4RzM2BdHmdJnnKRYknxw==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js" 
+            integrity="sha512-yVcJYuVlmaPrv3FRfBYGbXaurHsB2cGmyHr4Rf1cxAS+IOe/tCqxWY/EoBKLoDknY4oI1BNJ1lSU2dxxGo9WDw==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
     <script>
 
     $(document).ready(function() {
@@ -209,6 +224,8 @@
         var isChkLocation = $('#store-location').prop('checked');
         var amphureName = "{{ $data['amphure_name'] }}";
         var districtName = "{{ $data['district_name'] }}";
+
+        $('input[name="phone"]').mask("999-999-9999");
 
         // re-initilize old value for option
         // let oldProvinceId = "{{ old('store_province') }}";

@@ -119,6 +119,7 @@ return [
 	"Length" => "Length",
 	"Height" => "Height",
 	"Sign In" => "Sign In",
+	"Logout" => "Logout",	
 	"Mobile number / email" => "Mobile number / email",
 	"Password" => "Password",
 	"Forgot Password" => "Forgot Password",

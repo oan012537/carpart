@@ -5,14 +5,12 @@ namespace App\Http\Controllers\Supplier\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\Supplier;
 use App\Models\UserSupplier;
 use App\Models\Store;
 use App\Models\Province;
 use App\Models\Amphure;
 use App\Models\District;
-
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
@@ -20,6 +18,8 @@ use Illuminate\Validation\Rules;
 use Response;
 use Session;
 use Validator;
+use DB;
+use Keygen;
 
 class SupplierAuthController extends Controller
 {
@@ -68,27 +68,45 @@ class SupplierAuthController extends Controller
     // load register page
     public function register()
     {
-        return view('supplier.auth.register-pdpa');
+        $pdpa = DB::table('pdpas')->where('is_active', 1)->select('title','details')->first();
+
+        return view('supplier.auth.register-pdpa', compact('pdpa'));
     }
 
     // confirm sms
-    public function smsConfirm()
+    public function smsConfirm(Request $request)
     {
+        $data = $request->all();
+        $strictly_necessary_cookies = isset($data['strictly_necessary_cookies']) ?$data['strictly_necessary_cookies'] :0;
+        $analytics_cookies = isset($data['analytics_cookies']) ?$data['analytics_cookies'] :0;
+        $functional_cookies = isset($data['functional_cookies']) ?$data['functional_cookies'] :0;
+        $targeting_cookies = isset($data['targeting_cookies']) ?$data['targeting_cookies'] :0;
+
+        $cookies = collect([
+            'strictly_necessary_cookies' =>  $strictly_necessary_cookies,
+            'analytics_cookies' =>  $analytics_cookies,
+            'functional_cookies' =>  $functional_cookies,
+            'targeting_cookies' =>  $targeting_cookies,
+        ]);
+
+        Session::put('cookies', $cookies);  
+
         return view('supplier.auth.sms-confirm');
+                    
     }
 
     // verify OTP
     public function verifyOtp(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'phone' => ['required', 'max:10', 'min:10', 'unique:user_suppliers']
+            'phone' => ['required', 'max:13', 'min:10', 'unique:user_suppliers']
         ]);
 
         if($validator->fails()){
             return redirect()->back()->withErrors($validator->errors());
         }
 
-        $phone = $request->phone;
+        $phone = $request->phone;   
 
         // Support version greater than or equal 7.X.X 
         // $curl = curl_init();
@@ -180,6 +198,7 @@ class SupplierAuthController extends Controller
         }
 
         $login_phone = $request->login_phone;
+        
         $token = $request->token;
         $otp_code_array = $request->otp_digit;
 
@@ -219,7 +238,7 @@ class SupplierAuthController extends Controller
         $code = '000'; //$response->code;
 
         if ($code == '000') {
-            return redirect()->route('supplier.register.supplierInfo')->with($login_phone);
+            return redirect()->route('supplier.register.supplierInfo', compact('login_phone'));
         } else {
             $detail = $response->detail;
 
@@ -258,7 +277,10 @@ class SupplierAuthController extends Controller
                                         ->get();
 
             $zipcode_list_data = District::select('zip_code')
-                                            ->where('amphure_id', $id)
+                                            ->where([
+                                                ['amphure_id', $id],
+                                                ['zip_code', '<>', 0]
+                                            ])
                                             ->groupBy('zip_code')
                                             ->get();
             $data = [
@@ -283,11 +305,8 @@ class SupplierAuthController extends Controller
                 'store_name' => 'required',
                 'personal_first_name' => 'required',
                 'personal_last_name' => 'required',
-                'personal_card_id' => 'required',
-              
-                'personal_card_id_image' => 'required',
-                'personal_house_registration' => 'required',
-              
+                'personal_card_id' => 'required',              
+                'personal_card_id_image' => 'required',              
                 'address' => 'required',
                 'province' => 'required',
                 'amphure' => 'required',
@@ -298,11 +317,9 @@ class SupplierAuthController extends Controller
             $validator = Validator::make($data, [
                 'company_name' => 'required',
                 'branch' => 'required',
-                'vat_registration_number' => 'required',
-                
+                'vat_registration_number' => 'required',                
                 'company_certificate' => 'required',
-                'vat_registration_doc' => 'required',
-                
+                'vat_registration_doc' => 'required',                
                 'address' => 'required',
                 'province' => 'required',
                 'amphure' => 'required',
@@ -315,12 +332,17 @@ class SupplierAuthController extends Controller
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
 
+        $personal_house_registration = isset($data['personal_house_registration'])? $data['personal_house_registration'] :null;
+
         if ($supplier_type == 'personal') {
             $data['company_name'] = null;
             $data['branch'] = null;
             $data['vat_registration_number'] = null;
             $data['company_certificate'] = null;
             $data['vat_registration_doc'] = null;   
+            if (!$personal_house_registration) {
+                $data['personal_house_registration'] = null;
+            }
         } else {
             $data['store_name'] = null;
             $data['personal_first_name'] = null;
@@ -350,7 +372,7 @@ class SupplierAuthController extends Controller
 
         $validator = Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:191', 'unique:user_suppliers'],
-            'phone' => ['required', 'max:10', 'min:10', 'unique:suppliers']
+            'phone' => ['required', 'max:13', 'min:10', 'unique:suppliers']
         ]);
 
         if($validator->fails()){
@@ -367,22 +389,33 @@ class SupplierAuthController extends Controller
             $data['store_province'] = $data['province'];
 
         $bank_list_data = array (
-                [
-                    'id' => 1,
-                    'name' => 'กรุงไทย'
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'กสิกร'
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'กรุงเทพ'
-                ],
-                [
-                    'id' => 4,
-                    'name' => 'ไทยพาณิชย์'
-                ]
+                ['id' => 1, 'name' => 'กสิกรไทย'],
+                ['id' => 2, 'name' => 'กรุงไทย'],
+                ['id' => 3, 'name' => 'กรุงเทพ'],
+                ['id' => 4, 'name' => 'กรุงศรี'],
+                ['id' => 5, 'name' => 'ซีไอเอ็มบี'],
+                ['id' => 6, 'name' => 'ทหารไทยะนชาติ'],
+                ['id' => 7, 'name' => 'ไทยพาณิชย์'],
+                ['id' => 8, 'name' => 'ยูโอบี'],
+                ['id' => 9, 'name' => 'แลนด์ แอนด์ เฮ้าส์'],
+                ['id' => 10, 'name' => 'สแตนดาร์ดฯ'],
+                ['id' => 11, 'name' => 'ออมสิน'],
+                ['id' => 12, 'name' => 'เกียรตินาคินภัทร'],
+                ['id' => 13, 'name' => 'ซีตี้แบงก์'],
+                ['id' => 14, 'name' => 'อาคารสงเคราะห์'],
+                ['id' => 15, 'name' => 'ธ.ก.ส'],
+                ['id' => 16, 'name' => 'มิซูโฮ'],
+                ['id' => 17, 'name' => 'ธ.อิสลาม'],
+                ['id' => 18, 'name' => 'ทิสโก้'],
+                ['id' => 19, 'name' => 'ไอซีบีซี(ไทย)'],
+                ['id' => 20, 'name' => 'ไทยเครดิต'],
+                ['id' => 21, 'name' => 'ซูมิดตโม มิตซุย'],
+                ['id' => 22, 'name' => 'เอชเอสบีซี'],
+                ['id' => 23, 'name' => 'บีเอ็นพี พารีบาส์'],
+                ['id' => 24, 'name' => 'ดอยซ์แบงก์ เอจี'],
+                ['id' => 25, 'name' => 'ธนาคารแห่งประเทศจีน'],
+                ['id' => 26, 'name' => 'ธนาคารเอเอ็นแซด'],
+                ['id' => 27, 'name' => 'อินเดียนโอเวอร์ซี']
         );
 
         $bank_branch_data = array (
@@ -431,7 +464,7 @@ class SupplierAuthController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
+        
         $validator = Validator::make($data, [
             'bank_account_no' => 'required',
             'bank_account_name' => 'required',
@@ -458,12 +491,14 @@ class SupplierAuthController extends Controller
         } else {
             $user_name = $data['company_name'];
         }
+
+        $password = Keygen::numeric(8)->prefix('CPN')->generate();
         
         // create user_suppliers
         $user = UserSupplier::create([
             'name' => $user_name,
             'email' => $data['email'],
-            'password' => Hash::make('12345678'),
+            'password' => $password,
             'phone' => $data['login_phone'],
             'role_id' => 1,
             'is_active' => 0
@@ -478,6 +513,18 @@ class SupplierAuthController extends Controller
 
         $supplier_data = Supplier::create($data);
 
+        if (Session::get('cookies')){
+            $data['strictly_necessary_cookies'] = Session::get('cookies')['strictly_necessary_cookies'];
+            $data['analytics_cookies'] = Session::get('cookies')['analytics_cookies'];
+            $data['functional_cookies'] = Session::get('cookies')['functional_cookies'];
+            $data['targeting_cookies'] = Session::get('cookies')['targeting_cookies'];
+        } else {
+            $data['strictly_necessary_cookies'] = 0;
+            $data['analytics_cookies'] = 0;
+            $data['functional_cookies'] = 0;
+            $data['targeting_cookies'] = 0;
+        }
+
         // create store
         $store_data = Store::create([
             'supplier_id' => $supplier_data->id,
@@ -488,11 +535,16 @@ class SupplierAuthController extends Controller
             'district' => $data['store_district'],
             'postcode' => $data['store_postcode'],
             'googlemap' => $data['google_map_url'],
+            'strictly_necessary_cookies' => $data['strictly_necessary_cookies'],
+            'analytics_cookies' => $data['analytics_cookies'],
+            'functional_cookies' => $data['functional_cookies'],
+            'targeting_cookies' => $data['targeting_cookies'],
             'is_active' => 0,
             'created_by' => $user_name,
             'created_by' => $user_name
         ]);
 
+        Session::forget('cookies');
 
         return redirect()->route('supplier.index')->with('register', 'Register supplier successfully.');
 

@@ -110,9 +110,9 @@
                                                             <p class="txt__titlebox">{{ trans('file.Product Image') }} <span>*</span></p>
                                                         </div>
 
-                                                        <div class="col-lg-6 col-md-6 col-12">
+                                                        {{-- <div class="col-lg-6 col-md-6 col-12">
                                                             <button class="btn btn__scanqr"><i class="fa-solid fa-qrcode"></i> {{ trans('file.QR Upload') }}</button>
-                                                        </div>
+                                                        </div> --}}
 
                                                         <div class="col-lg-12">
                                                             <div class="box__uploadimage">
@@ -193,6 +193,9 @@
                                                                     <option value="{{ $quality }}">{{ trans('file.'. $quality) }}</option>
                                                                     @endforeach
                                                                 </select>
+                                                                @if($errors->has('quality'))
+                                                                    <span class="dot__color">{{ $errors->first('quality') }}</span>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         @endif
@@ -426,14 +429,19 @@
                                                                                     </div>
                                                                                     <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                                                                         <div class="itemstype">
-                                                                                            <p class="txt__price">฿ {{ $transport_type['estimate_fee'] }}
+                                                                                            {{-- <p class="txt__price">฿ {{ $transport_type['estimate_fee'] }}
                                                                                                 @if ($i != 1)
-                                                                                                {{-- manage transport company by supplier --}}
                                                                                                 <a href="javascript:void(0)"><i class="fa-solid fa-pencil"></i></a>
                                                                                                 @endif
-                                                                                            </p>
+                                                                                            </p> --}}
                                                                                             <div class="form-check form-switch">
-                                                                                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="transport_type_id[]" value="{{ $transport_type['id'] }}">
+                                                                                                <input class="form-check-input" 
+                                                                                                        type="checkbox"     
+                                                                                                        role="switch" 
+                                                                                                        id="flexSwitchCheckDefault" 
+                                                                                                        name="transport_type_id[]" 
+                                                                                                        value="{{ $transport_type['id'] }}"
+                                                                                                    >
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -444,6 +452,9 @@
                                                                         @endif
                                                                         {{-- specify 2 and 3 here --}}
                                                                     </div>
+                                                                    @if($errors->has('transport_type_id'))
+                                                                        <span class="dot__color">{{ $errors->first('transport_type_id') }}</span>
+                                                                    @endif
                                                                 </div>
                                                         </div>
                                                         @endfor
@@ -481,11 +492,10 @@
                                                                     @for ($i = 1; $i <= 31; $i++) <option value="{{ $i }}">{{ $i }}</option>
                                                                         @endfor
                                                                 </select>
-                                                                @if($errors->has('estimated_days'))
-                                                                <span class="dot__color">{{ $errors->first('estimated_days') }}</span>
-                                                                @endif
                                                             </div>
-
+                                                            @if($errors->has('estimated_days'))
+                                                                <span class="dot__color">{{ $errors->first('estimated_days') }}</span><br>
+                                                            @endif
                                                             <span class="txt__red">{{ trans('file.Specify Day Message') }}</span>
                                                         </div>
                                                     </div>
@@ -525,15 +535,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-8 col-lg-6 col-md-6 col-12">
-                                            <div class="box__itemstotal">
+                                        <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                                            <div class="box__itemsprice">
                                                 <p class="txt__title">{{ trans('file.Amount Message') }}</p>
 
                                                 <div class="wrapper__form">
-                                                    <div class="form-group">
+                                                    <input type="hidden" name="commission" value="{{ old('commission') }}" >
+                                                    {{-- <div class="form-group">
                                                         <label for="commission">{{ trans('file.Commission') }} </label>
                                                         <input type="text" class="form-control" name="commission" placeholder="{{ trans('file.Specify') }}" value="{{ old('commission') }}" readonly>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="form-group">
                                                         <label for="revenue">{{ trans('file.Net Income') }}</label>
                                                         <input type="text" class="form-control" name="revenue" placeholder="{{ trans('file.Specify') }}" value="{{ old('revenue') }}" readonly>
@@ -803,6 +814,20 @@
         // specify initilize option data
 
         // initialize old option data
+        let oldImages = <?php echo json_encode(old('image'))?>;
+        if (oldImages) {
+            for (index in oldImages) {
+                imageUrl = "{{ asset('products/images') }}" + '/' + oldImages[index];
+                let htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
+                                +'<input type="hidden" name="image[]" value="'+ oldImages[index] +'">'
+                                +'<a href="javascript:void(0)" data-image="'+ oldImages[index] +'" class="btn__trash" >'
+                                +'<img src="'+ imageUrl +'" class="img-fluid" alt="product image">'
+                                +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
+                                +'</a></div>';
+                $('#show-image').prepend(htmlText); 
+            }
+        }
+
         let oldQuality = "{{ old('quality') }}";
         let quality = oldQuality ? oldQuality : "";
         $('#quality option[value="' + quality + '"]').attr('selected', 'selected');
@@ -1108,19 +1133,14 @@
                         table_name = tableName;
                         parent_id = id;
                         if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;color:white;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
-                            $('#fieldset2').append(htmltext);
+                            alert('Sub Category not found');
                         } else {
                             data.forEach(subCategory => {
                                 htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
                                     +'<div class="form-check">'
                                         +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
                                         +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subCategory.name_en
+                                        + subCategory.name_th
                                         +'</label>'
                                         +'<input type="hidden" class="item-name-en" value="'+ subCategory.name_en +'">'
                                         +'<input type="hidden" class="item-name-th" value="'+ subCategory.name_th +'">'
@@ -1133,19 +1153,14 @@
                         table_name = tableName;
                         parent_id = id;
                         if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;color:white;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
-                            $('#fieldset3').append(htmltext);
+                            alert('Sub Sub Category not found');
                         } else {
                             data.forEach(subSubCategory => {
                                 htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
                                     +'<div class="form-check">'
                                         +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
                                         +'<label class="form-check-label" for="flexCheckDefault">'
-                                        + subSubCategory.name_en
+                                        + subSubCategory.name_th
                                         +'</label>'
                                         +'<input type="hidden" class="item-name-en" value="'+ subSubCategory.name_en +'">'
                                         +'<input type="hidden" class="item-name-th" value="'+ subSubCategory.name_th +'">'
@@ -1178,74 +1193,45 @@
                     
                     if (table_name == 'categories') {
                         $('#fieldset1').children().remove();
-                        if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;color:white;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
+                        data.forEach(category => {
+                            htmltext = '<div class="col-xl-4 col-lg-4 col-md-4 col-12 next">'
+                                        +'<div class="form-check">'
+                                            +'<input class="form-check-input" type="radio" name="category" id="image-options'+ category.id +'" value="'+ category.id +'">'
+                                            +'<label class="form-check-label" for="image-options'+ category.id +'">'+ category.name_en +'</label>'
+                                            +'<input type="hidden" class="item-name-en" value="' + category.name_en + '">'
+                                            +'<input type="hidden" class="item-name-th" value="' + category.name_en + '">'
+                                        +'</div>'
+                                    +'</div>';
                             $('#fieldset1').append(htmltext);
-                        } else {
-                            data.forEach(category => {
-                                htmltext = '<div class="col-xl-4 col-lg-4 col-md-4 col-12 next">'
-                                            +'<div class="form-check">'
-                                                +'<input class="form-check-input" type="radio" name="category" id="image-options'+ category.id +'" value="'+ category.id +'">'
-                                                +'<label class="form-check-label" for="image-options'+ category.id +'">'+ category.name_en +'</label>'
-                                                +'<input type="hidden" class="item-name-en" value="' + category.name_en + '">'
-                                                +'<input type="hidden" class="item-name-th" value="' + category.name_en + '">'
-                                            +'</div>'
-                                        +'</div>';
-                                $('#fieldset1').append(htmltext);
-                            });
-                        }
+                        });
                     } else  if (table_name == 'sub_categories') {
                         $('#fieldset2').children().remove();
-                        if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;color:white;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
+                        data.forEach(subCategory => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subCategory.name_th
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name-en" value="'+ subCategory.name_en +'">'
+                                        +'<input type="hidden" class="item-name-th" value="'+ subCategory.name_th +'">'
+                                    +'</div></div>';
                             $('#fieldset2').append(htmltext);
-                        } else {
-                            data.forEach(subCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">' +
-                                    '<div class="form-check">' +
-                                    '<input class="form-check-input" type="checkbox" value="' + subCategory.id + '" id="flexCheckDefault">' +
-                                    '<label class="form-check-label" for="flexCheckDefault">' +
-                                    subCategory.name_en + ' (' + subCategory.id // concat id is for test
-                                    +
-                                    '</label>' +
-                                    '<input type="hidden" class="item-name-en" value="' + subCategory.name_en + '">' +
-                                    '<input type="hidden" class="item-name-th" value="' + subCategory.name_th + '">' +
-                                    '</div></div>';
-                                $('#fieldset2').append(htmltext);
-                            });
-                        }
+                        });
                     } else  if (table_name == 'sub_sub_categories') {
                         $('#fieldset3').children().remove();
-                        if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;color:white;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
+                        data.forEach(subSubCategory => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                    +'<div class="form-check">'
+                                        +'<input class="form-check-input" type="checkbox" value="'+ subSubCategory.id +'" id="flexCheckDefault">'
+                                        +'<label class="form-check-label" for="flexCheckDefault">'
+                                        + subSubCategory.name_th
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name-en" value="'+ subSubCategory.name_en +'">'
+                                        +'<input type="hidden" class="item-name-th" value="'+ subSubCategory.name_th +'">'
+                                    +'</div></div>';
                             $('#fieldset3').append(htmltext);
-                        } else {
-                            data.forEach(subSubCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">' +
-                                    '<div class="form-check">' +
-                                    '<input class="form-check-input" type="checkbox" value="' + subSubCategory.id + '" id="flexCheckDefault">' +
-                                    '<label class="form-check-label" for="flexCheckDefault">' +
-                                    subSubCategory.name_en + ' (' + subSubCategory.id // concat id is for test
-                                    +
-                                    '</label>' +
-                                    '<input type="hidden" class="item-name-en" value="' + subSubCategory.name_en + '">' +
-                                    '<input type="hidden" class="item-name-th" value="' + subSubCategory.name_th + '">' +
-                                    '</div></div>';
-                                $('#fieldset3').append(htmltext);
-                            });
-                        }
+                        });
                     }
                     
                 },

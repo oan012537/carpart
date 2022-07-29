@@ -47,8 +47,15 @@
                                     <p>{{ trans('file.Bank Account Number') }} <span class="dot__color"> *</span></p>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="123-123456-1" aria-label="Username"
-                                       name="bank_account_no" value="{{ old('bank_account_no') }}" aria-describedby="basic-addon1" required>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        placeholder="{{ trans('file.Specify') }}" 
+                                        aria-label="Username"
+                                       name="bank_account_no" 
+                                       value="{{ old('bank_account_no') }}" 
+                                       aria-describedby="basic-addon1" 
+                                       required
+                                    >
                                 </div>
                                 <div class="tt-text-log">
                                     <p>{{ trans('file.Bank Account Name') }} <span class="dot__color"> *</span></p>
@@ -188,10 +195,20 @@
 
 @section('script')
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js" 
+            integrity="sha512-d4KkQohk+HswGs6A1d6Gak6Bb9rMWtxjOa0IiY49Q3TeFd5xAzjWXDCBW9RS7m86FQ4RzM2BdHmdJnnKRYknxw==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js" 
+            integrity="sha512-yVcJYuVlmaPrv3FRfBYGbXaurHsB2cGmyHr4Rf1cxAS+IOe/tCqxWY/EoBKLoDknY4oI1BNJ1lSU2dxxGo9WDw==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
 
     <script type="text/javascript">
 
         $(document).ready(function(){
+
+            $('input[name="bank_account_no"]').mask("999-9-99999-9");
 
             let oldBankName = "{{ old('bank_name') }}";
             let bankName = oldBankName ? oldBankName : '';

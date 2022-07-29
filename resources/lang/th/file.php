@@ -119,6 +119,7 @@ return [
 	"Length" => "ยาว",
 	"Height" => "สูง",
 	"Sign In" => "เข้าสู่ระบบ",
+	"Logout" => "ออกจากระบบ",	
 	"Mobile number / email" => "เบอร์มือถือ / อีเมล",
 	"Password" => "รหัสผ่าน",
 	"Forgot Password" => "ลืมรหัสผ่าน",

@@ -10,9 +10,6 @@
             </a>
         </li>
 
-
-        <!--  -->
-
         <li class="nav-item box__icon2">
             <a class="nav-link" href="#">
                 <div class="iconimage">
@@ -29,7 +26,6 @@
             </a>
         </li>
 
-        <!--  -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{asset('assets/img/icon/icon-web.svg')}}" class="img-fluid" alt=""> {{ trans('file.Language') }}
@@ -43,10 +39,6 @@
             </ul>
         </li>
 
-
-
-        <!--  -->
-
         <li class="header_img">
             <a href="#">
                 <img src="{{asset('backends/assets/img/hczKIze.jpg')}}" alt="profile">
@@ -54,13 +46,11 @@
         </li>
 
         <li onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <a href="#" class="btn__logout"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</a>
+            <a href="#" class="btn__logout"><i class="fa-solid fa-right-from-bracket"></i> {{ trans('file.Logout') }}</a>
             <form id="logout-form" action="{{ route('supplier.logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
         </li>
-
-
     </ul>
 
 </header>
@@ -110,7 +100,6 @@
             </li>
 
             <li>
-                {{-- spareparts-card.php --}}
                 <a href="{{route('supplier.requests')}}" class="nav_link" data-page="spareparts-card">
                     <div class="icon__sidebar4"></div>
                     <span class="nav_name">คำขอหาอะไหล่ </span>

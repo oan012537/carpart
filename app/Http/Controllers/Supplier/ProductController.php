@@ -458,6 +458,16 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
+        $validator = Validator::make($data, [
+            'brand_id' => 'required',
+            'model_id' => 'required',
+            'category_id' => 'required',
+        ]);
+      
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
         $product_name_en = null;
         $product_name_th = null;
 
@@ -536,6 +546,7 @@ class ProductController extends Controller
         $data = $request->all();
 
         $data['image'] = isset($data['image']) ? $data['image'] : null;
+        $data['transport_type_id'] = isset($data['transport_type_id']) ? $data['transport_type_id'] : null;
         
         $product_type = $data['product_type'];
 
@@ -549,6 +560,7 @@ class ProductController extends Controller
                 'price' => 'required',
                 'brand_id' => 'required',                
                 'category_id' => 'required',
+                'transport_type_id' => 'required',
             ]);
         } else {
             $validator = Validator::make($data, [
@@ -557,7 +569,8 @@ class ProductController extends Controller
                 'image' => 'required',
                 'price' => 'required',
                 'brand_id' => 'required',                
-                'category_id' => 'required',                
+                'category_id' => 'required', 
+                'transport_type_id' => 'required',               
             ]);
         }
 
@@ -600,7 +613,7 @@ class ProductController extends Controller
         $data['created_by'] = $supplier_name;
         $data['updated_by'] = $supplier_name;
         $product_image = $data['image'];
-        $transport_type_id = isset($data['transport_type_id'])? $data['transport_type_id']:null;
+        $transport_type_id = $data['transport_type_id'];
 
         $product_code = Keygen::numeric(6)->generate();
 
@@ -715,6 +728,7 @@ class ProductController extends Controller
         $data = $request->all();
 
         $data['image'] = isset($data['image']) ? $data['image'] : null;
+        $data['transport_type_id'] = isset($data['transport_type_id']) ? $data['transport_type_id'] : null;
         
         $product_type = $data['product_type'];
 
@@ -726,6 +740,7 @@ class ProductController extends Controller
                 'image' => 'required',
                 'quality' => 'required',
                 'price' => 'required',
+                'transport_type_id' => 'required',
             ]);
         } else {
             $validator = Validator::make($data, [
@@ -733,6 +748,7 @@ class ProductController extends Controller
                 'name_en' => ['required', 'max:191'],
                 'image' => 'required',
                 'price' => 'required',               
+                'transport_type_id' => 'required',               
             ]);
         }
 
@@ -769,7 +785,7 @@ class ProductController extends Controller
 
         $data['updated_by'] = $supplier_name;
         $product_image = $data['image'];
-        $transport_type_id = isset($data['transport_type_id'])? $data['transport_type_id']:null;
+        $transport_type_id = $data['transport_type_id'];
 
         $warranty = [];
         $transport_data = [];

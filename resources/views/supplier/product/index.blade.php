@@ -3,6 +3,14 @@
 @section('style')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+<style>
+    th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -90,24 +98,52 @@
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link @if($status_code == 'selling') active @endif" id="selling-tab" data-bs-toggle="tab" data-bs-target="#selling" type="button" role="tab" aria-controls="selling" aria-selected="false">{{ trans('file.Selling')}}
-                                    <span>{{ $total_selling_record }}</span>
+                                <button class="nav-link @if($status_code == 'selling') active @endif"
+                                        id="selling-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#selling" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="selling" 
+                                        aria-selected="false">{{ trans('file.Selling')}}
+                                        <span>{{ $total_selling_record }}</span>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link @if($status_code == 'sold') active @endif" id="sold-tab" data-bs-toggle="tab" data-bs-target="#sold" type="button" role="tab" aria-controls="sold" aria-selected="false">{{ trans('file.Sold')}}
-                                    <span>{{ $total_sold_record }}</span>
+                                <button class="nav-link @if($status_code == 'sold') active @endif" 
+                                        id="sold-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#sold" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="sold" 
+                                        aria-selected="false">{{ trans('file.Sold')}}
+                                        <span>{{ $total_sold_record }}</span>
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link @if($status_code == 'suspended') active @endif" id="banned-tab" data-bs-toggle="tab" data-bs-target="#banned" type="button" role="tab" aria-controls="banned" aria-selected="false">{{ trans('file.Suspended')}}
-                                    <span>{{ $total_suspended_record }}</span>
+                                <button class="nav-link @if($status_code == 'suspended') active @endif" 
+                                        id="banned-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#banned" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="banned" 
+                                        aria-selected="false">{{ trans('file.Suspended')}}
+                                        <span>{{ $total_suspended_record }}</span>
                                 </button>
                             </li>
 
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link @if($status_code == 'cancle') active @endif" id="cancle-tab" data-bs-toggle="tab" data-bs-target="#cancle" type="button" role="tab" aria-controls="cancle" aria-selected="false">{{ trans('file.Cancel')}}
-                                    <span>{{ $total_cancle_record }}</span>
+                                <button class="nav-link @if($status_code == 'cancle') active @endif" 
+                                        id="cancle-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#cancle" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="cancle" 
+                                        aria-selected="false">{{ trans('file.Cancel')}}
+                                        <span>{{ $total_cancle_record }}</span>
                                 </button>
                             </li>
                         </ul>
@@ -163,13 +199,13 @@
                                 <td>{{ $product['price'] }}</td>
                                 <td>
                                     @if ($product['status_code'] == 'selling')
-                                    <div class="box__status status-selling">{{ $product['status_code'] }}</div>
+                                        <div class="box__status status-selling">{{ $product['status_code'] }}</div>
                                     @elseif ($product['status_code'] == 'sold')
-                                    <div class="box__status status-sold">{{ $product['status_code'] }}</div>
+                                        <div class="box__status status-sold">{{ $product['status_code'] }}</div>
                                     @elseif ($product['status_code'] == 'suspended')
-                                    <div class="box__status status-banned">{{ $product['status_code'] }}</div>
+                                        <div class="box__status status-banned">{{ $product['status_code'] }}</div>
                                     @elseif ($product['status_code'] == 'cancle')
-                                    <div class="box__status status-cancle">{{ $product['status_code'] }}</div>
+                                        <div class="box__status status-cancle">{{ $product['status_code'] }}</div>
                                     @endif
                                 </td>
                                 <td>{{ $product['updated_by'] }}</td>
@@ -275,7 +311,18 @@
                         'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'
                     },
                     'targets': [0]
-                }
+                },
+                // { "width": "5%", "targets": 0 },
+                // { "width": "5%", "targets": 1 },
+                // { "width": "5%", "targets": 2 },
+                // { "width": "25%", "targets": 3 },
+                // { "width": "30%", "targets": 4 },
+                // { "width": "5%", "targets": 5 },
+                // { "width": "5%", "targets": 6 },
+                // { "width": "5%", "targets": 7 },
+                // { "width": "5%", "targets": 8 },
+                // { "width": "5%", "targets": 9 },
+                // { "width": "5%", "targets": 10 }
             ],
             'select': {
                 style: 'multi',

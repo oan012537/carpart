@@ -7,6 +7,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                @if($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        {!! implode('<br>', $errors->all(':message')) !!}
+                    </div>
+                @endif
+            </div>
+            <div class="col-lg-12">
                 <div class="box__titlepage">
                     <h3>{{ trans('file.Add Product')}}</h3>
                 </div>
@@ -110,43 +118,56 @@
                                         </div>
                                     @endforeach
                                 </div>
-                            </fieldset>
 
                                 {{-- model   --}}
                                 <fieldset attr-id="2">
-                                    <div class="row box__scroll d-none" id="fieldset2">
+                                    <div class="row box__scroll" id="fieldset2">
                                     </div>
+
+                                    {{-- sub model --}}
+                                    <fieldset attr-id="3">
+                                        <div class="row box__scroll" id="fieldset3">
+                                        </div>
+                                        
+                                        {{-- issue year --}}
+                                        <fieldset attr-id="4">
+                                            <div class="row box__scroll" id="fieldset4">
+                                            </div>
+
+                                            {{-- category --}}
+                                            <fieldset attr-id="5">
+                                                <div class="row box__scroll" id="fieldset5">
+                                                </div>
+
+                                                {{-- sub category --}}
+                                                <fieldset attr-id="6">
+                                                    <div class="row box__scroll" id="fieldset6">
+                                                    </div>
+
+                                                    {{-- sub sub category --}}
+                                                    <fieldset attr-id="7">
+                                                        <div class="row box__scroll" id="fieldset7">
+                                                        </div>
+                                                        {{-- sub sub category --}}
+                                                    </fieldset>
+
+                                                {{-- sub category --}}
+                                                </fieldset>
+
+                                            {{-- category --}}
+                                            </fieldset>
+
+                                        {{-- issue year --}}
+                                        </fieldset>
+                                        
+                                    {{-- sub model --}}
+                                    </fieldset>
+
+                                {{-- model --}}
                                 </fieldset>
 
-                                {{-- sub model --}}
-                                <fieldset attr-id="3">
-                                    <div class="row box__scroll d-none" id="fieldset3">
-                                    </div>
-                                </fieldset>
-
-                                {{-- issue year --}}
-                                <fieldset attr-id="4">
-                                    <div class="row box__scroll d-none" id="fieldset4">
-                                    </div>
-                                </fieldset>
-
-                                {{-- category --}}
-                                <fieldset attr-id="5">
-                                    <div class="row box__scroll d-none" id="fieldset5">
-                                    </div>
-                                </fieldset>
-
-                                {{-- sub category --}}
-                                <fieldset attr-id="6">
-                                    <div class="row box__scroll d-none" id="fieldset6">
-                                    </div>
-                                </fieldset>
-
-                                {{-- sub sub category --}}
-                                <fieldset attr-id="7">
-                                    <div class="row box__scroll d-none" id="fieldset7">
-                                    </div>
-                                </fieldset>
+                            {{-- brand --}}
+                            </fieldset>
                                 
                         </div>
                         {{-- select product main categories --}}
@@ -201,8 +222,8 @@
                 {{-- select product type --}}
 
                 <div class="box__btn">
-                    <a href="javascript:void(0)" class="btn btn__back">{{ trans('file.Back') }}</a>
-                    <a href="javascript:void(0)" class="btn btn__next">{{ trans('file.Next') }}</a>
+                    <a href="javascript:void(0)" class="btn btn__back d-none">{{ trans('file.Back') }}</a>
+                    <a href="javascript:void(0)" class="btn btn__next d-none">{{ trans('file.Next') }}</a>
                 </div>
             
 
@@ -252,6 +273,9 @@
         current_fs = $(this).parent().parent();
         attr__value = current_fs.attr('attr-id');
         nextEvent(true);
+        $('#search-value').val('');
+        $('.btn__back').removeClass('d-none');
+        $('.btn__next').removeClass('d-none');
     });
        
 
@@ -269,6 +293,7 @@
 
             brand_id = itemId;
             table_name = 'models';
+            parent_id = itemId;
             getSub(brand_id, table_name);
             
             $('.txt__titlestep').addClass('d-none');
@@ -282,6 +307,7 @@
 
             model_id = itemId;
             table_name = 'sub_models';
+            parent_id = itemId;
             getSub(model_id, table_name);
          
             $('.step2').removeClass('d-none');
@@ -294,6 +320,7 @@
 
             sub_model_id = itemId;
             table_name = 'issue_years';
+            parent_id = itemId;
             getSub(sub_model_id, table_name);
            
             $('.step3').removeClass('d-none');
@@ -309,6 +336,7 @@
             }
 
             table_name = 'categories';
+            parent_id = itemId;
             getSub(1, table_name);
 
             $('.title__headbox').html('{{ trans("file.Category") }}');
@@ -319,6 +347,7 @@
 
             category_id = itemId;
             table_name = 'sub_categories';
+            parent_id = itemId;
             getSub(category_id, table_name);
           
             $('.step5').removeClass('d-none');
@@ -331,6 +360,7 @@
 
             sub_category_id = itemId;
             table_name = 'sub_sub_categories';
+            parent_id = itemId;
             getSub(sub_category_id, table_name);
           
             $('.step6').removeClass('d-none');
@@ -352,7 +382,6 @@
     $(document).on('click', '.btn__back', function(){
         backEvent();
         $('#search-value').val('');
-        $('.btn__next').removeClass('d-none');
         $('.box__condition').addClass('d-none');
     });
    
@@ -368,19 +397,55 @@
         $('.step'+attr__value).addClass('d-none');
 
         if (attr__value == 1) {
+            table_name = 'brands';
+            queryProductModel('', table_name, parent_id); 
+
             $('.txt__titlestep').removeClass('d-none');
             $('.title__headbox').html('{{ trans("file.Brand") }}');
+            $('.btn__back').addClass('d-none');
+            $('.btn__next').addClass('d-none');
+
         } else if (attr__value == 2) {
+            parent_id = brand_id;
+            table_name = 'models';
+            getSub(parent_id, table_name);
+
             $('.title__headbox').html('{{ trans("file.Model") }}');
+
         } else if (attr__value == 3) {
+            parent_id = model_id;
+            table_name = 'sub_models';
+            getSub(parent_id, table_name);
+
             $('.title__headbox').html('{{ trans("file.Sub Model") }}');
+
         } else if (attr__value == 4) {
+            parent_id = sub_model_id;
+            table_name = 'issue_years';
+            getSub(parent_id, table_name);
+
             $('.title__headbox').html('{{ trans("file.Year") }}');
+
         } else if (attr__value == 5) {
+            table_name = 'categories';
+            getSub(parent_id, table_name);
+
             $('.title__headbox').html('{{ trans("file.Category") }}');
+
         } else if (attr__value == 6) {
+            parent_id = category_id;
+            table_name = 'sub_categories';
+            getSub(parent_id, table_name);
+            $('.btn__next').removeClass('d-none');
+
             $('.title__headbox').html('{{ trans("file.Sub Category") }}');
+
         } else if (attr__value == 7) {
+            parent_id = sub_category_id;
+            table_name = 'sub_sub_categories';
+            // getSub(parent_id, table_name);
+            $('.btn__next').removeClass('d-none');
+
             $('.title__headbox').html('{{ trans("file.Sub Sub Category") }}');
         }
 
@@ -391,7 +456,6 @@
     // query filter
     $('#search-value').keyup(function() {
         let searchValue = $(this).val();
-        alert(searchValue);
         queryProductModel(searchValue, table_name, parent_id);        
     });
     $('.letter__az').on('click', function() {
@@ -420,8 +484,8 @@
             success: function(data) {
                 var htmltext;
 
-                    if (tableName === 'models') {
-                        $('#fieldset2').children().remove();
+                if (tableName === 'models') {
+                    $('#fieldset2').children().remove();
 
                     if (data.length === 0) {
                         htmltext = '<div style="text-align: center;">' +
@@ -432,31 +496,20 @@
                         $('#fieldset2').append(htmltext);
                     } else {
                         data.forEach(model => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + model.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                model.name_en +
-                                '</label>' +
-                                '<input type="hidden" class="item-name" value="' + model.name_en + '">' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="model'+model.id+'"'
+                                                +'value="'+ model.id +'" name="model_id" data-name="'+model.name_en+'" >'
+                                                +'<label class="form-check-label" for="model'+model.id+'">'
+                                                + model.name_en
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
                             $('#fieldset2').append(htmltext);
-                        } else {
-                            data.forEach(model => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="model'+model.id+'"'
-                                                    +'value="'+ model.id +'" name="model_id" data-name="'+model.name_en+'" >'
-                                                    +'<label class="form-check-label" for="model'+model.id+'">'
-                                                    + model.name_en
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset2').append(htmltext);
-                            });
-                        }       
-                    } 
-                    else if (tableName === 'sub_models') {
+                        });
+                    }       
+                } 
+                else if (tableName === 'sub_models') {
                         $('#fieldset3').children().remove();
 
                     if (data.length === 0) {
@@ -468,80 +521,69 @@
                         $('#fieldset3').append(htmltext);
                     } else {
                         data.forEach(subModel => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + subModel.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                subModel.name_en +
-                                '</label>' +
-                                '<input type="hidden" class="item-name" value="' + subModel.name_en + '">' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="sub-model'+subModel.id+'"'
+                                                +'value="'+ subModel.id +'" name="sub_model_id" data-name="'+subModel.name_en+'">'
+                                                +'<label class="form-check-label" for="sub-model'+subModel.id+'">'
+                                                + subModel.name_en
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
                             $('#fieldset3').append(htmltext);
-                        } else {
-                            data.forEach(subModel => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="sub-model'+subModel.id+'"'
-                                                    +'value="'+ subModel.id +'" name="sub_model_id" data-name="'+subModel.name_en+'">'
-                                                    +'<label class="form-check-label" for="sub-model'+subModel.id+'">'
-                                                    + subModel.name_en
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset3').append(htmltext);
-                            });
-                        }
-                    }     
-                    else if (tableName === 'issue_years') {
-                        $('#fieldset4').children().remove();
-                        if (data.length === 0) {
-                            
-                            attr__value = 4;
+                        });
+                    }
+                }     
+                else if (tableName === 'issue_years') {
+                    $('#fieldset4').children().remove();
+                    if (data.length === 0) {
+                        
+                        attr__value = 4;
 
-                            nextEvent(false);
-                            $('input[type="radio"]').prop('checked', false);
-                            $('#search-value').val('');
-                           
-                        } else {
-                            data.forEach(issueYear => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="issue-year'+issueYear.id+'"'
-                                                    +'value="'+ issueYear.id +'" data-name="'+issueYear.from_year+'">'
-                                                    +'<label class="form-check-label" for="issue-year'+issueYear.id+'">'
-                                                    + issueYear.from_year
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset4').append(htmltext);
-                            });
-                        }       
-                    }  
-                    else if (tableName === 'categories') {
-                        $('#fieldset5').children().remove();
-                        if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                        nextEvent(false);
+                        $('input[type="radio"]').prop('checked', false);
+                        $('#search-value').val('');
+                        
+                    } else {
+                        data.forEach(issueYear => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="issue-year'+issueYear.id+'"'
+                                                +'value="'+ issueYear.id +'" data-name="'+issueYear.from_year+'">'
+                                                +'<label class="form-check-label" for="issue-year'+issueYear.id+'">'
+                                                + issueYear.from_year
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
+                            $('#fieldset4').append(htmltext);
+                        });
+                    }       
+                }  
+                else if (tableName === 'categories') {
+                    $('#fieldset5').children().remove();
+                    if (data.length === 0) {
+                        htmltext = '<div style="text-align: center;">'
+                                    +'<br><br>'
+                                    +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                    +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                    +'</div>';
+                        $('#fieldset5').append(htmltext);
+                    } else {
+                        data.forEach(category => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="category'+category.id+'"'
+                                                +'value="'+ category.id +'" name="category_id" data-name="'+category.name_en+'">'
+                                                +'<label class="form-check-label" for="category'+category.id+'">'
+                                                + category.name_th
+                                                +'</label>'
+                                            +'</div>'
                                         +'</div>';
                             $('#fieldset5').append(htmltext);
-                        } else {
-                            data.forEach(category => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="category'+category.id+'"'
-                                                    +'value="'+ category.id +'" name="category_id" data-name="'+category.name_en+'">'
-                                                    +'<label class="form-check-label" for="category'+category.id+'">'
-                                                    + category.name_en
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset5').append(htmltext);
-                            });
-                        }       
-                    }  
-                    else if (tableName === 'sub_categories') {
+                        });
+                    }       
+                }  
+                else if (tableName === 'sub_categories') {
                         $('#fieldset6').children().remove();
 
                     if (data.length === 0) {
@@ -553,68 +595,50 @@
                         $('#fieldset6').append(htmltext);
                     } else {
                         data.forEach(subCategory => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-6 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + subCategory.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                subCategory.name_en +
-                                '</label>' +
-                                '<input type="hidden" class="item-name" value="' + subCategory.name_en + '">' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="sub-category'+subCategory.id+'"'
+                                                +'value="'+ subCategory.id +'" name="sub_category_id" data-name="'+subCategory.name_en+'">'
+                                                +'<label class="form-check-label" for="sub-category'+subCategory.id+'">'
+                                                + subCategory.name_th
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
                             $('#fieldset6').append(htmltext);
-                        } else {
-                            data.forEach(subCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="sub-category'+subCategory.id+'"'
-                                                    +'value="'+ subCategory.id +'" name="sub_category_id" data-name="'+subCategory.name_en+'">'
-                                                    +'<label class="form-check-label" for="sub-category'+subCategory.id+'">'
-                                                    + subCategory.name_en
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset6').append(htmltext);
-                            });
-                        }       
-                    }  
-                    else if (tableName === 'sub_sub_categories') {
-                        $('#fieldset7').children().remove();
+                        });
+                    }       
+                }  
+                else if (tableName === 'sub_sub_categories') {
+                    $('#fieldset7').children().remove();
 
-                        if (data.length === 0) {
-                            attr__value = 7;
+                    if (data.length === 0) {
+                        attr__value = 7;
 
-                            nextEvent(false);
-                            $('input[type="radio"]').prop('checked', false);
-                            $('#search-value').val('');
-                            $('#is-finish').addClass('d-none');
-                        } else {
-                            $('.title__headbox').html('{{ trans("file.Sub Sub Category") }}');
-                            data.forEach(subSubCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="sub-sub-category'+subSubCategory.id+'"'
-                                                    +'value="'+ subSubCategory.id +'" name="sub_sub_category_id" data-name="'+subSubCategory.name_en+'">'
-                                                    +'<label class="form-check-label" for="sub-sub-category'+subSubCategory.id+'">'
-                                                    + subSubCategory.name_en
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset7').append(htmltext);
-                            });
-                        }       
-                    }  
-                  
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-
+                        nextEvent(false);
+                        $('input[type="radio"]').prop('checked', false);
+                        $('#search-value').val('');
+                        $('#is-finish').addClass('d-none');
+                    } else {
+                        $('.title__headbox').html('{{ trans("file.Sub Sub Category") }}');
+                        data.forEach(subSubCategory => {
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="sub-sub-category'+subSubCategory.id+'"'
+                                                +'value="'+ subSubCategory.id +'" name="sub_sub_category_id" data-name="'+subSubCategory.name_en+'">'
+                                                +'<label class="form-check-label" for="sub-sub-category'+subSubCategory.id+'">'
+                                                + subSubCategory.name_th
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
+                            $('#fieldset7').append(htmltext);
+                        });
+                    }       
+                }  
             },
             error: function(error) {
                 console.log(error);
             }
-
-        })
+        });
     }
 
     function queryProductModel(searchValue, table_name, parent_id) {
@@ -632,316 +656,168 @@
                 if (table_name === 'brands') {
                     $('#fieldset1').children().remove();
                     if (data.length === 0) {
-                        htmltext = '<div style="text-align: center;">' +
-                            '<br><br>' +
-                            '<h4>{{ trans("file.Not Found") }}</h4>' +
-                            '<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>' +
-                            '</div>';
+                        htmltext = '<div style="text-align: center;">'
+                                    +'<br><br>'
+                                    +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                    +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                    +'</div>';
                         $('#fieldset1').append(htmltext);
                     } else {
                         data.forEach(brand => {
                             let imageUrl = "{{  asset('brand_logo') }}" + '/' + brand.image.replace('brand_logo', '');
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="radio" name="brand" id="image-options' + brand.id + '" value="' + brand.id + '">' +
-                                '<label class="form-check-label" for="image-options' + brand.id + '">' +
-                                '<img src="' + imageUrl + '" class="img-fluid img-circleimg" alt="' + brand.name_en + '">' +
-                                brand.name_th +
-                                '</label>' +
-                                '<input type="hidden" class="item-name" value="' + brand.name_en + '">' +
-                                '</div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next-brand">'
+                                    +'<div class="form-check">'
+                                        +'<input type="hidden" name="brand" id="image-options'+ brand.id +'" value="'+ brand.id +'">'
+                                        +'<label class="form-check-label" for="image-options'+ brand.id +'">'
+                                            +'<img src="'+ imageUrl +'" class="img-fluid img-circleimg" alt="'+ brand.name_en +'">'
+                                            + brand.name_th
+                                        +'</label>'
+                                        +'<input type="hidden" class="item-name" value="'+ brand.name_en +'">'
+                                    +'</div>';
                             $('#fieldset1').append(htmltext);
-                        } else {
-                            data.forEach(brand => {
-                                let imageUrl = "{{  asset('brand_logo') }}" + '/' + brand.image.replace('brand_logo', '');
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next-brand">'
-                                        +'<div class="form-check">'
-                                            +'<input type="hidden" name="brand" id="image-options'+ brand.id +'" value="'+ brand.id +'">'
-                                            +'<label class="form-check-label" for="image-options'+ brand.id +'">'
-                                                +'<img src="'+ imageUrl +'" class="img-fluid img-circleimg" alt="'+ brand.name_en +'">'
-                                                + brand.name_th
-                                            +'</label>'
-                                            +'<input type="hidden" class="item-name" value="'+ brand.name_en +'">'
-                                        +'</div>';
-                                $('#fieldset1').append(htmltext);
-                            });
-                        }
-                        
-                    } else  if (table_name == 'models') {
-                        $('#fieldset2').children().remove();
-                        if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
-                            $('#fieldset2').append(htmltext);
-                        } else {
-                            data.forEach(model => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="model'+model.id+'"'
-                                                    +'value="'+ model.id +'" name="model_id" data-name="'+model.name_en+'" >'
-                                                    +'<label class="form-check-label" for="model'+model.id+'">'
-                                                    + model.name_en
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset2').append(htmltext);
-                            });
-                        }
-                    } else  if (table_name == 'sub_models') {
-                        $('#fieldset3').children().remove();
-                        if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
-                            $('#fieldset3').append(htmltext);
-                        } else {
-                            data.forEach(subModel => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="sub-model'+subModel.id+'"'
-                                                    +'value="'+ subModel.id +'" name="sub_model_id" data-name="'+subModel.name_en+'">'
-                                                    +'<label class="form-check-label" for="sub-model'+subModel.id+'">'
-                                                    + subModel.name_en
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset3').append(htmltext);
-                            });
-                        }
-                    } else  if (table_name == 'issue_years') {
-                        $('#fieldset4').children().remove();
-                        if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
-                            $('#fieldset4').append(htmltext);
-                        } else {
-                            data.forEach(issueYear => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                    htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                    +'<div class="form-check">'
-                                                        +'<input type="radio" class="form-check-input choose" id="issue-year'+issueYear.id+'"'
-                                                        +'value="'+ issueYear.id +'" data-name="'+issueYear.from_year+'">'
-                                                        +'<label class="form-check-label" for="issue-year'+issueYear.id+'">'
-                                                        + issueYear.from_year
-                                                        +'</label>'
-                                                    +'</div>'
-                                            +'</div>';
-                                $('#fieldset4').append(htmltext);
-                            });
-                        }
-                    } else  if (table_name == 'categories') {
-                        $('#fieldset5').children().remove();
-                        if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
-                            $('#fieldset5').append(htmltext);
-                        } else {
-                            data.forEach(category => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="category'+category.id+'"'
-                                                    +'value="'+ category.id +'" name="category_id" data-name="'+category.name_en+'">'
-                                                    +'<label class="form-check-label" for="category'+category.id+'">'
-                                                    + category.name_en
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset5').append(htmltext);
-                            });
-                        }
-                    } else  if (table_name == 'sub_categories') {
-                        $('#fieldset6').children().remove();
-                        if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
-                            $('#fieldset6').append(htmltext);
-                        } else {
-                            data.forEach(subCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="sub-category'+subCategory.id+'"'
-                                                    +'value="'+ subCategory.id +'" name="sub_category_id" data-name="'+subCategory.name_en+'">'
-                                                    +'<label class="form-check-label" for="sub-category'+subCategory.id+'">'
-                                                    + subCategory.name_en
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset6').append(htmltext);
-                            });
-                        }
-                    } else  if (table_name == 'sub_sub_categories') {
-                        $('#fieldset7').children().remove();
-                        if (data.length === 0) {
-                            htmltext = '<div style="text-align: center;">'
-                                        +'<br><br>'
-                                        +'<h4>{{ trans("file.Not Found") }}</h4>'
-                                        +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
-                                        +'</div>';
-                            $('#fieldset7').append(htmltext);
-                        } else {
-                            data.forEach(subSubCategory => {
-                                htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
-                                                +'<div class="form-check">'
-                                                    +'<input type="radio" class="form-check-input choose" id="sub-sub-category'+subSubCategory.id+'"'
-                                                    +'value="'+ subSubCategory.id +'" name="sub_sub_category_id" data-name="'+subSubCategory.name_en+'">'
-                                                    +'<label class="form-check-label" for="sub-sub-category'+subSubCategory.id+'">'
-                                                    + subSubCategory.name_en
-                                                    +'</label>'
-                                                +'</div>'
-                                            +'</div>';
-                                $('#fieldset7').append(htmltext);
-                            });
-                        }
+                        });
                     }
-
-                } else if (table_name == 'models') {
+                    
+                } else  if (table_name == 'models') {
                     $('#fieldset2').children().remove();
                     if (data.length === 0) {
-                        htmltext = '<div style="text-align: center;">' +
-                            '<br><br>' +
-                            '<h4>{{ trans("file.Not Found") }}</h4>' +
-                            '<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>' +
-                            '</div>';
+                        htmltext = '<div style="text-align: center;">'
+                                    +'<br><br>'
+                                    +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                    +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                    +'</div>';
                         $('#fieldset2').append(htmltext);
                     } else {
                         data.forEach(model => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + model.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                model.name_en +
-                                '</label>' +
-                                '<input type="hidden" class="item-name" value="' + model.name_en + '">' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="model'+model.id+'"'
+                                                +'value="'+ model.id +'" name="model_id" data-name="'+model.name_en+'" >'
+                                                +'<label class="form-check-label" for="model'+model.id+'">'
+                                                + model.name_en
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
                             $('#fieldset2').append(htmltext);
                         });
                     }
-                } else if (table_name == 'sub_models') {
+                } else  if (table_name == 'sub_models') {
                     $('#fieldset3').children().remove();
                     if (data.length === 0) {
-                        htmltext = '<div style="text-align: center;">' +
-                            '<br><br>' +
-                            '<h4>{{ trans("file.Not Found") }}</h4>' +
-                            '<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>' +
-                            '</div>';
+                        htmltext = '<div style="text-align: center;">'
+                                    +'<br><br>'
+                                    +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                    +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                    +'</div>';
                         $('#fieldset3').append(htmltext);
                     } else {
                         data.forEach(subModel => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + subModel.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                subModel.name_en +
-                                '</label>' +
-                                '<input type="hidden" class="item-name" value="' + subModel.name_en + '">' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="sub-model'+subModel.id+'"'
+                                                +'value="'+ subModel.id +'" name="sub_model_id" data-name="'+subModel.name_en+'">'
+                                                +'<label class="form-check-label" for="sub-model'+subModel.id+'">'
+                                                + subModel.name_en
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
                             $('#fieldset3').append(htmltext);
                         });
                     }
-                } else if (table_name == 'issue_years') {
+                } else  if (table_name == 'issue_years') {
                     $('#fieldset4').children().remove();
                     if (data.length === 0) {
-                        htmltext = '<div style="text-align: center;">' +
-                            '<br><br>' +
-                            '<h4>{{ trans("file.Not Found") }}</h4>' +
-                            '<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>' +
-                            '</div>';
+                        htmltext = '<div style="text-align: center;">'
+                                    +'<br><br>'
+                                    +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                    +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                    +'</div>';
                         $('#fieldset4').append(htmltext);
                     } else {
                         data.forEach(issueYear => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + issueYear.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                issueYear.from_year +
-                                '</label>' +
-                                '<input type="hidden" class="item-name" value="' + issueYear.from_year + '">' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="issue-year'+issueYear.id+'"'
+                                                +'value="'+ issueYear.id +'" data-name="'+issueYear.from_year+'">'
+                                                +'<label class="form-check-label" for="issue-year'+issueYear.id+'">'
+                                                + issueYear.from_year
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
                             $('#fieldset4').append(htmltext);
                         });
                     }
-                } else if (table_name == 'categories') {
+                } else  if (table_name == 'categories') {
                     $('#fieldset5').children().remove();
                     if (data.length === 0) {
-                        htmltext = '<div style="text-align: center;">' +
-                            '<br><br>' +
-                            '<h4>{{ trans("file.Not Found") }}</h4>' +
-                            '<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>' +
-                            '</div>';
+                        htmltext = '<div style="text-align: center;">'
+                                    +'<br><br>'
+                                    +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                    +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                    +'</div>';
                         $('#fieldset5').append(htmltext);
                     } else {
                         data.forEach(category => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + category.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                category.name_en +
-                                '</label>' +
-                                '<input type="hidden" class="item-name" value="' + category.name_en + '">' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="category'+category.id+'"'
+                                                +'value="'+ category.id +'" name="category_id" data-name="'+category.name_en+'">'
+                                                +'<label class="form-check-label" for="category'+category.id+'">'
+                                                + category.name_th
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
                             $('#fieldset5').append(htmltext);
                         });
                     }
-                } else if (table_name == 'sub_categories') {
+                } else  if (table_name == 'sub_categories') {
                     $('#fieldset6').children().remove();
                     if (data.length === 0) {
-                        htmltext = '<div style="text-align: center;">' +
-                            '<br><br>' +
-                            '<h4>{{ trans("file.Not Found") }}</h4>' +
-                            '<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>' +
-                            '</div>';
+                        htmltext = '<div style="text-align: center;">'
+                                    +'<br><br>'
+                                    +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                    +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                    +'</div>';
                         $('#fieldset6').append(htmltext);
                     } else {
                         data.forEach(subCategory => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + subCategory.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                subCategory.name_en +
-                                '</label>' +
-                                '<input type="hidden" class="item-name" value="' + subCategory.name_en + '">' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="sub-category'+subCategory.id+'"'
+                                                +'value="'+ subCategory.id +'" name="sub_category_id" data-name="'+subCategory.name_en+'">'
+                                                +'<label class="form-check-label" for="sub-category'+subCategory.id+'">'
+                                                + subCategory.name_th
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
                             $('#fieldset6').append(htmltext);
                         });
                     }
-                } else if (table_name == 'sub_sub_categories') {
+                } else  if (table_name == 'sub_sub_categories') {
                     $('#fieldset7').children().remove();
                     if (data.length === 0) {
-                        htmltext = '<div style="text-align: center;">' +
-                            '<br><br>' +
-                            '<h4>{{ trans("file.Not Found") }}</h4>' +
-                            '<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>' +
-                            '</div>';
+                        htmltext = '<div style="text-align: center;">'
+                                    +'<br><br>'
+                                    +'<h4>{{ trans("file.Not Found") }}</h4>'
+                                    +'<i class="fa-solid fa-magnifying-glass text-center" style="width:30px;height:30px;" ></i>'
+                                    +'</div>';
                         $('#fieldset7').append(htmltext);
                     } else {
                         data.forEach(subSubCategory => {
-                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">' +
-                                '<div class="form-check">' +
-                                '<input class="form-check-input" type="checkbox" value="' + subSubCategory.id + '" id="flexCheckDefault">' +
-                                '<label class="form-check-label" for="flexCheckDefault">' +
-                                subSubCategory.name_en +
-                                '</label>' +
-                                '<input type="hidden" class="item-name" value="' + subCategory.name_en + '">' +
-                                '</div></div>';
+                            htmltext = '<div class="col-xl-3 col-lg-4 col-md-4 col-12 next">'
+                                            +'<div class="form-check">'
+                                                +'<input type="radio" class="form-check-input choose" id="sub-sub-category'+subSubCategory.id+'"'
+                                                +'value="'+ subSubCategory.id +'" name="sub_sub_category_id" data-name="'+subSubCategory.name_en+'">'
+                                                +'<label class="form-check-label" for="sub-sub-category'+subSubCategory.id+'">'
+                                                + subSubCategory.name_th
+                                                +'</label>'
+                                            +'</div>'
+                                        +'</div>';
                             $('#fieldset7').append(htmltext);
                         });
                     }
                 }
-
+                
             },
             error: function(error) {
                 console.log(error);

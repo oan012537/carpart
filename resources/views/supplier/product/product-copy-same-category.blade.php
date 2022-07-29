@@ -116,9 +116,9 @@
                                                                 <p class="txt__titlebox">{{ trans('file.Product Image') }} <span>*</span></p>
                                                             </div>
 
-                                                            <div class="col-lg-6 col-md-6 col-12">
+                                                            {{-- <div class="col-lg-6 col-md-6 col-12">
                                                                 <button class="btn btn__scanqr"><i class="fa-solid fa-qrcode"></i> {{ trans('file.QR Upload') }}</button>
-                                                            </div>
+                                                            </div> --}}
                                                             
                                                             <div class="col-lg-12">
                                                                 <div class="box__uploadimage">
@@ -201,6 +201,9 @@
                                                                                 <option value="{{ $quality }}">{{ trans('file.'. $quality) }}</option>
                                                                             @endforeach
                                                                         </select>
+                                                                        @if($errors->has('quality'))
+                                                                            <span class="dot__color">{{ $errors->first('quality') }}</span>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             @endif
@@ -472,12 +475,11 @@
                                                                                                     </div>
                                                                                                     <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                                                                                         <div class="itemstype">
-                                                                                                            <p class="txt__price">฿ {{ $transport_type['estimate_fee'] }}
+                                                                                                            {{-- <p class="txt__price">฿ {{ $transport_type['estimate_fee'] }}
                                                                                                                 @if ($i != 1)
-                                                                                                                    {{-- manage transport company by supplier --}}
                                                                                                                     <a href="javascript:void(0)"><i class="fa-solid fa-pencil"></i></a>
                                                                                                                 @endif
-                                                                                                            </p>
+                                                                                                            </p> --}}
                                                                                                             <div class="form-check form-switch">
                                                                                                                 <input class="form-check-input" 
                                                                                                                     type="checkbox" 
@@ -497,6 +499,9 @@
                                                                                 @endif
                                                                                 {{-- specify 2 and 3 here --}}
                                                                             </div>
+                                                                            @if($errors->has('transport_type_id'))
+                                                                                <span class="dot__color">{{ $errors->first('transport_type_id') }}</span>
+                                                                            @endif
                                                                         </div>
                                                                     </div>
                                                                 @endfor
@@ -540,11 +545,10 @@
                                                                                 </option>
                                                                             @endfor
                                                                         </select>
-                                                                        @if($errors->has('estimated_days'))
-                                                                            <span class="dot__color">{{ $errors->first('estimated_days') }}</span>
-                                                                        @endif
                                                                     </div>
-
+                                                                    @if($errors->has('estimated_days'))
+                                                                        <span class="dot__color">{{ $errors->first('estimated_days') }}</span><br>
+                                                                    @endif
                                                                     <span class="txt__red">{{ trans('file.Specify Day Message') }}</span>
                                                                 </div>
                                                             </div>
@@ -591,16 +595,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-8 col-lg-6 col-md-6 col-12">
-                                                    <div class="box__itemstotal">
+                                                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                                                    <div class="box__itemsprice">
                                                         <p class="txt__title">{{ trans('file.Amount Message') }}</p>
 
                                                         <div class="wrapper__form">
-                                                            <div class="form-group">
+                                                            <input type="hidden" name="commission" value="@if (old('commission') > 0) {{ old('commission') }} @else {{ $data->commission }} @endif">
+                                                            {{-- <div class="form-group">
                                                                 <label for="commission">{{ trans('file.Commission') }} </label>
                                                                 <input type="text" class="form-control" name="commission" placeholder="{{ trans('file.Specify') }}" 
                                                                         value="@if (old('commission') > 0) {{ old('commission') }} @else {{ $data->commission }} @endif" readonly>
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="form-group">
                                                                 <label for="revenue">{{ trans('file.Net Income') }}</label>
                                                                 <input type="text" class="form-control" name="revenue" placeholder="{{ trans('file.Specify') }}" 
@@ -633,7 +638,7 @@
                 @endfor
 
                  {{-- back and submit button --}}
-                 <div class="col-lg-12">
+                 {{-- <div class="col-lg-12">
                     <div class="box__btn">
                         <div class="row">
                             <div class="col-md-6">
@@ -644,7 +649,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 {{-- back and submit button --}}
                 
             </div>
@@ -725,7 +730,24 @@
                     </form>
                 </div>
                 {{-- sales code --}}
+
             </div>
+
+             {{-- back and submit button --}}
+             <div class="col-lg-12">
+                <div class="box__btn">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="javascript:void(0)" class="btn btn-secondary d-block">{{ trans('file.Back') }}</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="javascript:document.getElementById('msform').submit();" class="btn btn-primary mb-3 d-block">{{ trans('file.Submit') }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- back and submit button --}}
+
         </div>
     </div>
 </div>
@@ -750,7 +772,7 @@
 
     $(document).ready(()=>{
 
-        // auto close alert
+            // auto close alert
         setTimeout(() => {
             $('.alert').alert('close');
         }, 3000);   
@@ -762,6 +784,20 @@
         // specify initilize option data
 
         // initialize old option data
+        let oldImages = <?php echo json_encode(old('image'))?>;
+        if (oldImages) {
+            for (index in oldImages) {
+                imageUrl = "{{ asset('products/images') }}" + '/' + oldImages[index];
+                let htmlText = '<div class="col-xl-3 col-lg-4 col-md-6 col-12">'
+                                +'<input type="hidden" name="image[]" value="'+ oldImages[index] +'">'
+                                +'<a href="javascript:void(0)" data-image="'+ oldImages[index] +'" class="btn__trash" >'
+                                +'<img src="'+ imageUrl +'" class="img-fluid" alt="product image">'
+                                +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
+                                +'</a></div>';
+                $('#show-image').prepend(htmlText); 
+            }
+        }
+
         let oldQuality = "{{ old('quality') }}";
         let quality = oldQuality ? oldQuality : "";
         $('#quality option[value="' + quality + '"]').attr('selected', 'selected');

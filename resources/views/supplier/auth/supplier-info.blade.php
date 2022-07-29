@@ -102,7 +102,16 @@
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username" name="personal_card_id" value="{{ old('personal_card_id') }}" aria-describedby="basic-addon1" required>
+                                        <input type="text" class="form-control" 
+                                            placeholder="{{ trans('file.Specify') }}" 
+                                            aria-label="Username" 
+                                            name="personal_card_id" 
+                                            value="{{ old('personal_card_id') }}" 
+                                            aria-describedby="basic-addon1" 
+                                            maxlength="13" 
+                                            minlength="13"
+                                            required
+                                        >
                                     </div>
                                     <div class="tt-text-log">
                                         <p>
@@ -110,7 +119,14 @@
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username" name="address" value="{{ old('address') }}" aria-describedby="basic-addon1" required>
+                                        <input type="text" 
+                                            class="form-control" 
+                                            placeholder="{{ trans('file.Specify') }}" 
+                                            aria-label="Username" 
+                                            name="address"  
+                                            value="{{ old('address') }}" 
+                                            aria-describedby="basic-addon1" required
+                                        >
                                     </div>
                                     <div class="tt-text-log">
                                         <p>
@@ -168,9 +184,6 @@
                                             <i class="fa fa-plus-circle" style="font-size:35px"></i>
                                             <p> {{ trans('file.Attach a Jpeg Image') }}</p>
                                             <div class="tt-img-detail">
-                                                <div class="text-size-tt">
-                                                    <p> {{ trans('file.Size up to 5 images') }} </p>
-                                                </div>
                                                 <div class="text-size-t">
                                                     <p> {{ trans('file.Size does not exceed 5 Mb.') }} </p>
                                                 </div>
@@ -179,7 +192,7 @@
                                     </div>
                                     <br>
                                     <div class="tt-text-log">
-                                        <p>{{ trans('file.Copy of house registration') }} <span class="dot__color"> *</span></p>
+                                        <p>{{ trans('file.Copy of house registration') }}</p>
                                         <div class="text-t-log">
                                             <p>{{ trans('file.accept file extension') }}</p>
                                         </div>
@@ -239,7 +252,16 @@
                                         </p>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="{{ trans('file.Specify') }}" aria-label="Username" name="vat_registration_number" value="{{ old('vat_registration_number') }}" aria-describedby="basic-addon1" required>
+                                        <input type="text" 
+                                            class="form-control" 
+                                            placeholder="{{ trans('file.Specify') }}" 
+                                            aria-label="Username" 
+                                            name="vat_registration_number" 
+                                            value="{{ old('vat_registration_number') }}" 
+                                            aria-describedby="basic-addon1" 
+                                            maxlength="13"
+                                            required
+                                        >
                                     </div>
                                     {{-- attach doc --}}
                                     <div class="tt-text-log">
@@ -628,8 +650,8 @@
         function uploadImage(event, fieldName) {
             var imageUrl = '';
             var htmlText = '';
-            var file_data = event.prop('files')[0];
-            var form_data = new FormData();
+            var file_data = event.prop('files')[0];   
+            var form_data = new FormData(); 
             form_data.append('_token', '{{ csrf_token() }}');
             form_data.append('file', file_data);
             $.ajax({
@@ -640,15 +662,15 @@
                 processData: false,
                 data: form_data,
                 type: 'post',
-                success: function(data) {
+                success: function(data){
                     event.parent().addClass('d-none');
                     imageUrl = "{{ asset('suppliers/document') }}" + '/' + data;
-                    htmlText = '<div>' +
-                        '<input type="hidden" name="' + fieldName + '" value="' + data + '">' +
-                        '<a href="javascript:void(0)" data-image="' + data + '" class="btn__trash" >' +
-                        '<img src="' + imageUrl + '" class="img-fluid" alt="Attachment" style="width:115px;height:106px;">' +
-                        '<i class="fa-solid fa-trash-can"></i> {{ trans('
-                    file.Remove ') }}' + '</a></div>';
+                    htmlText = '<div>'
+                                    +'<input type="hidden" name="'+ fieldName +'" value="'+ data +'">'
+                                    +'<a href="javascript:void(0)" data-image="'+ data +'" class="btn__trash" >'
+                                    +'<img src="'+ imageUrl +'" class="img-fluid" alt="Attachment" style="width:115px;height:106px;">'
+                                    +'<i class="fa-solid fa-trash-can"></i> {{ trans('file.Remove') }}'
+                                    +'</a></div>';
                     event.parent().parent().append(htmlText);
                 }
             });
